@@ -1,18 +1,18 @@
 sequenceDiagram
     participant Client
     participant Gateway
-    Client->>Gateway: CONNECT
+    Client->>Gateway: CONNECT (with DefaultAwakeMessages>0)
     Gateway->>Client: CONNACK
     Note over Client,Gateway: Session established
     Client->>Gateway: DISCONNECT (with SessionExpiryInterval>0)
     Gateway->>Client: DISCONNECT
     Note over Client: Client in Asleep state
-    Client->>Gateway: PINGREQ (with MaxReceive>0)
+    Client->>Gateway: PINGREQ
     Note over Client: Client in Awake state
     alt BufferedMessages=0
-        Gateway->>Client: PINGRESP (with MessagesRemaining=0)
+        Gateway->>Client: PINGRESP
     else BufferedMessages>0
-        loop Until max(BufferedMessages,MaxReceive)
+        loop Until max(BufferedMessages,DefaultAwakeMessages)
             alt QoS=0
                 Gateway->>Client: PUBLISH
             else QoS=1
@@ -25,7 +25,6 @@ sequenceDiagram
                 Client->>Gateway: PUBCOMP
             end
         end
-    Gateway->>Client: PINGRESP (with MessagesRemaining=0 or BufferedMessages-MaxReceive)
+    Gateway->>Client: PINGRESP (with MessagesRemaining=0 or BufferedMessages-DefaultAwakeMessages)
     Note over Client: Client in Asleep state
     end
-    
