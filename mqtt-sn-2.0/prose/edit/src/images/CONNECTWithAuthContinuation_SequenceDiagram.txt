@@ -1,0 +1,11 @@
+sequenceDiagram
+    participant Client
+    participant Gateway
+    Client->>Gateway: CONNECT (auth method and data)
+    activate Gateway
+    loop All required auth data exchanged
+        Gateway->>Client: AUTH (continuation)
+        Client->>Gateway: AUTH (continuation)
+    end
+    Gateway->>Client: CONNACK
+    deactivate Gateway

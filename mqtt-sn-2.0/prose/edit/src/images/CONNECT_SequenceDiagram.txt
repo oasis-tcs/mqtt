@@ -1,0 +1,11 @@
+sequenceDiagram
+    participant Client
+    participant Server
+    Client->>Server: PUBLISH with Packed Id = 0x1234
+    activate Client
+    Server->>Client: PUBLISH with Packed Id = 0x1234
+    activate Server
+    Client->>Server: PUBACK with Packed Id = 0x1234
+    deactivate Server
+    Server->>Client: PUBACK with Packed Id = 0x1234
+    deactivate Client
