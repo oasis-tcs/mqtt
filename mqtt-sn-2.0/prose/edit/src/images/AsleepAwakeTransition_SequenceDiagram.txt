@@ -1,0 +1,31 @@
+sequenceDiagram
+    participant Client
+    participant Gateway
+    Client->>Gateway: CONNECT
+    Gateway->>Client: CONNACK
+    Note over Client,Gateway: Session established
+    Client->>Gateway: DISCONNECT (with SessionExpiryInterval>0)
+    Gateway->>Client: DISCONNECT
+    Note over Client: Client in Asleep state
+    Client->>Gateway: PINGREQ (with MaxReceive>0)
+    Note over Client: Client in Awake state
+    alt BufferedMessages=0
+        Gateway->>Client: PINGRESP (with MessagesRemaining=0)
+    else BufferedMessages>0
+        loop Until max(BufferedMessages,MaxReceive)
+            alt QoS=0
+                Gateway->>Client: PUBLISH
+            else QoS=1
+                Gateway->>Client: PUBLISH
+                Client->>Gateway: PUBACK
+            else QoS=2
+                Gateway->>Client: PUBLISH
+                Client->>Gateway: PUBREC
+                Gateway->>Client: PUBREL
+                Client->>Gateway: PUBCOMP
+            end
+        end
+    Gateway->>Client: PINGRESP (with MessagesRemaining=0 or BufferedMessages-MaxReceive)
+    Note over Client: Client in Asleep state
+    end
+    
