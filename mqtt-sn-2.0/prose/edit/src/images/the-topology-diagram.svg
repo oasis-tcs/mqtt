@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="608" width="624" viewBox="0 0 624 608" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+<path d="M 8,32 L 8,96" fill="none" stroke="black"/>
+<path d="M 8,144 L 8,208" fill="none" stroke="black"/>
+<path d="M 8,256 L 8,320" fill="none" stroke="black"/>
+<path d="M 8,384 L 8,448" fill="none" stroke="black"/>
+<path d="M 8,480 L 8,544" fill="none" stroke="black"/>
+<path d="M 112,32 L 112,48" fill="none" stroke="black"/>
+<path d="M 112,80 L 112,96" fill="none" stroke="black"/>
+<path d="M 112,144 L 112,160" fill="none" stroke="black"/>
+<path d="M 112,192 L 112,208" fill="none" stroke="black"/>
+<path d="M 112,256 L 112,272" fill="none" stroke="black"/>
+<path d="M 112,304 L 112,320" fill="none" stroke="black"/>
+<path d="M 112,384 L 112,400" fill="none" stroke="black"/>
+<path d="M 112,432 L 112,448" fill="none" stroke="black"/>
+<path d="M 112,480 L 112,496" fill="none" stroke="black"/>
+<path d="M 112,528 L 112,544" fill="none" stroke="black"/>
+<path d="M 192,96 L 192,160" fill="none" stroke="black"/>
+<path d="M 192,192 L 192,256" fill="none" stroke="black"/>
+<path d="M 192,384 L 192,400" fill="none" stroke="black"/>
+<path d="M 192,432 L 192,496" fill="none" stroke="black"/>
+<path d="M 192,528 L 192,544" fill="none" stroke="black"/>
+<path d="M 256,64 L 256,96" fill="none" stroke="black"/>
+<path d="M 256,256 L 256,288" fill="none" stroke="black"/>
+<path d="M 328,96 L 328,160" fill="none" stroke="black"/>
+<path d="M 328,192 L 328,256" fill="none" stroke="black"/>
+<path d="M 328,384 L 328,400" fill="none" stroke="black"/>
+<path d="M 328,432 L 328,496" fill="none" stroke="black"/>
+<path d="M 328,528 L 328,544" fill="none" stroke="black"/>
+<path d="M 464,384 L 464,400" fill="none" stroke="black"/>
+<path d="M 464,432 L 464,496" fill="none" stroke="black"/>
+<path d="M 464,528 L 464,544" fill="none" stroke="black"/>
+<path d="M 536,176 L 536,384" fill="none" stroke="black"/>
+<path d="M 616,384 L 616,544" fill="none" stroke="black"/>
+<path d="M 8,32 L 112,32" fill="none" stroke="black"/>
+<path d="M 112,64 L 256,64" fill="none" stroke="black"/>
+<path d="M 8,96 L 112,96" fill="none" stroke="black"/>
+<path d="M 192,96 L 248,96" fill="none" stroke="black"/>
+<path d="M 264,96 L 328,96" fill="none" stroke="black"/>
+<path d="M 8,144 L 112,144" fill="none" stroke="black"/>
+<path d="M 112,176 L 192,176" fill="none" stroke="black"/>
+<path d="M 328,176 L 536,176" fill="none" stroke="black"/>
+<path d="M 8,208 L 112,208" fill="none" stroke="black"/>
+<path d="M 8,256 L 112,256" fill="none" stroke="black"/>
+<path d="M 192,256 L 248,256" fill="none" stroke="black"/>
+<path d="M 264,256 L 328,256" fill="none" stroke="black"/>
+<path d="M 112,288 L 256,288" fill="none" stroke="black"/>
+<path d="M 8,320 L 112,320" fill="none" stroke="black"/>
+<path d="M 8,384 L 112,384" fill="none" stroke="black"/>
+<path d="M 192,384 L 328,384" fill="none" stroke="black"/>
+<path d="M 464,384 L 528,384" fill="none" stroke="black"/>
+<path d="M 544,384 L 616,384" fill="none" stroke="black"/>
+<path d="M 112,416 L 192,416" fill="none" stroke="black"/>
+<path d="M 328,416 L 464,416" fill="none" stroke="black"/>
+<path d="M 8,448 L 112,448" fill="none" stroke="black"/>
+<path d="M 8,480 L 112,480" fill="none" stroke="black"/>
+<path d="M 112,512 L 192,512" fill="none" stroke="black"/>
+<path d="M 328,512 L 464,512" fill="none" stroke="black"/>
+<path d="M 8,544 L 112,544" fill="none" stroke="black"/>
+<path d="M 192,544 L 328,544" fill="none" stroke="black"/>
+<path d="M 464,544 L 616,544" fill="none" stroke="black"/>
+<polygon class="arrowhead" points="544,384 532,378.4 532,389.6" fill="black" transform="rotate(90,536,384)"/>
+<polygon class="arrowhead" points="472,512 460,506.4 460,517.6" fill="black" transform="rotate(0,464,512)"/>
+<polygon class="arrowhead" points="472,416 460,410.4 460,421.6" fill="black" transform="rotate(0,464,416)"/>
+<polygon class="arrowhead" points="336,512 324,506.4 324,517.6" fill="black" transform="rotate(180,328,512)"/>
+<polygon class="arrowhead" points="336,416 324,410.4 324,421.6" fill="black" transform="rotate(180,328,416)"/>
+<polygon class="arrowhead" points="336,176 324,170.4 324,181.6" fill="black" transform="rotate(180,328,176)"/>
+<polygon class="arrowhead" points="264,256 252,250.4 252,261.6" fill="black" transform="rotate(270,256,256)"/>
+<polygon class="arrowhead" points="264,96 252,90.4 252,101.6" fill="black" transform="rotate(90,256,96)"/>
+<polygon class="arrowhead" points="200,512 188,506.4 188,517.6" fill="black" transform="rotate(0,192,512)"/>
+<polygon class="arrowhead" points="200,416 188,410.4 188,421.6" fill="black" transform="rotate(0,192,416)"/>
+<polygon class="arrowhead" points="200,176 188,170.4 188,181.6" fill="black" transform="rotate(0,192,176)"/>
+<polygon class="arrowhead" points="120,512 108,506.4 108,517.6" fill="black" transform="rotate(180,112,512)"/>
+<polygon class="arrowhead" points="120,416 108,410.4 108,421.6" fill="black" transform="rotate(180,112,416)"/>
+<polygon class="arrowhead" points="120,288 108,282.4 108,293.6" fill="black" transform="rotate(180,112,288)"/>
+<polygon class="arrowhead" points="120,176 108,170.4 108,181.6" fill="black" transform="rotate(180,112,176)"/>
+<polygon class="arrowhead" points="120,64 108,58.4 108,69.6" fill="black" transform="rotate(180,112,64)"/>
+<g class="text">
+<text x="384" y="20">|</text>
+<text x="312" y="36">MQTT-SN</text>
+<text x="444" y="36">MQTT</text>
+<text x="56" y="52">MQTT-SN</text>
+<text x="384" y="52">|</text>
+<text x="52" y="84">Client</text>
+<text x="384" y="84">|</text>
+<text x="384" y="116">|</text>
+<text x="248" y="132">MQTT-SN</text>
+<text x="384" y="148">|</text>
+<text x="56" y="164">MQTT-SN</text>
+<text x="264" y="180">Aggregating</text>
+<text x="52" y="196">Client</text>
+<text x="384" y="196">|</text>
+<text x="248" y="228">Gateway</text>
+<text x="384" y="228">|</text>
+<text x="384" y="260">|</text>
+<text x="56" y="276">MQTT-SN</text>
+<text x="384" y="292">|</text>
+<text x="52" y="308">Client</text>
+<text x="384" y="324">|</text>
+<text x="384" y="356">|</text>
+<text x="384" y="388">|</text>
+<text x="56" y="404">MQTT-SN</text>
+<text x="248" y="420">MQTT-SN</text>
+<text x="52" y="436">Client</text>
+<text x="384" y="436">|</text>
+<text x="524" y="436">MQTT</text>
+<text x="264" y="468">Transparent</text>
+<text x="384" y="468">|</text>
+<text x="56" y="500">MQTT-SN</text>
+<text x="384" y="500">|</text>
+<text x="532" y="500">Broker</text>
+<text x="248" y="516">Gateway</text>
+<text x="52" y="532">Client</text>
+<text x="384" y="548">|</text>
+<text x="384" y="580">|</text>
+</g>
+</svg>
