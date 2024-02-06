@@ -16,7 +16,7 @@ Revision report (changes made compared to the source diagram):
 1. Unified the arrow types
 2. Added a third client for symmetrie to the aggregating gateway
    use case
-3. moved the MQTT broker downwards to temove the need for diagona lines
+3. Moved the MQTT broker downwards to remove the need for diagonal lines
    and emphasize the pass through logic of the transparent gateway
 4. Used only rectangular boxes (not circle and rectangle)
    to further reduce the message of the visual
