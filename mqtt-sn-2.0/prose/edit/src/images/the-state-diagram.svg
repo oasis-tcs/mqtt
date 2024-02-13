@@ -1,10 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="752" width="704" viewBox="0 0 704 752" class="diagram" text-anchor="middle" font-family="verdana" font-size="13px" stroke-linecap="round">
-<style>
-  .active {font-size: 1.4em; fill: darkgreen;}
-  .inactive {font-size: 1.4em; fill: grey;}
-  .lost {font-size: 1.4em; fill: violet;}
-  .timeout {font-size: 1em; fill: red;}
-</style>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="752" width="704" viewBox="0 0 704 752" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
 <path d="M 8,64 L 8,656" fill="none" stroke="black"/>
 <path d="M 24,272 L 24,304" fill="none" stroke="black"/>
 <path d="M 64,328 L 64,648" fill="none" stroke="black"/>
@@ -13,13 +7,16 @@
 <path d="M 272,48 L 272,80" fill="none" stroke="black"/>
 <path d="M 272,272 L 272,304" fill="none" stroke="black"/>
 <path d="M 272,624 L 272,656" fill="none" stroke="black"/>
-<path d="M 320,104 L 320,256" fill="none" stroke="black"/>
+<path d="M 320,96 L 320,248" fill="none" stroke="black"/>
 <path d="M 320,328 L 320,608" fill="none" stroke="black"/>
-<path d="M 360,96 L 360,248" fill="none" stroke="black"/>
+<path d="M 360,104 L 360,256" fill="none" stroke="black"/>
 <path d="M 360,320 L 360,600" fill="none" stroke="black"/>
+<path d="M 376,496 L 376,608" fill="none" stroke="black"/>
+<path d="M 392,544 L 392,600" fill="none" stroke="black"/>
 <path d="M 408,48 L 408,80" fill="none" stroke="black"/>
 <path d="M 408,272 L 408,304" fill="none" stroke="black"/>
 <path d="M 408,624 L 408,656" fill="none" stroke="black"/>
+<path d="M 488,512 L 488,528" fill="none" stroke="black"/>
 <path d="M 536,624 L 536,656" fill="none" stroke="black"/>
 <path d="M 600,64 L 600,608" fill="none" stroke="black"/>
 <path d="M 600,672 L 600,704" fill="none" stroke="black"/>
@@ -34,6 +31,8 @@
 <path d="M 168,304 L 272,304" fill="none" stroke="black"/>
 <path d="M 40,320 L 144,320" fill="none" stroke="black"/>
 <path d="M 288,320 L 392,320" fill="none" stroke="black"/>
+<path d="M 376,496 L 472,496" fill="none" stroke="black"/>
+<path d="M 392,544 L 472,544" fill="none" stroke="black"/>
 <path d="M 288,608 L 392,608" fill="none" stroke="black"/>
 <path d="M 552,608 L 656,608" fill="none" stroke="black"/>
 <path d="M 408,624 L 528,624" fill="none" stroke="black"/>
@@ -43,57 +42,60 @@
 <path d="M 552,672 L 656,672" fill="none" stroke="black"/>
 <path d="M 64,704 L 600,704" fill="none" stroke="black"/>
 <path d="M 124,328 L 272,624" fill="none" stroke="black"/>
-<path d="M 288,32 C 279.16936,32 272,39.16936 272,48" fill="grey" stroke="black"/>
-<path d="M 392,32 C 400.83064,32 408,39.16936 408,48" fill="grey" stroke="black"/>
-<path d="M 288,96 C 279.16936,96 272,88.83064 272,80" fill="grey" stroke="black"/>
-<path d="M 392,96 C 400.83064,96 408,88.83064 408,80" fill="grey" stroke="black"/>
-<path d="M 40,256 C 31.16936,256 24,263.16936 24,272" fill="pink" stroke="black"/>
-<path d="M 144,256 C 152.83064,256 160,263.16936 160,272" fill="pink" stroke="black"/>
-<path d="M 288,256 C 279.16936,256 272,263.16936 272,272" fill="limegreen" stroke="black"/>
-<path d="M 392,256 C 400.83064,256 408,263.16936 408,272" fill="limegreen" stroke="black"/>
-<path d="M 40,320 C 31.16936,320 24,312.83064 24,304" fill="pink" stroke="black"/>
-<path d="M 144,320 C 152.83064,320 160,312.83064 160,304" fill="pink" stroke="black"/>
-<path d="M 288,320 C 279.16936,320 272,312.83064 272,304" fill="limegreen" stroke="black"/>
-<path d="M 392,320 C 400.83064,320 408,312.83064 408,304" fill="limegreen" stroke="black"/>
-<path d="M 288,608 C 279.16936,608 272,615.16936 272,624" fill="grey" stroke="black"/>
-<path d="M 392,608 C 400.83064,608 408,615.16936 408,624" fill="grey" stroke="black"/>
-<path d="M 552,608 C 543.16936,608 536,615.16936 536,624" fill="limegreen" stroke="black"/>
-<path d="M 656,608 C 664.83064,608 672,615.16936 672,624" fill="limegreen" stroke="black"/>
-<path d="M 288,672 C 279.16936,672 272,664.83064 272,656" fill="grey" stroke="black"/>
-<path d="M 392,672 C 400.83064,672 408,664.83064 408,656" fill="grey" stroke="black"/>
-<path d="M 552,672 C 543.16936,672 536,664.83064 536,656" fill="limegreen" stroke="black"/>
-<path d="M 656,672 C 664.83064,672 672,664.83064 672,656" fill="limegreen" stroke="black"/>
+<path d="M 288,32 C 279.16936,32 272,39.16936 272,48" fill="none" stroke="black"/>
+<path d="M 392,32 C 400.83064,32 408,39.16936 408,48" fill="none" stroke="black"/>
+<path d="M 288,96 C 279.16936,96 272,88.83064 272,80" fill="none" stroke="black"/>
+<path d="M 392,96 C 400.83064,96 408,88.83064 408,80" fill="none" stroke="black"/>
+<path d="M 40,256 C 31.16936,256 24,263.16936 24,272" fill="none" stroke="black"/>
+<path d="M 144,256 C 152.83064,256 160,263.16936 160,272" fill="none" stroke="black"/>
+<path d="M 288,256 C 279.16936,256 272,263.16936 272,272" fill="none" stroke="black"/>
+<path d="M 392,256 C 400.83064,256 408,263.16936 408,272" fill="none" stroke="black"/>
+<path d="M 40,320 C 31.16936,320 24,312.83064 24,304" fill="none" stroke="black"/>
+<path d="M 144,320 C 152.83064,320 160,312.83064 160,304" fill="none" stroke="black"/>
+<path d="M 288,320 C 279.16936,320 272,312.83064 272,304" fill="none" stroke="black"/>
+<path d="M 392,320 C 400.83064,320 408,312.83064 408,304" fill="none" stroke="black"/>
+<path d="M 472,496 C 480.83064,496 488,503.16936 488,512" fill="none" stroke="black"/>
+<path d="M 472,544 C 480.83064,544 488,536.83064 488,528" fill="none" stroke="black"/>
+<path d="M 288,608 C 279.16936,608 272,615.16936 272,624" fill="none" stroke="black"/>
+<path d="M 392,608 C 400.83064,608 408,615.16936 408,624" fill="none" stroke="black"/>
+<path d="M 552,608 C 543.16936,608 536,615.16936 536,624" fill="none" stroke="black"/>
+<path d="M 656,608 C 664.83064,608 672,615.16936 672,624" fill="none" stroke="black"/>
+<path d="M 288,672 C 279.16936,672 272,664.83064 272,656" fill="none" stroke="black"/>
+<path d="M 392,672 C 400.83064,672 408,664.83064 408,656" fill="none" stroke="black"/>
+<path d="M 552,672 C 543.16936,672 536,664.83064 536,656" fill="none" stroke="black"/>
+<path d="M 656,672 C 664.83064,672 672,664.83064 672,656" fill="none" stroke="black"/>
 <polygon class="arrowhead" points="536,624 524,618.4 524,629.6" fill="black" transform="rotate(0,528,624)"/>
 <polygon class="arrowhead" points="424,656 412,650.4 412,661.6" fill="black" transform="rotate(180,416,656)"/>
 <polygon class="arrowhead" points="424,64 412,58.4 412,69.6" fill="black" transform="rotate(180,416,64)"/>
+<polygon class="arrowhead" points="400,600 388,594.4 388,605.6" fill="black" transform="rotate(90,392,600)"/>
 <polygon class="arrowhead" points="368,600 356,594.4 356,605.6" fill="black" transform="rotate(90,360,600)"/>
-<polygon class="arrowhead" points="368,248 356,242.4 356,253.6" fill="black" transform="rotate(90,360,248)"/>
+<polygon class="arrowhead" points="368,104 356,98.4 356,109.6" fill="black" transform="rotate(270,360,104)"/>
 <polygon class="arrowhead" points="328,328 316,322.4 316,333.6" fill="black" transform="rotate(270,320,328)"/>
-<polygon class="arrowhead" points="328,104 316,98.4 316,109.6" fill="black" transform="rotate(270,320,104)"/>
+<polygon class="arrowhead" points="328,248 316,242.4 316,253.6" fill="black" transform="rotate(90,320,248)"/>
 <polygon class="arrowhead" points="272,272 260,266.4 260,277.6" fill="black" transform="rotate(0,264,272)"/>
 <polygon class="arrowhead" points="272,64 260,58.4 260,69.6" fill="black" transform="rotate(0,264,64)"/>
 <polygon class="arrowhead" points="176,304 164,298.4 164,309.6" fill="black" transform="rotate(180,168,304)"/>
 <polygon class="arrowhead" points="132,328 120,322.4 120,333.6" fill="black" transform="rotate(243.43494882292202,124,328)"/>
 <path class="jump" d="M 64,664 C 58,664 58,648 64,648" fill="none" stroke="black"/><polygon class="arrowhead" points="72,328 60,322.4 60,333.6" fill="black" transform="rotate(270,64,328)"/>
 <g class="text">
-<text x="340" y="68" class="inactive">Disconnected</text>
+<text x="340" y="68">Disconnected</text>
 <text x="280" y="180">CONNECT</text>
 <text x="412" y="180">DISCONNECT</text>
 <text x="216" y="260">CONNECT</text>
-<text x="92" y="292" class="lost">Lost</text>
-<text x="340" y="292" class="active">Active</text>
+<text x="92" y="292">Lost</text>
+<text x="340" y="292">Active</text>
 <text x="652" y="292">DISCONNECT</text>
-<text x="216" y="324" class="timeout">TIMEOUT</text>
+<text x="216" y="324">TIMEOUT</text>
 <text x="428" y="452">DISCONNECT</text>
 <text x="280" y="468">CONNECT</text>
 <text x="432" y="468">(session expiry</text>
 <text x="432" y="484">interval &gt; 0)</text>
-<text x="200" y="564" class="timeout">TIMEOUT</text>
+<text x="200" y="564">TIMEOUT</text>
 <text x="472" y="612">PINGREQ</text>
-<text x="340" y="644" class="inactive">Asleep</text>
-<text x="600" y="644" class="active">Awake</text>
+<text x="340" y="644">Asleep</text>
+<text x="600" y="644">Awake</text>
 <text x="196" y="676">DISCONNECT</text>
 <text x="476" y="676">PINGRESP</text>
-<text x="336" y="724" class="timeout">TIMEOUT</text>
+<text x="336" y="724">TIMEOUT</text>
 </g>
 </svg>
