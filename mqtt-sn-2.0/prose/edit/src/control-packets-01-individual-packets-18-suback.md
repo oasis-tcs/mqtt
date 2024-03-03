@@ -42,7 +42,7 @@ The SUBACK Flags includes the following flags:
 <!-- transformation-note: left upstream numbering of headings for verification -->
 #### 3.1.18.3 Topic Data{#suback--topic-data}
 
-In case of “accepted” the value that will be used as topic alias by the gateway when sending PUBLISH packets to the client
+In case of "accepted" the value that will be used as topic alias by the gateway when sending PUBLISH packets to the client
 (not relevant in case of subscriptions to a short topic name or to a topic name which contains wildcard characters).
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
