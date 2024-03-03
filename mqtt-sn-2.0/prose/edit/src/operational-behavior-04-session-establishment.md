@@ -6,11 +6,39 @@ The procedure for setting up a session with a gateway is illustrated in Fig. 3a 
 
 The CONNECT packet contains flags to communicate to the gateway that Auth interactions should take place.
 
-![Connect procedure (without Auth flag set or no further authentication data required)](images/connect-sequence-diagram.svg "Connect procedure (without Auth flag set or no further authentication data required)")
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Server
+    Client->>Server: PUBLISH with Packed Id = 0x1234
+    activate Client
+    Server->>Client: PUBLISH with Packed Id = 0x1234
+    activate Server
+    Client->>Server: PUBACK with Packed Id = 0x1234
+    deactivate Server
+    Server->>Client: PUBACK with Packed Id = 0x1234
+    deactivate Client
+```
+
+<!-- ![Connect procedure (without Auth flag set or no further authentication data required)](images/connect-sequence-diagram.svg "Connect procedure (without Auth flag set or no further authentication data required)") -->
 
 Figure 3a: Connect procedure (without Auth flag set or no further authentication data required)
 
-![Connect procedure (with Auth flag set and additional authentication data required)](images/connect-with-auth-continuation-sequence-diagram.svg "Connect procedure (with Auth flag set and additional authentication data required)")
+<!-- ![Connect procedure (with Auth flag set and additional authentication data required)](images/connect-with-auth-continuation-sequence-diagram.svg "Connect procedure (with Auth flag set and additional authentication data required)") -->
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Gateway
+    Client->>Gateway: CONNECT (auth method and data)
+    activate Gateway
+    loop All required auth data exchanged
+        Gateway->>Client: AUTH (continuation)
+        Client->>Gateway: AUTH (continuation)
+    end
+    Gateway->>Client: CONNACK
+    deactivate Gateway
+```
 
 Figure 3b: Connect procedure (with Auth flag set and additional authentication data required)
 
