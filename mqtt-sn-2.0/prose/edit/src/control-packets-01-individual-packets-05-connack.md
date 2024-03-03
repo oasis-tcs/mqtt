@@ -13,8 +13,8 @@ The CONNACK packet is sent by the Gateway in response to a Virtual Connection re
 #### 3.1.5.1 Length and Packet Type{#connack--length-and-packet-type}
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format.
-Please refer to section 1.4.2 for a detailed description.
-<!-- transformation-note: the above section ref upstream 1.8.2 is obviously wrong and should point to 1.4.2 "Two Byte Integer" instead. -->
+Please refer to section 2.1 "Structure of an MQTT-SN Control Packet" for a detailed description.
+<!-- transformation-note: the above section ref upstream 1.8.2 was obviously wrong and should point to section 2.1 "Structure of an MQTT-SN Control Packet". -->
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
 #### 3.1.5.2 Reason Code{#CONNACK--reason-code}

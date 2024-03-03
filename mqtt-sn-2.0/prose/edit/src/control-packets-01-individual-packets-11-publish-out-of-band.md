@@ -20,6 +20,8 @@ Table 29: PUBLISH packet
 This packet is used by both clients and gateways to publish data for a certain topic.
 
 <!-- transformation-note: the below normative comment is irritating at best, let us make that a normal paragraph as all comments should be informative only. -->
+<!-- transformation-note: in case this comment **does** become normal normative prose, consider rewriting the lower case must as uppercase MUST. -->
+<!-- transformation-note: in case this comment shall **not** become normal normative prose, consider avoiding terms like must, should, and may. -->
 > Normative Comment
 > PUBLISH QoS 0, 1 and 2 packets received by a Gateway must be associated with a valid Client Session.
 <!-- transformation-note: replaced above colloquial ampersand with english "and". -->
@@ -28,8 +30,8 @@ This packet is used by both clients and gateways to publish data for a certain t
 #### 3.1.11.1 Length and Packet Type{#publish-used-for-qos-0--length-and-packet-type}
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format.
-Please refer to section 1.4.2 for a detailed description.
-<!-- transformation-note: the above section ref upstream 1.8.2 is obviously wrong and should point to 1.4.2 "Two Byte Integer" instead. -->
+Please refer to section 2.1 "Structure of an MQTT-SN Control Packet" for a detailed description.
+<!-- transformation-note: the above section ref upstream 1.8.2 was obviously wrong and should point to section 2.1 "Structure of an MQTT-SN Control Packet". -->
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
 #### 3.1.11.2 PUBLISH Flags{#publish-used-for-qos-0--publish-flags}

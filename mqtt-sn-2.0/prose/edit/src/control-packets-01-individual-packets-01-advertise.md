@@ -22,8 +22,8 @@ The time interval until the next transmission is indicated by the Duration field
 #### 3.1.1.1 Length and Packet Type{#advertise--length-and-packet-type}
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format.
-Please refer to section 1.4.2 for a detailed description.
-<!-- transformation-note: the above section ref upstream 1.8.2 is obviously wrong and should point to 1.4.2 "Two Byte Integer" instead. -->
+Please refer to section 2.1 "Structure of an MQTT-SN Control Packet" for a detailed description.
+<!-- transformation-note: the above section ref upstream 1.8.2 was obviously wrong and should point to section 2.1 "Structure of an MQTT-SN Control Packet". -->
 
 #### 3.1.1.2 GwId{#advertise--gwid}
 
