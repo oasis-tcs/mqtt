@@ -17,7 +17,7 @@ clients, unchanged too.
 > Informative Comment
 > The architectures described below are meant as examples and are not exhaustive.
 
-![MQTT-SN Architecture](images/the-topology-diagram.png "MQTT-SN Architecture")
+![MQTT-SN Architecture](images/the-topology-diagram.svg "MQTT-SN Architecture")
 
 Figure 1: MQTT-SN Architecture
 <!-- transformation-note: above upstream figure number will be replaced by auto-numbering later. -->
