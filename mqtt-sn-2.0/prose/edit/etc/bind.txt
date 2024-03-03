@@ -64,5 +64,6 @@ references.md
 security-and-privacy-considerations.md
 acknowledgements.md
 revision-history.md
+backwards-compatibility.md
 implementation-notes.md
 notices.md
