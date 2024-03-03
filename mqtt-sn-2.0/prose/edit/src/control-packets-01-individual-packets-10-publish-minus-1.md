@@ -1,8 +1,18 @@
 <!-- transformation-note: left upstream numbering of headings for verification -->
 ### 3.1.10 PUBLISH WITHOUT SESSION
 
-<!-- transformation-note: very complex table with many optionals falsifying the byte counts skipped for now,
-     hopefully we can migrate to a different bitfield visualization. -->
+<!-- transformation-note: no table col span in markdown, but we should specify bitfields better (than with layout tables) anyway -->
+<!-- transformation-note: bitfield display candidate could be clearer that x means variable bit values for REGACK flags (bits). -->
+| Bit                 | 7                                | 6        | 5        | 4      | 3        | 2        | 1          | 0          |
+|:--------------------|:---------------------------------|:---------|:---------|:-------|:---------|:---------|:-----------|:-----------|
+| Byte 1              | Length                           |          |          |        |          |          |            |            |
+| Byte 2              | Packet Type (0x11)               |          |          |        |          |          |            |            |
+|                     | PUBLISH WITHOUT SESSION          |          |          |        |          |          |            |            |
+|                     | Reserved                         | Reserved | Reserved | Retain | Reserved | Reserved | Topic Type | Topic Type |
+| Byte 3              | 0                                | 0        | 0        | X      | 0        | 0        | X          | X          |
+| Byte 4              | Topic Data MSB                   |          |          |        |          |          |            |            |
+| Byte 5              | Topic Data LSB                   |          |          |        |          |          |            |            |
+| Byte (6 + TL) ... N | Data Or (Full Topic Name + Data) |          |          |        |          |          |            |            |
 
 Table 28: PUBLISH packet
 <!-- transformation-note: above upstream table number will be replaced by auto-numbering later. -->
@@ -13,7 +23,8 @@ Normative Comment
 
 Upon being processed, PUBLISH WITHOUT SESSION packets received by a Gateway should have their Quality of Service level set to 0 for onward transmission into the MQTT network. PUBLISH WITHOUT SESSION packets are a concept considered only valid on the Gateway side of the network.
 
-> Informative Comment
+<!-- transformation-note: the below normative comment is irritating at best, let us make that a normal paragraph as all comments should be informative only. -->
+> Normative Comment
 > If the Transport Layer supports broadcast, like UDP/IP, the PUBLISH WITHOUT SESSION packet is generally sent using the broadcast address as destination.
 
 > Informative Comment
