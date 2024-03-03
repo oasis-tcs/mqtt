@@ -7,10 +7,11 @@
 | Byte 1 | Length       |    |    |    |    |    |    |    |
 | Byte 2 | Packet Type  |    |    |    |    |    |    |    |
 | Byte 3 | GwId         |    |    |    |    |    |    |    |
-| Byte 4 | uration MSB  |    |    |    |    |    |    |    |
+| Byte 4 | Duration MSB |    |    |    |    |    |    |    |
 | Byte 5 | Duration LSB |    |    |    |    |    |    |    |
 
 Table 11: ADVERTISE Packet
+<!-- transformation-note: above upstream table number will be replaced by auto-numbering later. -->
 
 The ADVERTISE packet is sent periodically by the gateway to advertise its presence.
 The time interval until the next transmission is indicated by the Duration field.
@@ -18,13 +19,13 @@ The time interval until the next transmission is indicated by the Duration field
 > Non-Normative Comment
 > If the Transport Layer supports broadcast, like UDP/IP, the ADVERTISE packet is generally sent using the broadcast address as destination.
 
-#### 3.1.1.1 Length & Packet Type
+#### 3.1.1.1 Length and Packet Type{#advertise--length-and-packet-type}
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format.
-Please refer to section 1.8.2 for a detailed description.
-<!-- transformation-note: the section ref upstream 1.8.2 is obviously wrong and should point to 1.4.2 "Two Byte Integer" instead. -->
+Please refer to section 1.4.2 for a detailed description.
+<!-- transformation-note: the above section ref upstream 1.8.2 is obviously wrong and should point to 1.4.2 "Two Byte Integer" instead. -->
 
-#### 3.1.1.2 GwId
+#### 3.1.1.2 GwId{#advertise--gwid}
 
 The GwId field is at least 1-byte identifier and uniquely identifies a gateway which is advertising itself in the network.
 

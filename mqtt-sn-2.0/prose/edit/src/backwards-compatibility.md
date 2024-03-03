@@ -36,8 +36,6 @@ toc:
 | Byte 7       | 0x00 – Fixed Field Value         |     |     |        |          |          |               |               |
 | Byte 8 ... N | Data Or (Full Topic Name + Data) |     |     |        |          |          |               |               |
 
-DUP | QoS | Retain | Reserved | Reserved | Reserved | Reserved |Topic Id Type | 
-
 Table 27: PUBLISH packet
 <!-- transformation-note: above upstream table number will be replaced by auto-numbering later. -->
 
