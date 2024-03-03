@@ -20,8 +20,7 @@
 Table 37: SUBACK packet
 <!-- transformation-note: above upstream table number will be replaced by auto-numbering later. -->
 
-The SUBACK packet is sent by a gateway to a client as an acknowledgment to the receipt and processing of a SUBSCRIBE
-packet.
+The SUBACK packet is sent by a gateway to a client as an acknowledgment to the receipt and processing of a SUBSCRIBE packet.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
 #### 3.1.18.1 Length and Packet Type{#suback--length-and-packet-type}
