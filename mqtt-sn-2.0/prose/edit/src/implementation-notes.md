@@ -7,7 +7,7 @@ toc:
   children:
   - label: Support of PUBLISH WITHOUT SESSION
     enumerate: F.1
-  - label: “Best practice” values for timers and counters
+  - label: "Best practice" values for timers and counters
     enumerate: F.2
   - label: Mapping of Topic Alias to Topic Names and Topic Filters
     enumerate: F.3
@@ -26,7 +26,7 @@ An aggregating or hybrid GW may use any aggregating MQTT connection to forward t
 <!-- transformation-note: replaced typographic quotes in source as the renderes should create those. -->
 ## "Best practice" values for timers and counters
 
-Table 30 shows the “best practice” values for the timers and counters defined in this specification.
+Table 30 shows the "best practice" values for the timers and counters defined in this specification.
 <!-- transformation-note: above table reference will be replaced by auto-numbered reference later. -->
 
 <!-- transformation-note: the mathematical symbols might profit from a functional display as they all indicate aspect(of) attributes
@@ -43,10 +43,10 @@ Table 30 shows the “best practice” values for the timers and counters define
 | N\_RETRY      | 3 – 5 seconds                                                                                                                           |
 | M\_BACKOFF    | 60 seconds                                                                                                                              |
 
-Table 30: “Best practice” values for timers and counters
+Table 30: "Best practice" values for timers and counters
 <!-- transformation-note: above upstream table number will be replaced by auto-numbering later. -->
 
-The “tolerance” of the sleep and keep-alive timers at the server/gateway depends on the values indicated by the clients.
+The "tolerance" of the sleep and keep-alive timers at the server/gateway depends on the values indicated by the clients.
 For example, the timer values should be 10% higher than the indicated values for periods larger than 1 minute, and 50% higher if less.
 
 ## Mapping of Topic Alias to Topic Names and Topic Filters

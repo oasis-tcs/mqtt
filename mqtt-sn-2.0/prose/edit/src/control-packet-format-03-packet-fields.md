@@ -14,7 +14,7 @@ All other values are reserved.
 ### 2.3.2 Radius
 
 The Radius field is 1-byte long and indicates the value of the transmission radius.
-The value 0x00 means “send to all nodes in the network”.
+The value 0x00 means "send to all nodes in the network".
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
 ### 2.3.3 Reason Code
@@ -91,7 +91,7 @@ Note(s):
 ### 2.3.4 Topic Alias Type
 
 The Topic Alias Type field is 2-byte long and contains the value of the topic alias.
-The values “0x0000” and “0xFFFF” are reserved and therefore should not be used.
+The values "0x0000" and "0xFFFF" are reserved and therefore should not be used.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
 ### 2.3.5 Topic Name

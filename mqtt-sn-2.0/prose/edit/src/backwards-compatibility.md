@@ -59,12 +59,12 @@ The PUBLISH Flags includes the following flags:
 
 - **Topic Id Type**: This is a 2-bit field in Bit 0 and 1 which determines the format of the topic Id value.
 - **QoS**: This is a 2-bit field stored in Bit 5 and 6. QoS has the same meaning as with MQTT indicating the Quality of Service.
-  Set to “0b00” for QoS 0, “0b01” for QoS 1, “0b10” for QoS 2, and “0b11” for QoS -1.
+  Set to "0b00" for QoS 0, "0b01" for QoS 1, "0b10" for QoS 2, and "0b11" for QoS -1.
   For a detailed description of the various Quality Of Service levels please refer to the operational behavior section.
 - **DUP**: 1 bit field stored in Bit 7 and has the same meaning as with MQTT.
   It notes the duplicate delivery of packets.
-  If the DUP flag is set to “0”, it signifies that the packet is sent for the first time.
-  If the DUP flag is set to “1”, it signifies that the packet was retransmitted.
+  If the DUP flag is set to "0", it signifies that the packet is sent for the first time.
+  If the DUP flag is set to "1", it signifies that the packet was retransmitted.
 - **Retain**: 1 bit field stored in Bit 4 and has the same meaning as with MQTT.
   The field signifies whether the existing retained message for this topic is replaced or kept.
 

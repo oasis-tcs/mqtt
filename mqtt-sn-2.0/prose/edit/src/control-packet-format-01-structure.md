@@ -39,7 +39,7 @@ Table 5: Packet Header Format 2
 The Length field is either 1-byte or 3-byte integer and specifies the total number of bytes contained in the packet
 (including the Length field itself).
 
-If the first byte of the Length field is coded “0x01” then the Length field is 3-bytes long; in this case, the two
+If the first byte of the Length field is coded "0x01" then the Length field is 3-bytes long; in this case, the two
 following bytes specify the total number of bytes of the packet (most-significant byte first). Otherwise, the Length
 field is only 1-byte long and specifies itself the total number of bytes contained in the packet.
 

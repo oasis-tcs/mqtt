@@ -18,7 +18,7 @@ For some purposes, you may find it required, e.g. if you apply for IANA registra
 
 While it may not be immediately obvious how your work product might make systems vulnerable to attack, most work products,
 because they involve communications between systems, message formats, or system settings, open potential channels for exploit.
-For example, IETF [RFC3552] lists “eavesdropping, replay, message insertion, deletion, modification, and man-in-the-middle”
+For example, IETF [RFC3552] lists "eavesdropping, replay, message insertion, deletion, modification, and man-in-the-middle"
 as well as potential denial of service attacks as threats that must be considered and, if appropriate, addressed in IETF RFCs.
 
 In addition to considering and describing foreseeable risks, this section should include guidance on how implementers and

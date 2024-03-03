@@ -23,7 +23,7 @@ Gateway (abbrev. GW)
 - accepts Application Messages published by Clients and sends them to the Server.
 - processes Subscribe and Unsubscribe requests from Clients.
 - forwards Application Messages from the Server to Clients.
-- maintains a Gateway “Session” for each Client on the GW.
+- maintains a Gateway "Session" for each Client on the GW.
 - maintains a dictionary of topic alias’s for each Client.
 
 Server or Broker
