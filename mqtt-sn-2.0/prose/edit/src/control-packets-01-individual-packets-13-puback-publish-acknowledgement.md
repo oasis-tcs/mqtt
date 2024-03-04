@@ -1,5 +1,5 @@
 <!-- transformation-note: left upstream numbering of headings for verification -->
-### 3.1.13 PUBACK – Publish Acknowledgement
+### 3.1.13 PUBACK – Publish Acknowledgement{#puback-publish-acknowledgement}
 
 <!-- transformation-note: no table col span in markdown, but we should specify bitfields better (than with layout tables) anyway --> 
 | Bit    | 7             | 6  | 5  | 4  | 3  | 2  | 1  | 0  |

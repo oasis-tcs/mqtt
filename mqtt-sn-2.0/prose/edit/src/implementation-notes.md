@@ -17,14 +17,14 @@ toc:
 -->
 # Implementation Notes
 
-## Support of PUBLISH WITHOUT SESSION
+## Support of PUBLISH WITHOUT SESSION{#implementation-notes--support-of-publish-without-session}
 
 Because PUBLISH WITHOUT SESSION could be sent at any time by clients (even with no Virtual Connection setup)
 a transparent GW needs to maintain for those packets a dedicated MQTT connection with the server.
 An aggregating or hybrid GW may use any aggregating MQTT connection to forward those packets to the server.
 
 <!-- transformation-note: replaced typographic quotes in source as the renderes should create those. -->
-## "Best practice" values for timers and counters
+## "Best practice" values for timers and counters{#implementation-notes--best-practice-values-for-timers-and-counters}
 
 Table 30 shows the "best practice" values for the timers and counters defined in this specification.
 <!-- transformation-note: above table reference will be replaced by auto-numbered reference later. -->
@@ -49,13 +49,13 @@ Table 30: "Best practice" values for timers and counters
 The "tolerance" of the sleep and keep-alive timers at the server/gateway depends on the values indicated by the clients.
 For example, the timer values should be 10% higher than the indicated values for periods larger than 1 minute, and 50% higher if less.
 
-## Mapping of Topic Alias to Topic Names and Topic Filters
+## Mapping of Topic Alias to Topic Names and Topic Filters{#implementation-notes--mapping-of-topic-alias-to-topic-names-and-topic-filters}
 
 It is strongly recommended that in the gateway the mapping table between topic alias and topic names is implemented per client
 (and not by a single shared pool between all clients), to reduce the risk of an incorrect topic alias from a client matching another client’s valid topic,
 and thus causing a publication to the wrong topic, which could potentially have disastrous consequences.
 
-## Exponential Backoff
+## Exponential Backoff{#implementation-notes--exponential-backoff}
 
 The following error handling strategy should be used for networked devices to avoid overwhelming recipient network entities whilst providing for
 efficient reestablishment handling.

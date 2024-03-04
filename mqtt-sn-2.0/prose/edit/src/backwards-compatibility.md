@@ -17,9 +17,9 @@ toc:
     enumerate: E.5
 ---
 -->
-# Backwards Compatibility
+# Backwards Compatibility{#backwards-compatibility}
 
-## PUBLISH QoS -1 (Packet from MQTT-SN 1.2)
+## PUBLISH QoS -1 (Packet from MQTT-SN 1.2){#backwards-compatibility--publish-qos-1-packet-from-mqtt-sn-1-2}
 
 <!-- transformation-note: no table col span in markdown, but we should specify bitfields better (than with layout tables) anyway --> 
 <!-- transformation-note: bitfield display candidate could be clearer that x means variable bit values for PUBLISH-M1 flags (bits). -->
@@ -45,13 +45,13 @@ This packet is used by both clients and gateways to publish data to a topic.
 > If the Transport Layer supports broadcast, like UDP/IP,
 > the PUBLISH MINUS -1 packet is generally sent using the broadcast address as destination.
 
-## Length amd Packet Type
+## Length amd Packet Type{#backwards-compatibility--length-and-packet-type}
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format.
 Please refer to section 1.4.2 for a detailed description.
 <!-- transformation-note: the above section ref upstream 1.8.2 is obviously wrong and should point to 1.4.2 "Two Byte Integer" instead. -->
 
-## PUBLISH Flags
+## PUBLISH Flags{#backwards-compatibility--publish-flags}
 
 The PUBLISH Flags field is 1-byte located in Byte 3 position of the PUBLISH control packet.
 
@@ -68,10 +68,10 @@ The PUBLISH Flags includes the following flags:
 - **Retain**: 1 bit field stored in Bit 4 and has the same meaning as with MQTT.
   The field signifies whether the existing retained message for this topic is replaced or kept.
 
-## Topic Id
+## Topic Id{#backwards-compatibility--topic-id}
 
 Contains the topic id value or the short topic name for which the data is published.
 
-## Data
+## Data{#backwards-compatibility--data}
 
 The published data.

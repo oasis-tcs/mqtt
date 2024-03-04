@@ -1,5 +1,5 @@
 <!-- transformation-note: left upstream numbering of headings for verification -->
-### 3.1.14 PUBREC (QoS 2 delivery part 1)
+### 3.1.14 PUBREC (QoS 2 delivery part 1){#pubrec-qos-2-delivery-part-1}
 
 <!-- transformation-note: no table col span in markdown, but we should specify bitfields better (than with layout tables) anyway --> 
 | Bit    | 7             | 6  | 5  | 4  | 3  | 2  | 1  | 0  |

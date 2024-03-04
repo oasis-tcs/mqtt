@@ -17,7 +17,7 @@ This appendix contains the normative and informative references that are used in
 While any hyperlinks included in this appendix were valid at the time of publication,
 OASIS cannot guarantee their long-term validity.
 
-## Normative References
+## Normative References{#references--normative-references}
 
 The following documents are referenced in such a way that some or all of their content constitutes requirements of this document.
 <!-- transformation-note: below items require sorting by code when inserting new references. -->
@@ -37,7 +37,7 @@ The following documents are referenced in such a way that some or all of their c
 \[Unicode]
 :    The Unicode Consortium. The Unicode Standard, <http://www.unicode.org/versions/latest/>
 
-## Informative References
+## Informative References{#references--informative-references}
 
 The following referenced documents are not required for the application of this document but may assist the reader with regard to
 a particular subject area.

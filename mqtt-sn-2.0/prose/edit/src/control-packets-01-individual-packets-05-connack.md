@@ -17,7 +17,7 @@ Please refer to section 2.1 "Structure of an MQTT-SN Control Packet" for a detai
 <!-- transformation-note: the above section ref upstream 1.8.2 was obviously wrong and should point to section 2.1 "Structure of an MQTT-SN Control Packet". -->
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-#### 3.1.5.2 Reason Code{#CONNACK--reason-code}
+#### 3.1.5.2 Reason Code{#connack--reason-code}
 
 <!-- transformation-note: the below table ref upstream 9 "Reason Code Values" needs verification before transforming into a semantic ref later. -->
 Byte 3 in the CONNACK header contains the Connect Reason Code.
@@ -48,25 +48,25 @@ If the Session Expiry Interval is 0, the value of Session Expiry Interval in the
 The server uses this property to inform the Client that it is using a value other than that sent by the Client in the CONNECT.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-#### 3.1.5.5 Authentication Method Length (optional, only with Auth flag set)
+#### 3.1.5.5 Authentication Method Length (optional, only with Auth flag set){#connack--authentication-method-length}
 
 Single byte value (max 0-255 bytes), representing the length of field used to specify the authentication method.
 Refer to LINKED TO AUTH for more information about extended authentication.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-#### 3.1.5.6 Authentication Method (optional, only with Auth flag set)
+#### 3.1.5.6 Authentication Method (optional, only with Auth flag set){#connack--authentication-method}
 
 A UTF-8 Encoded String containing the name of the authentication method.
 Refer to LINKED TO AUTH for more information about extended authentication.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-#### 3.1.5.7 Authentication Data Length (optional, only with Auth flag set)
+#### 3.1.5.7 Authentication Data Length (optional, only with Auth flag set){#connack--authentication-data-length}
 
 Two byte value (max 0-65535 bytes), representing the length of field used to specify the authentication data.
 Refer to LINKED TO AUTH for more information about extended authentication.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-#### 3.1.5.8 Authentication Data (optional, only with Auth flag set)
+#### 3.1.5.8 Authentication Data (optional, only with Auth flag set){#connack--authentication-data}
 
 Binary Data containing authentication data.
 The contents of this data are defined by the authentication method and the state of already exchanged authentication data.

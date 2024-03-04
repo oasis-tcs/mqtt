@@ -133,7 +133,7 @@ completed sending that Application Message.
 > Such actions are outside the scope of this specification.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-#### 3.1.4.7 Client Identifier
+#### 3.1.4.7 Client Identifier{#connect--client-identifier}
 
 The Client Identifier (ClientID) identifies the Client to the Gateway. Each Client connecting to the Gateway has a unique ClientID.
 The ClientID MUST be used by Clients and by Gateway to identify the state that they hold relating to this MQTT-SN Session between the Client and the Gateway.
@@ -147,13 +147,13 @@ and that contain only the characters "0123456789abcdefghijklmnopqrstuvwxyzABCDEF
 
 The Gateway may choose to allow more than 23 bytes.
 
-The Client Identifier MUST be a UTF-8 Encoded String. 
+The Client Identifier MUST be a UTF-8 Encoded String.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-#### 3.1.4.8 Connect Will Flags (optional, only with Will flag set) 
+#### 3.1.4.8 Connect Will Flags (optional, only with Will flag set){#connect--connect-will-flags}
 
 The Connect optional Will Flags is 1 byte field which contains several parameters specifying the handling of the Will
-Message feature. It is present only if the Will flag in the Connect Flags contains the value 1.
+Message feature. It is present only if the Will flag in the Connect Flags contains the value 1.
 
 The Connect optional Will Flags field includes the following flags:
 
@@ -166,18 +166,18 @@ The Connect optional Will Flags field includes the following flags:
 - **Will Retain**: Stored in Bit 4, this bit specifies if the Will Message is to be retained when it is published.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-#### 3.1.4.9 Will Topic Alias or Will Topic Length (optional, only with Will flag set)
+#### 3.1.4.9 Will Topic Alias or Will Topic Length (optional, only with Will flag set){#connect--will-topic-alias-or-will-topic-length}
 
 In the case of Will Topic Alias Type being b11 this field will refer to the length of data assigned to the "Will Full Topic Name", in all other cases,
 this will be the value used as the Will topic alias or Will short topic name.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-#### 3.1.4.10 Will Payload Length (optional, only with Will flag set)
+#### 3.1.4.10 Will Payload Length (optional, only with Will flag set){#connect--will-payload-length}
 
 Contains the length of the Will Payload field.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-#### 3.1.4.11 Will Payload (optional, only with Will flag set)
+#### 3.1.4.11 Will Payload (optional, only with Will flag set){#connect--will-payload}
 
 It contains the content of the Will Message which is published after the Virtual Connection is closed.
 
@@ -188,25 +188,25 @@ be published to the Will Topic and this field consists of Binary Data.
 It has a variable length defined by the Will Payload Length fields.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-#### 3.1.4.12 Authentication Method Length (optional, only with Auth flag set)
+#### 3.1.4.12 Authentication Method Length (optional, only with Auth flag set){#connect--authentication-method-length}
 
 Single byte value (max 0-255 bytes), representing the length of field used to specify the authentication method.
 Refer to LINKED TO AUTH for more information about extended authentication.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-#### 3.1.4.13 Authentication Method (optional, only with Auth flag set)
+#### 3.1.4.13 Authentication Method (optional, only with Auth flag set){#connect--authentication-method}
 
 A UTF-8 Encoded String containing the name of the authentication method.
 Refer to LINKED TO AUTH for more information about extended authentication.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-#### 3.1.4.14 Authentication Data Length (optional, only with Auth flag set)
+#### 3.1.4.14 Authentication Data Length (optional, only with Auth flag set){#connect--authentication-data-length}
 
 Two byte value (max 0-65535 bytes), representing the length of field used to specify the authentication data.
 Refer to LINKED TO AUTH for more information about extended authentication.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-#### 3.1.4.15 Authentication Data (optional, only with Auth flag set)
+#### 3.1.4.15 Authentication Data (optional, only with Auth flag set){#connect--authentication-data}
 
 Binary Data containing authentication data.
 The contents of this data are defined by the authentication method.

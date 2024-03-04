@@ -40,7 +40,7 @@ can be obtained by encapsulating the MQTT-SN messages into the PROTECTION packet
 Applications concerned with critical infrastructure, personally identifiable information,
 or other personal or sensitive information are strongly advised to use these security capabilities.
 
-## Industry specific security profiles
+## Industry specific security profiles{#security-and-privacy-considerations--industry-specific-security-profiles}
 
 It is anticipated that the MQTT protocol will be designed into industry specific application profiles,
 each defining a threat model and the specific security mechanisms to be used to address these threats.

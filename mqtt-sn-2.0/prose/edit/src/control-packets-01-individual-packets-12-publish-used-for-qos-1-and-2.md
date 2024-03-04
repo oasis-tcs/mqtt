@@ -1,5 +1,5 @@
 <!-- transformation-note: left upstream numbering of headings for verification -->
-### 3.1.12 PUBLISH (used for QoS 1 and 2)
+### 3.1.12 PUBLISH (used for QoS 1 and 2){#publish-used-for-qos-1-and-2}
 <!-- transformation-note: replaced above colloquial ampersand with english "and". -->
 
 <!-- transformation-note: no table col span in markdown, but we should specify bitfields better (than with layout tables) anyway -->

@@ -1,5 +1,5 @@
 <!-- transformation-note: left upstream numbering of headings for verification -->
-### 3.1.11 PUBLISH (used for QoS 0)
+### 3.1.11 PUBLISH (used for QoS 0){#publish-used-for-qos-0}
 
 <!-- transformation-note: no table col span in markdown, but we should specify bitfields better (than with layout tables) anyway -->
 <!-- transformation-note: bitfield display candidate could be clearer that x means variable bit values for REGACK flags (bits). -->

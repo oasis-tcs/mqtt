@@ -1,5 +1,5 @@
 <!-- transformation-note: left upstream numbering of headings for verification -->
-## 1.1 MQTT For Sensor Networks (MQTT-SN)
+## 1.1 MQTT For Sensor Networks (MQTT-SN){#mqtt-for-sensor-networks-mqtt-sn}
 
 Sensor Networks are simple, low cost and easy to deploy, they are typically used to provide, event detection,
 monitoring, automation, process control and more. Sensor Networks often comprise of many battery-powered sensors and
@@ -33,7 +33,7 @@ The MQTT-SN protocol is optimized for implementation on low-cost, battery-operat
 storage resources. The capabilities are kept simple and the specification allows partial implementations.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-### 1.1.1 MQTT-SN and MQTT Differences
+### 1.1.1 MQTT-SN and MQTT Differences{#mqtt-sn-and-mqtt-differences}
 
 MQTT and MQTT-SN specifications are similar in many ways and meant to interoperate with each other, but the two
 specifications are independent of each other.

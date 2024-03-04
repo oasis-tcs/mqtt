@@ -22,7 +22,7 @@ names from the list by request.
 Remove these notes within an html comment before submitting for publication.
 -->
 
-## Special Thanks
+## Special Thanks{#acknowledgments--special-thanks}
 
 <!--
 Note: This is an optional subsection to call out contributions from TC members.
@@ -35,7 +35,7 @@ Substantial contributions to this document from the following individuals are gr
 |:-----------|:----------|:---------------------------|
 | Given      | Family    | Organization_or_Individual |
 
-## Participants
+## Participants{#acknowledgments--participants}
 
 <!--
 Note: A TC can determine who they list here, however, Observers must not be listed.

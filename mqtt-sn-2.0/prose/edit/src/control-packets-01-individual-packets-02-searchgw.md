@@ -26,7 +26,7 @@ Please refer to section 2.1 "Structure of an MQTT-SN Control Packet" for a detai
 <!-- transformation-note: the above section ref upstream 1.8.2 was obviously wrong and should point to section 2.1 "Structure of an MQTT-SN Control Packet". -->
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-#### 3.1.2.2 Radius
+#### 3.1.2.2 Radius{#searchgw--radius}
 
 The transmission radius is also indicated to the underlying network layer when MQTT-SN gives this packet for transmission.
 
