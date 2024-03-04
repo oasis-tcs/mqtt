@@ -1,5 +1,6 @@
 <!-- transformation-note: left upstream numbering of headings for verification -->
-## 4.18 Sleeping clients
+## 4.18 Sleeping Clients
+<!-- transformation-note: fixed title case in above heading by replacing "clients" with "Clients". -->
 
 Sleeping clients are clients residing on (battery-operated) devices that want to save as much energy as possible.
 These devices need to enter a sleep mode whenever they are not active and will wake up whenever they have data to send or to receive.
