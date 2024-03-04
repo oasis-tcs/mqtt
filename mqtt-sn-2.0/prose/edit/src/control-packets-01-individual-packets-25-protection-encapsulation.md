@@ -52,7 +52,7 @@ and the Client and GW are not in a private network, it is recommended for the Cl
 only MQTT-SN packets received over it.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-#### 3.1.25.1 Length
+#### 3.1.25.1 Length{#protection-encapsulation--length}
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format.
 Please refer to section 2.1 "Structure of an MQTT-SN Control Packet" for a detailed description.

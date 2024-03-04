@@ -58,7 +58,7 @@ The Gateway MUST validate that the reserved flags in the DISCONNECT packet are s
 If any of the reserved flags is not 0 it is a Malformed Packet.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-#### 3.1.23.3 Reason Code
+#### 3.1.23.3 Reason Code{#disconnect--reason-code}
 
 The Reason Code for the DISCONNECT packet is optional.
 If provided, Byte 3 in the DISCONNECT control packet holds the Reason Code of the disconnection. If not provided, 0x00 (Normal disconnection) is assumed.
