@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="384" width="648" viewBox="0 0 648 384" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+<path d="M 8,16 L 8,112" fill="none" stroke="black"/>
+<path d="M 8,144 L 8,240" fill="none" stroke="black"/>
+<path d="M 8,272 L 8,368" fill="none" stroke="black"/>
+<path d="M 104,16 L 104,48" fill="none" stroke="black"/>
+<path d="M 104,80 L 104,112" fill="none" stroke="black"/>
+<path d="M 104,144 L 104,176" fill="none" stroke="black"/>
+<path d="M 104,208 L 104,240" fill="none" stroke="black"/>
+<path d="M 104,272 L 104,304" fill="none" stroke="black"/>
+<path d="M 104,336 L 104,368" fill="none" stroke="black"/>
+<path d="M 152,16 L 152,48" fill="none" stroke="black"/>
+<path d="M 152,80 L 152,176" fill="none" stroke="black"/>
+<path d="M 152,208 L 152,304" fill="none" stroke="black"/>
+<path d="M 152,336 L 152,368" fill="none" stroke="black"/>
+<path d="M 248,16 L 248,48" fill="none" stroke="black"/>
+<path d="M 248,80 L 248,176" fill="none" stroke="black"/>
+<path d="M 248,208 L 248,304" fill="none" stroke="black"/>
+<path d="M 248,336 L 248,368" fill="none" stroke="black"/>
+<path d="M 288,128 L 288,256" fill="none" stroke="black"/>
+<path d="M 304,64 L 304,160" fill="none" stroke="black"/>
+<path d="M 304,224 L 304,320" fill="none" stroke="black"/>
+<path d="M 432,128 L 432,256" fill="none" stroke="black"/>
+<path d="M 504,128 L 504,144" fill="none" stroke="black"/>
+<path d="M 504,240 L 504,256" fill="none" stroke="black"/>
+<path d="M 640,128 L 640,256" fill="none" stroke="black"/>
+<path d="M 8,16 L 104,16" fill="none" stroke="black"/>
+<path d="M 152,16 L 248,16" fill="none" stroke="black"/>
+<path d="M 104,64 L 152,64" fill="none" stroke="black"/>
+<path d="M 248,64 L 304,64" fill="none" stroke="black"/>
+<path d="M 8,112 L 104,112" fill="none" stroke="black"/>
+<path d="M 288,128 L 432,128" fill="none" stroke="black"/>
+<path d="M 504,128 L 640,128" fill="none" stroke="black"/>
+<path d="M 8,144 L 104,144" fill="none" stroke="black"/>
+<path d="M 304,160 L 320,160" fill="none" stroke="black"/>
+<path d="M 336,160 L 504,160" fill="none" stroke="black"/>
+<path d="M 104,192 L 152,192" fill="none" stroke="black"/>
+<path d="M 248,192 L 320,192" fill="none" stroke="black"/>
+<path d="M 336,192 L 504,192" fill="none" stroke="black"/>
+<path d="M 304,224 L 320,224" fill="none" stroke="black"/>
+<path d="M 336,224 L 504,224" fill="none" stroke="black"/>
+<path d="M 8,240 L 104,240" fill="none" stroke="black"/>
+<path d="M 288,256 L 432,256" fill="none" stroke="black"/>
+<path d="M 504,256 L 640,256" fill="none" stroke="black"/>
+<path d="M 8,272 L 104,272" fill="none" stroke="black"/>
+<path d="M 104,320 L 152,320" fill="none" stroke="black"/>
+<path d="M 248,320 L 304,320" fill="none" stroke="black"/>
+<path d="M 8,368 L 104,368" fill="none" stroke="black"/>
+<path d="M 152,368 L 248,368" fill="none" stroke="black"/>
+<polygon class="arrowhead" points="512,224 500,218.4 500,229.6" fill="black" transform="rotate(0,504,224)"/>
+<polygon class="arrowhead" points="512,192 500,186.4 500,197.6" fill="black" transform="rotate(0,504,192)"/>
+<polygon class="arrowhead" points="512,160 500,154.4 500,165.6" fill="black" transform="rotate(0,504,160)"/>
+<polygon class="arrowhead" points="344,224 332,218.4 332,229.6" fill="black" transform="rotate(180,336,224)"/>
+<polygon class="arrowhead" points="344,192 332,186.4 332,197.6" fill="black" transform="rotate(180,336,192)"/>
+<polygon class="arrowhead" points="344,160 332,154.4 332,165.6" fill="black" transform="rotate(180,336,160)"/>
+<polygon class="arrowhead" points="328,224 316,218.4 316,229.6" fill="black" transform="rotate(0,320,224)"/>
+<polygon class="arrowhead" points="328,192 316,186.4 316,197.6" fill="black" transform="rotate(0,320,192)"/>
+<polygon class="arrowhead" points="328,160 316,154.4 316,165.6" fill="black" transform="rotate(0,320,160)"/>
+<polygon class="arrowhead" points="256,320 244,314.4 244,325.6" fill="black" transform="rotate(180,248,320)"/>
+<polygon class="arrowhead" points="256,192 244,186.4 244,197.6" fill="black" transform="rotate(180,248,192)"/>
+<polygon class="arrowhead" points="256,64 244,58.4 244,69.6" fill="black" transform="rotate(180,248,64)"/>
+<polygon class="arrowhead" points="160,320 148,314.4 148,325.6" fill="black" transform="rotate(0,152,320)"/>
+<polygon class="arrowhead" points="160,192 148,186.4 148,197.6" fill="black" transform="rotate(0,152,192)"/>
+<polygon class="arrowhead" points="160,64 148,58.4 148,69.6" fill="black" transform="rotate(0,152,64)"/>
+<polygon class="arrowhead" points="112,320 100,314.4 100,325.6" fill="black" transform="rotate(180,104,320)"/>
+<polygon class="arrowhead" points="112,192 100,186.4 100,197.6" fill="black" transform="rotate(180,104,192)"/>
+<polygon class="arrowhead" points="112,64 100,58.4 100,69.6" fill="black" transform="rotate(180,104,64)"/>
+<g class="text">
+<text x="56" y="52">MQTT-SN</text>
+<text x="52" y="84">Client</text>
+<text x="368" y="148">MQTT-SN</text>
+<text x="56" y="180">MQTT-SN</text>
+<text x="192" y="180">MQTT-SN</text>
+<text x="384" y="180">Transparent</text>
+<text x="504" y="180">|</text>
+<text x="564" y="180">MQTT</text>
+<text x="52" y="212">Client</text>
+<text x="200" y="212">Forwarder</text>
+<text x="368" y="212">Gateway</text>
+<text x="504" y="212">|</text>
+<text x="572" y="212">Broker</text>
+<text x="56" y="308">MQTT-SN</text>
+<text x="52" y="340">Client</text>
+</g>
+</svg>
