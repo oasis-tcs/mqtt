@@ -1,0 +1,32 @@
+;; This is the source for 3.1.3 GWINFO package diagram of MQTT-SN v2.0.
+(def boxes-per-row 9)
+(def box-width 100)
+(def left-margin 20)
+(defattrs :plain {:font-family "Arial" :font-size 18})
+(defattrs :cursive {:font-family "Arial" :font-size 18 :font-style "italic"})
+(defattrs :bg-lightblue {:fill "#cfe2f3"})
+(defattrs :left {:text-anchor "start"})
+(defattrs :byte {:span 8})
+
+(defn row-header-fn
+  [{:keys [address gap?]}]
+  (let [addr-label (str " ")]
+    (text addr-label)))
+
+(draw-box (text "Bit") :bg-lightblue)
+(doseq [val (str/split "7,6,5,4,3,2,1,0" #",")]
+  (draw-box (text val) :bg-lightblue))
+
+(draw-box (text "Byte 1") :left)
+(draw-box "Length" :byte)
+
+(draw-box (text "Byte 2") :left)
+(draw-box "Packet Type" :byte)
+
+(draw-box (text "Byte 3") :left)
+(draw-box "GwId" :byte)
+
+(draw-box (text "Byte 4 ... N") :left)
+(draw-gap (text "GwAdd" :plain [:cursive "?"]) :byte)
+
+(draw-bottom)
