@@ -74,5 +74,5 @@ Example of rendering of SVG from these text files (and subsequent rasterization 
 ## What does "Table" mean?
 
 Here table indicates that these representations try to stay close to the look of the 
-existing package diagrams displayed in MQTT v5.0 and the MQTT-SN v2.0 eidtor draft as of May, 2024.
+existing package diagrams displayed in MQTT v5.0 and the MQTT-SN v2.0 editor draft as of May, 2024.
 
