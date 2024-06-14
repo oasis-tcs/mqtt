@@ -65,8 +65,9 @@ Example:
 Example of rendering of SVG from these text files (and subsequent rasterization to PNG files):
 
 ```console
-❯ bytefield-svg -s advertise.edn -o advertise.svg
-❯ svgexport advertise.svg advertise.png '100%'
+❯ package='advertise'
+❯ bytefield-svg -s "${package}".edn -o "${package}".svg
+❯ svgexport "${package}".svg "${package}".png '100%'
 ```
 
 !["Rasterized ADVERTISE package diagram"](advertise.png "Rasterized ADVERTISE package diagram")
