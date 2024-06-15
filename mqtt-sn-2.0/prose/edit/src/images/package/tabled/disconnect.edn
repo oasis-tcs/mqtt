@@ -1,0 +1,68 @@
+;; This is the source for 3.1.23 DISCONNECT package diagram of MQTT-SN v2.0.
+(def boxes-per-row 9)
+(def box-width 145)
+(def left-margin 20)
+(defattrs :plain {:font-family "Arial" :font-size 18})
+(defattrs :cursive {:font-family "Arial" :font-size 18 :font-style "italic"})
+(defattrs :small {:font-family "Arial" :font-size 12})
+(defattrs :tiny {:font-family "Arial" :font-size 10})
+(defattrs :bg-lightblue {:fill "#cfe2f3"})
+(defattrs :bg-mediumgray {:fill "#dddddd"})
+(defattrs :bg-lightgray {:fill "#eeeeee"})
+;;(defattrs :left {:text-anchor "start"})
+(defattrs :byte {:span 8})
+
+(defn row-header-fn
+  [{:keys [address gap?]}]
+  (let [addr-label (str " ")]
+    (text addr-label)))
+
+(draw-box (text "Byte \\ Bit") :bg-lightblue)
+(doseq [val (str/split "7,6,5,4,3,2,1,0" #",")]
+  (draw-box (text val) :bg-lightblue))
+
+(draw-box (text "1"))
+(draw-box "Length" :byte)
+
+(draw-box (text "2"))
+(draw-box "Packet Type" :byte)
+
+(draw-box (text ""))
+(draw-box (text "DISCONNECT FLAGS") [:bg-mediumgray :byte])
+
+(draw-box (text ""))
+(draw-box "Reserved" [:bg-lightgray {:span 4}])
+(draw-box (text "Reason Code Present" :small) [:bg-lightgray {:span 1}])
+(draw-box (text "Session Expiry Interval Present" :tiny) [:bg-lightgray {:span 1}])
+(draw-box (text "Reason String Present" :small) [:bg-lightgray {:span 1}])
+(draw-box (text "Retain Registrations" :small) [:bg-lightgray {:span 1}])
+
+(draw-box (text "3"))
+(draw-box "0" {:span 1})
+(draw-box "0" {:span 1})
+(draw-box "0" {:span 1})
+(draw-box "0" {:span 1})
+(draw-box "X" {:span 1})
+(draw-box "X" {:span 1})
+(draw-box "X" {:span 1})
+(draw-box "X" {:span 1})
+
+(draw-box (text "4") :bg-lightgray)
+(draw-box (text "Reason Code?" :plain [:small " (ONLY WHEN REASON CODE PRESENT FLAG SET)"] " (C=0 or 1)") [:bg-lightgray :byte])
+
+(draw-box (text "4 + C") :bg-lightgray)
+(draw-box (text "Session Expiry Interval MSB?" :plain [:small " (ONLY WHEN SESSION EXPIRY INTERVAL PRESENT FLAG SET)"] " (S=0 or 4)") [:bg-lightgray :byte])
+
+(draw-box (text "5 + C") :bg-lightgray)
+(draw-box (text "Session Expiry Interval?" :plain [:small " (ONLY WHEN SESSION EXPIRY INTERVAL PRESENT FLAG SET)"]) [:bg-lightgray :byte])
+
+(draw-box (text "6 + C") :bg-lightgray)
+(draw-box (text "Session Expiry Interval?" :plain [:small " (ONLY WHEN SESSION EXPIRY INTERVAL PRESENT FLAG SET)"]) [:bg-lightgray :byte])
+
+(draw-box (text "7 + C") :bg-lightgray)
+(draw-box (text "Session Expiry Interval LSB?" :plain [:small " (ONLY WHEN SESSION EXPIRY INTERVAL PRESENT FLAG SET)"]) [:bg-lightgray :byte])
+
+(draw-box (text "4 + C + S ... N") :bg-lightgray)
+(draw-gap (text "Reason String?" :plain [:small " (ONLY WHEN REASON STRING PRESENT FLAG SET)"]) [:bg-lightgray :byte])
+
+(draw-bottom)
