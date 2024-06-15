@@ -82,7 +82,7 @@
 (draw-box (text "10+5") :bg-lightgray)
 (draw-box "Auth Data" [:bg-lightgray :byte])
 
-(draw-box (text "11 ... N"))
-(draw-box "Assigned Client Identifier (optional)" :byte)
+(draw-box (text "11 ... N") :bg-lightgray)
+(draw-gap (text "Assigned Client Identifier?" :cursive) [:bg-lightgray :byte])
 
 (draw-bottom)
