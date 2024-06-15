@@ -7,7 +7,7 @@
 (defattrs :bg-lightblue {:fill "#cfe2f3"})
 (defattrs :bg-mediumgray {:fill "#dddddd"})
 (defattrs :bg-lightgray {:fill "#eeeeee"})
-(defattrs :left {:text-anchor "start"})
+;;(defattrs :left {:text-anchor "start"})
 (defattrs :byte {:span 8})
 
 (defn row-header-fn
@@ -15,25 +15,25 @@
   (let [addr-label (str " ")]
     (text addr-label)))
 
-(draw-box (text "Bit") :bg-lightblue)
+(draw-box (text "Byte \\ Bit") :bg-lightblue)
 (doseq [val (str/split "7,6,5,4,3,2,1,0" #",")]
   (draw-box (text val) :bg-lightblue))
 
-(draw-box (text "Byte 1") :left)
+(draw-box (text "1"))
 (draw-box "Length" :byte)
 
-(draw-box (text "Byte 2") :left)
+(draw-box (text "2"))
 (draw-box "Packet Type" :byte)
 
-(draw-box (text "") :left)
+(draw-box (text ""))
 (draw-box (text "CONNACK FLAGS") [:bg-mediumgray :byte])
 
-(draw-box (text "") :left)
+(draw-box (text ""))
 (draw-box "Reserved" [:bg-lightgray {:span 6}])
 (draw-box "Auth" [:bg-lightgray {:span 1}])
 (draw-box "Session Present" [:bg-lightgray {:span 1}])
 
-(draw-box (text "Byte 3") :left)
+(draw-box (text "3"))
 (draw-box "0" {:span 1})
 (draw-box "0" {:span 1})
 (draw-box "0" {:span 1})
@@ -43,46 +43,46 @@
 (draw-box "X" {:span 1})
 (draw-box "X" {:span 1})
 
-(draw-box (text "Byte 4") :left)
+(draw-box (text "4"))
 (draw-box "Packet Identifier MSB" :byte)
 
-(draw-box (text "Byte 5") :left)
+(draw-box (text "5"))
 (draw-box "Packet Identifier LSB" :byte)
 
-(draw-box (text "Byte 6") :left)
+(draw-box (text "6"))
 (draw-box "Reason Code" :byte)
 
-(draw-box (text "Byte 7") :left)
+(draw-box (text "7"))
 (draw-box "Session Expiry Interval MSB" :byte)
 
-(draw-box (text "Byte 8") :left)
+(draw-box (text "8"))
 (draw-box "Session Expiry Interval" :byte)
 
-(draw-box (text "Byte 9") :left)
+(draw-box (text "9"))
 (draw-box "Session Expiry Interval" :byte)
 
-(draw-box (text "Byte 10") :left)
+(draw-box (text "10"))
 (draw-box "Session Expiry Interval LSB" :byte)
 
-(draw-box (text "") :left)
+(draw-box (text ""))
 (draw-box (text "AUTH DATA" :plain [:cursive "? (ONLY WHEN AUTH FLAG SET)"]) [:bg-mediumgray :byte])
 
-(draw-box (text "Byte (10 + 1)") [:bg-lightgray :left])
+(draw-box (text "10+1") :bg-lightgray)
 (draw-box "Auth Method Length" [:bg-lightgray :byte])
 
-(draw-box (text "Byte (10 + 2)") [:bg-lightgray :left])
+(draw-box (text "10+2") :bg-lightgray)
 (draw-box "Auth Method" [:bg-lightgray :byte])
 
-(draw-box (text "Byte (10 + 3)") [:bg-lightgray :left])
+(draw-box (text "10+3") :bg-lightgray)
 (draw-box "Auth Data Length MSB" [:bg-lightgray :byte])
 
-(draw-box (text "Byte (10 + 4)") [:bg-lightgray :left])
+(draw-box (text "10+4") :bg-lightgray)
 (draw-box "Auth Data Length LSB" [:bg-lightgray :byte])
 
-(draw-box (text "Byte (10 + 5)") [:bg-lightgray :left])
+(draw-box (text "10+5") :bg-lightgray)
 (draw-box "Auth Data" [:bg-lightgray :byte])
 
-(draw-box (text "Byte 11 ... N") :left)
+(draw-box (text "11 ... N"))
 (draw-box "Assigned Client Identifier (optional)" :byte)
 
 (draw-bottom)

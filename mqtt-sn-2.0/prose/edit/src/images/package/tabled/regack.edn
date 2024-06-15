@@ -1,13 +1,13 @@
 ;; This is the source for 3.1.8 REGACK package diagram of MQTT-SN v2.0.
 (def boxes-per-row 9)
-(def box-width 145)
+(def box-width 90)
 (def left-margin 20)
 (defattrs :plain {:font-family "Arial" :font-size 18})
 (defattrs :cursive {:font-family "Arial" :font-size 18 :font-style "italic"})
 (defattrs :bg-lightblue {:fill "#cfe2f3"})
 (defattrs :bg-mediumgray {:fill "#dddddd"})
 (defattrs :bg-lightgray {:fill "#eeeeee"})
-(defattrs :left {:text-anchor "start"})
+;;(defattrs :left {:text-anchor "start"})
 (defattrs :byte {:span 8})
 
 (defn row-header-fn
@@ -15,24 +15,24 @@
   (let [addr-label (str " ")]
     (text addr-label)))
 
-(draw-box (text "Bit") :bg-lightblue)
+(draw-box (text "Byte \\ Bit") :bg-lightblue)
 (doseq [val (str/split "7,6,5,4,3,2,1,0" #",")]
   (draw-box (text val) :bg-lightblue))
 
-(draw-box (text "Byte 1") :left)
+(draw-box (text "1"))
 (draw-box "Length" :byte)
 
-(draw-box (text "Byte 2") :left)
+(draw-box (text "2"))
 (draw-box "Packet Type" :byte)
 
-(draw-box (text "") :left)
+(draw-box (text ""))
 (draw-box (text "REGACK FLAGS") [:bg-mediumgray :byte])
 
-(draw-box (text "") :left)
+(draw-box (text ""))
 (draw-box "Reserved" [:bg-lightgray {:span 6}])
 (draw-box "Topic Type" [:bg-lightgray {:span 2}])
 
-(draw-box (text "Byte 3") :left)
+(draw-box (text "3"))
 (draw-box "0" {:span 1})
 (draw-box "0" {:span 1})
 (draw-box "0" {:span 1})
@@ -42,19 +42,19 @@
 (draw-box "X" {:span 1})
 (draw-box "X" {:span 1})
 
-(draw-box (text "Byte 4") :left)
+(draw-box (text "4"))
 (draw-box "Packet Identifier MSB" :byte)
 
-(draw-box (text "Byte 5") :left)
+(draw-box (text "5"))
 (draw-box "Packet Identifier LSB" :byte)
 
-(draw-box (text "Byte 6") :left)
+(draw-box (text "6"))
 (draw-box "Topic Alias MSB" :byte)
 
-(draw-box (text "Byte 7") :left)
+(draw-box (text "7"))
 (draw-box "Topic Alias LSB" :byte)
 
-(draw-box (text "Byte 8") :left)
+(draw-box (text "8"))
 (draw-box "Reason Code" :byte)
 
 (draw-bottom)

@@ -98,49 +98,6 @@ Example (suggested reduced decorum with `PUBWOS`package):
 
 Figure 1: Rasterized `PUBWOS` package diagram (with reduced decorum)
 
-Example (of initial Rococo with `ADVERTISE` package):
-
-```clojure
-;; This is the source for 3.1.1 ADVERTISE package diagram of MQTT-SN v2.0.
-(def boxes-per-row 9)
-(def box-width 70)
-(def left-margin 20)
-(defattrs :plain {:font-family "Arial" :font-size 18})
-(defattrs :bg-lightblue {:fill "#cfe2f3"})
-(defattrs :left {:text-anchor "start"})
-(defattrs :byte {:span 8})
-
-(defn row-header-fn
-  [{:keys [address gap?]}]
-  (let [addr-label (str " ")]
-    (text addr-label)))
-
-(draw-box (text "Bit") :bg-lightblue)
-(doseq [val (str/split "7,6,5,4,3,2,1,0" #",")]
-  (draw-box (text val) :bg-lightblue))
-
-(draw-box (text "Byte 1") :left)
-(draw-box "Length" :byte)
-
-(draw-box (text "Byte 2") :left)
-(draw-box "Packet Type" :byte)
-
-(draw-box (text "Byte 3") :left)
-(draw-box "GwId" :byte)
-
-(draw-box (text "Byte 4") :left)
-(draw-box "Duration MSB" :byte)
-
-(draw-box (text "Byte 5") :left)
-(draw-box "Duration LSB" :byte)
-
-(draw-bottom)
-```
-
-!["Rasterized ADVERTISE package diagram"](advertise.png "Rasterized ADVERTISE package diagram")
-
-Figure 2: Rasterized `ADVERTISE` package diagram (with more decorum)
-
 ## What does "Table" mean?
 
 Here table indicates that these representations try to stay close to the look of the 
