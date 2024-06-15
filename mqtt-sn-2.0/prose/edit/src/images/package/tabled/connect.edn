@@ -134,6 +134,6 @@
 (draw-box "Auth Data" [:bg-lightgray :byte])
 
 (draw-box (text "15 ... N"))
-(draw-box "Client Identifier" :byte)
+(draw-gap "Client Identifier" :byte)
 
 (draw-bottom)
