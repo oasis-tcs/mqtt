@@ -2,7 +2,7 @@
 
 > The implementations in this folder are presumably not relevant for MQTT-SN v2.0
 > to keep similarity with MQTT v5.0 Packe Diagram implementations.
-> Please see the diagrams in the sibling folder `[../tabled/](../tabled/)`.
+> Please see the diagrams in the sibling folder `[../packet/](../packet/)`.
 
 # Package Diagrams (Non-Table)
 
@@ -14,7 +14,7 @@ Byte and bit offsets (row and column lables) as hex numbers and more
 as typical in bit-/byte-field diagrams elsewhere.
 
 > We probably want to instead keep the similarity with the table
-> like display (../tabled/README.md) to better align with MQTT v2.0.
+> like display (../packet/README.md) to better align with MQTT v2.0.
 
 ## Tools
 
