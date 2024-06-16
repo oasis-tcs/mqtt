@@ -1,0 +1,54 @@
+;; This is the source for 3.1.19.b UNSUBSCRIBE (Variant with Topic Filter in Payload) packet diagram of MQTT-SN v2.0.
+(def boxes-per-row 9)
+(def box-width 90)
+(def left-margin 20)
+(defattrs :plain {:font-family "Arial" :font-size 18})
+(defattrs :cursive {:font-family "Arial" :font-size 18 :font-style "italic"})
+(defattrs :bg-lightblue {:fill "#cfe2f3"})
+(defattrs :bg-mediumgray {:fill "#dddddd"})
+(defattrs :bg-lightgray {:fill "#eeeeee"})
+;;(defattrs :left {:text-anchor "start"})
+(defattrs :byte {:span 8})
+
+(defn row-header-fn
+  [{:keys [address gap?]}]
+  (let [addr-label (str " ")]
+    (text addr-label)))
+
+(draw-box (text "Byte \\ Bit") :bg-lightblue)
+(doseq [val (str/split "7,6,5,4,3,2,1,0" #",")]
+  (draw-box (text val) :bg-lightblue))
+
+(draw-box (text "1"))
+(draw-box "Length" :byte)
+
+(draw-box (text "2"))
+(draw-box "Packet Type" :byte)
+
+(draw-box (text ""))
+(draw-box (text "UNSUBSCRIBE FLAGS") [:bg-mediumgray :byte])
+
+(draw-box (text ""))
+(draw-box "Reserved" [:bg-lightgray {:span 6}])
+(draw-box "Topic Type" [:bg-lightgray {:span 2}])
+
+(draw-box (text "3"))
+(draw-box "0" {:span 1})
+(draw-box "0" {:span 1})
+(draw-box "0" {:span 1})
+(draw-box "0" {:span 1})
+(draw-box "0" {:span 1})
+(draw-box "0" {:span 1})
+(draw-box "X" {:span 1})
+(draw-box "X" {:span 1})
+
+(draw-box (text "4"))
+(draw-box "Packet Identifier MSB" :byte)
+
+(draw-box (text "5"))
+(draw-box "Packet Identifier LSB" :byte)
+
+(draw-box (text "6 ... N"))
+(draw-gap "Topic Filter" :byte)
+
+(draw-bottom)
