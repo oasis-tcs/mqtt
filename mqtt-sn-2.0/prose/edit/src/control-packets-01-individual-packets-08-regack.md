@@ -10,10 +10,10 @@
 |        | REGACK FLAGS       |          |          |          |          |          |                  |                  |
 |        | Reserved           | Reserved | Reserved | Reserved | Reserved | Reserved | Topic Alias Type | Topic Alias Type |
 | Byte 3 | 0                  | 0        | 0        | 0        | 0        | 0        | x                | x                |
-| Byte 4 | Topic Alias MSB    |          |          |          |          |          |                  |                  |
-| Byte 5 | Topic Alias LSB    |          |          |          |          |          |                  |                  |
-| Byte 6 | Packet Id MSB      |          |          |          |          |          |                  |                  |
-| Byte 7 | Packet Id LSB      |          |          |          |          |          |                  |                  |
+| Byte 4 | Packet Id MSB      |          |          |          |          |          |                  |                  |
+| Byte 5 | Packet Id LSB      |          |          |          |          |          |                  |                  |
+| Byte 6 | Topic Alias MSB    |          |          |          |          |          |                  |                  |
+| Byte 7 | Topic Alias LSB    |          |          |          |          |          |                  |                  |
 | Byte 8 | Reason Code        |          |          |          |          |          |                  |                  |
 
 Table 25: REGACK packet
@@ -22,38 +22,39 @@ Table 25: REGACK packet
 The REGACK packet is sent by a client or by a GW as an acknowledgment to the receipt and processing of a REGISTER packet.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-#### 3.1.8.1 Length and Packet Type{#regack--length-and-packet-type}
+#### 3.1.8.1 Length &amp; Packet Type{#regack--length-and-packet-type}
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format.
-Please refer to section 2.1 "Structure of an MQTT-SN Control Packet" for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[section
+2.1]{.underline}](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 <!-- transformation-note: the above section ref upstream 1.8.2 was obviously wrong and should point to section 2.1 "Structure of an MQTT-SN Control Packet". -->
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
 #### 3.1.8.2 REGACK Flags
 
-The REGACK Flags is 1 byte field in Byte position 3 of the REGACK packet.  
+The REGACK Flags is 1 byte field in Byte position 3 of the REGACK packet.
 
-The REGACK Flags field includes the following flag:
+The REGACK Flags field includes the following flag:
+
+-   **Topic Type**. This is a 2-bit field in Bit 0 and 1 which determines the format of the topic value. Refer to [Table 10](#topic-types) for the
+    definition of the various topic types.
 
 <!-- transformation-note: the below table ref upstream 10 needs identification and verification before transforming into a semantic ref later. -->
 - **Topic Alias Type**: This is a 2-bit field in Bit 0 and 1 which determines the format of the topic Id value.
   Refer to Table 10 for the definition of the various topic types.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-#### 3.1.8.3 Topic Alias{#regack--topic-alias}
+#### 3.1.8.3 Packet Identifier{#regack--packet-identifier}
 
-A Topic Alias is an integer value that is used to identify the Topic instead of the Topic Name.
-This numeric value is used as the Topic Alias.
+The same value as the Packet Identifier in the REGISTER packet being acknowledged.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-#### 3.1.8.4 Packet Id{#regack--packet-id}
+#### 3.1.8.4 Topic Alias{#regack--topic-alias}
 
-The same value as the one contained in the corresponding REGISTER packet.
+A Topic Alias is an integer value that is used to identify the Topic instead of the Topic Name. This numeric value is used as the Topic Alias.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
 #### 3.1.8.5 Reason Code{#regack--reason-code}
 
 <!-- transformation-note: the below table ref upstream 9 "Reason Code Values" needs verification before transforming into a semantic ref later. -->
-Byte 8 in the REGACK packet holds the Register Reason Code.
-The values for the Register Reason Code field are shown in Table 9: Reason Code Values.
-The sender of the REGACK Packet MUST use one of the Register Reason Codes.
+[Byte 8 in the REGACK packet holds the Register Reason Code.]{.mark} The values for the Register Reason Code field are shown in Table 9: Reason Code
+Values. [The sender of the REGACK Packet MUST use one of the Register Reason Codes.]{.mark}

@@ -11,18 +11,19 @@
 Table 12: SEARCHGW packet
 <!-- transformation-note: above upstream table number will be replaced by auto-numbering later. -->
 
-The SEARCHGW packet is sent by a client when it searches for a Gateway.
-The transmission radius of the SEARCHGW is limited and depends on the density of the clients deployment,
-e.g. only 1-hop transmission in case of a very dense network in which every MQTT-SN client is reachable from each other within 1-hop transmission.
+The SEARCHGW packet is sent by a client when it searches for a Gateway. The transmission radius of the SEARCHGW is limited and depends on the density
+of the clients deployment, e.g. only 1-hop transmission in case of a very dense network in which every MQTT-SN client is reachable from each other
+within 1-hop transmission.
 
-> **Informative Comment**:
-> If the Transport Layer supports broadcast, like UDP/IP, the SEARCHGW packet is generally sent using the broadcast address as destination.
+> **Informative comment**
+>
+> If the Transport Layer supports multicast, like UDP/IP, the SEARCHGW packet is generally sent using the Multicast Address as destination..
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-#### 3.1.2.1 Length and Packet Type{#searchgw--length-and-packet-type}
+#### 3.1.2.1 Length &amp; Packet Type{#searchgw--length-and-packet-type}
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to
-Please refer to section 2.1 "Structure of an MQTT-SN Control Packet" for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[section
+2.1]{.underline}](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 <!-- transformation-note: the above section ref upstream 1.8.2 was obviously wrong and should point to section 2.1 "Structure of an MQTT-SN Control Packet". -->
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
