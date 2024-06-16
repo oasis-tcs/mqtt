@@ -1,4 +1,4 @@
-;; This is the source for 3.1.10 PUBWOS package diagram of MQTT-SN v2.0.
+;; This is the source for 3.1.10 PUBWOS packet diagram of MQTT-SN v2.0.
 (def boxes-per-row 9)
 (def box-width 90)
 (def left-margin 20)
@@ -19,22 +19,22 @@
 (doseq [val (str/split "7,6,5,4,3,2,1,0" #",")]
   (draw-box (text val) :bg-lightblue))
 
-(draw-box (text "1"))
+(draw-box "1")
 (draw-box "Length" :byte)
 
-(draw-box (text "2"))
+(draw-box "2")
 (draw-box "Packet Type (0x11)" :byte)
 
-(draw-box (text ""))
+(draw-box nil)
 (draw-box (text "PUBLISH WITHOUT SESSION") [:bg-mediumgray :byte])
 
-(draw-box (text ""))
+(draw-box nil)
 (draw-box "Reserved" [:bg-lightgray {:span 3}])
 (draw-box "Retain" [:bg-lightgray {:span 1}])
 (draw-box "Reserved" [:bg-lightgray {:span 2}])
 (draw-box "Topic Type" [:bg-lightgray {:span 2}])
 
-(draw-box (text "3"))
+(draw-box "3")
 (draw-box "0" {:span 1})
 (draw-box "0" {:span 1})
 (draw-box "0" {:span 1})
@@ -44,13 +44,13 @@
 (draw-box "X" {:span 1})
 (draw-box "X" {:span 1})
 
-(draw-box (text "4"))
+(draw-box "4")
 (draw-box "Topic Data MSB" :byte)
 
-(draw-box (text "5"))
+(draw-box "5")
 (draw-box "Topic Data LSB" :byte)
 
-(draw-box (text "6+TL ... N"))
+(draw-box "6+TL:N")
 (draw-gap "Data Or (Full Topic Name + Data)" :byte)
 
 (draw-bottom)

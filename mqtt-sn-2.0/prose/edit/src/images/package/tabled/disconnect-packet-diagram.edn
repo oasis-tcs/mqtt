@@ -1,4 +1,4 @@
-;; This is the source for 3.1.23 DISCONNECT package diagram of MQTT-SN v2.0.
+;; This is the source for 3.1.23 DISCONNECT packet diagram of MQTT-SN v2.0.
 (def boxes-per-row 9)
 (def box-width 110)
 (def row-height 30) ;; default

@@ -1,8 +1,7 @@
 # Package Diagrams (Table)
 
-The diagrams representing the bytefields of MQTT-SN packages
-in a manner very similar to the incoming draft as well as to
-the existing MQTT v5.0 specification.
+The diagrams representing the bytefields of MQTT-SN packets in a manner very similar
+to the incoming draft as well as to the existing MQTT v5.0 specification.
 
 ## Tools
 
@@ -28,7 +27,7 @@ Reducing the Rococo a bit more starting with the `PUBWOS` and `PUBLISH - QoS 0` 
 Example of rendering of SVG from these text files (and subsequent rasterization to PNG files):
 
 ```console
-❯ packet='pubwos'
+❯ packet=pubwos
 ❯ bytefield-svg -s "${packet}"-packet-diagram.edn -o "${packet}"-packet-diagram.svg
 ❯ svgexport "${packet}"-packet-diagram.svg "${packet}"-packet-diagram.png '100%'
 ```
@@ -67,22 +66,22 @@ Example (suggested reduced decorum with `PUBWOS` packet diagram):
 (doseq [val (str/split "7,6,5,4,3,2,1,0" #",")]
   (draw-box (text val) :bg-lightblue))
 
-(draw-box (text "1"))
+(draw-box "1")
 (draw-box "Length" :byte)
 
-(draw-box (text "2"))
+(draw-box "2")
 (draw-box "Packet Type (0x11)" :byte)
 
-(draw-box (text ""))
+(draw-box nil)
 (draw-box (text "PUBLISH WITHOUT SESSION") [:bg-mediumgray :byte])
 
-(draw-box (text ""))
+(draw-box nil)
 (draw-box "Reserved" [:bg-lightgray {:span 3}])
 (draw-box "Retain" [:bg-lightgray {:span 1}])
 (draw-box "Reserved" [:bg-lightgray {:span 2}])
 (draw-box "Topic Type" [:bg-lightgray {:span 2}])
 
-(draw-box (text "3"))
+(draw-box "3")
 (draw-box "0" {:span 1})
 (draw-box "0" {:span 1})
 (draw-box "0" {:span 1})
@@ -92,13 +91,13 @@ Example (suggested reduced decorum with `PUBWOS` packet diagram):
 (draw-box "X" {:span 1})
 (draw-box "X" {:span 1})
 
-(draw-box (text "4"))
+(draw-box "4")
 (draw-box "Topic Data MSB" :byte)
 
-(draw-box (text "5"))
+(draw-box "5")
 (draw-box "Topic Data LSB" :byte)
 
-(draw-box (text "6+TL ... N"))
+(draw-box "6+TL:N")
 (draw-gap "Data Or (Full Topic Name + Data)" :byte)
 
 (draw-bottom)
