@@ -1,3 +1,9 @@
+# Note
+
+> The implementations in this folder are presumably not relevant for MQTT-SN v2.0
+> to keep similarity with MQTT v5.0 Packe Diagram implementations.
+> Please see the diagrams in the sibling folder `[../tabled/](../tabled/)`.
+
 # Package Diagrams (Non-Table)
 
 The diagrams representing the bytefields of MQTT-SN packages
