@@ -1,6 +1,6 @@
 ;; This is the source for 3.1.19.a UNSUBSCRIBE (Variant with Topic Data in Payload) package diagram of MQTT-SN v2.0.
 (def boxes-per-row 9)
-(def box-width 155)
+(def box-width 90)
 (def left-margin 20)
 (defattrs :plain {:font-family "Arial" :font-size 18})
 (defattrs :cursive {:font-family "Arial" :font-size 18 :font-style "italic"})
