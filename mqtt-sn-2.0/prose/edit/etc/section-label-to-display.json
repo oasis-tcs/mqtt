@@ -39,6 +39,7 @@
   "connack--session-expiry-interval": "3.1.5.4",
   "connack-flags": "3.1.5.3",
   "connect": "3.1.4",
+  "connect-actions": "3.1.4.17",
   "connect--authentication-data": "3.1.4.16",
   "connect--authentication-data-length": "3.1.4.15",
   "connect--authentication-method": "3.1.4.14",
