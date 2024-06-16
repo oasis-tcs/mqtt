@@ -23,20 +23,30 @@ Both tools can be installed e.g. per `npm` (the node package manager) or the oth
 
 The source files are in Clojure using the functions of the `bytefield-svg` package as a Domain Specific Language (DSN):
 
-Reducing the Rococo a bit more starting with the `PUBWOS` and `PUBLISH - QoS 0` package diagrams:
+Reducing the Rococo a bit more starting with the `PUBWOS` and `PUBLISH - QoS 0` packet diagrams:
 
 Example of rendering of SVG from these text files (and subsequent rasterization to PNG files):
 
 ```console
-❯ package='pubwos'
-❯ bytefield-svg -s "${package}".edn -o "${package}".svg
-❯ svgexport "${package}".svg "${package}".png '100%'
+❯ packet='pubwos'
+❯ bytefield-svg -s "${packet}"-packet-diagram.edn -o "${packet}"-packet-diagram.svg
+❯ svgexport "${packet}"-packet-diagram.svg "${packet}"-packet-diagram.png '100%'
 ```
 
-Example (suggested reduced decorum with `PUBWOS`package):
+Processing all (blunt bash hack):
+
+```bash
+❯ cd /some/where && for f in ./*.edn; \
+  do stem="${f%.*}"; bytefield-svg -s "${stem}.edn" -o "${stem}.svg" \
+    && svgexport "${stem}.svg" "${stem}.png" '100%' \
+    && printf "processed %s\n" "${stem}.edn"; \
+  done
+```
+
+Example (suggested reduced decorum with `PUBWOS` packet diagram):
 
 ```clojure
-;; This is the source for 3.1.10 PUBWOS package diagram of MQTT-SN v2.0.
+;; This is the source for 3.1.10 PUBWOS packet diagram of MQTT-SN v2.0.
 (def boxes-per-row 9)
 (def box-width 90)
 (def left-margin 20)
@@ -94,9 +104,9 @@ Example (suggested reduced decorum with `PUBWOS`package):
 (draw-bottom)
 ```
 
-!["Rasterized PUBWOS package diagram"](pubwos.png "Rasterized PUBWOS package diagram")
+!["Rasterized PUBWOS packet diagram"](pubwos-packet-diagram.png "Rasterized PUBWOS packet diagram")
 
-Figure 1: Rasterized `PUBWOS` package diagram (with reduced decorum)
+Figure 1: Rasterized `PUBWOS` packet diagram (with reduced decorum)
 
 ## What does "Table" mean?
 
