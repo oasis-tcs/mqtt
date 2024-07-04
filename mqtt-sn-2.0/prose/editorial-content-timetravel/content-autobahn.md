@@ -1372,48 +1372,163 @@ and is specified by the Length byte. Optional, only included if the packet is se
 
 ### 3.1.4 CONNECT {#connect .unnumbered}
 
-  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Bit**             **7**            **6**                 **5**               **4**          **3**                   **2**                  **1**                  **0**   
-  ------------------- ---------------- ------- ------------- ------------- ----- -------------- ------- --------------- ---------------------- ------- -------------- ------- ---------------
-  Byte 1              Length                                                                                                                                                  
-
-  Byte 2              Packet Type                                                                                                                                             
-
-                      ***CONNECT                                                                                                                                              
-                      FLAGS***                                                                                                                                                
-
-                      *Reserved*               Default Awake                                                            Authentication                 Will                   Clean Start
-                                               Messages                                                                                                                       
-
-  Byte 3              *0*                      *X*           *X*           *X*                          *X*             *X*                            *X*                    *X*
-
-  Byte 4              Protocol Version                                                                                                                                        
-
-  Byte 5              Keep Alive MSB                                                                                                                                          
-
-  Byte 6              Keep Alive LSB                                                                                                                                          
-
-  Byte 7              Session Expiry                                                                                                                                          
-                      Interval MSB                                                                                                                                            
-
-  Byte 8              Session Expiry                                                                                                                                          
-                      Interval                                                                                                                                                
-
-  Byte 9              Session Expiry                                                                                                                                          
-                      Interval                                                                                                                                                
-
-  Byte 10             Session Expiry                                                                                                                                          
-                      Interval LSB                                                                                                                                            
-
-  Byte 11             Max Packet Size                                                                                                                                         
-                      MSB                                                                                                                                                     
-
-  Byte 12             Max Packet Size                                                                                                                                         
-                      LSB                                                                                                                                                     
-
-  Byte 13 . N         Client                                                                                                                                                  
-                      Identifier                                                                                                                                              
-  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
++---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
+| **Bit**             | *    | **6**  |     | **5** |   | **4**          | **3**       |     | **2**      | **1**   |         | * |                  |
+|                     | *7** |        |     |       |   |                |             |     |            |         |         | * |                  |
+|                     |      |        |     |       |   |                |             |     |            |         |         | 0 |                  |
+|                     |      |        |     |       |   |                |             |     |            |         |         | * |                  |
+|                     |      |        |     |       |   |                |             |     |            |         |         | * |                  |
++=====================+======+========+=====+=======+===+================+=============+=====+============+=========+=========+===+==================+
+| Byte 1              | Le   |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | ngth |        |     |       |   |                |             |     |            |         |         |   |                  |
++---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
+| Byte 2              | Pa   |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | cket |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | Type |        |     |       |   |                |             |     |            |         |         |   |                  |
++---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
+|                     | **   |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | *CON |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | NECT |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | FLAG |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | S*** |        |     |       |   |                |             |     |            |         |         |   |                  |
++---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
+|                     | *R   |        | D   |       |   |                |             |     | Auth       |         | Will    |   | Clean Start      |
+|                     | eser |        | efa |       |   |                |             |     | entication |         |         |   |                  |
+|                     | ved* |        | ult |       |   |                |             |     |            |         |         |   |                  |
+|                     |      |        | Aw  |       |   |                |             |     |            |         |         |   |                  |
+|                     |      |        | ake |       |   |                |             |     |            |         |         |   |                  |
+|                     |      |        | Me  |       |   |                |             |     |            |         |         |   |                  |
+|                     |      |        | ssa |       |   |                |             |     |            |         |         |   |                  |
+|                     |      |        | ges |       |   |                |             |     |            |         |         |   |                  |
++---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
+| Byte 3              | *0*  |        | *X* | *X*   | * |                |             | *X* | *X*        |         | *X*     |   | *X*              |
+|                     |      |        |     |       | X |                |             |     |            |         |         |   |                  |
+|                     |      |        |     |       | * |                |             |     |            |         |         |   |                  |
++---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
+|                     | ***  |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | WILL |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | F    |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | LAGS |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | (    |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | OPTI |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | ONAL |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | )*** |        |     |       |   |                |             |     |            |         |         |   |                  |
++---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
+|                     | Rese |        |     |       |   | Will Retained  | Will QoS    | W   |            |         |         |   |                  |
+|                     | rved |        |     |       |   |                |             | ill |            |         |         |   |                  |
+|                     |      |        |     |       |   |                |             | To  |            |         |         |   |                  |
+|                     |      |        |     |       |   |                |             | pic |            |         |         |   |                  |
+|                     |      |        |     |       |   |                |             | Al  |            |         |         |   |                  |
+|                     |      |        |     |       |   |                |             | ias |            |         |         |   |                  |
+|                     |      |        |     |       |   |                |             | T   |            |         |         |   |                  |
+|                     |      |        |     |       |   |                |             | ype |            |         |         |   |                  |
++---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
+| Byte (3 + 1)        | 0    | 0      | 0   | 0     | X |                | X           | X   | X          |         |         |   |                  |
++---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
+| Byte 4              | Prot |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | ocol |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | Ver  |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | sion |        |     |       |   |                |             |     |            |         |         |   |                  |
++---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
+| Byte 5              | Keep |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | A    |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | live |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | MSB  |        |     |       |   |                |             |     |            |         |         |   |                  |
++---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
+| Byte 6              | Keep |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | A    |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | live |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | LSB  |        |     |       |   |                |             |     |            |         |         |   |                  |
++---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
+| Byte 7              | Ses  |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | sion |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | Ex   |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | piry |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | Inte |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | rval |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | MSB  |        |     |       |   |                |             |     |            |         |         |   |                  |
++---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
+| Byte 8              | Ses  |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | sion |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | Ex   |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | piry |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | Inte |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | rval |        |     |       |   |                |             |     |            |         |         |   |                  |
++---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
+| Byte 9              | Ses  |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | sion |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | Ex   |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | piry |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | Inte |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | rval |        |     |       |   |                |             |     |            |         |         |   |                  |
++---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
+| Byte 10             | Ses  |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | sion |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | Ex   |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | piry |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | Inte |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | rval |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | LSB  |        |     |       |   |                |             |     |            |         |         |   |                  |
++---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
+| Byte 11             | Max  |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | Pa   |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | cket |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | Size |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | MSB  |        |     |       |   |                |             |     |            |         |         |   |                  |
++---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
+| Byte 12             | Max  |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | Pa   |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | cket |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | Size |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | LSB  |        |     |       |   |                |             |     |            |         |         |   |                  |
++---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
+| Byte (12 + 1)       | Will |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | T    |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | opic |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | A    |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | lias |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | MSB  |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | **   |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | OR** |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | Will |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | T    |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | opic |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | Le   |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | ngth |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | MSB  |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | (TL) |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     |      |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | Will |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | T    |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | opic |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | A    |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | lias |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | LSB  |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | Will |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | T    |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | opic |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | Le   |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | ngth |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | LSB  |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | (TL) |        |     |       |   |                |             |     |            |         |         |   |                  |
++---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
+| Byte (12 + 2)       |      |        |     |       |   |                |             |     |            |         |         |   |                  |
++---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
+| Byte (12 + 3)       | Full |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | Will |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | T    |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | opic |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | Na   |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | me + |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | Will |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | Data |        |     |       |   |                |             |     |            |         |         |   |                  |
++---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
+| Byte 13 ... N       | Cl   |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | ient |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | Id   |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | enti |        |     |       |   |                |             |     |            |         |         |   |                  |
+|                     | fier |        |     |       |   |                |             |     |            |         |         |   |                  |
++---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
 
 [Table 14: CONNECT packet]{.underline}
 
@@ -1480,8 +1595,8 @@ value. In the absence of sending any other MQTT-SN Control Packets, the Client 
 the session 'LOST' (see state description in table 3.6).]{.mark}
 
 [If a Client does not receive a PINGRESP packet within a *Tretry* amount of time after it has sent a PINGREQ, it SHOULD retry the transmission
-according to B4 up to the max attempts. If a PINGRESP is still not received it MUST close the Session to the Gateway by way of a DISCONNECT, with the
-understanding that the GW may no longer be reachable.]{.mark}
+according to]{.mark} [B4 up to the max attempts. If a PINGRESP is still not received it MUST close the Session to the Gateway by way of a DISCONNECT,
+with the understanding that the GW may no longer be reachable.]{.mark}
 
 [A Keep Alive must have a value greater than 0. It is considered a protocol error If a Keep Alive value of 0 is set.]{.mark}
 
@@ -2307,7 +2422,7 @@ The PUBLISH Flags includes the following flags:
     QoS 0, "0b01" for QoS 1, "0b10" for QoS 2, and "0b11" for QoS -1. For a detailed description of the various Quality Of Service levels please refer
     to the operational behavior section.
 
--   **DUP**: 1 bit field stored in Bit 7 and has the same meaning as with MQTT. It notes the duplicate delivery of packet. If the DUP flag is, set to
+-   **DUP**: 1 bit field stored in Bit 7 and has the same meaning as with MQTT. It notes the duplicate delivery of packet. If the DUP flag is set to
     "0", it signifies that the packet is sent for the first time. If the DUP flag is set to "1", it signifies that the packet was retransmitted.
 
 -   **Retain**: 1 bit field stored in Bit 4 and has the same meaning as with MQTT. The field signifies whether the existing retained message for this
@@ -2899,7 +3014,7 @@ Same value as the one contained in the corresponding UNSUBSCRIBE packet.
 
 #### 3.1.25.3 Reason Code {#reason-code-6 .unnumbered}
 
-Byte 5 in the UNSUBACK packet holds the Reason code in response to UNSUBCRIBE packet. The gateway/server sending the UNSUBACK packet MUST use one of
+Byte 5 in the UNSUBACK packet holds the Reason code in response to UNSUBSCRIBE packet. The gateway/server sending the UNSUBACK packet MUST use one of
 the UNSUBACK Reason Codes
 
   ------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -3058,7 +3173,7 @@ The number of messages left when a client is sent back to sleep. Optional -- for
 
 As with MQTT, the DISCONNECT packet is sent by a client to indicate that it wants to close the Virtual connection. The gateway will acknowledge the
 receipt of that packet by returning a DISCONNECT to the client. A server or gateway may also send a DISCONNECT to a client, e.g. in case a gateway,
-due to an error, cannot map a received packet to a client. Upon receiving such a DISCONNECT packet, a client should try to setup the Virtual
+due to an error, cannot map a received packet to a client. Upon receiving such a DISCONNECT packet, a client should try to set up the Virtual
 Connection again by sending a CONNECT packet to the gateway or server.
 
 A DISCONNECT packet with a *Session Expiry Interval* field is sent by a client when it wants to go to the "asleep" state. The receipt of this packet
@@ -3085,8 +3200,8 @@ The Disconnect *Flags* field includes the following flags:
     indicates registrations should be removed during the sleeping period and renegotiated when AWAKE or ACTIVE. "1" indicates registrations should be
     retained during the SLEEP period, and therefore not renegotiated when AWAKE or ACTIVE.
 
-[The Gateway MUST validate that the reserved flags in the DISCONNECT packet are set to 0. If any of the reserved flags is not 0 it is a Malformed
-Packet.]{.mark}
+[The]{.mark} [Gateway MUST validate that the reserved flags in the DISCONNECT packet are set to 0. If any of the reserved flags is not 0 it is a
+Malformed Packet.]{.mark}
 
 #### 3.1.28.3 Reason Code {#reason-code-7 .unnumbered}
 
@@ -3140,7 +3255,7 @@ Fixed Length UTF-8 Encoded String representing a clear text description of disco
 
 [Table 47: WILLTOPICUPD packet]{.underline}
 
-The WILLTOPICUPD packet is sent by a client to update its Will topic name stored in the GW/server.
+The WILLTOPICUPD packet is sent by a client to update its Will topic name stored in the gateway/server.
 
 #### 3.1.29.1 Length & Packet Type {#length-packet-type-25 .unnumbered}
 
@@ -3174,7 +3289,7 @@ long). It is used by a client to delete its Will topic and Will message stored i
 
 [Table 48: WILLMSGUPD packet]{.underline}
 
-The WILLMSGUPD packet is sent by a client to update its Will packet stored in the GW/server.
+The WILLMSGUPD packet is sent by a client to update its Will packet stored in the gateway/server.
 
 #### 3.1.30.1 Length & Packet Type {#length-packet-type-26 .unnumbered}
 
@@ -3199,7 +3314,7 @@ Contains the Will message.
 
 [Table 49: WILLTOPICRESP packet]{.underline}
 
-The WILLTOPICRESP packet is sent by a GW to acknowledge the receipt and processing of an WILLTOPICUPD packet.
+The WILLTOPICRESP packet is sent by a gateway to acknowledge the receipt and processing of an WILLTOPICUPD packet.
 
 #### 3.1.31.1 Length & Packet Type {#length-packet-type-27 .unnumbered}
 
@@ -3239,7 +3354,7 @@ Byte 3 in the WILLTOPICRESP control packet contains the Reason Code returned fro
 
 [Table 51: WILLMSGRESP]{.underline}
 
-The WILLMSGRESP packet is sent by a GW to acknowledge the receipt and processing of an WILLMSGUPD packet.
+The WILLMSGRESP packet is sent by a gateway to acknowledge the receipt and processing of a WILLMSGUPD packet.
 
 #### 3.1.32.1 Length & Packet Type {#length-packet-type-28 .unnumbered}
 
@@ -3286,9 +3401,9 @@ Byte 3 in the WILLMSGRESP control packet contains the Reason Code returned from 
 
 [Table 53: Format of an encapsulated MQTT-SN frame]{.underline}
 
-As detailed in Section 4, MQTT-SN clients can also access a GW via a forwarder in case the GW is not directly attached to their WSNs. The forwarder
-simply encapsulates the MQTT-SN frames it receives on the wireless side and forwards them unchanged to the GW; in the opposite direction, it
-decapsulates the frames it receives from the gateway and sends them to the clients, unchanged too.
+As detailed in Section 4, MQTT-SN clients can also access a gateway via a forwarder in case the gateway is not directly attached to their WSNs. The
+forwarder simply encapsulates the MQTT-SN frames it receives on the wireless side and forwards them unchanged to the gateway; in the opposite
+direction, it decapsulates the frames it receives from the gateway and sends them to the clients, unchanged too.
 
 #### 3.1.33.1 Length {#length-1 .unnumbered}
 
@@ -3314,7 +3429,7 @@ The Ctrl byte contains control information exchanged between the GW and the forw
 
 #### 3.1.33.4 Radius {#radius-2 .unnumbered}
 
-Transmission radius (only relevant in direction GW to forwarder)
+Transmission radius (only relevant in direction gateway to forwarder)
 
 #### 3.1.33.5 Wireless Node Id {#wireless-node-id .unnumbered}
 
@@ -3382,12 +3497,12 @@ A PROTECTION packet, like any other one, can be the payload of a Forward Encapsu
 
 **//TODO - Break out the conformance aspects of this paragraph from recommendations.**
 
-[When the PROTECTION packet is handled by a GW, it is mandatory to use it to protect all MQTT-SN packets exchanged with a Client for which a shared
-key (indexed by its Sender Id) is available.]{.mark}
+[When the PROTECTION packet is handled by a gateway, it is mandatory to use it to protect all MQTT-SN packets exchanged with a Client for which a
+shared key (indexed by its Sender Id) is available.]{.mark}
 
-[If the client is not enrolled to the GW (so the GW has no access to a key shared with it on the basis of its Sender Id) and the Client and GW are not
-in a private network, it is recommended for the GW to process only MQTT-SN packets received over a DTLS session initiated with mutual authentication
-by the client.]{.mark}
+[If the client is not enrolled to the gateway (so the gateway has no access to a key shared with it on the basis of its Sender Id) and the Client and
+gateway are not in a private network, it is recommended for the gateway to process only MQTT-SN packets received over a DTLS session initiated with
+mutual authentication by the client.]{.mark}
 
 [When the PROTECTION packet is handled by a Client, it is mandatory to use it to protect all MQTT-SN packets exchanged with a GW for which a shared
 key (indexed by its GwId) is available.]{.mark}
@@ -3616,7 +3731,7 @@ same as those defined by MQTT. In the following we will focus on those points th
 
 ## 4.1 MQTT-SN Architecture {#mqtt-sn-architecture .unnumbered}
 
-> ![Diagram Description automatically generated](media/image8.png){width="6.5in" height="6.580555555555556in"}
+> ![Diagram Description automatically generated](media/image9.png){width="6.5in" height="6.580555555555556in"}
 
 Figure 1: MQTT-SN Architecture
 
@@ -3644,7 +3759,7 @@ Although the implementation of the transparent Gateway is simpler when compared 
 support a separate connection for each active client. Some MQTT server implementations might impose a limitation on the number of concurrent
 connections that they support.
 
-![A close up of a map Description automatically generated](media/image6.png){width="5.3168810148731405in" height="1.9801979440069992in"}
+![A close up of a map Description automatically generated](media/image10.png){width="5.3168810148731405in" height="1.9801979440069992in"}
 
 Figure 2: Transparent and Aggregating Gateways
 
@@ -3653,7 +3768,7 @@ Figure 2: Transparent and Aggregating Gateways
 Instead of having a MQTT connection for each connected client, an aggregating Gateway will have only one MQTT connection to the Server. All packet
 exchanges between a MQTT-SN client and an aggregating Gateway end at the Gateway. The Gateway then decides which information will be given further to
 the Server. Although its implementation is more complex than the one of a transparent Gateway, an aggregating Gateway may be helpful in case of WSNs
-with very large number of SAs because it reduces the number of MQTT connections that the Gateway must support concurrently.
+with a very large number of SAs because it reduces the number of MQTT connections that the Gateway must support concurrently.
 
 ### 4.1.3 Terminating Gateway {#terminating-gateway .unnumbered}
 
@@ -3728,14 +3843,14 @@ packets received.
 
 The time duration *T~ADV\ ~*until the gateway sends the next ADVERTISE packet is indicated in the *Duration* field of the ADVERTISE packets. A client
 may use this information to monitor the availability of a gateway. For example, if it does not receive ADVERTISE packets from a gateway for
-*N~ADV\ ~*consecutive times, it may assume that the gateway is down and removes it from its list of active gateways. Similarly, gateways in stand-by
+*N~ADV\ ~*consecutive times, it may assume that the gateway is down and remove it from its list of active gateways. Similarly, gateways in stand-by
 mode will become active (i.e. start sending ADVERTISE packets) if they miss successively a couple of times advertisements from a certain gateway.
 
 Since the ADVERTISE packets are transmitted into the whole wireless network, the time interval *T~ADV\ ~*between two ADVERTISE packets sent by a
 gateway should be large enough (e.g. greater than 15 min) to avoid bandwidth congestion in the network.
 
 The large value of *T~ADV\ ~*will lead to a long waiting time for new clients which are looking for a gateway. To shorten this waiting time a client
-may send a SEARCHGW packet. To prevent network flooding when multiple clients start searching for GW almost at the same time, the sending of the
+may send a SEARCHGW packet. To prevent network flooding when multiple clients start searching for gateway almost at the same time, the sending of the
 SEARCHGW packet is delayed by a random time between 0 and *T~SEARCHGW~*. A client will cancel its transmission of the SEARCHGW packet if it receives
 during this delay time a SEARCHGW packet sent by another client and identical to the one it wants to send, and behaves as if the SEARCHGW packet was
 sent by itself.
@@ -3743,8 +3858,8 @@ sent by itself.
 The transmission radius *R~b\ ~*of the SEARCHGW packet is limited, e.g. to a single hop in case of a dense deployment of MQTT-SN clients.
 
 Upon receiving a SEARCHGW packet a gateway replies with a GWINFO packet containing its id. Similarly, a client answers with a GWINFO packet if it has
-at least one active gateway in its list of active gateways. If the client has multiple GWs in its list, it selects one GW out of its list and includes
-that information into the GWINFO packet.
+at least one active gateway in its list of active gateways. If the client has multiple gateways in its list, it selects one gateway out of its list
+and includes that information into the GWINFO packet.
 
 Like the SEARCHGW packet, the GWINFO packet is transmitted with the same radius *R~b~*, which is indicated in the SEARCHGW packet. The radius
 *R~b\ ~*is also given to the underlying layer when these two packets are passed down for transmission.
@@ -3758,24 +3873,24 @@ increased by the exponential backoff algorithm described in the appendix.
 
 ## 4.4 Session Establishment {#session-establishment .unnumbered}
 
-As with MQTT, an MQTT-SN client needs to set up a session on the GW, unless it is publishing ONLY using OUT OF BAND packets. The procedure for setting
-up a session with a GW is illustrated in Fig. 3.
+As with MQTT, an MQTT-SN client needs to set up a session on the gateway, unless it is publishing ONLY using OUT OF BAND packets. The procedure for
+setting up a session with a gateway is illustrated in Fig. 3.
 
 The CONNECT packet contains flags to communicate to the gateway that will or auth or both interactions should take place.
 
-![A picture containing shape Description automatically generated](media/image2.png){width="2.4305555555555554in" height="1.5in"}
+![A picture containing shape Description automatically generated](media/image6.png){width="2.4305555555555554in" height="1.5in"}
 
 Figure 3a: Connect procedure (without will flag set)
 
-If the Will flag is set, the client then sends these two pieces of information to the GW upon receiving the corresponding request packets WILLTOPICREQ
-and WILLMSQREQ. The procedure is terminated with the CONNACK packet sent by the GW.
+If the Will flag is set, the client then sends these two pieces of information to the gateway upon receiving the corresponding request packets
+WILLTOPICREQ and WILLMSQREQ. The procedure is terminated with the CONNACK packet sent by the gateway.
 
-> ![A picture containing graphical user interface Description automatically generated](media/image3.png){width="3.361111111111111in"
+> ![A picture containing graphical user interface Description automatically generated](media/image2.png){width="3.361111111111111in"
 > height="2.7222222222222223in"}
 
 Figure 3b: Connect procedure (with will flag set)
 
-![Graphical user interface Description automatically generated with medium confidence](media/image4.png){width="2.9444444444444446in"
+![Graphical user interface Description automatically generated with medium confidence](media/image1.png){width="2.9444444444444446in"
 height="2.7222222222222223in"}
 
 Figure 3c: Connect procedure (with auth flag set)
@@ -3856,16 +3971,18 @@ receive acknowledgements. At any given time a sender]{.mark}** **[must ONLY have
 
   Send PUBLISH QoS 1, DUP=0, \<Packet Identifier\>   \-\-\-\-\-\-\-\-\--\>                         
 
-                                                                                                   Initiate onward delivery of the Application
-                                                                                                   Message^1^
+                                                                                                   Initiate onward delivery of the Application Message
+                                                                                                   (Note 1)
 
                                                      \<\-\-\-\-\-\-\-\-\--                         Send PUBACK \<Packet Identifier\>
 
   Discard message                                                                                  
   -----------------------------------------------------------------------------------------------------------------------------------------------------
 
-> ^1^ The receiver does not need to complete delivery of the Application Message before sending the PUBACK. When its original sender receives the
-> PUBACK packet, ownership of the Application Message is transferred to the receiver.
+Note(s):
+
+1.  The receiver does not need to complete delivery of the Application Message before sending the PUBACK. When its original sender receives the PUBACK
+    packet, ownership of the Application Message is transferred to the receiver.
 
 ### 4.5.3 QoS 2: Exactly once delivery {#qos-2-exactly-once-delivery .unnumbered}
 
@@ -3885,14 +4002,15 @@ associated with QoS 2.
 
 -   [MUST treat the PUBREL packet as "unacknowledged" until it has received the corresponding PUBCOMP packet from the receiver]{.mark}
 
--   [MUST NOT re-send the PUBLISH once it has sent the corresponding PUBREL packe]{.mark}t
+-   [MUST NOT resend the PUBLISH once it has sent the corresponding PUBREL packe]{.mark}t
 
 -   [MUST NOT apply Message expiry if a PUBLISH packet has been sent]{.mark}
 
 The Packet Identifier becomes available for reuse once the sender has received the PUBCOMP packet or a PUBREC with a Reason Code of 0x80 or greater.
 
-**[In a difference to MQTT 5, the sender is NOT permitted to send further PUBLISH packets with different Packet Identifiers while it is waiting to
-receive acknowledgements. At any given time a sender my ONLY have 1 outstanding application message inflight.]{.mark}**
+**[In this version of MQTT-SN and in contrast to MQTT 5.0, the sender MUST only]{.mark}** **[send further PUBLISH packets with different Packet
+Identifiers when it is not]{.mark}** **[waiting to receive acknowledgements. At any given time a sender has only]{.mark}** **[1 outstanding
+application message inflight.]{.mark}**
 
 [In the QoS 2 delivery protocol, the receiver]{.mark}:
 
@@ -3912,10 +4030,10 @@ receive acknowledgements. At any given time a sender my ONLY have 1 outstanding 
 
 ### 4.5.4 QoS -1: Constrained client delivery {#qos--1-constrained-client-delivery .unnumbered}
 
-This feature is defined for very simple client implementations which only support a limited sub-set of features. There is no requirement to setup nor
-tear down a Virtual Connection, no registration nor subscription. The sender just sends its PUBLISH packets to it's counterpart (whose address is
-known a-priori) and forgets them. It does not care whether the address is correct, whether the counterpart is alive, or whether the packets arrive.
-Only the following parameter values are allowed for a PUBLISH packet with QoS level -1:
+This feature is defined for very simple client implementations which only support a limited subset of features. There is no requirement to set up nor
+tear down a Virtual Connection, no registration nor subscription. The sender just sends its PUBLISH packets to its counterpart (whose address is known
+a-priori) and forgets them. It does not care whether the address is correct, whether the counterpart is alive, or whether the packets arrive. Only the
+following parameter values are allowed for a PUBLISH packet with QoS level -1:
 
 -   QoS flag: set to "0b11"
 
@@ -3931,10 +4049,10 @@ session except for resetting the keep-alive timer.
 
 ### 4.5.5 OUT OF BAND: Constrained client delivery {#out-of-band-constrained-client-delivery .unnumbered}
 
-This feature is defined for very simple client implementations which only support a limited sub-set of features. There is no requirement to setup nor
-tear down a Virtual Connection, no registration nor subscription. The sender just sends its PUBLISH packets to it's counterpart (whose address is
-known a-priori) and forgets them. It does not care whether the address is correct, whether the counterpart is alive, or whether the packets arrive.
-Only the following parameter values are allowed for a PUBLISH OUT OF BAND packet:
+This feature is defined for very simple client implementations which only support a limited subset of features. There is no requirement to set up nor
+tear down a Virtual Connection, no registration nor subscription. The sender just sends its PUBLISH packets to its counterpart (whose address is known
+a-priori) and forgets them. It does not care whether the address is correct, whether the counterpart is alive, or whether the packets arrive. Only the
+following parameter values are allowed for a PUBLISH OUT OF BAND packet:
 
 -   Topic Alias Type flag: either "0b01" for pre-defined topic alias, "0b10" for short topic name, "0b11" for full topic names.
 
@@ -3943,7 +4061,7 @@ Only the following parameter values are allowed for a PUBLISH OUT OF BAND packet
 -   Data field: the data to be published.
 
 Whilst no Virtual Connection is mandated for OUT OF BAND delivery, a constrained client who has previously connected and established a session may
-wish to PUBLISH OUT OF BAND during any of the lifecycle states. If the GW can determine the origin of a OUT OF BAND packet, it should not
+wish to PUBLISH OUT OF BAND during any of the lifecycle states. If the gateway can determine the origin of an OUT OF BAND packet, it should not
 impact/change any existing session except for resetting the keep-alive timer.
 
 ## 4.6 Client states {#client-states .unnumbered}
@@ -3952,7 +4070,7 @@ At any given point in time, a client may be in one of **5 different states**. Tr
 sequence of packets between client and server/gateway and further mediated by timers resident on the gateway. A client is in the *active* state when
 the server/gateway receives a CONNECT packet from that client. This state is supervised by the server/gateway with the "keep alive" timer. If the
 server/gateway does not receive any packet from the client for a period longer than the keep alive duration (indicated in the CONNECT packet), the
-gateway will consider that client as *lost* and activates for example the Will feature for that client. A client goes to the *disconnected* state when
+gateway will consider that client as *lost* and activate for example the Will feature for that client. A client goes to the *disconnected* state when
 the server/gateway receives a DISCONNECT without a *session expiry interval* field. This state is not time-supervised by the server/gateway. A client
 moves into the asleep state by issuing a DISCONNECT with a *session expiry interval* field. For more information on the sleep state, please refer to
 the "Sleeping clients" section.
@@ -3960,17 +4078,18 @@ the "Sleeping clients" section.
 +----------------------------+---------------------------------------------------------------------------------------+------------------------------+
 | **State**                  | **State Description**                                                                 | **Possible Transitions**     |
 +============================+=======================================================================================+==============================+
-| **DISCONNECTED**           | The client is considered offline. The GW may or may not have a previous session state | **ACTIVE**                   |
-|                            | for this client. From here a client may transition ONLY to the **ACTIVE** state.      |                              |
+| **DISCONNECTED**           | The client is considered offline. The gateway may or may not have a previous session  | **ACTIVE**                   |
+|                            | state for this client. From here a client may transition ONLY to the **ACTIVE**       |                              |
+|                            | state.                                                                                |                              |
 +----------------------------+---------------------------------------------------------------------------------------+------------------------------+
 | **ACTIVE**                 | The client is actively engaged in the session. It should be able to send and receive  | **ASLEEP DISCONNECTED**      |
-|                            | packets. Its state is supervised by the GW with the associated "keep alive" timers.   |                              |
-|                            | From here the client may transition to **ASLEEP** (by way of DISCONNECT with a        | **LOST**                     |
-|                            | session expiry interval \> 0), **DISCONNECTED** (by way of DISCONNECT with a session  |                              |
-|                            | expiry of 0) or LOST (by way of supervised gateway timers).                           |                              |
+|                            | packets. Its state is supervised by the gateway with the associated "keep alive"      |                              |
+|                            | timers. From here the client may transition to **ASLEEP** (by way of DISCONNECT with  | **LOST**                     |
+|                            | a session expiry interval \> 0), **DISCONNECTED** (by way of DISCONNECT with a        |                              |
+|                            | session expiry of 0) or LOST (by way of supervised gateway timers).                   |                              |
 +----------------------------+---------------------------------------------------------------------------------------+------------------------------+
 | **ASLEEP**                 | The client is engaged in an ongoing session. It cannot receive packets; it can send   | **AWAKE**                    |
-|                            | packets. The GW should not expect a response from the client in this state until      |                              |
+|                            | packets. The gateway should not expect a response from the client in this state until |                              |
 |                            | further packets are received from the client. From here the client may transition to  | **ACTIVE**                   |
 |                            | **AWAKE** (by way of PINGREQ), **ACTIVE** by way of CONNECT, **DISCONNECTED** (by way |                              |
 |                            | of DISCONNECT with a session expiry of 0) or **LOST** (by way of supervised gateway   | **DISCONNECTED**             |
@@ -3984,16 +4103,16 @@ the "Sleeping clients" section.
 |                            | (by way of supervised gateway timers).                                                | **LOST**                     |
 +----------------------------+---------------------------------------------------------------------------------------+------------------------------+
 | **LOST**                   | The client is considered offline and not able to receive packets until it has         | **ACTIVE**                   |
-|                            | re-established a session with the GW by way of a CONNECT. The GW **must not** attempt |                              |
-|                            | to send packets to a client in the **LOST** state**.** Any packets received from a    |                              |
-|                            | client whose state is **LOST** should not be processed and a DISCONNECT with error    |                              |
-|                            | should be sent in response, unless the packets received are PUBLISH OUT OF BAND or    |                              |
-|                            | PUBLISH -1. Session state may exist on the GW for a client in the **LOST** state.     |                              |
+|                            | re-established a session with the GW by way of a CONNECT. The gatrway **must not**    |                              |
+|                            | attempt to send packets to a client in the **LOST** state**.** Any packets received   |                              |
+|                            | from a client whose state is **LOST** should not be processed and a DISCONNECT with   |                              |
+|                            | error should be sent in response, unless the packets received are PUBLISH OUT OF BAND |                              |
+|                            | or PUBLISH -1. Session state may exist on the GW for a client in the **LOST** state.  |                              |
 +----------------------------+---------------------------------------------------------------------------------------+------------------------------+
 
-![Diagram Description automatically generated](media/image9.png){width="5.72132874015748in" height="4.288552055993001in"}
+![Diagram Description automatically generated](media/image7.png){width="5.72132874015748in" height="4.288552055993001in"}
 
-![](media/image7.png){width="6.5in" height="4.402777777777778in"}
+![](media/image5.png){width="7.1875in" height="7.510416666666667in"}
 
 Figure 4: Client's state transition diagram
 
@@ -4034,19 +4153,19 @@ for new Virtual Connections, until either they are explicitly un-subscribed by t
 In MQTT-SN the meaning of a "clean start" is extended to the Will feature, i.e. not only the subscriptions are persistent, but also the Will topic and
 the Will packet. The two flags "CleanStart" and "Will" in the CONNECT have then the following meanings:
 
--   CleanStart=true, Will=true: The GW will delete all subscriptions and Will data related to the client, and starts prompting for new Will topic and
-    Will packet.
+-   CleanStart=true, Will=true: The gateway will delete all subscriptions and Will data related to the client, and starts prompting for new Will topic
+    and Will packet.
 
--   CleanStart=true, Will=false: The GW will delete all subscriptions and Will data related to the client, and returns CONNACK (no prompting for Will
-    topic and Will packet).
+-   CleanStart=true, Will=false: The gateway will delete all subscriptions and Will data related to the client, and returns CONNACK (no prompting for
+    Will topic and Will packet).
 
--   CleanStart=false, Will=true: The GW keeps all stored client's data, but prompts for new Will topic and Will packet. The newly received Will data
-    will overwrite the stored Will data.
+-   CleanStart=false, Will=true: The gateway keeps all stored client's data, but prompts for new Will topic and Will packet. The newly received Will
+    data will overwrite the stored Will data.
 
--   CleanStart=false, Will=false: The GW keeps all stored client's data and returns CONNACK (no prompting for Will topic and Will packet).
+-   CleanStart=false, Will=false: The gateway keeps all stored client's data and returns CONNACK (no prompting for Will topic and Will packet).
 
 Note that if a client wants to delete only its Will data at Virtual Connection setup, it could send a CONNECT packet with "CleanStart=false" and
-"Will=true", and sends an empty WILLTOPIC packet to the GW when prompted to do so. It could also send a CONNECT packet with "CleanStart=false" and
+"Will=true", and send an empty WILLTOPIC packet to the gateway when prompted to do so. It could also send a CONNECT packet with "CleanStart=false" and
 "Will=false" and use the will update PACKETS to modify the Will data.
 
 ## 4.9 Procedure for updating the Will data {#procedure-for-updating-the-will-data .unnumbered}
@@ -4060,11 +4179,11 @@ Note that an empty WILLTOPICUPD packet will delete both the Will topic and Will 
 ## 4.10 Topic Name and Topic Filter Registration Procedure {#topic-name-and-topic-filter-registration-procedure .unnumbered}
 
 Because of the limited bandwidth and the small packet payload in wireless sensor networks, data is not published together with its topic name as in
-MQTT. A registration procedure is introduced which allows both a client and a GW to inform its peer about the short topic alias and its corresponding
-topic name before it can start sending PUBLISH packets using the short topic alias.
+MQTT. A registration procedure is introduced which allows both a client and a gateway to inform its peer about the short topic alias and its
+corresponding topic name before it can start sending PUBLISH packets using the short topic alias.
 
 A topic alias is a two-byte long replacement of the string-based topic name. A client needs to use the REGISTER procedure to inform the gateway about
-the topic name it wants to employ and gets from the gateway the corresponding topic alias. It then will use this topic alias in the PUBLISH packets it
+the topic name it wants to employ and gets the corresponding topic alias from the gateway. It then will use this topic alias in the PUBLISH packets it
 sends to the gateway. In the opposite direction, the PUBLISH packets also contain a 2-byte topic alias (instead of the string-based topic name). The
 client is informed about the relation between topic alias and topic name by means of either a former SUBSCRIBE procedure, or a REGISTER procedure
 started by the gateway.
@@ -4083,16 +4202,16 @@ If there are no predefined topic alias', the gateway will pass back a NORMAL top
 also returned to the client with the failure reason encoded in the *ReasonCode* field.
 
 After having received the REGACK packet with *ReasonCode ="accepted"*, the client shall use the assigned *topicId* to publish data of the
-corresponding topic name. If, however the REGACK contains a rejection code, the client may try to register later again. If the Reason Code was
+corresponding topic name. If, however, the REGACK contains a rejection code, the client may try to register later again. If the Reason Code was
 *"Congestion"*, the client should wait for a time *T~WAIT\ ~*before restarting the registration procedure.
 
 At any point in time a client may have only one REGISTER packet outstanding, i.e., it must wait for a REGACK packet before it can register another
 topic name.
 
-A GW sends a REGISTER packet to a client if it wants to inform that client about the topic name and the assigned topic alias that it will use later
-when sending PUBLISH packets of the corresponding topic name. This happens for example when no prior registrations exists, or when the client has
-DISCONNECTED with retail registration false, or the client re-connects without having set the "CleanStart" flag or the client has subscribed to topic
-names that contain wildcard characters such as \# or +.
+A gateway sends a REGISTER packet to a client if it wants to inform that client about the topic name and the assigned topic alias that it will use
+later when sending PUBLISH packets of the corresponding topic name. This happens for example when no prior registrations exists, or when the client
+has DISCONNECTED with retail registration false, or the client re-connects without having set the "CleanStart" flag or the client has subscribed to
+topic names that contain wildcard characters such as \# or +.
 
 > **Informative comment**
 >
@@ -4130,8 +4249,8 @@ cannot be accepted, then a SUBACK packet is also returned to the client with the
 cause is *"Congestion"*, the client should wait for the time *T~WAIT\ ~*before resending the SUBSCRIBE packet to the gateway.
 
 If the client subscribes to a topic name which contains a wildcard character, the returning SUBACK packet will contain the topic alias value 0x0000.
-The GW will the use the registration procedure to inform the client about the to-be-used topic alias value when it has the first PUBLISH packet with a
-matching topic name to be sent to the client.
+The gateway will use the registration procedure to inform the client about the to-be-used topic alias value when it has the first PUBLISH packet with
+a matching topic name to be sent to the client.
 
 Similar to the client's PUBLISH procedure, topic alias' may also be pre-defined for certain topic names. Short topic names may be used as well. In
 those two cases the client still needs to subscribe to those pre-defined topic alias' or short topic names.
@@ -4165,9 +4284,9 @@ of this PUBLISH packet exchange before it could start a new level 1 or 2 transac
 Like the client's PUBLISH procedure described in Section 3.14, the gateway sends PUBLISH packets with the topic alias value that was returned in the
 SUBACK packet to the client.
 
-Preceding the PUBLISH packet the GW may send a REGISTER packet to inform the client about the topic name and its assigned topic alias value. This will
-happen for example when the client re-connects without clean start or has subscribed to topic names with wildcard characters. Upon receiving a
-REGISTER packet the client replies with a REGACK packet. The GW will wait for the REGACK packet before it sends the PUBLISH packet to the client.
+Preceding the PUBLISH packet the gateway may send a REGISTER packet to inform the client about the topic name and its assigned topic alias value. This
+will happen for example when the client re-connects without clean start or has subscribed to topic names with wildcard characters. Upon receiving a
+REGISTER packet the client replies with a REGACK packet. The gateway will wait for the REGACK packet before it sends the PUBLISH packet to the client.
 
 The client could reject the REGISTER packet with a REGACK packet indicating the rejection reason; this corresponds to an unsubscribe to the topic name
 indicated in the REGISTER packet. Note that unsubscribe to a topic name with wildcard characters can only be done with the unsubscribe procedure and
@@ -4182,7 +4301,7 @@ procedure, i.e. no warning is sent to the affected subscribers.
 ## 4.16 Keep Alive and PING Procedure {#keep-alive-and-ping-procedure .unnumbered}
 
 As with MQTT, the value of the Keep Alive timer is indicated in the CONNECT packet. The client should send a PINGREQ packet within each Keep Alive
-time period, which the GW acknowledges with a PINGRESP packet.
+time period, which the gateway acknowledges with a PINGRESP packet.
 
 Similarly, a client shall answer with a PINGRESP packet when it receives a PINGREQ packet from the GW to which it is connected. Otherwise, the
 received PINGREQ packet is ignored.
@@ -4194,10 +4313,10 @@ no danger for a storm of CONNECT packets sent almost at the same time by all aff
 
 ## 4.17 Client's Disconnect Procedure {#clients-disconnect-procedure .unnumbered}
 
-A client sends a DISCONNECT packet to the GW to indicate that it is about to close its Virtual Connection. After this point, the client is then
-required to establish a new Virtual Connection with the GW before it can exchange information with that GW again. [Like MQTT, sending the DISCONNECT
-packet does not affect existing subscriptions and Will data. They are persistent until they are either expired or explicitly un-subscribed, or
-deleted, or modified by the client, or if the client establishes a new Virtual Connection with the CleanStart flag set.]{.mark} The gateway
+A client sends a DISCONNECT packet to the gateway to indicate that it is about to close its Virtual Connection. After this point, the client is then
+required to establish a new Virtual Connection with the gateway before it can exchange information with that gateway again. [Like MQTT, sending the
+DISCONNECT packet does not affect existing subscriptions and Will data. They are persistent until they are either expired or explicitly un-subscribed,
+or deleted, or modified by the client, or if the client establishes a new Virtual Connection with the CleanStart flag set.]{.mark} The gateway
 acknowledges the receipt of the DISCONNECT packet by returning a DISCONNECT to the client.
 
 A client may also receive an unsolicited DISCONNECT sent by the gateway. This may happen for example when the gateway, due to an error, cannot
@@ -4206,11 +4325,11 @@ again by sending a CONNECT packet to the gateway.
 
 ## 4.18 Client's Retransmission Procedure {#clients-retransmission-procedure .unnumbered}
 
-All packets that are "unicasted" to the GW (i.e. sent using the GW's unicast address) and for which a GW's reply is expected are supervised by a retry
-timer *T~retry\ ~*and a retry counter *N~retry~*. The retry timer *T~retry\ ~*is started by the client when the packet is sent and stopped when the
-expected GW's reply is received. If *T~retry\ ~*times out and the expected GW's reply is not received, the client retransmits the packet. After
-*N~retry\ ~*retransmissions, the client aborts the procedure and assumes that the MQTT-SN gateway is no longer available. It should then try to
-connect to another gateway.
+All packets that are "unicasted" to the gateway (i.e. sent using the gateway's unicast address) and for which a gateway's reply is expected are
+supervised by a retry timer *T~retry\ ~*and a retry counter *N~retry~*. The retry timer *T~retry\ ~*is started by the client when the packet is sent
+and stopped when the expected gateways reply is received. If *T~retry\ ~*times out and the expected gateway's reply is not received, the client
+retransmits the packet. After *N~retry\ ~*retransmissions, the client aborts the procedure and assumes that the MQTT-SN gateway is no longer
+available. It should then try to connect to another gateway.
 
 ## 4.19 Sleeping clients {#sleeping-clients .unnumbered}
 
@@ -4228,8 +4347,8 @@ feature.
 messages of quality-of-service 1 & 2.]{.mark}
 
 > **Informative comment**
->
-> The gateway may *choose* to buffer messages of Quality-of-Service 0, whilst the client is sleeping and is within it's session expiry interval.
+
+The gateway may *choose* to buffer messages of Quality-of-Service 0, whilst the client is sleeping and is within its session expiry interval.
 
 The sleep timer is stopped when the server/gateway receives a PINGREQ from the client. Like the CONNECT packet, this PINGREQ packet contains the
 *Client Id*. The identified client is then in the *awake* state. If the server/gateway has buffered packets for the client, it will send these packets
@@ -4268,7 +4387,7 @@ gateway must re-register any topic alias's during the AWAKE state, which will la
 >
 > The gateway should attempt to make the best effort to reuse the same topic alias' mappings that existed during any initial associated ACTIVE states.
 >
-> ![sleeping-client-v1.0.png](media/image5.png){width="3.1982130358705163in" height="4.6534700349956255in"}
+> ![sleeping-client-v1.0.png](media/image4.png){width="3.1982130358705163in" height="4.6534700349956255in"}
 
 Figure 5: Awake ping packet flush
 
@@ -4748,6 +4867,10 @@ before submitting for publication.]{.mark}
 |                 |                                 |                          |                                                                   |
 |                 |                                 |                          | [Replaced the term MQTT-SN "connection" with the term "Virtual    |
 |                 |                                 |                          | Connection".]{.mark}                                              |
++-----------------+---------------------------------+--------------------------+-------------------------------------------------------------------+
+| [WD-28]{.mark}  | [December 2023]{.mark}          | [\[Davide Lenzarini,     | [Ensured document structure is intact and replaced table          |
+|                 |                                 | Stefan Hagen\]]{.mark}   | footnotes with simple text tags and a subsequent notes            |
+|                 |                                 |                          | listing.]{.mark}                                                  |
 +-----------------+---------------------------------+--------------------------+-------------------------------------------------------------------+
 
 # **Appendix E.** Implementation Notes {#appendix-e.-implementation-notes .unnumbered}
