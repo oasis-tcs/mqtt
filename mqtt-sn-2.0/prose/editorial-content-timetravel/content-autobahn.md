@@ -138,9 +138,7 @@ information please see the full Notices section in an Appendix below.
 >
 > [1.3 Organization of the MQTT-SN specification 10](#organization-of-the-mqtt-sn-specification)
 >
-> [1.4 Glossary 10](#terminology)
->
-> [8.1 12](#_1ci93xb)
+> [1.4 Terminology 10](#terminology)
 >
 > [1.4 Data representation 12](#data-representation)
 >
@@ -150,7 +148,7 @@ information please see the full Notices section in an Appendix below.
 >
 > [1.4.3 Four Byte Integer 12](#four-byte-integer)
 >
-> [1.4.4 UTF-8 Encoded String 12](#utf-8-encoded-string)
+> [1.4.4 UTF-8 Encoded String 13](#utf-8-encoded-string)
 
 [2 MQTT-SN Control Packet format 15](#mqtt-sn-control-packet-format)
 
@@ -168,337 +166,326 @@ information please see the full Notices section in an Appendix below.
 >
 > [2.3.1 Protocol Id 19](#protocol-id)
 >
-> [2.3.2 Radius 20](#radius)
+> [2.3.2 Radius 19](#radius)
 >
-> [2.3.3 Reason Code 20](#reason-code)
+> [2.3.3 Reason Code 19](#reason-code)
 >
-> [2.3.4 Topic Alias Type 21](#topic-alias-type)
+> [2.3.4 Topic Alias Type 23](#topic-short)
 >
-> [2.3.5 Topic Name 21](#topic-name)
+> [2.3.5 Topic Name 23](#topic-name)
 >
-> [2.3.6 Will Packet 21](#will-payload)
+> [2.3.6 Will Payload 23](#will-payload)
 >
-> [2.3.7 Will Topic 21](#will-topic)
+> [2.3.7 Will Topic 24](#will-topic)
 >
-> [2.4 Topic Alias Types 21](#topic-alias-types)
+> [2.4 Topic Alias Types 24](#topic-types)
 
-[3 MQTT-SN Control Packets 23](#mqtt-sn-control-packets)
+[3 MQTT-SN Control Packets 25](#mqtt-sn-control-packets)
 
-> [3.1 Format of Individual Packets 23](#format-of-individual-packets)
+> [3.1 Format of Individual Packets 25](#format-of-individual-packets)
 >
-> [3.1.1 ADVERTISE 23](#advertise)
+> [3.1.1 ADVERTISE 25](#advertise)
 >
-> [3.1.1.1 Length & Packet Type 23](#length-packet-type)
+> [3.1.1.1 Length & Packet Type 25](#length-packet-type)
 >
-> [3.1.1.2 GwId 23](#gwid)
+> [3.1.1.2 GwId 25](#gwid)
 >
-> [3.1.1.3 Duration 23](#duration)
+> [3.1.1.3 Duration 25](#duration)
 >
-> [3.1.2 SEARCHGW 23](#searchgw)
+> [3.1.2 SEARCHGW 25](#searchgw)
 >
-> [3.1.2.1 Length & Packet Type 24](#length-packet-type-1)
+> [3.1.2.1 Length & Packet Type 26](#length-packet-type-1)
 >
-> [3.1.2.2 Radius 24](#radius-1)
+> [3.1.2.2 Radius 26](#radius-1)
 >
-> [3.1.3 GWINFO 24](#gwinfo)
+> [3.1.3 GWINFO 26](#gwinfo)
 >
-> [3.1.3.1 Length & Packet Type 24](#length-packet-type-2)
+> [3.1.3.1 Length & Packet Type 27](#length-packet-type-2)
 >
-> [3.1.3.2 GwId 24](#gwid-1)
+> [3.1.3.2 GwId 27](#gwid-1)
 >
-> [3.1.3.3 GwAdd 25](#gwadd)
+> [3.1.3.3 GwAdd 27](#gwadd)
 >
-> [3.1.4 CONNECT 25](#connect)
+> [3.1.4 CONNECT 27](#connect)
 >
-> [3.1.4.1 Length & Packet Type 25](#length-packet-type-3)
+> [3.1.4.1 Length & Packet Type 28](#length-packet-type-3)
 >
-> [3.1.4.2 Connect Flags 26](#connect-flags)
+> [3.1.4.2 Connect Flags 28](#connect-flags)
 >
-> [3.1.4.3 Protocol Version 26](#protocol-version)
+> [3.1.4.3 Protocol Version 28](#protocol-version)
 >
-> [3.1.4.4 Keep Alive Timer 26](#keep-alive-timer)
+> [3.1.4.4 Keep Alive Timer 29](#keep-alive-timer)
 >
-> [3.1.4.5 Session Expiry Interval 27](#session-expiry-interval)
+> [3.1.4.5 Session Expiry Interval 29](#session-expiry-interval)
 >
-> [3.1.4.6 Max Packet Size 27](#max-packet-size)
+> [3.1.4.6 Max Packet Size 30](#max-packet-size)
 >
-> [3.1.4.7 Client Identifier 28](#client-identifier)
+> [3.1.4.7 Client Identifier 30](#client-identifier)
 >
-> [3.1.5 CONNACK 28](#connack)
+> [3.1.4.8 Connect Will Flags (optional, only with Will flag set) 31](#connect-will-flags-optional-only-with-will-flag-set)
 >
-> [3.1.5.1 Length & Packet Type 29](#length-packet-type-4)
+> [3.1.4.9 Will Topic Alias or Will Topic Length (optional, only with Will flag set)
+> 31](#will-topic-short-or-will-topic-length-optional-only-with-will-flag-set)
 >
-> [3.1.5.2 Reason Code 29](#reason-code-1)
+> [3.1.4.10 Will Payload Length (optional, only with Will flag set) 31](#will-payload-length-optional-only-with-will-flag-set)
 >
-> [3.1.5.3 Connack Flags 30](#connack-flags)
+> [3.1.4.11 Will Payload (optional, only with Will flag set) 31](#will-payload-optional-only-with-will-flag-set)
 >
-> [3.1.5.4 Session Expiry Interval 31](#session-expiry-interval-1)
+> [3.1.4.12 Authentication Method Length (optional, only with Auth flag set) 31](#authentication-method-length-optional-only-with-auth-flag-set)
 >
-> [3.1.5.5 Assigned Client Identifier 31](#assigned-client-identifier)
+> [3.1.4.13 Authentication Method (optional, only with Auth flag set) 31](#authentication-method-optional-only-with-auth-flag-set)
 >
-> [3.1.6 WILLTOPICREQ 31](#_319y80a)
+> [3.1.4.14 Authentication Data Length (optional, only with Auth flag set) 32](#authentication-data-length-optional-only-with-auth-flag-set)
 >
-> [3.1.7 WILLMSGREQ 31](#_1gf8i83)
+> [3.1.4.15 Authentication Data (optional, only with Auth flag set) 32](#authentication-data-optional-only-with-auth-flag-set)
 >
-> [3.1.8 WILLTOPIC 32](#_40ew0vw)
+> [3.1.5 CONNACK 32](#connack)
 >
-> [3.1.8.1 Length & Packet Type 32](#_2fk6b3p)
+> [3.1.5.1 Length & Packet Type 32](#length-packet-type-4)
 >
-> [3.1.8.2 WILLTOPIC Flags 32](#_upglbi)
+> [3.1.5.2 Reason Code 33](#reason-code-1)
 >
-> [3.1.8.3 Will Topic 32](#_3ep43zb)
+> [3.1.5.3 Connack Flags 34](#connack-flags)
 >
-> [3.1.9 WILLMSG 32](#_1tuee74)
+> [3.1.5.4 Session Expiry Interval 34](#session-expiry-interval-1)
 >
-> [3.1.9.1 Length & Packet Type 33](#_4du1wux)
+> [3.1.5.5 Authentication Method Length (optional, only with Auth flag set) 34](#authentication-method-length-optional-only-with-auth-flag-set-1)
 >
-> [3.1.9.2 Will Message 33](#_2szc72q)
+> [3.1.5.6 Authentication Method (optional, only with Auth flag set) 34](#authentication-method-optional-only-with-auth-flag-set-1)
 >
-> [3.1.10 AUTH 33](#auth)
+> [3.1.5.7 Authentication Data Length (optional, only with Auth flag set) 34](#authentication-data-length-optional-only-with-auth-flag-set-1)
 >
-> [3.1.10.1 Length & Packet Type 33](#length-packet-type-5)
+> [3.1.5.8 Authentication Data (optional, only with Auth flag set) 35](#authentication-data-optional-only-with-auth-flag-set-1)
 >
-> [3.1.10.2 Reason Code 33](#reason-code-2)
+> [3.1.5.8 Assigned Client Identifier 35](#assigned-client-identifier)
 >
-> [3.1.10.3 Auth Method Length 34](#auth-method-length)
+> [3.1.6 AUTH 35](#auth)
 >
-> [3.1.10.4 Auth Method 34](#auth-method)
+> [3.1.6.1 Length & Packet Type 35](#length-packet-type-5)
 >
-> [3.1.10.5 Auth Data 34](#auth-data)
+> [3.1.6.2 Reason Code 36](#reason-code-2)
 >
-> [3.1.11 REGISTER 34](#register)
+> [3.1.6.3 Auth Method Length 36](#auth-method-length)
 >
-> [3.1.11.1 Length & Packet Type 34](#length-packet-type-6)
+> [3.1.6.4 Auth Method 36](#auth-method)
 >
-> [3.1.11.2 Topic Alias 34](#topic-alias)
+> [3.1.6.5 Auth Data 36](#auth-data)
 >
-> [3.1.11.3 Packet Id 34](#packet-id)
+> [3.1.7 REGISTER 36](#register)
 >
-> [3.1.11.4 Topic Name 35](#topic-name-1)
+> [3.1.7.1 Length & Packet Type 37](#length-packet-type-6)
 >
-> [3.1.12 REGACK 35](#regack)
+> [3.1.7.2 Topic Alias 37](#topic-alias)
 >
-> [3.1.12.1 Length & Packet Type 35](#length-packet-type-7)
+> [3.1.7.3 Packet Id 37](#packet-id)
 >
-> [3.1.12.2 REGACK Flags 35](#regack-flags)
+> [3.1.7.4 Topic Name 37](#topic-name-1)
 >
-> [3.1.12.3 Topic Alias 35](#topic-alias-1)
+> [3.1.8 REGACK 37](#regack)
 >
-> [3.1.12.4 Packet Id 35](#packet-id-1)
+> [3.1.8.1 Length & Packet Type 37](#length-packet-type-7)
 >
-> [3.1.12.5 Reason Code 35](#reason-code-3)
+> [3.1.8.2 REGACK Flags 38](#regack-flags)
 >
-> [3.1.13 Publish Variants 36](#publish-variants)
+> [3.1.8.3 Topic Alias 38](#topic-alias-1)
 >
-> [3.1.14 PUBLISH MINUS -1 (Reference from 1.2) 37](#publish-minus--1-reference-from-1.2)
+> [3.1.8.4 Packet Id 38](#packet-id-1)
 >
-> [3.1.14.1 Length & Packet Type 37](#length-packet-type-8)
+> [3.1.8.5 Reason Code 38](#reason-code-3)
 >
-> [3.1.14.2 PUBLISH Flags 37](#publish-flags)
+> [3.1.9 Publish Variants 38](#publish-variants)
 >
-> [3.1.14.3 Topic Alias or Topic Length 37](#topic-alias-or-topic-length)
+> [3.1.10 PUBLISH MINUS -1 (Reference from 1.2) 39](#b.1-publish-qos--1-packet-from-mqtt-sn-1.2)
 >
-> [3.1.14.4 Data 38](#data)
+> [3.1.10.1 Length & Packet Type 40](#b.1.1-length-packet-type)
 >
-> [3.1.15 PUBLISH OUT OF BAND 38](#publish-out-of-band)
+> [3.1.10.2 PUBLISH Flags 40](#b.1.2-publish-flags)
 >
-> [3.1.15.1 Length & Packet Type 38](#length-packet-type-9)
+> [3.1.10.3 Topic Alias or Topic Length 40](#b.1.3-topic-id)
 >
-> [3.1.15.2 PUBLISH Flags 38](#publish-flags-1)
+> [3.1.10.4 Data 40](#b.1.4-data)
 >
-> [3.1.15.3 Topic Alias or Topic Length 39](#topic-alias-or-topic-length-1)
+> [3.1.11 PUBLISH OUT OF BAND 40](#publish-without-session)
 >
-> [3.1.15.4 Data 39](#data-1)
+> [3.1.11.1 Length & Packet Type 41](#length-packet-type-8)
 >
-> [3.1.16 PUBLISH (used for QoS 0) 39](#publish-used-for-qos-0)
+> [3.1.11.2 PUBLISH Flags 41](#publish-flags)
 >
-> [3.1.16.1 Length & Packet Type 39](#length-packet-type-10)
+> [3.1.11.3 Topic Alias or Topic Length 41](#topic-data)
 >
-> [3.1.16.2 PUBLISH Flags 39](#publish-flags-2)
+> [3.1.11.4 Data 41](#data)
 >
-> [3.1.16.3 Topic Alias or Topic Length 40](#topic-alias-or-topic-length-2)
+> [3.1.12 PUBLISH (used for QoS 0) 42](#publish-used-for-qos-0)
 >
-> [3.1.16.4 Data 40](#data-2)
+> [3.1.12.1 Length & Packet Type 42](#length-packet-type-9)
 >
-> [3.1.17 PUBLISH (used for QoS 1 & 2) 41](#publish-used-for-qos-1-2)
+> [3.1.12.2 PUBLISH Flags 42](#publish-flags-1)
 >
-> [3.1.17.1 Length & Packet Type 41](#length-packet-type-11)
+> [3.1.12.3 Topic Alias or Topic Length 42](#topic-data-1)
 >
-> [3.1.17.2 PUBLISH Flags 41](#publish-flags-3)
+> [3.1.12.4 Data 43](#data-1)
 >
-> [3.1.17.3 Topic Length 42](#topic-length)
+> [3.1.13 PUBLISH (used for QoS 1 & 2) 44](#publish-used-for-qos-1-2)
 >
-> [3.1.17.4 Packet Id 42](#packet-id-2)
+> [3.1.13.1 Length & Packet Type 44](#length-packet-type-10)
 >
-> [3.1.17.5 Topic Alias or Topic Name 42](#topic-alias-or-topic-name)
+> [3.1.13.2 PUBLISH Flags 44](#publish-flags-2)
 >
-> [3.1.17.6 Data 42](#data-3)
+> [3.1.13.3 Topic Length 45](#_38czs75)
 >
-> [3.1.18 PUBACK -- Publish Acknowledgement 42](#puback-publish-acknowledgement)
+> [3.1.13.4 Packet Id 45](#packet-id-2)
 >
-> [3.1.18.1 Length & Packet Type 42](#length-packet-type-12)
+> [3.1.13.5 Topic Alias or Topic Name 45](#topic-data-2)
 >
-> [3.1.18.2 Packet Id 42](#packet-id-3)
+> [3.1.13.6 Data 45](#data-2)
 >
-> [3.1.18.3 Reason Code 42](#reason-code-4)
+> [3.1.14 PUBACK -- Publish Acknowledgement 45](#puback-publish-acknowledgement)
 >
-> [3.1.19 PUBREC (QoS 2 delivery part 1) 43](#pubrec-qos-2-delivery-part-1)
+> [3.1.14.1 Length & Packet Type 45](#length-packet-type-11)
 >
-> [3.1.19.1 Length & Packet Type 43](#length-packet-type-13)
+> [3.1.14.2 Packet Id 45](#packet-id-3)
 >
-> [3.1.19.2 Packet Id 43](#packet-id-4)
+> [3.1.14.3 Reason Code 45](#reason-code-4)
 >
-> [3.1.20 PUBREL (QoS 2 delivery part 2) 43](#pubrel-qos-2-delivery-part-2)
+> [3.1.15 PUBREC (QoS 2 delivery part 1) 46](#pubrec-qos-2-delivery-part-1)
 >
-> [3.1.20.1 Length & Packet Type 44](#length-packet-type-14)
+> [3.1.15.1 Length & Packet Type 46](#length-packet-type-12)
 >
-> [3.1.20.2 Packet Id 44](#packet-id-5)
+> [3.1.15.2 Packet Id 46](#packet-id-4)
 >
-> [3.1.21 PUBCOMP (QoS 2 delivery part 3) 44](#pubcomp-qos-2-delivery-part-3)
+> [3.1.15.3 Reason Code 46](#reason-code-5)
 >
-> [3.1.21.1 Length & Packet Type 44](#length-packet-type-15)
+> [3.1.16 PUBREL (QoS 2 delivery part 2) 46](#pubrel-qos-2-delivery-part-2)
 >
-> [3.1.21.2 Packet Identifier 44](#packet-identifier-1)
+> [3.1.16.1 Length & Packet Type 47](#length-packet-type-13)
 >
-> [3.1.22 SUBSCRIBE 45](#subscribe)
+> [3.1.16.2 Packet Id 47](#packet-id-5)
 >
-> [3.1.22.1 Length & Packet Type 45](#length-packet-type-16)
+> [3.1.16.3 Reason Code 47](#reason-code-6)
 >
-> [3.1.22.2 SUBSCRIBE Flags 45](#subscribe-flags)
+> [3.1.17 PUBCOMP (QoS 2 delivery part 3) 47](#pubcomp-qos-2-delivery-part-3)
 >
-> [3.1.22.3 Packet Id 45](#packet-id-6)
+> [3.1.17.1 Length & Packet Type 47](#length-packet-type-14)
 >
-> [3.1.22.4 Topic Alias or Topic Filter 46](#topic-alias-or-topic-filter)
+> [3.1.17.2 Packet Identifier 47](#packet-identifier-1)
 >
-> [3.1.23 SUBACK 46](#suback)
+> [3.1.17.3 Reason Code 47](#reason-code-7)
 >
-> [3.1.23.1 Length & Packet Type 46](#length-packet-type-17)
+> [3.1.18 SUBSCRIBE 48](#subscribe)
 >
-> [3.1.23.2 Flags 46](#flags)
+> [3.1.18.1 Length & Packet Type 48](#length-packet-type-15)
 >
-> [3.1.23.3 Topic Alias 46](#topic-alias-2)
+> [3.1.18.2 SUBSCRIBE Flags 48](#subscribe-flags)
 >
-> [3.1.23.4 Packet Identifier 46](#packet-identifier-2)
+> [3.1.18.3 Packet Id 48](#packet-id-6)
 >
-> [3.1.23.5 Reason Code 47](#reason-code-5)
+> [3.1.18.4 Topic Alias or Topic Filter 49](#topic-data-or-topic-filter)
 >
-> [3.1.24 UNSUBSCRIBE 47](#unsubscribe)
+> [3.1.19 SUBACK 49](#suback)
 >
-> [3.1.24.1 Length & Packet Type 48](#length-packet-type-18)
+> [3.1.19.1 Length & Packet Type 49](#length-packet-type-16)
 >
-> [3.1.24.2 UNSUBSCRIBE Flags 48](#unsubscribe-flags)
+> [3.1.19.2 Flags 49](#flags)
 >
-> [3.1.24.3 Packet Identifier 48](#packet-identifier-3)
+> [3.1.19.3 Topic Alias 49](#topic-data-3)
 >
-> [3.1.24.4 Topic Alias or Topic Filter 48](#topic-alias-or-topic-filter-1)
+> [3.1.19.4 Packet Identifier 49](#packet-identifier-2)
 >
-> [3.1.25 UNSUBACK 48](#unsuback)
+> [3.1.19.5 Reason Code 50](#reason-code-8)
 >
-> [3.1.25.1 Length & Packet Type 48](#length-packet-type-19)
+> [3.1.20 UNSUBSCRIBE 50](#unsubscribe)
 >
-> [3.1.25.2 Packet Identifier 48](#packet-identifier-4)
+> [3.1.20.1 Length & Packet Type 51](#length-packet-type-17)
 >
-> [3.1.25.3 Reason Code 48](#reason-code-6)
+> [3.1.20.2 UNSUBSCRIBE Flags 51](#unsubscribe-flags)
 >
-> [3.1.26 PINGREQ 49](#pingreq)
+> [3.1.20.3 Packet Identifier 51](#packet-identifier-3)
 >
-> [3.1.26.1 Length & Packet Type 49](#length-packet-type-20)
+> [3.1.20.4 Topic Alias or Topic Filter 51](#topic-data-or-topic-filter-1)
 >
-> [3.1.26.2 Client Identifier (optional) 49](#client-identifier-optional)
+> [3.1.21 UNSUBACK 51](#unsuback)
 >
-> [3.1.27 PINGRESP 49](#pingresp)
+> [3.1.21.1 Length & Packet Type 51](#length-packet-type-18)
 >
-> [3.1.27.1 Length & Packet Type 50](#length-packet-type-21)
+> [3.1.21.2 Packet Identifier 51](#packet-identifier-4)
 >
-> [3.1.27.2 Messages Remaining 50](#messages-remaining)
+> [3.1.21.3 Reason Code 51](#reason-code-9)
 >
-> [3.1.28 DISCONNECT 50](#disconnect)
+> [3.1.22 PINGREQ 52](#pingreq)
 >
-> [3.1.28.1 Length & Packet Type 51](#length-packet-type-22)
+> [3.1.22.1 Length & Packet Type 52](#length-packet-type-19)
 >
-> [3.1.28.2 Disconnect Flags 51](#disconnect-flags)
+> [3.1.22.2 Client Identifier (optional) 52](#client-identifier-optional)
 >
-> [3.1.28.3 Reason Code 51](#reason-code-7)
+> [3.1.23 PINGRESP 52](#pingresp)
 >
-> [3.1.28.4 Session Expiry Interval 52](#session-expiry-interval-2)
+> [3.1.23.1 Length & Packet Type 53](#length-packet-type-20)
 >
-> [3.1.28.5 Reason String 52](#reason-string)
+> [3.1.23.2 Messages Remaining 53](#messages-remaining)
 >
-> [3.1.29 WILLTOPICUPD 52](#_2tq9fhf)
+> [3.1.24 DISCONNECT 53](#disconnect)
 >
-> [3.1.29.1 Length & Packet Type 52](#_18vjpp8)
+> [3.1.24.1 Length & Packet Type 54](#length-packet-type-21)
 >
-> [3.1.29.2 Flags 52](#_3sv78d1)
+> [3.1.24.2 Disconnect Flags 54](#disconnect-flags)
 >
-> [3.1.29.3 Will Topic 52](#_280hiku)
+> [3.1.24.3 Reason Code 54](#reason-code-10)
 >
-> [3.1.30 WILLMSGUPD 52](#_n5rssn)
+> [3.1.24.4 Session Expiry Interval 55](#session-expiry-interval-2)
 >
-> [3.1.30.1 Length & Packet Type 53](#_375fbgg)
+> [3.1.24.5 Reason String 55](#reason-string)
 >
-> [3.1.30.2 Will Message 53](#_1maplo9)
+> [3.1.25 Forwarder Encapsulation 55](#forwarder-encapsulation)
 >
-> [3.1.31 WILLTOPICRESP 53](#_46ad4c2)
+> [3.1.25.1 Length 55](#length-1)
 >
-> [3.1.31.1 Length & Packet Type 53](#_10kxoro)
+> [3.1.25.2 Packet Type 55](#packet-type)
 >
-> [3.1.31.2 Reason Code 53](#_3kkl7fh)
+> [3.1.25.3 Ctrl 55](#ctrl)
 >
-> [3.1.32 WILLMSGRESP 54](#_1zpvhna)
+> [3.1.25.4 Radius 55](#radius-2)
 >
-> [3.1.32.1 Length & Packet Type 54](#_4jpj0b3)
+> [3.1.25.5 Wireless Node Id 56](#wireless-node-id)
 >
-> [3.1.32.2 Reason Code 54](#_2yutaiw)
+> [3.1.25.6 MQTT SN Packet 56](#mqtt-sn-packet)
 >
-> [3.1.33 Forwarder Encapsulation 55](#forwarder-encapsulation)
+> [3.1.26 PROTECTION 56](#protection-encapsulation)
 >
-> [3.1.33.1 Length 55](#length-1)
+> [3.1.26.1 Length 57](#length-2)
 >
-> [3.1.33.2 Packet Type 55](#packet-type)
+> [3.1.26.2 Packet Type 57](#packet-type-1)
 >
-> [3.1.33.3 Ctrl 55](#ctrl)
+> [3.1.26.3 Protection Flags 57](#protection-flags)
 >
-> [3.1.33.4 Radius 55](#radius-2)
+> [3.1.26.4 Protection Scheme 58](#protection-scheme)
 >
-> [3.1.33.5 Wireless Node Id 55](#wireless-node-id)
+> [3.1.26.5 Sender Id 59](#sender-id)
 >
-> [3.1.33.6 MQTT SN Packet 55](#mqtt-sn-packet)
+> [3.1.26.6 Random 59](#random)
 >
-> [3.1.34 PROTECTION 56](#protection)
+> [3.1.26.7 Crypto Material 60](#crypto-material)
 >
-> [3.1.34.1 Length 57](#length-2)
+> [3.1.26.8 Monotonic Counter 60](#monotonic-counter)
 >
-> [3.1.34.2 Packet Type 57](#packet-type-1)
+> [3.1.26.9 Protected MQTT-SN Packet 60](#protected-mqtt-sn-packet)
 >
-> [3.1.34.3 Protection Flags 57](#protection-flags)
->
-> [3.1.34.4 Protection Scheme 58](#protection-scheme)
->
-> [3.1.34.5 Sender Id 59](#sender-id)
->
-> [3.1.34.6 Random 59](#random)
->
-> [3.1.34.7 Crypto Material 60](#crypto-material)
->
-> [3.1.34.8 Monotonic Counter 60](#monotonic-counter)
->
-> [3.1.34.9 Protected MQTT-SN Packet 60](#protected-mqtt-sn-packet)
->
-> [3.1.34.10 Authentication Tag 60](#authentication-tag)
+> [3.1.26.10 Authentication Tag 60](#authentication-tag)
 
 [4 Operational behavior 61](#operational-behavior)
 
-> [4.1 MQTT-SN Architecture 61](#example-mqtt-sn-architectures)
+> [4.1 Example MQTT-SN Architecture(s) 61](#example-mqtt-sn-architectures)
 >
 > [4.1.1 Transparent Gateway 62](#transparent-gateway)
 >
 > [4.1.2 Aggregating Gateway 62](#aggregating-gateway)
 >
+> [4.1.3 Terminating SN Broker 62](#_vdklg7j7e30m)
+>
 > [4.2 Networks & Transport Layers 63](#networks-transport-layers)
 >
-> [4.3 Gateway Advertisement and Discovery 64](#gateway-advertisement-and-discovery)
+> [4.3 Gateway Advertisement and Discovery 63](#gateway-advertisement-and-discovery)
 >
-> [4.4 Session Establishment 65](#session-establishment)
+> [4.4 Session Establishment 64](#session-establishment)
 >
 > [4.5 Quality of Service levels and protocol flows 66](#quality-of-service-levels-and-protocol-flows)
 >
@@ -508,33 +495,31 @@ information please see the full Notices section in an Appendix below.
 >
 > [4.5.3 QoS 2: Exactly once delivery 68](#qos-2-exactly-once-delivery)
 >
-> [4.5.4 QoS -1: Constrained client delivery 68](#qos--1-constrained-client-delivery)
+> [4.5.4 QoS -1: Constrained client delivery 68](#_12jfdx2)
 >
-> [4.5.5 OUT OF BAND: Constrained client delivery 69](#out-of-band-constrained-client-delivery)
+> [4.5.5 OUT OF BAND: Constrained client delivery 69](#_au8d3npbmfl)
 >
 > [4.6 Client states 69](#client-states)
 >
-> [4.7 Session state 72](#session-state)
+> [4.7 Session state 71](#session-state)
 >
 > [4.8 Clean start 72](#clean-start)
 >
-> [4.9 Procedure for updating the Will data 72](#_30tazoa)
+> [4.10 Topic Name and Topic Filter Registration Procedure 72](#topic-name-and-topic-filter-registration-procedure)
 >
-> [4.10 Topic Name and Topic Filter Registration Procedure 73](#topic-name-and-topic-filter-registration-procedure)
+> [4.11 Topic Name and Topic Filter Mapping and Aliasing 73](#topic-name-and-topic-filter-mapping-and-aliasing)
 >
-> [4.11 Topic Name and Topic Filter Mapping and Aliasing 74](#topic-name-and-topic-filter-mapping-and-aliasing)
->
-> [4.12 Pre-defined topic alias' and short topic names 74](#predefined-topic-alias-and-short-topic-names)
+> [4.12 Predefined topic alias' and short topic names 73](#predefined-topic-alias-and-short-topic-names)
 >
 > [4.13 Client's Topic Subscribe/Unsubscribe Procedure 74](#clients-topic-subscribeunsubscribe-procedure)
 >
-> [4.14 Client's Publish Procedure 75](#clients-publish-procedure)
+> [4.14 Client's Publish Procedure 74](#clients-publish-procedure)
 >
 > [4.15 Gateway's Publish Procedure 75](#gateways-publish-procedure)
 >
-> [4.16 Keep Alive and PING Procedure 76](#keep-alive-and-ping-procedure)
+> [4.16 Keep Alive and PING Procedure 75](#keep-alive-and-ping-procedure)
 >
-> [4.17 Client's Disconnect Procedure 76](#clients-disconnect-procedure)
+> [4.17 Client's Disconnect Procedure 75](#clients-disconnect-procedure)
 >
 > [4.18 Client's Retransmission Procedure 76](#clients-retransmission-procedure)
 >
@@ -542,7 +527,7 @@ information please see the full Notices section in an Appendix below.
 >
 > [4.20 Authentication 78](#authentication)
 >
-> [4.21 Retained Packets 79](#retained-packets)
+> [4.21 Retained Packets 80](#retained-packets)
 >
 > [4.22 Optional Features 80](#optional-features)
 
@@ -554,27 +539,27 @@ information please see the full Notices section in an Appendix below.
 >
 > [A.2 Informative References 83](#a.2-informative-references)
 
-[**Appendix B. Security and Privacy Considerations 84**](#appendix-b.-security-and-privacy-considerations)
+[**Appendix B. Security and Privacy Considerations 84**](#appendix-c.-security-and-privacy-considerations)
 
-[**Appendix C. Acknowledgments 85**](#appendix-c.-acknowledgments)
+[**Appendix C. Acknowledgments 85**](#appendix-d.-acknowledgments)
 
-> [C.1 Special Thanks 85](#c.1-special-thanks)
+> [C.1 Special Thanks 85](#d.1-special-thanks)
 >
-> [C.2 Participants 85](#c.2-participants)
+> [C.2 Participants 85](#d.2-participants)
 
-[**Appendix D. Revision History 86**](#appendix-d.-revision-history)
+[**Appendix D. Revision History 86**](#appendix-e.-revision-history)
 
-[**Appendix E. Implementation Notes 91**](#appendix-e.-implementation-notes)
+[**Appendix E. Implementation Notes 91**](#appendix-f.-implementation-notes)
 
-> [E.1 Support of QoS Level -1 and OUT OF BAND 91](#e.1-support-of-qos-level--1-and-out-of-band)
+> [E.1 Support of QoS Level -1 and OUT OF BAND 91](#f.1-support-of-publish-without-session)
 >
-> [E.2 "Best practice" values for timers and counters 91](#e.2-best-practice-values-for-timers-and-counters)
+> [E.2 "Best practice" values for timers and counters 91](#f.2-best-practice-values-for-timers-and-counters)
 >
-> [E.3 Mapping of Topic Alias to Topic Names and Topic Filters 91](#e.3-mapping-of-topic-alias-to-topic-names-and-topic-filters)
+> [E.3 Mapping of Topic Alias to Topic Names and Topic Filters 91](#f.3-mapping-of-topic-alias-to-topic-names-and-topic-filters)
 >
-> [E.4 Exponential Backoff 91](#e.4-exponential-backoff)
+> [E.4 Exponential Backoff 91](#f.4-exponential-backoff)
 
-[**Appendix F. Notices 93**](#appendix-f.-notices)
+[**Appendix F. Notices 93**](#appendix-g.-notices)
 
 # 1 Introduction
 
@@ -629,7 +614,8 @@ MQTT-SN can work isolated from other networks or in conjunction with MQTT. The m
 5.  Support for sleeping clients allows battery operated devices to enter a low power mode. In this state, messages for the client are buffered by the
     Gateway and delivered when the client wakes.
 
-6.  A new Quality of Service level (OUT OF BAND) is introduced in MQTT-SN, allowing devices to publish without a GW session having been established.
+6.  A new Quality of Service level (WITHOUT SESSION) is introduced in MQTT-SN, allowing devices to publish without a GW session having been
+    established.
 
 7.  MQTT-SN doesn't have any requirement on the underlying transport and it can use connectionless network transports such as User Datagram Protocol
     (UDP).
@@ -960,13 +946,7 @@ The MQTT-SN Control Packet Type field is 1-byte long and specifies the MQTT-SN C
 +----------------------------+-----------------+-----------------------------+---------------------------------------------------------------------+
 | **CONNACK**                | 0x05            | Gateway to Client           | Virtual Connection acknowledgement                                  |
 +----------------------------+-----------------+-----------------------------+---------------------------------------------------------------------+
-|                            |                 |                             |                                                                     |
-+----------------------------+-----------------+-----------------------------+---------------------------------------------------------------------+
-|                            |                 |                             |                                                                     |
-+----------------------------+-----------------+-----------------------------+---------------------------------------------------------------------+
-|                            |                 |                             |                                                                     |
-+----------------------------+-----------------+-----------------------------+---------------------------------------------------------------------+
-|                            |                 |                             |                                                                     |
+| **-Reserved-**             | 0x06-0x09       |                             | Forbidden (Old Will Range)                                          |
 +----------------------------+-----------------+-----------------------------+---------------------------------------------------------------------+
 | **REGISTER**               | 0x0A            | Client to Gateway           | Request topic alias                                                 |
 +----------------------------+-----------------+-----------------------------+---------------------------------------------------------------------+
@@ -992,7 +972,7 @@ The MQTT-SN Control Packet Type field is 1-byte long and specifies the MQTT-SN C
 |                            |                 |                             |                                                                     |
 |                            |                 | Gateway to Client           |                                                                     |
 +----------------------------+-----------------+-----------------------------+---------------------------------------------------------------------+
-| **PUBLISH-OUT-OF BAND**    | 0x11            | Client to Gateway           | Publish packet for out of band messages which need have no session  |
+| **PUBLISH-OUT-OF SESSION** | 0x11            | Client to Gateway           | Publish packet for out of a session messages which have no session  |
 |                            |                 |                             | on the gateway or broker                                            |
 +----------------------------+-----------------+-----------------------------+---------------------------------------------------------------------+
 | **SUBSCRIBE**              | 0x12            | Client to Gateway           | Subscribe request                                                   |
@@ -1042,7 +1022,7 @@ that require a Packet Identifier are shown below:
 
   PUBLISH                                                           YES (If QoS \> 0)
 
-  PUBLISHOOB                                                        NO
+  PUBLISHOOS                                                        NO
 
   PUBACK                                                            YES
 
@@ -1089,8 +1069,8 @@ that require a Packet Identifier are shown below:
 
 [A PUBLISH packet MUST NOT contain a Packet Identifier if its QoS value is set to]{.mark} -1.
 
-[Each time a Client sends a new SUBSCRIBE, UNSUBSCRIBE,or PUBLISH (where QoS \> 0 and it is not OUT OF BAND) MQTT Control Packet it MUST assign it a
-non-zero Packet Identifier that is currently unused]{.mark}.
+[Each time a Client sends a new SUBSCRIBE, UNSUBSCRIBE,or PUBLISH (where QoS \> 0 and it is not WITHOUT SESSION) MQTT Control Packet it MUST assign it
+a non-zero Packet Identifier that is currently unused]{.mark}.
 
 [Each time a Gateway sends a new PUBLISH (with QoS \> 0) MQTT-SN Control Packet it MUST assign it a non zero Packet Identifier that is currently
 unused]{.mark}.
@@ -1129,54 +1109,214 @@ The *Radius* field is 1-byte long and indicates the value of the transmission ra
 
 ### 2.3.3 Reason Code
 
-A Reason Code is a one-byte long value that indicates the result of an operation. Reason Codes share a common set of values across the various Control
-Packet types.
+A Reason Code is a one-byte unsigned value that indicates the result of an operation. Reason Codes share a common set of values across the various
+Control Packet types. Reason Code values of 0x80 or greater indicate failure.
 
 Each value and meaning of each *Reason Code* field is shown below.
 
-  ------------------------------------------------------------------------------------------------------------------------------------------------------
-  Identifier                           Description                                   Packet
-  -------------- --------------------- --------------------------------------------- -------------------------------------------------------------------
-  Dec            Hex                                                                 
-
-  0              0x00                  Success                                       CONNACK, SUBACK, UNSUBACK, REGACK, PUBACK, DISCONNECT
-
-  1              0x01                  Congestion                                    CONNACK, SUBACK, UNSUBACK, REGACK, PUBACK
-
-  2              0x02                  Invalid topic alias                           SUBACK, UNSUBACK, REGACK, PUBACK
-
-  3              0x03                  Not supported                                 CONNACK, SUBACK, UNSUBACK, REGACK, PUBACK
-
-  5              0x05                  No session                                    DISCONNECT
-
-  140            0x8C                  Bad authentication method                     AUTH
-
-  135            0x87                  Not authorized                                AUTH
-
-  132            0x84                  Unsupported protocol version                  CONNACK
-
-  149            0x95                  Packet too large                              DISCONNECT
-
-  151            0x97                  Quota exceeded                                REGACK, SUBACK
-
-  153            0x99                  Payload format invalid                        DISCONNECT
-
-  230            0xE6                  Only PROTECTION packet supported (Note 1)     Any packet except PROTECTION and Forwarder Encapsulation
-
-  231            0xE7                  Protection scheme invalid                     DISCONNECT
-
-  232            0xE8                  Unknown Sender Id                             DISCONNECT
-
-  240            0xF0                  Unknown Topic Alias                           PUBACK, SUBACK
-
-  241            0xF1                  Congestion                                    SUBACK, REGACK, CONNACK, PUBACK
-
-  242            0xF2                  Protection packet not supported               DISCONNECT
-
-  243            0xF3                  Forwarder Encapsulation not supported         DISCONNECT
-
-  244            0xF4                  SearchGw not supported                        DISCONNECT
-  ------------------------------------------------------------------------------------------------------------------------------------------------------
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| Id       |           | Name                                   | Packets                            | Description                                  |
+| entifier |           |                                        |                                    |                                              |
++==========+===========+========================================+====================================+==============================================+
+| Dec      | Hex       |                                        |                                    |                                              |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 0        | 0x00      | Success                                | CONNACK, SUBACK, UNSUBACK, REGACK, | The operation was successful.                |
+|          |           |                                        | PUBACK, PUBREC, PUBREL, PUBCOMP,   |                                              |
+|          |           |                                        | AUTH (server only)                 |                                              |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 0        | 0x00      | Normal disconnection                   | DISCONNECT                         | Close the connection normally. Do not send   |
+|          |           |                                        |                                    | the Will Message.                            |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 0        | 0x00      | Granted QoS 0                          | SUBACK                             | The subscription is accepted and the maximum |
+|          |           |                                        |                                    | QoS sent will be QoS 0. This might be a      |
+|          |           |                                        |                                    | lower QoS than was requested.                |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 1        | 0x01      | Granted QoS 1                          | SUBACK                             | The subscription is accepted and the maximum |
+|          |           |                                        |                                    | QoS sent will be QoS 1. This might be a      |
+|          |           |                                        |                                    | lower QoS than was requested.                |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 2        | 0x02      | Granted QoS 2                          | SUBACK                             | The subscription is accepted and any         |
+|          |           |                                        |                                    | received QoS will be sent to this            |
+|          |           |                                        |                                    | subscription.                                |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 4        | 0x04      | Disconnect with will message           | DISCONNECT (client only)           | The Client wishes to disconnect but requires |
+|          |           |                                        |                                    | that the Server also publishes its Will      |
+|          |           |                                        |                                    | Message.                                     |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 16       | 0x10      | No matching subscribers                | PUBACK, PUBREC                     | The message is accepted but there are no     |
+|          |           |                                        |                                    | subscribers.If the Server knows that there   |
+|          |           |                                        |                                    | are no matching subscribers, it MAY use this |
+|          |           |                                        |                                    | Reason Code instead of 0x00 (Success).       |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 17       | 0x11      | No subscription existed                | UNSUBACK                           | No matching Topic Filter is being used by    |
+|          |           |                                        |                                    | the Client.                                  |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 24       | 0x18      | Continue authentication                | AUTH                               | Continue the authentication with another     |
+|          |           |                                        |                                    | step.                                        |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 25       | 0x19      | Re-authenticate                        | AUTH (client only)                 | Initiate a re-authentication.                |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 128      | 0x80      | Unspecified error                      | CONNACK, PUBACK, PUBREC, SUBACK,   | The receiver does not accept the request but |
+|          |           |                                        | UNSUBACK, DISCONNECT               | either does not want to reveal the reason,   |
+|          |           |                                        |                                    | or it does not match one of the other        |
+|          |           |                                        |                                    | values.                                      |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 129      | 0x81      | Malformed packet                       | CONNACK, DISCONNECT                | The received packet does not conform to this |
+|          |           |                                        |                                    | specification.                               |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 130      | 0x82      | Protocol error                         | CONNACK, DISCONNECT                | An unexpected or out of order packet was     |
+|          |           |                                        |                                    | received.                                    |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 131      | 0x83      | Implementation specific error          | CONNACK, PUBACK, PUBREC, REGACK,   | The packet received is valid but cannot be   |
+|          |           |                                        | SUBACK, UNSUBACK, DISCONNECT       | processed by this implementation.            |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 132      | 0x84      | Unsupported Protocol Version           | CONNACK                            | The Server does not support the version of   |
+|          |           |                                        |                                    | the MQTT or MQTT-SN protocol requested by    |
+|          |           |                                        |                                    | the Client.                                  |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 133      | 0x85      | Client identifier not valid            | CONNACK                            | The Client Identifier is a valid string but  |
+|          |           |                                        |                                    | is not allowed by the Server.                |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 134      | 0x86      | Bad user name or password              | CONNACK                            | The Server does not accept the User Name or  |
+|          |           |                                        |                                    | Password specified by the Client             |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 135      | 0x87      | Not authorized                         | CONNACK, PUBACK, PUBREC, REGACK,   | The request is not authorized.               |
+|          |           |                                        | SUBACK, UNSUBACK, DISCONNECT       |                                              |
+|          |           |                                        | (server only)                      |                                              |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 136      | 0x88      | Server unavailable                     | CONNACK                            | The MQTT Server is not available.            |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 137      | 0x89      | Server busy                            | CONNACK, DISCONNECT (server only)  | The Server is busy and cannot continue       |
+|          |           |                                        |                                    | processing requests from this Client.        |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 138      | 0x8A      | Banned                                 | CONNACK                            | This Client has been banned by               |
+|          |           |                                        |                                    | administrative action. Contact the server    |
+|          |           |                                        |                                    | administrator.                               |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 139      | 0x8B      | Server shutting down                   | DISCONNECT (server only)           | The Server is shutting down.                 |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 140      | 0x8C      | Bad authentication method              | CONNACK, DISCONNECT                | The authentication method is not supported   |
+|          |           |                                        |                                    | or does not match the authentication method  |
+|          |           |                                        |                                    | currently in use.                            |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 141      | 0x8D      | Keep alive timeout                     | DISCONNECT (server only)           | The Connection is closed because no packet   |
+|          |           |                                        |                                    | has been received for 1.5 times the          |
+|          |           |                                        |                                    | Keepalive time.                              |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 142      | 0x8E      | Session taken over                     | DISCONNECT (server only)           | Another Connection using the same ClientID   |
+|          |           |                                        |                                    | has connected causing this Connection to be  |
+|          |           |                                        |                                    | closed.                                      |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 143      | 0x8F      | Topic filter invalid                   | SUBACK, UNSUBACK, DISCONNECT       | The Topic Filter is correctly formed, but is |
+|          |           |                                        | (server only)                      | not accepted by this Server.                 |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 144      | 0x90      | Topic name invalid                     | CONNACK, PUBACK, PUBREC,           | The Topic Name is correctly formed, but is   |
+|          |           |                                        | DISCONNECT (server only)           | not accepted by this Client or Server.       |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 145      | 0x91      | Packet identifier in use               | PUBACK, PUBREC, SUBACK, UNSUBACK   | The specified Packet Identifier is already   |
+|          |           |                                        |                                    | in use.                                      |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 146      | 0x92      | Packet identifier not found            | PUBREL, PUBCOMP                    | The Packet Identifier is not known. This is  |
+|          |           |                                        |                                    | not an error during recovery, but at other   |
+|          |           |                                        |                                    | times indicates a mismatch between the       |
+|          |           |                                        |                                    | Session State on the Client and Server.      |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 147      | 0x93      | Receive maximum exceeded               | DISCONNECT                         | The Client or Server has received more than  |
+|          |           |                                        |                                    | Receive Maximum publication for which it has |
+|          |           |                                        |                                    | not sent PUBACK or PUBCOMP.                  |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 148      | 0x94      | Topic alias invalid                    | DISCONNECT (server only)           | The Client or Server has received a PUBLISH  |
+|          |           |                                        |                                    | packet containing a Topic Alias which is     |
+|          |           |                                        |                                    | greater than the Maximum Topic Alias it sent |
+|          |           |                                        |                                    | in the CONNECT or CONNACK packet.            |
+|          |           |                                        |                                    |                                              |
+|          |           |                                        |                                    | (Transparent gateway only)                   |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 149      | 0x95      | Packet too large                       | CONNACK,                           | The packet size is greater than Maximum      |
+|          |           |                                        |                                    | Packet Size for this Client or Server.       |
+|          |           |                                        | DISCONNECT                         |                                              |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 150      | 0x96      | Message rate too high                  | DISCONNECT                         | The received data rate is too high.          |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 151      | 0x97      | Quota exceeded                         | REGACK, SUBACK, DISCONNECT         | An implementation or administrative imposed  |
+|          |           |                                        |                                    | limit has been exceeded.                     |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 152      | 0x98      | Administrative action                  | DISCONNECT                         | The Connection is closed due to an           |
+|          |           |                                        |                                    | administrative action.                       |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 153      | 0x99      | Payload format invalid                 | PUBACK, PUBREC, DISCONNECT (server | The MQTT payload format does not match the   |
+|          |           |                                        | only)                              | one specified by the Payload Format          |
+|          |           |                                        |                                    | Indicator.                                   |
+|          |           |                                        |                                    |                                              |
+|          |           |                                        |                                    | (Transparent gateway only)                   |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 154      | 0x9A      | Retain not supported                   | CONNACK, DISCONNECT (server only)  | The MQTT Server does not support retained    |
+|          |           |                                        |                                    | messages.                                    |
+|          |           |                                        |                                    |                                              |
+|          |           |                                        |                                    | (Transparent gateway only)                   |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 155      | 0x9B      | QoS not supported                      | CONNACK, DISCONNECT (server only)  | The Client specified a QoS greater than the  |
+|          |           |                                        |                                    | QoS specified in a Maximum QoS in the MQTT   |
+|          |           |                                        |                                    | CONNACK.                                     |
+|          |           |                                        |                                    |                                              |
+|          |           |                                        |                                    | (Transparent gateway only)                   |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 156      | 0x9C      | Use another server                     | CONNACK, DISCONNECT (server only)  | The Client should temporarily change its     |
+|          |           |                                        |                                    | Server.                                      |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 157      | 0x9D      | Server moved                           | CONNACK, DISCONNECT (server only)  | The Server is moved and the Client should    |
+|          |           |                                        |                                    | permanently change its server location.      |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 158      | 0x9E      | Shared subscription not supported      | SUBACK, DISCONNECT (server only)   | The MQTT Server does not support Shared      |
+|          |           |                                        |                                    | Subscriptions.                               |
+|          |           |                                        |                                    |                                              |
+|          |           |                                        |                                    | (Transparent gateway only)                   |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 159      | 0x9F      | Connection rate exceeded               | CONNACK, DISCONNECT (server only)  | This connection is closed because the        |
+|          |           |                                        |                                    | connection rate is too high.                 |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 160      | 0xAD      | Maximum connect time                   | DISCONNECT (server only)           | The maximum connection time authorized for   |
+|          |           |                                        |                                    | this connection has been exceeded.           |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 161      | 0xA1      | Subscription identifiers not supported | SUBACK, DISCONNECT (server only)   | The MQTT Server does not support             |
+|          |           |                                        |                                    | Subscription Identifiers; the subscription   |
+|          |           |                                        |                                    | is not accepted.                             |
+|          |           |                                        |                                    |                                              |
+|          |           |                                        |                                    | (Transparent gateway only)                   |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 162      | 0xA2      | Wildcard subscription not supported    | SUBACK, DISCONNECT (server only)   | The MQTT Server does not support Wildcard    |
+|          |           |                                        |                                    | Subscriptions; the subscription is not       |
+|          |           |                                        |                                    | accepted.                                    |
+|          |           |                                        |                                    |                                              |
+|          |           |                                        |                                    | (Transparent gateway only)                   |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 2302     | 0xE6      | Only PROTECTION packet supported (Note | Any packet except PROTECTION and   | Specific to MQTT-SN                          |
+|          |           | 1)                                     | Forwarder Encapsulation            |                                              |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 231      | 0xE7      | Protection scheme invalid              | DISCONNECT                         | Specific to MQTT-SN                          |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 232      | 0xE8      | Unknown Sender Id                      | DISCONNECT                         | Specific to MQTT-SN                          |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 240      | 0xF0      | Unknown Topic Alias                    | PUBACK, SUBACK                     | Specific to MQTT-SN                          |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 241      | 0xF1      | Congestion                             | SUBACK, REGACK, CONNACK, PUBACK    | Specific to MQTT-SN                          |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 242      | 0xF2      | Protection packet not supported        | DISCONNECT                         | Specific to MQTT-SN                          |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 243      | 0xF3      | Forwarder Encapsulation not supported  | DISCONNECT                         | Specific to MQTT-SN                          |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 244      | 0xF4      | SEARCHGW not supported                 | DISCONNECT                         | Specific to MQTT-SN                          |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 245      | 0xF5      | ADVERTISE not supported                | DISCONNECT                         | Specific to MQTT-SN                          |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 246      | 0xF6      | GWINFO not supported                   | DISCONNECT                         | Specific to MQTT-SN                          |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 247      | 0xF7      | PUBLISH MINUS-1 not supported          | DISCONNECT                         | Specific to MQTT-SN                          |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 248      | 0xF8      | Unknown topic alias                    | SUBACK, UNSUBACK, PUBACK, REGACK   | Specific to MQTT-SN                          |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
+| 249-255  | 0xF9-0xFF | Reserved for MQTT-SN                   |                                    | Specific to MQTT-SN                          |
++----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
 
 [Table 9: Reason Code Values]{.underline}
 
@@ -1184,10 +1324,12 @@ Note(s):
 
 1.  It is used by a receiver to indicate that it expected a packet to be protected and it wasn\'t.
 
-### 2.3.4 Topic Alias Type
+2.  The MQTT-SN dedicated range of reason codes is from 0xE6 (230) to 0xFF(255).
 
-The *Topic Alias Type* field is 2-byte long and contains the value of the topic alias. The values "0x0000" and "0xFFFF" are reserved and therefore
-should not be used.
+### 2.3.4 Topic Short
+
+The *Topic Short* field is 2-byte long and contains the value of the topic alias or the short topic name. The values "0x0000" and "0xFFFF" are
+reserved and therefore should not be used.
 
 ### 2.3.5 Topic Name
 
@@ -1201,14 +1343,14 @@ The *Will Payload* field has a variable length and contains the content of the W
 
 The *Will Topic* field has a variable length and contains the Will topic name.
 
-## 2.4 Topic Alias Types
+## 2.4 Topic Types
 
-Several packets will refer to a topic alias type in their flags. This is a 2-bit field which determines the format of the topic Id value.
+Several packets will refer to a topic type in their flags. This is a 2-bit field which determines the format of the topic value.
 
 The allowable values are as follows:
 
   -------------------------------------------------------------------------------------------------------------------------------------------------------
-            **Topic Alias Type Value**                           **Name**                         **Description**
+            **Topic** **Type Value**                             **Name**                         **Description**
   --------- ---------------------------------------------------- -------------------------------- -------------------------------------------------------
   0         0b00                                                 Normal Topic Alias               A normal topic alias is negotiated between the gateway
                                                                                                   and client within the scope of a gateway session.
@@ -1223,9 +1365,9 @@ The allowable values are as follows:
   3         0b11                                                 Long Topic Name                  A full topic, which requires no session negotiation.
   -------------------------------------------------------------------------------------------------------------------------------------------------------
 
-[Table 10: Topic alias types and their description]{.underline}
+[Table 10: Topic]{.underline} [types and their description]{.underline}
 
-Please refer to operational behavior for detailed descriptions of topic types and aliases.
+Please refer to operational behavior for detailed descriptions of topic namesand aliases.
 
 # 3 MQTT-SN Control Packets
 
@@ -1388,7 +1530,7 @@ and is specified by the Length byte. Optional, only included if the packet is se
 |                   | SET)***   |       |           |     |   |                |   |                   |           |   |             |   |              |
 +-------------------+-----------+-------+-----------+-----+---+----------------+---+-------------------+-----------+---+-------------+---+--------------+
 |                   | *         |       |           |     |   | Will Retain    | W |                   |           |   | Will Topic  |   |              |
-|                   | Reserved* |       |           |     |   |                | i |                   |           |   | Alias Type  |   |              |
+|                   | Reserved* |       |           |     |   |                | i |                   |           |   | Type        |   |              |
 |                   |           |       |           |     |   |                | l |                   |           |   |             |   |              |
 |                   |           |       |           |     |   |                | l |                   |           |   |             |   |              |
 |                   |           |       |           |     |   |                | Q |                   |           |   |             |   |              |
@@ -1444,7 +1586,7 @@ and is specified by the Length byte. Optional, only included if the packet is se
 +-------------------+-----------+-------+-----------+-----+---+----------------+---+-------------------+-----------+---+-------------+---+--------------+
 | Byte (12 + 1)     | Will      |       |           |     |   |                |   |                   |           |   |             |   |              |
 |                   | Topic     |       |           |     |   |                |   |                   |           |   |             |   |              |
-|                   | Alias MSB |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Short MSB |       |           |     |   |                |   |                   |           |   |             |   |              |
 |                   | **OR**    |       |           |     |   |                |   |                   |           |   |             |   |              |
 |                   | Will      |       |           |     |   |                |   |                   |           |   |             |   |              |
 |                   | Topic     |       |           |     |   |                |   |                   |           |   |             |   |              |
@@ -1453,7 +1595,7 @@ and is specified by the Length byte. Optional, only included if the packet is se
 |                   |           |       |           |     |   |                |   |                   |           |   |             |   |              |
 |                   | Will      |       |           |     |   |                |   |                   |           |   |             |   |              |
 |                   | Topic     |       |           |     |   |                |   |                   |           |   |             |   |              |
-|                   | Alias LSB |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Short LSB |       |           |     |   |                |   |                   |           |   |             |   |              |
 |                   | Will      |       |           |     |   |                |   |                   |           |   |             |   |              |
 |                   | Topic     |       |           |     |   |                |   |                   |           |   |             |   |              |
 |                   | Length    |       |           |     |   |                |   |                   |           |   |             |   |              |
@@ -1479,6 +1621,31 @@ and is specified by the Length byte. Optional, only included if the packet is se
 |                   | Will      |       |           |     |   |                |   |                   |           |   |             |   |              |
 |                   | Payload)  |       |           |     |   |                |   |                   |           |   |             |   |              |
 +-------------------+-----------+-------+-----------+-----+---+----------------+---+-------------------+-----------+---+-------------+---+--------------+
+|                   | ***AUTH   |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | DATA      |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | (O        |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | PTIONAL - |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | ONLY WHEN |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | AUTH FLAG |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | SET)***   |       |           |     |   |                |   |                   |           |   |             |   |              |
++-------------------+-----------+-------+-----------+-----+---+----------------+---+-------------------+-----------+---+-------------+---+--------------+
+| Byte (12 + 1)     | Auth      |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Method    |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Length    |       |           |     |   |                |   |                   |           |   |             |   |              |
++-------------------+-----------+-------+-----------+-----+---+----------------+---+-------------------+-----------+---+-------------+---+--------------+
+| Byte (12 + 2)     | Auth      |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Method    |       |           |     |   |                |   |                   |           |   |             |   |              |
++-------------------+-----------+-------+-----------+-----+---+----------------+---+-------------------+-----------+---+-------------+---+--------------+
+| Byte (12 + 3)     | Auth Data |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Length    |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | MSB       |       |           |     |   |                |   |                   |           |   |             |   |              |
++-------------------+-----------+-------+-----------+-----+---+----------------+---+-------------------+-----------+---+-------------+---+--------------+
+| Byte (12 + 4)     | Auth Data |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Length    |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | LSB       |       |           |     |   |                |   |                   |           |   |             |   |              |
++-------------------+-----------+-------+-----------+-----+---+----------------+---+-------------------+-----------+---+-------------+---+--------------+
+| Byte (12 + 5)     | Auth Data |       |           |     |   |                |   |                   |           |   |             |   |              |
++-------------------+-----------+-------+-----------+-----+---+----------------+---+-------------------+-----------+---+-------------+---+--------------+
 | Byte 13 ... N     | Client    |       |           |     |   |                |   |                   |           |   |             |   |              |
 |                   | I         |       |           |     |   |                |   |                   |           |   |             |   |              |
 |                   | dentifier |       |           |     |   |                |   |                   |           |   |             |   |              |
@@ -1503,7 +1670,7 @@ The Connect *Flags* field includes the following flags:
 
 -   **Will**: Stored in Bit 1 and if set to 1 it indicates that the Will Flags and the Will Data sections are present
 
--   **Authentication**: Stored in Bit 2 and indicates the authentication exchange to follow
+-   **Auth**: Stored in Bit 2 and indicates if the packet contains authentication data
 
 -   **Default Awake Messages**: A value between 0-15 to indicate the maximum number of messages a client shall receive during an AWAKE session.
     Specifying 0 will mean it is up to the gateway to determine how many messages it will send, which may be unbounded.
@@ -1644,18 +1811,18 @@ only if the Will flag in the Connect *Flags* contains the value 1.
 
 The Connect optional *Will Flags* field includes the following flags:
 
--   **Will Topic Alias Type:** This is a 2-bit field in Bit 0 and 1 which determines the format of the topic Id value. Refer to [Table
-    10](#topic-alias-types) for the definition of the various topic alias types.
+-   **Will Topic** **Type:** This is a 2-bit field in Bit 0 and 1 which determines the format of the topic value. Refer to [Table 10](#topic-types)
+    for the definition of the various topic types.
 
 -   **Will QoS**: Stored in Bit 2 and 3, these two bits specify the QoS level to be used. The value of Will QoS can be 0 (0x00), 1 (0x01), or 2
     (0x02). A value of 3 (0x03) is a Malformed Packet.
 
 -   **Will Retain**: Stored in Bit 4, this bit specifies if the Will Message is to be retained when it is published.
 
-#### 3.1.4.9 Will Topic Alias or Will Topic Length (optional, only with *Will* flag set)
+#### 3.1.4.9 Will Topic Short or Will Topic Length (optional, only with *Will* flag set)
 
-In the case of Will Topic Alias Type being b11 this field will refer to the length of data assigned to the "Will Full Topic Name", in all other cases,
-this will be the value used as the Will topic alias or Will short topic name.
+In the case of Will Topic Type being b11 this field will refer to the length of data assigned to the "Will Full Topic Name", in all other cases, this
+will be the value used as the Will topic alias or Will short topic name.
 
 #### 3.1.4.10 Will Payload Length (optional, only with *Will* flag set)
 
@@ -1665,50 +1832,124 @@ Contains the length of the Will Payload field.
 
 It contains the content of the Will Message which is published after the Virtual Connection is closed.
 
-In the case of Topic Alias Type b11 the payload section will be prefixed with a "Will Full Topic Name" encoded with a UTF-8 encoded string value of
-length determined by the previously defined length field. Thereafter, the *Will Payload* field corresponds to the MQTT Will Payload and so it defines
-the Application Message Payload that is to be published to the Will Topic and this field consists of Binary Data. It has a variable length defined by
-the Will Payload Length fields.
+In the case of Topic Type b11 the payload section will be prefixed with a "Will Full Topic Name" encoded with a UTF-8 encoded string value of length
+determined by the previously defined length field. Thereafter, the *Will Payload* field corresponds to the MQTT Will Payload and so it defines the
+Application Message Payload that is to be published to the Will Topic and this field consists of Binary Data. It has a variable length defined by the
+Will Payload Length fields.
+
+#### 3.1.4.12 Authentication Method Length (optional, only with *Auth* flag set)
+
+Single byte value (max 0-255 bytes), representing the length of field used to specify the authentication method. Refer to LINKED TO AUTH for more
+information about extended authentication.
+
+#### 3.1.4.13 Authentication Method (optional, only with *Auth* flag set)
+
+A UTF-8 Encoded String containing the name of the authentication method. Refer to LINKED TO AUTH for more information about extended authentication.
+
+#### 3.1.4.14 Authentication Data Length (optional, only with *Auth* flag set)
+
+Two byte value (max 0-65535 bytes), representing the length of field used to specify the authentication data. Refer to LINKED TO AUTH for more
+information about extended authentication.
+
+#### 3.1.4.15 Authentication Data (optional, only with *Auth* flag set)
+
+Binary Data containing authentication data. The contents of this data are defined by the authentication method. Refer to LINKED TO AUTH for more
+information about extended authentication.
 
 ### 3.1.5 CONNACK
 
-  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Bit**             **7**        **6**                 **5**                 **4**                 **3**                  **2**                  **1**                 **0**
-  ------------------- ------------ ------- ------------- ------- ------------- ------- ------------- ------- -------------- ------- -------------- ------- ------------- -------------------------
-  Byte 1              Length                                                                                                                                             
-
-  Byte 2              Packet Type                                                                                                                                        
-
-  Byte 3              Reason Code                                                                                                                                        
-
-                      ***CONNECT                                                                                                                                         
-                      FLAGS***                                                                                                                                           
-
-                      *Reserved*                                                                                                                                         SessionPresent
-
-  Byte 4              0                    0                     0                     0                     0                      0                      0             X
-
-  Byte 5              Session                                                                                                                                            
-                      Expiry                                                                                                                                             
-                      Interval MSB                                                                                                                                       
-
-  Byte 6              Session                                                                                                                                            
-                      Expiry                                                                                                                                             
-                      Interval                                                                                                                                           
-
-  Byte 7              Session                                                                                                                                            
-                      Expiry                                                                                                                                             
-                      Interval                                                                                                                                           
-
-  Byte 8              Session                                                                                                                                            
-                      Expiry                                                                                                                                             
-                      Interval LSB                                                                                                                                       
-
-  Byte 9 ... N        Assigned                                                                                                                                           
-                      Client                                                                                                                                             
-                      Identifier                                                                                                                                         
-                      (optional)                                                                                                                                         
-  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
++---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
+| **Bit**             | **7**  | * |            | * |            | * |            | * |            | * |             | * |              | **0**                |
+|                     |        | * |            | * |            | * |            | * |            | * |             | * |              |                      |
+|                     |        | 6 |            | 5 |            | 4 |            | 3 |            | 2 |             | 1 |              |                      |
+|                     |        | * |            | * |            | * |            | * |            | * |             | * |              |                      |
+|                     |        | * |            | * |            | * |            | * |            | * |             | * |              |                      |
++=====================+========+===+============+===+============+===+============+===+============+===+=============+===+==============+======================+
+| Byte 1              | Length |   |            |   |            |   |            |   |            |   |             |   |              |                      |
++---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
+| Byte 2              | Packet |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | Type   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
++---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
+| Byte 3              | Reason |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | Code   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
++---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
+|                     | ***C   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | ONNACK |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | FL     |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | AGS*** |   |            |   |            |   |            |   |            |   |             |   |              |                      |
++---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
+|                     | *Res   |   |            |   |            |   |            |   |            |   |             |   | Auth         | Session              |
+|                     | erved* |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     |        |   |            |   |            |   |            |   |            |   |             |   |              | Present              |
++---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
+| Byte 4              | 0      |   | 0          |   | 0          |   | 0          |   | 0          |   | 0           |   | X            | X                    |
++---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
+| Byte 5              | S      |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | ession |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | Expiry |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | In     |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | terval |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | MSB    |   |            |   |            |   |            |   |            |   |             |   |              |                      |
++---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
+| Byte 6              | S      |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | ession |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | Expiry |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | In     |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | terval |   |            |   |            |   |            |   |            |   |             |   |              |                      |
++---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
+| Byte 7              | S      |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | ession |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | Expiry |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | In     |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | terval |   |            |   |            |   |            |   |            |   |             |   |              |                      |
++---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
+| Byte 8              | S      |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | ession |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | Expiry |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | In     |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | terval |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | LSB    |   |            |   |            |   |            |   |            |   |             |   |              |                      |
++---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
+|                     | *      |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | **AUTH |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | DATA   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | (OPTI  |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | ONAL - |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | ONLY   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | WHEN   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | AUTH   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | FLAG   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | S      |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | ET)*** |   |            |   |            |   |            |   |            |   |             |   |              |                      |
++---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
+| Byte (8 + 1)        | Auth   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | Method |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | Length |   |            |   |            |   |            |   |            |   |             |   |              |                      |
++---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
+| Byte (8 + 2)        | Auth   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | Method |   |            |   |            |   |            |   |            |   |             |   |              |                      |
++---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
+| Byte (8 + 3)        | Auth   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | Data   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | Length |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | MSB    |   |            |   |            |   |            |   |            |   |             |   |              |                      |
++---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
+| Byte (8 + 4)        | Auth   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | Data   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | Length |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | LSB    |   |            |   |            |   |            |   |            |   |             |   |              |                      |
++---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
+| Byte (8 + 5)        | Auth   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | Data   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
++---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
+| Byte 9 ... N        | As     |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | signed |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | Client |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | Iden   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | tifier |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | (opt   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
+|                     | ional) |   |            |   |            |   |            |   |            |   |             |   |              |                      |
++---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
 
 [Table 16: CONNACK packet]{.underline}
 
@@ -1721,58 +1962,10 @@ description.
 
 #### 3.1.5.2 Reason Code
 
-Byte 3 in the CONNACK header contains the Connect Reason Code. If a CONNECT packet is received by the Server, the Server will send a CONNACK packet
-containing the appropriate Reason code from the table below.
+Byte 3 in the CONNACK header contains the Connect Reason Code. The values for the Connect Reason Code field are shown in Table 9: Reason Code Values.
+[The Server sending the CONNACK packet MUST use one of the Connect Reason Code values.]{.mark}
 
-  ------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Value**      **Hex**               **Reason Code name**                          **Description**
-  -------------- --------------------- --------------------------------------------- -------------------------------------------------------------------
-  0              0x00                  Success                                       The Virtual Connection is Accepted
-
-  128            0x80                  Unspecified error                             The Server does not wish to reveal the reason for the failure, or
-                                                                                     none of the other Reason Codes apply.
-
-  129            0x81                  Malformed Packet                              Data within the CONNECT packet could not be correctly parsed.
-
-  130            0x82                  Protocol Error                                Data in the CONNECT packet does not conform to this specification.
-
-  131            0x83                  Implementation specific error                 The CONNECT is valid but is not accepted by this Server.
-
-  132            0x84                  Unsupported Protocol Version                  The Server does not support the version of the MQTT protocol
-                                                                                     requested by the Client.
-
-  133            0x85                  Client Identifier not valid                   The Client Identifier is a valid string but is not allowed by the
-                                                                                     Server.
-
-  134            0x86                  Bad User Name or Password                     The Server does not accept the User Name or Password specified by
-                                                                                     the Client
-
-  135            0x87                  Not authorized                                The Client is not authorized to connect.
-
-  136            0x88                  Server unavailable                            The MQTT Server is not available.
-
-  137            0x89                  Server busy                                   The Server is busy. Try again later.
-
-  138            0x8A                  Banned                                        This Client has been banned by administrative action. Contact the
-                                                                                     server administrator.
-
-  140            0x8C                  Bad authentication method                     The authentication method is not supported or does not match the
-                                                                                     authentication method currently in use.
-
-  144            0x90                  Will Topic Name invalid                       The Will Topic Name is not malformed, but is not accepted by this
-                                                                                     Server.
-
-  149            0x95                  Packet too large                              The CONNECT packet exceeded the maximum permissible size.
-
-  151            0x97                  Quota exceeded                                An implementation or administrative imposed limit has been
-                                                                                     exceeded.
-
-  155            0x9B                  Will QoS not supported                        The Server does not support the QoS set in Will QoS.
-
-  159            0x9F                  Virtual Connection rate exceeded              The Virtual Connection rate limit has been exceeded.
-  ------------------------------------------------------------------------------------------------------------------------------------------------------
-
-[Table 17: CONNACK Reason Codes values]{.underline}
+[If a Server sends a CONNACK packet containing a Reason code of]{.mark} [128 or greater it MUST then close the Virtual Connection.]{.mark}
 
 #### 3.1.5.3 Connack Flags
 
@@ -1784,6 +1977,8 @@ The Connack *Flags* field includes the following flags:
 -   **Session Present:** Stored in Bit 0 and specifies whether an existing session was present on the gateway for the given client identifier. A value
     of 1 indicates a session was present, a value 0 indicates no session was present.
 
+-   **Auth:** Stored in Bit 1 and specifies whether the packet contain Auth material than should be considered
+
 [The Client MUST validate that the reserved flags in the CONNACK packet are set to 0. If any of the reserved flags is not 0 it is a Malformed
 Packet.]{.mark}
 
@@ -1792,7 +1987,26 @@ Packet.]{.mark}
 If the Session Expiry Interval is 0, the value of Session Expiry Interval in the CONNECT Packet is used. *The server uses this property to inform the
 Client that it is using a value other than that sent by the Client in the CONNECT*.
 
-#### 3.1.5.5 Assigned Client Identifier
+#### 3.1.5.5 Authentication Method Length (optional, only with *Auth* flag set)
+
+Single byte value (max 0-255 bytes), representing the length of field used to specify the authentication method. Refer to LINKED TO AUTH for more
+information about extended authentication.
+
+#### 3.1.5.6 Authentication Method (optional, only with *Auth* flag set)
+
+A UTF-8 Encoded String containing the name of the authentication method. Refer to LINKED TO AUTH for more information about extended authentication.
+
+#### 3.1.5.7 Authentication Data Length (optional, only with *Auth* flag set)
+
+Two byte value (max 0-65535 bytes), representing the length of field used to specify the authentication data. Refer to LINKED TO AUTH for more
+information about extended authentication.
+
+#### 3.1.5.8 Authentication Data (optional, only with *Auth* flag set)
+
+Binary Data containing authentication data. The contents of this data are defined by the authentication method and the state of already exchanged
+authentication data. Refer to LINKED TO AUTH for more information about extended authentication.
+
+#### 3.1.5.8 Assigned Client Identifier
 
 The Client Identifier assigned by the gateway when the associated CONNECT packet contained no Client Identifier. [If the Client connects using a zero
 length Client Identifier, the Server MUST respond with a CONNACK containing an Assigned Client Identifier. The Assigned Client Identifier MUST be a
@@ -1833,8 +2047,9 @@ new Client Identifier not used by any other Session currently in the Gateway]{.m
 
 [Table 22: AUTH packet]{.underline}
 
-[The AUTH message is first sent by the client as part of an authentication exchange.  The server responds with another AUTH message and so on until
-the authentication is complete.  The server then responds with a CONNACK message.]{.mark}
+[The authentication method and data is first sent by the Client as part of a CONNECT exchange. If the Server requires additional information to
+complete the authentication, it responds with an AUTH packet to signal that the Client generates and sends another AUTH packet with the required
+information and so on until the authentication is complete. The server then responds with a CONNACK message.]{.mark}
 
 #### 3.1.6.1 Length & Packet Type
 
@@ -1843,22 +2058,8 @@ description.
 
 #### 3.1.6.2 Reason Code
 
-[Byte 3 in the Auth packet holds the Authentication Reason Code. The values for the 1 byte unsigned Authentication Reason Code field are shown
-below.]{.mark}
-
-[The sender of the AUTH Packet MUST use one of the Authenticate Reason Codes.]{.mark}
-
-  ------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Dec**    **Hex**       **Reason Code Name**                   **Sent by**                              **Description**
-  ---------- ------------- -------------------------------------- ---------------------------------------- ---------------------------------------------
-  0          0x00          Success                                Gateway                                  Authentication is successful
-
-  24         0x18          Continue authentication                Client or Server                         Continue the authentication with another step
-
-  25         0x19          Re-authenticate                        Client                                   Initiate another authentication
-  ------------------------------------------------------------------------------------------------------------------------------------------------------
-
-[Table 23: AUTH Reason Code]{.underline}
+[Byte 3 in the Auth packet holds the Authentication Reason Code. The values for the Authentication Reason Code field are shown in]{.mark} Table 9:
+Reason Code Values. [The sender of the AUTH Packet MUST use one of the Authenticate Reason Codes.]{.mark}
 
 #### 3.1.6.3 Auth Method Length
 
@@ -1934,8 +2135,7 @@ Fixed Length UTF-8 Encoded String Contains the fully qualified topic name.
 
                   ***REGACK FLAGS***                                                                                                                    
 
-                  Reserved           Reserved          Reserved           Reserved          Reserved                Reserved          Topic Alias       
-                                                                                                                                      Type              
+                  Reserved           Reserved          Reserved           Reserved          Reserved                Reserved          Topic Type        
 
   Byte 3          0                  0                 0                  0                 0                       0                 X             X   
 
@@ -1965,8 +2165,8 @@ The REGACK Flags is 1 byte field in Byte position 3 of the REGACK packet.
 
 The REGACK Flags field includes the following flag:
 
--   **Topic Alias Type**. This is a 2-bit field in Bit 0 and 1 which determines the format of the topic Id value. Refer to [Table
-    10](#topic-alias-types) for the definition of the various topic types.
+-   **Topic** **Type**. This is a 2-bit field in Bit 0 and 1 which determines the format of the topic value. Refer to [Table 10](#topic-types) for the
+    definition of the various topic types.
 
 #### 3.1.8.3 Topic Alias
 
@@ -1978,31 +2178,15 @@ The same value as the one contained in the corresponding REGISTER packet.
 
 #### 3.1.8.5 Reason Code
 
-[Byte 8 in the REGACK packet holds the Register Reason Code.]{.mark}
-
-  ------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Dec**     **Hex**      **Reason Code Name**                                 **Description**
-  ----------- ------------ ---------------------------------------------------- ------------------------------------------------------------------------
-  0           0x00         Success                                              Request for the topic alias value for the included topic name is
-                                                                                successful
-
-  1           0x01         Congestion                                           The gateway/server notification that it is experiencing congestion
-
-  2           0x02         Invalid Topic Alias                                  The Client or GW has received a REGISTER packet containing a Topic Alias
-                                                                                which has a value that is not recognized.
-
-  3           0x03         Not supported                                        Topic Alias are not supported by the Client or gateway
-  ------------------------------------------------------------------------------------------------------------------------------------------------------
-
-[Table 26: REGACK Reason Code]{.underline}
+[Byte 8 in the REGACK packet holds the Register Reason Code.]{.mark} The values for the Register Reason Code field are shown in Table 9: Reason Code
+Values. [The sender of the REGACK Packet MUST use one of the Register Reason Codes.]{.mark}
 
 ### 3.1.9 Publish Variants
 
 MQTT-SN is designed to be optimized for packet size. For this reason, the PUBLISH packet has been split into 3 variants; Variant 1 catering for
-Quality of Service -1 where a protocol version field is required, Variant 2 catering for Quality of Service 0 where no response ACK is required and
-thus no packet identifier is required and Quality of Service 1 and 2 where a response is expected, Variant 3 catering for Out Of Band messages where
-minimal overhead is required. Due to the fundamental structural difference of QoS -1 and OOB, a respective new packet type has been introduced. The
-table below breaks down the different versions of the PUBLISH packet and their respective type identifiers.
+PUBLISH WITHOUT SESSION where no GW session is required, Variant 2 catering for Quality of Service 0 where no response ACK is required and thus no
+packet identifier is required and Quality of Service 1 and 2 where a response is expected. The table below breaks down the different versions of the
+PUBLISH packet and their respective type identifiers.
 
 []{.mark}
 
@@ -2011,52 +2195,56 @@ table below breaks down the different versions of the PUBLISH packet and their r
   ----------------------------- -------------------- ---------------------------------------------------------------------------------------------------
   **Publish**                   0x0C                 A PUBLISH packet corresponding to Quality of Service (QoS) 0, 1 or 2
 
-  **Publish Minus 1**           0x0C                 A second variant of the PUBLISH packet corresponding to Quality of Service minus 1 -- This
-                                                     represents the PUBLISH Minus One from the original specification and is included for purposes of
-                                                     backward compatibility. This packet has been superseded by Publish OOB (0x11)
-
-  **Publish Out Of Band (OOB)** 0x11                 A PUBLISH message that need have no session present on the GW or broker
+  **Publish Without Session**   0x11                 A PUBLISH Packet sent by a Client and does not need not to have an active Session
   ------------------------------------------------------------------------------------------------------------------------------------------------------
 
-### 3.1.10 PUBLISH MINUS -1 (Reference from 1.2)
+### 3.1.10 PUBLISH WITHOUT SESSION
 
-  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Bit**         **7**             **6**                 **5**                   **4**          **3**                     **2**                           **1**          **0**   
-  --------------- ----------------- ------- ------------- ------------ ---------- -------------- ------- ----------------- ---------------------- -------- -------------- ------- ---------------
-  Byte 1          Length                                                                                                                                                          
+  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  **Bit**           **7**            **6**                 **5**                   **4**          **3**                                **2**                           **1**          **0**   
+  ----------------- ---------------- ------- ------------- ------------ ---------- -------------- ------- ------------ --------------- ---------------------- -------- -------------- ------- ---------------
+  Byte 1            Length                                                                                                                                                                    
 
-  Byte 2          Packet Type                                                                                                                                                     
-                  (0x0C)                                                                                                                                                          
+  Byte 2            Packet Type                                                                                                                                                               
+                    (0x11)                                                                                                                                                                    
 
-                  ***PUBLISH-M1                                                                                                                                                   
-                  FLAGS***                                                                                                                                                        
+                    ***PUBLISH                                                                                                                                                                
+                    WITHOUT                                                                                                                                                                   
+                    SESSION***                                                                                                                                                                
 
-                  *DUP*                     *QoS*                      *Retain*                          *Reserved*        *Reserved*             *Topic                          
-                                                                                                                                                  Alias                           
-                                                                                                                                                  Type*                           
+                    *Reserved*               *Reserved*                 *Retain*                          *Reserved*                   *Reserved*             *Topic                          
+                                                                                                                                                              Type*                           
 
-  Byte 3          *X*                       *X*           *X*          *X*                               *0*               *0*                    *X*                             *X*
+  Byte 3            *0*                      *0*           *0*          *X*                               *0*                          *0*                    *X*                             *X*
 
-  Byte 4          Topic Alias MSB                                                                                                                                                 
+  Byte 4            Topic Data MSB                                                                                                                                                            
 
-  Byte 5          Topic Alias LSB                                                                                                                                                 
+  Byte 5            Topic Data LSB                                                                                                                                                            
 
-  Byte 6          0x00 -- Fixed                                                                                                                                                   
-                  Field Value                                                                                                                                                     
+  Byte (6 + TL) ..  Data Or (Full                                                                                                                                                             
+  N                 Topic Name +                                                                                                                                                              
+                    Data)                                                                                                                                                                     
+  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-  Byte 7          0x00 -- Fixed                                                                                                                                                   
-                  Field Value                                                                                                                                                     
+[Table 28: PUBLISH packet]{.underline}
 
-  Byte 8 .. N     Data                                                                                                                                                            
-  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+This packet is used by both clients and gateways to publish data for a certain topic.
 
-[Table 27: PUBLISH packet]{.underline}
-
-This packet is used by both clients and gateways to publish data to a topic.
-
+> **[Normative Comment]{.mark}**
+>
+> [Upon being processed, PUBLISH WITHOUT SESSION packets received by a Gateway should have their Quality of Service level set to 0 for onward
+> transmission into the MQTT network. PUBLISH WITHOUT SESSION packets are a concept considered **only** valid on the Gateway side of the
+> network.]{.mark}
+>
 > **Non-Normative Comment**
 >
-> If the Transport Layer supports broadcast, like UDP/IP, the PUBLISH MINUS -1 packet is generally sent using the broadcast address as destination.
+> If the Transport Layer supports broadcast, like UDP/IP, the PUBLISH WITHOUT SESSION packet is generally sent using the broadcast address as
+> destination.
+>
+> **Non-Normative Comment**
+>
+> PUBLISH WITHOUT SESSION packets received by a Gateway should not be associated with a Client Session and can be optionally discarded by the Gateway
+> without being processed for onward delivery.
 
 #### 3.1.10.1 Length & Packet Type
 
@@ -2065,128 +2253,62 @@ description.
 
 #### 3.1.10.2 PUBLISH Flags
 
-The PUBLISH Flags field is 1-byte located in Byte 3 position of the PUBLISH control packet.
+The PUBLISH Flags field is 1-byte located in the Byte 3 position of the PUBLISH control packet.
 
 The PUBLISH Flags includes the following flags:
 
--   **Topic Alias Type**. This is a 2-bit field in Bit 0 and 1 which determines the format of the topic Id value. Refer to [Table
-    10](#topic-alias-types) for the definition of the various topic alias types.
-
--   **QoS**: This is a 2-bit field stored in Bit 5 and 6. QoS has the same meaning as with MQTT indicating the Quality of Service. Set to "0b00" for
-    QoS 0, "0b01" for QoS 1, "0b10" for QoS 2, and "0b11" for QoS -1. For a detailed description of the various Quality Of Service levels please refer
-    to the operational behavior section.
-
--   **DUP**: 1 bit field stored in Bit 7 and has the same meaning as with MQTT. It notes the duplicate delivery of packets. If the DUP flag is set to
-    "0", it signifies that the packet is sent for the first time. If the DUP flag is set to "1", it signifies that the packet was retransmitted.
+-   **Topic Type**. This is a 2-bit field in Bit 0 and 1 which determines the format of the topic data field. Refer to [Table 10](#topic-types) for
+    the definition of the various topic types. **NOTE: only predefined topic alias, short topic or full topic types are allowed in PUBLISH WITHOUT
+    SESSION packets.**
 
 -   **Retain**: 1 bit field stored in Bit 4 and has the same meaning as with MQTT. The field signifies whether the existing retained message for this
     topic is replaced or kept.
 
-#### 3.1.10.3 Topic Alias or Topic Length
+#### 3.1.10.3 Topic Data
 
-In the case of Topic Alias Type being b11 this field will refer to the length of data assigned to the "Full Topic Name", in all other cases, this will
-be the value used as the topic alias or short topic name.
+Contains 2 bytes of topic length (if the topic type is Full Topic Name) or the topic alias (predefined), or short topic name as indicated in the
+*Topic Type* field in flags. Determines the topic which this payload will be published to.
 
 #### 3.1.10.4 Data
 
 In the case of Topic Alias Type b11 the data section will be prefixed with a "Full Topic Name" encoded with a UTF-8 encoded string value of length
-determined by the previously defined length field. Thereafter,
+determined by the previously defined length field. Thereafter, the *Data* field corresponds to the payload of an MQTT PUBLISH packet. It has a
+variable length and contains the application data that is being published.
 
-the *Data* field corresponds to the payload of an MQTT PUBLISH packet. It has a variable length and contains the application data that is being
-published.
+### 3.1.11 PUBLISH (used for QoS 0)
 
-### 3.1.11 PUBLISH OUT OF BAND
+  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  **Bit**          **7**           **6**                **5**                   **4**          **3**                                **2**                           **1**          **0**   
+  ---------------- --------------- ------- ------------ ------------ ---------- -------------- ------- ------------ --------------- ---------------------- -------- -------------- ------- ---------------
+  Byte 1           Length                                                                                                                                                                  
 
-+----------------+---------------+---+------------+------------+---+-------------+---+---+--------------+----------------------+---+-------------+---+--------------+
-| **Bit**        | **7**         | * |            | **5**      |   | **4**       | * |   |              | **2**                |   | **1**       | * |              |
-|                |               | * |            |            |   |             | * |   |              |                      |   |             | * |              |
-|                |               | 6 |            |            |   |             | 3 |   |              |                      |   |             | 0 |              |
-|                |               | * |            |            |   |             | * |   |              |                      |   |             | * |              |
-|                |               | * |            |            |   |             | * |   |              |                      |   |             | * |              |
-+================+===============+===+============+============+===+=============+===+===+==============+======================+===+=============+===+==============+
-| Byte 1         | Length        |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-+----------------+---------------+---+------------+------------+---+-------------+---+---+--------------+----------------------+---+-------------+---+--------------+
-| Byte 2         | Packet Type   |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-|                | (0x11)        |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-+----------------+---------------+---+------------+------------+---+-------------+---+---+--------------+----------------------+---+-------------+---+--------------+
-|                | ***PUBLISH    |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-|                | OUT OF BAND   |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-|                | (OOB)***      |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-+----------------+---------------+---+------------+------------+---+-------------+---+---+--------------+----------------------+---+-------------+---+--------------+
-|                | *Reserved*    |   | *Reserved* |            | * |             |   | * |              | *Reserved*           | * |             |   |              |
-|                |               |   |            |            | R |             |   | R |              |                      | T |             |   |              |
-|                |               |   |            |            | e |             |   | e |              |                      | o |             |   |              |
-|                |               |   |            |            | t |             |   | s |              |                      | p |             |   |              |
-|                |               |   |            |            | a |             |   | e |              |                      | i |             |   |              |
-|                |               |   |            |            | i |             |   | r |              |                      | c |             |   |              |
-|                |               |   |            |            | n |             |   | v |              |                      | A |             |   |              |
-|                |               |   |            |            | * |             |   | e |              |                      | l |             |   |              |
-|                |               |   |            |            |   |             |   | d |              |                      | i |             |   |              |
-|                |               |   |            |            |   |             |   | * |              |                      | a |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | s |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | T |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | y |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | p |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | e |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | * |             |   |              |
-+----------------+---------------+---+------------+------------+---+-------------+---+---+--------------+----------------------+---+-------------+---+--------------+
-| Byte 3         | *0*           |   | *0*        | *0*        | * |             |   | * |              | *0*                  | * |             |   | *X*          |
-|                |               |   |            |            | X |             |   | 0 |              |                      | X |             |   |              |
-|                |               |   |            |            | * |             |   | * |              |                      | * |             |   |              |
-+----------------+---------------+---+------------+------------+---+-------------+---+---+--------------+----------------------+---+-------------+---+--------------+
-| Byte 4         | Topic Alias   |   |            |            |   |             |   |   | **OR**       |                      | T |             |   |              |
-|                | MSB           |   |            |            |   |             |   |   |              |                      | o |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | p |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | i |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | c |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | L |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | e |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | n |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | g |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | t |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | h |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | M |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | S |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | B |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | ( |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | T |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | L |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | ) |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | T |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | o |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | p |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | i |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | c |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | L |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | e |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | n |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | g |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | t |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | h |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | L |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | S |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | B |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | ( |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | T |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | L |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | ) |             |   |              |
-+----------------+---------------+---+------------+------------+---+-------------+---+---+--------------+----------------------+---+-------------+---+--------------+
-| Byte 5         | Topic Alias   |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-|                | LSB           |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-+----------------+---------------+---+------------+------------+---+-------------+---+---+--------------+----------------------+---+-------------+---+--------------+
-| Byte (6 + TL)  | Data Or (Full |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-| .. N           | Topic Name +  |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-|                | Data)         |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-+----------------+---------------+---+------------+------------+---+-------------+---+---+--------------+----------------------+---+-------------+---+--------------+
+  Byte 2           Packet Type                                                                                                                                                             
+                   (0x0C)                                                                                                                                                                  
 
-[Table 28: PUBLISH packet]{.underline}
+                   ***PUBLISH QoS                                                                                                                                                          
+                   0 FLAGS***                                                                                                                                                              
+
+                   *DUP*                   *QoS*                     *Retain*                          *Reserved*                   *Reserved*             *Topic                          
+                                                                                                                                                           Type*                           
+
+  Byte 3           *X*                     *X*          *X*          *X*                               *0*                          *0*                    *X*                             *X*
+
+  Byte 4           Topic Data MSB                                                                                                                                                          
+
+  Byte 5           Topic Data LSB                                                                                                                                                          
+
+  Byte (6 + TL) .. Data Or (Full                                                                                                                                                           
+  N                Topic Name +                                                                                                                                                            
+                   Data)                                                                                                                                                                   
+  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+[Table 29: PUBLISH packet]{.underline}
 
 This packet is used by both clients and gateways to publish data for a certain topic.
 
-> **Non-Normative Comment**
+> **[Normative Comment]{.mark}**
 >
-> If the Transport Layer supports broadcast, like UDP/IP, the PUBLISH OUT OF BAND packet is generally sent using the broadcast address as destination.
+> [PUBLISH QoS 0, 1 & 2 packets received by a Gateway **must** be associated with a valid Client Session.]{.mark}
 
 #### 3.1.11.1 Length & Packet Type
 
@@ -2195,115 +2317,72 @@ description.
 
 #### 3.1.11.2 PUBLISH Flags
 
-The PUBLISH Flags field is 1-byte located in the Byte 3 position of the PUBLISH control packet.
+The PUBLISH Flags field is 1-byte located in Byte 3 position of the PUBLISH control packet.
 
 The PUBLISH Flags includes the following flags:
 
--   **Topic Alias Type**. This is a 2-bit field in Bit 0 and 1 which determines the format of the topic Id value. Refer to [Table
-    10](#topic-alias-types) for the definition of the various topic alias types.
+-   **Topic Type**. This is a 2-bit field in Bit 0 and 1 which determines the format of the topic data field. Refer to [Table 10](#topic-types) for
+    the definition of the various topic types.
+
+-   **QoS**: This is a 2-bit field stored in Bit 5 and 6. QoS has the same meaning as with MQTT indicating the Quality of Service. Set to "0b00" for
+    QoS 0, "0b01" for QoS 1, "0b10" for QoS 2, and "0b11" for QoS -1. For a detailed description of the various Quality Of Service levels please refer
+    to the operational behavior section.
+
+-   **DUP**: 1 bit field stored in Bit 7 and has the same meaning as with MQTT. It notes the duplicate delivery of packet. If the DUP flag is set to
+    "0", it signifies that the packet is sent for the first time. If the DUP flag is set to "1", it signifies that the packet was retransmitted.
 
 -   **Retain**: 1 bit field stored in Bit 4 and has the same meaning as with MQTT. The field signifies whether the existing retained message for this
     topic is replaced or kept.
 
-#### 3.1.11.3 Topic Alias or Topic Length
+#### 3.1.11.3 Topic Data
 
-In the case of Topic Alias Type being b11 this field will refer to the length of data assigned to the "Full Topic Name", in all other cases, this will
-be the value used as the topic alias or short topic name.
+Contains 2 bytes of topic length (if the topic type is Full Topic Name) or the topic alias (predefined or normal), or short topic name as indicated in
+the *Topic Type* field in flags. Determines the topic which this payload will be published to.
 
 #### 3.1.11.4 Data
 
-In the case of Topic Alias Type b11 the data section will be prefixed with a "Full Topic Name" encoded with a UTF-8 encoded string value of length
+In the case of Topic Type b11 the data section will be prefixed with a "Full Topic Name" encoded with a UTF-8 encoded string value of length
 determined by the previously defined length field. Thereafter, the *Data* field corresponds to the payload of an MQTT PUBLISH packet. It has a
 variable length and contains the application data that is being published.
 
-### 3.1.12 PUBLISH (used for QoS 0)
+### 3.1.12 PUBLISH (used for QoS 1 & 2)
 
-+----------------+---------------+---+------------+------------+---+-------------+---+---+--------------+----------------------+---+-------------+---+--------------+
-| **Bit**        | **7**         | * |            | **5**      |   | **4**       | * |   |              | **2**                |   | **1**       | * |              |
-|                |               | * |            |            |   |             | * |   |              |                      |   |             | * |              |
-|                |               | 6 |            |            |   |             | 3 |   |              |                      |   |             | 0 |              |
-|                |               | * |            |            |   |             | * |   |              |                      |   |             | * |              |
-|                |               | * |            |            |   |             | * |   |              |                      |   |             | * |              |
-+================+===============+===+============+============+===+=============+===+===+==============+======================+===+=============+===+==============+
-| Byte 1         | Length        |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-+----------------+---------------+---+------------+------------+---+-------------+---+---+--------------+----------------------+---+-------------+---+--------------+
-| Byte 2         | Packet Type   |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-|                | (0x0C)        |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-+----------------+---------------+---+------------+------------+---+-------------+---+---+--------------+----------------------+---+-------------+---+--------------+
-|                | ***PUBLISH    |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-|                | QoS 0         |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-|                | FLAGS***      |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-+----------------+---------------+---+------------+------------+---+-------------+---+---+--------------+----------------------+---+-------------+---+--------------+
-|                | *DUP*         |   | *QoS*      |            | * |             |   | * |              | *Reserved*           | * |             |   |              |
-|                |               |   |            |            | R |             |   | R |              |                      | T |             |   |              |
-|                |               |   |            |            | e |             |   | e |              |                      | o |             |   |              |
-|                |               |   |            |            | t |             |   | s |              |                      | p |             |   |              |
-|                |               |   |            |            | a |             |   | e |              |                      | i |             |   |              |
-|                |               |   |            |            | i |             |   | r |              |                      | c |             |   |              |
-|                |               |   |            |            | n |             |   | v |              |                      | A |             |   |              |
-|                |               |   |            |            | * |             |   | e |              |                      | l |             |   |              |
-|                |               |   |            |            |   |             |   | d |              |                      | i |             |   |              |
-|                |               |   |            |            |   |             |   | * |              |                      | a |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | s |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | T |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | y |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | p |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | e |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | * |             |   |              |
-+----------------+---------------+---+------------+------------+---+-------------+---+---+--------------+----------------------+---+-------------+---+--------------+
-| Byte 3         | *X*           |   | *X*        | *X*        | * |             |   | * |              | *0*                  | * |             |   | *X*          |
-|                |               |   |            |            | X |             |   | 0 |              |                      | X |             |   |              |
-|                |               |   |            |            | * |             |   | * |              |                      | * |             |   |              |
-+----------------+---------------+---+------------+------------+---+-------------+---+---+--------------+----------------------+---+-------------+---+--------------+
-| Byte 4         | Topic Alias   |   |            |            |   |             |   |   | **OR**       |                      | T |             |   |              |
-|                | MSB           |   |            |            |   |             |   |   |              |                      | o |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | p |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | i |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | c |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | L |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | e |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | n |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | g |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | t |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | h |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | M |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | S |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | B |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | ( |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | T |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | L |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | ) |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | T |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | o |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | p |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | i |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | c |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | L |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | e |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | n |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | g |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | t |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | h |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | L |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | S |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | B |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | ( |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | T |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | L |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | ) |             |   |              |
-+----------------+---------------+---+------------+------------+---+-------------+---+---+--------------+----------------------+---+-------------+---+--------------+
-| Byte 5         | Topic Alias   |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-|                | LSB           |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-+----------------+---------------+---+------------+------------+---+-------------+---+---+--------------+----------------------+---+-------------+---+--------------+
-| Byte (6 + TL)  | Data Or (Full |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-| .. N           | Topic Name +  |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-|                | Data)         |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-+----------------+---------------+---+------------+------------+---+-------------+---+---+--------------+----------------------+---+-------------+---+--------------+
+  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  **Bit**           **7**            **6**                 **5**                   **4**          **3**                                **2**                           **1**          **0**   
+  ----------------- ---------------- ------- ------------- ------------ ---------- -------------- ------- ------------ --------------- ---------------------- -------- -------------- ------- ---------------
+  Byte 1            Length                                                                                                                                                                    
 
-[Table 29: PUBLISH packet]{.underline}
+  Byte 2            Packet Type                                                                                                                                                               
+                    (0x0C)                                                                                                                                                                    
+
+                    ***PUBLISH QoS                                                                                                                                                            
+                    1&2 FLAGS***                                                                                                                                                              
+
+                    *DUP*                    *QoS*                      *Retain*                          *Reserved*                   *Reserved*             *Topic                          
+                                                                                                                                                              Type*                           
+
+  Byte 3            *X*                      *X*           *X*          *X*                               *0*                          *0*                    *X*                             *X*
+
+  Byte 4            Packet Id MSB                                                                                                                                                             
+
+  Byte 5            Packet Id LSB                                                                                                                                                             
+
+  Byte 6            Topic Data MSB                                                                                                                                                            
+
+  Byte 7            Topic Data LSB                                                                                                                                                            
+
+  Byte (8 + TL) ..  Data Or (Full                                                                                                                                                             
+  N                 Topic Name +                                                                                                                                                              
+                    Data)                                                                                                                                                                     
+  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+[Table 30: PUBLISH packet]{.underline}
 
 This packet is used by both clients and gateways to publish data for a certain topic.
+
+> **[Normative Comment]{.mark}**
+>
+> [PUBLISH QoS 0, 1 & 2 packets received by a Gateway **must** be associated with a valid Client Session.]{.mark}
 
 #### 3.1.12.1 Length & Packet Type
 
@@ -2316,136 +2395,8 @@ The PUBLISH Flags field is 1-byte located in Byte 3 position of the PUBLISH cont
 
 The PUBLISH Flags includes the following flags:
 
--   **Topic Alias Type**. This is a 2-bit field in Bit 0 and 1 which determines the format of the topic Id value. Refer to [Table
-    10](#topic-alias-types) for the definition of the various topic alias types.
-
--   **QoS**: This is a 2-bit field stored in Bit 5 and 6. QoS has the same meaning as with MQTT indicating the Quality of Service. Set to "0b00" for
-    QoS 0, "0b01" for QoS 1, "0b10" for QoS 2, and "0b11" for QoS -1. For a detailed description of the various Quality Of Service levels please refer
-    to the operational behavior section.
-
--   **DUP**: 1 bit field stored in Bit 7 and has the same meaning as with MQTT. It notes the duplicate delivery of packet. If the DUP flag is set to
-    "0", it signifies that the packet is sent for the first time. If the DUP flag is set to "1", it signifies that the packet was retransmitted.
-
--   **Retain**: 1 bit field stored in Bit 4 and has the same meaning as with MQTT. The field signifies whether the existing retained message for this
-    topic is replaced or kept.
-
-#### 3.1.12.3 Topic Alias or Topic Length
-
-In the case of Topic Alias Type being b11 this field will refer to the length of data assigned to the "Full Topic Name", in all other cases, this will
-be the value used as the topic alias or short topic name.
-
-#### 3.1.12.4 Data
-
-In the case of Topic Alias Type b11 the data section will be prefixed with a "Full Topic Name" encoded with a UTF-8 encoded string value of length
-determined by the previously defined length field. Thereafter, the *Data* field corresponds to the payload of an MQTT PUBLISH packet. It has a
-variable length and contains the application data that is being published.
-
-### 3.1.13 PUBLISH (used for QoS 1 & 2)
-
-+----------------+---------------+---+------------+------------+---+-------------+---+---+--------------+----------------------+---+-------------+---+--------------+
-| **Bit**        | **7**         | * |            | **5**      |   | **4**       | * |   |              | **2**                |   | **1**       | * |              |
-|                |               | * |            |            |   |             | * |   |              |                      |   |             | * |              |
-|                |               | 6 |            |            |   |             | 3 |   |              |                      |   |             | 0 |              |
-|                |               | * |            |            |   |             | * |   |              |                      |   |             | * |              |
-|                |               | * |            |            |   |             | * |   |              |                      |   |             | * |              |
-+================+===============+===+============+============+===+=============+===+===+==============+======================+===+=============+===+==============+
-| Byte 1         | Length        |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-+----------------+---------------+---+------------+------------+---+-------------+---+---+--------------+----------------------+---+-------------+---+--------------+
-| Byte 2         | Packet Type   |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-|                | (0x0C)        |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-+----------------+---------------+---+------------+------------+---+-------------+---+---+--------------+----------------------+---+-------------+---+--------------+
-|                | ***PUBLISH    |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-|                | QoS 1&2       |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-|                | FLAGS***      |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-+----------------+---------------+---+------------+------------+---+-------------+---+---+--------------+----------------------+---+-------------+---+--------------+
-|                | *DUP*         |   | *QoS*      |            | * |             |   | * |              | *Reserved*           | * |             |   |              |
-|                |               |   |            |            | R |             |   | R |              |                      | T |             |   |              |
-|                |               |   |            |            | e |             |   | e |              |                      | o |             |   |              |
-|                |               |   |            |            | t |             |   | s |              |                      | p |             |   |              |
-|                |               |   |            |            | a |             |   | e |              |                      | i |             |   |              |
-|                |               |   |            |            | i |             |   | r |              |                      | c |             |   |              |
-|                |               |   |            |            | n |             |   | v |              |                      | A |             |   |              |
-|                |               |   |            |            | * |             |   | e |              |                      | l |             |   |              |
-|                |               |   |            |            |   |             |   | d |              |                      | i |             |   |              |
-|                |               |   |            |            |   |             |   | * |              |                      | a |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | s |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | T |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | y |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | p |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | e |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | * |             |   |              |
-+----------------+---------------+---+------------+------------+---+-------------+---+---+--------------+----------------------+---+-------------+---+--------------+
-| Byte 3         | *X*           |   | *X*        | *X*        | * |             |   | * |              | *0*                  | * |             |   | *X*          |
-|                |               |   |            |            | X |             |   | 0 |              |                      | X |             |   |              |
-|                |               |   |            |            | * |             |   | * |              |                      | * |             |   |              |
-+----------------+---------------+---+------------+------------+---+-------------+---+---+--------------+----------------------+---+-------------+---+--------------+
-| Byte 4         | Packet Id MSB |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-+----------------+---------------+---+------------+------------+---+-------------+---+---+--------------+----------------------+---+-------------+---+--------------+
-| Byte 5         | Packet Id LSB |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-+----------------+---------------+---+------------+------------+---+-------------+---+---+--------------+----------------------+---+-------------+---+--------------+
-| Byte 6         | Topic Alias   |   |            |            |   |             |   |   | **OR**       |                      | T |             |   |              |
-|                | MSB           |   |            |            |   |             |   |   |              |                      | o |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | p |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | i |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | c |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | L |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | e |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | n |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | g |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | t |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | h |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | M |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | S |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | B |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | ( |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | T |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | L |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | ) |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | T |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | o |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | p |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | i |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | c |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | L |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | e |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | n |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | g |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | t |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | h |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | L |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | S |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | B |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | ( |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | T |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | L |             |   |              |
-|                |               |   |            |            |   |             |   |   |              |                      | ) |             |   |              |
-+----------------+---------------+---+------------+------------+---+-------------+---+---+--------------+----------------------+---+-------------+---+--------------+
-| Byte 7         | Topic Alias   |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-|                | LSB           |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-+----------------+---------------+---+------------+------------+---+-------------+---+---+--------------+----------------------+---+-------------+---+--------------+
-| Byte (8 + TL)  | Data Or (Full |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-| .. N           | Topic Name +  |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-|                | Data)         |   |            |            |   |             |   |   |              |                      |   |             |   |              |
-+----------------+---------------+---+------------+------------+---+-------------+---+---+--------------+----------------------+---+-------------+---+--------------+
-
-[Table 30: PUBLISH packet]{.underline}
-
-This packet is used by both clients and gateways to publish data for a certain topic.
-
-#### 3.1.13.1 Length & Packet Type
-
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
-description.
-
-#### 3.1.13.2 PUBLISH Flags
-
-The PUBLISH Flags field is 1-byte located in Byte 3 position of the PUBLISH control packet.
-
-The PUBLISH Flags includes the following flags:
-
--   **Topic Alias Type**. This is a 2-bit field in Bit 0 and 1 which determines the format of the topic Id value. Refer to [Table
-    10](#topic-alias-types) for the definition of the various topic alias types.
+-   **Topic Type**. This is a 2-bit field in Bit 0 and 1 which determines the format of the topic data field. Refer to [Table 10](#topic-types) for
+    the definition of the various topic types.
 
 -   **QoS**: This is a 2-bit field stored in Bit 5 and 6. QoS has the same meaning as with MQTT indicating the Quality of Service. Set to "0b00" for
     QoS 0, "0b01" for QoS 1, "0b10" for QoS 2, and "0b11" for QoS -1. For a detailed description of the various Quality Of Service levels please refer
@@ -2457,26 +2408,21 @@ The PUBLISH Flags includes the following flags:
 -   **Retain**: 1 bit field stored in Bit 4 and has the same meaning as with MQTT. The field signifies whether the existing retained message for this
     topic is replaced or kept.
 
-#### 3.1.13.3 Topic Length
-
-Contains the length of the topic value. This will be either 2 bytes when using a standard alias (0b00, 0b01 or 0b10) or the length of the full topic
-name when the topic type is 0b11.
-
-#### 3.1.13.4 Packet Id
+#### 3.1.12.4 Packet Id
 
 Same meaning as the MQTT "Packet ID"; only relevant in case of QoS levels 1 and 2, otherwise coded 0x0000.
 
-#### 3.1.13.5 Topic Alias or Topic Name
+#### 3.1.12.5 Topic Data
 
-Contains topic name encoded as a Fixed Length UTF-8 Encoded String, topic alias, or short topic name as indicated in the *Topic Alias Type* field in
-flags.
+Contains 2 bytes of topic length (if the topic type is Full Topic Name) or the topic alias (predefined or normal), or short topic name as indicated in
+the *Topic Type* field in flags. Determines the topic which this payload will be published to.
 
-#### 3.1.13.6 Data
+#### 3.1.12.6 Data
 
 The *Data* field corresponds to the payload of an MQTT PUBLISH packet. It has a variable length and contains the application data that is being
 published.
 
-### 3.1.14 PUBACK -- Publish Acknowledgement
+### 3.1.13 PUBACK -- Publish Acknowledgement
 
   --------------------------------------------------------------------------------------------------------------------------------------------------------
   **Bit**              **7**        **6**            **5**            **4**            **3**            **2**            **1**            **0**
@@ -2497,11 +2443,49 @@ published.
 [Table 31: PUBACK packet]{.underline}
 
 A PUBACK packet is the response to a PUBLISH packet with QoS 1. It can also be sent as response to a PUBLISH packet of any QoS (*with the exception of
-QoS -1, or Publish Out Of Band*) in case of an error; the error reason is then indicated in the *Reason Code* field.
+QoS -1, or PUBLISH WITHOUT SESSION*) in case of an error; the error reason is then indicated in the *Reason Code* field.
+
+#### 3.1.13.1 Length & Packet Type
+
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
+description.
+
+#### 3.1.13.2 Packet Id
+
+Same value as the one contained in the corresponding PUBLISH packet.
+
+#### 3.1.13.3 Reason Code
+
+Byte 5 in the PUBACK packet holds the Reason code in response to the PUBLISH packet. The PUBACK Reason Codes are shown in Table 9: Reason Code Values.
+The Client or Server sending the PUBACK packet MUST use one of the PUBACK Reason Codes.
+
+### 
+
+### 3.1.14 PUBREC (QoS 2 delivery part 1)
+
+  --------------------------------------------------------------------------------------------------------------------------------------------------------
+  **Bit**              **7**        **6**            **5**            **4**            **3**            **2**            **1**            **0**
+  -------------------- ------------ ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
+  Byte 1               Length                                                                                                             
+
+  Byte 2               Packet Type                                                                                                        
+
+  Byte 3               Packet Id                                                                                                          
+                       MSB                                                                                                                
+
+  Byte 4               Packet Id                                                                                                          
+                       LSB                                                                                                                
+
+  Byte 5               Reason Code                                                                                                        
+  --------------------------------------------------------------------------------------------------------------------------------------------------------
+
+[Table 33: PUBREC packet]{.underline}
+
+A PUBREC packet is the response to a PUBLISH packet with QoS 2. It is the second packet of the QoS 2 protocol exchange.
 
 #### 3.1.14.1 Length & Packet Type
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 2.1 for a detailed
 description.
 
 #### 3.1.14.2 Packet Id
@@ -2510,26 +2494,10 @@ Same value as the one contained in the corresponding PUBLISH packet.
 
 #### 3.1.14.3 Reason Code
 
-Byte 5 in the PUBACK packet holds the Reason code in response to the PUBLISH packet. The Client or Server sending the PUBACK packet MUST use one of
-the PUBACK Reason Codes
+Byte 5 in the PUBREC packet holds the Reason code in response to the PUBLISH packet. The PUBREC Reason Codes are shown in Table 9: Reason Code Values.
+The Client or Server sending the PUBREC packet MUST use one of the PUBREC Reason Codes.
 
-  ------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Dec**     **Hex**      **Reason Code Name**                                 **Description**
-  ----------- ------------ ---------------------------------------------------- ------------------------------------------------------------------------
-  0           0x00         Success                                              Publish to gateway/server was successful
-
-  1           0x01         Congestion                                           The gateway/server notification that it is experiencing congestion
-
-  2           0x02         Invalid Topic Alias                                  The gateway/server has received a PUBLISH packet containing a Topic
-                                                                                Alias which has a value that is not recognized.
-
-  3           0x03         Not supported                                        The client/server does not accept or support the QoS or other properties
-                                                                                of the PUBLISH.
-  ------------------------------------------------------------------------------------------------------------------------------------------------------
-
-[Table 32: PUBACK Reason Code]{.underline}
-
-### 3.1.15 PUBREC (QoS 2 delivery part 1)
+### 3.1.15 PUBREL (QoS 2 delivery part 2)
 
   --------------------------------------------------------------------------------------------------------------------------------------------------------
   **Bit**              **7**        **6**            **5**            **4**            **3**            **2**            **1**            **0**
@@ -2543,51 +2511,29 @@ the PUBACK Reason Codes
 
   Byte 4               Packet Id                                                                                                          
                        LSB                                                                                                                
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
 
-[Table 33: PUBREC packet]{.underline}
-
-A PUBREC packet is the response to a PUBLISH packet with QoS 2. It is the second packet of the QoS 2 protocol exchange.
-
-#### 3.1.15.1 Length & Packet Type
-
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 2.1 for a detailed
-description.
-
-#### 3.1.15.2 Packet Id
-
-Same value as the one contained in the corresponding PUBLISH packet.
-
-### 3.1.16 PUBREL (QoS 2 delivery part 2)
-
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Bit**              **7**        **6**            **5**            **4**            **3**            **2**            **1**            **0**
-  -------------------- ------------ ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
-  Byte 1               Length                                                                                                             
-
-  Byte 2               Packet Type                                                                                                        
-
-  Byte 3               Packet Id                                                                                                          
-                       MSB                                                                                                                
-
-  Byte 4               Packet Id                                                                                                          
-                       LSB                                                                                                                
+  Byte 5               Reason Code                                                                                                        
   --------------------------------------------------------------------------------------------------------------------------------------------------------
 
 [Table 34: PUBREL packet]{.underline}
 
 A PUBREL packet is the response to a PUBREC packet. It is the third packet of the QoS 2 protocol exchange.
 
-#### 3.1.16.1 Length & Packet Type
+#### 3.1.15.1 Length & Packet Type
 
 > The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 2.1 for a detailed
 > description.
 
-#### 3.1.16.2 Packet Id
+#### 3.1.15.2 Packet Id
 
 > Same value as the one contained in the corresponding PUBLISH packet.
 
-### 3.1.17 PUBCOMP (QoS 2 delivery part 3)
+#### 3.1.15.3 Reason Code
+
+Byte 5 in the PUBREL packet holds the Reason code in response to the PUBREC packet. The PUBREL Reason Codes are shown in Table 9: Reason Code Values.
+The Client or Server sending the PUBREL packet MUST use one of the PUBREL Reason Codes.
+
+### 3.1.16 PUBCOMP (QoS 2 delivery part 3)
 
   --------------------------------------------------------------------------------------------------------------------------------------------------------
   **Bit**              **7**        **6**            **5**            **4**            **3**            **2**            **1**            **0**
@@ -2601,22 +2547,29 @@ A PUBREL packet is the response to a PUBREC packet. It is the third packet of th
 
   Byte 4               Packet Id                                                                                                          
                        LSB                                                                                                                
+
+  Byte 5               Reason Code                                                                                                        
   --------------------------------------------------------------------------------------------------------------------------------------------------------
 
 [Table 35: PUBCOMP packet]{.underline}
 
 The PUBCOMP packet is the response to a PUBREL packet. It is the fourth and final packet of the QoS 2 protocol exchange.
 
-#### 3.1.17.1 Length & Packet Type
+#### 3.1.16.1 Length & Packet Type
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
 description.
 
-#### 3.1.17.2 Packet Identifier
+#### 3.1.16.2 Packet Identifier
 
 Same value as the one contained in the corresponding PUBLISH packet.
 
-### 3.1.18 SUBSCRIBE 
+#### 3.1.16.3 Reason Code
+
+Byte 5 in the PUBCOMP packet holds the Reason code in response to the PUBREL packet. The PUBCOMP Reason Codes are shown in Table 9: Reason Code
+Values. The Client or Server sending the PUBCOMP packet MUST use one of the PUBCOMP Reason Codes.
+
+### 3.1.17 SUBSCRIBE 
 
 +----------------+---------------+---+------------+---+---------+---+------------------------+------------+---+-------------+-------------+---+---------------+
 | **Bit**        | **7**         | * |            | * |         |   | **4**                  | **3**      |   | **2**       | **1**       | * |               |
@@ -2633,7 +2586,7 @@ Same value as the one contained in the corresponding PUBLISH packet.
 |                | FLAGS***      |   |            |   |         |   |                        |            |   |             |             |   |               |
 +----------------+---------------+---+------------+---+---------+---+------------------------+------------+---+-------------+-------------+---+---------------+
 |                | *No Local*    |   | *QoS*      |   |         | * |                        | *Retain    |   |             | *Topic      |   |               |
-|                |               |   |            |   |         | R |                        | Handling*  |   |             | Alias Type* |   |               |
+|                |               |   |            |   |         | R |                        | Handling*  |   |             | Type*       |   |               |
 |                |               |   |            |   |         | e |                        |            |   |             |             |   |               |
 |                |               |   |            |   |         | t |                        |            |   |             |             |   |               |
 |                |               |   |            |   |         | a |                        |            |   |             |             |   |               |
@@ -2660,7 +2613,7 @@ Same value as the one contained in the corresponding PUBLISH packet.
 +----------------+---------------+---+------------+---+---------+---+------------------------+------------+---+-------------+-------------+---+---------------+
 | Byte 5         | Packet Id LSB |   |            |   |         |   |                        |            |   |             |             |   |               |
 +----------------+---------------+---+------------+---+---------+---+------------------------+------------+---+-------------+-------------+---+---------------+
-| Byte 6         | Topic Alias   |   |            |   | **OR**  |   |                        |            | T |             |             |   |               |
+| Byte 6         | Topic Data    |   |            |   | **OR**  |   |                        |            | T |             |             |   |               |
 |                | MSB           |   |            |   |         |   |                        |            | o |             |             |   |               |
 |                |               |   |            |   |         |   |                        |            | p |             |             |   |               |
 |                |               |   |            |   |         |   |                        |            | i |             |             |   |               |
@@ -2682,7 +2635,7 @@ Same value as the one contained in the corresponding PUBLISH packet.
 |                |               |   |            |   |         |   |                        |            | . |             |             |   |               |
 |                |               |   |            |   |         |   |                        |            | N |             |             |   |               |
 +----------------+---------------+---+------------+---+---------+---+------------------------+------------+---+-------------+-------------+---+---------------+
-| Byte 7         | Topic Alias   |   |            |   |         |   |                        |            |   |             |             |   |               |
+| Byte 7         | Topic Data    |   |            |   |         |   |                        |            |   |             |             |   |               |
 |                | LSB           |   |            |   |         |   |                        |            |   |             |             |   |               |
 +----------------+---------------+---+------------+---+---------+---+------------------------+------------+---+-------------+-------------+---+---------------+
 
@@ -2690,12 +2643,12 @@ Same value as the one contained in the corresponding PUBLISH packet.
 
 The SUBSCRIBE packet is used by a client to subscribe to a certain topic name.
 
-#### 3.1.18.1 Length & Packet Type
+#### 3.1.17.1 Length & Packet Type
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
 description.
 
-#### 3.1.18.2 SUBSCRIBE Flags
+#### 3.1.17.2 SUBSCRIBE Flags
 
 The SUBSCRIBE Flags field is 1-byte and contains the following flags:
 
@@ -2721,19 +2674,19 @@ The SUBSCRIBE Flags field is 1-byte and contains the following flags:
 
 > It is a Protocol Error to send a Retain Handling value of 3.
 
--   **Topic Alias Type**: indicates the type of Topic Alias or Topic Filter included in this packet. Refer to [Table 10](#topic-alias-types) for the
-    definition of the various types.
+-   **Topic Type**: This is a 2-bit field in Bit 0 and 1 which determines the format of the topic data field. Refer to [Table 10](#topic-types) for
+    the definition of the various topic types.
 
-#### 3.1.18.3 Packet Id
+#### 3.1.17.3 Packet Id
 
 Should be coded such that it can be used to identify the corresponding SUBACK packet.
 
-#### 3.1.18.4 Topic Alias or Topic Filter
+#### 3.1.17.4 Topic Data or Topic Filter
 
-Contains Fixed Length UTF-8 Encoded String topic filter, topic alias, or short topic name as indicated in the *Topic Alias Type* field in flags.
-Determines the topic names which this subscription is interested in.
+Contains Fixed Length UTF-8 Encoded String topic filter, topic alias (predefined or normal), or short topic name as indicated in the *Topic Type*
+field in flags. Determines the topic names which this subscription is interested in.
 
-### 3.1.19 SUBACK
+### 3.1.18 SUBACK
 
   -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   **Bit**            **7**             **6**                  **5**                      **4**           **3**                     **2**            **1**                  **0**   
@@ -2745,14 +2698,13 @@ Determines the topic names which this subscription is interested in.
                      ***SUBACK                                                                                                                                                     
                      FLAGS***                                                                                                                                                      
 
-                     *Reserved*                *Granted QoS*                *Reserved*                           *Reserved*        *Reserved*               *Topic Alias           
-                                                                                                                                                            Type*                  
+                     *Reserved*                *Reserved*                   *Reserved*                           *Reserved*        *Reserved*               *Topic Type*           
 
-  Byte 3             *0*                       *X*            *X*           *0*                                  *0*               *0*                      *X*                    *X*
+  Byte 3             *0*                       *0*            *0*           *0*                                  *0*               *0*                      *X*                    *X*
 
-  Byte 4             Topic Alias MSB                                                                                                                                               
+  Byte 4             Topic Data MSB                                                                                                                                                
 
-  Byte 5             Topic Alias LSB                                                                                                                                               
+  Byte 5             Topic Data LSB                                                                                                                                                
 
   Byte 6             Packet Id MSB                                                                                                                                                 
 
@@ -2765,51 +2717,33 @@ Determines the topic names which this subscription is interested in.
 
 The SUBACK packet is sent by a gateway to a client as an acknowledgment to the receipt and processing of a SUBSCRIBE packet.
 
-#### 3.1.19.1 Length & Packet Type
+#### 3.1.18.1 Length & Packet Type
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
 description.
 
-#### 3.1.19.2 Flags
+#### 3.1.18.2 Flags
 
 The SUBACK Flags field is 1-byte located in Byte 3 position of the SUBACK control packet. The SUBACK Flags includes the following flags:
 
--   **Topic Alias Type**. This is a 2-bit field in Bit 0 and 1 which determines the format of the topic Id value. Refer to [Table
-    10](#topic-alias-types) for the definition of the various topic types.
+-   **Topic Type**. This is a 2-bit field in Bit 0 and 1 which determines the format of the topic data field. Refer to [Table 10](#topic-types) for
+    the definition of the various topic types.
 
--   **Granted QoS**: This is a 2-bit field in Bit 5 and 6 which notes the Quality of Service that was granted for the Subscription
-
-#### 3.1.19.3 Topic Alias
+#### 3.1.18.3 Topic Data
 
 In case of "accepted" the value that will be used as topic alias by the gateway when sending PUBLISH packets to the client (not relevant in case of
 subscriptions to a short topic name or to a topic name which contains wildcard characters)
 
-#### 3.1.19.4 Packet Identifier
+#### 3.1.18.4 Packet Identifier
 
 Same value as the one contained in the corresponding SUBSCRIBE packet.
 
-#### 3.1.19.5 Reason Code
+#### 3.1.18.5 Reason Code
 
-Byte 8 in the SUBACK packet holds the Reason code in response to SUBSCRIBE packet. The Client or Server sending the SUBACK packet MUST use one of the
-SUBACK Reason Codes
+Byte 8 in the SUBACK packet holds the Reason code in response to the SUBSCRIBE packet. The SUBACK Reason Codes are shown in Table 9: Reason Code
+Values.The Server sending the SUBACK packet MUST use one of the SUBACK Reason Codes.
 
-  ------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Dec**     **Hex**      **Reason Code Name**                                 **Description**
-  ----------- ------------ ---------------------------------------------------- ------------------------------------------------------------------------
-  0           0x00         Success                                              SUBSCRIBE to gateway/server was successful
-
-  1           0x01         Congestion                                           The gateway/server notification that it is experiencing congestion
-
-  2           0x02         Invalid Topic Alias                                  The gateway/server has received a SUBSCRIBE packet containing a Topic
-                                                                                Alias which has a value that is not recognized.
-
-  3           0x03         Not supported                                        The client/server does not accept or support the properties provided
-                                                                                with SUBSCRIBE packet.
-  ------------------------------------------------------------------------------------------------------------------------------------------------------
-
-[Table 38: SUBACK Reason Code]{.underline}
-
-### 3.1.20 UNSUBSCRIBE
+### 3.1.19 UNSUBSCRIBE
 
 +----------------+----------------+---+------------+------------+---+--------------+---+---+-------+---------+----------------+--------------+---+--------------+
 | **Bit**        | **7**          | * |            | **5**      |   | **4**        | * |   |       |         | **2**          | **1**        | * |              |
@@ -2825,8 +2759,8 @@ SUBACK Reason Codes
 |                | ***UNSUBSCRIBE |   |            |            |   |              |   |   |       |         |                |              |   |              |
 |                | FLAGS***       |   |            |            |   |              |   |   |       |         |                |              |   |              |
 +----------------+----------------+---+------------+------------+---+--------------+---+---+-------+---------+----------------+--------------+---+--------------+
-|                | *Reserved*     |   | *Reserved* |            | * |              |   | * |       |         | *Reserved*     | *Topic Alias |   |              |
-|                |                |   |            |            | R |              |   | R |       |         |                | Type*        |   |              |
+|                | *Reserved*     |   | *Reserved* |            | * |              |   | * |       |         | *Reserved*     | *Topic Type* |   |              |
+|                |                |   |            |            | R |              |   | R |       |         |                |              |   |              |
 |                |                |   |            |            | e |              |   | e |       |         |                |              |   |              |
 |                |                |   |            |            | s |              |   | s |       |         |                |              |   |              |
 |                |                |   |            |            | e |              |   | e |       |         |                |              |   |              |
@@ -2846,43 +2780,43 @@ SUBACK Reason Codes
 | Byte 5         | Packet         |   |            |            |   |              |   |   |       |         |                |              |   |              |
 |                | Identifier LSB |   |            |            |   |              |   |   |       |         |                |              |   |              |
 +----------------+----------------+---+------------+------------+---+--------------+---+---+-------+---------+----------------+--------------+---+--------------+
-| Byte 6         | Topic Alias    |   |            |            |   |              |   |   | *     | Topic   |                |              |   |              |
-|                | MSB            |   |            |            |   |              |   |   | *OR** | Filter  |                |              |   |              |
+| Byte 6         | Topic Data MSB |   |            |            |   |              |   |   | *     | Topic   |                |              |   |              |
+|                |                |   |            |            |   |              |   |   | *OR** | Filter  |                |              |   |              |
 |                |                |   |            |            |   |              |   |   |       |         |                |              |   |              |
 |                |                |   |            |            |   |              |   |   |       | Byte 6  |                |              |   |              |
 |                |                |   |            |            |   |              |   |   |       | ... N   |                |              |   |              |
 +----------------+----------------+---+------------+------------+---+--------------+---+---+-------+---------+----------------+--------------+---+--------------+
-| Byte 7         | Topic Alias    |   |            |            |   |              |   |   |       |         |                |              |   |              |
-|                | LSB            |   |            |            |   |              |   |   |       |         |                |              |   |              |
+| Byte 7         | Topic Data LSB |   |            |            |   |              |   |   |       |         |                |              |   |              |
 +----------------+----------------+---+------------+------------+---+--------------+---+---+-------+---------+----------------+--------------+---+--------------+
 
 [Table 39: UNSUBSCRIBE packet]{.underline}
 
 An UNSUBSCRIBE packet is sent by the client to the GW to unsubscribe from named topics.
 
-#### 3.1.20.1 Length & Packet Type
+#### 3.1.19.1 Length & Packet Type
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
 description.
 
-#### 3.1.20.2 UNSUBSCRIBE Flags
+#### 3.1.19.2 UNSUBSCRIBE Flags
 
 For The UNSUBSCRIBE Flags is 1 byte field in Byte position 3 of the UNSUBSCRIBE packet.
 
 The UNSUBSCRIBE Flags field includes the following flag:
 
--   **Topic Type.** This is a 2-bit field in Bit 0 and 1 which determines the format of the topic Id value. Refer to [Table 10](#topic-alias-types)
-    for the definition of the various topic types.
+-   **Topic Type.** This is a 2-bit field in Bit 0 and 1 which determines the format of the topic Id value. Refer to [Table 10](#topic-types) for the
+    definition of the various topic types.
 
-#### 3.1.20.3 Packet Identifier
+#### 3.1.19.3 Packet Identifier
 
 Should be coded such that it can be used to identify the corresponding SUBACK packet.
 
-#### 3.1.20.4 Topic Alias or Topic Filter
+#### 3.1.19.4 Topic Data or Topic Filter
 
-Contains Fixed Length UTF-8 Encoded String topic filter, topic alias, or short topic name as indicated in the *Topic Alias Type* field.
+Contains Fixed Length UTF-8 Encoded String topic filter, topic alias (predefined or normal), or short topic name as indicated in the *Topic Type*
+field in flags. Determines the topic names which this subscription is interested in.
 
-### 3.1.21 UNSUBACK
+### 3.1.20 UNSUBACK
 
   --------------------------------------------------------------------------------------------------------------------------------------------------------
   **Bit**              **7**        **6**            **5**            **4**            **3**            **2**            **1**            **0**
@@ -2904,34 +2838,21 @@ Contains Fixed Length UTF-8 Encoded String topic filter, topic alias, or short t
 
 An UNSUBACK packet is sent by a GW to acknowledge the receipt and processing of an UNSUBSCRIBE packet.
 
-#### 3.1.21.1 Length & Packet Type
+#### 3.1.20.1 Length & Packet Type
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
 description.
 
-#### 3.1.21.2 Packet Identifier
+#### 3.1.20.2 Packet Identifier
 
 Same value as the one contained in the corresponding UNSUBSCRIBE packet.
 
-#### 3.1.21.3 Reason Code
+#### 3.1.20.3 Reason Code
 
-Byte 5 in the UNSUBACK packet holds the Reason code in response to UNSUBSCRIBE packet. The gateway/server sending the UNSUBACK packet MUST use one of
-the UNSUBACK Reason Codes
+Byte 5 in the UNSUBACK packet holds the Reason code in response to UNSUBSCRIBE packet. The UNSUBACK Reason Codes are shown in Table 9: Reason Code
+Values. The server sending the UNSUBACK packet MUST use one of the UNSUBACK Reason Codes.
 
-  ------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Dec**     **Hex**      **Reason Code Name**                                 **Description**
-  ----------- ------------ ---------------------------------------------------- ------------------------------------------------------------------------
-  0           0x00         Success                                              Processing of UNSUBSCRIBE was to gateway/server was successful
-
-  1           0x01         Congestion                                           The gateway/server notification that it is experiencing congestion
-
-  2           0x02         Invalid Topic Alias                                  The gateway/server has received an UNSUBSCRIBE packet containing a Topic
-                                                                                Alias which is has a value that is not considered valid
-  ------------------------------------------------------------------------------------------------------------------------------------------------------
-
-[Table 41: UNSUBACK Reason Code]{.underline}
-
-### 3.1.22 PINGREQ
+### 3.1.21 PINGREQ
 
   --------------------------------------------------------------------------------------------------------------------------------------------------------
   **Bit**              **7**        **6**            **5**            **4**            **3**            **2**            **1**            **0**
@@ -2949,19 +2870,19 @@ the UNSUBACK Reason Codes
 
 As with MQTT, the PINGREQ packet is an "are you alive" packet that is sent from or received by a connected client.
 
-#### 3.1.22.1 Length & Packet Type
+#### 3.1.21.1 Length & Packet Type
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
 description.
 
-#### 3.1.22.2 Client Identifier (optional)
+#### 3.1.21.2 Client Identifier (optional)
 
 Contains the client identifier (client id); this field is optional and is included by a "sleeping" client when it goes to the "awake" state and is
 waiting for packets sent by the server/gateway.
 
 [The Client Identifier MUST be a Fixed Length UTF-8 Encoded String]{.mark}. []{.mark}
 
-### 3.1.23 PINGRESP
+### 3.1.22 PINGRESP
 
   --------------------------------------------------------------------------------------------------------------------------------------------------------
   **Bit**              **7**        **6**            **5**            **4**            **3**            **2**            **1**            **0**
@@ -2982,12 +2903,12 @@ either by a connected client or the gateway. it has only a header and no variabl
 
 Moreover, a PINGRESP packet is sent by a gateway to inform a sleeping client that it has no more buffered packets for that client.
 
-#### 3.1.23.1 Length & Packet Type
+#### 3.1.22.1 Length & Packet Type
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
 description.
 
-#### 3.1.23.2 Messages Remaining
+#### 3.1.22.2 Messages Remaining
 
 The number of messages left when a client is sent back to sleep. Optional -- for use at the end of a client\'s awake period. Values can be:
 
@@ -3003,72 +2924,46 @@ The number of messages left when a client is sent back to sleep. Optional -- for
 
 [Table 44: Allowed PINGRESP continuation values]{.underline}
 
-### 3.1.24 DISCONNECT
+### 3.1.23 DISCONNECT
 
-+----------------+---------+---+-----------+---+------------+---+----------+---+------------+---+------------+---+------------------+---+---+-----------------------+
-| **Bit**        | **7**   | * |           | * |            | * |          | * |            | * |            | * |                  | * |   |                       |
-|                |         | * |           | * |            | * |          | * |            | * |            | * |                  | * |   |                       |
-|                |         | 6 |           | 5 |            | 4 |          | 3 |            | 2 |            | 1 |                  | 0 |   |                       |
-|                |         | * |           | * |            | * |          | * |            | * |            | * |                  | * |   |                       |
-|                |         | * |           | * |            | * |          | * |            | * |            | * |                  | * |   |                       |
-+================+=========+===+===========+===+============+===+==========+===+============+===+============+===+==================+===+===+=======================+
-| Byte 1         | Length  |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-+----------------+---------+---+-----------+---+------------+---+----------+---+------------+---+------------+---+------------------+---+---+-----------------------+
-| Byte 2         | Packet  |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-|                | Type    |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-+----------------+---------+---+-----------+---+------------+---+----------+---+------------+---+------------+---+------------------+---+---+-----------------------+
-|                | ***DIS  |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-|                | CONNECT |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-|                | F       |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-|                | LAGS*** |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-+----------------+---------+---+-----------+---+------------+---+----------+---+------------+---+------------+---+------------------+---+---+-----------------------+
-|                | *Re     |   |           |   |            |   |          |   | *Reason    |   | *Session   |   | *Reason String   |   |   | Retain                |
-|                | served* |   |           |   |            |   |          |   | Code       |   | Expiry     |   | Present*         |   |   |                       |
-|                |         |   |           |   |            |   |          |   | Present*   |   | Interval   |   |                  |   |   | Registrations         |
-|                |         |   |           |   |            |   |          |   |            |   | Present*   |   |                  |   |   |                       |
-+----------------+---------+---+-----------+---+------------+---+----------+---+------------+---+------------+---+------------------+---+---+-----------------------+
-| Byte 3         | 0       |   | 0         |   | 0          |   | 0        |   | X          |   | X          |   | X                |   | X |                       |
-+----------------+---------+---+-----------+---+------------+---+----------+---+------------+---+------------+---+------------------+---+---+-----------------------+
-| Byte 4         | Reason  |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-|                | Code    |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-|                | (op     |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-|                | tional) |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-+----------------+---------+---+-----------+---+------------+---+----------+---+------------+---+------------+---+------------------+---+---+-----------------------+
-| Byte 5         | Session |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-|                | Expiry  |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-|                | I       |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-|                | nterval |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-|                | MSB     |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-|                | (op     |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-|                | tional) |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-+----------------+---------+---+-----------+---+------------+---+----------+---+------------+---+------------+---+------------------+---+---+-----------------------+
-| Byte 6         | Session |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-|                | Expiry  |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-|                | I       |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-|                | nterval |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-|                | (op     |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-|                | tional) |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-+----------------+---------+---+-----------+---+------------+---+----------+---+------------+---+------------+---+------------------+---+---+-----------------------+
-| Byte 7         | Session |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-|                | Expiry  |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-|                | I       |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-|                | nterval |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-|                | (op     |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-|                | tional) |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-+----------------+---------+---+-----------+---+------------+---+----------+---+------------+---+------------+---+------------------+---+---+-----------------------+
-| Byte 8         | Session |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-|                | Expiry  |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-|                | I       |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-|                | nterval |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-|                | LSB     |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-|                | (op     |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-|                | tional) |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-+----------------+---------+---+-----------+---+------------+---+----------+---+------------+---+------------+---+------------------+---+---+-----------------------+
-| Byte 9 ... N   | Reason  |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-|                | String  |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-|                | (op     |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-|                | tional) |   |           |   |            |   |          |   |            |   |            |   |                  |   |   |                       |
-+----------------+---------+---+-----------+---+------------+---+----------+---+------------+---+------------+---+------------------+---+---+-----------------------+
+  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  **Bit**            **7**           **6**                   **5**                   **4**                   **3**               **2**                   **1**                   **0**       
+  ------------------ --------------- ------- --------------- ------- --------------- ------- --------------- ------- ----------- ------- --------------- ------- --------------- ------- --- ----------------
+  Byte 1             Length                                                                                                                                                                  
+
+  Byte 2             Packet Type                                                                                                                                                             
+
+                     ***DISCONNECT                                                                                                                                                           
+                     FLAGS***                                                                                                                                                                
+
+                     *Reserved*                                                                                      *Reason             *Session Expiry         *Reason String              *Retain
+                                                                                                                     Code                Interval                Present*                    Registrations*
+                                                                                                                     Present*            Present*                                            
+
+  Byte 3             0                       0                       0                       0                       X                   X                       X                       X   
+
+  Byte 4             Reason Code                                                                                                                                                             
+                     (optional)                                                                                                                                                              
+
+  Byte 5             Session Expiry                                                                                                                                                          
+                     Interval MSB                                                                                                                                                            
+                     (optional)                                                                                                                                                              
+
+  Byte 6             Session Expiry                                                                                                                                                          
+                     Interval                                                                                                                                                                
+                     (optional)                                                                                                                                                              
+
+  Byte 7             Session Expiry                                                                                                                                                          
+                     Interval                                                                                                                                                                
+                     (optional)                                                                                                                                                              
+
+  Byte 8             Session Expiry                                                                                                                                                          
+                     Interval LSB                                                                                                                                                            
+                     (optional)                                                                                                                                                              
+
+  Bytes 9..N         Reason String                                                                                                                                                           
+                     (optional)                                                                                                                                                              
+  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 [Table 45: DISCONNECT packet]{.underline}
 
@@ -3080,12 +2975,12 @@ Connection again by sending a CONNECT packet to the gateway or server.
 A DISCONNECT packet with a *Session Expiry Interval* field is sent by a client when it wants to go to the "asleep" state. The receipt of this packet
 is also acknowledged by the gateway by means of a DISCONNECT packet.
 
-#### 3.1.24.1 Length & Packet Type
+#### 3.1.23.1 Length & Packet Type
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
 description.
 
-#### 3.1.24.2 Disconnect Flags
+#### 3.1.23.2 Disconnect Flags
 
 The Disconnect Flags is 1 byte field located at byte 3 which contains parameters specifying the behavior of the MQTT-SN sleep on the gateway.
 
@@ -3104,38 +2999,26 @@ The Disconnect *Flags* field includes the following flags:
 [The]{.mark} [Gateway MUST validate that the reserved flags in the DISCONNECT packet are set to 0. If any of the reserved flags is not 0 it is a
 Malformed Packet.]{.mark}
 
-#### 3.1.24.3 Reason Code
+#### 3.1.23.3 Reason Code
 
-The Reason Code for the DISCONNECT control packet is optional. If provided, Byte 3 in the DISCONNECT control packet holds the Reason Code of the
-disconnection.
+The Reason Code for the DISCONNECT packet is optional. If provided, Byte 3 in the DISCONNECT control packet holds the Reason Code of the
+disconnection. If not provided, 0x00 (Normal disconnection) is assumed.
 
-  ------------------------------------------------------------------------------------------------------------------------------------------------------
-  Dec            Hex                   Reason Code Name                              Description
-  -------------- --------------------- --------------------------------------------- -------------------------------------------------------------------
-  0              0x00                  Success                                       The normal disconnection was made; Disconnect request processed
-                                                                                     successfully.
+The DISCONNECT Reason Codes are shown in Table 9: Reason Code Values. [The Client or Server sending the DISCONNECT packet MUST use one of the
+DISCONNECT Reason Code values.]{.mark}
 
-  5              0x05                  No Virtual Connection                         There is no active Virtual Connection for disconnection
-
-  149            0x95                  Packet too large                              Packet sent whose size exceeds the maximum packet size
-
-  153            0x99                  Payload format invalid                        Payload is not of the format indicated.
-  ------------------------------------------------------------------------------------------------------------------------------------------------------
-
-[Table 46: DISCONNECT Reason Code]{.underline}
-
-#### 3.1.24.4 Session Expiry Interval
+#### 3.1.23.4 Session Expiry Interval
 
 The Session Expiry Interval is a four-byte integer time interval measured in seconds. If the Session Expiry Interval is set to 0 or omitted, the
 Session is transitioned to the "***disconnected***" state. When the value of this field is greater than zero, it is deemed to be sent by a client that
 wants to transition to the "***asleep***" state, see Section 3.19 for further details. At this point the keep alive timer becomes obsolete until the
 device issues a new CONNECT.
 
-#### 3.1.24.5 Reason String
+#### 3.1.23.5 Reason String
 
 Fixed Length UTF-8 Encoded String representing a clear text description of disconnection.
 
-### 3.1.25 Forwarder Encapsulation
+### 3.1.24 Forwarder Encapsulation
 
   --------------------------------------------------------------------------------------------------------------------------------------------------------
   **Bit**                      **7**       **6**         **5**        **4**            **3**            **2**            **1**            **0**
@@ -3159,15 +3042,15 @@ As detailed in Section 4, MQTT-SN clients can also access a gateway via a forwar
 forwarder simply encapsulates the MQTT-SN frames it receives on the wireless side and forwards them unchanged to the gateway; in the opposite
 direction, it decapsulates the frames it receives from the gateway and sends them to the clients, unchanged too.
 
-#### 3.1.25.1 Length
+#### 3.1.24.1 Length
 
 1-byte long, specifies the number of bytes up to the end of the "Wireless Node Id" field (incl. the Length byte itself)
 
-#### 3.1.25.2 Packet Type
+#### 3.1.24.2 Packet Type
 
 Coded "0xFE", see Table 6
 
-#### 3.1.25.3 Ctrl
+#### 3.1.24.3 Ctrl
 
 The Ctrl byte contains control information exchanged between the GW and the forwarder.
 
@@ -3181,20 +3064,20 @@ The Ctrl byte contains control information exchanged between the GW and the forw
 
 [Table 54: Format of the ctrl byte]{.underline}
 
-#### 3.1.25.4 Radius
+#### 3.1.24.4 Radius
 
 Transmission radius (only relevant in direction gateway to forwarder)
 
-#### 3.1.25.5 Wireless Node Id
+#### 3.1.24.5 Wireless Node Id
 
 Identifies the wireless node which has sent or should receive the encapsulated MQTT-SN packet. The mapping between this Id and the address of the
 wireless node is implemented by the forwarder, if needed.
 
-#### 3.1.25.6 MQTT SN Packet
+#### 3.1.24.6 MQTT SN Packet
 
 The MQTT-SN packet, encoded according to the packet type.
 
-### 3.1.26 PROTECTION
+### 3.1.25 Protection Encapsulation
 
 ### 
 
@@ -3234,20 +3117,20 @@ The MQTT-SN packet, encoded according to the packet type.
                      Tag                                                                                                                                           
   ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-[Table 53: Format of the protection packet]{.underline}
+[Table 53: Format of the protection encapsulated MQTT-SN packet]{.underline}
 
-The PROTECTION packet provides a secure envelope for any other MQTT-SN packet (with the exception of the Forward Encapsulation packet). The fields
-provided on the protection packet provide a means by which the sender can be identified and the packet can be protected, using a number of prescribed
-protection schemes.
+Protection encapsulation provides a secure envelope for any MQTT-SN packet (with the exception of the Forward Encapsulation packet). The fields
+provided by the protection encapsulation provide a means by which the sender can be identified and the packet can be protected, using a number of
+prescribed protection schemes.
 
-The sender is the originator of the "Protected MQTT-SN Packet" and responsible for its protection. This responsibility can't be delegated to a third
-entity like a Forwarder.
+The sender is the originator of the "Protected MQTT-SN Packet" and responsible for its protection. This responsibility MUST NOT be delegated to a
+third entity like a Forwarder.
 
-The sender identification is required as the sender and the receiver of the PROTECTION packet must have access to the same shared key to be used
+The sender identification is required as the sender and the receiver of the protected packet must have access to the same shared key to be used
 directly or after derivation. The authentication of the sender and the receiver, their authorizations and the provisioning of the shared keys used to
-protect integrity and optionally confidentiality of the PROTECTION packet content are out of scope for this technical proposal.
+protect integrity and optionally confidentiality of the protected packet content are out of scope.
 
-A PROTECTION packet, like any other one, can be the payload of a Forward Encapsulation packet.
+A protected packet, like any other one, can be the payload of a Forwarder Encapsulated packet.
 
 **//TODO - Break out the conformance aspects of this paragraph from recommendations.**
 
@@ -3264,16 +3147,16 @@ key (indexed by its GwId) is available.]{.mark}
 [If the GW is not enrolled to the Client (so the Client has no access to a key shared with it on the basis of its GwId) and the Client and GW are not
 in a private network, it is recommended for the Client to open a DTLS session and process only MQTT-SN packets received over it.]{.mark}
 
-#### 3.1.26.1 Length
+#### 3.1.25.1 Length
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
 description.
 
-#### 3.1.26.2 Packet Type
+#### 3.1.25.2 Packet Type
 
 Coded "0x1E", see Table 63
 
-#### 3.1.26.3 Protection Flags
+#### 3.1.25.3 Protection Flags
 
 The PROTECTION Flags is 1 byte field in Byte position 3 of the packet, specifying the properties of the PROTECTION.
 
@@ -3328,7 +3211,7 @@ The PROTECTION Flags field includes the following flags:
 
     -   if 0x0, the monotonic counter field is not present.
 
-#### 3.1.26.4 Protection Scheme
+#### 3.1.25.4 Protection Scheme
 
 > A (1 byte) field located at byte 4 should contain one of the not Reserved indexes in the following table. In general two types of protection scheme
 > are considered: **Authentication only** (like HMAC or CMAC) and **AEAD** (Authenticated Encryption with Associated Data, like GCM, CCM or
@@ -3404,7 +3287,7 @@ The PROTECTION Flags field includes the following flags:
 9.  ChaCha20/Poly1305 requires a 12 bytes nonce as indicated in https://www.rfc-editor.org/rfc/rfc8152#section-10.3 obtained by performing SHA256
     truncated to 96 bit of the sequence Byte 1 to Byte R (all packet fields until Protected MQTT-SN Packet)
 
-#### 3.1.26.5 Sender Id
+#### 3.1.25.5 Sender Id
 
 Located at Bytes 5 - 12 the Sender Id field (8 bytes) should contain:
 
@@ -3437,7 +3320,7 @@ If the message is originated by the ***Gateway***:
 > leftmost 64 bits (8 bytes for each registered ClientID) for the clients having an active session and store a list of authorized Sender Ids for the
 > clients not capable to establish sessions.*
 
-#### 3.1.26.6 Random
+#### 3.1.25.6 Random
 
 **[Located at Byte 13 - 16]{.underline}** , the "**Random**" field (4 bytes) should contain a random number (not guessable) generated at the
 PROTECTION packet creation .
@@ -3453,7 +3336,7 @@ PROTECTION packet creation .
 > choosing a unique IV of 12 bytes for every encryption performed with the same key
 > ([[https://en.wikipedia.org/wiki/Galois/Counter_Mode]{.underline}](https://en.wikipedia.org/wiki/Galois/Counter_Mode)).*
 
-#### 3.1.26.7 Crypto Material
+#### 3.1.25.7 Crypto Material
 
 Located at Byte (17 - P), the optional field "**Crypto Material**" contains [0, 2, 4 or 12 bytes of crypto material that when defined it can be used
 to derive, from a shared master secret, the same keys on the two endpoints and/or, when filled partially or totally with a random value, to further
@@ -3462,20 +3345,20 @@ Material field can be partially filled with a random value of 9 bytes (the remai
 bytes used only once recommended for the nonce used by CCM or it can be partially filled with a random value of 8 bytes in order to reach the 12 bytes
 used only once recommended for the IV/nonce used by GCM or ChaCha20/Poly1305 .]{.mark}
 
-#### 3.1.26.8 Monotonic Counter
+#### 3.1.25.8 Monotonic Counter
 
 Located at Byte Byte (Q - R), the optional field "**Monotonic Counter**" contains [0, 2 or 4 byte number that when defined, is increased by the Client
 or GW for every packet sent. The counters should be considered independent of session or destination. E.g. The UE will keep a counter independently
 from the GW.]{.mark}
 
-#### 3.1.26.9 Protected MQTT-SN Packet
+#### 3.1.25.9 Protected MQTT-SN Packet
 
 Located at Byte (S - T), the field "**Protected MQTT-SN Packet**" contains the MQTT-SN packet that is being secured, encoded as per its packet type.
 
 The "Protected MQTT-SN Packet" should not be a "Forwarder-Encapsulation packet" as the shared key used directly or after derivation for the protection
 must belong to the originator of the content and not to a Forwarder that, in general, is not able to securely identify the originator.
 
-#### 3.1.26.10 Authentication Tag
+#### 3.1.25.10 Authentication Tag
 
 Located at Byte (U - N), the field "**Authentication tag**" field has a length depending on the "Authentication tag length" flag and it is calculated,
 on the basis of the "Protection scheme" selected in Byte 4, on ALL the preceding fields.
@@ -3487,10 +3370,6 @@ same as those defined by MQTT. In the following we will focus on those points th
 
 ## 4.1 Example MQTT-SN Architecture(s)
 
-> ![Diagram Description automatically generated](media/image12.png){width="6.5in" height="6.580555555555556in"}
-
-Figure 1: MQTT-SN Architecture
-
 The architecture of MQTT-SN is shown in figure 1. There are three kinds of MQTT-SN components, MQTT-SN *clients*, MQTT-SN *gateways*, and MQTT-SN
 *forwarders*. MQTT-SN clients connect themselves to an MQTT server/broker via an MQTT-SN Gateway using the MQTT-SN protocol. An MQTT-SN Gateway may or
 may not be integrated with a MQTT server. Where an MQTT broker is involved, the MQTT protocol is used between the MQTT broker and the MQTT-SN Gateway.
@@ -3500,8 +3379,13 @@ MQTT-SN clients can also access a Gateway via a forwarder in case the Gateway is
 encapsulates the MQTT-SN frames it receives on the wireless side and forwards them unchanged to the Gateway; in the opposite direction, it
 decapsulates the frames it receives from the gateway and sends them to the clients, unchanged too.
 
-We can differentiate between three types of MQTT-SN server-side endpoint, namely transparent Gateway, aggregating Gateway and Terminating Gateway, see
-Fig. 1. They are explained in the following sections..
+> **Non-Normative Comment**
+>
+> The architectures described below are meant as examples and are not exhaustive.
+>
+> ![](media/image3.png){width="6.265625546806649in" height="5.819562554680665in"}
+
+Figure 1: MQTT-SN Architecture
 
 ### 4.1.1 Transparent Gateway
 
@@ -3515,7 +3399,7 @@ Although the implementation of the transparent Gateway is simpler when compared 
 support a separate connection for each active client. Some MQTT server implementations might impose a limitation on the number of concurrent
 connections that they support.
 
-![A close up of a map Description automatically generated](media/image3.png){width="5.3168810148731405in" height="1.9801979440069992in"}
+![A close up of a map Description automatically generated](media/image8.png){width="5.3168810148731405in" height="1.9801979440069992in"}
 
 Figure 2: Transparent and Aggregating Gateways
 
@@ -3526,29 +3410,24 @@ exchanges between a MQTT-SN client and an aggregating Gateway end at the Gateway
 the Server. Although its implementation is more complex than the one of a transparent Gateway, an aggregating Gateway may be helpful in case of WSNs
 with a very large number of SAs because it reduces the number of MQTT connections that the Gateway must support concurrently.
 
-### 4.1.3 Terminating SN Broker
-
-The Terminating SN Broker is the consumer of the data sent by the MQTT-SN Client, which directly brokers the traffic as if it were a fully compliant
-MQTT Broker. If the PROTECTION packet is used, it is responsible for the enrollment of the MQTT-SN Clients.
-
 ## 4.2 Networks & Transport Layers
 
-The MQTT-SN V2.0 protocol requires an underlying transport to create a Virtual Connection, this carries Packets from a Client to a Gateway and a
-Gateway to a Client.\
+The MQTT-SN protocol requires an underlying transport to create a Virtual Connection, this carries Packets from a Client to a Gateway and a Gateway to
+a Client.\
 The underlying transport may also broadcast Packets from a Client to all Gateways and from a Gateway to all Clients.\
-These MQTT-SN V2.0 Packets which must be received unaltered and complete.
+These MQTT-SN Packets which must be received unaltered and complete.
 
 -   The underlying transport does not need to be reliable, it is expected that Packets will be lost or delivered out of order.
 
 -   If the network might deliver a Packet more than once, then it is highly recommended that the PROTECTION packet Monotonic Counter is used to
     eliminate the duplicates.
 
--   The MQTT-SN V2.0 protocol will tolerate out of order Packets and it will retransmit lost Packets.
+-   The MQTT-SN protocol will tolerate out of order Packets and it will retransmit lost Packets.
 
--   The MQTT-SN V2.0 does not perform error correction. If a corrupted or partial packet is received it will cause a protocol error.
+-   The MQTT-SN does not perform error correction. If a corrupted or partial packet is received it will cause a protocol error.
 
--   The MQTT-SN V2.0 implementation may use either the origin network address or the sender identifier in the PROTECTION Packet to determine the
-    identity of the Virtual Connection.
+-   The MQTT-SN implementation may use either the origin network address or the sender identifier in the PROTECTION Packet to determine the identity
+    of the Virtual Connection.
 
 -   The networks may be connectionless, the Virtual Connections do not need to have an event that signals when they begin or end.
 
@@ -3556,8 +3435,8 @@ These MQTT-SN V2.0 Packets which must be received unaltered and complete.
 
 > **Non-normative comment**
 >
-> UDP as defined in \[RFC0768\] can be used for MQTT-SN v2.0 if the Maximum Transmission Unit is configured to be more than the MQTT-SN Packet size
-> used and no Packet fragmentation occurs.\
+> UDP as defined in \[RFC0768\] can be used for MQTT-SN if the Maximum Transmission Unit is configured to be more than the MQTT-SN Packet size used
+> and no Packet fragmentation occurs.\
 > Depending on the network configuration, UDP can duplicate Packets. If this can happen, the PROTECTION Packet monotonic counter should be used.
 >
 > Examples of possible consequences of not removing duplicate Packets are:\
@@ -3627,16 +3506,16 @@ increased by the exponential backoff algorithm described in the appendix.
 
 ## 4.4 Session Establishment
 
-As with MQTT, an MQTT-SN client needs to set up a session on the gateway, unless it is publishing ONLY using OUT OF BAND packets. The procedure for
-setting up a session with a gateway is illustrated in Fig. 3a and 3b.
+As with MQTT, an MQTT-SN client needs to set up a session on the gateway, unless it is publishing ONLY using PUBLISH WITHOUT SESSION packets. The
+procedure for setting up a session with a gateway is illustrated in Fig. 3a and 3b.
 
 The CONNECT packet contains flags to communicate to the gateway that Auth interactions should take place.
 
-![](media/image6.png){width="3.344815179352581in" height="2.4173436132983377in"}
+![](media/image5.png){width="3.344815179352581in" height="2.4173436132983377in"}
 
 Figure 3a: Connect procedure (without Auth flag set or no further authentication data required)
 
-![](media/image11.png){width="3.345165135608049in" height="2.963542213473316in"}
+![](media/image7.png){width="3.345165135608049in" height="2.963542213473316in"}
 
 Figure 3b: Connect procedure (with Auth flag set and additional authentication data required)
 
@@ -3697,7 +3576,7 @@ Variable Header and is acknowledged by a PUBACK packet.
 The Packet Identifier becomes available for reuse once the sender has received the PUBACK packet.
 
 **[In a difference to MQTT 5, the sender is NOT permitted to send further PUBLISH packets with different Packet Identifiers while it is waiting to
-receive acknowledgements. At any given time a sender must ONLY have 1 outstanding application message inflight.]{.mark}**
+receive acknowledgements.]{.mark}** **[At any given time a sender must ONLY have 1 outstanding application message inflight.]{.mark}**
 
 [In the QoS 1 delivery protocol, the receiver]{.mark}
 
@@ -3754,7 +3633,7 @@ associated with QoS 2.
 The Packet Identifier becomes available for reuse once the sender has received the PUBCOMP packet or a PUBREC with a Reason Code of 0x80 or greater.
 
 **[In this version of MQTT-SN and in contrast to MQTT 5.0, the sender MUST only send further PUBLISH packets with different Packet Identifiers when it
-is not waiting to receive acknowledgements. At any given time a sender has only 1 outstanding application message inflight.]{.mark}**
+is not waiting to receive acknowledgements.]{.mark}** **[At any given time a sender has only 1 outstanding application message inflight.]{.mark}**
 
 [In the QoS 2 delivery protocol, the receiver]{.mark}:
 
@@ -3771,42 +3650,6 @@ is not waiting to receive acknowledgements. At any given time a sender has only 
 
 -   [After it has sent a PUBCOMP, the receiver MUST treat any subsequent PUBLISH packet that contains that Packet Identifier as being a new
     Application Message]{.mark}
-
-### 4.5.4 QoS -1: Constrained client delivery
-
-This feature is defined for very simple client implementations which only support a limited subset of features. There is no requirement to set up nor
-tear down a Virtual Connection, no registration nor subscription. The sender just sends its PUBLISH packets to its counterpart (whose address is known
-a-priori) and forgets them. It does not care whether the address is correct, whether the counterpart is alive, or whether the packets arrive. Only the
-following parameter values are allowed for a PUBLISH packet with QoS level -1:
-
--   QoS flag: set to "0b11"
-
--   Topic Alias Type flag: either "0b01" for pre-defined topic alias, "0b10" for short topic name, "0b11" for full topic names.
-
--   Topic Alias or Topic Name field: value of the pre-defined topic alias or of the short topic or of the full topic name
-
--   Data field: the data to be published.
-
-Whilst no Virtual Connection is mandated for QoS -1 delivery, a constrained client who has previously connected and established a session may wish to
-PUBLISH at QoS -1 during any of the lifecycle states. If the GW can determine the origin of a QoS -1 packet, it should not impact/change any existing
-session except for resetting the keep-alive timer.
-
-### 4.5.5 OUT OF BAND: Constrained client delivery
-
-This feature is defined for very simple client implementations which only support a limited subset of features. There is no requirement to set up nor
-tear down a Virtual Connection, no registration nor subscription. The sender just sends its PUBLISH packets to its counterpart (whose address is known
-a-priori) and forgets them. It does not care whether the address is correct, whether the counterpart is alive, or whether the packets arrive. Only the
-following parameter values are allowed for a PUBLISH OUT OF BAND packet:
-
--   Topic Alias Type flag: either "0b01" for pre-defined topic alias, "0b10" for short topic name, "0b11" for full topic names.
-
--   Topic Alias or Topic Name field: value of the pre-defined topic alias or of the short topic or of the full topic name
-
--   Data field: the data to be published.
-
-Whilst no Virtual Connection is mandated for OUT OF BAND delivery, a constrained client who has previously connected and established a session may
-wish to PUBLISH OUT OF BAND during any of the lifecycle states. If the gateway can determine the origin of an OUT OF BAND packet, it should not
-impact/change any existing session except for resetting the keep-alive timer.
 
 ## 4.6 Client states
 
@@ -3830,7 +3673,7 @@ the "Sleeping clients" section.
 |                            | packets. Its state is supervised by the gateway with the associated "keep alive"      |                              |
 |                            | timers. From here the client may transition to **ASLEEP** (by way of DISCONNECT with  | **LOST**                     |
 |                            | a session expiry interval \> 0), **DISCONNECTED** (by way of DISCONNECT with a        |                              |
-|                            | session expiry of 0) or LOST (by way of supervised gateway timers).                   |                              |
+|                            | session expiry of 0) or **LOST** (by way of supervised gateway timers).               |                              |
 +----------------------------+---------------------------------------------------------------------------------------+------------------------------+
 | **ASLEEP**                 | The client is engaged in an ongoing session. It cannot receive packets; it can send   | **AWAKE**                    |
 |                            | packets. The gateway should not expect a response from the client in this state until |                              |
@@ -3850,13 +3693,24 @@ the "Sleeping clients" section.
 |                            | re-established a session with the GW by way of a CONNECT. The gateway **must not**    |                              |
 |                            | attempt to send packets to a client in the **LOST** state**.** Any packets received   |                              |
 |                            | from a client whose state is **LOST** should not be processed and a DISCONNECT with   |                              |
-|                            | error should be sent in response, unless the packets received are PUBLISH OUT OF BAND |                              |
-|                            | or PUBLISH -1. Session state may exist on the GW for a client in the **LOST** state.  |                              |
+|                            | error should be sent in response, unless the packets received are PUBLISH WITHOUT     |                              |
+|                            | SESSION or PUBLISH -1. Session state may exist on the GW for a client in the **LOST** |                              |
+|                            | state.                                                                                |                              |
 +----------------------------+---------------------------------------------------------------------------------------+------------------------------+
 
-![](media/image10.png){width="6.5in" height="6.666666666666667in"}
+![](media/image4.png){width="6.5in" height="6.944444444444445in"}
 
 Figure 4: Client's state transition diagram
+
+### 4.6.1 Gateway timers
+
+The following timers must be managed by a Gateway per Client to handle the different Client states:
+
+-   "Keep Alive" timer based on the value defined in the CONNECT packet. If expired, a Client is moved from Active to Lost state or from Asleep to
+    Lost state or from Awake to Lost state.
+
+-   "Session Expiry" timer based on the value defined in the CONNECT or the DISCONNECT packet. If expired, the session state associated with the
+    Client can be removed.
 
 ## 4.7 Session state
 
@@ -4006,8 +3860,6 @@ Regardless of the requested QoS level the client may receive in response to its 
 
 -   The *ReasonCode= "Congestion"*: in this the client shall stop publishing toward the gateway for at least the time *T~WAIT~*.
 
--   
-
 At any point in time a client may have only one QoS level 1 or 2 PUBLISH packet outstanding in each direction; i.e. it has to wait for the termination
 of this PUBLISH packet exchange before it could start a new level 1 or 2 transaction
 
@@ -4104,9 +3956,9 @@ PINGRESP. The PINGREQ packet is retransmitted, and timer Tretry restarted when t
 excessive retransmission of the PINGREQ packet (e.g. if it loses the gateway), the client should limit the retransmission of the PINGREQ packet (e.g.
 by a retry counter) and go back to sleep when the limit is reached and it still does not receive a PINGRESP packet.
 
-From the *asleep* or *awake* state, a client can return either to the *active* state by sending a CONNECT packet or to the *disconnected* state by
-sending a normal DISCONNECT packet (i.e. without session expiry interval field). The client can also modify its sleep configuration by sending a
-DISCONNECT packet with a new value of the session expiry interval.
+From the *asleep* state, a client can return either to the *active* state by sending a CONNECT packet or to the *disconnected* state by sending a
+normal DISCONNECT packet (i.e. without session expiry interval field). The client can also modify its sleep configuration by sending a DISCONNECT
+packet with a new value of the session expiry interval.
 
 Note that a sleeping client should go the *awake* state only if it just wants to check whether the server/gateway has any messages buffered for it and
 return as soon as possible to the *asleep* state without sending any packets to the server/gateway. Otherwise, it should return to the *active* state
@@ -4119,7 +3971,7 @@ gateway must re-register any topic alias's during the AWAKE state, which will la
 >
 > The gateway should attempt to make the best effort to reuse the same topic alias' mappings that existed during any initial associated ACTIVE states.
 >
-> ![](media/image5.png){width="4.615764435695538in" height="7.453125546806649in"}
+> ![](media/image1.png){width="4.615764435695538in" height="7.453125546806649in"}
 
 Figure 5: Awake ping packet flush
 
@@ -4190,10 +4042,10 @@ Server.
 
 ## 4.22 Optional Features
 
-The ADVERTISE, SEARCHGW, GWINFO and PUBLISH MINUS -1 packet type support is optional. For instance, it is not required if the MQTT-SN Gateway is an
-Internet node reachable via a public IP address.
+The ADVERTISE, SEARCHGW, GWINFO and PUBLISH WITHOUT SESSION packet type support is optional. For instance, it is not required if the MQTT-SN Gateway
+is an Internet node reachable via a public IP address.
 
-The Forwarder Encapsulation packet type support is optional. For instance, it is not required if the MQTT-SN Clients are able to reach directly a
+The Forwarder Encapsulation packet type support is optional. For instance, it is not required if the MQTT-SN Clients are able to directly reach a
 MQTT-SN Gateway.
 
 The PROTECTION packet type support is optional. For instance, it is not required if the MQTT-SN Gateway and the MQTT-SN Clients interact over a secure
@@ -4344,7 +4196,81 @@ subject area.]{.mark}
 
 [\[Full reference citation\]]{.mark}
 
-# Appendix B. Security and Privacy Considerations
+# Appendix B. Backwards Compatibility
+
+### B.1 PUBLISH QoS -1 (Packet from MQTT-SN 1.2)
+
+  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  **Bit**         **7**             **6**                 **5**                   **4**          **3**                     **2**                           **1**          **0**   
+  --------------- ----------------- ------- ------------- ------------ ---------- -------------- ------- ----------------- ---------------------- -------- -------------- ------- ---------------
+  Byte 1          Length                                                                                                                                                          
+
+  Byte 2          Packet Type                                                                                                                                                     
+                  (0x0C)                                                                                                                                                          
+
+                  ***PUBLISH-M1                                                                                                                                                   
+                  FLAGS***                                                                                                                                                        
+
+                  *DUP*                     *QoS*                      *Retain*                          *Reserved*        *Reserved*             *Topic                          
+                                                                                                                                                  Id Type*                        
+
+  Byte 3          *X*                       *X*           *X*          *X*                               *0*               *0*                    *X*                             *X*
+
+  Byte 4          Topic Id MSB                                                                                                                                                    
+
+  Byte 5          Topic Id LSB                                                                                                                                                    
+
+  Byte 6          0x00 -- Fixed                                                                                                                                                   
+                  Field Value                                                                                                                                                     
+
+  Byte 7          0x00 -- Fixed                                                                                                                                                   
+                  Field Value                                                                                                                                                     
+
+  Byte 8 .. N     Data Or (Full                                                                                                                                                   
+                  Topic Name +                                                                                                                                                    
+                  Data)                                                                                                                                                           
+  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+[Table 27: PUBLISH packet]{.underline}
+
+This packet is used by both clients and gateways to publish data to a topic.
+
+> **Non-Normative Comment**
+>
+> If the Transport Layer supports broadcast, like UDP/IP, the PUBLISH MINUS -1 packet is generally sent using the broadcast address as destination.
+
+#### B.1.1 Length & Packet Type
+
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
+description.
+
+#### B.1.2 PUBLISH Flags
+
+The PUBLISH Flags field is 1-byte located in Byte 3 position of the PUBLISH control packet.
+
+The PUBLISH Flags includes the following flags:
+
+-   **Topic Id Type**. This is a 2-bit field in Bit 0 and 1 which determines the format of the topic Id value.
+
+-   **QoS**: This is a 2-bit field stored in Bit 5 and 6. QoS has the same meaning as with MQTT indicating the Quality of Service. Set to "0b00" for
+    QoS 0, "0b01" for QoS 1, "0b10" for QoS 2, and "0b11" for QoS -1. For a detailed description of the various Quality Of Service levels please refer
+    to the operational behavior section.
+
+-   **DUP**: 1 bit field stored in Bit 7 and has the same meaning as with MQTT. It notes the duplicate delivery of packets. If the DUP flag is set to
+    "0", it signifies that the packet is sent for the first time. If the DUP flag is set to "1", it signifies that the packet was retransmitted.
+
+-   **Retain**: 1 bit field stored in Bit 4 and has the same meaning as with MQTT. The field signifies whether the existing retained message for this
+    topic is replaced or kept.
+
+#### B.1.3 Topic Id
+
+Contains the topic id value or the short topic name for which the data is published.
+
+#### B.1.4 Data
+
+The published data.
+
+# Appendix C. Security and Privacy Considerations
 
 \[[Optional section.]{.mark}\]
 
@@ -4390,7 +4316,7 @@ including:
 
 [\[NSAB\]](#is565v) NSA Suite B Cryptography
 
-# Appendix C. Acknowledgments
+# Appendix D. Acknowledgments
 
 \[[Required section.]{.mark}\]
 
@@ -4402,7 +4328,7 @@ names from the list by request.]{.mark}
 
 []{.mark}
 
-## C.1 Special Thanks
+## D.1 Special Thanks
 
 [Note: This is an optional subsection to call out contributions from TC members. If a TC wants to thank non-TC members then they should avoid using
 the term \"contribution\" and instead thank them for their \"expertise\" or \"assistance\".]{.mark}
@@ -4413,7 +4339,7 @@ Substantial contributions to this document from the following individuals are gr
 
 \[Participant Name, Affiliation \| Individual Member\]
 
-## C.2 Participants
+## D.2 Participants
 
 [Note: A TC can determine who they list here, however, Observers must not be listed. It is common practice for TCs to list everyone that was part of
 the TC during the creation of the document, but this is ultimately a TC decision on who they want to list and not list.]{.mark}
@@ -4423,7 +4349,7 @@ acknowledged:
 
 \[Participant Name, Affiliation \| Individual Member\]
 
-# [Appendix D. Revision History]{.mark}
+# [Appendix E. Revision History]{.mark}
 
 [\[Optional section.\]]{.mark}
 
@@ -4590,7 +4516,7 @@ before submitting for publication.]{.mark}
 |                 |                                 |                          | [Introduction titles changed to better sign post where the        |
 |                 |                                 |                          | information resides in the document]{.mark}                       |
 +-----------------+---------------------------------+--------------------------+-------------------------------------------------------------------+
-| [WD-26]{.mark}  | [May 2023]{.mark}               | [\[Simon Johnson, Davide | [Backwards compatible PUBLISH -1, new OOB Publish message to      |
+| [WD-26]{.mark}  | [May 2023]{.mark}               | [\[Simon Johnson, Davide | [Backwards compatible PUBLISH -1, new OOS Publish message to      |
 |                 |                                 | Lenzarini\]]{.mark}      | repace it. Removal of security section to allow to                |
 |                 |                                 |                          | rewrite.]{.mark}                                                  |
 +-----------------+---------------------------------+--------------------------+-------------------------------------------------------------------+
@@ -4604,16 +4530,28 @@ before submitting for publication.]{.mark}
 |                 |                                 | Stefan Hagen\]]{.mark}   | footnotes with simple text tags and a subsequent notes            |
 |                 |                                 |                          | listing.]{.mark}                                                  |
 +-----------------+---------------------------------+--------------------------+-------------------------------------------------------------------+
+|                 | [February 2024]{.mark}          | [\[Ian Craggs, Simon     | [Issue 560 resolution - full reason code table and add reason     |
+|                 |                                 | Johnson\]]{.mark}        | code fields to PUBREC, PUBREL and PUBCOMP. Duplicate reason code  |
+|                 |                                 |                          | tables removed from packet descriptions.]{.mark}                  |
+|                 |                                 |                          |                                                                   |
+|                 |                                 |                          | [Will Data Sent in CONNECT]{.mark}                                |
+|                 |                                 |                          |                                                                   |
+|                 |                                 |                          | [Auth Data Sent in CONNECT & CONNACK]{.mark}                      |
+|                 |                                 |                          |                                                                   |
+|                 |                                 |                          | [Suback granted QoS 0,1,2 now reason codes not flags.]{.mark}     |
+|                 |                                 |                          |                                                                   |
+|                 |                                 |                          | [Moved PUBLISH -1 to new Backward compatibility appendix]{.mark}  |
++-----------------+---------------------------------+--------------------------+-------------------------------------------------------------------+
 
-# **Appendix E.** Implementation Notes
+# **Appendix** F**.** Implementation Notes
 
-##  E.1 Support of QoS Level -1 and OUT OF BAND
+##  F.1 Support of PUBLISH WITHOUT SESSION
 
-Because PUBLISH packets with QoS level -1 and OUT OF BAND could be sent at any time by clients (even with no Virtual Connection setup) a transparent
-GW needs to maintain for those packets a dedicated MQTT connection with the server. An aggregating or hybrid GW may use any aggregating MQTT
-connection to forward those packets to the server.
+Because PUBLISH WITHOUT SESSION could be sent at any time by clients (even with no Virtual Connection setup) a transparent GW needs to maintain for
+those packets a dedicated MQTT connection with the server. An aggregating or hybrid GW may use any aggregating MQTT connection to forward those
+packets to the server.
 
-## E.2 "Best practice" values for timers and counters
+## F.2 "Best practice" values for timers and counters
 
 Table 30 shows the "best practice" values for the timers and counters defined in this specification.
 
@@ -4643,13 +4581,13 @@ Table 30: "Best practice" values for timers and counters
 The "tolerance" of the sleep and keep-alive timers at the server/gateway depends on the values indicated by the clients. For example, the timer values
 should be 10% higher than the indicated values for periods larger than 1 minute, and 50% higher if less.
 
-## E.3 Mapping of Topic Alias to Topic Names and Topic Filters
+## F.3 Mapping of Topic Alias to Topic Names and Topic Filters
 
 It is strongly recommended that in the gateway the mapping table between topic alias and topic names is implemented per client (and not by a single
 shared pool between all clients), to reduce the risk of an incorrect topic alias from a client matching another client's valid topic, and thus causing
 a publication to the wrong topic, which could potentially have disastrous consequences.
 
-## E.4 Exponential Backoff
+## F.4 Exponential Backoff
 
 The following error handling strategy should be used for networked devices to avoid overwhelming recipient network entities whilst providing for
 efficient reestablishment handling. The client shall periodically retry a failed packet with increasing delays between attempts, constrained by a max
@@ -4678,7 +4616,7 @@ set to some reasonable value (suggested 1000 as in the example above).
 The random number helps to avoid cases where many clients are synchronized by some situation, and all retry at once. The value of the random number
 ran is recalculated after each retry. The random number (ran) should be no larger than the scaling factor (sf).
 
-# Appendix F. Notices
+# Appendix G. Notices
 
 \[[Required section. Do not change.]{.mark}\]
 
