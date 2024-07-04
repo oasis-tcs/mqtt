@@ -138,9 +138,9 @@ information please see the full Notices section in an Appendix below.
 >
 > [1.3 Organization of the MQTT-SN specification 10](#organization-of-the-mqtt-sn-specification)
 >
-> [1.4 Glossary 10](#glossary)
+> [1.4 Glossary 10](#terminology)
 >
-> [8.1 12](#section-1)
+> [8.1 12](#_1ci93xb)
 >
 > [1.4 Data representation 12](#data-representation)
 >
@@ -176,7 +176,7 @@ information please see the full Notices section in an Appendix below.
 >
 > [2.3.5 Topic Name 21](#topic-name)
 >
-> [2.3.6 Will Packet 21](#will-packet)
+> [2.3.6 Will Packet 21](#will-payload)
 >
 > [2.3.7 Will Topic 21](#will-topic)
 >
@@ -236,27 +236,27 @@ information please see the full Notices section in an Appendix below.
 >
 > [3.1.5.5 Assigned Client Identifier 31](#assigned-client-identifier)
 >
-> [3.1.6 WILLTOPICREQ 31](#willtopicreq)
+> [3.1.6 WILLTOPICREQ 31](#_319y80a)
 >
-> [3.1.7 WILLMSGREQ 31](#willmsgreq)
+> [3.1.7 WILLMSGREQ 31](#_1gf8i83)
 >
-> [3.1.8 WILLTOPIC 32](#willtopic)
+> [3.1.8 WILLTOPIC 32](#_40ew0vw)
 >
-> [3.1.8.1 Length & Packet Type 32](#length-packet-type-5)
+> [3.1.8.1 Length & Packet Type 32](#_2fk6b3p)
 >
-> [3.1.8.2 WILLTOPIC Flags 32](#willtopic-flags)
+> [3.1.8.2 WILLTOPIC Flags 32](#_upglbi)
 >
-> [3.1.8.3 Will Topic 32](#will-topic-1)
+> [3.1.8.3 Will Topic 32](#_3ep43zb)
 >
-> [3.1.9 WILLMSG 32](#willmsg)
+> [3.1.9 WILLMSG 32](#_1tuee74)
 >
-> [3.1.9.1 Length & Packet Type 33](#length-packet-type-6)
+> [3.1.9.1 Length & Packet Type 33](#_4du1wux)
 >
-> [3.1.9.2 Will Message 33](#will-message)
+> [3.1.9.2 Will Message 33](#_2szc72q)
 >
 > [3.1.10 AUTH 33](#auth)
 >
-> [3.1.10.1 Length & Packet Type 33](#length-packet-type-7)
+> [3.1.10.1 Length & Packet Type 33](#length-packet-type-5)
 >
 > [3.1.10.2 Reason Code 33](#reason-code-2)
 >
@@ -268,7 +268,7 @@ information please see the full Notices section in an Appendix below.
 >
 > [3.1.11 REGISTER 34](#register)
 >
-> [3.1.11.1 Length & Packet Type 34](#length-packet-type-8)
+> [3.1.11.1 Length & Packet Type 34](#length-packet-type-6)
 >
 > [3.1.11.2 Topic Alias 34](#topic-alias)
 >
@@ -278,7 +278,7 @@ information please see the full Notices section in an Appendix below.
 >
 > [3.1.12 REGACK 35](#regack)
 >
-> [3.1.12.1 Length & Packet Type 35](#length-packet-type-9)
+> [3.1.12.1 Length & Packet Type 35](#length-packet-type-7)
 >
 > [3.1.12.2 REGACK Flags 35](#regack-flags)
 >
@@ -292,7 +292,7 @@ information please see the full Notices section in an Appendix below.
 >
 > [3.1.14 PUBLISH MINUS -1 (Reference from 1.2) 37](#publish-minus--1-reference-from-1.2)
 >
-> [3.1.14.1 Length & Packet Type 37](#length-packet-type-10)
+> [3.1.14.1 Length & Packet Type 37](#length-packet-type-8)
 >
 > [3.1.14.2 PUBLISH Flags 37](#publish-flags)
 >
@@ -302,7 +302,7 @@ information please see the full Notices section in an Appendix below.
 >
 > [3.1.15 PUBLISH OUT OF BAND 38](#publish-out-of-band)
 >
-> [3.1.15.1 Length & Packet Type 38](#length-packet-type-11)
+> [3.1.15.1 Length & Packet Type 38](#length-packet-type-9)
 >
 > [3.1.15.2 PUBLISH Flags 38](#publish-flags-1)
 >
@@ -312,7 +312,7 @@ information please see the full Notices section in an Appendix below.
 >
 > [3.1.16 PUBLISH (used for QoS 0) 39](#publish-used-for-qos-0)
 >
-> [3.1.16.1 Length & Packet Type 39](#length-packet-type-12)
+> [3.1.16.1 Length & Packet Type 39](#length-packet-type-10)
 >
 > [3.1.16.2 PUBLISH Flags 39](#publish-flags-2)
 >
@@ -322,7 +322,7 @@ information please see the full Notices section in an Appendix below.
 >
 > [3.1.17 PUBLISH (used for QoS 1 & 2) 41](#publish-used-for-qos-1-2)
 >
-> [3.1.17.1 Length & Packet Type 41](#length-packet-type-13)
+> [3.1.17.1 Length & Packet Type 41](#length-packet-type-11)
 >
 > [3.1.17.2 PUBLISH Flags 41](#publish-flags-3)
 >
@@ -336,7 +336,7 @@ information please see the full Notices section in an Appendix below.
 >
 > [3.1.18 PUBACK -- Publish Acknowledgement 42](#puback-publish-acknowledgement)
 >
-> [3.1.18.1 Length & Packet Type 42](#length-packet-type-14)
+> [3.1.18.1 Length & Packet Type 42](#length-packet-type-12)
 >
 > [3.1.18.2 Packet Id 42](#packet-id-3)
 >
@@ -344,25 +344,25 @@ information please see the full Notices section in an Appendix below.
 >
 > [3.1.19 PUBREC (QoS 2 delivery part 1) 43](#pubrec-qos-2-delivery-part-1)
 >
-> [3.1.19.1 Length & Packet Type 43](#length-packet-type-15)
+> [3.1.19.1 Length & Packet Type 43](#length-packet-type-13)
 >
 > [3.1.19.2 Packet Id 43](#packet-id-4)
 >
 > [3.1.20 PUBREL (QoS 2 delivery part 2) 43](#pubrel-qos-2-delivery-part-2)
 >
-> [3.1.20.1 Length & Packet Type 44](#length-packet-type-16)
+> [3.1.20.1 Length & Packet Type 44](#length-packet-type-14)
 >
 > [3.1.20.2 Packet Id 44](#packet-id-5)
 >
 > [3.1.21 PUBCOMP (QoS 2 delivery part 3) 44](#pubcomp-qos-2-delivery-part-3)
 >
-> [3.1.21.1 Length & Packet Type 44](#length-packet-type-17)
+> [3.1.21.1 Length & Packet Type 44](#length-packet-type-15)
 >
 > [3.1.21.2 Packet Identifier 44](#packet-identifier-1)
 >
 > [3.1.22 SUBSCRIBE 45](#subscribe)
 >
-> [3.1.22.1 Length & Packet Type 45](#length-packet-type-18)
+> [3.1.22.1 Length & Packet Type 45](#length-packet-type-16)
 >
 > [3.1.22.2 SUBSCRIBE Flags 45](#subscribe-flags)
 >
@@ -372,7 +372,7 @@ information please see the full Notices section in an Appendix below.
 >
 > [3.1.23 SUBACK 46](#suback)
 >
-> [3.1.23.1 Length & Packet Type 46](#length-packet-type-19)
+> [3.1.23.1 Length & Packet Type 46](#length-packet-type-17)
 >
 > [3.1.23.2 Flags 46](#flags)
 >
@@ -384,7 +384,7 @@ information please see the full Notices section in an Appendix below.
 >
 > [3.1.24 UNSUBSCRIBE 47](#unsubscribe)
 >
-> [3.1.24.1 Length & Packet Type 48](#length-packet-type-20)
+> [3.1.24.1 Length & Packet Type 48](#length-packet-type-18)
 >
 > [3.1.24.2 UNSUBSCRIBE Flags 48](#unsubscribe-flags)
 >
@@ -394,7 +394,7 @@ information please see the full Notices section in an Appendix below.
 >
 > [3.1.25 UNSUBACK 48](#unsuback)
 >
-> [3.1.25.1 Length & Packet Type 48](#length-packet-type-21)
+> [3.1.25.1 Length & Packet Type 48](#length-packet-type-19)
 >
 > [3.1.25.2 Packet Identifier 48](#packet-identifier-4)
 >
@@ -402,19 +402,19 @@ information please see the full Notices section in an Appendix below.
 >
 > [3.1.26 PINGREQ 49](#pingreq)
 >
-> [3.1.26.1 Length & Packet Type 49](#length-packet-type-22)
+> [3.1.26.1 Length & Packet Type 49](#length-packet-type-20)
 >
 > [3.1.26.2 Client Identifier (optional) 49](#client-identifier-optional)
 >
 > [3.1.27 PINGRESP 49](#pingresp)
 >
-> [3.1.27.1 Length & Packet Type 50](#length-packet-type-23)
+> [3.1.27.1 Length & Packet Type 50](#length-packet-type-21)
 >
 > [3.1.27.2 Messages Remaining 50](#messages-remaining)
 >
 > [3.1.28 DISCONNECT 50](#disconnect)
 >
-> [3.1.28.1 Length & Packet Type 51](#length-packet-type-24)
+> [3.1.28.1 Length & Packet Type 51](#length-packet-type-22)
 >
 > [3.1.28.2 Disconnect Flags 51](#disconnect-flags)
 >
@@ -424,31 +424,31 @@ information please see the full Notices section in an Appendix below.
 >
 > [3.1.28.5 Reason String 52](#reason-string)
 >
-> [3.1.29 WILLTOPICUPD 52](#willtopicupd)
+> [3.1.29 WILLTOPICUPD 52](#_2tq9fhf)
 >
-> [3.1.29.1 Length & Packet Type 52](#length-packet-type-25)
+> [3.1.29.1 Length & Packet Type 52](#_18vjpp8)
 >
-> [3.1.29.2 Flags 52](#flags-1)
+> [3.1.29.2 Flags 52](#_3sv78d1)
 >
-> [3.1.29.3 Will Topic 52](#will-topic-2)
+> [3.1.29.3 Will Topic 52](#_280hiku)
 >
-> [3.1.30 WILLMSGUPD 52](#willmsgupd)
+> [3.1.30 WILLMSGUPD 52](#_n5rssn)
 >
-> [3.1.30.1 Length & Packet Type 53](#length-packet-type-26)
+> [3.1.30.1 Length & Packet Type 53](#_375fbgg)
 >
-> [3.1.30.2 Will Message 53](#will-message-1)
+> [3.1.30.2 Will Message 53](#_1maplo9)
 >
-> [3.1.31 WILLTOPICRESP 53](#willtopicresp)
+> [3.1.31 WILLTOPICRESP 53](#_46ad4c2)
 >
-> [3.1.31.1 Length & Packet Type 53](#length-packet-type-27)
+> [3.1.31.1 Length & Packet Type 53](#_10kxoro)
 >
-> [3.1.31.2 Reason Code 53](#reason-code-8)
+> [3.1.31.2 Reason Code 53](#_3kkl7fh)
 >
-> [3.1.32 WILLMSGRESP 54](#willmsgresp)
+> [3.1.32 WILLMSGRESP 54](#_1zpvhna)
 >
-> [3.1.32.1 Length & Packet Type 54](#length-packet-type-28)
+> [3.1.32.1 Length & Packet Type 54](#_4jpj0b3)
 >
-> [3.1.32.2 Reason Code 54](#reason-code-9)
+> [3.1.32.2 Reason Code 54](#_2yutaiw)
 >
 > [3.1.33 Forwarder Encapsulation 55](#forwarder-encapsulation)
 >
@@ -488,7 +488,7 @@ information please see the full Notices section in an Appendix below.
 
 [4 Operational behavior 61](#operational-behavior)
 
-> [4.1 MQTT-SN Architecture 61](#mqtt-sn-architecture)
+> [4.1 MQTT-SN Architecture 61](#example-mqtt-sn-architectures)
 >
 > [4.1.1 Transparent Gateway 62](#transparent-gateway)
 >
@@ -518,13 +518,13 @@ information please see the full Notices section in an Appendix below.
 >
 > [4.8 Clean start 72](#clean-start)
 >
-> [4.9 Procedure for updating the Will data 72](#procedure-for-updating-the-will-data)
+> [4.9 Procedure for updating the Will data 72](#_30tazoa)
 >
 > [4.10 Topic Name and Topic Filter Registration Procedure 73](#topic-name-and-topic-filter-registration-procedure)
 >
 > [4.11 Topic Name and Topic Filter Mapping and Aliasing 74](#topic-name-and-topic-filter-mapping-and-aliasing)
 >
-> [4.12 Pre-defined topic alias' and short topic names 74](#pre-defined-topic-alias-and-short-topic-names)
+> [4.12 Pre-defined topic alias' and short topic names 74](#predefined-topic-alias-and-short-topic-names)
 >
 > [4.13 Client's Topic Subscribe/Unsubscribe Procedure 74](#clients-topic-subscribeunsubscribe-procedure)
 >
@@ -576,11 +576,11 @@ information please see the full Notices section in an Appendix below.
 
 [**Appendix F. Notices 93**](#appendix-f.-notices)
 
-# 1 Introduction {#introduction .unnumbered}
+# 1 Introduction
 
 \[[All text is normative unless otherwise labeled]{.mark}\]
 
-## 1.1 MQTT For Sensor Networks (MQTT-SN)  {#mqtt-for-sensor-networks-mqtt-sn .unnumbered}
+## 1.1 MQTT For Sensor Networks (MQTT-SN) 
 
 Sensor Networks are simple, low cost and easy to deploy, they are typically used to provide, event detection, monitoring, automation, process control
 and more. Sensor Networks often comprise of many battery-powered sensors and actuators, each containing a limited amount of storage and processing
@@ -610,7 +610,7 @@ Media Access Control and security.
 The MQTT-SN protocol is optimized for implementation on low-cost, battery-operated devices with limited processing and storage resources. The
 capabilities are kept simple and the specification allows partial implementations.
 
-### 1.1.1 MQTT-SN and MQTT Differences {#mqtt-sn-and-mqtt-differences .unnumbered}
+### 1.1.1 MQTT-SN and MQTT Differences
 
 MQTT and MQTT-SN specifications are similar in many ways and meant to interoperate with each other, but the two specifications are independent of each
 other.
@@ -622,7 +622,7 @@ MQTT-SN can work isolated from other networks or in conjunction with MQTT. The m
 
 2.  In addition to Topic Alias and long Topic Names MQTT-SN allows predefined and short two-byte Topic Names.
 
-3.  If the network supports multicast, Gateway discovery can be implemented, otherwise the Gateway addresses must be configured in the nodes.
+3.  If the network supports broadcast, Gateway discovery can be implemented, otherwise the Gateway addresses must be configured in the nodes.
 
 4.  The Will message is part of the Session State and is discarded as part of Clean Start processing.
 
@@ -636,24 +636,24 @@ MQTT-SN can work isolated from other networks or in conjunction with MQTT. The m
 
 8.  MQTT-SN introduced the Protection packet for message-based security based on symmetric cryptography.
 
-## 1.2 Changes from earlier Versions {#changes-from-earlier-versions .unnumbered}
+## 1.2 Changes from earlier Versions
 
 \[[Optional section.]{.mark}\]
 
 This section provides a description of significant differences from previously published, differently numbered Versions of this specification, if any.
 (Detailed revision history of this numbered Version should be tracked in an Appendix.)
 
-### 1.2.1 MQTT-SN v1.2 {#mqtt-sn-v1.2 .unnumbered}
+### 1.2.1 MQTT-SN v1.2
 
 Text describing the changes/differences
 
-###  {#section .unnumbered}
+### 
 
-## 1.3 Organization of the MQTT-SN specification {#organization-of-the-mqtt-sn-specification .unnumbered}
+## 1.3 Organization of the MQTT-SN specification
 
 The specification is split into seven chapters:
 
--   [Chapter](#_heading=h.2bxgwvm) 1 -- Introduction
+-   [Chapter](#_2bxgwvm) 1 -- Introduction
 
 -   Chapter 2 -- MQTT-SN Control Packet format
 
@@ -663,7 +663,10 @@ The specification is split into seven chapters:
 
 -   Chapter 5 -- Conformance
 
-## 1.4 Glossary {#glossary .unnumbered}
+## 1.4 Terminology
+
+The keywords \"MUST\", \"MUST NOT\", \"REQUIRED\", \"SHALL\", \"SHALL NOT\", \"SHOULD\", \"SHOULD NOT\", \"RECOMMENDED\", \"MAY\", and \"OPTIONAL\" in
+this specification are to be interpreted as described in IETF RFC 2119 \[RFC2119\], except where they appear in text that is marked as non-normative.
 
 **Application Message:**
 
@@ -720,11 +723,20 @@ A program or device accepting MQTT protocol connections from the Gateways. A Ser
 
 **Unicast:**
 
-**Multicast:**
+A one-to-one transmission from a Client to a Gateway or from a Gateway to a Client.
+
+**Broadcast:**
+
+A one-to-many transmission from a Client or from a Gateway that is not destined respectively for a specific Gateway or Client. In case the IP protocol
+stack is used, this definition includes both the broadcast addressing and the multicast addressing schemes.
+
+**Transport Layer:**
+
+The transmission protocol used to send and receive the MQTT-SN packets, for example UDP/IP.
 
 **Virtual Connection:**
 
-Carries the MQTT-SN data between a Client and a Gateway, or a multicast to all Gateways and all clients.
+Carries the MQTT-SN data between a Client and a Gateway.
 
 Refer to section 3.2 Networks & Transport Layers for informative examples.
 
@@ -761,28 +773,24 @@ Control Packet, for example the PUBLISH packet is used to convey Application Mes
 N[etworks of spatially dispersed and dedicated sensors that monitor and record the physical conditions of the environment and forward the collected
 data to a central location.]{.mark}
 
-## 
+## 1.4 Data representation
 
-###  {#section-2 .unnumbered}
-
-## 1.4 Data representation {#data-representation .unnumbered}
-
-### 1.4.1 Bits (Byte) {#bits-byte .unnumbered}
+### 1.4.1 Bits (Byte)
 
 Bits in a byte are labeled 7 to 0. Bit number 7 is the most significant bit, the least significant bit is assigned bit number 0.
 
-### 1.4.2 Two Byte Integer {#two-byte-integer .unnumbered}
+### 1.4.2 Two Byte Integer
 
 Two Byte Integer data values are 16-bit unsigned integers in big-endian order: the high order byte precedes the lower order byte. This means that a
 16-bit word is presented on the network as Most Significant Byte (MSB), followed by Least Significant Byte (LSB).
 
-### 1.4.3 Four Byte Integer {#four-byte-integer .unnumbered}
+### 1.4.3 Four Byte Integer
 
 Four Byte Integer data values are 32-bit unsigned integers in big-endian order: the high order byte precedes the successively lower order bytes. This
 means that a 32-bit word is presented on the network as Most Significant Byte (MSB), followed by the next most Significant Byte (MSB), followed by the
 next most Significant Byte (MSB), followed by Least Significant Byte (LSB).
 
-### 1.4.4 UTF-8 Encoded String {#utf-8-encoded-string .unnumbered}
+### 1.4.4 UTF-8 Encoded String
 
 Text fields within the MQTT-SN Control Packets are encoded as fixed length UTF-8 strings.
 UTF-8 [\[RFC3629\]](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#RFC3629) is an efficient encoding of
@@ -870,9 +878,9 @@ be skipped over or stripped off by a packet receiver]{.mark}.
 
 [Table 2: Fixed Length UTF-8 Encoded String informative example]{.underline}
 
-# 2 MQTT-SN Control Packet format {#mqtt-sn-control-packet-format .unnumbered}
+# 2 MQTT-SN Control Packet format
 
-## 2.1 Structure of an MQTT-SN Control Packet {#structure-of-an-mqtt-sn-control-packet .unnumbered}
+## 2.1 Structure of an MQTT-SN Control Packet
 
 The MQTT-SN protocol operates by exchanging a series of MQTT-SN Control Packets in a defined way. This section describes the format of these packets.
 
@@ -887,7 +895,7 @@ An MQTT-SN Control Packet consists of up to two parts, always in the following o
 
 [Table 3: Structure of an MQTT-SN Control Packet]{.underline}
 
-### 2.1.1 Packet Header {#packet-header .unnumbered}
+### 2.1.1 Packet Header
 
 Each MQTT-SN Control Packet contains a Header of format 1 or format 2 as shown below.
 
@@ -915,7 +923,7 @@ Each MQTT-SN Control Packet contains a Header of format 1 or format 2 as shown b
 
 [Table 5: Packet Header Format 2]{.underline}
 
-### 2.1.2 Length {#length .unnumbered}
+### 2.1.2 Length
 
 The *Length* field is either 1-byte or 3-byte integer and specifies the total number of bytes contained in the packet (including the *Length* field
 itself).
@@ -927,21 +935,21 @@ number of bytes contained in the packet.
 The 3-byte format allows the encoding of packet lengths up to 65,535 bytes. Packets with lengths up to and including 255 bytes MUST use the shorter
 byte format.
 
-**Informative comment**
+**Non-normative comment**
 
 > MQTT-SN does not support packet fragmentation and reassembly, the maximum packet length that could be used in a network is governed by the maximum
 > packet size that is supported by that network, and not by the maximum length that could be encoded by MQTT-SN.
 
-### 2.1.3 MQTT-SN Control Packet Type {#mqtt-sn-control-packet-type .unnumbered}
+### 2.1.3 MQTT-SN Control Packet Type
 
 The MQTT-SN Control Packet Type field is 1-byte long and specifies the MQTT-SN Control Packet type which is one of the values shown below.
 
 +----------------------------+-----------------+-----------------------------+---------------------------------------------------------------------+
 | **Name**                   | **Value**       | **Direction of flow**       | **Description**                                                     |
 +============================+=================+=============================+=====================================================================+
-| **ADVERTISE**              | 0x00            | Gateway multicast           | Advertise the gateway presence                                      |
+| **ADVERTISE**              | 0x00            | Gateway broadcast           | Advertise the gateway presence                                      |
 +----------------------------+-----------------+-----------------------------+---------------------------------------------------------------------+
-| **SEARCHGW**               | 0x01            | Client multicast            | Client GWINFO request                                               |
+| **SEARCHGW**               | 0x01            | Client broadcast            | Client GWINFO request                                               |
 +----------------------------+-----------------+-----------------------------+---------------------------------------------------------------------+
 | **GWINFO**                 | 0x02            | Gateway to Client           | Response to a SEARCHGW                                              |
 +----------------------------+-----------------+-----------------------------+---------------------------------------------------------------------+
@@ -952,13 +960,13 @@ The MQTT-SN Control Packet Type field is 1-byte long and specifies the MQTT-SN C
 +----------------------------+-----------------+-----------------------------+---------------------------------------------------------------------+
 | **CONNACK**                | 0x05            | Gateway to Client           | Virtual Connection acknowledgement                                  |
 +----------------------------+-----------------+-----------------------------+---------------------------------------------------------------------+
-| **WILLTOPICREQ**           | 0x06            | Gateway to Client           | Request the will topic name                                         |
+|                            |                 |                             |                                                                     |
 +----------------------------+-----------------+-----------------------------+---------------------------------------------------------------------+
-| **WILLTOPIC**              | 0x07            | Client to Gateway           | Supply the will topic name                                          |
+|                            |                 |                             |                                                                     |
 +----------------------------+-----------------+-----------------------------+---------------------------------------------------------------------+
-| **WILLMSGREQ**             | 0x08            | Gateway to Client           | Request the will message                                            |
+|                            |                 |                             |                                                                     |
 +----------------------------+-----------------+-----------------------------+---------------------------------------------------------------------+
-| **WILLMSG**                | 0x09            | Client to Gateway           | Supply the will message                                             |
+|                            |                 |                             |                                                                     |
 +----------------------------+-----------------+-----------------------------+---------------------------------------------------------------------+
 | **REGISTER**               | 0x0A            | Client to Gateway           | Request topic alias                                                 |
 +----------------------------+-----------------+-----------------------------+---------------------------------------------------------------------+
@@ -1005,13 +1013,7 @@ The MQTT-SN Control Packet Type field is 1-byte long and specifies the MQTT-SN C
 +----------------------------+-----------------+-----------------------------+---------------------------------------------------------------------+
 | **- Reserved -**           | 0x19            |                             | Forbidden                                                           |
 +----------------------------+-----------------+-----------------------------+---------------------------------------------------------------------+
-| **WILLTOPICUPD**           | 0x1A            | Client to Gateway           | Modify the will topic name                                          |
-+----------------------------+-----------------+-----------------------------+---------------------------------------------------------------------+
-| **WILLTOPICRESP**          | 0x1B            | Gateway to Client           | Acknowledge the will topic name modification                        |
-+----------------------------+-----------------+-----------------------------+---------------------------------------------------------------------+
-| **WILLMSGUPD**             | 0x1C            | Client to Gateway           | Modify the will message                                             |
-+----------------------------+-----------------+-----------------------------+---------------------------------------------------------------------+
-| **WILLMSGRESP**            | 0x1D            | Gateway to Client           | Acknowledge the will message modification                           |
+| **- Reserved -**           | 0x1A-0x1D       |                             | Forbidden (Old Will Range)                                          |
 +----------------------------+-----------------+-----------------------------+---------------------------------------------------------------------+
 | **- Reserved -**           | 0x1E-0xFD       |                             | Forbidden                                                           |
 +----------------------------+-----------------+-----------------------------+---------------------------------------------------------------------+
@@ -1026,7 +1028,7 @@ The MQTT-SN Control Packet Type field is 1-byte long and specifies the MQTT-SN C
 
 [Table 6: Packet type listing]{.underline}
 
-## 2.2 Packet Identifier {#packet-identifier .unnumbered}
+## 2.2 Packet Identifier
 
 The Variable Header component of many of the MQTT-SN Control Packet types includes a Two Byte Integer Packet Identifier field. MQTT-SN Control Packets
 that require a Packet Identifier are shown below:
@@ -1072,25 +1074,9 @@ that require a Packet Identifier are shown below:
 
   GWINFO                                                            NO
 
-  WILLTOPICREQ                                                      NO
-
-  WILLTOPIC                                                         NO
-
-  WILLMGSREQ                                                        NO
-
-  WILLMSG                                                           NO
-
   REGISTER                                                          YES
 
   REGACK                                                            YES
-
-  WILLTOPICUPD                                                      NO
-
-  WILLTOPICRESP                                                     NO
-
-  WILLMSGUPD                                                        NO
-
-  WILLMSGRESP                                                       NO
 
   Encapsulated Packet                                               NO
 
@@ -1122,34 +1108,26 @@ UNSUBACK MUST contain the Packet Identifier that was used in the corresponding S
 The Client and Gateway assign Packet Identifiers independently of each other. As a result, Client-Server pairs can participate in concurrent message
 exchanges using the same Packet Identifiers.
 
-> **Informative comment**
+> **Non-normative comment**
 >
 > It is possible for a Client to send a PUBLISH packet with Packet Identifier 0x1234 and then receive a different PUBLISH packet with Packet
 > Identifier 0x1234 from its Server before it receives a PUBACK for the PUBLISH packet that it sent.
 >
-> Client Server
->
-> PUBLISH Packet Identifier=0x1234 ‒→
->
-> ←‒ PUBLISH Packet Identifier=0x1234
->
-> PUBACK Packet Identifier=0x1234 ‒→
->
-> ←‒ PUBACK Packet Identifier=0x1234
+> ![](media/image2.png){width="3.5502898075240594in" height="2.7864588801399823in"}
 
-## 2.3 MQTT-SN Packet Fields {#mqtt-sn-packet-fields .unnumbered}
+## 2.3 MQTT-SN Packet Fields
 
-### 2.3.1 Protocol Id {#protocol-id .unnumbered}
+### 2.3.1 Protocol Id
 
 The *Protocol Id* is 1-byte long. It is only present in a CONNECT packet and corresponds to the MQTT 'protocol name' and 'protocol version'.
 
 It is coded 0x02. 0x01 was used for MQTT-SN 1.2. All other values are reserved.
 
-### 2.3.2 Radius {#radius .unnumbered}
+### 2.3.2 Radius
 
 The *Radius* field is 1-byte long and indicates the value of the transmission radius. The value 0x00 means "send to all nodes in the network".
 
-### 2.3.3 Reason Code {#reason-code .unnumbered}
+### 2.3.3 Reason Code
 
 A Reason Code is a one-byte long value that indicates the result of an operation. Reason Codes share a common set of values across the various Control
 Packet types.
@@ -1161,16 +1139,13 @@ Each value and meaning of each *Reason Code* field is shown below.
   -------------- --------------------- --------------------------------------------- -------------------------------------------------------------------
   Dec            Hex                                                                 
 
-  0              0x00                  Success                                       CONNACK, SUBACK, UNSUBACK, REGACK, PUBACK, WILLTOPICRESP,
-                                                                                     WILLPACKETRESP, DISCONNECT
+  0              0x00                  Success                                       CONNACK, SUBACK, UNSUBACK, REGACK, PUBACK, DISCONNECT
 
-  1              0x01                  Congestion                                    CONNACK, SUBACK, UNSUBACK, REGACK, PUBACK, WILLTOPICRESP,
-                                                                                     WILLPACKETRESP
+  1              0x01                  Congestion                                    CONNACK, SUBACK, UNSUBACK, REGACK, PUBACK
 
-  2              0x02                  Invalid topic alias                           SUBACK, UNSUBACK, REGACK, PUBACK, WILLTOPICRESP, WILLMSGRESP
+  2              0x02                  Invalid topic alias                           SUBACK, UNSUBACK, REGACK, PUBACK
 
-  3              0x03                  Not supported                                 CONNACK, SUBACK, UNSUBACK, REGACK, PUBACK, WILLTOPICRESP,
-                                                                                     WILLMSGRESP
+  3              0x03                  Not supported                                 CONNACK, SUBACK, UNSUBACK, REGACK, PUBACK
 
   5              0x05                  No session                                    DISCONNECT
 
@@ -1194,7 +1169,7 @@ Each value and meaning of each *Reason Code* field is shown below.
 
   240            0xF0                  Unknown Topic Alias                           PUBACK, SUBACK
 
-  241            0xF1                  Congestion                                    SUBACK, REGACK, CONNACK, PUBACK, WILLTOPICRESP, WILLMSGRESP
+  241            0xF1                  Congestion                                    SUBACK, REGACK, CONNACK, PUBACK
 
   242            0xF2                  Protection packet not supported               DISCONNECT
 
@@ -1205,28 +1180,28 @@ Each value and meaning of each *Reason Code* field is shown below.
 
 [Table 9: Reason Code Values]{.underline}
 
-[Note(s):]{.underline}
+Note(s):
 
-1.  [It is used by a receiver to indicate that it expected a packet to be protected and it wasn\'t.]{.underline}
+1.  It is used by a receiver to indicate that it expected a packet to be protected and it wasn\'t.
 
-### 2.3.4 Topic Alias Type {#topic-alias-type .unnumbered}
+### 2.3.4 Topic Alias Type
 
 The *Topic Alias Type* field is 2-byte long and contains the value of the topic alias. The values "0x0000" and "0xFFFF" are reserved and therefore
 should not be used.
 
-### 2.3.5 Topic Name {#topic-name .unnumbered}
+### 2.3.5 Topic Name
 
 The *Topic Name* field has a variable length and contains an UTF8-encoded string that specifies the topic name.
 
-### 2.3.6 Will Packet {#will-packet .unnumbered}
+### 2.3.6 Will Payload
 
-The *Will Packet* field has a variable length and contains the Will packet.
+The *Will Payload* field has a variable length and contains the content of the Will message.
 
-### 2.3.7 Will Topic {#will-topic .unnumbered}
+### 2.3.7 Will Topic
 
 The *Will Topic* field has a variable length and contains the Will topic name.
 
-## 2.4 Topic Alias Types {#topic-alias-types .unnumbered}
+## 2.4 Topic Alias Types
 
 Several packets will refer to a topic alias type in their flags. This is a 2-bit field which determines the format of the topic Id value.
 
@@ -1252,13 +1227,13 @@ The allowable values are as follows:
 
 Please refer to operational behavior for detailed descriptions of topic types and aliases.
 
-# 3 MQTT-SN Control Packets {#mqtt-sn-control-packets .unnumbered}
+# 3 MQTT-SN Control Packets
 
-## 3.1 Format of Individual Packets {#format-of-individual-packets .unnumbered}
+## 3.1 Format of Individual Packets
 
 This section specifies the format of the individual MQTT-SN packets.
 
-### 3.1.1 ADVERTISE {#advertise .unnumbered}
+### 3.1.1 ADVERTISE
 
   --------------------------------------------------------------------------------------------------------------------------------------------------------
   **Bit**              **7**        **6**            **5**            **4**            **3**            **2**            **1**            **0**
@@ -1279,33 +1254,33 @@ This section specifies the format of the individual MQTT-SN packets.
 The ADVERTISE packet is sent periodically by the gateway to advertise its presence. The time interval until the next transmission is indicated by the
 *Duration* field.
 
-**Informative comment**
+> **Non-Normative Comment**
+>
+> If the Transport Layer supports broadcast, like UDP/IP, the ADVERTISE packet is generally sent using the broadcast address as destination.
 
-If UDP is used as transport protocol, the ADVERTISE packet is generally sent using the broadcast address as destination.
-
-#### 3.1.1.1 Length & Packet Type {#length-packet-type .unnumbered}
+#### 3.1.1.1 Length & Packet Type
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
 description.
 
-#### 3.1.1.2 GwId {#gwid .unnumbered}
+#### 3.1.1.2 GwId
 
 The *GwId* field is at least 1-byte identifier and uniquely identifies a gateway which is advertising itself in the network.
 
 The MQTT-SN protocol itself doesn't guarantee the uniqueness of the *GwId* field.
 
-**Informative comment**
+> **Non-Normative Comment**
+>
+> If the Gateway has a MAC address, it can be used as *GwId*.
 
-If the Gateway has a MAC address, it can be used as *GwId*.
-
-#### 3.1.1.3 Duration {#duration .unnumbered}
+#### 3.1.1.3 Duration
 
 The *Duration* field is a 2-byte integer. It specifies the time interval in seconds until the next ADVERTISE packet is transmitted by this gateway
 period.
 
 The maximum value that can be encoded is approximately 18 hours.
 
-### 3.1.2 SEARCHGW {#searchgw .unnumbered}
+### 3.1.2 SEARCHGW
 
   --------------------------------------------------------------------------------------------------------------------------------------------------------
   **Bit**              **7**        **6**            **5**            **4**            **3**            **2**            **1**            **0**
@@ -1323,12 +1298,16 @@ The SEARCHGW packet is sent by a client when it searches for a Gateway. The tran
 of the clients deployment, e.g. only 1-hop transmission in case of a very dense network in which every MQTT-SN client is reachable from each other
 within 1-hop transmission.
 
-#### 3.1.2.1 Length & Packet Type {#length-packet-type-1 .unnumbered}
+> **Non-Normative Comment**
+>
+> If the Transport Layer supports broadcast, like UDP/IP, the SEARCHGW packet is generally sent using the broadcast address as destination..
+
+#### 3.1.2.1 Length & Packet Type
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
 description.
 
-#### 3.1.2.2 Radius {#radius-1 .unnumbered}
+#### 3.1.2.2 Radius
 
 The transmission radius is also indicated to the underlying network layer when MQTT-SN gives this packet for transmission.
 
@@ -1336,7 +1315,7 @@ A Client or a Gateway MUST NOT forward the SEARCHGW received if the Radius value
 
 If a Client or a Gateway forwards the SEARCHGW received, it MUST reduce the Radius value by 1.
 
-### 3.1.3 GWINFO {#gwinfo .unnumbered}
+### 3.1.3 GWINFO
 
   ----------------------------------------------------------------------------------------------------------------------------------------------------------
   **Bit**              **7**          **6**            **5**            **4**            **3**            **2**            **1**            **0**
@@ -1356,190 +1335,165 @@ If a Client or a Gateway forwards the SEARCHGW received, it MUST reduce the Radi
 The GWINFO packet is sent as response to a SEARCHGW packet with the radius as indicated in the SEARCHGW packet. If sent by a Gateway, it contains only
 the id of the sending Gateway; otherwise, if sent by a client, it also includes the address of the Gateway.
 
-#### 3.1.3.1 Length & Packet Type {#length-packet-type-2 .unnumbered}
+> **Non-Normative Comment**
+>
+> If the Transport Layer supports broadcast, like UDP/IP, the GWINFO packet is generally sent using the broadcast address as destination.
+
+#### 3.1.3.1 Length & Packet Type
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
 description.
 
-#### 3.1.3.2 GwId {#gwid-1 .unnumbered}
+#### 3.1.3.2 GwId
 
 The *GwId* field is 1-byte long and uniquely identifies a Gateway in the network.
 
-#### 3.1.3.3 GwAdd {#gwadd .unnumbered}
+#### 3.1.3.3 GwAdd
 
 The *GwAdd* field has a variable length and contains the address of a Gateway. Its length depends on the type of network over which MQTT-SN operates
 and is specified by the Length byte. Optional, only included if the packet is sent by a client.
 
-### 3.1.4 CONNECT {#connect .unnumbered}
+### 3.1.4 CONNECT
 
-+---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
-| **Bit**             | *    | **6**  |     | **5** |   | **4**          | **3**       |     | **2**      | **1**   |         | * |                  |
-|                     | *7** |        |     |       |   |                |             |     |            |         |         | * |                  |
-|                     |      |        |     |       |   |                |             |     |            |         |         | 0 |                  |
-|                     |      |        |     |       |   |                |             |     |            |         |         | * |                  |
-|                     |      |        |     |       |   |                |             |     |            |         |         | * |                  |
-+=====================+======+========+=====+=======+===+================+=============+=====+============+=========+=========+===+==================+
-| Byte 1              | Le   |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | ngth |        |     |       |   |                |             |     |            |         |         |   |                  |
-+---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
-| Byte 2              | Pa   |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | cket |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | Type |        |     |       |   |                |             |     |            |         |         |   |                  |
-+---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
-|                     | **   |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | *CON |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | NECT |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | FLAG |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | S*** |        |     |       |   |                |             |     |            |         |         |   |                  |
-+---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
-|                     | *R   |        | D   |       |   |                |             |     | Auth       |         | Will    |   | Clean Start      |
-|                     | eser |        | efa |       |   |                |             |     | entication |         |         |   |                  |
-|                     | ved* |        | ult |       |   |                |             |     |            |         |         |   |                  |
-|                     |      |        | Aw  |       |   |                |             |     |            |         |         |   |                  |
-|                     |      |        | ake |       |   |                |             |     |            |         |         |   |                  |
-|                     |      |        | Me  |       |   |                |             |     |            |         |         |   |                  |
-|                     |      |        | ssa |       |   |                |             |     |            |         |         |   |                  |
-|                     |      |        | ges |       |   |                |             |     |            |         |         |   |                  |
-+---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
-| Byte 3              | *0*  |        | *X* | *X*   | * |                |             | *X* | *X*        |         | *X*     |   | *X*              |
-|                     |      |        |     |       | X |                |             |     |            |         |         |   |                  |
-|                     |      |        |     |       | * |                |             |     |            |         |         |   |                  |
-+---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
-|                     | ***  |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | WILL |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | F    |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | LAGS |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | (    |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | OPTI |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | ONAL |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | )*** |        |     |       |   |                |             |     |            |         |         |   |                  |
-+---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
-|                     | Rese |        |     |       |   | Will Retained  | Will QoS    | W   |            |         |         |   |                  |
-|                     | rved |        |     |       |   |                |             | ill |            |         |         |   |                  |
-|                     |      |        |     |       |   |                |             | To  |            |         |         |   |                  |
-|                     |      |        |     |       |   |                |             | pic |            |         |         |   |                  |
-|                     |      |        |     |       |   |                |             | Al  |            |         |         |   |                  |
-|                     |      |        |     |       |   |                |             | ias |            |         |         |   |                  |
-|                     |      |        |     |       |   |                |             | T   |            |         |         |   |                  |
-|                     |      |        |     |       |   |                |             | ype |            |         |         |   |                  |
-+---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
-| Byte (3 + 1)        | 0    | 0      | 0   | 0     | X |                | X           | X   | X          |         |         |   |                  |
-+---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
-| Byte 4              | Prot |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | ocol |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | Ver  |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | sion |        |     |       |   |                |             |     |            |         |         |   |                  |
-+---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
-| Byte 5              | Keep |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | A    |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | live |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | MSB  |        |     |       |   |                |             |     |            |         |         |   |                  |
-+---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
-| Byte 6              | Keep |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | A    |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | live |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | LSB  |        |     |       |   |                |             |     |            |         |         |   |                  |
-+---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
-| Byte 7              | Ses  |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | sion |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | Ex   |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | piry |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | Inte |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | rval |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | MSB  |        |     |       |   |                |             |     |            |         |         |   |                  |
-+---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
-| Byte 8              | Ses  |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | sion |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | Ex   |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | piry |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | Inte |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | rval |        |     |       |   |                |             |     |            |         |         |   |                  |
-+---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
-| Byte 9              | Ses  |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | sion |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | Ex   |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | piry |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | Inte |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | rval |        |     |       |   |                |             |     |            |         |         |   |                  |
-+---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
-| Byte 10             | Ses  |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | sion |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | Ex   |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | piry |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | Inte |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | rval |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | LSB  |        |     |       |   |                |             |     |            |         |         |   |                  |
-+---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
-| Byte 11             | Max  |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | Pa   |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | cket |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | Size |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | MSB  |        |     |       |   |                |             |     |            |         |         |   |                  |
-+---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
-| Byte 12             | Max  |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | Pa   |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | cket |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | Size |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | LSB  |        |     |       |   |                |             |     |            |         |         |   |                  |
-+---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
-| Byte (12 + 1)       | Will |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | T    |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | opic |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | A    |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | lias |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | MSB  |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | **   |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | OR** |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | Will |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | T    |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | opic |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | Le   |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | ngth |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | MSB  |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | (TL) |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     |      |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | Will |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | T    |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | opic |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | A    |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | lias |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | LSB  |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | Will |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | T    |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | opic |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | Le   |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | ngth |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | LSB  |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | (TL) |        |     |       |   |                |             |     |            |         |         |   |                  |
-+---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
-| Byte (12 + 2)       |      |        |     |       |   |                |             |     |            |         |         |   |                  |
-+---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
-| Byte (12 + 3)       | Full |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | Will |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | T    |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | opic |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | Na   |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | me + |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | Will |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | Data |        |     |       |   |                |             |     |            |         |         |   |                  |
-+---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
-| Byte 13 ... N       | Cl   |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | ient |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | Id   |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | enti |        |     |       |   |                |             |     |            |         |         |   |                  |
-|                     | fier |        |     |       |   |                |             |     |            |         |         |   |                  |
-+---------------------+------+--------+-----+-------+---+----------------+-------------+-----+------------+---------+---------+---+------------------+
++-------------------+-----------+-------+-----------+-----+---+----------------+---+-------------------+-----------+---+-------------+---+--------------+
+| **Bit**           | **7**     | **6** |           | **  |   | **4**          | * |                   | **2**     | * |             | * |              |
+|                   |           |       |           | 5** |   |                | * |                   |           | * |             | * |              |
+|                   |           |       |           |     |   |                | 3 |                   |           | 1 |             | 0 |              |
+|                   |           |       |           |     |   |                | * |                   |           | * |             | * |              |
+|                   |           |       |           |     |   |                | * |                   |           | * |             | * |              |
++===================+===========+=======+===========+=====+===+================+===+===================+===========+===+=============+===+==============+
+| Byte 1            | Length    |       |           |     |   |                |   |                   |           |   |             |   |              |
++-------------------+-----------+-------+-----------+-----+---+----------------+---+-------------------+-----------+---+-------------+---+--------------+
+| Byte 2            | Packet    |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Type      |       |           |     |   |                |   |                   |           |   |             |   |              |
++-------------------+-----------+-------+-----------+-----+---+----------------+---+-------------------+-----------+---+-------------+---+--------------+
+|                   | *         |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | **CONNECT |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | FLAGS***  |       |           |     |   |                |   |                   |           |   |             |   |              |
++-------------------+-----------+-------+-----------+-----+---+----------------+---+-------------------+-----------+---+-------------+---+--------------+
+|                   | *         |       | Default   |     |   |                |   |                   | Auth      |   | Will        |   | Clean Start  |
+|                   | Reserved* |       | Awake     |     |   |                |   |                   |           |   |             |   |              |
+|                   |           |       | Messages  |     |   |                |   |                   |           |   |             |   |              |
++-------------------+-----------+-------+-----------+-----+---+----------------+---+-------------------+-----------+---+-------------+---+--------------+
+| Byte 3            | *0*       |       | *X*       | *X* | * |                |   | *X*               | *X*       |   | *X*         |   | *X*          |
+|                   |           |       |           |     | X |                |   |                   |           |   |             |   |              |
+|                   |           |       |           |     | * |                |   |                   |           |   |             |   |              |
++-------------------+-----------+-------+-----------+-----+---+----------------+---+-------------------+-----------+---+-------------+---+--------------+
+|                   | ***WILL   |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | FLAGS     |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | (O        |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | PTIONAL - |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | ONLY WHEN |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | WILL FLAG |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | SET)***   |       |           |     |   |                |   |                   |           |   |             |   |              |
++-------------------+-----------+-------+-----------+-----+---+----------------+---+-------------------+-----------+---+-------------+---+--------------+
+|                   | *         |       |           |     |   | Will Retain    | W |                   |           |   | Will Topic  |   |              |
+|                   | Reserved* |       |           |     |   |                | i |                   |           |   | Alias Type  |   |              |
+|                   |           |       |           |     |   |                | l |                   |           |   |             |   |              |
+|                   |           |       |           |     |   |                | l |                   |           |   |             |   |              |
+|                   |           |       |           |     |   |                | Q |                   |           |   |             |   |              |
+|                   |           |       |           |     |   |                | o |                   |           |   |             |   |              |
+|                   |           |       |           |     |   |                | S |                   |           |   |             |   |              |
++-------------------+-----------+-------+-----------+-----+---+----------------+---+-------------------+-----------+---+-------------+---+--------------+
+| Byte (3 + 1)      | *0*       | *0*   | *0*       |     | * |                | * |                   | *X*       |   | *X*         |   | *X*          |
+|                   |           |       |           |     | X |                | X |                   |           |   |             |   |              |
+|                   |           |       |           |     | * |                | * |                   |           |   |             |   |              |
++-------------------+-----------+-------+-----------+-----+---+----------------+---+-------------------+-----------+---+-------------+---+--------------+
+| Byte 4            | Protocol  |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Version   |       |           |     |   |                |   |                   |           |   |             |   |              |
++-------------------+-----------+-------+-----------+-----+---+----------------+---+-------------------+-----------+---+-------------+---+--------------+
+| Byte 5            | Keep      |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Alive MSB |       |           |     |   |                |   |                   |           |   |             |   |              |
++-------------------+-----------+-------+-----------+-----+---+----------------+---+-------------------+-----------+---+-------------+---+--------------+
+| Byte 6            | Keep      |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Alive LSB |       |           |     |   |                |   |                   |           |   |             |   |              |
++-------------------+-----------+-------+-----------+-----+---+----------------+---+-------------------+-----------+---+-------------+---+--------------+
+| Byte 7            | Session   |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Expiry    |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Interval  |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | MSB       |       |           |     |   |                |   |                   |           |   |             |   |              |
++-------------------+-----------+-------+-----------+-----+---+----------------+---+-------------------+-----------+---+-------------+---+--------------+
+| Byte 8            | Session   |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Expiry    |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Interval  |       |           |     |   |                |   |                   |           |   |             |   |              |
++-------------------+-----------+-------+-----------+-----+---+----------------+---+-------------------+-----------+---+-------------+---+--------------+
+| Byte 9            | Session   |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Expiry    |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Interval  |       |           |     |   |                |   |                   |           |   |             |   |              |
++-------------------+-----------+-------+-----------+-----+---+----------------+---+-------------------+-----------+---+-------------+---+--------------+
+| Byte 10           | Session   |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Expiry    |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Interval  |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | LSB       |       |           |     |   |                |   |                   |           |   |             |   |              |
++-------------------+-----------+-------+-----------+-----+---+----------------+---+-------------------+-----------+---+-------------+---+--------------+
+| Byte 11           | Max       |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Packet    |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Size MSB  |       |           |     |   |                |   |                   |           |   |             |   |              |
++-------------------+-----------+-------+-----------+-----+---+----------------+---+-------------------+-----------+---+-------------+---+--------------+
+| Byte 12           | Max       |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Packet    |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Size LSB  |       |           |     |   |                |   |                   |           |   |             |   |              |
++-------------------+-----------+-------+-----------+-----+---+----------------+---+-------------------+-----------+---+-------------+---+--------------+
+|                   | ***WILL   |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | DATA      |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | (O        |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | PTIONAL - |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | ONLY WHEN |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | WILL FLAG |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | SET)***   |       |           |     |   |                |   |                   |           |   |             |   |              |
++-------------------+-----------+-------+-----------+-----+---+----------------+---+-------------------+-----------+---+-------------+---+--------------+
+| Byte (12 + 1)     | Will      |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Topic     |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Alias MSB |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | **OR**    |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Will      |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Topic     |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Length    |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | MSB (TL)  |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   |           |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Will      |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Topic     |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Alias LSB |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Will      |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Topic     |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Length    |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | LSB (TL)  |       |           |     |   |                |   |                   |           |   |             |   |              |
++-------------------+-----------+-------+-----------+-----+---+----------------+---+-------------------+-----------+---+-------------+---+--------------+
+| Byte (12 + 2)     |           |       |           |     |   |                |   |                   |           |   |             |   |              |
++-------------------+-----------+-------+-----------+-----+---+----------------+---+-------------------+-----------+---+-------------+---+--------------+
+| Byte (12 + 3)     | Will      |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Payload   |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Length    |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | MSB       |       |           |     |   |                |   |                   |           |   |             |   |              |
++-------------------+-----------+-------+-----------+-----+---+----------------+---+-------------------+-----------+---+-------------+---+--------------+
+| Byte (12 + 4)     | Will      |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Payload   |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Length    |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | LSB       |       |           |     |   |                |   |                   |           |   |             |   |              |
++-------------------+-----------+-------+-----------+-----+---+----------------+---+-------------------+-----------+---+-------------+---+--------------+
+| Byte (12 + N)     | Will      |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Payload   |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Or (Will  |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Topic     |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Name +    |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Will      |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | Payload)  |       |           |     |   |                |   |                   |           |   |             |   |              |
++-------------------+-----------+-------+-----------+-----+---+----------------+---+-------------------+-----------+---+-------------+---+--------------+
+| Byte 13 ... N     | Client    |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | I         |       |           |     |   |                |   |                   |           |   |             |   |              |
+|                   | dentifier |       |           |     |   |                |   |                   |           |   |             |   |              |
++-------------------+-----------+-------+-----------+-----+---+----------------+---+-------------------+-----------+---+-------------+---+--------------+
 
 [Table 14: CONNECT packet]{.underline}
 
-The CONNECT packet is sent from the Client to the Gateway to set up a session.
+The CONNECT packet is sent from the Client to the Gateway to create or continue a session.
 
-#### 3.1.4.1 Length & Packet Type {#length-packet-type-3 .unnumbered}
+#### 3.1.4.1 Length & Packet Type
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
 description.
 
-#### 3.1.4.2 Connect Flags {#connect-flags .unnumbered}
+#### 3.1.4.2 Connect Flags
 
 The Connect Flags is 1 byte field which contains several parameters specifying the behavior of the MQTT-SN Virtual Connection.
 
@@ -1547,7 +1501,7 @@ The Connect *Flags* field includes the following flags:
 
 -   **Clean Start:** Stored in Bit 0 and specifies whether the Virtual Connection starts a new Session or is a continuation of an existing Session
 
--   **Will**: Stored in Bit 1 and if set to 1 it indicates that client is asking for Will topic and Will message prompting
+-   **Will**: Stored in Bit 1 and if set to 1 it indicates that the Will Flags and the Will Data sections are present
 
 -   **Authentication**: Stored in Bit 2 and indicates the authentication exchange to follow
 
@@ -1557,7 +1511,7 @@ The Connect *Flags* field includes the following flags:
 > The Gateway MUST validate that the reserved flags in the CONNECT packet are set to 0. If any of the reserved flags is not 0 it is a Malformed
 > Packet.
 
-#### 3.1.4.3 Protocol Version {#protocol-version .unnumbered}
+#### 3.1.4.3 Protocol Version
 
 The one-byte unsigned value that represents the revision level of the protocol used by the Client.
 
@@ -1576,17 +1530,19 @@ The one-byte unsigned value that represents the revision level of the protocol u
 [The value of the Protocol Version field for MQTT-SN version 2.0 MUST be 2 (0x02).]{.mark}
 
 A Gateway which supports multiple versions of the MQTT-SN protocol uses the Protocol Version to determine which version of MQTT-SN the Client is
-using. If the Protocol Version is valid but it is not the latest one available (for instance 0x02) and the Gateway does not want to accept the CONNECT
-packet, the Server MAY send a CONNACK packet with Reason Code 0x84 (Unsupported Protocol Version) and consider the session closed.
+using.
 
-#### 3.1.4.4 Keep Alive Timer {#keep-alive-timer .unnumbered}
+[If the Protocol Version is valid but it is not the latest one available (for instance 0x02) and the Gateway does not want to accept the CONNECT
+packet, the Server MAY send a CONNACK packet with Reason Code 0x84 (Unsupported Protocol Version) and consider the session closed.]{.mark}
+
+#### 3.1.4.4 Keep Alive Timer
 
 The Keep Alive is a Two Byte Integer greater than 0 (1 - 65,535), which is a time interval measured in seconds. It is the maximum time interval that
 is permitted to elapse between the point at which the Client finishes transmitting one MQTT-SN Control Packet and the point it starts sending the
 next. It is the responsibility of the Client to ensure that the interval between MQTT Control Packets being sent does not exceed the Keep Alive
 value. In the absence of sending any other MQTT-SN Control Packets, the Client MUST send a PINGREQ packet.
 
-> **Informative comment**
+> **Non-Normative Comment**
 >
 > The Client can send PINGREQ at any time, irrespective of the Keep Alive value, and check for a corresponding PINGRESP to determine that the network
 > and the Gateway are available.
@@ -1602,18 +1558,18 @@ with the understanding that the GW may no longer be reachable.]{.mark}
 
  
 
-> **Informative comment**\
+> **Non-Normative Comment**\
 > The Gateway may have other reasons to disconnect the Client, for instance because it is shutting down. Setting Keep Alive does not guarantee that
 > the Client will remain connected.
 
  
 
-> **Informative comment**
+> **Non-Normative Comment**
 >
 > The actual value of the Keep Alive is application specific; typically, this is a few minutes. The maximum value of 65,535 is 18 hours 12 minutes and
 > 15 seconds.
 
-#### 3.1.4.5 Session Expiry Interval {#session-expiry-interval .unnumbered}
+#### 3.1.4.5 Session Expiry Interval
 
 The Session Expiry Interval is a four-byte integer time interval measured in seconds. If the Session Expiry Interval is set to 0, the Session ends
 (and state deleted) when a (non SLEEPING) DISCONNECT packet is sent from either the client or gateway.
@@ -1622,23 +1578,23 @@ If the Session Expiry Interval is 0xFFFFFFFF (UINT_MAX), the Session does not ex
 
 [The Client and Gateway MUST store the Session State after a DISCONNECT is issued if the Session Expiry Interval is greater than 0.]{.mark}
 
-> **Informative comment**
+> **Non-normative comment**
 >
 > The clock in the Client or Gateway may not be running for part of the time interval, for instance because the Client or Gateway are not running.
 > This might cause the deletion of the state to be delayed.
 >
-> **Informative comment**
+> **Non-normative comment**
 >
 > The client and gateway between them should negotiate a reasonable and practical session expiry interval according to the network and infrastructure
 > environment in which they are deployed. For example, it would not be practical to set a session -- expiry -- interval of many months on a gateway
 > whose hardware is only capable of storing a few client sessions.
 
-#### 3.1.4.6 Max Packet Size {#max-packet-size .unnumbered}
+#### 3.1.4.6 Max Packet Size
 
 A Two Byte (16-bit) Integer representing the Maximum Packet Size the Client is willing to accept. If the Maximum Packet Size is set to 0, no limit on
 the packet size is imposed beyond the limitations in the protocol as a result of the remaining length encoding and the protocol header sizes.
 
-> **Informative comment**
+> **Non-normative comment**
 >
 > It is the responsibility of the application to select a suitable Maximum Packet Size value if it chooses to restrict the Maximum Packet Size.
 
@@ -1659,17 +1615,17 @@ Message.]{.mark}
 
 >  
 >
-> **Informative comment**
+> **Non-normative comment**
 >
 > Where a packet is discarded without being sent, the Gateway could place the discarded packet on a 'dead letter queue' or perform other diagnostic
 > action. Such actions are outside the scope of this specification.
 
-#### 3.1.4.7 Client Identifier {#client-identifier .unnumbered}
+#### 3.1.4.7 Client Identifier
 
 The Client Identifier (ClientID) identifies the Client to the Gateway. Each Client connecting to the Gateway has a unique ClientID. [The ClientID MUST
 be used by Clients and by Gateway to identify the state that they hold relating to this MQTT-SN Session between the Client and the Gateway]{.mark}.
 
-> **Informative comment**
+> **Non-normative comment**
 >
 > A Client Identifier can be between 0 - 65,521 bytes. We advise for practicality, ClientID's are restricted to a reasonable size (less than 243 bytes
 > to fit within a small CONNECT packet).
@@ -1681,7 +1637,40 @@ contain only the characters \"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMN
 
 [The Client Identifier MUST be a UTF-8 Encoded String]{.mark}. []{.mark}
 
-### 3.1.5 CONNACK {#connack .unnumbered}
+#### 3.1.4.8 Connect Will Flags (optional, only with *Will* flag set) 
+
+The Connect optional *Will Flags* is 1 byte field which contains several parameters specifying the handling of the Will Message feature. It is present
+only if the Will flag in the Connect *Flags* contains the value 1.
+
+The Connect optional *Will Flags* field includes the following flags:
+
+-   **Will Topic Alias Type:** This is a 2-bit field in Bit 0 and 1 which determines the format of the topic Id value. Refer to [Table
+    10](#topic-alias-types) for the definition of the various topic alias types.
+
+-   **Will QoS**: Stored in Bit 2 and 3, these two bits specify the QoS level to be used. The value of Will QoS can be 0 (0x00), 1 (0x01), or 2
+    (0x02). A value of 3 (0x03) is a Malformed Packet.
+
+-   **Will Retain**: Stored in Bit 4, this bit specifies if the Will Message is to be retained when it is published.
+
+#### 3.1.4.9 Will Topic Alias or Will Topic Length (optional, only with *Will* flag set)
+
+In the case of Will Topic Alias Type being b11 this field will refer to the length of data assigned to the "Will Full Topic Name", in all other cases,
+this will be the value used as the Will topic alias or Will short topic name.
+
+#### 3.1.4.10 Will Payload Length (optional, only with *Will* flag set)
+
+Contains the length of the Will Payload field.
+
+#### 3.1.4.11 Will Payload (optional, only with *Will* flag set)
+
+It contains the content of the Will Message which is published after the Virtual Connection is closed.
+
+In the case of Topic Alias Type b11 the payload section will be prefixed with a "Will Full Topic Name" encoded with a UTF-8 encoded string value of
+length determined by the previously defined length field. Thereafter, the *Will Payload* field corresponds to the MQTT Will Payload and so it defines
+the Application Message Payload that is to be published to the Will Topic and this field consists of Binary Data. It has a variable length defined by
+the Will Payload Length fields.
+
+### 3.1.5 CONNACK
 
   ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   **Bit**             **7**        **6**                 **5**                 **4**                 **3**                  **2**                  **1**                 **0**
@@ -1725,12 +1714,12 @@ contain only the characters \"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMN
 
 The CONNACK packet is sent by the Gateway in response to a Virtual Connection request from a client.
 
-#### 3.1.5.1 Length & Packet Type {#length-packet-type-4 .unnumbered}
+#### 3.1.5.1 Length & Packet Type
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
 description.
 
-#### 3.1.5.2 Reason Code {#reason-code-1 .unnumbered}
+#### 3.1.5.2 Reason Code
 
 Byte 3 in the CONNACK header contains the Connect Reason Code. If a CONNECT packet is received by the Server, the Server will send a CONNACK packet
 containing the appropriate Reason code from the table below.
@@ -1770,7 +1759,7 @@ containing the appropriate Reason code from the table below.
   140            0x8C                  Bad authentication method                     The authentication method is not supported or does not match the
                                                                                      authentication method currently in use.
 
-  144            0x90                  Topic Name invalid                            The Will Topic Name is not malformed, but is not accepted by this
+  144            0x90                  Will Topic Name invalid                       The Will Topic Name is not malformed, but is not accepted by this
                                                                                      Server.
 
   149            0x95                  Packet too large                              The CONNECT packet exceeded the maximum permissible size.
@@ -1778,31 +1767,32 @@ containing the appropriate Reason code from the table below.
   151            0x97                  Quota exceeded                                An implementation or administrative imposed limit has been
                                                                                      exceeded.
 
-  155            0x9B                  QoS not supported                             The Server does not support the QoS set in Will QoS.
+  155            0x9B                  Will QoS not supported                        The Server does not support the QoS set in Will QoS.
 
   159            0x9F                  Virtual Connection rate exceeded              The Virtual Connection rate limit has been exceeded.
   ------------------------------------------------------------------------------------------------------------------------------------------------------
 
 [Table 17: CONNACK Reason Codes values]{.underline}
 
-#### 3.1.5.3 Connack Flags {#connack-flags .unnumbered}
+#### 3.1.5.3 Connack Flags
 
 The Connack Flags is 1 byte field located at byte 4 which contains parameters specifying the behavior of the MQTT-SN Virtual Connection on the
 gateway.
 
 The Connack *Flags* field includes the following flags:
 
--   **Session Present:** Stored in Bit 0 and specifies whether an existing session was present on the gateway for the given client identifier
+-   **Session Present:** Stored in Bit 0 and specifies whether an existing session was present on the gateway for the given client identifier. A value
+    of 1 indicates a session was present, a value 0 indicates no session was present.
 
 [The Client MUST validate that the reserved flags in the CONNACK packet are set to 0. If any of the reserved flags is not 0 it is a Malformed
 Packet.]{.mark}
 
-#### 3.1.5.4 Session Expiry Interval {#session-expiry-interval-1 .unnumbered}
+#### 3.1.5.4 Session Expiry Interval
 
 If the Session Expiry Interval is 0, the value of Session Expiry Interval in the CONNECT Packet is used. *The server uses this property to inform the
 Client that it is using a value other than that sent by the Client in the CONNECT*.
 
-#### 3.1.5.5 Assigned Client Identifier {#assigned-client-identifier .unnumbered}
+#### 3.1.5.5 Assigned Client Identifier
 
 The Client Identifier assigned by the gateway when the associated CONNECT packet contained no Client Identifier. [If the Client connects using a zero
 length Client Identifier, the Server MUST respond with a CONNACK containing an Assigned Client Identifier. The Assigned Client Identifier MUST be a
@@ -1810,115 +1800,17 @@ new Client Identifier not used by any other Session currently in the Gateway]{.m
 
 [The Assigned Client Identifier MUST be a UTF-8 Encoded String]{.mark}.
 
-> **Informative comment**
+> **Non-normative comment**
 >
-> Assigned Client Identifiers SHOULD BE be less than 247 bytes so they can be accommodated in a small packet version. This is also to cater for
-> devices which may not support larger Client Identifiers.
+> Assigned Client Identifiers SHOULD be less than 247 bytes so they can be accommodated in a small packet version. This is also to cater for devices
+> which may not support larger Client Identifiers.
 >
-> **Informative comment**
+> **Non-normative comment**
 >
 > Where a transparent gateway obtains an Assigned Client Identifier which is deemed too large for a device, it should maintain a registry to map
 > shorter gateway generated Client Identifiers with their versions returned from the broker.
 
-### 3.1.6 WILLTOPICREQ  {#willtopicreq .unnumbered}
-
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Bit**              **7**        **6**            **5**            **4**            **3**            **2**            **1**            **0**
-  -------------------- ------------ ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
-  Byte 1               Length                                                                                                             
-
-  Byte 2               Packet Type                                                                                                        
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
-
-[Table 18: WILLTOPICREQ packet]{.underline}
-
-The WILLTOPICREQ packet is sent by the GW to request a client for sending the Will topic name.
-
-### 3.1.7 WILLMSGREQ {#willmsgreq .unnumbered}
-
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Bit**              **7**        **6**            **5**            **4**            **3**            **2**            **1**            **0**
-  -------------------- ------------ ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
-  Byte 1               Length                                                                                                             
-
-  Byte 2               Packet Type                                                                                                        
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
-
-[Table 19: WILLMSGREQ packet]{.underline}
-
-The WILLMSGREQ packet is sent by the GW to request a client for sending the Will packet.
-
-### 3.1.8 WILLTOPIC {#willtopic .unnumbered}
-
-  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Bit**           **7**             **6**                 **5**                    **4**          **3**                     **2**            **1**                     **0**
-  ----------------- ----------------- ------- ------------- ------------- ---------- -------------- ------- ----------------- ---------------- ------- ----------------- ------------------
-  Byte 1            Length                                                                                                                                               
-
-  Byte 2            Packet Type                                                                                                                                          
-
-                    ***WILL TOPIC                                                                                                                                        
-                    FLAGS***                                                                                                                                             
-
-                    *Reserved*                *Will QoS*                  *Retain*                          *Reserved*        *Reserved*               *Reserved*        *Reserved*
-
-  Byte 3            *0*                       *X*           *X*           *X*                               *0*               *0*                      *0*               *0*
-
-  Byte 4.. N        Will Topic                                                                                                                                           
-  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-[Table 20: WILLTOPIC packet]{.underline}
-
-The WILLTOPIC packet is sent by a client as response to the WILLTOPICREQ packet for transferring its Will topic name to the GW.
-
-#### 3.1.8.1 Length & Packet Type {#length-packet-type-5 .unnumbered}
-
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
-description.
-
-#### 3.1.8.2 WILLTOPIC Flags {#willtopic-flags .unnumbered}
-
-The WillTopic Flags is 1 byte field containing several parameters specifying the properties of the WillTopic.
-
-The WillTopic Flags field includes the following flags:
-
--   **Retain:** Stored in Bit 4, this bit specifies if the Will Message is to be retained.
-
--   **Will QoS**: Stored in Bit 5 and 6, these two bits specify the QoS level to be used.
-
-#### 3.1.8.3 Will Topic {#will-topic-1 .unnumbered}
-
-Contains a Fixed Length UTF-8 Encoded String containing the Will Topic Name.
-
-An empty WILLTOPIC packet is a WILLTOPIC packet without Flags and Will Topic field (i.e. it is exactly 2 bytes long). It is used by a client to delete
-the Will topic and the Will packet stored in the gateway.
-
-### 3.1.9 WILLMSG {#willmsg .unnumbered}
-
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Bit**              **7**        **6**            **5**            **4**            **3**            **2**            **1**            **0**
-  -------------------- ------------ ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
-  Byte 1               Length                                                                                                             
-
-  Byte 2               Packet Type                                                                                                        
-
-  Byte 3 .. N          Will Message                                                                                                       
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
-
-[Table 21: WILLMSG packet]{.underline}
-
-The WILLPACKET packet is sent by a client as response to a WILLMSGREQ for transferring its Will packet to the GW.
-
-#### 3.1.9.1 Length & Packet Type {#length-packet-type-6 .unnumbered}
-
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
-description.
-
-#### 3.1.9.2 Will Message {#will-message .unnumbered}
-
-Contains the Will Message which is published by after the Virtual Connection is closed
-
-### 3.1.10 AUTH {#auth .unnumbered}
+### 3.1.6 AUTH
 
   --------------------------------------------------------------------------------------------------------------------------------------------------------
   **Bit**                  **7**       **6**         **5**            **4**            **3**            **2**            **1**            **0**
@@ -1944,12 +1836,12 @@ Contains the Will Message which is published by after the Virtual Connection is 
 [The AUTH message is first sent by the client as part of an authentication exchange.  The server responds with another AUTH message and so on until
 the authentication is complete.  The server then responds with a CONNACK message.]{.mark}
 
-#### 3.1.10.1 Length & Packet Type {#length-packet-type-7 .unnumbered}
+#### 3.1.6.1 Length & Packet Type
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
 description.
 
-#### 3.1.10.2 Reason Code {#reason-code-2 .unnumbered}
+#### 3.1.6.2 Reason Code
 
 [Byte 3 in the Auth packet holds the Authentication Reason Code. The values for the 1 byte unsigned Authentication Reason Code field are shown
 below.]{.mark}
@@ -1968,23 +1860,23 @@ below.]{.mark}
 
 [Table 23: AUTH Reason Code]{.underline}
 
-#### 3.1.10.3 Auth Method Length {#auth-method-length .unnumbered}
+#### 3.1.6.3 Auth Method Length
 
 The length of the auth method string.
 
-#### 3.1.10.4 Auth Method {#auth-method .unnumbered}
+#### 3.1.6.4 Auth Method
 
 [A UTF-8 Encoded String containing the name of the authentication method.]{.mark}
 
-#### 3.1.10.5 Auth Data {#auth-data .unnumbered}
+#### 3.1.6.5 Auth Data
 
 [Binary Data containing authentication data. The contents of this data are defined by the authentication method.]{.mark}
 
-> **Informative comment**
+> **Non-normative comment**
 >
-> [For a simple cleartext password is analogous to MQTT user name and password, the SASL PLAIN method can be used.]{.mark}
+> [For a simple cleartext password analogous to MQTT username and password, the SASL PLAIN method can be used.]{.mark}
 
-### 3.1.11 REGISTER {#register .unnumbered}
+### 3.1.7 REGISTER
 
   --------------------------------------------------------------------------------------------------------------------------------------------------------
   **Bit**              **7**        **6**            **5**            **4**            **3**            **2**            **1**            **0**
@@ -2013,25 +1905,25 @@ The length of the auth method string.
 The REGISTER packet is sent by a client to a GW for requesting a topic alias value for the included topic name. It is also sent by a GW to inform a
 client about the topic alias value it has assigned to the included topic name.
 
-#### 3.1.11.1 Length & Packet Type {#length-packet-type-8 .unnumbered}
+#### 3.1.7.1 Length & Packet Type
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
 description.
 
-#### 3.1.11.2 Topic Alias {#topic-alias .unnumbered}
+#### 3.1.7.2 Topic Alias
 
 If sent by a client, it is coded 0x0000 and is not relevant; if sent by a GW, it contains the topic alias value assigned to the topic name included in
 the Topic Name field.
 
-#### 3.1.11.3 Packet Id {#packet-id .unnumbered}
+#### 3.1.7.3 Packet Id
 
 Should be coded such that it can be used to identify the corresponding REGACK packet.
 
-#### 3.1.11.4 Topic Name {#topic-name-1 .unnumbered}
+#### 3.1.7.4 Topic Name
 
 Fixed Length UTF-8 Encoded String Contains the fully qualified topic name.
 
-### 3.1.12 REGACK {#regack .unnumbered}
+### 3.1.8 REGACK
 
   ------------------------------------------------------------------------------------------------------------------------------------------------------------------
   **Bit**         **7**              **6**             **5**              **4**             **3**           **2**                     **1**             **0**
@@ -2062,12 +1954,12 @@ Fixed Length UTF-8 Encoded String Contains the fully qualified topic name.
 
 The REGACK packet is sent by a client or by a GW as an acknowledgment to the receipt and processing of a REGISTER packet.
 
-#### 3.1.12.1 Length & Packet Type {#length-packet-type-9 .unnumbered}
+#### 3.1.8.1 Length & Packet Type
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
 description.
 
-#### 3.1.12.2 REGACK Flags {#regack-flags .unnumbered}
+#### 3.1.8.2 REGACK Flags
 
 The REGACK Flags is 1 byte field in Byte position 3 of the REGACK packet.
 
@@ -2076,15 +1968,15 @@ The REGACK Flags field includes the following flag:
 -   **Topic Alias Type**. This is a 2-bit field in Bit 0 and 1 which determines the format of the topic Id value. Refer to [Table
     10](#topic-alias-types) for the definition of the various topic types.
 
-#### 3.1.12.3 Topic Alias {#topic-alias-1 .unnumbered}
+#### 3.1.8.3 Topic Alias
 
 A Topic Alias is an integer value that is used to identify the Topic instead of the Topic Name. This numeric value is used as the Topic Alias.
 
-#### 3.1.12.4 Packet Id {#packet-id-1 .unnumbered}
+#### 3.1.8.4 Packet Id
 
 The same value as the one contained in the corresponding REGISTER packet.
 
-#### 3.1.12.5 Reason Code {#reason-code-3 .unnumbered}
+#### 3.1.8.5 Reason Code
 
 [Byte 8 in the REGACK packet holds the Register Reason Code.]{.mark}
 
@@ -2104,7 +1996,7 @@ The same value as the one contained in the corresponding REGISTER packet.
 
 [Table 26: REGACK Reason Code]{.underline}
 
-### 3.1.13 Publish Variants {#publish-variants .unnumbered}
+### 3.1.9 Publish Variants
 
 MQTT-SN is designed to be optimized for packet size. For this reason, the PUBLISH packet has been split into 3 variants; Variant 1 catering for
 Quality of Service -1 where a protocol version field is required, Variant 2 catering for Quality of Service 0 where no response ACK is required and
@@ -2126,7 +2018,7 @@ table below breaks down the different versions of the PUBLISH packet and their r
   **Publish Out Of Band (OOB)** 0x11                 A PUBLISH message that need have no session present on the GW or broker
   ------------------------------------------------------------------------------------------------------------------------------------------------------
 
-### 3.1.14 PUBLISH MINUS -1 (Reference from 1.2) {#publish-minus--1-reference-from-1.2 .unnumbered}
+### 3.1.10 PUBLISH MINUS -1 (Reference from 1.2)
 
   -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   **Bit**         **7**             **6**                 **5**                   **4**          **3**                     **2**                           **1**          **0**   
@@ -2160,14 +2052,18 @@ table below breaks down the different versions of the PUBLISH packet and their r
 
 [Table 27: PUBLISH packet]{.underline}
 
-This packet is used by both clients and gateways to publish data for a certain topic.
+This packet is used by both clients and gateways to publish data to a topic.
 
-#### 3.1.14.1 Length & Packet Type {#length-packet-type-10 .unnumbered}
+> **Non-Normative Comment**
+>
+> If the Transport Layer supports broadcast, like UDP/IP, the PUBLISH MINUS -1 packet is generally sent using the broadcast address as destination.
+
+#### 3.1.10.1 Length & Packet Type
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
 description.
 
-#### 3.1.14.2 PUBLISH Flags {#publish-flags .unnumbered}
+#### 3.1.10.2 PUBLISH Flags
 
 The PUBLISH Flags field is 1-byte located in Byte 3 position of the PUBLISH control packet.
 
@@ -2186,19 +2082,20 @@ The PUBLISH Flags includes the following flags:
 -   **Retain**: 1 bit field stored in Bit 4 and has the same meaning as with MQTT. The field signifies whether the existing retained message for this
     topic is replaced or kept.
 
-#### 3.1.14.3 Topic Alias or Topic Length {#topic-alias-or-topic-length .unnumbered}
+#### 3.1.10.3 Topic Alias or Topic Length
 
 In the case of Topic Alias Type being b11 this field will refer to the length of data assigned to the "Full Topic Name", in all other cases, this will
 be the value used as the topic alias or short topic name.
 
-#### 3.1.14.4 Data {#data .unnumbered}
+#### 3.1.10.4 Data
 
 In the case of Topic Alias Type b11 the data section will be prefixed with a "Full Topic Name" encoded with a UTF-8 encoded string value of length
 determined by the previously defined length field. Thereafter,
 
-the *Data* field corresponds to payload of an MQTT PUBLISH packet. It has a variable length and contains the application data that is being published.
+the *Data* field corresponds to the payload of an MQTT PUBLISH packet. It has a variable length and contains the application data that is being
+published.
 
-### 3.1.15 PUBLISH OUT OF BAND {#publish-out-of-band .unnumbered}
+### 3.1.11 PUBLISH OUT OF BAND
 
 +----------------+---------------+---+------------+------------+---+-------------+---+---+--------------+----------------------+---+-------------+---+--------------+
 | **Bit**        | **7**         | * |            | **5**      |   | **4**       | * |   |              | **2**                |   | **1**       | * |              |
@@ -2287,12 +2184,16 @@ the *Data* field corresponds to payload of an MQTT PUBLISH packet. It has a vari
 
 This packet is used by both clients and gateways to publish data for a certain topic.
 
-#### 3.1.15.1 Length & Packet Type {#length-packet-type-11 .unnumbered}
+> **Non-Normative Comment**
+>
+> If the Transport Layer supports broadcast, like UDP/IP, the PUBLISH OUT OF BAND packet is generally sent using the broadcast address as destination.
+
+#### 3.1.11.1 Length & Packet Type
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
 description.
 
-#### 3.1.15.2 PUBLISH Flags {#publish-flags-1 .unnumbered}
+#### 3.1.11.2 PUBLISH Flags
 
 The PUBLISH Flags field is 1-byte located in the Byte 3 position of the PUBLISH control packet.
 
@@ -2304,18 +2205,18 @@ The PUBLISH Flags includes the following flags:
 -   **Retain**: 1 bit field stored in Bit 4 and has the same meaning as with MQTT. The field signifies whether the existing retained message for this
     topic is replaced or kept.
 
-#### 3.1.15.3 Topic Alias or Topic Length {#topic-alias-or-topic-length-1 .unnumbered}
+#### 3.1.11.3 Topic Alias or Topic Length
 
 In the case of Topic Alias Type being b11 this field will refer to the length of data assigned to the "Full Topic Name", in all other cases, this will
 be the value used as the topic alias or short topic name.
 
-#### 3.1.15.4 Data {#data-1 .unnumbered}
+#### 3.1.11.4 Data
 
 In the case of Topic Alias Type b11 the data section will be prefixed with a "Full Topic Name" encoded with a UTF-8 encoded string value of length
 determined by the previously defined length field. Thereafter, the *Data* field corresponds to the payload of an MQTT PUBLISH packet. It has a
 variable length and contains the application data that is being published.
 
-### 3.1.16 PUBLISH (used for QoS 0) {#publish-used-for-qos-0 .unnumbered}
+### 3.1.12 PUBLISH (used for QoS 0)
 
 +----------------+---------------+---+------------+------------+---+-------------+---+---+--------------+----------------------+---+-------------+---+--------------+
 | **Bit**        | **7**         | * |            | **5**      |   | **4**       | * |   |              | **2**                |   | **1**       | * |              |
@@ -2404,12 +2305,12 @@ variable length and contains the application data that is being published.
 
 This packet is used by both clients and gateways to publish data for a certain topic.
 
-#### 3.1.16.1 Length & Packet Type {#length-packet-type-12 .unnumbered}
+#### 3.1.12.1 Length & Packet Type
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
 description.
 
-#### 3.1.16.2 PUBLISH Flags {#publish-flags-2 .unnumbered}
+#### 3.1.12.2 PUBLISH Flags
 
 The PUBLISH Flags field is 1-byte located in Byte 3 position of the PUBLISH control packet.
 
@@ -2428,18 +2329,18 @@ The PUBLISH Flags includes the following flags:
 -   **Retain**: 1 bit field stored in Bit 4 and has the same meaning as with MQTT. The field signifies whether the existing retained message for this
     topic is replaced or kept.
 
-#### 3.1.16.3 Topic Alias or Topic Length {#topic-alias-or-topic-length-2 .unnumbered}
+#### 3.1.12.3 Topic Alias or Topic Length
 
 In the case of Topic Alias Type being b11 this field will refer to the length of data assigned to the "Full Topic Name", in all other cases, this will
 be the value used as the topic alias or short topic name.
 
-#### 3.1.16.4 Data {#data-2 .unnumbered}
+#### 3.1.12.4 Data
 
 In the case of Topic Alias Type b11 the data section will be prefixed with a "Full Topic Name" encoded with a UTF-8 encoded string value of length
 determined by the previously defined length field. Thereafter, the *Data* field corresponds to the payload of an MQTT PUBLISH packet. It has a
 variable length and contains the application data that is being published.
 
-### 3.1.17 PUBLISH (used for QoS 1 & 2) {#publish-used-for-qos-1-2 .unnumbered}
+### 3.1.13 PUBLISH (used for QoS 1 & 2)
 
 +----------------+---------------+---+------------+------------+---+-------------+---+---+--------------+----------------------+---+-------------+---+--------------+
 | **Bit**        | **7**         | * |            | **5**      |   | **4**       | * |   |              | **2**                |   | **1**       | * |              |
@@ -2532,12 +2433,12 @@ variable length and contains the application data that is being published.
 
 This packet is used by both clients and gateways to publish data for a certain topic.
 
-#### 3.1.17.1 Length & Packet Type {#length-packet-type-13 .unnumbered}
+#### 3.1.13.1 Length & Packet Type
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
 description.
 
-#### 3.1.17.2 PUBLISH Flags {#publish-flags-3 .unnumbered}
+#### 3.1.13.2 PUBLISH Flags
 
 The PUBLISH Flags field is 1-byte located in Byte 3 position of the PUBLISH control packet.
 
@@ -2556,26 +2457,26 @@ The PUBLISH Flags includes the following flags:
 -   **Retain**: 1 bit field stored in Bit 4 and has the same meaning as with MQTT. The field signifies whether the existing retained message for this
     topic is replaced or kept.
 
-#### 3.1.17.3 Topic Length {#topic-length .unnumbered}
+#### 3.1.13.3 Topic Length
 
 Contains the length of the topic value. This will be either 2 bytes when using a standard alias (0b00, 0b01 or 0b10) or the length of the full topic
 name when the topic type is 0b11.
 
-#### 3.1.17.4 Packet Id {#packet-id-2 .unnumbered}
+#### 3.1.13.4 Packet Id
 
 Same meaning as the MQTT "Packet ID"; only relevant in case of QoS levels 1 and 2, otherwise coded 0x0000.
 
-#### 3.1.17.5 Topic Alias or Topic Name {#topic-alias-or-topic-name .unnumbered}
+#### 3.1.13.5 Topic Alias or Topic Name
 
 Contains topic name encoded as a Fixed Length UTF-8 Encoded String, topic alias, or short topic name as indicated in the *Topic Alias Type* field in
 flags.
 
-#### 3.1.17.6 Data {#data-3 .unnumbered}
+#### 3.1.13.6 Data
 
 The *Data* field corresponds to the payload of an MQTT PUBLISH packet. It has a variable length and contains the application data that is being
 published.
 
-### 3.1.18 PUBACK -- Publish Acknowledgement {#puback-publish-acknowledgement .unnumbered}
+### 3.1.14 PUBACK -- Publish Acknowledgement
 
   --------------------------------------------------------------------------------------------------------------------------------------------------------
   **Bit**              **7**        **6**            **5**            **4**            **3**            **2**            **1**            **0**
@@ -2598,16 +2499,16 @@ published.
 A PUBACK packet is the response to a PUBLISH packet with QoS 1. It can also be sent as response to a PUBLISH packet of any QoS (*with the exception of
 QoS -1, or Publish Out Of Band*) in case of an error; the error reason is then indicated in the *Reason Code* field.
 
-#### 3.1.18.1 Length & Packet Type {#length-packet-type-14 .unnumbered}
+#### 3.1.14.1 Length & Packet Type
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
 description.
 
-#### 3.1.18.2 Packet Id {#packet-id-3 .unnumbered}
+#### 3.1.14.2 Packet Id
 
 Same value as the one contained in the corresponding PUBLISH packet.
 
-#### 3.1.18.3 Reason Code {#reason-code-4 .unnumbered}
+#### 3.1.14.3 Reason Code
 
 Byte 5 in the PUBACK packet holds the Reason code in response to the PUBLISH packet. The Client or Server sending the PUBACK packet MUST use one of
 the PUBACK Reason Codes
@@ -2628,7 +2529,7 @@ the PUBACK Reason Codes
 
 [Table 32: PUBACK Reason Code]{.underline}
 
-### 3.1.19 PUBREC (QoS 2 delivery part 1) {#pubrec-qos-2-delivery-part-1 .unnumbered}
+### 3.1.15 PUBREC (QoS 2 delivery part 1)
 
   --------------------------------------------------------------------------------------------------------------------------------------------------------
   **Bit**              **7**        **6**            **5**            **4**            **3**            **2**            **1**            **0**
@@ -2648,16 +2549,16 @@ the PUBACK Reason Codes
 
 A PUBREC packet is the response to a PUBLISH packet with QoS 2. It is the second packet of the QoS 2 protocol exchange.
 
-#### 3.1.19.1 Length & Packet Type {#length-packet-type-15 .unnumbered}
+#### 3.1.15.1 Length & Packet Type
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 2.1 for a detailed
 description.
 
-#### 3.1.19.2 Packet Id {#packet-id-4 .unnumbered}
+#### 3.1.15.2 Packet Id
 
 Same value as the one contained in the corresponding PUBLISH packet.
 
-### 3.1.20 PUBREL (QoS 2 delivery part 2) {#pubrel-qos-2-delivery-part-2 .unnumbered}
+### 3.1.16 PUBREL (QoS 2 delivery part 2)
 
   --------------------------------------------------------------------------------------------------------------------------------------------------------
   **Bit**              **7**        **6**            **5**            **4**            **3**            **2**            **1**            **0**
@@ -2677,16 +2578,16 @@ Same value as the one contained in the corresponding PUBLISH packet.
 
 A PUBREL packet is the response to a PUBREC packet. It is the third packet of the QoS 2 protocol exchange.
 
-#### 3.1.20.1 Length & Packet Type {#length-packet-type-16 .unnumbered}
+#### 3.1.16.1 Length & Packet Type
 
 > The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 2.1 for a detailed
 > description.
 
-#### 3.1.20.2 Packet Id {#packet-id-5 .unnumbered}
+#### 3.1.16.2 Packet Id
 
 > Same value as the one contained in the corresponding PUBLISH packet.
 
-### 3.1.21 PUBCOMP (QoS 2 delivery part 3) {#pubcomp-qos-2-delivery-part-3 .unnumbered}
+### 3.1.17 PUBCOMP (QoS 2 delivery part 3)
 
   --------------------------------------------------------------------------------------------------------------------------------------------------------
   **Bit**              **7**        **6**            **5**            **4**            **3**            **2**            **1**            **0**
@@ -2706,16 +2607,16 @@ A PUBREL packet is the response to a PUBREC packet. It is the third packet of th
 
 The PUBCOMP packet is the response to a PUBREL packet. It is the fourth and final packet of the QoS 2 protocol exchange.
 
-#### 3.1.21.1 Length & Packet Type {#length-packet-type-17 .unnumbered}
+#### 3.1.17.1 Length & Packet Type
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
 description.
 
-#### 3.1.21.2 Packet Identifier {#packet-identifier-1 .unnumbered}
+#### 3.1.17.2 Packet Identifier
 
 Same value as the one contained in the corresponding PUBLISH packet.
 
-### 3.1.22 SUBSCRIBE  {#subscribe .unnumbered}
+### 3.1.18 SUBSCRIBE 
 
 +----------------+---------------+---+------------+---+---------+---+------------------------+------------+---+-------------+-------------+---+---------------+
 | **Bit**        | **7**         | * |            | * |         |   | **4**                  | **3**      |   | **2**       | **1**       | * |               |
@@ -2789,12 +2690,12 @@ Same value as the one contained in the corresponding PUBLISH packet.
 
 The SUBSCRIBE packet is used by a client to subscribe to a certain topic name.
 
-#### 3.1.22.1 Length & Packet Type {#length-packet-type-18 .unnumbered}
+#### 3.1.18.1 Length & Packet Type
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
 description.
 
-#### 3.1.22.2 SUBSCRIBE Flags {#subscribe-flags .unnumbered}
+#### 3.1.18.2 SUBSCRIBE Flags
 
 The SUBSCRIBE Flags field is 1-byte and contains the following flags:
 
@@ -2816,23 +2717,23 @@ The SUBSCRIBE Flags field is 1-byte and contains the following flags:
 
     -   1: Send retained messages at subscribe only if the subscription does not currently exist
 
-    -   2: Do not send retained messages at the time of the subscribe.
+    -   2: Do not send retained messages at the time the new subscription is processed.
 
 > It is a Protocol Error to send a Retain Handling value of 3.
 
 -   **Topic Alias Type**: indicates the type of Topic Alias or Topic Filter included in this packet. Refer to [Table 10](#topic-alias-types) for the
     definition of the various types.
 
-#### 3.1.22.3 Packet Id {#packet-id-6 .unnumbered}
+#### 3.1.18.3 Packet Id
 
 Should be coded such that it can be used to identify the corresponding SUBACK packet.
 
-#### 3.1.22.4 Topic Alias or Topic Filter {#topic-alias-or-topic-filter .unnumbered}
+#### 3.1.18.4 Topic Alias or Topic Filter
 
 Contains Fixed Length UTF-8 Encoded String topic filter, topic alias, or short topic name as indicated in the *Topic Alias Type* field in flags.
 Determines the topic names which this subscription is interested in.
 
-### 3.1.23 SUBACK {#suback .unnumbered}
+### 3.1.19 SUBACK
 
   -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   **Bit**            **7**             **6**                  **5**                      **4**           **3**                     **2**            **1**                  **0**   
@@ -2864,12 +2765,12 @@ Determines the topic names which this subscription is interested in.
 
 The SUBACK packet is sent by a gateway to a client as an acknowledgment to the receipt and processing of a SUBSCRIBE packet.
 
-#### 3.1.23.1 Length & Packet Type {#length-packet-type-19 .unnumbered}
+#### 3.1.19.1 Length & Packet Type
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
 description.
 
-#### 3.1.23.2 Flags {#flags .unnumbered}
+#### 3.1.19.2 Flags
 
 The SUBACK Flags field is 1-byte located in Byte 3 position of the SUBACK control packet. The SUBACK Flags includes the following flags:
 
@@ -2878,16 +2779,16 @@ The SUBACK Flags field is 1-byte located in Byte 3 position of the SUBACK contro
 
 -   **Granted QoS**: This is a 2-bit field in Bit 5 and 6 which notes the Quality of Service that was granted for the Subscription
 
-#### 3.1.23.3 Topic Alias {#topic-alias-2 .unnumbered}
+#### 3.1.19.3 Topic Alias
 
 In case of "accepted" the value that will be used as topic alias by the gateway when sending PUBLISH packets to the client (not relevant in case of
 subscriptions to a short topic name or to a topic name which contains wildcard characters)
 
-#### 3.1.23.4 Packet Identifier {#packet-identifier-2 .unnumbered}
+#### 3.1.19.4 Packet Identifier
 
 Same value as the one contained in the corresponding SUBSCRIBE packet.
 
-#### 3.1.23.5 Reason Code {#reason-code-5 .unnumbered}
+#### 3.1.19.5 Reason Code
 
 Byte 8 in the SUBACK packet holds the Reason code in response to SUBSCRIBE packet. The Client or Server sending the SUBACK packet MUST use one of the
 SUBACK Reason Codes
@@ -2908,7 +2809,7 @@ SUBACK Reason Codes
 
 [Table 38: SUBACK Reason Code]{.underline}
 
-### 3.1.24 UNSUBSCRIBE {#unsubscribe .unnumbered}
+### 3.1.20 UNSUBSCRIBE
 
 +----------------+----------------+---+------------+------------+---+--------------+---+---+-------+---------+----------------+--------------+---+--------------+
 | **Bit**        | **7**          | * |            | **5**      |   | **4**        | * |   |       |         | **2**          | **1**        | * |              |
@@ -2959,12 +2860,12 @@ SUBACK Reason Codes
 
 An UNSUBSCRIBE packet is sent by the client to the GW to unsubscribe from named topics.
 
-#### 3.1.24.1 Length & Packet Type {#length-packet-type-20 .unnumbered}
+#### 3.1.20.1 Length & Packet Type
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
 description.
 
-#### 3.1.24.2 UNSUBSCRIBE Flags {#unsubscribe-flags .unnumbered}
+#### 3.1.20.2 UNSUBSCRIBE Flags
 
 For The UNSUBSCRIBE Flags is 1 byte field in Byte position 3 of the UNSUBSCRIBE packet.
 
@@ -2973,15 +2874,15 @@ The UNSUBSCRIBE Flags field includes the following flag:
 -   **Topic Type.** This is a 2-bit field in Bit 0 and 1 which determines the format of the topic Id value. Refer to [Table 10](#topic-alias-types)
     for the definition of the various topic types.
 
-#### 3.1.24.3 Packet Identifier {#packet-identifier-3 .unnumbered}
+#### 3.1.20.3 Packet Identifier
 
 Should be coded such that it can be used to identify the corresponding SUBACK packet.
 
-#### 3.1.24.4 Topic Alias or Topic Filter {#topic-alias-or-topic-filter-1 .unnumbered}
+#### 3.1.20.4 Topic Alias or Topic Filter
 
 Contains Fixed Length UTF-8 Encoded String topic filter, topic alias, or short topic name as indicated in the *Topic Alias Type* field.
 
-### 3.1.25 UNSUBACK {#unsuback .unnumbered}
+### 3.1.21 UNSUBACK
 
   --------------------------------------------------------------------------------------------------------------------------------------------------------
   **Bit**              **7**        **6**            **5**            **4**            **3**            **2**            **1**            **0**
@@ -3003,16 +2904,16 @@ Contains Fixed Length UTF-8 Encoded String topic filter, topic alias, or short t
 
 An UNSUBACK packet is sent by a GW to acknowledge the receipt and processing of an UNSUBSCRIBE packet.
 
-#### 3.1.25.1 Length & Packet Type {#length-packet-type-21 .unnumbered}
+#### 3.1.21.1 Length & Packet Type
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
 description.
 
-#### 3.1.25.2 Packet Identifier {#packet-identifier-4 .unnumbered}
+#### 3.1.21.2 Packet Identifier
 
 Same value as the one contained in the corresponding UNSUBSCRIBE packet.
 
-#### 3.1.25.3 Reason Code {#reason-code-6 .unnumbered}
+#### 3.1.21.3 Reason Code
 
 Byte 5 in the UNSUBACK packet holds the Reason code in response to UNSUBSCRIBE packet. The gateway/server sending the UNSUBACK packet MUST use one of
 the UNSUBACK Reason Codes
@@ -3030,7 +2931,7 @@ the UNSUBACK Reason Codes
 
 [Table 41: UNSUBACK Reason Code]{.underline}
 
-### 3.1.26 PINGREQ {#pingreq .unnumbered}
+### 3.1.22 PINGREQ
 
   --------------------------------------------------------------------------------------------------------------------------------------------------------
   **Bit**              **7**        **6**            **5**            **4**            **3**            **2**            **1**            **0**
@@ -3048,19 +2949,19 @@ the UNSUBACK Reason Codes
 
 As with MQTT, the PINGREQ packet is an "are you alive" packet that is sent from or received by a connected client.
 
-#### 3.1.26.1 Length & Packet Type {#length-packet-type-22 .unnumbered}
+#### 3.1.22.1 Length & Packet Type
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
 description.
 
-#### 3.1.26.2 Client Identifier (optional) {#client-identifier-optional .unnumbered}
+#### 3.1.22.2 Client Identifier (optional)
 
 Contains the client identifier (client id); this field is optional and is included by a "sleeping" client when it goes to the "awake" state and is
 waiting for packets sent by the server/gateway.
 
 [The Client Identifier MUST be a Fixed Length UTF-8 Encoded String]{.mark}. []{.mark}
 
-### 3.1.27 PINGRESP {#pingresp .unnumbered}
+### 3.1.23 PINGRESP
 
   --------------------------------------------------------------------------------------------------------------------------------------------------------
   **Bit**              **7**        **6**            **5**            **4**            **3**            **2**            **1**            **0**
@@ -3081,12 +2982,12 @@ either by a connected client or the gateway. it has only a header and no variabl
 
 Moreover, a PINGRESP packet is sent by a gateway to inform a sleeping client that it has no more buffered packets for that client.
 
-#### 3.1.27.1 Length & Packet Type {#length-packet-type-23 .unnumbered}
+#### 3.1.23.1 Length & Packet Type
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
 description.
 
-#### 3.1.27.2 Messages Remaining {#messages-remaining .unnumbered}
+#### 3.1.23.2 Messages Remaining
 
 The number of messages left when a client is sent back to sleep. Optional -- for use at the end of a client\'s awake period. Values can be:
 
@@ -3102,7 +3003,7 @@ The number of messages left when a client is sent back to sleep. Optional -- for
 
 [Table 44: Allowed PINGRESP continuation values]{.underline}
 
-### 3.1.28 DISCONNECT {#disconnect .unnumbered}
+### 3.1.24 DISCONNECT
 
 +----------------+---------+---+-----------+---+------------+---+----------+---+------------+---+------------+---+------------------+---+---+-----------------------+
 | **Bit**        | **7**   | * |           | * |            | * |          | * |            | * |            | * |                  | * |   |                       |
@@ -3179,12 +3080,12 @@ Connection again by sending a CONNECT packet to the gateway or server.
 A DISCONNECT packet with a *Session Expiry Interval* field is sent by a client when it wants to go to the "asleep" state. The receipt of this packet
 is also acknowledged by the gateway by means of a DISCONNECT packet.
 
-#### 3.1.28.1 Length & Packet Type {#length-packet-type-24 .unnumbered}
+#### 3.1.24.1 Length & Packet Type
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
 description.
 
-#### 3.1.28.2 Disconnect Flags {#disconnect-flags .unnumbered}
+#### 3.1.24.2 Disconnect Flags
 
 The Disconnect Flags is 1 byte field located at byte 3 which contains parameters specifying the behavior of the MQTT-SN sleep on the gateway.
 
@@ -3203,7 +3104,7 @@ The Disconnect *Flags* field includes the following flags:
 [The]{.mark} [Gateway MUST validate that the reserved flags in the DISCONNECT packet are set to 0. If any of the reserved flags is not 0 it is a
 Malformed Packet.]{.mark}
 
-#### 3.1.28.3 Reason Code {#reason-code-7 .unnumbered}
+#### 3.1.24.3 Reason Code
 
 The Reason Code for the DISCONNECT control packet is optional. If provided, Byte 3 in the DISCONNECT control packet holds the Reason Code of the
 disconnection.
@@ -3223,165 +3124,18 @@ disconnection.
 
 [Table 46: DISCONNECT Reason Code]{.underline}
 
-#### 3.1.28.4 Session Expiry Interval {#session-expiry-interval-2 .unnumbered}
+#### 3.1.24.4 Session Expiry Interval
 
 The Session Expiry Interval is a four-byte integer time interval measured in seconds. If the Session Expiry Interval is set to 0 or omitted, the
 Session is transitioned to the "***disconnected***" state. When the value of this field is greater than zero, it is deemed to be sent by a client that
 wants to transition to the "***asleep***" state, see Section 3.19 for further details. At this point the keep alive timer becomes obsolete until the
 device issues a new CONNECT.
 
-#### 3.1.28.5 Reason String {#reason-string .unnumbered}
+#### 3.1.24.5 Reason String
 
 Fixed Length UTF-8 Encoded String representing a clear text description of disconnection.
 
-### 3.1.29 WILLTOPICUPD {#willtopicupd .unnumbered}
-
-  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Bit**           **7**             **6**                 **5**                    **4**          **3**                     **2**            **1**                     **0**
-  ----------------- ----------------- ------- ------------- ------------- ---------- -------------- ------- ----------------- ---------------- ------- ----------------- -----------------
-  Byte 1            Length                                                                                                                                               
-
-  Byte 2            Packet Type                                                                                                                                          
-
-                    ***WILLTOPICUPD                                                                                                                                      
-                    FLAGS***                                                                                                                                             
-
-                    *Reserved*                *Will QoS*                  *Retain*                          *Reserved*        *Reserved*               *Reserved*        *Reserved*
-
-  Byte 3            *0*                       *X*           *X*           *X*                               *0*               *0*                      *0*               *0*
-
-  Byte 4.. N        Will Topic                                                                                                                                           
-  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-[Table 47: WILLTOPICUPD packet]{.underline}
-
-The WILLTOPICUPD packet is sent by a client to update its Will topic name stored in the gateway/server.
-
-#### 3.1.29.1 Length & Packet Type {#length-packet-type-25 .unnumbered}
-
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
-description.
-
-#### 3.1.29.2 Flags {#flags-1 .unnumbered}
-
-The WILLTOPICUPD Flags is 1 byte field in Byte 3 position of the packet specifying the properties of the WILLTOPICUPD.
-
-The WILLTOPICUPD Flags field includes the following flags:
-
--   **Will QoS**: Stored in Bit 5 and 6, these two bits specify the QoS level to be used.
-
-#### 3.1.29.3 Will Topic {#will-topic-2 .unnumbered}
-
-Contains the Will topic name.An empty WILLTOPICUPD packet is a WILLTOPICUPD packet without Flags and WillTopic field (i.e. it is exactly 2 bytes
-long). It is used by a client to delete its Will topic and Will message stored in the GW/server.
-
-### 3.1.30 WILLMSGUPD {#willmsgupd .unnumbered}
-
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Bit**              **7**        **6**            **5**            **4**            **3**            **2**            **1**            **0**
-  -------------------- ------------ ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
-  Byte 1               Length                                                                                                             
-
-  Byte 2               Packet Type                                                                                                        
-
-  Byte 3 .. N          Will Message                                                                                                       
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
-
-[Table 48: WILLMSGUPD packet]{.underline}
-
-The WILLMSGUPD packet is sent by a client to update its Will packet stored in the gateway/server.
-
-#### 3.1.30.1 Length & Packet Type {#length-packet-type-26 .unnumbered}
-
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
-description.
-
-#### 3.1.30.2 Will Message {#will-message-1 .unnumbered}
-
-Contains the Will message.
-
-### 3.1.31 WILLTOPICRESP {#willtopicresp .unnumbered}
-
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Bit**              **7**        **6**            **5**            **4**            **3**            **2**            **1**            **0**
-  -------------------- ------------ ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
-  Byte 1               Length                                                                                                             
-
-  Byte 2               Packet Type                                                                                                        
-
-  Byte 3               Reason Code                                                                                                        
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
-
-[Table 49: WILLTOPICRESP packet]{.underline}
-
-The WILLTOPICRESP packet is sent by a gateway to acknowledge the receipt and processing of an WILLTOPICUPD packet.
-
-#### 3.1.31.1 Length & Packet Type {#length-packet-type-27 .unnumbered}
-
-Uses packet header format 1. Please refer to section 2.1 for a detailed description.
-
-#### 3.1.31.2 Reason Code {#reason-code-8 .unnumbered}
-
-Byte 3 in the WILLTOPICRESP control packet contains the Reason Code returned from the processing of the WILLTOPICUPD packet.
-
-  ------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Dec**        **Hex**               **Reason Code name**                          **Description**
-  -------------- --------------------- --------------------------------------------- -------------------------------------------------------------------
-  0              0x00                  Success                                       The Will Topic update request was received successfully.
-
-  1              0x01                  Congestion                                    There is network or server congestion in receiving Will Topic
-                                                                                     response
-
-  2              0x02                  Invalid topic alias                           The Topic name alias is not accepted by the Server.
-
-  3              0x03                  Not supported                                 The server does not accept or support the properties provided with
-                                                                                     the WILLTOPICRESP packet.
-  ------------------------------------------------------------------------------------------------------------------------------------------------------
-
-[Table 50: WILLTOPICRESP Reason Code]{.underline}
-
-### 3.1.32 WILLMSGRESP {#willmsgresp .unnumbered}
-
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Bit**              **7**        **6**            **5**            **4**            **3**            **2**            **1**            **0**
-  -------------------- ------------ ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
-  Byte 1               Length                                                                                                             
-
-  Byte 2               Packet Type                                                                                                        
-
-  Byte 3               Reason Code                                                                                                        
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
-
-[Table 51: WILLMSGRESP]{.underline}
-
-The WILLMSGRESP packet is sent by a gateway to acknowledge the receipt and processing of a WILLMSGUPD packet.
-
-#### 3.1.32.1 Length & Packet Type {#length-packet-type-28 .unnumbered}
-
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
-description.
-
-#### 3.1.32.2 Reason Code {#reason-code-9 .unnumbered}
-
-Byte 3 in the WILLMSGRESP control packet contains the Reason Code returned from processing of the WILLMSGUPD control packet.
-
-  ------------------------------------------------------------------------------------------------------------------------------------------------------
-  Dec            Hex                   Reason Code name                              Description
-  -------------- --------------------- --------------------------------------------- -------------------------------------------------------------------
-  0              0x00                  Success                                       The Will Message update was accepted and processed successfully.
-
-  1              0x01                  Congestion                                    There is network or server congestion in receiving the Will Message
-                                                                                     update packet.
-
-  2              0x02                  Invalid topic alias                           The Will Topic name alias is not accepted by the Server
-
-  3              0x03                  Not supported                                 The Server does not accept or support the properties provided with
-                                                                                     WILLMSGUPD packet.
-  ------------------------------------------------------------------------------------------------------------------------------------------------------
-
-[Table 52: WILLMSGRESP Reason Code]{.underline}
-
-### 3.1.33 Forwarder Encapsulation {#forwarder-encapsulation .unnumbered}
+### 3.1.25 Forwarder Encapsulation
 
   --------------------------------------------------------------------------------------------------------------------------------------------------------
   **Bit**                      **7**       **6**         **5**        **4**            **3**            **2**            **1**            **0**
@@ -3405,15 +3159,15 @@ As detailed in Section 4, MQTT-SN clients can also access a gateway via a forwar
 forwarder simply encapsulates the MQTT-SN frames it receives on the wireless side and forwards them unchanged to the gateway; in the opposite
 direction, it decapsulates the frames it receives from the gateway and sends them to the clients, unchanged too.
 
-#### 3.1.33.1 Length {#length-1 .unnumbered}
+#### 3.1.25.1 Length
 
 1-byte long, specifies the number of bytes up to the end of the "Wireless Node Id" field (incl. the Length byte itself)
 
-#### 3.1.33.2 Packet Type {#packet-type .unnumbered}
+#### 3.1.25.2 Packet Type
 
 Coded "0xFE", see Table 6
 
-#### 3.1.33.3 Ctrl {#ctrl .unnumbered}
+#### 3.1.25.3 Ctrl
 
 The Ctrl byte contains control information exchanged between the GW and the forwarder.
 
@@ -3427,22 +3181,22 @@ The Ctrl byte contains control information exchanged between the GW and the forw
 
 [Table 54: Format of the ctrl byte]{.underline}
 
-#### 3.1.33.4 Radius {#radius-2 .unnumbered}
+#### 3.1.25.4 Radius
 
 Transmission radius (only relevant in direction gateway to forwarder)
 
-#### 3.1.33.5 Wireless Node Id {#wireless-node-id .unnumbered}
+#### 3.1.25.5 Wireless Node Id
 
 Identifies the wireless node which has sent or should receive the encapsulated MQTT-SN packet. The mapping between this Id and the address of the
 wireless node is implemented by the forwarder, if needed.
 
-#### 3.1.33.6 MQTT SN Packet {#mqtt-sn-packet .unnumbered}
+#### 3.1.25.6 MQTT SN Packet
 
 The MQTT-SN packet, encoded according to the packet type.
 
-### 3.1.34 PROTECTION {#protection .unnumbered}
+### 3.1.26 PROTECTION
 
-###  {#section-3 .unnumbered}
+### 
 
   ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   **Bit**            **7**            **6**                 **5**               **4**          **3**                     **2**            **1**                    **0**
@@ -3510,16 +3264,16 @@ key (indexed by its GwId) is available.]{.mark}
 [If the GW is not enrolled to the Client (so the Client has no access to a key shared with it on the basis of its GwId) and the Client and GW are not
 in a private network, it is recommended for the Client to open a DTLS session and process only MQTT-SN packets received over it.]{.mark}
 
-#### 3.1.34.1 Length {#length-2 .unnumbered}
+#### 3.1.26.1 Length
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
 description.
 
-#### 3.1.34.2 Packet Type {#packet-type-1 .unnumbered}
+#### 3.1.26.2 Packet Type
 
 Coded "0x1E", see Table 63
 
-#### 3.1.34.3 Protection Flags {#protection-flags .unnumbered}
+#### 3.1.26.3 Protection Flags
 
 The PROTECTION Flags is 1 byte field in Byte position 3 of the packet, specifying the properties of the PROTECTION.
 
@@ -3574,7 +3328,7 @@ The PROTECTION Flags field includes the following flags:
 
     -   if 0x0, the monotonic counter field is not present.
 
-#### 3.1.34.4 Protection Scheme {#protection-scheme .unnumbered}
+#### 3.1.26.4 Protection Scheme
 
 > A (1 byte) field located at byte 4 should contain one of the not Reserved indexes in the following table. In general two types of protection scheme
 > are considered: **Authentication only** (like HMAC or CMAC) and **AEAD** (Authenticated Encryption with Associated Data, like GCM, CCM or
@@ -3622,7 +3376,7 @@ The PROTECTION Flags field includes the following flags:
   0xF0-0xFF          Provider defined                                     No                        Provider defined          Provider defined
   -----------------------------------------------------------------------------------------------------------------------------------------------------
 
-Note(s):
+**Note(s):**
 
 1.  Reference [[https://www.rfc-editor.org/rfc/rfc2104]{.underline}](https://www.rfc-editor.org/rfc/rfc2104)
 
@@ -3650,7 +3404,7 @@ Note(s):
 9.  ChaCha20/Poly1305 requires a 12 bytes nonce as indicated in https://www.rfc-editor.org/rfc/rfc8152#section-10.3 obtained by performing SHA256
     truncated to 96 bit of the sequence Byte 1 to Byte R (all packet fields until Protected MQTT-SN Packet)
 
-#### 3.1.34.5 Sender Id {#sender-id .unnumbered}
+#### 3.1.26.5 Sender Id
 
 Located at Bytes 5 - 12 the Sender Id field (8 bytes) should contain:
 
@@ -3665,8 +3419,10 @@ If the message is originated by the ***Gateway***:
 -   **If a session is not available**: a unique value per sender over 8 bytes (like a MAC address, or other identifying characteristics). The methods
     to guarantee the uniqueness of the Sender Id in this case are out of scope for this technical proposal.
 
-> **[Informative]{.underline}**
->
+<!-- -->
+
+-   **[Non-normative comment]{.underline}**
+
 > *8 bytes for the "Sender Id" field seems enough as it is calculated with a cryptographic hash, so the probability of collision is
 > 1/2\^64=5.42x10^-20^.*
 >
@@ -3681,13 +3437,13 @@ If the message is originated by the ***Gateway***:
 > leftmost 64 bits (8 bytes for each registered ClientID) for the clients having an active session and store a list of authorized Sender Ids for the
 > clients not capable to establish sessions.*
 
-#### 3.1.34.6 Random {#random .unnumbered}
+#### 3.1.26.6 Random
 
 **[Located at Byte 13 - 16]{.underline}** , the "**Random**" field (4 bytes) should contain a random number (not guessable) generated at the
 PROTECTION packet creation .
 
-> **[Informative]{.underline}**
->
+-   **[Non-normative comment]{.underline}**
+
 > *In case of CCM, in the worst case scenario where the "Crypto Material" and the "Monotonic Counter" optional fields are not present, the recommended
 > nonce on 13 bytes will be calculated as SHA256 truncated to 104 bits of the sequence Byte 1 to Byte 16 (all packet fields until Protected MQTT-SN
 > Packet). So considering the same Sender Id, the same nonce can be generated with a probability of 1/2\^32=2.33x10^-10^. With a shorter Random field
@@ -3697,7 +3453,7 @@ PROTECTION packet creation .
 > choosing a unique IV of 12 bytes for every encryption performed with the same key
 > ([[https://en.wikipedia.org/wiki/Galois/Counter_Mode]{.underline}](https://en.wikipedia.org/wiki/Galois/Counter_Mode)).*
 
-#### 3.1.34.7 Crypto Material {#crypto-material .unnumbered}
+#### 3.1.26.7 Crypto Material
 
 Located at Byte (17 - P), the optional field "**Crypto Material**" contains [0, 2, 4 or 12 bytes of crypto material that when defined it can be used
 to derive, from a shared master secret, the same keys on the two endpoints and/or, when filled partially or totally with a random value, to further
@@ -3706,32 +3462,32 @@ Material field can be partially filled with a random value of 9 bytes (the remai
 bytes used only once recommended for the nonce used by CCM or it can be partially filled with a random value of 8 bytes in order to reach the 12 bytes
 used only once recommended for the IV/nonce used by GCM or ChaCha20/Poly1305 .]{.mark}
 
-#### 3.1.34.8 Monotonic Counter {#monotonic-counter .unnumbered}
+#### 3.1.26.8 Monotonic Counter
 
 Located at Byte Byte (Q - R), the optional field "**Monotonic Counter**" contains [0, 2 or 4 byte number that when defined, is increased by the Client
 or GW for every packet sent. The counters should be considered independent of session or destination. E.g. The UE will keep a counter independently
 from the GW.]{.mark}
 
-#### 3.1.34.9 Protected MQTT-SN Packet {#protected-mqtt-sn-packet .unnumbered}
+#### 3.1.26.9 Protected MQTT-SN Packet
 
 Located at Byte (S - T), the field "**Protected MQTT-SN Packet**" contains the MQTT-SN packet that is being secured, encoded as per its packet type.
 
 The "Protected MQTT-SN Packet" should not be a "Forwarder-Encapsulation packet" as the shared key used directly or after derivation for the protection
 must belong to the originator of the content and not to a Forwarder that, in general, is not able to securely identify the originator.
 
-#### 3.1.34.10 Authentication Tag {#authentication-tag .unnumbered}
+#### 3.1.26.10 Authentication Tag
 
 Located at Byte (U - N), the field "**Authentication tag**" field has a length depending on the "Authentication tag length" flag and it is calculated,
 on the basis of the "Protection scheme" selected in Byte 4, on ALL the preceding fields.
 
-# 4 Operational behavior {#operational-behavior .unnumbered}
+# 4 Operational behavior
 
 An important design point of MQTT-SN is to be as close as possible to MQTT. Therefore, all protocol semantics should remain, as far as possible, the
 same as those defined by MQTT. In the following we will focus on those points that either are new to or deviate from MQTT.
 
-## 4.1 MQTT-SN Architecture {#mqtt-sn-architecture .unnumbered}
+## 4.1 Example MQTT-SN Architecture(s)
 
-> ![Diagram Description automatically generated](media/image9.png){width="6.5in" height="6.580555555555556in"}
+> ![Diagram Description automatically generated](media/image12.png){width="6.5in" height="6.580555555555556in"}
 
 Figure 1: MQTT-SN Architecture
 
@@ -3747,7 +3503,7 @@ decapsulates the frames it receives from the gateway and sends them to the clien
 We can differentiate between three types of MQTT-SN server-side endpoint, namely transparent Gateway, aggregating Gateway and Terminating Gateway, see
 Fig. 1. They are explained in the following sections..
 
-### 4.1.1 Transparent Gateway {#transparent-gateway .unnumbered}
+### 4.1.1 Transparent Gateway
 
 For each connected MQTT-SN client a transparent Gateway will set up and maintain a MQTT connection to the MQTT server. This MQTT connection is
 reserved exclusively for the end-to-end and almost transparent packet exchange between the client and the server. There will be as many MQTT
@@ -3759,60 +3515,58 @@ Although the implementation of the transparent Gateway is simpler when compared 
 support a separate connection for each active client. Some MQTT server implementations might impose a limitation on the number of concurrent
 connections that they support.
 
-![A close up of a map Description automatically generated](media/image10.png){width="5.3168810148731405in" height="1.9801979440069992in"}
+![A close up of a map Description automatically generated](media/image3.png){width="5.3168810148731405in" height="1.9801979440069992in"}
 
 Figure 2: Transparent and Aggregating Gateways
 
-### 4.1.2 Aggregating Gateway {#aggregating-gateway .unnumbered}
+### 4.1.2 Aggregating Gateway
 
 Instead of having a MQTT connection for each connected client, an aggregating Gateway will have only one MQTT connection to the Server. All packet
 exchanges between a MQTT-SN client and an aggregating Gateway end at the Gateway. The Gateway then decides which information will be given further to
 the Server. Although its implementation is more complex than the one of a transparent Gateway, an aggregating Gateway may be helpful in case of WSNs
 with a very large number of SAs because it reduces the number of MQTT connections that the Gateway must support concurrently.
 
-### 4.1.3 Terminating Gateway {#terminating-gateway .unnumbered}
+### 4.1.3 Terminating SN Broker
 
-The Terminating Gateway is the consumer of the data sent by the MQTT-SN Client and, if the PROTECTION packet is used, it is responsible for the
-enrollment of the MQTT-SN Clients.
+The Terminating SN Broker is the consumer of the data sent by the MQTT-SN Client, which directly brokers the traffic as if it were a fully compliant
+MQTT Broker. If the PROTECTION packet is used, it is responsible for the enrollment of the MQTT-SN Clients.
 
-## 4.2 Networks & Transport Layers {#networks-transport-layers .unnumbered}
+## 4.2 Networks & Transport Layers
 
-The MQTT-SN V2.0 protocol requires an underlying transport to create a Virtual Connection, this carries datagrams from a Client to a Gateway and a
+The MQTT-SN V2.0 protocol requires an underlying transport to create a Virtual Connection, this carries Packets from a Client to a Gateway and a
 Gateway to a Client.\
-The underlying transport may also multicastdatagrams from a Client to all Gateways and from a Gateway to all Clients.\
-The datagrams carry the MQTT-SN V2.0 Packets which must be received unaltered and complete.
+The underlying transport may also broadcast Packets from a Client to all Gateways and from a Gateway to all Clients.\
+These MQTT-SN V2.0 Packets which must be received unaltered and complete.
 
--   The underlying transport does not need to be reliable, it is expected that datagrams will be lost or delivered out of order.
+-   The underlying transport does not need to be reliable, it is expected that Packets will be lost or delivered out of order.
 
--   If the network might deliver a datagram more than once, then it is highly recommended that the PROTECTION packet Monotonic Counter is used to
+-   If the network might deliver a Packet more than once, then it is highly recommended that the PROTECTION packet Monotonic Counter is used to
     eliminate the duplicates.
 
 -   The MQTT-SN V2.0 protocol will tolerate out of order Packets and it will retransmit lost Packets.
 
--   The MQTT-SN V2.0 does not perform error correction. If a corrupted or partial Packets is received it will cause a protocol error.
+-   The MQTT-SN V2.0 does not perform error correction. If a corrupted or partial packet is received it will cause a protocol error.
 
 -   The MQTT-SN V2.0 implementation may use either the origin network address or the sender identifier in the PROTECTION Packet to determine the
     identity of the Virtual Connection.
-
--   The underlying network does not need to provide low latency transmission.
 
 -   The networks may be connectionless, the Virtual Connections do not need to have an event that signals when they begin or end.
 
 -   The networks may be radio networks.
 
-**Informative comment**
-
-UDP as defined in \[RFC0768\] can be used for MQTT-SN v2.0 if the Maximum Transmission Unit is configured to be more than the MQTT-SN Packet size used
-and no datagram fragmentation occurs.\
-Depending on the network configuration, UDP can duplicate datagrams. If this can happen, the PROTECTION Packet monotonic counter should be used.
-
-Examples of possible consequences of not removing duplicates datagrams are:\
--- DISCONNECT Packet applied to the wrong Virtual Connection\
--- SUBSCRIBE and UNSUBSCRIBE Packets applied to the wrong Virtual Connection\
--- PUBLISH QOS=2 published more than once
-
-The following transport protocols are also suitable but if not capable of multicast the implementation of the optional ADVERTISE, SEARCHGW, GWINFO
-packets may not be possible and also the multicast of the PUBLISH MINUS -1 packets may not be possible:
+> **Non-normative comment**
+>
+> UDP as defined in \[RFC0768\] can be used for MQTT-SN v2.0 if the Maximum Transmission Unit is configured to be more than the MQTT-SN Packet size
+> used and no Packet fragmentation occurs.\
+> Depending on the network configuration, UDP can duplicate Packets. If this can happen, the PROTECTION Packet monotonic counter should be used.
+>
+> Examples of possible consequences of not removing duplicate Packets are:\
+> -- DISCONNECT Packet applied to the wrong Virtual Connection\
+> -- SUBSCRIBE and UNSUBSCRIBE Packets applied to the wrong Virtual Connection\
+> -- PUBLISH QOS=2 published more than once
+>
+> The following transport protocols are also suitable but if not capable of broadcast the implementation of the optional ADVERTISE, SEARCHGW, GWINFO
+> packets may not be possible and also the broadcast of the PUBLISH MINUS -1 packets may not be possible:
 
 -   DTLS v1.2 \[RFC6347\]
 
@@ -3826,11 +3580,11 @@ packets may not be possible and also the multicast of the PUBLISH MINUS -1 packe
 
 -   WebSocket \[RFC6455\].
 
-**Informative comment**
+> **Non-normative comment**
+>
+> TCP ports 8883 and 1883 are registered with IANA for MQTT TLS and non-TLS communication respectively.
 
-TCP ports 8883 and 1883 are registered with IANA for MQTT TLS and non-TLS communication respectively.
-
-## 4.3 Gateway Advertisement and Discovery {#gateway-advertisement-and-discovery .unnumbered}
+## 4.3 Gateway Advertisement and Discovery
 
 A gateway may announce its presence by transmitting periodically an ADVERTISE packet to all devices that are currently parts of the network. A gateway
 should only advertise its presence if it is connected to a server (or is itself a server).
@@ -3871,29 +3625,20 @@ To give priority to the gateways a client will delay its sending of the GWINFO p
 In case of no response the SEARCHGW packet may be retransmitted. In this case the time intervals between consecutive SEARCHGW packets should be
 increased by the exponential backoff algorithm described in the appendix.
 
-## 4.4 Session Establishment {#session-establishment .unnumbered}
+## 4.4 Session Establishment
 
 As with MQTT, an MQTT-SN client needs to set up a session on the gateway, unless it is publishing ONLY using OUT OF BAND packets. The procedure for
-setting up a session with a gateway is illustrated in Fig. 3.
+setting up a session with a gateway is illustrated in Fig. 3a and 3b.
 
-The CONNECT packet contains flags to communicate to the gateway that will or auth or both interactions should take place.
+The CONNECT packet contains flags to communicate to the gateway that Auth interactions should take place.
 
-![A picture containing shape Description automatically generated](media/image6.png){width="2.4305555555555554in" height="1.5in"}
+![](media/image6.png){width="3.344815179352581in" height="2.4173436132983377in"}
 
-Figure 3a: Connect procedure (without will flag set)
+Figure 3a: Connect procedure (without Auth flag set or no further authentication data required)
 
-If the Will flag is set, the client then sends these two pieces of information to the gateway upon receiving the corresponding request packets
-WILLTOPICREQ and WILLMSQREQ. The procedure is terminated with the CONNACK packet sent by the gateway.
+![](media/image11.png){width="3.345165135608049in" height="2.963542213473316in"}
 
-> ![A picture containing graphical user interface Description automatically generated](media/image2.png){width="3.361111111111111in"
-> height="2.7222222222222223in"}
-
-Figure 3b: Connect procedure (with will flag set)
-
-![Graphical user interface Description automatically generated with medium confidence](media/image1.png){width="2.9444444444444446in"
-height="2.7222222222222223in"}
-
-Figure 3c: Connect procedure (with auth flag set)
+Figure 3b: Connect procedure (with Auth flag set and additional authentication data required)
 
 In case the gateway could not accept the CONNECT request (e.g. because of congestion or it does not support a feature indicated in the CONNECT
 packet), the gateway returns a CONNACK packet with the rejection reason.
@@ -3902,7 +3647,7 @@ In the case where the client provides no client identifier, the Server MUST resp
 
 [The Assigned Client Identifier MUST be a new Client Identifier not used by any other Session currently in the gateway.]{.mark}
 
-## 4.5 Quality of Service levels and protocol flows {#quality-of-service-levels-and-protocol-flows .unnumbered}
+## 4.5 Quality of Service levels and protocol flows
 
 MQTT delivers Application Messages according to the Quality of Service (QoS) levels defined in the following sections. The delivery protocol is
 symmetric, in the description below the Client and Server & Gateway can each take the role of either sender or receiver. The delivery protocol is
@@ -3910,7 +3655,7 @@ concerned solely with the delivery of an application message from a single sende
 Message to more than one Client, each Client is treated independently. The QoS level used to deliver an Application Message outbound to the Client
 could differ from that of the inbound Application Message.
 
-### 4.5.1 QoS 0: At most once delivery {#qos-0-at-most-once-delivery .unnumbered}
+### 4.5.1 QoS 0: At most once delivery
 
 The message is delivered according to the capabilities of the underlying network. No response is sent by the receiver and no retry is performed by the
 sender. The message arrives at the receiver either once or not at all.
@@ -3936,7 +3681,7 @@ In the QoS 0 delivery protocol, the receiver
                                                                                                    recipient(s)
   -----------------------------------------------------------------------------------------------------------------------------------------------------
 
-### 4.5.2 QoS 1: At least once delivery {#qos-1-at-least-once-delivery .unnumbered}
+### 4.5.2 QoS 1: At least once delivery
 
 This Quality of Service level ensures that the message arrives at the receiver at least once. A QoS 1 PUBLISH packet has a Packet Identifier in its
 Variable Header and is acknowledged by a PUBACK packet.
@@ -3952,7 +3697,7 @@ Variable Header and is acknowledged by a PUBACK packet.
 The Packet Identifier becomes available for reuse once the sender has received the PUBACK packet.
 
 **[In a difference to MQTT 5, the sender is NOT permitted to send further PUBLISH packets with different Packet Identifiers while it is waiting to
-receive acknowledgements. At any given time a sender]{.mark}** **[must ONLY have 1 outstanding application message inflight.]{.mark}**
+receive acknowledgements. At any given time a sender must ONLY have 1 outstanding application message inflight.]{.mark}**
 
 [In the QoS 1 delivery protocol, the receiver]{.mark}
 
@@ -3984,7 +3729,7 @@ Note(s):
 1.  The receiver does not need to complete delivery of the Application Message before sending the PUBACK. When its original sender receives the PUBACK
     packet, ownership of the Application Message is transferred to the receiver.
 
-### 4.5.3 QoS 2: Exactly once delivery {#qos-2-exactly-once-delivery .unnumbered}
+### 4.5.3 QoS 2: Exactly once delivery
 
 This is the highest Quality of Service level, for use when neither loss nor duplication of messages are acceptable. There is an increased overhead
 associated with QoS 2.
@@ -4008,9 +3753,8 @@ associated with QoS 2.
 
 The Packet Identifier becomes available for reuse once the sender has received the PUBCOMP packet or a PUBREC with a Reason Code of 0x80 or greater.
 
-**[In this version of MQTT-SN and in contrast to MQTT 5.0, the sender MUST only]{.mark}** **[send further PUBLISH packets with different Packet
-Identifiers when it is not]{.mark}** **[waiting to receive acknowledgements. At any given time a sender has only]{.mark}** **[1 outstanding
-application message inflight.]{.mark}**
+**[In this version of MQTT-SN and in contrast to MQTT 5.0, the sender MUST only send further PUBLISH packets with different Packet Identifiers when it
+is not waiting to receive acknowledgements. At any given time a sender has only 1 outstanding application message inflight.]{.mark}**
 
 [In the QoS 2 delivery protocol, the receiver]{.mark}:
 
@@ -4028,7 +3772,7 @@ application message inflight.]{.mark}**
 -   [After it has sent a PUBCOMP, the receiver MUST treat any subsequent PUBLISH packet that contains that Packet Identifier as being a new
     Application Message]{.mark}
 
-### 4.5.4 QoS -1: Constrained client delivery {#qos--1-constrained-client-delivery .unnumbered}
+### 4.5.4 QoS -1: Constrained client delivery
 
 This feature is defined for very simple client implementations which only support a limited subset of features. There is no requirement to set up nor
 tear down a Virtual Connection, no registration nor subscription. The sender just sends its PUBLISH packets to its counterpart (whose address is known
@@ -4047,7 +3791,7 @@ Whilst no Virtual Connection is mandated for QoS -1 delivery, a constrained clie
 PUBLISH at QoS -1 during any of the lifecycle states. If the GW can determine the origin of a QoS -1 packet, it should not impact/change any existing
 session except for resetting the keep-alive timer.
 
-### 4.5.5 OUT OF BAND: Constrained client delivery {#out-of-band-constrained-client-delivery .unnumbered}
+### 4.5.5 OUT OF BAND: Constrained client delivery
 
 This feature is defined for very simple client implementations which only support a limited subset of features. There is no requirement to set up nor
 tear down a Virtual Connection, no registration nor subscription. The sender just sends its PUBLISH packets to its counterpart (whose address is known
@@ -4064,7 +3808,7 @@ Whilst no Virtual Connection is mandated for OUT OF BAND delivery, a constrained
 wish to PUBLISH OUT OF BAND during any of the lifecycle states. If the gateway can determine the origin of an OUT OF BAND packet, it should not
 impact/change any existing session except for resetting the keep-alive timer.
 
-## 4.6 Client states {#client-states .unnumbered}
+## 4.6 Client states
 
 At any given point in time, a client may be in one of **5 different states**. Transition through these states is governed by a strictly coordinated
 sequence of packets between client and server/gateway and further mediated by timers resident on the gateway. A client is in the *active* state when
@@ -4103,20 +3847,18 @@ the "Sleeping clients" section.
 |                            | (by way of supervised gateway timers).                                                | **LOST**                     |
 +----------------------------+---------------------------------------------------------------------------------------+------------------------------+
 | **LOST**                   | The client is considered offline and not able to receive packets until it has         | **ACTIVE**                   |
-|                            | re-established a session with the GW by way of a CONNECT. The gatrway **must not**    |                              |
+|                            | re-established a session with the GW by way of a CONNECT. The gateway **must not**    |                              |
 |                            | attempt to send packets to a client in the **LOST** state**.** Any packets received   |                              |
 |                            | from a client whose state is **LOST** should not be processed and a DISCONNECT with   |                              |
 |                            | error should be sent in response, unless the packets received are PUBLISH OUT OF BAND |                              |
 |                            | or PUBLISH -1. Session state may exist on the GW for a client in the **LOST** state.  |                              |
 +----------------------------+---------------------------------------------------------------------------------------+------------------------------+
 
-![Diagram Description automatically generated](media/image7.png){width="5.72132874015748in" height="4.288552055993001in"}
-
-![](media/image5.png){width="7.1875in" height="7.510416666666667in"}
+![](media/image10.png){width="6.5in" height="6.666666666666667in"}
 
 Figure 4: Client's state transition diagram
 
-## 4.7 Session state {#session-state .unnumbered}
+## 4.7 Session state
 
 Sessions are maintained by both the Client and a Gateway. Sessions typically include (but are not limited to):
 
@@ -4144,39 +3886,29 @@ Sessions are maintained by both the Client and a Gateway. Sessions typically inc
 
 -   Next outbound packet identifier
 
-## 4.8 Clean start {#clean-start .unnumbered}
+## 4.8 Clean start
 
-With MQTT-SN, when a client disconnects, its subscriptions are retained for no more than the session expiration time. They are persistent and valid
-for new Virtual Connections, until either they are explicitly un-subscribed by the client, or the client establishes a new Virtual Connection with the
+With MQTT-SN, when a client disconnects, its subscriptions are retained for no less than the session expiration time. They are persistent and valid
+for new (non clean start) sessions, until either they are explicitly un-subscribed by the client, or the client establishes a new session with the
 "clean start" flag set or their idle time exceeds the session expiry interval associated with the session.
 
 In MQTT-SN the meaning of a "clean start" is extended to the Will feature, i.e. not only the subscriptions are persistent, but also the Will topic and
 the Will packet. The two flags "CleanStart" and "Will" in the CONNECT have then the following meanings:
 
--   CleanStart=true, Will=true: The gateway will delete all subscriptions and Will data related to the client, and starts prompting for new Will topic
-    and Will packet.
+-   CleanStart=true, Will=true: The gateway will delete all subscriptions and Will data, if present, related to the client and it will add the Will
+    data with the content of the CONNECT Will optional fields.
 
--   CleanStart=true, Will=false: The gateway will delete all subscriptions and Will data related to the client, and returns CONNACK (no prompting for
-    Will topic and Will packet).
+-   CleanStart=true, Will=false: The gateway will delete all subscriptions and Will data, if present, related to the client, and returns CONNACK.
 
--   CleanStart=false, Will=true: The gateway keeps all stored client's data, but prompts for new Will topic and Will packet. The newly received Will
-    data will overwrite the stored Will data.
+-   CleanStart=false, Will=true: The gateway keeps all stored client's data and it will overwrite, if present, or add the Will data related to the
+    client with the content of the CONNECT Will optional fields.
 
--   CleanStart=false, Will=false: The gateway keeps all stored client's data and returns CONNACK (no prompting for Will topic and Will packet).
+-   CleanStart=false, Will=false: The gateway keeps all stored client's data and returns CONNACK.
 
 Note that if a client wants to delete only its Will data at Virtual Connection setup, it could send a CONNECT packet with "CleanStart=false" and
-"Will=true", and send an empty WILLTOPIC packet to the gateway when prompted to do so. It could also send a CONNECT packet with "CleanStart=false" and
-"Will=false" and use the will update PACKETS to modify the Will data.
+"Will=false".
 
-## 4.9 Procedure for updating the Will data {#procedure-for-updating-the-will-data .unnumbered}
-
-At any time during a Virtual Connection a client could update its Will data stored in the gateway by sending a WILLTOPICUPD or a WILLMSGUPD packet.
-The information contained in these two packets will overwrite the corresponding ones stored in the gateway. Both packets are acknowledged by the
-gateway. Both packets can be used independently from each other.
-
-Note that an empty WILLTOPICUPD packet will delete both the Will topic and Will packet stored at the gateway.
-
-## 4.10 Topic Name and Topic Filter Registration Procedure {#topic-name-and-topic-filter-registration-procedure .unnumbered}
+## 4.10 Topic Name and Topic Filter Registration Procedure
 
 Because of the limited bandwidth and the small packet payload in wireless sensor networks, data is not published together with its topic name as in
 MQTT. A registration procedure is introduced which allows both a client and a gateway to inform its peer about the short topic alias and its
@@ -4213,11 +3945,11 @@ later when sending PUBLISH packets of the corresponding topic name. This happens
 has DISCONNECTED with retail registration false, or the client re-connects without having set the "CleanStart" flag or the client has subscribed to
 topic names that contain wildcard characters such as \# or +.
 
-> **Informative comment**
+> **Non-normative comment**
 >
 > The gateway should attempt to make the best effort to reuse the same topic alias' mappings that existed during any initial associated ACTIVE states.
 
-## 4.11 Topic Name and Topic Filter Mapping and Aliasing {#topic-name-and-topic-filter-mapping-and-aliasing .unnumbered}
+## 4.11 Topic Name and Topic Filter Mapping and Aliasing
 
 [On the gateway the mapping table between registered topic ids and topic names MUST be implemented per client (and not by a single shared pool between
 all clients), to reduce the risk of an incorrect topic id from a client matching another client's valid topic.]{.mark}
@@ -4226,12 +3958,12 @@ For performance and efficiency reasons the broker may choose to align topic alia
 mapping table of predefined topic aliases is separate from normal registered aliases. It is global and shared between all clients and gateways and may
 overlap with registered aliases, since it is in a different pool.
 
-## 4.12 Pre-defined topic alias' and short topic names {#pre-defined-topic-alias-and-short-topic-names .unnumbered}
+## 4.12 Predefined topic alias' and short topic names
 
-A "pre-defined" topic alias is a topic alias who's mapping to a topic name is known in advance by both the client's application and the gateway. This
+A "predefined" topic alias is a topic alias who's mapping to a topic name is known in advance by both the client's application and the gateway. This
 is indicated in the *Flags* field of the packet. When using pre-defined topic alias', both sides can start immediately with the sending of PUBLISH
-packets; there is no need for the REGISTER procedure as in the case of "normal" topic alias'. When receiving a PUBLISH packet with a pre-defined topic
-alias, of which the mapping to a topic name is unknown, the receiver should return a PUBACK with the *ReasonCode= "Unknown Topic Alias"*.
+packets; there is no need for the REGISTER procedure as in the case of "normal" topic alias'. When receiving a PUBLISH packet with a predefined topic
+alias, of which the mapping to a topic name is unknown, the receiver should return a PUBACK with the *ReasonCode= "*Unknown Topic Alias*"*.
 
 [The presence of a pre-defined topic alias does not imply any other meaning onto the topic name / topic filter itself. All lifecycle operations, for
 example SUBSCRIBE / UNSUBSCRIBE may still be used in the use of these aliases except for REGISTER.]{.mark}
@@ -4241,7 +3973,7 @@ REGISTER procedure is needed for a short topic name. Otherwise, all rules that a
 however that it does not make sense to do wildcarding in subscriptions to short topic names, because it is not possible to define a meaningful name
 hierarchy with only two characters.
 
-## 4.13 Client's Topic Subscribe/Unsubscribe Procedure {#clients-topic-subscribeunsubscribe-procedure .unnumbered}
+## 4.13 Client's Topic Subscribe/Unsubscribe Procedure
 
 To subscribe to a topic name, a client sends a SUBSCRIBE packet to the gateway with the topic name included in that packet. If the gateway is able
 accept the subscription, it assigns a topic alias to the received topic name and returns it within a SUBACK packet to the client. If the subscription
@@ -4259,7 +3991,7 @@ To unsubscribe, a client sends an UNSUBSCRIBE packet to the gateway, which will 
 
 As for the REGISTER procedure, a client may have only one SUBSCRIBE or one UNSUBSCRIBE transaction open at a time.
 
-## 4.14 Client's Publish Procedure {#clients-publish-procedure .unnumbered}
+## 4.14 Client's Publish Procedure
 
 After having registered successfully a topic name with the gateway, the client can start publishing data relating to the registered topic name by
 sending PUBLISH packets to the gateway. The PUBLISH packets contain the assigned topic alias.
@@ -4269,8 +4001,8 @@ topic names in the PUBLISH packets.
 
 Regardless of the requested QoS level the client may receive in response to its PUBLISH a PUBACK packet which contains either:
 
--   The *ReasonCode= "Unknown Topic Alias"*: in this case the client needs to register the topic name again before it can publish data related to that
-    topic name; or
+-   The *ReasonCode= "*Unknown Topic Alias*"*: in this case the client needs to register the topic name again before it can publish data related to
+    that topic name; or
 
 -   The *ReasonCode= "Congestion"*: in this the client shall stop publishing toward the gateway for at least the time *T~WAIT~*.
 
@@ -4279,7 +4011,7 @@ Regardless of the requested QoS level the client may receive in response to its 
 At any point in time a client may have only one QoS level 1 or 2 PUBLISH packet outstanding in each direction; i.e. it has to wait for the termination
 of this PUBLISH packet exchange before it could start a new level 1 or 2 transaction
 
-## 4.15 Gateway's Publish Procedure {#gateways-publish-procedure .unnumbered}
+## 4.15 Gateway's Publish Procedure
 
 Like the client's PUBLISH procedure described in Section 3.14, the gateway sends PUBLISH packets with the topic alias value that was returned in the
 SUBACK packet to the client.
@@ -4292,13 +4024,13 @@ The client could reject the REGISTER packet with a REGACK packet indicating the 
 indicated in the REGISTER packet. Note that unsubscribe to a topic name with wildcard characters can only be done with the unsubscribe procedure and
 not with the rejection of a REGISTER packet, since a REGISTER packet never contains a topic name with wildcard characters.
 
-If the client receives a PUBLISH packet with an unknown topic alias value, it shall respond with a PUBACK packet with the *ReasonCode="Unknown Topic
-Alias"*. This will trigger the gateway to delete or correct the wrong topic alias assignment.
+If the client receives a PUBLISH packet with an unknown topic alias value, it shall respond with a PUBACK packet with the *ReasonCode="*Unknown Topic
+Alias*"*. This will trigger the gateway to delete or correct the wrong topic alias assignment.
 
 Note that in case either the topic name or the data is too long to fit into a REGISTER or a PUBLISH packet, the gateway silently aborts the publish
 procedure, i.e. no warning is sent to the affected subscribers.
 
-## 4.16 Keep Alive and PING Procedure {#keep-alive-and-ping-procedure .unnumbered}
+## 4.16 Keep Alive and PING Procedure
 
 As with MQTT, the value of the Keep Alive timer is indicated in the CONNECT packet. The client should send a PINGREQ packet within each Keep Alive
 time period, which the gateway acknowledges with a PINGRESP packet.
@@ -4311,7 +4043,7 @@ the gateway even after multiple retransmissions of the PINGREQ packet, it should
 this gateway. Note that because the clients' keep-alive timers are not synchronized with each other, in case of a gateway failure there is practically
 no danger for a storm of CONNECT packets sent almost at the same time by all affected clients towards a new gateway.
 
-## 4.17 Client's Disconnect Procedure {#clients-disconnect-procedure .unnumbered}
+## 4.17 Client's Disconnect Procedure
 
 A client sends a DISCONNECT packet to the gateway to indicate that it is about to close its Virtual Connection. After this point, the client is then
 required to establish a new Virtual Connection with the gateway before it can exchange information with that gateway again. [Like MQTT, sending the
@@ -4323,15 +4055,15 @@ A client may also receive an unsolicited DISCONNECT sent by the gateway. This ma
 identify the client to which a received packet belongs. Upon receiving such a DISCONNECT packet a client should retry to setup the Virtual Connection
 again by sending a CONNECT packet to the gateway.
 
-## 4.18 Client's Retransmission Procedure {#clients-retransmission-procedure .unnumbered}
+## 4.18 Client's Retransmission Procedure
 
-All packets that are "unicasted" to the gateway (i.e. sent using the gateway's unicast address) and for which a gateway's reply is expected are
+All packets that are "unicasted" to the Gateway (i.e. sent using the gateway's unicast address) and for which a gateway's reply is expected are
 supervised by a retry timer *T~retry\ ~*and a retry counter *N~retry~*. The retry timer *T~retry\ ~*is started by the client when the packet is sent
 and stopped when the expected gateways reply is received. If *T~retry\ ~*times out and the expected gateway's reply is not received, the client
 retransmits the packet. After *N~retry\ ~*retransmissions, the client aborts the procedure and assumes that the MQTT-SN gateway is no longer
-available. It should then try to connect to another gateway.
+available. It should then attempt to establish a session on any other available gateway (where it may exist).
 
-## 4.19 Sleeping clients {#sleeping-clients .unnumbered}
+## 4.19 Sleeping clients
 
 *Sleeping* clients are clients residing on (battery-operated) devices that want to save as much energy as possible. These devices need to enter a
 sleep mode whenever they are not active and will wake up whenever they have data to send or to receive. The server/gateway needs to be aware of the
@@ -4346,16 +4078,16 @@ feature.
 [During the *asleep* state, packets that need to be sent to the client are buffered at the server/gateway. The gateway MUST buffer application
 messages of quality-of-service 1 & 2.]{.mark}
 
-> **Informative comment**
+> **Non-normative comment**
 
 The gateway may *choose* to buffer messages of Quality-of-Service 0, whilst the client is sleeping and is within its session expiry interval.
 
 The sleep timer is stopped when the server/gateway receives a PINGREQ from the client. Like the CONNECT packet, this PINGREQ packet contains the
 *Client Id*. The identified client is then in the *awake* state. If the server/gateway has buffered packets for the client, it will send these packets
-to the client, acknowledging the max-receive value sent in the PINGREQ packet. If the number of messages buffered on the gateway queue exceeds the
-value specified by the client in the max-receive field, the gateway shall send only the max-receive value number of messages, and cut short the AWAKE
-cycle, responding with a PINGRESP with a messages-left value of either the number of messages remaining in the gateway buffer or 0xFFFF (meaning
-undetermined number of messages greater than 0 remaining).
+to the client, acknowledging the Default Awake Messages value sent in the CONNECT packet. If the number of messages buffered on the gateway queue
+exceeds the value specified by the client in the Default Awake Messages field, the gateway shall send only the Default Awake Messages value number of
+messages, and cut short the AWAKE cycle, responding with a PINGRESP with a messages-left value of either the number of messages remaining in the
+gateway buffer or 0xFFFF (meaning undetermined number of messages greater than 0 remaining).
 
 [During the AWAKE state, for each packet the gateway sends to the client, the application messages' quality of service shall be honored, and a full
 packet interaction shall take place including all normative phases of acknowledgement, including any associated retransmission logic.]{.mark} If,
@@ -4383,15 +4115,15 @@ by sending a CONNECT packet to the server/gateway.
 [Topic Alias mappings exist only while a client is active and last for the entire session expiry interval of the active state.]{.mark} [Therefore, the
 gateway must re-register any topic alias's during the AWAKE state, which will last until the last PINGRESP is issued.]{.mark}
 
-> **Informative comment**
+> **Non-normative comment**
 >
 > The gateway should attempt to make the best effort to reuse the same topic alias' mappings that existed during any initial associated ACTIVE states.
 >
-> ![sleeping-client-v1.0.png](media/image4.png){width="3.1982130358705163in" height="4.6534700349956255in"}
+> ![](media/image5.png){width="4.615764435695538in" height="7.453125546806649in"}
 
 Figure 5: Awake ping packet flush
 
-## 4.20 Authentication {#authentication .unnumbered}
+## 4.20 Authentication
 
 Authentication involves the exchange of AUTH packets between the Client and the Server after the CONNECT and before the CONNACK packets.
 
@@ -4402,7 +4134,7 @@ CONNACK with a Reason Code of 0x8C (Bad authentication method) or 0x87 (Not Auth
 The Authentication Method is an agreement between the Client and Server about the meaning of the data sent in the Authentication Data and any of the
 other fields in CONNECT, and the exchanges and processing needed by the Client and Server to complete the authentication.
 
-> **Informative comment**
+> **Non-normative comment**
 >
 > The Authentication Method is commonly a SASL mechanism, using such a registered name aids interchange. However, the Authentication Method is not
 > constrained to using registered SASL mechanisms.
@@ -4432,7 +4164,7 @@ other fields in CONNECT, and the exchanges and processing needed by the Client a
 > If the Client does not set the Authentication Flag in the CONNECT packet, the Server SHOULD authenticate using some or all of the information in the
 > CONNECT packet in conjunction with the underlying transport layer.
 >
-> **Informative example showing a user name and password authentication**:
+> **Non-normative example showing a user name and password authentication**:
 >
 > · Client to Gateway: CONNECT Authentication Flag=1 Authentication Data=client-first-data
 >
@@ -4440,7 +4172,7 @@ other fields in CONNECT, and the exchanges and processing needed by the Client a
 >
 > · Gateway to Gateway CONNACK rc=0
 
-Where client-first data is the content of the SASL PLAIN message as described in RFC 4616:
+Where client-first-data is the content of the SASL PLAIN message as described in RFC 4616:
 
 *The mechanism consists of a single message, a string of \[UTF-8\]* *encoded \[Unicode\] characters, from the client to the server.
 The\[UTF-8\]* *client presents the authorization identity (identity to act as),* *followed by a NUL (U+0000) character, followed by the
@@ -4448,7 +4180,7 @@ authentication* *identity (identity whose password will be used), followed by a
 with* *other SASL mechanisms, the client does not provide an authorization identity when it wishes the server to derive an identity from the*
 *credentials and use that as the authorization identity.*
 
-## 4.21 Retained Packets {#retained-packets .unnumbered}
+## 4.21 Retained Packets
 
 If the RETAIN flag is set to 1 in a PUBLISH packet sent by a Client to a Server, the Server MUST replace any existing retained packet for this topic
 and store the Publish Data, so that it can be delivered to future subscribers whose subscriptions match its Topic Name. If the Publish Data contains
@@ -4456,10 +4188,10 @@ zero bytes it is processed normally by the Server but any retained packet with t
 topic will not receive a retained packet. A retained packet with Publish Data containing zero bytes MUST NOT be stored as a retained packet on the
 Server.
 
-## 4.22 Optional Features {#optional-features .unnumbered}
+## 4.22 Optional Features
 
-The ADVERTISE, SEARCHGW and GWINFO packet type support is optional. For instance, it is not required if the MQTT-SN Gateway is an Internet node
-reachable via a public IP address.
+The ADVERTISE, SEARCHGW, GWINFO and PUBLISH MINUS -1 packet type support is optional. For instance, it is not required if the MQTT-SN Gateway is an
+Internet node reachable via a public IP address.
 
 The Forwarder Encapsulation packet type support is optional. For instance, it is not required if the MQTT-SN Clients are able to reach directly a
 MQTT-SN Gateway.
@@ -4467,7 +4199,7 @@ MQTT-SN Gateway.
 The PROTECTION packet type support is optional. For instance, it is not required if the MQTT-SN Gateway and the MQTT-SN Clients interact over a secure
 communication channel, like DTLS or any communication channel assuring the authenticity and optionally the confidentiality protection.
 
-# 5 Conformance {#conformance .unnumbered}
+# 5 Conformance
 
 [(**Note**: The [OASIS TC Process](https://www.oasis-open.org/policies-guidelines/tc-process#wpComponentsConfClause) requires that a specification
 approved by the TC at the Committee Specification Public Review Draft, Committee Specification or OASIS Standard level must include a separate
@@ -4482,7 +4214,7 @@ Terms](https://www.oasis-open.org/policies-guidelines/oasis-defined-terms-2017-0
 
 [Remove this note before submitting for publication.)]{.mark}
 
-# **Appendix A. References** {#appendix-a.-references .unnumbered}
+# **Appendix A. References**
 
 [\[Required section.\]]{.mark}
 
@@ -4548,7 +4280,7 @@ https://docs.oasis-open.org/office/v1.2/OpenDocument-v1.2.html.]{.mark}
 
 []{.mark}
 
-## A.1 Normative References {#a.1-normative-references .unnumbered}
+## A.1 Normative References
 
 [The following documents are referenced in such a way that some or all of their content constitutes requirements of this document.]{.mark}
 
@@ -4596,7 +4328,7 @@ The Unicode Consortium. The Unicode Standard,
 
 []{.mark}
 
-## A.2 Informative References {#a.2-informative-references .unnumbered}
+## A.2 Informative References
 
 [The following referenced documents are not required for the application of this document but may assist the reader with regard to a particular
 subject area.]{.mark}
@@ -4612,7 +4344,7 @@ subject area.]{.mark}
 
 [\[Full reference citation\]]{.mark}
 
-# Appendix B. Security and Privacy Considerations {#appendix-b.-security-and-privacy-considerations .unnumbered}
+# Appendix B. Security and Privacy Considerations
 
 \[[Optional section.]{.mark}\]
 
@@ -4648,17 +4380,17 @@ It is anticipated that the MQTT protocol will be designed into industry specific
 security mechanisms to be used to address these threats. Recommendations for specific security mechanisms will often be taken from existing works
 including:
 
-[\[NISTCSF\]](#bookmark=id.2pcmsun) NIST Cyber Security Framework
+[\[NISTCSF\]](#2pcmsun) NIST Cyber Security Framework
 
-[\[NIST7628\]](#bookmark=id.14hx32g) NISTIR 7628 Guidelines for Smart Grid Cyber Security
+[\[NIST7628\]](#14hx32g) NISTIR 7628 Guidelines for Smart Grid Cyber Security
 
-[\[FIPS1402\]](#bookmark=id.3ohklq9) Security Requirements for Cryptographic Modules (FIPS PUB 140-2)
+[\[FIPS1402\]](#3ohklq9) Security Requirements for Cryptographic Modules (FIPS PUB 140-2)
 
-[\[PCIDSS\]](#bookmark=id.23muvy2) PCI-DSS Payment Card Industry Data Security Standard
+[\[PCIDSS\]](#23muvy2) PCI-DSS Payment Card Industry Data Security Standard
 
-[\[NSAB\]](#bookmark=id.is565v) NSA Suite B Cryptography
+[\[NSAB\]](#is565v) NSA Suite B Cryptography
 
-# Appendix C. Acknowledgments {#appendix-c.-acknowledgments .unnumbered}
+# Appendix C. Acknowledgments
 
 \[[Required section.]{.mark}\]
 
@@ -4670,7 +4402,7 @@ names from the list by request.]{.mark}
 
 []{.mark}
 
-## C.1 Special Thanks {#c.1-special-thanks .unnumbered}
+## C.1 Special Thanks
 
 [Note: This is an optional subsection to call out contributions from TC members. If a TC wants to thank non-TC members then they should avoid using
 the term \"contribution\" and instead thank them for their \"expertise\" or \"assistance\".]{.mark}
@@ -4681,7 +4413,7 @@ Substantial contributions to this document from the following individuals are gr
 
 \[Participant Name, Affiliation \| Individual Member\]
 
-## C.2 Participants {#c.2-participants .unnumbered}
+## C.2 Participants
 
 [Note: A TC can determine who they list here, however, Observers must not be listed. It is common practice for TCs to list everyone that was part of
 the TC during the creation of the document, but this is ultimately a TC decision on who they want to list and not list.]{.mark}
@@ -4691,7 +4423,7 @@ acknowledged:
 
 \[Participant Name, Affiliation \| Individual Member\]
 
-# [Appendix D. Revision History]{.mark} {#appendix-d.-revision-history .unnumbered}
+# [Appendix D. Revision History]{.mark}
 
 [\[Optional section.\]]{.mark}
 
@@ -4856,13 +4588,13 @@ before submitting for publication.]{.mark}
 |                 |                                 |                          | optional fields]{.mark}                                           |
 |                 |                                 |                          |                                                                   |
 |                 |                                 |                          | [Introduction titles changed to better sign post where the        |
-|                 |                                 |                          | inforlmation resides in the document]{.mark}                      |
+|                 |                                 |                          | information resides in the document]{.mark}                       |
 +-----------------+---------------------------------+--------------------------+-------------------------------------------------------------------+
 | [WD-26]{.mark}  | [May 2023]{.mark}               | [\[Simon Johnson, Davide | [Backwards compatible PUBLISH -1, new OOB Publish message to      |
 |                 |                                 | Lenzarini\]]{.mark}      | repace it. Removal of security section to allow to                |
 |                 |                                 |                          | rewrite.]{.mark}                                                  |
 +-----------------+---------------------------------+--------------------------+-------------------------------------------------------------------+
-| [WD-27]{.mark}  | [November 2023]{.mark}          | [\[Simon Johnson, Davide | [Network&Trasport Layer chapter updated to define the impact of   |
+| [WD-27]{.mark}  | [November 2023]{.mark}          | [\[Simon Johnson, Davide | [Network Transport Layer chapter updated to define the impact of  |
 |                 |                                 | Lenzarini\]]{.mark}      | lower layers features on the MQTT-SN protocol.]{.mark}            |
 |                 |                                 |                          |                                                                   |
 |                 |                                 |                          | [Replaced the term MQTT-SN "connection" with the term "Virtual    |
@@ -4873,49 +4605,51 @@ before submitting for publication.]{.mark}
 |                 |                                 |                          | listing.]{.mark}                                                  |
 +-----------------+---------------------------------+--------------------------+-------------------------------------------------------------------+
 
-# **Appendix E.** Implementation Notes {#appendix-e.-implementation-notes .unnumbered}
+# **Appendix E.** Implementation Notes
 
-##  E.1 Support of QoS Level -1 and OUT OF BAND {#e.1-support-of-qos-level--1-and-out-of-band .unnumbered}
+##  E.1 Support of QoS Level -1 and OUT OF BAND
 
 Because PUBLISH packets with QoS level -1 and OUT OF BAND could be sent at any time by clients (even with no Virtual Connection setup) a transparent
 GW needs to maintain for those packets a dedicated MQTT connection with the server. An aggregating or hybrid GW may use any aggregating MQTT
 connection to forward those packets to the server.
 
-## E.2 "Best practice" values for timers and counters {#e.2-best-practice-values-for-timers-and-counters .unnumbered}
+## E.2 "Best practice" values for timers and counters
 
 Table 30 shows the "best practice" values for the timers and counters defined in this specification.
 
-+------------------------------+---------------------------------------------------------------------------------------------------------------------+
-| Timer/Counter                | Recommended value                                                                                                   |
-+==============================+=====================================================================================================================+
-| *TADV*                       | greater than 15 minutes                                                                                             |
-+------------------------------+---------------------------------------------------------------------------------------------------------------------+
-| *NADV*                       | 2 -3                                                                                                                |
-+------------------------------+---------------------------------------------------------------------------------------------------------------------+
-| *TSEARCHGW*                  | 5 seconds                                                                                                           |
-+------------------------------+---------------------------------------------------------------------------------------------------------------------+
-| *TGWINFO*                    | 5 seconds                                                                                                           |
-+------------------------------+---------------------------------------------------------------------------------------------------------------------+
-| *TWAIT*                      | > greater than 5 minutes                                                                                            |
-+------------------------------+---------------------------------------------------------------------------------------------------------------------+
-| *Tretry*                     | Implement B4 with a starting value of 1 second after an initial wait period of 5 seconds. So first retry will be    |
-|                              | \~6 seconds.                                                                                                        |
-+------------------------------+---------------------------------------------------------------------------------------------------------------------+
-| *Nretry*                     | 3 -- 5                                                                                                              |
-+------------------------------+---------------------------------------------------------------------------------------------------------------------+
+  -----------------------------------------------------------------------------------------------------------------------------------------------------
+  **Timer/Counter**               **Recommended value**
+  ------------------------------- ---------------------------------------------------------------------------------------------------------------------
+  *T~ADV~*                        Greater than 15 minutes
+
+  *N~ADV~*                        2 -3
+
+  *T~SEARCHGW~*                   5 seconds
+
+  *T~GWINFO~*                     5 seconds
+
+  *T~WAIT~*                       Greater than 5 minutes
+
+  *T~RETRY~*                      Implement E4 with a starting value of 1 second after an initial wait period of 5 seconds. So the first retry will be
+                                  \~6 seconds.
+
+  *N~RETRY~*                      3 -- 5 seconds
+
+  *M~BACKOFF~*                    60 seconds
+  -----------------------------------------------------------------------------------------------------------------------------------------------------
 
 Table 30: "Best practice" values for timers and counters
 
 The "tolerance" of the sleep and keep-alive timers at the server/gateway depends on the values indicated by the clients. For example, the timer values
 should be 10% higher than the indicated values for periods larger than 1 minute, and 50% higher if less.
 
-## E.3 Mapping of Topic Alias to Topic Names and Topic Filters {#e.3-mapping-of-topic-alias-to-topic-names-and-topic-filters .unnumbered}
+## E.3 Mapping of Topic Alias to Topic Names and Topic Filters
 
 It is strongly recommended that in the gateway the mapping table between topic alias and topic names is implemented per client (and not by a single
 shared pool between all clients), to reduce the risk of an incorrect topic alias from a client matching another client's valid topic, and thus causing
 a publication to the wrong topic, which could potentially have disastrous consequences.
 
-## E.4 Exponential Backoff {#e.4-exponential-backoff .unnumbered}
+## E.4 Exponential Backoff
 
 The following error handling strategy should be used for networked devices to avoid overwhelming recipient network entities whilst providing for
 efficient reestablishment handling. The client shall periodically retry a failed packet with increasing delays between attempts, constrained by a max
@@ -4934,17 +4668,17 @@ example:
 
 4.  If the operation fails, wait 4000 + (random number) milliseconds (ran) and retry the operation.
 
-5.  Continued, up to a maximum backoff (max) time.
+5.  Continued, up to a maximum backoff *M~BACKOFF~*.
 
 6.  Continue waiting and retrying up to some maximum number of retries, but do not increase the wait period between retries.
 
 The wait time is [min(((2\^n \* sf) + ran), max)]{.mark} with n incremented by 1 for each iteration (or operation) and the scaling factor (sf) being
 set to some reasonable value (suggested 1000 as in the example above).
 
-The random number helps to avoid cases where many clients are synchronized by some situation, and all retry at once. The value of random number ran is
-recalculated after each retry. The random number (ran) should be no larger than the scaling factor (sf).
+The random number helps to avoid cases where many clients are synchronized by some situation, and all retry at once. The value of the random number
+ran is recalculated after each retry. The random number (ran) should be no larger than the scaling factor (sf).
 
-# Appendix F. Notices {#appendix-f.-notices .unnumbered}
+# Appendix F. Notices
 
 \[[Required section. Do not change.]{.mark}\]
 
