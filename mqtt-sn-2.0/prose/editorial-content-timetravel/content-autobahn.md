@@ -1270,7 +1270,7 @@ exchanges using the same Packet Identifiers.
 > It is possible for a Client to send a PUBLISH packet with Packet Identifier 0x1234 and then receive a different PUBLISH packet with Packet
 > Identifier 0x1234 from its Server before it receives a PUBACK for the PUBLISH packet that it sent.
 >
-> ![](media/image2.png){width="3.5502898075240594in" height="2.7864588801399823in"}
+> ![](media/image5.png){width="3.5502898075240594in" height="2.7864588801399823in"}
 
 ## 2.3 MQTT-SN Packet Fields
 
@@ -1453,7 +1453,7 @@ Each value and meaning of each *Reason Code* field is shown below.
 |          |           |                                        |                                    | the connection rate is too high.             |
 +----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
 | 160      | 0xAD      | Maximum connect time                   | DISCONNECT (server only)           | The maximum connection time authorized for   |
-|          |           |                                        |                                    | this connection has been exceeded.           |
+|          |           |                                        |                                    | this Virtual Connection has been exceeded.   |
 +----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
 | 161      | 0xA1      | Subscription identifiers not supported | SUBACK, DISCONNECT (server only)   | The MQTT Server does not support             |
 |          |           |                                        |                                    | Subscription Identifiers; the subscription   |
@@ -2002,14 +2002,14 @@ validates the connection attempt as follows.
 
 1.  [The Server MUST validate that the CONNECT packet matches the format described in]{.mark} [[[section
     3.1]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#_CONNECT_%E2%80%93_Connection) and MUST NOT create a
-    Virtual Connection for this CONNECT if it does not match.]{.mark} \[MQTT-3.1.4-1\] The Server MAY send a CONNACK with a Reason Code of 0x80 or
-    greater as described in section 4.13.
+    Virtual Connection for this CONNECT if it does not match.]{.mark} \[MQTT-SN-3.1.4.17-1\] The Server MAY send a CONNACK with a Reason Code of 0x80
+    or greater as described in section 4.13.
 
 <!-- -->
 
 3.  [The Server MAY check that the contents of the CONNECT packet meet any further restrictions and SHOULD perform authentication and authorization
-    checks. If any of these checks fail, it MUST NOT create a Virtual Connection for this CONNECT]{.mark} \[MQTT-3.1.4-2\]. It MAY send an appropriate
-    CONNACK response with a Reason Code of 0x80 or greater as described in [[section
+    checks. If any of these checks fail, it MUST NOT create a Virtual Connection for this CONNECT]{.mark} \[MQTT-SN-3.1.4.17-2\]. It MAY send an
+    appropriate CONNACK response with a Reason Code of 0x80 or greater as described in [[section
     3.2]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#_CONNACK_%E2%80%93_Connect) and [[section
     4.13]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#S4_13_Errors).
 
@@ -2018,13 +2018,13 @@ If validation is successful, the Server performs the following steps.
 1.  [If the ClientID represents a Client already connected to the Server, the Server sends a DISCONNECT packet to the existing Client with Reason Code
     of 0x8E (Session taken over) as described in]{.mark} [[[section
     4.13]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#S4_13_Errors) and MUST delete the Virtual Connection of
-    the existing Client]{.mark} \[MQTT-3.1.4-3\]. If the existing Client has a Will Message, that Will Message is published as described in section
-    3.1.2.5.
+    the existing Client]{.mark} \[MQTT-SN-3.1.4.17-3\]. If the existing Client has a Will Message, that Will Message is published as described in
+    section 3.1.2.5.
 
-2.  [The Server MUST perform the processing of Clean Start]{.mark} that is described in [[section
-    3.1.2.4]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#_Clean_Start) \[MQTT-3.1.4-4\].
+2.  [The Server MUST perform the processing of Clean Start]{.mark} that is described in [[section 4.15]{.underline}](#clean-start)
+    \[MQTT-SN-3.1.4.17-4\].
 
-3.  [The Server MUST acknowledge the CONNECT packet with a CONNACK packet containing a 0x00 (Success) Reason Code]{.mark} \[MQTT-3.1.4-5\].
+3.  [The Server MUST acknowledge the CONNECT packet with a CONNACK packet containing a 0x00 (Success) Reason Code]{.mark} \[MQTT-SN-3.1.4.17-5\].
 
 4.  Start message delivery and Keep Alive monitoring.
 
@@ -2365,7 +2365,7 @@ Used to identify the corresponding REGACK packet. It should ideally be populated
 If sent by a client, it is coded 0x0000 and is not relevant; if sent by a GW, it contains the topic alias value assigned to the topic name included in
 the Topic Name field.
 
-#### 3.1.7.4 Topic Name
+#### 33.1.7.4 Topic Name
 
 Fixed Length UTF-8 Encoded String Contains the fully qualified topic name.
 
@@ -3704,11 +3704,11 @@ procedure for setting up a session with a server is illustrated in Fig. 3a and 3
 
 The CONNECT packet contains flags to communicate to the gateway that Auth interactions, or WILL interactions should take place.
 
-![](media/image7.png){width="3.344815179352581in" height="2.4173436132983377in"}
+![](media/image3.png){width="3.344815179352581in" height="2.4173436132983377in"}
 
 Figure 3a: Connect procedure (without Auth flag not Will flag set or no further authentication data required)
 
-![](media/image8.png){width="3.345165135608049in" height="2.963542213473316in"}
+![](media/image7.png){width="3.345165135608049in" height="2.963542213473316in"}
 
 Figure 3b: Connect procedure (with Auth flag set and additional authentication data required)
 
@@ -4365,7 +4365,7 @@ decapsulates the frames it receives from the gateway and sends them to the clien
 
 For each connected MQTT-SN client a transparent Gateway will set up and maintain a MQTT connection to the MQTT server. This MQTT connection is
 reserved exclusively for the end-to-end and almost transparent packet exchange between the client and the server. There will be as many MQTT
-connections between the Gateway and the server as MQTT-SN clients connected to the Gateway. The transparent Gateway will perform a "syntax"
+connections between the Gateway and the MQTT Broker as MQTT-SN clients connected to the Gateway. The transparent Gateway will perform a "syntax"
 translation between the two protocols. Since all packet exchanges are end-to-end between the MQTT-SN client and the MQTT Server, all functions and
 features that are implemented by the server can be offered to the client.
 
@@ -4373,7 +4373,7 @@ Although the implementation of the transparent Gateway is simpler when compared 
 support a separate connection for each active client. Some MQTT server implementations might impose a limitation on the number of concurrent
 connections that they support.
 
-![](media/image9.png){width="3.994792213473316in" height="2.6661472003499562in"}
+![](media/image2.png){width="3.994792213473316in" height="2.6661472003499562in"}
 
 Figure XX: Transparent Gateway scenario
 
@@ -4390,15 +4390,15 @@ Figure XX: Aggregating Gateway scenario
 
 ### 4.11.3 Forwarder encapsulator
 
-![](media/image6.png){width="4.704773622047244in" height="2.7964599737532807in"}
+![](media/image12.png){width="4.704773622047244in" height="2.7964599737532807in"}
 
-Figure XX: Forwarder encapsulator with TransparentGateway scenario![](media/image10.png){width="4.9003171478565175in" height="2.8304625984251968in"}
+Figure XX: Forwarder encapsulator with TransparentGateway scenario![](media/image8.png){width="4.9003171478565175in" height="2.8304625984251968in"}
 
 Figure XX: Forwarder encapsulator with Aggregating Gateway scenario
 
 ### 4.12.4 MQTT-SN broker
 
-![](media/image13.png){width="2.8596172353455818in" height="2.983947944006999in"}
+![](media/image10.png){width="2.8596172353455818in" height="2.983947944006999in"}
 
 Figure XX: MQTT-SN broker scenario
 
@@ -4490,9 +4490,9 @@ the "Sleeping clients" section.
 |                            | state.                                                                                |                              |
 +----------------------------+---------------------------------------------------------------------------------------+------------------------------+
 
-![](media/image12.png){width="6.5in" height="6.944444444444445in"}
+![](media/image13.png){width="6.5in" height="6.944444444444445in"}
 
-Figure 4: Client's state transition diagram
+Figure 4: The Server View of the Client State
 
 ### 4.14.1 Gateway timers
 
@@ -4506,7 +4506,7 @@ The following timers must be managed by a Gateway per Client to handle the diffe
 
 ## 4.15 Clean start
 
-When a client disconnects, its subscriptions are retained for no less than the session expiration time. They are persistent and valid for new (non
+When a client disconnects, its subscriptions are retained for no less than the session expiration interval. They are persistent and valid for new (non
 clean start) sessions, until either they are explicitly un-subscribed by the client, or the client establishes a new session with the "clean start"
 flag set or their idle time exceeds the session expiry interval associated with the session.
 
@@ -4524,7 +4524,7 @@ The two flags "CleanStart" and "Will" in the CONNECT Packet have the following m
 -   CleanStart=false, Will=false: The Gateway will keep all the client's subscriptions and it will delete any Will data, if present, and it will
     return CONNACK.
 
-Note that if a client wants to delete only its Will data at Virtual Connection setup, it could send a CONNECT packet with "CleanStart=false" and
+Note that if a client wants to delete only its Will data at Virtual Connection creation, it could send a CONNECT packet with "CleanStart=false" and
 "Will=false".
 
 ## 4.16 Topic Registration
@@ -4670,14 +4670,14 @@ no danger for a storm of CONNECT packets sent almost at the same time by all aff
 
 ## 4.23 Client's Disconnect Procedure
 
-A client sends a DISCONNECT packet to the gateway to indicate that it is about to close its Virtual Connection. After this point, the client is then
+A client sends a DISCONNECT packet to the gateway to indicate that it is about to delete its Virtual Connection. After this point, the client is then
 required to establish a new Virtual Connection with the gateway before it can exchange information with that gateway again. [Like MQTT, sending the
 DISCONNECT packet does not affect existing subscriptions and Will data. They are persistent until they are either expired or explicitly un-subscribed,
 or deleted, or modified by the client, or if the client establishes a new Virtual Connection with the CleanStart flag set.]{.mark} The gateway
 acknowledges the receipt of the DISCONNECT packet by returning a DISCONNECT to the client.
 
 A client may also receive an unsolicited DISCONNECT sent by the gateway. This may happen for example when the gateway, due to an error, cannot
-identify the client to which a received packet belongs. Upon receiving such a DISCONNECT packet a client should retry to setup the Virtual Connection
+identify the client to which a received packet belongs. Upon receiving such a DISCONNECT packet a client should try to setup the Virtual Connection
 again by sending a CONNECT packet to the gateway.
 
 ## 4.24 Retransmission Procedure in the Client and Gateway
@@ -4685,10 +4685,10 @@ again by sending a CONNECT packet to the gateway.
 The Client or Gateway will start a retransmission retry timer, T~retry~, when one of the following Packets is sent.
 
 [A Client MUST retransmit AUTH, REGISTER, PUBLISH Qos1, PUBLISH Qos2, PUBREL, SUBSCRIBE, UNSUBSCRIBE]{.mark} [Packets, including a PROTECTION
-encapsulation if there is one, after T~retry~ has passed or]{.mark} [close]{.mark} [the Virtual Connection.]{.mark}
+encapsulation if there is one, after T~retry~ has passed or delete the Virtual Connection.]{.mark}
 
 [A Gateway MUST retransmit PUBLISH Qos1, PUBLISH Qos2, PUBREL]{.mark} [Packets, including a PROTECTION encapsulation if there is one, after T~retry~
-has passed or close the Virtual Connection.]{.mark}
+has passed or delete the Virtual Connection.]{.mark}
 
 [The timer is canceled if the corresponding acknowledgement packet is received. The Client or Gateway MUST retransmit the Packet after T~retry~ has
 passed or]{.mark} [close]{.mark} [the Virtual Connection.]{.mark}
@@ -4769,7 +4769,7 @@ state by sending a CONNECT packet to the server/gateway.
 >
 > The gateway should attempt to make the best effort to reuse the same topic alias mappings that existed during any initial associated ACTIVE states.
 >
-> ![](media/image3.png){width="4.615764435695538in" height="7.453125546806649in"}
+> ![](media/image6.png){width="4.615764435695538in" height="7.453125546806649in"}
 
 Figure 5: Awake ping packet flush
 
@@ -4791,7 +4791,23 @@ MQTT-SN Gateway.
 The PROTECTION packet type support is optional. For instance, it is not required if the MQTT-SN Gateway and the MQTT-SN Clients interact over a secure
 communication channel, like DTLS or any communication channel assuring the authenticity and optionally the confidentiality protection.
 
-# 5 Conformance
+# 5 Security (Informative)
+
+Like the MQTT security chapter but with a focus on MQTT-SN. In particular:
+
+-   securing communications with:
+
+    -   username/password
+
+    -   challenge/response - AUTH
+
+    -   DTLS
+
+    -   Protection encapsulation
+
+## 5.1 Introduction
+
+# 6 Conformance
 
 [(**Note**: The [OASIS TC Process](https://www.oasis-open.org/policies-guidelines/tc-process#wpComponentsConfClause) requires that a specification
 approved by the TC at the Committee Specification Public Review Draft, Committee Specification or OASIS Standard level must include a separate
