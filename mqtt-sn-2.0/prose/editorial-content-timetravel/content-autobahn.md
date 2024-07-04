@@ -38,7 +38,7 @@
 >
 > Tara E. Walker (<tara.walker@microsoft.com>), [Microsoft](http://www.microsoft.com)
 >
-> Andy Stanford-Clark ([andysc@uk.ibm.com]{.underline}, IBM UK
+> Andy Stanford-Clark (andysc@uk.ibm.com, IBM UK
 >
 > **Additional artifacts:**
 
@@ -87,8 +87,8 @@ Comment]{.underline}](https://www.oasis-open.org/committees/comments/index.php?w
 
 This specification is provided under the [Non-Assertion](https://www.oasis-open.org/policies-guidelines/ipr#Non-Assertion-Mode) Mode of the [OASIS IPR
 Policy](https://www.oasis-open.org/policies-guidelines/ipr), the mode chosen when the Technical Committee was established. For information on whether
-any patents have been disclosed that may be essential to implementing this specification, and any offers of patent licensing terms, please refer to
-the Intellectual Property Rights section of the TC's web page (<https://www.oasis-open.org/committees/mqtt/ipr.php>).
+any patents have been disclosed that may be essential to implementing this specification, and any offers of patent licensing terms, refer to the
+Intellectual Property Rights section of the TC's web page (<https://www.oasis-open.org/committees/mqtt/ipr.php>).
 
 Note that any machine-readable content ([Computer Language
 Definitions](https://www.oasis-open.org/policies-guidelines/tc-process#wpComponentsCompLang)) declared Normative for this Work Product is provided in
@@ -124,7 +124,7 @@ Copyright © OASIS Open 2023. All Rights Reserved.
 
 Distributed under the terms of the OASIS IPR Policy,
 \[[[https://www.oasis-open.org/policies-guidelines/ipr/]{.underline}](https://www.oasis-open.org/policies-guidelines/ipr/)\]. For complete copyright
-information please see the full Notices section in an Appendix below.
+information see the full Notices section in an Appendix below.
 
 **Table of Contents**
 
@@ -220,7 +220,7 @@ information please see the full Notices section in an Appendix below.
 >
 > [3.1.4.7 Max Packet Size 35](#max-packet-size)
 >
-> [3.1.4.8 Client Identifier 36](#client-identifier)
+> [3.1.4.8 Client Identifier 36](#client-identifier-clientid)
 >
 > [3.1.4.9 Connect Will Flags (optional, only with Will flag set) 36](#connect-will-flags-optional-only-with-will-flag-set)
 >
@@ -307,7 +307,7 @@ information please see the full Notices section in an Appendix below.
 >
 > [3.1.10.4 Data 44](#data)
 >
-> [3.1.11 PUBLISH (used for QoS 0) 44](#publish-used-for-qos-0)
+> [3.1.11 PUBLISH (used for QoS 0) 44](#publish---qos-0)
 >
 > [3.1.11.1 Length & Packet Type 45](#length-packet-type-9)
 >
@@ -317,7 +317,7 @@ information please see the full Notices section in an Appendix below.
 >
 > [3.1.11.4 Data 45](#data-1)
 >
-> [3.1.12 PUBLISH (used for QoS 1 & 2) 46](#publish-used-for-qos-1-2)
+> [3.1.12 PUBLISH (used for QoS 1 & 2) 46](#publish---qos-1-and-2)
 >
 > [3.1.12.1 Length & Packet Type 46](#length-packet-type-10)
 >
@@ -539,7 +539,7 @@ information please see the full Notices section in an Appendix below.
 >
 > [4.17 Topic Mapping and Aliasing 87](#topic-mapping-and-aliasing)
 >
-> [4.18 Predefined topic alias and short topic names 88](#predefined-topic-alias-and-short-topic-names)
+> [4.18 Predefined topic alias and short topic names 88](#predefined-topic-aliases-and-short-topic-names)
 >
 > [4.19 Client's Topic Subscribe/Unsubscribe Procedure 88](#clients-topic-subscribeunsubscribe-procedure)
 >
@@ -607,69 +607,26 @@ information please see the full Notices section in an Appendix below.
 
 \[[All text is normative unless otherwise labeled]{.mark}\]
 
-## 1.1 MQTT For Sensor Networks (MQTT-SN) 
+## 1.0 Intellectual property rights policy
 
-Sensor Networks are simple, low cost and easy to deploy. They are typically used to provide event detection, monitoring, automation, process control
-and more. Sensor Networks often comprise many battery-powered sensors and actuators, each containing a limited amount of storage and processing
-capability. They usually communicate wirelessly.
+This specification is provided under the [[Non-Assertion]{.underline}](https://www.oasis-open.org/policies-guidelines/ipr#Non-Assertion-Mode) Mode of
+the [[OASIS IPR Policy]{.underline}](https://www.oasis-open.org/policies-guidelines/ipr), the mode chosen when the Technical Committee was
+established. For information on whether any patents have been disclosed that may be essential to implementing this specification, and any offers of
+patent licensing terms, refer to the Intellectual Property Rights section of the TC's web page
+([[https://www.oasis-open.org/committees/mqtt/ipr.php]{.underline}](https://www.oasis-open.org/committees/mqtt/ipr.php)).
 
-Sensor Networks are typically self-forming, continually change, and do not have any central control. The wireless network connections and processing
-nodes will fail, and the batteries will run out. The nodes will be replaced, added or removed in an unplanned way. The identities of the devices are
-usually created when they are manufactured, this avoids the need for specialist configuration when they are deployed. Applications running outside the
-Sensor Network do not need to know the details of the devices in it. The applications consume information from the sensors and send instructions to
-actuators based only on labels created by the application designers. The labels are called Topic Names in the MQTT and MQTT-SN protocols. The MQTT-SN
-implementation carries information between a set of applications and the correct set of devices based on its knowledge of the network and the
-applications designer's choice of Topic Names.
-
-Consider an example of a medicine tracking application. The application needs to know the location and temperature of the medicine, but it does not
-want to concern itself with the network details of the devices providing the data. It may be that the number and types of the devices changes over
-time. There may also be other applications using the same sensor data for other purposes. The model is that the devices and applications produce and
-consume data addressed by the Topics rather than the other devices and applications.
-
-This MQTT-SN specification is a variant of the MQTT version 5 specification. It is adapted to exploit low power and low bandwidth wireless networks.
-Low power wireless radio links typically have higher numbers of transmission errors compared to more powerful networks because they are more
-susceptible to interference and fading of the radio signals. They also have lower transmission rates.
-
-For example, wireless networks based on the IEEE 802.15.4 standard used by Zigbee have a maximum bandwidth of 250 kbit/s in the 2.4 GHz band. To
-reduce transmission errors the packets are kept short. The maximum packet length at the physical layer is 128 bytes and half of these may be used for
-Media Access Control and security.
-
-The MQTT-SN protocol is optimized for implementation on low-cost, battery-operated devices with limited processing and storage resources. The
-capabilities are kept simple and the specification allows partial implementations.
-
-### 1.1.1 MQTT-SN and MQTT Differences
-
-MQTT and MQTT-SN specifications are similar in many ways and meant to interoperate with each other, but the two specifications are independent of each
-other.
-
-MQTT-SN can work isolated from other networks or in conjunction with MQTT. The main differences between MQTT-SN and MQTT are:
-
-1.  In addition to Topic Alias and long Topic Names MQTT-SN allows predefined and short two-byte Topic Names.
-
-2.  If the network supports broadcast, Gateway discovery can be implemented, otherwise the Gateway addresses must be configured in the nodes.
-
-3.  Support for sleeping clients allows battery operated devices to enter a low power mode. In this state, messages for the client are buffered by the
-    Gateway and delivered when the client wakes.
-
-4.  A new Quality of Service level (WITHOUT SESSION) is introduced in MQTT-SN, allowing devices to publish without a GW session having been
-    established.
-
-5.  MQTT-SN has fewer requirements on the underlying transport and it can use connectionless network transports such as User Datagram Protocol (UDP).
-
-6.  MQTT-SN introduces the PROTECTION packet for message-based security based on symmetric-key cryptography.
-
-## 1.2 Changes from earlier Versions
+## 1.1 Changes from earlier Versions
 
 \[[Optional section.]{.mark}\]
 
 This section provides a description of significant differences from previously published, differently numbered Versions of this specification, if any.
 (Detailed revision history of this numbered Version should be tracked in an Appendix.)
 
-### 1.2.1 MQTT-SN v1.2
+### 1.1.1 MQTT-SN v1.2
 
 Text describing the changes/differences
 
-## 1.3 Organization of the MQTT-SN specification
+## 1.2 Organization of the MQTT-SN specification
 
 The specification is split into five chapters:
 
@@ -683,7 +640,7 @@ The specification is split into five chapters:
 
 -   Chapter 5 -- Conformance
 
-## 1.4 Terminology
+## 1.3 Terminology
 
 The keywords \"MUST\", \"MUST NOT\", \"REQUIRED\", \"SHALL\", \"SHALL NOT\", \"SHOULD\", \"SHOULD NOT\", \"RECOMMENDED\", \"MAY\", and \"OPTIONAL\" in
 this specification are to be interpreted as described in IETF RFC 2119 \[RFC2119\], except where they appear in text that is marked as non-normative.
@@ -700,21 +657,21 @@ The arrival of a datagram is not guaranteed, but the contents of any datagram wh
 
 **Network Address:**
 
-A label provided by the Underlying Network to uniquely identify a network endpoint.
+A unique label provided by the Underlying Network to identify a network endpoint.
 
-To receive datagrams, an MQTT-SN Client or Server listens on the network for messages addressed to a specific Network Address.
+To receive datagrams, an MQTT-SN Client or Server listens to the network for messages addressed to a specific Network Address.
 
 **Unicast Address:**
 
 A Network Address which represents one device on a network. For messages intended to reach one network endpoint.
 
-**Broadcast Address:**
+**Multicast Address:**
 
 A Network Address which represents all or groups of devices on a network. For messages intended for more than one network endpoint.
 
 Informative:
 
-Broadcast Address as used in this specification includes the concept of multicast addresses, to make the text shorter.
+Multicast Address as used in this specification also includes the concept of broadcast addresses, for brevity.
 
 **Virtual Connection:**
 
@@ -741,11 +698,11 @@ A program or device that uses MQTT-SN. A Client:
 
 and/or:
 
--   publishes Application Messages to a Broadcast Address.
+-   publishes Application Messages to a Multicast Address.
 
 and/or:
 
--   accepts Application Messages from a Broadcast Address.
+-   accepts Application Messages from a Multicast Address.
 
 **Server:**
 
@@ -763,15 +720,15 @@ A Server:
 
 -   forwards Application Messages that match Client Subscriptions.
 
--   closes the Network Connection from the Client.
+-   accepts DISCONNECT requests from connected Clients.
 
 and/or
 
--   accepts messages from a Broadcast Address.
+-   accepts messages from a Multicast Address.
 
 and/or
 
--   opens an MQTT Network Connection to an MQTT Server
+-   opens an MQTT Network Connection to an MQTT Server.
 
 -   accepts Application Messages from the MQTT Server and forwards some or all to MQTT-SN Clients.
 
@@ -785,7 +742,7 @@ and/or
 
 -   forwards equivalent MQTT-SN messages to the MQTT-SN Client for each MQTT messages received
 
--   closes the MQTT Network Connection when the Virtual Connection is closed
+-   closes the MQTT Network Connection when the Virtual Connection is deleted
 
 **MQTT Server:**
 
@@ -811,6 +768,11 @@ An MQTT Server:
 A stateful interaction between a Client and a Gateway. Some Sessions last only as long as the Virtual Connection, others can span multiple consecutive
 Virtual Connections between a Client and a Gateway.
 
+**Session State:**
+
+The set of data that describes a Session. The Session State held by a Client is different to that held by a Server. See [[section
+4.1]{.underline}](#session-state) for details.
+
 **Subscription:**
 
 A Subscription comprises a Topic Filter and a maximum QoS. A Subscription is associated with a single Session. A Session can contain more than one
@@ -819,8 +781,7 @@ Subscription. Each Subscription within a Session has a different Topic Filter.
 **Wildcard Subscription:**
 
 A Wildcard Subscription is a Subscription with a Topic Filter containing one or more wildcard characters. This allows the subscription to match more
-than one Topic Name. Refer to [section ???](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Topic_Names_and) for a description of
-wildcard characters in a Topic Filter.
+than one Topic Name. Refer to [[section 4.7.1]{.underline}](#topic-wildcards) for a description of wildcard characters in a Topic Filter.
 
 **Topic Name:**
 
@@ -840,22 +801,23 @@ A packet of information that is sent to a Network Address.
 
 **Malformed Packet:**
 
-A Control Packet that cannot be parsed according to this specification. Refer to section ??? for information about error handling.
+A Control Packet that cannot be parsed according to this specification. Refer to [[section 4.11]{.underline}](#handling-errors) for information about
+error handling.
 
 **Protocol Error:**
 
 An error that is detected after the packet has been parsed and found to contain data that is not allowed by the protocol or is inconsistent with the
-state of the Client or Server. Refer to section ??? for information about error handling.
+state of the Client or Server. Refer to [[section 4.11]{.underline}](#handling-errors) for information about error handling.
 
 **Will Message:**
 
 An Application Message which is published by the Server after the Virtual Connection is closed in cases where the Virtual Connection is not closed
-normally. Refer to section ??? for information about Will Messages.
+normally. Refer to [[section 3.1.4.9]{.underline}](#connect-will-flags-optional-only-with-will-flag-set) for information about Will Messages.
 
 **Disallowed Unicode code point:**
 
-The set of Unicode Control Codes and Unicode Noncharacters which should not be included in a UTF-8 Encoded String. Refer to section ??? for more
-information about the Disallowed Unicode code points.
+The set of Unicode Control Codes and Unicode Noncharacters which should not be included in a UTF-8 Encoded String. Refer to [[section
+1.7.4]{.underline}](#utf-8-encoded-string) for more information about the Disallowed Unicode code points.
 
 **Wireless Sensor Network:**
 
@@ -864,24 +826,102 @@ central location.
 
 Also known as **WSN**, for short.
 
-## 1.4 Data representation
+## 1.4 Normative references
 
-### 1.4.1 Bits (Byte)
+**\[RFC2119\]**
+
+Bradner, S., \"Key words for use in RFCs to Indicate Requirement Levels\", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997,
+
+[[http://www.rfc-editor.org/info/rfc2119]{.underline}](http://www.rfc-editor.org/info/rfc2119)
+
+**\[RFC3629\]**
+
+Yergeau, F., \"UTF-8, a transformation format of ISO 10646\", STD 63, RFC 3629, DOI 10.17487/RFC3629, November 2003,
+
+[[http://www.rfc-editor.org/info/rfc3629]{.underline}](http://www.rfc-editor.org/info/rfc3629)
+
+**\[RFC6455\]**
+
+Fette, I. and A. Melnikov, \"The WebSocket Protocol\", RFC 6455, DOI 10.17487/RFC6455, December 2011,
+
+[[http://www.rfc-editor.org/info/rfc6455]{.underline}](http://www.rfc-editor.org/info/rfc6455)
+
+**\[Unicode\]**
+
+The Unicode Consortium. The Unicode Standard,
+
+[[http://www.unicode.org/versions/latest/]{.underline}](http://www.unicode.org/versions/latest/)
+
+## 1.5 Informative References
+
+## 1.6 MQTT For Sensor Networks (MQTT-SN) 
+
+Sensor Networks are simple, low cost and easy to deploy. They are typically used to provide event detection, monitoring, automation, process control
+and more. Sensor Networks often comprise many battery-powered sensors and actuators, each containing a limited amount of storage and processing
+capability. They usually communicate wirelessly.
+
+Sensor Networks are typically self-forming, continually changing, and do not have any central control. The wireless network connections and processing
+nodes will fail, and the batteries will run out. The nodes will be replaced, added or removed in an unplanned way. The identities of the devices are
+usually created when they are manufactured, this avoids the need for specialist configuration when they are deployed. Applications running outside the
+Sensor Network do not need to know the details of the devices in it. The applications consume information from the sensors and send instructions to
+actuators based only on labels created by the application designers. The labels are called Topic Names in the MQTT and MQTT-SN protocols. The MQTT-SN
+implementation carries information between a set of applications and the correct set of devices based on its knowledge of the network and the
+applications designer's choice of Topic Names.
+
+Consider an example of a medicine tracking application. The application needs to know the location and temperature of the medicine, but it does not
+want to concern itself with the network details of the devices providing the data. It may be that the number and types of the devices changes over
+time. There may also be other applications using the same sensor data for other purposes. The model is that the devices and applications produce and
+consume data addressed by the Topics rather than the other devices and applications.
+
+This MQTT-SN specification is a variant of the MQTT version 5 specification. It is adapted to exploit low power and low bandwidth wireless networks.
+Low power wireless radio links typically have higher numbers of transmission errors compared to more powerful networks because they are more
+susceptible to interference and fading of the radio signals. They also have lower transmission rates.
+
+For example, wireless networks based on the IEEE 802.15.4 standard used by Zigbee have a maximum bandwidth of 250 kbit/s in the 2.4 GHz band. To
+reduce transmission errors the packets are kept short. The maximum packet length at the physical layer is 128 bytes and half of these may be used for
+Media Access Control and security.
+
+The MQTT-SN protocol is optimized for implementation on low-cost, battery-operated devices with limited processing and storage resources. The
+capabilities are kept simple and the specification allows partial implementations.
+
+### 1.6.1 MQTT-SN and MQTT Differences
+
+To facilitate interoperation the MQTT-SN specification is similar in many ways to MQTT, but the two are independent of each other.
+
+MQTT-SN can work isolated from other networks or in conjunction with MQTT. The main differences between MQTT-SN and MQTT are:
+
+1.  In addition to Topic Alias and long Topic Names MQTT-SN allows predefined and short two-byte Topic Names.
+
+2.  If the network supports Multicast, Gateway discovery can be implemented, otherwise the Gateway addresses must be configured in the nodes.
+
+3.  Support for sleeping clients allows battery operated devices to enter a low power mode. In this state, messages for the client are buffered by the
+    Gateway and delivered when the client wakes.
+
+4.  A new Quality of Service level (WITHOUT SESSION) is introduced in MQTT-SN, allowing devices to publish without a GW session having been
+    established.
+
+5.  MQTT-SN has fewer requirements on the underlying transport and it can use connectionless network transports such as User Datagram Protocol (UDP).
+
+6.  MQTT-SN introduces the PROTECTION packet for message-based security based on symmetric-key cryptography.
+
+## 1.7 Data representation
+
+### 1.7.1 Bits (Byte)
 
 Bits in a byte are labeled 7 to 0. Bit number 7 is the most significant bit, the least significant bit is assigned bit number 0.
 
-### 1.4.2 Two Byte Integer
+### 1.7.2 Two Byte Integer
 
 Two Byte Integer data values are 16-bit unsigned integers in big-endian order: the high order byte precedes the lower order byte. This means that a
 16-bit word is presented on the network as Most Significant Byte (MSB), followed by Least Significant Byte (LSB).
 
-### 1.4.3 Four Byte Integer
+### 1.7.3 Four Byte Integer
 
 Four Byte Integer data values are 32-bit unsigned integers in big-endian order: the high order byte precedes the successively lower order bytes. This
 means that a 32-bit word is presented on the network as Most Significant Byte (MSB), followed by the next most Significant Byte (MSB), followed by the
 next most Significant Byte (MSB), followed by Least Significant Byte (LSB).
 
-### 1.4.4 UTF-8 Encoded String
+### 1.7.4 UTF-8 Encoded String
 
 Text fields within the MQTT-SN Control Packets are encoded as fixed length UTF-8 strings.
 UTF-8 [\[RFC3629\]](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#RFC3629) is an efficient encoding of
@@ -918,18 +958,17 @@ is a Malformed Packet.
 [A UTF-8 Encoded String MUST NOT include an encoding of the null character U+0000. ]{.mark}If a receiver (Server or Client) receives an MQTT-SN
 Control Packet containing U+0000 it is a Malformed Packet.
 
-The data SHOULD NOT include encodings of the Unicode \[Unicode\] code points listed below. If a receiver (Server or Client) receives an MQTT-SN
-Control Packet containing any of them it MAY treat it as a Malformed Packet. These are the Disallowed Unicode code points.
+The data SHOULD NOT include encodings of the Unicode Unicode\] code points listed below. If a receiver (Server or Client) receives an MQTT-SN Control
+Packet containing any of them it MAY treat it as a Malformed Packet. These are the Disallowed Unicode code points.
 
  
 
->          U+0001..U+001F control characters
->
->          U+007F..U+009F control characters
->
->          Code points defined in the Unicode
-> specification [\[Unicode\]](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#Unicode) to be non-characters (for example
-> U+0FFFF)
+-   U+0001..U+001F control characters
+
+-   U+007F..U+009F control characters
+
+-   Code points defined in the Unicode specification [\[Unicode\]](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#Unicode) to
+    be non-characters (for example U+0FFFF)
 
  
 
@@ -1040,9 +1079,9 @@ The MQTT-SN Control Packet Type field is 1-byte long and specifies the MQTT-SN C
 +============================+==================+============================+=====================================================================+
 | Reserved                   | 0x00             | Forbidden                  | Reserved                                                            |
 +----------------------------+------------------+----------------------------+---------------------------------------------------------------------+
-| **ADVERTISE**              | 0x01             | Gateway broadcast          | Advertise the gateway presence                                      |
+| **ADVERTISE**              | 0x01             | Gateway Multicast          | Advertise the gateway presence                                      |
 +----------------------------+------------------+----------------------------+---------------------------------------------------------------------+
-| **SEARCHGW**               | 0x02             | Client broadcast           | Client GWINFO request                                               |
+| **SEARCHGW**               | 0x02             | Client Multicast           | Client GWINFO request                                               |
 +----------------------------+------------------+----------------------------+---------------------------------------------------------------------+
 | **GWINFO**                 | 0x03             | Gateway to Client          | Response to a SEARCHGW                                              |
 +----------------------------+------------------+----------------------------+---------------------------------------------------------------------+
@@ -1102,8 +1141,8 @@ The MQTT-SN Control Packet Type field is 1-byte long and specifies the MQTT-SN C
 +----------------------------+------------------+----------------------------+---------------------------------------------------------------------+
 | **- Reserved -**           | 0x1E-0xFD        |                            | Forbidden                                                           |
 +----------------------------+------------------+----------------------------+---------------------------------------------------------------------+
-| **FORWARDER**              | 0xFE             | Forwarder to Client or     | Encapsulated MQTT-SN packet                                         |
-| **ENCAPSULATION**          |                  |                            |                                                                     |
+| **FORWARDER                | 0xFE             | Forwarder to Client or     | Encapsulated MQTT-SN packet                                         |
+| ENCAPSULATION**            |                  |                            |                                                                     |
 |                            |                  | Forwarder to Gateway       |                                                                     |
 +----------------------------+------------------+----------------------------+---------------------------------------------------------------------+
 | **PROTECTION               | 0xFF             | Client to Gateway or       | A protection envelope that can encapsulate any MQTT-SN packet with  |
@@ -1191,7 +1230,7 @@ that require a Packet Identifier are shown below:
 
   PUBLISH                                                           YES (If QoS \> 0)
 
-  PUBLISHOOS                                                        NO
+  PUBWOS                                                            NO
 
   PUBACK                                                            YES
 
@@ -1236,10 +1275,8 @@ that require a Packet Identifier are shown below:
 
 [A PUBLISH packet MUST NOT contain a Packet Identifier if its QoS value is set to 0]{.mark}.
 
-[A PUBLISH packet MUST NOT contain a Packet Identifier if its QoS value is set to]{.mark} -1.
-
-[Each time a Client sends a new SUBSCRIBE, UNSUBSCRIBE,or PUBLISH (where QoS \> 0 and it is not WITHOUT SESSION) MQTT Control Packet it MUST assign it
-a non-zero Packet Identifier that is currently unused]{.mark}.
+[Each time a Client sends a new]{.mark} [SUBSCRIBE, UNSUBSCRIBE, or PUBLISH (where QoS \> 0) MQTT-SN Control Packet it MUST assign it a non-zero
+Packet Identifier that is currently unused]{.mark}.
 
 [Each time a Gateway sends a new PUBLISH (with QoS \> 0) MQTT-SN Control Packet it MUST assign it a non zero Packet Identifier that is currently
 unused]{.mark}.
@@ -1262,7 +1299,7 @@ exchanges using the same Packet Identifiers.
 > It is possible for a Client to send a PUBLISH packet with Packet Identifier 0x1234 and then receive a different PUBLISH packet with Packet
 > Identifier 0x1234 from its Server before it receives a PUBACK for the PUBLISH packet that it sent.
 >
-> ![](media/image2.png){width="3.5502898075240594in" height="2.7864588801399823in"}
+> ![](media/image12.png){width="3.5502898075240594in" height="2.7864588801399823in"}
 
 ## 2.3 MQTT-SN Packet Fields
 
@@ -1293,8 +1330,8 @@ Each value and meaning of each *Reason Code* field is shown below.
 |          |           |                                        | PUBACK, PUBREC, PUBREL, PUBCOMP,   |                                              |
 |          |           |                                        | AUTH (server only)                 |                                              |
 +----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
-| 0        | 0x00      | Normal disconnection                   | DISCONNECT                         | Close the connection normally. Do not send   |
-|          |           |                                        |                                    | the Will Message.                            |
+| 0        | 0x00      | Normal disconnection                   | DISCONNECT                         | Delete the Virtual Connection normally. Do   |
+|          |           |                                        |                                    | not send the Will Message.                   |
 +----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
 | 0        | 0x00      | Granted QoS 0                          | SUBACK                             | The subscription is accepted and the maximum |
 |          |           |                                        |                                    | QoS sent will be QoS 0. This might be a      |
@@ -1410,7 +1447,7 @@ Each value and meaning of each *Reason Code* field is shown below.
 | 151      | 0x97      | Quota exceeded                         | REGACK, SUBACK, DISCONNECT         | An implementation or administrative imposed  |
 |          |           |                                        |                                    | limit has been exceeded.                     |
 +----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
-| 152      | 0x98      | Administrative action                  | DISCONNECT                         | The Connection is closed due to an           |
+| 152      | 0x98      | Administrative action                  | DISCONNECT                         | The Virtual Connection is deleted due to an  |
 |          |           |                                        |                                    | administrative action.                       |
 +----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
 | 153      | 0x99      | Payload format invalid                 | PUBACK, PUBREC, DISCONNECT (server | The MQTT payload format does not match the   |
@@ -1441,8 +1478,8 @@ Each value and meaning of each *Reason Code* field is shown below.
 |          |           |                                        |                                    |                                              |
 |          |           |                                        |                                    | (Transparent gateway only)                   |
 +----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
-| 159      | 0x9F      | Connection rate exceeded               | CONNACK, DISCONNECT (server only)  | This connection is closed because the        |
-|          |           |                                        |                                    | connection rate is too high.                 |
+| 159      | 0x9F      | Connection rate exceeded               | CONNACK, DISCONNECT (server only)  | This Virtual Connection is deleted because   |
+|          |           |                                        |                                    | the connection rate is too high.             |
 +----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
 | 160      | 0xAD      | Maximum connect time                   | DISCONNECT (server only)           | The maximum connection time authorized for   |
 |          |           |                                        |                                    | this connection has been exceeded.           |
@@ -1459,7 +1496,7 @@ Each value and meaning of each *Reason Code* field is shown below.
 |          |           |                                        |                                    |                                              |
 |          |           |                                        |                                    | (Transparent gateway only)                   |
 +----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
-| 2302     | 0xE6      | Only PROTECTION packet supported (Note | Any packet except PROTECTION and   | Specific to MQTT-SN                          |
+| 230      | 0xE6      | Only PROTECTION packet supported (Note | Any packet except PROTECTION and   | Specific to MQTT-SN                          |
 |          |           | 1)                                     | Forwarder Encapsulation            |                                              |
 +----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
 | 231      | 0xE7      | Protection scheme invalid              | DISCONNECT                         | Specific to MQTT-SN                          |
@@ -1528,7 +1565,7 @@ The allowable values are as follows:
 
 [Table 10: Topic types and their description]{.underline}
 
-Please refer to operational behavior for detailed descriptions of topic names and aliases.
+Refer to [[section 4]{.underline}](#operational-behavior) for detailed descriptions of topic names and aliases.
 
 # 3 MQTT-SN Control Packets
 
@@ -1559,12 +1596,12 @@ The ADVERTISE packet is sent periodically by the gateway to advertise its presen
 
 > **Informative comment**
 >
-> If the Transport Layer supports broadcast, like UDP/IP, the ADVERTISE packet is generally sent using the broadcast address as destination.
+> If the Transport Layer supports multicast, like UDP/IP, the ADVERTISE packet is generally sent using the Multicast Address as destination.
 
 #### 3.1.1.1 Length & Packet Type
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
-description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[section
+2.1]{.underline}](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 #### 3.1.1.2 GwId
 
@@ -1603,12 +1640,12 @@ within 1-hop transmission.
 
 > **Informative comment**
 >
-> If the Transport Layer supports broadcast, like UDP/IP, the SEARCHGW packet is generally sent using the broadcast address as destination..
+> If the Transport Layer supports multicast, like UDP/IP, the SEARCHGW packet is generally sent using the Multicast Address as destination..
 
 #### 3.1.2.1 Length & Packet Type
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
-description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[section
+2.1]{.underline}](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 #### 3.1.2.2 Radius
 
@@ -1640,12 +1677,12 @@ the id of the sending Gateway; otherwise, if sent by a client, it also includes 
 
 > **Informative comment**
 >
-> If the Transport Layer supports broadcast, like UDP/IP, the GWINFO packet is generally sent using the broadcast address as destination.
+> If the Transport Layer supports multicast, like UDP/IP, the GWINFO packet is generally sent using the Multicast Address as destination.
 
 #### 3.1.3.1 Length & Packet Type
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
-description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[section
+2.1]{.underline}](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 #### 3.1.3.2 GwId
 
@@ -1776,8 +1813,8 @@ The CONNECT packet is sent from the Client to the Gateway to create or continue 
 
 #### 3.1.4.1 Length & Packet Type
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
-description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[section
+2.1]{.underline}](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 #### 3.1.4.2 Connect Flags
 
@@ -1829,8 +1866,8 @@ packet, the Server MAY send a CONNACK packet with Reason Code 0x84 (Unsupported 
 
 The Keep Alive is a Two Byte Integer greater than 0 (1 - 65,535), which is a time interval measured in seconds. It is the maximum time interval that
 is permitted to elapse between the point at which the Client finishes transmitting one MQTT-SN Control Packet and the point it starts sending the
-next. It is the responsibility of the Client to ensure that the interval between MQTT Control Packets being sent does not exceed the Keep Alive
-value. In the absence of sending any other MQTT-SN Control Packets, the Client MUST send a PINGREQ packet.
+next. It is the responsibility of the Client to ensure that the interval between MQTT-SN Control Packets being sent does not exceed the Keep Alive
+value. [In the absence of sending any other MQTT-SN Control Packets, the Client MUST send a PINGREQ packet.]{.mark}
 
 > **Informative comment**
 >
@@ -1864,16 +1901,16 @@ If the Session Expiry Interval is 0xFFFFFFFF (UINT_MAX), the Session does not ex
 
 [The Client and Gateway MUST store the Session State after a DISCONNECT is issued if the Session Expiry Interval is greater than 0.]{.mark}
 
-**Informative comment**
-
-The clock in the Client or Gateway may not be running for part of the time interval, for instance because the Client or Gateway are not running. This
-might cause the deletion of the state to be delayed.
-
-**Informative comment**
-
-The client and gateway between them should negotiate a reasonable and practical session expiry interval according to the network and infrastructure
-environment in which they are deployed. For example, it would not be practical to set a session -- expiry -- interval of many months on a gateway
-whose hardware is only capable of storing a few client sessions.
+> **Informative comment**
+>
+> The clock in the Client or Gateway may not be running for part of the time interval, for instance because the Client or Gateway are not running.
+> This might cause the deletion of the state to be delayed.
+>
+> **Informative comment**
+>
+> The client and gateway between them should negotiate a reasonable and practical session expiry interval according to the network and infrastructure
+> environment in which they are deployed. For example, it would not be practical to set a session -- expiry -- interval of many months on a gateway
+> whose hardware is only capable of storing a few client sessions.
 
 #### 3.1.4.7 Max Packet Size
 
@@ -1898,7 +1935,7 @@ Message.]{.mark}
 > Where a packet is discarded without being sent, the Gateway could place the discarded packet on a 'dead letter queue' or perform other diagnostic
 > action. Such actions are outside the scope of this specification.
 
-#### 3.1.4.8 Client Identifier
+#### 3.1.4.8 Client Identifier (ClientID)
 
 The Client Identifier (ClientID) identifies the Client to the Gateway. Each Client connecting to the Gateway has a unique ClientID. [The ClientID MUST
 be used by Clients and by Gateway to identify the state that they hold relating to this MQTT-SN Session between the Client and the Gateway]{.mark}.
@@ -1917,8 +1954,8 @@ contain only the characters \"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMN
 
 #### 3.1.4.9 Connect Will Flags (optional, only with *Will* flag set) 
 
-The Connect optional *Will Flags* is 1 byte field which contains several parameters specifying the handling of the Will Message feature. It is present
-only if the Will flag in the Connect *Flags* contains the value 1.
+The Connect optional *Will Flags* is 1 byte field which contains several parameters specifying the handling of the Will Message. It is present only if
+the Will flag in the Connect *Flags* contains the value 1.
 
 The Connect optional *Will Flags* field includes the following flags:
 
@@ -1929,6 +1966,25 @@ The Connect optional *Will Flags* field includes the following flags:
     (0x02). A value of 3 (0x03) is a Malformed Packet.
 
 -   **Will Retain**: Stored in Bit 4, this bit specifies if the Will Message is to be retained when it is published.
+
+[If the Will Flag is set to 1 this indicates that a Will Message MUST be stored on the Server and associated with the Session]{.mark}
+\[MQTT-SN-3.1.4.9-1\]. The Will Message consists of the Will Topic, and Will Payload fields in the CONNECT Packet. [The Will Message MUST be published
+after the Session ends, unless the Will Message has been deleted by the Server on receipt of a DISCONNECT packet with Reason Code 0x00 (Normal
+disconnection)]{.mark} \[MQTT-SN\--3.1.4.9-2\].
+
+Situations in which the Will Message is published include, but are not limited to:
+
+-   An I/O error or network failure detected by the Server.
+
+-   The Client fails to communicate within the Keep Alive time.
+
+[If the Will Flag is set to 1, the Will Topic, and Will Payload fields MUST be present in the Packet]{.mark} \[MQTT-SN-3.1.4.9-3\]. [The Will Message
+MUST be removed from the stored Session State in the Server once it has been published or the Server has received a DISCONNECT packet with a Reason
+Code of 0x00 (Normal disconnection) from the Client]{.mark} \[MQTT-SN-3.1.4.9-4\].
+
+The Server SHOULD publish Will Messages promptly after the Session ends. In the case of a Server shutdown or failure, the Server MAY defer publication
+of Will Messages until a subsequent restart. If this happens, there might be a delay between the time the Server experienced failure and when the Will
+Message is published.
 
 #### 3.1.4.10 Will Topic Short or Will Topic Length (optional, only with *Will* flag set)
 
@@ -1941,7 +1997,7 @@ Contains the length of the Will Payload field.
 
 #### 3.1.4.12 Will Payload (optional, only with *Will* flag set)
 
-It contains the content of the Will Message which is published after the Virtual Connection is closed.
+It contains the content of the Will Message which is published after the Virtual Connection is deleted.
 
 In the case of Topic Type b11 the payload section will be prefixed with a "Will Full Topic Name" encoded with a UTF-8 encoded string value of length
 determined by the previously defined length field. Thereafter, the *Will Payload* field corresponds to the MQTT Will Payload and so it defines the
@@ -2078,8 +2134,8 @@ The CONNACK packet is sent by the Gateway in response to a Virtual Connection re
 
 #### 3.1.5.1 Length & Packet Type
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
-description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[section
+2.1]{.underline}](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 #### 3.1.5.2 Connack Flags
 
@@ -2091,16 +2147,16 @@ The Connack *Flags* field includes the following flags:
 -   **Session Present:** Stored in Bit 0 and specifies whether an existing session was present on the gateway for the given client identifier. A value
     of 1 indicates a session was present, a value 0 indicates no session was present.\
     \
-    [If the Gateway accepts a connection with Clean Start set to 1, the Gateway MUST set Session Present to 0 in the CONNACK Packet in addition to
+    [If the Gateway accepts a CONNECT with Clean Start set to 1, the Gateway MUST set Session Present to 0 in the CONNACK Packet in addition to
     setting a 0x00 (Success) Reason Code in the CONNACK packet.]{.mark}
 
-> [If the Gateway accepts a connection with Clean Start set to 0 and the Gateway has Session State for the client identifier it MUST set Session
-> Present to 1 in the CONNACK packet, otherwise it MUST set Session Present to 0 in the CONNACK packet. In both cases it MUST set a 0x00 (Success)
-> Reason Code in the CONNACK packet.]{.mark}\
+> [If the Gateway accepts a CONNECT with Clean Start set to 0 and the Gateway has Session State for the client identifier it MUST set Session Present
+> to 1 in the CONNACK packet, otherwise it MUST set Session Present to 0 in the CONNACK packet. In both cases it MUST set a 0x00 (Success) Reason Code
+> in the CONNACK packet.]{.mark}\
 > \
 > If the value of Session Present received by the Client from the Gateway is not as expected, the Client proceeds as follows:
 
-[If the Client does not have Session State and receives Session Present set to 1 it MUST close the Virtual Connection.]{.mark} [If it wishes to
+[If the Client does not have Session State and receives Session Present set to 1 it MUST delete the Virtual Connection.]{.mark} [If it wishes to
 restart with a new Session the Client can reconnect using Clean Start set to 1.]{.mark}
 
 [If the Client does have Session State and receives Session Present set to 0 it MUST discard its Session State if it continues with the Virtual
@@ -2122,7 +2178,7 @@ The same value as the Packet Identifier in the CONNECT Packet being acknowledged
 Byte 5 in the CONNACK header contains the Connect Reason Code. The values for the Connect Reason Code field are shown in Table 9: Reason Code Values.
 [The Server sending the CONNACK packet MUST use one of the Connect Reason Code values.]{.mark}
 
-[If a Server sends a CONNACK packet containing a Reason code of]{.mark} [128 or greater it MUST then close the Virtual Connection.]{.mark}
+[If a Server sends a CONNACK packet containing a Reason code of]{.mark} [128 or greater it MUST then delete the Virtual Connection.]{.mark}
 
 #### 3.1.5.5 Session Expiry Interval
 
@@ -2195,8 +2251,8 @@ required information and so on until the authentication is complete. The server 
 
 #### 3.1.6.1 Length & Packet Type
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
-description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[section
+2.1]{.underline}](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 #### 3.1.6.2 Reason Code
 
@@ -2252,8 +2308,8 @@ client about the topic alias value it has assigned to the included topic name.
 
 #### 3.1.7.1 Length & Packet Type
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
-description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[section
+2.1]{.underline}](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 #### 3.1.7.2 Topic Alias
 
@@ -2302,8 +2358,8 @@ The REGACK packet is sent by a client or by a GW as an acknowledgment to the rec
 
 #### 3.1.8.1 Length & Packet Type
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
-description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[section
+2.1]{.underline}](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 #### 3.1.8.2 REGACK Flags
 
@@ -2376,24 +2432,22 @@ PUBLISH packet and their respective type identifiers.
 
 This packet is used by both clients and gateways to publish data for a certain topic.
 
-[Upon being processed, PUBLISH WITHOUT SESSION packets received by a Gateway MUST have their Quality of Service level set to 0 for onward transmission
-into the MQTT network. PUBLISH WITHOUT SESSION packets are a concept considered **only** valid on the Gateway side of the network.
-\[MQTTSN-????\]]{.mark}
+PUBLISH WITHOUT SESSION does not have a corresponding feature in MQTT. [If forwarded to an MQTT connection, PUBLISH WITHOUT SESSION packets MUST have
+their MQTT Quality of Service level set to 0.]{.mark} \[MQTT-SN-3.1.10-1\]
 
 > **Informative comment**
 >
-> If the Transport Layer supports broadcast, like UDP/IP, the PUBLISH WITHOUT SESSION packet is generally sent using the broadcast address as
-> destination.
+> If the Transport Layer supports multicast, like UDP/IP, the PUBLISH WITHOUT SESSION packet is generally sent to a Multicast Address.
 >
 > **Informative comment**
 >
-> PUBLISH WITHOUT SESSION packets received by a Gateway should not be associated with a MQTT-SN Client Session and can be optionally discarded by the
+> PUBLISH WITHOUT SESSION packets received by a Gateway are not associated with a MQTT-SN Client Session and can be optionally discarded by the
 > Gateway without being processed for onward delivery.
 
 #### 3.1.10.1 Length & Packet Type
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
-description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[section
+2.1]{.underline}](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 #### 3.1.10.2 PUBLISH Flags
 
@@ -2419,7 +2473,7 @@ In the case of Topic Alias Type b11 the data section will be prefixed with a "Fu
 determined by the previously defined length field. Thereafter, the *Data* field corresponds to the payload of an MQTT PUBLISH packet. It has a
 variable length and contains the application data that is being published.
 
-### 3.1.11 PUBLISH (used for QoS 0)
+### 3.1.11 PUBLISH - QoS 0
 
   --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   **Bit**          **7**           **6**                **5**                   **4**          **3**                                **2**                           **1**          **0**   
@@ -2456,8 +2510,8 @@ This packet is used by both clients and gateways to publish data for a certain t
 
 #### 3.1.11.1 Length & Packet Type
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
-description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[section
+2.1]{.underline}](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 #### 3.1.11.2 PUBLISH Flags
 
@@ -2469,8 +2523,8 @@ The PUBLISH Flags includes the following flags:
     the definition of the various topic types.
 
 -   **QoS**: This is a 2-bit field stored in Bit 5 and 6. QoS has the same meaning as with MQTT indicating the Quality of Service. Set to "0b00" for
-    QoS 0, "0b01" for QoS 1, "0b10" for QoS 2, and "0b11" for QoS -1. For a detailed description of the various Quality Of Service levels please refer
-    to the operational behavior section.
+    QoS 0, "0b01" for QoS 1, "0b10" for QoS 2, and "0b11" for QoS -1. For a detailed description of the various Quality Of Service levels refer to the
+    operational behavior section.
 
 -   **Retain**: 1 bit field stored in Bit 4 and has the same meaning as with MQTT. The field signifies whether the existing retained message for this
     topic is replaced or kept.
@@ -2486,7 +2540,7 @@ In the case of Topic Type b11 the data section will be prefixed with a "Full Top
 determined by the previously defined length field. Thereafter, the *Data* field corresponds to the payload of an MQTT PUBLISH packet. It has a
 variable length and contains the application data that is being published.
 
-### 3.1.12 PUBLISH (used for QoS 1 & 2)
+### 3.1.12 PUBLISH - QoS 1 and 2
 
   -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   **Bit**           **7**            **6**                 **5**                   **4**          **3**                                **2**                           **1**          **0**   
@@ -2529,8 +2583,8 @@ This packet is used by both clients and gateways to publish data for a certain t
 
 #### 3.1.12.1 Length & Packet Type
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
-description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[section
+2.1]{.underline}](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 #### 3.1.12.2 PUBLISH Flags
 
@@ -2542,8 +2596,8 @@ The PUBLISH Flags includes the following flags:
     the definition of the various topic types.
 
 -   **QoS**: This is a 2-bit field stored in Bit 5 and 6. QoS has the same meaning as with MQTT indicating the Quality of Service. Set to "0b00" for
-    QoS 0, "0b01" for QoS 1, "0b10" for QoS 2, and "0b11" for QoS -1. For a detailed description of the various Quality Of Service levels please refer
-    to the operational behavior section.
+    QoS 0, "0b01" for QoS 1, "0b10" for QoS 2, and "0b11" for QoS -1. For a detailed description of the various Quality Of Service levels refer to
+    [[section 4.3]{.underline}](#quality-of-service-levels-and-protocol-flows).
 
 -   **DUP**: 1 bit field stored in Bit 7 and has the same meaning as with MQTT. It notes the duplicate delivery of packets. If the DUP flag is set to
     "0", it signifies that the packet is sent for the first time. If the DUP flag is set to "1", it signifies that the packet was retransmitted or
@@ -2594,8 +2648,8 @@ QoS -1, or PUBLISH WITHOUT SESSION*) in case of an error; the error reason is th
 
 #### 3.1.13.1 Length & Packet Type
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
-description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[section
+2.1]{.underline}](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 #### 3.1.13.2 Packet Identifier
 
@@ -2632,8 +2686,8 @@ A PUBREC packet is the response to a PUBLISH packet with QoS 2. It is the second
 
 #### 3.1.14.1 Length & Packet Type
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 2.1 for a detailed
-description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[section
+2.1]{.underline}](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 #### 3.1.14.2 Packet Identifier
 
@@ -2670,8 +2724,8 @@ A PUBREL packet is the response to a PUBREC packet. It is the third packet of th
 
 #### 3.1.15.1 Length & Packet Type
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 2.1 for a detailed
-description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[section
+2.1]{.underline}](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 #### 3.1.15.2 Packet Identifier
 
@@ -2708,8 +2762,8 @@ The PUBCOMP packet is the response to a PUBREL packet. It is the fourth and fina
 
 #### 3.1.16.1 Length & Packet Type
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
-description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[section
+2.1]{.underline}](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 #### 3.1.16.2 Packet Identifier
 
@@ -2800,8 +2854,8 @@ The SUBSCRIBE packet is used by a client to subscribe to a certain topic name.
 
 #### 3.1.17.1 Length & Packet Type
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
-description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[section
+2.1]{.underline}](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 #### 3.1.17.2 SUBSCRIBE Flags
 
@@ -2811,7 +2865,7 @@ The SUBSCRIBE Flags field is 1-byte and contains the following flags:
     the Maximum QoS field has the value 3.
 
 -   **No Local**: if the value is 1, Application Messages MUST NOT be forwarded to a Virtual Connection with a ClientID equal to the ClientID of the
-    publishing Virtual Connection
+    publishing Virtual Connection.
 
 -   **Retain as published**: If 1, Application Messages forwarded using this subscription keep the RETAIN flag they were published with. If 0,
     Application Messages forwarded using this subscription have the RETAIN flag set to 0. Retained messages sent when the subscription is established
@@ -2876,8 +2930,8 @@ The SUBACK packet is sent by a gateway to a client as an acknowledgment to the r
 
 #### 3.1.18.1 Length & Packet Type
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
-description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[section
+2.1]{.underline}](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 #### 3.1.18.2 Flags
 
@@ -2952,8 +3006,8 @@ An UNSUBSCRIBE packet is sent by the client to the GW to unsubscribe from named 
 
 #### 3.1.19.1 Length & Packet Type
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
-description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[section
+2.1]{.underline}](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 #### 3.1.19.2 UNSUBSCRIBE Flags
 
@@ -2999,8 +3053,8 @@ An UNSUBACK packet is sent by a GW to acknowledge the receipt and processing of 
 
 #### 3.1.20.1 Length & Packet Type
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
-description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[section
+2.1]{.underline}](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 #### 3.1.20.2 Packet Identifier
 
@@ -3039,8 +3093,8 @@ As with MQTT, the PINGREQ packet is an "are you alive" packet that is sent from 
 
 #### 3.1.21.1 Length & Packet Type
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
-description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[section
+2.1]{.underline}](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 #### 3.1.21.2 Packet Identifier
 
@@ -3048,7 +3102,7 @@ Used to identify the corresponding PINGRESP packet. It should ideally be set to 
 
 #### 3.1.21.3 Client Identifier (optional)
 
-Contains the client identifier (client id); this field is optional and is included by a "sleeping" client when it goes to the "awake" state and is
+Contains the client identifier (ClientID); this field is optional and is included by a "sleeping" client when it goes to the "awake" state and is
 waiting for packets sent by the server/gateway.
 
 [The Client Identifier MUST be a Fixed Length UTF-8 Encoded String]{.mark}. []{.mark}
@@ -3084,8 +3138,8 @@ Moreover, a PINGRESP packet is sent by a gateway to inform a sleeping client tha
 
 #### 3.1.22.1 Length & Packet Type
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
-description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[section
+2.1]{.underline}](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 #### 3.1.22.2 Packet Identifier
 
@@ -3150,18 +3204,20 @@ The number of messages left when a client is sent back to sleep. Optional -- for
 
 [Table 45: DISCONNECT packet]{.underline}
 
-As with MQTT, the DISCONNECT packet is sent by a client to indicate that it wants to close the Virtual connection. The gateway will acknowledge the
+As with MQTT, the DISCONNECT packet is sent by a client to indicate that it wants to delete the Virtual connection. The gateway will acknowledge the
 receipt of that packet by returning a DISCONNECT to the client. A server or gateway may also send a DISCONNECT to a client, e.g. in case a gateway,
-due to an error, cannot map a received packet to a client. Upon receiving such a DISCONNECT packet, a client should try to set up the Virtual
-Connection again by sending a CONNECT packet to the gateway or server.
+due to an error, cannot map a received packet to a client. Upon receiving such a DISCONNECT packet, a client should try to create another Virtual
+Connection by sending a CONNECT packet to the gateway or server.
+
+[A Server MUST NOT send a DISCONNECT until after it has sent a CONNACK with Reason Code of less than 0x80 \[MQTT-SN-3.1.23-1\].]{.mark}
 
 A DISCONNECT packet with a *Session Expiry Interval* field is sent by a client when it wants to go to the "asleep" state. The receipt of this packet
 is also acknowledged by the gateway by means of a DISCONNECT packet.
 
 #### 3.1.23.1 Length & Packet Type
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
-description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[section
+2.1]{.underline}](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 #### 3.1.23.2 Disconnect Flags
 
@@ -3188,7 +3244,7 @@ The Reason Code for the DISCONNECT packet is optional. If provided, Byte 3 in th
 disconnection. If not provided, 0x00 (Normal disconnection) is assumed.
 
 The DISCONNECT Reason Codes are shown in Table 9: Reason Code Values. [The Client or Server sending the DISCONNECT packet MUST use one of the
-DISCONNECT Reason Code values.]{.mark}
+DISCONNECT Reason Code values]{.mark} \[MQTT-SN-3.1.23.3-1\].
 
 #### 3.1.23.4 Session Expiry Interval
 
@@ -3196,6 +3252,8 @@ The Session Expiry Interval is a four-byte integer time interval measured in sec
 Session is transitioned to the "***disconnected***" state. When the value of this field is greater than zero, it is deemed to be sent by a client that
 wants to transition to the "***asleep***" state, see Section 3.19 for further details. At this point the keep alive timer becomes obsolete until the
 device issues a new CONNECT.
+
+[The Session Expiry Interval MUST NOT be sent on a DISCONNECT by the Server]{.mark} \[MQTT--SN-3.1.23.4-1\].
 
 #### 3.1.23.5 Reason String
 
@@ -3332,8 +3390,8 @@ in a private network, it is recommended for the Client to open a DTLS session an
 
 #### 3.1.25.1 Length
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
-description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[section
+2.1]{.underline}](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 #### 3.1.25.2 Packet Type
 
@@ -3549,7 +3607,7 @@ on the basis of the "Protection scheme" selected in Byte 4, on ALL the preceding
 # 4 Operational behavior
 
 An important design point of MQTT-SN is to be as close as possible to MQTT. Therefore, all protocol semantics should remain, as far as possible, the
-same as those defined by MQTT. In the following we will focus on those points that either are new to or deviate from MQTT.
+same as those defined by MQTT.
 
 ## 4.1 Session state
 
@@ -3568,7 +3626,7 @@ The Session State in the Server consists of:
 
 -   The existence of a Session, even if the rest of the Session State is empty.
 
--   The Clients subscriptions, including any Subscription Identifiers.
+-   The Client's subscriptions, including any Subscription Identifiers.
 
 -   QoS 1 and QoS 2 messages which have been sent to the Client, but have not been completely acknowledged.
 
@@ -3582,12 +3640,12 @@ The Session State in the Server consists of:
 
 ### 4.1.1 Storing Session State
 
-[The Server MUST NOT discard the Session State while the Virtual Connection exists]{.mark} \[MQTT-SN-???\].
+[The Server MUST NOT discard the Session State while the Virtual Connection exists]{.mark} \[MQTT-SN-4.1.1-1\].
 
-[The Client MUST NOT discard the Session State while the Virtual Connection exists]{.mark} \[MQTT-SN-???\].
+[The Client MUST NOT discard the Session State while the Virtual Connection exists]{.mark} \[MQTT-SN-4.1.1-2\].
 
 [The Server MUST discard the Session State when the Virtual Connection is deleted]{.mark} [and]{.mark} [the Session Expiry Interval has passed]{.mark}
-\[MQTT-SN-???\].
+\[MQTT-SN-4.1.1-3\].
 
 **Informative comment**
 
@@ -3604,11 +3662,11 @@ procedure for setting up a session with a server is illustrated in Fig. 3a and 3
 
 The CONNECT packet contains flags to communicate to the gateway that Auth interactions, or WILL interactions should take place.
 
-![](media/image12.png){width="3.344815179352581in" height="2.4173436132983377in"}
+![](media/image1.png){width="3.344815179352581in" height="2.4173436132983377in"}
 
 Figure 3a: Connect procedure (without Auth flag not Will flag set or no further authentication data required)
 
-![](media/image11.png){width="3.345165135608049in" height="2.963542213473316in"}
+![](media/image2.png){width="3.345165135608049in" height="2.963542213473316in"}
 
 Figure 3b: Connect procedure (with Auth flag set and additional authentication data required)
 
@@ -3622,7 +3680,7 @@ In the case where the client provides no client identifier, the Server MUST resp
 ## 4.2 Networks and Virtual Connections
 
 The MQTT-SN protocol requires an Underlying Network to create a Virtual Connection. This carries Packets from a Client to a Gateway and a Gateway to a
-Client. The Underlying Network may also broadcast Packets from a Client to more than one Gateway, and from a Gateway to more than one Client.
+Client. The Underlying Network may also multicast Packets from a Client to more than one Gateway, and from a Gateway to more than one Client.
 
 MQTT-SN Packets which are received must be unaltered and complete.
 
@@ -3654,7 +3712,7 @@ Examples of possible consequences of not removing duplicate Packets are:\
 -- SUBSCRIBE and UNSUBSCRIBE Packets applied to the wrong Virtual Connection\
 -- PUBLISH QOS=2 published more than once
 
-The following transport protocols are also suitable but if not capable of broadcast the implementation of the optional ADVERTISE, SEARCHGW, GWINFO
+The following transport protocols are also suitable but if not capable of multicast the implementation of the optional ADVERTISE, SEARCHGW, GWINFO
 packets may not be possible:
 
 -   DTLS v1.2 \[RFC6347\]
@@ -3720,7 +3778,7 @@ The receiver:
 
 **Informative:**
 
-PUBWOS packets may be broadcast or unicast.
+PUBWOS packets may be Multicast or Unicast.
 
 ### 4.3.2 QoS 0: At most once delivery
 
@@ -3764,8 +3822,7 @@ Variable Header and is acknowledged by a PUBACK packet.
 The Packet Identifier becomes available for reuse once the sender has received the PUBACK packet.
 
 **[In a difference to MQTT 5, the sender is NOT permitted to send further PUBLISH packets with different Packet Identifiers while it is waiting to
-receive acknowledgements.]{.mark}** **[At any given time a sender]{.mark}** **[must ONLY have 1 outstanding application message in]{.mark}**
-[**flight.**]{.mark}
+receive acknowledgements.]{.mark}** **[At any given time a sender]{.mark}** **[must ONLY have 1 outstanding application message in flight.]{.mark}**
 
 [In the QoS 1 delivery protocol, the receiver]{.mark}
 
@@ -3845,10 +3902,10 @@ is not waiting to receive acknowledgements.]{.mark}** **[At any given time a sen
 packets (where QoS \> 0) and PUBREL packets using their original Packet Identifiers.]{.mark}
 
 [If PUBACK or PUBREC is received containing a Reason Code of 0x80 or greater the corresponding PUBLISH packet is treated as acknowledged, and MUST NOT
-be retransmitted]{.mark} \[MQTT-SN-???\].
+be retransmitted]{.mark} \[MQTT-SN-4.4-1\].
 
 [The DUP flag MUST be set to 1 by the Client or Server when it attempts to re-deliver or retransmit a PUBLISH packet. The DUP flag must be set to 0
-for all QoS 0 packets.]{.mark} \[MQTT-SN-???\]
+for all QoS 0 packets.]{.mark} \[MQTT-SN-4.4-2\]
 
 > Figure 4.3 -- QoS 2 protocol flow diagram, non-normative example
 
@@ -3893,13 +3950,12 @@ for all QoS 0 packets.]{.mark} \[MQTT-SN-???\]
 ## 4.5 Application Message receipt
 
 [When a Server takes ownership of an incoming Application Message it MUST add it to the Session State for those Clients that have matching
-Subscriptions]{.mark} \[MQTT-SN-???\]. Matching rules are defined in [[section
-4.7.]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Topic_Names_and)
+Subscriptions]{.mark} \[MQTT-SN-4.5-1\]. Matching rules are defined in [[section 4.7](#topic-names-and-topic-filters).]{.underline}
 
 Under normal circumstances Clients receive messages in response to Subscriptions they have created. A Client could also receive messages that do not
 match any of its explicit Subscriptions. This can happen if the Server automatically assigned a subscription to the Client. A Client could also
 receive messages while an UNSUBSCRIBE operation is in progress. [The Client MUST acknowledge any Publish packet it receives according to the
-applicable QoS rules regardless of whether it elects to process the Application Message that it contains]{.mark} \[MQTT-SN-???\].
+applicable QoS rules regardless of whether it elects to process the Application Message that it contains]{.mark} \[MQTT-SN-4.5-2\].
 
 ## 4.6 Application Message ordering
 
@@ -3926,7 +3982,7 @@ The topic level separator is used to introduce structure into the Topic Name. If
 
 A subscription's Topic Filter can contain special wildcard characters, which allow a Client to subscribe to multiple topics at once.
 
-[The wildcard characters can be used in Topic Filters, but MUST NOT be used within a Topic Name]{.mark} \[MQTT-SN-???\].
+[The wildcard characters can be used in Topic Filters, but MUST NOT be used within a Topic Name]{.mark} \[MQTT-SN-4.7.1-1\].
 
 #### 4.7.1.1 Topic level separator
 
@@ -3938,7 +3994,7 @@ Topic level separators can appear anywhere in a Topic Filter or Topic Name. Adja
 
 The number sign ('#' U+0023) is a wildcard character that matches any number of levels within a topic. The multi-level wildcard represents the parent
 and any number of child levels. [The multi-level wildcard character MUST be specified either on its own or following a topic level separator. In
-either case it MUST be the last character specified in the Topic Filter]{.mark} \[MQTT-SN-???\].
+either case it MUST be the last character specified in the Topic Filter]{.mark} \[MQTT-SN-4.7.1.2-1\].
 
 > **Informative comment**
 >
@@ -3967,7 +4023,7 @@ either case it MUST be the last character specified in the Topic Filter]{.mark} 
 The plus sign ('+' U+002B) is a wildcard character that matches only one topic level.
 
 [The single-level wildcard can be used at any level in the Topic Filter, including first and last levels. Where it is used, it MUST occupy an entire
-level of the filter]{.mark} \[MQTT-4.7.1-2\]. It can be used at more than one level in the Topic Filter and can be used in conjunction with the
+level of the filter]{.mark} \[MQTT-SN-4.7.1.3-1\]. It can be used at more than one level in the Topic Filter and can be used in conjunction with the
 multi-level wildcard.
 
 > **Informative comment**
@@ -3988,8 +4044,8 @@ multi-level wildcard.
 ### 4.7.2 Topics beginning with \$
 
 [The Server MUST NOT match Topic Filters starting with a wildcard character (# or +) with Topic Names beginning with a \$ character]{.mark}
-\[MQTT-SN-???\]. The Server SHOULD prevent Clients from using such Topic Names to exchange messages with other Clients. Server implementations MAY use
-Topic Names that start with a leading \$ character for other purposes.
+\[MQTT-SN-4.7.2-1\]. The Server SHOULD prevent Clients from using such Topic Names to exchange messages with other Clients. Server implementations MAY
+use Topic Names that start with a leading \$ character for other purposes.
 
 > **Informative comment**
 
@@ -4014,7 +4070,7 @@ Topic Names that start with a leading \$ character for other purposes.
 
 The following rules apply to Topic Names and Topic Filters:
 
--   [All Topic Names and Topic Filters MUST be at least one character long]{.mark} \[MQTT-SN-???\]
+-   [All Topic Names and Topic Filters MUST be at least one character long]{.mark} \[MQTT-SN-4.7.3-1\]
 
 -   Topic Names and Topic Filters are case sensitive
 
@@ -4025,21 +4081,21 @@ The following rules apply to Topic Names and Topic Filters:
 -   A Topic Name or Topic Filter consisting only of the '/' character is valid
 
 -   [Topic Names and Topic Filters MUST NOT include the null character (Unicode U+0000)]{.mark}
-    [[\[Unicode\]]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#Unicode) \[MQTT-SN-???\]
+    [[\[Unicode\]]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#Unicode) \[MQTT-SN-4.7.3-2\]
 
--   [Topic Names and Topic Filters are UTF-8 Encoded Strings; they MUST NOT encode to more than 65,535 bytes]{.mark} \[MQTT-SN-???\]. Refer to
+-   [Topic Names and Topic Filters are UTF-8 Encoded Strings; they MUST NOT encode to more than 65,535 bytes]{.mark} \[MQTT-SN-4.7.3-4\]. Refer to
     [[section 1.5.4]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_UTF-8_Encoded_String).
 
 There is no limit to the number of levels in a Topic Name or Topic Filter, other than that imposed by the overall length of a UTF-8 Encoded String.
 
 [When it performs subscription matching the Server MUST NOT perform any normalization of Topic Names or Topic Filters, or any modification or
-substitution of unrecognized characters]{.mark} \[MQTT-4.7.3-4\]. Each non-wildcarded level in the Topic Filter has to match the corresponding level
-in the Topic Name character for character for the match to succeed.
+substitution of unrecognized characters]{.mark} \[MQTT-SN-4.7.3-4\]. Each non-wildcarded level in the Topic Filter has to match the corresponding
+level in the Topic Name character for character for the match to succeed.
 
 **Informative comment**
 
 > The UTF-8 encoding rules mean that the comparison of Topic Filter and Topic Name could be performed either by comparing the encoded UTF-8 bytes, or
-> by comparing decoded Unicode characters
+> by comparing decoded Unicode characters.
 
 **Informative comment**
 
@@ -4058,7 +4114,7 @@ resource for a given Client.
 
 A Subscription is associated only with the Session that created it. Each Subscription includes a Topic Filter, indicating the topic(s) for which
 messages are to be delivered on that Session, and Subscription Options. The Server is responsible for collecting messages that match the filter and
-transmitting them on the Session\'s Virtual Connection if and when that Virtual Connection is active.
+transmitting them on the Session\'s Virtual Connection if and when that Virtual Connection exists.
 
 A Session cannot have more than one Subscription with the same Topic Filter, so the Topic Filter can be used as a key to identify the subscription
 within that Session.
@@ -4069,8 +4125,8 @@ such cases every message is delivered to every subscribing Client.
 
 ## 4.9 Server redirection
 
-A Server can request that the Client uses another Server by sending CONNACK or DISCONNECT with Reason Codes 0x9C (Use another server), or 0x9D (Server
-moved) as described in [[section 4.13]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#S4_13_Errors).
+A Server can request that the Client uses another Server by sending a CONNACK or DISCONNECT packet with Reason Codes 0x9C (Use another server), or
+0x9D (Server moved) as described in [[section 4.13]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#S4_13_Errors).
 
 The Reason Code 0x9C (Use another server) specifies that the Client SHOULD temporarily switch to using another Server. The other Server is already
 known to the Client.
@@ -4089,9 +4145,7 @@ packets between the Client and the Server after the CONNECT and before the CONNA
 To begin an enhanced authentication, the Client sets the AUTH flag in the CONNECT packet and includes an Authentication Method and optionally Data,
 depending on the Authentication Method, used in the CONNECT packet. This specifies the authentication method to use and its parameters. [If the Server
 does not support the Authentication Method supplied by the Client, it MAY send a CONNACK with a Reason Code of 0x8C (Bad authentication method) or
-0x87 (Not Authorized) as described in]{.mark} [[[section
-4.13]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#S4_13_Errors) and MUST close the Virtual Connection]{.mark}
-\[MQTT-SN-???\].
+0x87 (Not Authorized) as described in [[section 2.3.3]{.underline}](#reason-code) and MUST delete the Virtual Connection]{.mark} \[MQTT-SN-4.10-1\].
 
 The Authentication Method is an agreement between the Client and Server about the meaning of the data sent in the Authentication Data and any of the
 other fields in CONNECT, and the exchanges and processing needed by the Client and Server to complete the authentication.
@@ -4106,27 +4160,27 @@ property in the CONNECT packet. This property can be used to provide data as spe
 Authentication Data are defined by the authentication method.
 
 [If the Server requires additional information to complete the authentication, it can send an AUTH packet to the Client. This packet MUST contain a
-Reason Code of 0x18 (Continue authentication)]{.mark} \[MQTT-SN-???\]. If the authentication method requires the Server to send authentication data to
-the Client, it is sent in the Authentication Data.
+Reason Code of 0x18 (Continue authentication)]{.mark} \[MQTT-SN-4.10-2\]. If the authentication method requires the Server to send authentication data
+to the Client, it is sent in the Authentication Data.
 
 [The Client responds to an AUTH packet from the Server by sending a further AUTH packet. This packet MUST contain a Reason Code of 0x18 (Continue
-authentication)]{.mark} \[MQTT-SN-???\]. If the authentication method requires the Client to send authentication data for the Server, it is sent in
+authentication)]{.mark} \[MQTT-SN-4.10-3\]. If the authentication method requires the Client to send authentication data for the Server, it is sent in
 the Authentication Data.
 
 The Client and Server exchange AUTH packets as needed until the Server accepts the authentication by sending a CONNACK with a Reason Code of 0. If the
 acceptance of the authentication requires data to be sent to the Client, it is sent in the Authentication Data.
 
-The Client can close the Virtual Connection at any point in this process. It MAY send a DISCONNECT packet before doing so. [The Server can reject the
-authentication at any point in this process. It MAY send a CONNACK with a Reason Code of 0x80 or above as described in]{.mark} [[[section
-4.13]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#S4_13_Errors),]{.mark} \[MQTT-4.12.0-4\].
+The Client can terminate the Virtual Connection at any point in this process by sending a DISCONNECT packet. [The Server can reject the authentication
+at any point in this process. It MUST send a CONNACK with a Reason Code of 0x80 or above as described in]{.mark} [[[section
+4.13]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#S4_13_Errors),]{.mark} \[MQTT-SN-4.10-4\].
 
 [If the initial CONNECT packet included an Authentication Method property then all AUTH packets, and any successful CONNACK packet MUST include an
-Authentication Method Property with the same value as in the CONNECT packet]{.mark} \[MQTT-4.12.0-5\].
+Authentication Method Property with the same value as in the CONNECT packet]{.mark} \[MQTT-SN-4.10-5\].
 
 The implementation of enhanced authentication is OPTIONAL for both Clients and Servers. [If the Client does not include an Authentication Method in
-the CONNECT, the Server MUST NOT send an AUTH packet, and it MUST NOT send an Authentication Method in the CONNACK packet]{.mark} \[MQTT-4.12.0-6\].
+the CONNECT, the Server MUST NOT send an AUTH packet, and it MUST NOT send an Authentication Method in the CONNACK packet]{.mark} \[MQTT-SN-4.10-6\].
 [If the Client does not include an Authentication Method in the CONNECT, the Client MUST NOT send an AUTH packet to the Server]{.mark}
-\[MQTT-4.12.0-7\].
+\[MQTT-SN-4.10-7\].
 
 If the Client does not include an Authentication Method in the CONNECT packet, the Server SHOULD authenticate using some or all of the information in
 the CONNECT packet in conjunction with the underlying transport layer..
@@ -4159,7 +4213,7 @@ the CONNECT packet in conjunction with the underlying transport layer..
 
 [If the Client supplied an Authentication Method in the CONNECT packet it can initiate a re-authentication at any time after receiving a CONNACK. It
 does this by sending an AUTH packet with a Reason Code of 0x19 (Re-authentication). The Client MUST set the Authentication Method to the same value as
-the Authentication Method originally used to authenticate the Network Connection]{.mark} \[MQTT-4.12.1-1\]. If the authentication method requires
+the Authentication Method originally used to authenticate the Virtual Connection]{.mark} \[MQTT-SN-4.10.1-1\]. If the authentication method requires
 Client data first, this AUTH packet contains the first piece of authentication data as the Authentication Data.
 
 The Server responds to this re-authentication request by sending an AUTH packet to the Client with a Reason Code of 0x00 (Success) to indicate that
@@ -4167,9 +4221,9 @@ the re-authentication is complete, or a Reason Code of 0x18 (Continue authentica
 can respond with additional authentication data by sending an AUTH packet with a Reason Code of 0x18 (Continue authentication). This flow continues as
 with the original authentication until the re-authentication is complete or the re-authentication fails.
 
-[If the re-authentication fails, the Client or Server SHOULD send DISCONNECT with an appropriate Reason Code as described in]{.mark} [[[section
-4.13]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#S4_13_Errors), and MUST close the Network Connection]{.mark}
-\[MQTT-4.12.1-2\].
+[If the re-authentication fails, the Client or Server MUST send DISCONNECT with an appropriate Reason Code as described in]{.mark} [[[section
+4.13]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#S4_13_Errors), and MUST delete the Virtual Connection]{.mark}
+\[MQTT-SN-4.10.1-2\].
 
 During this re-authentication sequence, the flow of other packets between the Client and Server can continue using the previous authentication.
 
@@ -4183,8 +4237,8 @@ During this re-authentication sequence, the flow of other packets between the Cl
 ### 4.11.1 Malformed Packet and Protocol Errors
 
 Definitions of Malformed Packet and Protocol Errors are contained in [[section
-1.2]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Terminology) Terminology, some but not all, of these error cases
-are noted throughout the specification. The rigor with which a Client or Server checks an MQTT-SN Control Packet it has received will be a compromise
+1.2]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Terminology) Terminology, some but not all of these error cases are
+noted throughout the specification. The rigor with which a Client or Server checks an MQTT-SN Control Packet it has received will be a compromise
 between:
 
 -   The size of the Client or Server implementation.
@@ -4218,9 +4272,9 @@ The Reason Codes used for Malformed Packet and Protocol Errors are:
 -   0xA2 Wildcard Subscriptions not supported
 
 When a Client detects a Malformed Packet or Protocol Error, and a Reason Code is given in the specification, it SHOULD close the Network Connection.
-In the case of an error in an AUTH packet it MAY send a DISCONNECT packet containing the reason code. In the case of an error in any other packet it
-SHOULD send a DISCONNECT packet containing the reason code. Use Reason Code 0x81 (Malformed Packet) or 0x82 (Protocol Error) unless a more specific
-Reason Code has been defined in section 3.14.2.1 [[Disconnect Reason
+In the case of an error in an AUTH packet it MUST send a DISCONNECT packet containing the reason code, before deleting the Virtual Connection. In the
+case of an error in any other packet it SHOULD send a DISCONNECT packet containing the reason code. Use Reason Code 0x81 (Malformed Packet) or 0x82
+(Protocol Error) unless a more specific Reason Code has been defined in section 3.14.2.1 [[Disconnect Reason
 Code]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Disconnect_Reason_Code).
 
 [When a Server detects a Malformed Packet or Protocol Error, and a Reason Code is given in the specification, it MUST close the Virtual
@@ -4279,7 +4333,7 @@ Although the implementation of the transparent Gateway is simpler when compared 
 support a separate connection for each active client. Some MQTT server implementations might impose a limitation on the number of concurrent
 connections that they support.
 
-![](media/image7.png){width="3.994792213473316in" height="2.6661472003499562in"}
+![](media/image6.png){width="3.994792213473316in" height="2.6661472003499562in"}
 
 Figure XX: Transparent Gateway scenario
 
@@ -4290,31 +4344,32 @@ exchanges between a MQTT-SN client and an aggregating Gateway end at the Gateway
 the Server. Although its implementation is more complex than the one of a transparent Gateway, an aggregating Gateway may be helpful in case of WSNs
 with a very large number of SAs because it reduces the number of MQTT connections that the Gateway must support concurrently.
 
-![](media/image13.png){width="4.578125546806649in" height="3.0552755905511813in"}
+![](media/image5.png){width="4.578125546806649in" height="3.0552755905511813in"}
 
 Figure XX: Aggregating Gateway scenario
 
 ### 4.11.3 Forwarder encapsulator
 
-![](media/image8.png){width="4.704773622047244in" height="2.7964599737532807in"}
+![](media/image13.png){width="4.704773622047244in" height="2.7964599737532807in"}
 
-Figure XX: Forwarder encapsulator with TransparentGateway scenario![](media/image10.png){width="4.9003171478565175in" height="2.8304625984251968in"}
+Figure XX: Forwarder encapsulator with TransparentGateway scenario![](media/image4.png){width="4.9003171478565175in" height="2.8304625984251968in"}
 
 Figure XX: Forwarder encapsulator with Aggregating Gateway scenario
 
 ### 4.12.4 MQTT-SN broker
 
-![](media/image9.png){width="2.8596172353455818in" height="2.983947944006999in"}
+![](media/image8.png){width="2.8596172353455818in" height="2.983947944006999in"}
 
 Figure XX: MQTT-SN broker scenario
 
 ## 4.13 Gateway Advertisement and Discovery
 
-A gateway may announce its presence by transmitting periodically an ADVERTISE packet to all devices that are currently parts of the network. A gateway
-should only advertise its presence if it is connected to a server (or is itself a server).
+A Gateway may announce its presence by periodically sending an ADVERTISE packet to some or all devices that are currently parts of the network. A
+gateway should only advertise its presence if it is connected to a server, or is itself a server.
 
-Multiple gateways may be active at the same time in the same network. In this case they will have different ids. It is up to the client to decide to
-which gateway it wants to connect. [At any point in time a client is allowed to be connected to only one gateway.]{.mark}
+Multiple Gateways may be active at the same time in the same network. In this case they will have different identifiers. It is up to the Client to
+decide to which Gateway it wants to connect. [At any point in time a Client is allowed to be connected to only one Gateway on the same
+network.]{.mark}
 
 A client should maintain a list of active gateways together with their network addresses. This list is populated by means of the ADVERTISE and GWINFO
 packets received.
@@ -4395,7 +4450,7 @@ the "Sleeping clients" section.
 |                            | state.                                                                                |                              |
 +----------------------------+---------------------------------------------------------------------------------------+------------------------------+
 
-![](media/image3.png){width="6.5in" height="6.944444444444445in"}
+![](media/image10.png){width="6.5in" height="6.944444444444445in"}
 
 Figure 4: Client's state transition diagram
 
@@ -4423,10 +4478,11 @@ The two flags "CleanStart" and "Will" in the CONNECT Packet have the following m
 -   CleanStart=true, Will=false: The gateway will delete all subscriptions and Will data, if present, related to the client and it will return
     CONNACK.
 
--   CleanStart=false, Will=true: The gateway keeps all the client's data and it will overwrite, if present, or add the Will data related to the client
-    with the content of the CONNECT Will optional fields and it will return CONNACK.
+-   CleanStart=false, Will=true: The gateway will keep all the client's data and it will overwrite, if present, or add the Will data related to the
+    client with the content of the CONNECT Will optional fields and it will return CONNACK.
 
--   CleanStart=false, Will=false: The gateway keeps all stored client's data and returns CONNACK.
+-   CleanStart=false, Will=false: The Gateway will keep all the client's subscriptions and it will delete any Will data, if present, and it will
+    return CONNACK.
 
 Note that if a client wants to delete only its Will data at Virtual Connection setup, it could send a CONNECT packet with "CleanStart=false" and
 "Will=false".
@@ -4482,7 +4538,7 @@ For performance and efficiency reasons the broker may choose to align topic alia
 mapping table of predefined topic aliases is separate from normal registered aliases. It is global and shared between all clients and gateways and may
 overlap with registered aliases, since it is in a different pool.
 
-## 4.18 Predefined topic alias and short topic names
+## 4.18 Predefined topic aliases and short topic names
 
 A "predefined" topic alias is a topic alias whose mapping to a topic name is known in advance by both the client' application and the gateway. This is
 indicated in the *Flags* field of the packet. When using pre-defined topic aliases, both sides can start immediately with the sending of PUBLISH
@@ -4597,7 +4653,7 @@ has passed or close the Virtual Connection.]{.mark}
 [The timer is canceled if the corresponding acknowledgement packet is received. The Client or Gateway MUST retransmit the Packet after T~retry~ has
 passed or]{.mark} [close]{.mark} [the Virtual Connection.]{.mark}
 
-[If a Packet can be retransmitted it MUST NOT be sent using a Broadcast address.]{.mark}
+[If a Packet can be retransmitted it MUST be sent using a Unicast address.]{.mark}
 
 [If a Packet is retransmitted it MUST be identical to the previously transmitted Packet, the PROTECTION encapsulation need not be identical.]{.mark}
 
@@ -4673,7 +4729,7 @@ state by sending a CONNECT packet to the server/gateway.
 >
 > The gateway should attempt to make the best effort to reuse the same topic alias mappings that existed during any initial associated ACTIVE states.
 >
-> ![](media/image5.png){width="4.615764435695538in" height="7.453125546806649in"}
+> ![](media/image9.png){width="4.615764435695538in" height="7.453125546806649in"}
 
 Figure 5: Awake ping packet flush
 
@@ -4879,12 +4935,12 @@ This packet is used by both clients and gateways to publish data to a topic.
 
 > **Informative comment**
 >
-> If the Transport Layer supports broadcast, like UDP/IP, the PUBLISH MINUS -1 packet is generally sent using the broadcast address as destination.
+> If the Transport Layer supports multicast, like UDP/IP, the PUBLISH MINUS -1 packet is generally sent using the Multicast Address as destination.
 
 #### B.1.1 Length & Packet Type
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Please refer to section 1.8.2 for a detailed
-description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[section
+2.1]{.underline}](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 #### B.1.2 PUBLISH Flags
 
@@ -4895,8 +4951,8 @@ The PUBLISH Flags includes the following flags:
 -   **Topic Id Type**. This is a 2-bit field in Bit 0 and 1 which determines the format of the topic Id value.
 
 -   **QoS**: This is a 2-bit field stored in Bit 5 and 6. QoS has the same meaning as with MQTT indicating the Quality of Service. Set to "0b00" for
-    QoS 0, "0b01" for QoS 1, "0b10" for QoS 2, and "0b11" for QoS -1. For a detailed description of the various Quality Of Service levels please refer
-    to the operational behavior section.
+    QoS 0, "0b01" for QoS 1, "0b10" for QoS 2, and "0b11" for QoS -1. For a detailed description of the various Quality Of Service levels refer to
+    [[section 4.3]{.underline}](#quality-of-service-levels-and-protocol-flows).
 
 -   **DUP**: 1 bit field stored in Bit 7 and has the same meaning as with MQTT. It notes the duplicate delivery of packets. If the DUP flag is set to
     "0", it signifies that the packet is sent for the first time. If the DUP flag is set to "1", it signifies that the packet was retransmitted.
@@ -5309,6 +5365,6 @@ or that any claims in such list are, in fact, Essential Claims.\]
 
 The name \"OASIS\" is a trademark of [[OASIS]{.underline}](https://www.oasis-open.org/), the owner and developer of this document, and should be used
 only to refer to the organization and its official outputs. OASIS welcomes reference to, and implementation and use of, documents, while reserving the
-right to enforce its marks against misleading uses. Please see
+right to enforce its marks against misleading uses. See
 [[https://www.oasis-open.org/policies-guidelines/trademark/]{.underline}](https://www.oasis-open.org/policies-guidelines/trademark/) for above
 guidance.
