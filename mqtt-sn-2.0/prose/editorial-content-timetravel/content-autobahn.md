@@ -39,23 +39,10 @@
 > Tara E. Walker (<tara.walker@microsoft.com>), [Microsoft](http://www.microsoft.com)
 >
 > Andy Stanford-Clark (andysc@uk.ibm.com, IBM UK
->
-> **Additional artifacts:**
-
-This prose specification is one component of a Work Product that also includes:
-
--   XML schemas: (list file names or directory name)
-
--   Other parts (list titles and/or file names)
-
--   [(**Note:** Any normative computer language definitions that are part of the Work Product, such as XML instances, schemas and Java(TM) code,
-    including fragments of such, must be (a) well formed and valid, (b) provided in separate plain text files, (c) referenced from the Work Product;
-    and (d) where any definition in these separate files disagrees with the definition found in the specification, the definition in the separate file
-    prevails. Remove this note before submitting for publication.)]{.mark}
 
 **Related work:**
 
-This specification is related to:
+> This specification is related to:
 
 -   *MQTT Version 5.0*. Edited by Andrew Banks, Ed Briggs, Ken Borgendale, and Rahul Gupta. OASIS Standard. Latest version:
     <https://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html>.
@@ -68,55 +55,49 @@ This specification is related to:
 
 **Abstract:**
 
-This specification defines the MQTT for Sensor Networks protocol (MQTT-SN). It is closely related to the MQTT v3.1.1 and MQTT v5.0 standards. MQTT-SN
-is optimized for implementation on low-cost, battery-operated devices with limited processing and storage resources. It is designed so that it will
-work over a variety of networking technologies and bridge to an MQTT network.
+> This specification defines the MQTT for Sensor Networks protocol (MQTT-SN). It is closely related to the MQTT v3.1.1 and MQTT v5.0 standards.
+> MQTT-SN is optimized for implementation on low-cost, battery-operated devices with limited processing and storage resources. It is designed so that
+> it will work over a variety of networking technologies and bridge to an MQTT network.
 
 **Status:**
 
-This document was last revised or approved by the OASIS Message Queuing Telemetry Transport (MQTT) TC on the above date. The level of approval is also
-listed above. Check the \"Latest stage\" location noted above for possible later revisions of this document. Any other numbered Versions and other
-technical work produced by the Technical Committee (TC) are listed at
-[[https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=mqtt#technical]{.underline}](https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=mqtt#technical)
-.
-
-TC members should send comments on this document to the TC\'s email list. Others should send comments to the TC\'s public comment list, after
-subscribing to it by following the instructions at the \"[[Send A
-Comment]{.underline}](https://www.oasis-open.org/committees/comments/index.php?wg_abbrev=mqtt)\" button on the TC\'s web page at
-[[https://www.oasis-open.org/committees/mqtt/]{.underline}](https://www.oasis-open.org/committees/mqtt/).
-
-This specification is provided under the [Non-Assertion](https://www.oasis-open.org/policies-guidelines/ipr#Non-Assertion-Mode) Mode of the [OASIS IPR
-Policy](https://www.oasis-open.org/policies-guidelines/ipr), the mode chosen when the Technical Committee was established. For information on whether
-any patents have been disclosed that may be essential to implementing this specification, and any offers of patent licensing terms, refer to the
-Intellectual Property Rights section of the TC's web page (<https://www.oasis-open.org/committees/mqtt/ipr.php>).
-
-Note that any machine-readable content ([Computer Language
-Definitions](https://www.oasis-open.org/policies-guidelines/tc-process#wpComponentsCompLang)) declared Normative for this Work Product is provided in
-separate plain text files. In the event of a discrepancy between any such plain text file and display content in the Work Product\'s prose narrative
-document(s), the content in the separate plain text file prevails.
-
-**Keywords:**
-
-The key words \"MUST\", \"MUST NOT\", \"REQUIRED\", \"SHALL\", \"SHALL NOT\", \"SHOULD\", \"SHOULD NOT\", \"RECOMMENDED\", \"NOT RECOMMENDED\",
-\"MAY\", and \"OPTIONAL\" in this document are to be interpreted as described in BCP 14 \[RFC2119\] and \[RFC8174\] when, and only when, they appear
-in all capitals, as shown here.
+> This document was last revised or approved by the OASIS Message Queuing Telemetry Transport (MQTT) TC on the above date. The level of approval is
+> also listed above. Check the \"Latest stage\" location noted above for possible later revisions of this document. Any other numbered Versions and
+> other technical work produced by the Technical Committee (TC) are listed at
+> [[https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=mqtt#technical]{.underline}](https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=mqtt#technical)
+> .
+>
+> TC members should send comments on this document to the TC\'s email list. Others should send comments to the TC\'s public comment list, after
+> subscribing to it by following the instructions at the \"[[Send A
+> Comment]{.underline}](https://www.oasis-open.org/committees/comments/index.php?wg_abbrev=mqtt)\" button on the TC\'s web page at
+> [[https://www.oasis-open.org/committees/mqtt/]{.underline}](https://www.oasis-open.org/committees/mqtt/).
+>
+> This specification is provided under the [Non-Assertion](https://www.oasis-open.org/policies-guidelines/ipr#Non-Assertion-Mode) Mode of the [OASIS
+> IPR Policy](https://www.oasis-open.org/policies-guidelines/ipr), the mode chosen when the Technical Committee was established. For information on
+> whether any patents have been disclosed that may be essential to implementing this specification, and any offers of patent licensing terms, refer to
+> the Intellectual Property Rights section of the TC's web page (<https://www.oasis-open.org/committees/mqtt/ipr.php>).
+>
+> Note that any machine-readable content ([Computer Language
+> Definitions](https://www.oasis-open.org/policies-guidelines/tc-process#wpComponentsCompLang)) declared Normative for this Work Product is provided
+> in separate plain text files. In the event of a discrepancy between any such plain text file and display content in the Work Product\'s prose
+> narrative document(s), the content in the separate plain text file prevails.
 
 **Citation format:**
 
-When referencing this document, the following citation format should be used:
-
-**\[MQTT-SN-v2.0\]**
-
-*MQTT for Sensor Networks Version 2.0*. Edited by Andrew Banks, Davide Lenzarini, Ian Craggs, Rahul Gupta, Simon Johnson, Stefan Hagen, and Tara E.
-Walker. 08 December 2023. OASIS Committee Specification Draft 01.
-[[https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/csd01/mqtt-sn-v2.0-csd01.docx]{.underline}](https://docs.oasis-open.org/mqtt/mqtt-sn/v12.30/csd01/mqtt-sn-v12.30-csd01.docx).
-Latest stage:
-[[https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/mqtt-sn-v2.0.docx]{.underline}](https://docs.oasis-open.org/mqtt/mqtt-sn/v12.30/mqtt-sn-v12.30.docx)
-
-[(**Note:** Publication URIs are managed by OASIS TC Administration; please don\'t modify. The [OASIS TC
-Process](https://www.oasis-open.org/policies-guidelines/tc-process#wpComponentsGeneral) requires that Work Products at any level of approval must use
-the [OASIS file naming scheme](https://docs.oasis-open.org/specGuidelines/ndr/namingDirectives.html), and must include the OASIS copyright notice. The
-URIs above have been constructed according to the file naming scheme. Remove this note before submitting for publication.)]{.mark}
+> When referencing this document, the following citation format should be used:
+>
+> **\[MQTT-SN-v2.0\]**
+>
+> *MQTT for Sensor Networks Version 2.0*. Edited by Andrew Banks, Davide Lenzarini, Ian Craggs, Rahul Gupta, Simon Johnson, Stefan Hagen, and Tara E.
+> Walker. 08 December 2023. OASIS Committee Specification Draft 01.
+> [[https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/csd01/mqtt-sn-v2.0-csd01.docx]{.underline}](https://docs.oasis-open.org/mqtt/mqtt-sn/v12.30/csd01/mqtt-sn-v12.30-csd01.docx).
+> Latest stage:
+> [[https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/mqtt-sn-v2.0.docx]{.underline}](https://docs.oasis-open.org/mqtt/mqtt-sn/v12.30/mqtt-sn-v12.30.docx)
+>
+> [(**Note:** Publication URIs are managed by OASIS TC Administration; please don\'t modify. The [OASIS TC
+> Process](https://www.oasis-open.org/policies-guidelines/tc-process#wpComponentsGeneral) requires that Work Products at any level of approval must
+> use the [OASIS file naming scheme](https://docs.oasis-open.org/specGuidelines/ndr/namingDirectives.html), and must include the OASIS copyright
+> notice. The URIs above have been constructed according to the file naming scheme. Remove this note before submitting for publication.)]{.mark}
 
 **Notices**
 
@@ -218,7 +199,7 @@ information see the full Notices section in an Appendix below.
 >
 > [3.1.4.6 Session Expiry Interval 35](#session-expiry-interval)
 >
-> [3.1.4.7 Max Packet Size 35](#max-packet-size)
+> [3.1.4.7 Max Packet Size 35](#maximum-packet-size)
 >
 > [3.1.4.8 Client Identifier 36](#client-identifier-clientid)
 >
@@ -279,7 +260,7 @@ information see the full Notices section in an Appendix below.
 >
 > [3.1.7.2 Topic Alias 41](#topic-alias)
 >
-> [3.1.7.3 Correlation Id 41](#packet-identifier-3)
+> [3.1.7.3 Correlation Id 41](#packet-identifier-4)
 >
 > [3.1.7.4 Topic Name 41](#topic-name-1)
 >
@@ -291,7 +272,7 @@ information see the full Notices section in an Appendix below.
 >
 > [3.1.8.3 Topic Alias 42](#topic-alias-1)
 >
-> [3.1.8.4 Correlation Id 42](#packet-identifier-4)
+> [3.1.8.4 Correlation Id 42](#packet-identifier-5)
 >
 > [3.1.8.5 Reason Code 42](#reason-code-3)
 >
@@ -323,7 +304,7 @@ information see the full Notices section in an Appendix below.
 >
 > [3.1.12.2 PUBLISH Flags 46](#publish-flags-2)
 >
-> [3.1.12.4 Packet Id 47](#packet-identifier-5)
+> [3.1.12.4 Packet Id 47](#packet-identifier-6)
 >
 > [3.1.12.5 Topic Data 47](#topic-data-3)
 >
@@ -333,7 +314,7 @@ information see the full Notices section in an Appendix below.
 >
 > [3.1.13.1 Length & Packet Type 47](#length-packet-type-11)
 >
-> [3.1.13.2 Packet Id 47](#packet-identifier-6)
+> [3.1.13.2 Packet Id 47](#packet-identifier-7)
 >
 > [3.1.13.3 Reason Code 47](#reason-code-4)
 >
@@ -341,7 +322,7 @@ information see the full Notices section in an Appendix below.
 >
 > [3.1.14.1 Length & Packet Type 48](#length-packet-type-12)
 >
-> [3.1.14.2 Packet Id 48](#packet-identifier-7)
+> [3.1.14.2 Packet Id 48](#packet-identifier-8)
 >
 > [3.1.14.3 Reason Code 48](#reason-code-5)
 >
@@ -349,7 +330,7 @@ information see the full Notices section in an Appendix below.
 >
 > [3.1.15.1 Length & Packet Type 49](#length-packet-type-13)
 >
-> [3.1.15.2 Packet Id 49](#packet-identifier-8)
+> [3.1.15.2 Packet Id 49](#packet-identifier-9)
 >
 > [3.1.15.3 Reason Code 49](#reason-code-6)
 >
@@ -357,7 +338,7 @@ information see the full Notices section in an Appendix below.
 >
 > [3.1.16.1 Length & Packet Type 49](#length-packet-type-14)
 >
-> [3.1.16.2 Packet Identifier 49](#packet-identifier-9)
+> [3.1.16.2 Packet Identifier 49](#packet-identifier-10)
 >
 > [3.1.16.3 Reason Code 49](#reason-code-7)
 >
@@ -367,7 +348,7 @@ information see the full Notices section in an Appendix below.
 >
 > [3.1.17.2 SUBSCRIBE Flags 50](#subscribe-flags)
 >
-> [3.1.17.3 Packet Id 50](#packet-identifier-10)
+> [3.1.17.3 Packet Id 50](#packet-identifier-11)
 >
 > [3.1.17.4 Topic Data or Topic Filter 51](#topic-data-or-topic-filter)
 >
@@ -379,7 +360,7 @@ information see the full Notices section in an Appendix below.
 >
 > [3.1.18.3 Topic Data 51](#topic-data-4)
 >
-> [3.1.18.4 Packet Identifier 52](#packet-identifier-11)
+> [3.1.18.4 Packet Identifier 52](#packet-identifier-12)
 >
 > [3.1.18.5 Reason Code 52](#reason-code-8)
 >
@@ -389,7 +370,7 @@ information see the full Notices section in an Appendix below.
 >
 > [3.1.19.2 UNSUBSCRIBE Flags 52](#unsubscribe-flags)
 >
-> [3.1.19.3 Packet Identifier 52](#packet-identifier-12)
+> [3.1.19.3 Packet Identifier 52](#packet-identifier-13)
 >
 > [3.1.19.4 Topic Data or Topic Filter 53](#topic-data-or-topic-filter-1)
 >
@@ -397,7 +378,7 @@ information see the full Notices section in an Appendix below.
 >
 > [3.1.20.1 Length & Packet Type 53](#length-packet-type-18)
 >
-> [3.1.20.2 Packet Identifier 53](#packet-identifier-13)
+> [3.1.20.2 Packet Identifier 53](#packet-identifier-14)
 >
 > [3.1.20.3 Reason Code 53](#reason-code-9)
 >
@@ -405,7 +386,7 @@ information see the full Notices section in an Appendix below.
 >
 > [3.1.21.1 Length & Packet Type 54](#length-packet-type-19)
 >
-> [3.1.21.2 Correlation Id 54](#packet-identifier-14)
+> [3.1.21.2 Correlation Id 54](#packet-identifier-15)
 >
 > [3.1.21.3 Client Identifier (optional) 54](#client-identifier-optional)
 >
@@ -413,7 +394,7 @@ information see the full Notices section in an Appendix below.
 >
 > [3.1.22.1 Length & Packet Type 54](#length-packet-type-20)
 >
-> [3.1.22.2 Correlation Id 54](#packet-identifier-15)
+> [3.1.22.2 Correlation Id 54](#packet-identifier-16)
 >
 > [3.1.22.3 Messages Remaining 54](#messages-remaining)
 >
@@ -789,7 +770,7 @@ The label attached to an Application Message which is matched against the Subscr
 
 **Topic Alias:**
 
-An integer value that is used instead of the Topic Name to reduce packet size.
+A Topic Alias is an integer value that is used to identify the Topic instead of using the Topic Name, to reduce packet size.
 
 **Topic Filter:**
 
@@ -928,11 +909,7 @@ UTF-8 [\[RFC3629\]](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-
 Unicode [\[Unicode\]](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#Unicode) characters that optimizes the encoding of ASCII
 characters in support of text-based communications.
 
- 
-
 Unless stated otherwise all variable length UTF-8 encoded strings can have any length in the range 0 to 65,535 bytes.
-
- 
 
   ---------------------------------------------------------------------------------------------------------------------------------------------------------
   **Bit**                                           **7**        **6**        **5**        **4**        **3**        **2**        **1**        **0**
@@ -950,18 +927,14 @@ Table 1: Structure of UTF-8 Encoded Strings
 [The character data in a UTF-8 Encoded String MUST be well-formed UTF-8 as defined by the Unicode
 specification [\[Unicode\]](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#Unicode) and restated in RFC
 3629 [\[RFC3629\]](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#RFC3629). In particular, the character data MUST NOT include
-encodings of code points between U+D800 and U+DFFF]{.mark}. If the Client or Server receives an MQTT-SN Control Packet containing ill-formed UTF-8 it
-is a Malformed Packet.
+encodings of code points between U+D800 and U+DFFF]{.mark}. \[MQTT-SN-1.7.4-1\] If the Client or Server receives an MQTT-SN Control Packet containing
+ill-formed UTF-8 it is a Malformed Packet. Refer to [[section 4.11]{.underline}](#handling-errors) for information about handling errors.
 
- 
+[A UTF-8 Encoded String MUST NOT include an encoding of the null character U+0000.]{.mark} \[MQTT-SN-1.7.4-2\] If a receiver (Server or Client)
+receives an MQTT-SN Control Packet containing U+0000 in a UTF-8 Encoded String it is a Malformed Packet.
 
-[A UTF-8 Encoded String MUST NOT include an encoding of the null character U+0000. ]{.mark}If a receiver (Server or Client) receives an MQTT-SN
-Control Packet containing U+0000 it is a Malformed Packet.
-
-The data SHOULD NOT include encodings of the Unicode Unicode\] code points listed below. If a receiver (Server or Client) receives an MQTT-SN Control
-Packet containing any of them it MAY treat it as a Malformed Packet. These are the Disallowed Unicode code points.
-
- 
+UTF-8 Encoded Strings SHOULD NOT include the Unicode \[Unicode\] code points listed below. If a receiver (Server or Client) receives an MQTT-SN
+Control Packet with UTF-8 Encoded Strings containing any of them it MAY treat it as a Malformed Packet. These are the Disallowed Unicode code points.
 
 -   U+0001..U+001F control characters
 
@@ -970,12 +943,8 @@ Packet containing any of them it MAY treat it as a Malformed Packet. These are t
 -   Code points defined in the Unicode specification [\[Unicode\]](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#Unicode) to
     be non-characters (for example U+0FFFF)
 
- 
-
 [A UTF-8 encoded sequence 0xEF 0xBB 0xBF is always interpreted as U+FEFF (\"ZERO WIDTH NO-BREAK SPACE\") wherever it appears in a string and MUST NOT
-be skipped over or stripped off by a packet receiver]{.mark}.
-
- 
+be skipped over or stripped off by a packet receiver]{.mark}. \[MQTT-SN-1.7.4-3\]
 
 > **Informative example**
 >
@@ -1062,8 +1031,10 @@ If the first byte of the *Length* field is coded "0x01" then the *Length* field 
 total number of bytes of the packet (most-significant byte first). Otherwise, the *Length* field is only 1-byte long and specifies itself the total
 number of bytes contained in the packet.
 
-The 3-byte format allows the encoding of packet lengths up to 65,535 bytes. It is more efficient to use the shorter 1-byte format for p,ackets with
+The 3-byte format allows the encoding of packet lengths up to 65,535 bytes. It is more efficient to use the shorter 1-byte format for packets with
 lengths up to and including 255 bytes.
+
+[A client or gateway receiving MQTT-SN control packets MUST be able to process both 1-byte and 3-byte length formats.]{.mark} \[MQTT-SN-2.1.2-1\]
 
 **Informative comment**
 
@@ -1299,7 +1270,7 @@ exchanges using the same Packet Identifiers.
 > It is possible for a Client to send a PUBLISH packet with Packet Identifier 0x1234 and then receive a different PUBLISH packet with Packet
 > Identifier 0x1234 from its Server before it receives a PUBACK for the PUBLISH packet that it sent.
 >
-> ![](media/image12.png){width="3.5502898075240594in" height="2.7864588801399823in"}
+> ![](media/image2.png){width="3.5502898075240594in" height="2.7864588801399823in"}
 
 ## 2.3 MQTT-SN Packet Fields
 
@@ -1809,7 +1780,7 @@ and is specified by the Length byte. Optional, only included if the packet is se
 
 [Table 14: CONNECT packet]{.underline}
 
-The CONNECT packet is sent from the Client to the Gateway to create or continue a session.
+The CONNECT packet is sent from the Client to the Gateway to create or continue a Session.
 
 #### 3.1.4.1 Length & Packet Type
 
@@ -1857,10 +1828,8 @@ The one-byte unsigned value that represents the revision level of the protocol u
 [The value of the Protocol Version field for MQTT-SN version 2.0 MUST be 2 (0x02).]{.mark}
 
 A Gateway which supports multiple versions of the MQTT-SN protocol uses the Protocol Version to determine which version of MQTT-SN the Client is
-using.
-
-[If the Protocol Version is valid but it is not the latest one available (for instance 0x02) and the Gateway does not want to accept the CONNECT
-packet, the Server MAY send a CONNACK packet with Reason Code 0x84 (Unsupported Protocol Version) and consider the session closed.]{.mark}
+using. [If the Protocol Version is not 2 and the Gateway does not want to accept the CONNECT packet, the Server MAY send a CONNACK packet with Reason
+Code 0x84 (Unsupported Protocol Version).]{.mark}
 
 #### 3.1.4.5 Keep Alive Timer
 
@@ -1878,8 +1847,9 @@ value. [In the absence of sending any other MQTT-SN Control Packets, the Client
 the session 'LOST' (see state description in table 3.6).]{.mark}
 
 [If a Client does not receive a PINGRESP packet within a *Tretry* amount of time after it has sent a PINGREQ, it SHOULD retry the transmission
-according to]{.mark} [B4 up to the max attempts. If a PINGRESP is still not received it MUST close the Session to the Gateway by way of a DISCONNECT,
-with the understanding that the GW may no longer be reachable.]{.mark}
+according to [[section 4.24]{.underline}](#retransmission-procedure-in-the-client-and-gateway) up to the maximum number of attempts. If a PINGRESP is
+still not received it MUST close the Session to the Gateway by way of a DISCONNECT, with the understanding that the GW may no longer be
+reachable.]{.mark}
 
 [A Keep Alive must have a value greater than 0. It is considered a protocol error If a Keep Alive value of 0 is set.]{.mark}
 
@@ -1912,7 +1882,7 @@ If the Session Expiry Interval is 0xFFFFFFFF (UINT_MAX), the Session does not ex
 > environment in which they are deployed. For example, it would not be practical to set a session -- expiry -- interval of many months on a gateway
 > whose hardware is only capable of storing a few client sessions.
 
-#### 3.1.4.7 Max Packet Size
+#### 3.1.4.7 Maximum Packet Size
 
 A Two Byte (16-bit) Integer representing the Maximum Packet Size the Client is willing to accept. If the Maximum Packet Size is set to 0, no limit on
 the packet size is imposed beyond the limitations in the protocol as a result of the remaining length encoding and the protocol header sizes.
@@ -1921,8 +1891,9 @@ the packet size is imposed beyond the limitations in the protocol as a result of
 >
 > It is the responsibility of the application to select a suitable Maximum Packet Size value if it chooses to restrict the Maximum Packet Size.
 
-The packet size is the total number of bytes in an MQTT Control Packet, as defined in section 3.1. The Client uses the Maximum Packet Size to inform
-the Server that it will not process packets exceeding this limit.
+The packet size is the total number of bytes in an MQTT-SN Control Packet, as defined in [[section
+2.1]{.underline}](#structure-of-an-mqtt-sn-control-packet). The Client uses the Maximum Packet Size to inform the Server that it will not process
+packets exceeding this limit.
 
  [The Gateway MUST NOT send packets exceeding Maximum Packet Size to the Client. If a Client receives a packet whose size exceeds this limit, this is
 a Protocol Error, the Client uses DISCONNECT with Reason Code 0x95 (Packet too large).]{.mark}
@@ -1932,8 +1903,8 @@ Message.]{.mark}
 
 > **Informative comment**
 >
-> Where a packet is discarded without being sent, the Gateway could place the discarded packet on a 'dead letter queue' or perform other diagnostic
-> action. Such actions are outside the scope of this specification.
+> Where a packet is discarded without being sent, the Gateway could take some diagnostic action including alerting the Server administrator. Such
+> actions are outside the scope of this specification.
 
 #### 3.1.4.8 Client Identifier (ClientID)
 
@@ -2006,22 +1977,83 @@ Will Payload Length fields.
 
 #### 3.1.4.13 Authentication Method Length (optional, only with *Auth* flag set)
 
-Single byte value (max 0-255 bytes), representing the length of field used to specify the authentication method. Refer to LINKED TO AUTH for more
-information about extended authentication.
+Single byte value (max 0-255 bytes), representing the length of field used to specify the authentication method. Refer to [[section
+4.10]{.underline}](#enhanced-authentication) for more information about extended authentication.
 
 #### 3.1.4.14 Authentication Method (optional, only with *Auth* flag set)
 
-A UTF-8 Encoded String containing the name of the authentication method. Refer to LINKED TO AUTH for more information about extended authentication.
+A UTF-8 Encoded String containing the name of the authentication method. Refer to [[section 4.10]{.underline}](#enhanced-authentication) for more
+information about extended authentication.
 
 #### 3.1.4.15 Authentication Data Length (optional, only with *Auth* flag set)
 
-Two byte value (max 0-65535 bytes), representing the length of field used to specify the authentication data. Refer to LINKED TO AUTH for more
-information about extended authentication.
+Two byte value (max 0-65535 bytes), representing the length of field used to specify the authentication data. Refer to [[section
+4.10]{.underline}](#enhanced-authentication) for more information about extended authentication.
 
 #### 3.1.4.16 Authentication Data (optional, only with *Auth* flag set)
 
-Binary Data containing authentication data. The contents of this data are defined by the authentication method. Refer to LINKED TO AUTH for more
-information about extended authentication.
+Binary Data containing authentication data. The contents of this data are defined by the authentication method. Refer to [[section
+4.10]{.underline}](#enhanced-authentication) for more information about extended authentication.
+
+#### 3.1.4.17 CONNECT Actions
+
+Note that a Server MAY support multiple protocols on the same network endpoint. If the Server determines that the protocol is MQTT-SN 2.0 then it
+validates the connection attempt as follows.
+
+1.  [The Server MUST validate that the CONNECT packet matches the format described in]{.mark} [[[section
+    3.1]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#_CONNECT_%E2%80%93_Connection) and MUST NOT create a
+    Virtual Connection for this CONNECT if it does not match.]{.mark} \[MQTT-3.1.4-1\] The Server MAY send a CONNACK with a Reason Code of 0x80 or
+    greater as described in section 4.13.
+
+<!-- -->
+
+3.  [The Server MAY check that the contents of the CONNECT packet meet any further restrictions and SHOULD perform authentication and authorization
+    checks. If any of these checks fail, it MUST NOT create a Virtual Connection for this CONNECT]{.mark} \[MQTT-3.1.4-2\]. It MAY send an appropriate
+    CONNACK response with a Reason Code of 0x80 or greater as described in [[section
+    3.2]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#_CONNACK_%E2%80%93_Connect) and [[section
+    4.13]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#S4_13_Errors).
+
+If validation is successful, the Server performs the following steps.
+
+1.  [If the ClientID represents a Client already connected to the Server, the Server sends a DISCONNECT packet to the existing Client with Reason Code
+    of 0x8E (Session taken over) as described in]{.mark} [[[section
+    4.13]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#S4_13_Errors) and MUST delete the Virtual Connection of
+    the existing Client]{.mark} \[MQTT-3.1.4-3\]. If the existing Client has a Will Message, that Will Message is published as described in section
+    3.1.2.5.
+
+2.  [The Server MUST perform the processing of Clean Start]{.mark} that is described in [[section
+    3.1.2.4]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#_Clean_Start) \[MQTT-3.1.4-4\].
+
+3.  [The Server MUST acknowledge the CONNECT packet with a CONNACK packet containing a 0x00 (Success) Reason Code]{.mark} \[MQTT-3.1.4-5\].
+
+4.  Start message delivery and Keep Alive monitoring.
+
+> **Informative comment**
+>
+> It is recommended that authentication and authorization checks be performed if the Server is being used to process any form of business critical
+> data. If these checks succeed, the Server responds by sending CONNACK with a 0x00 (Success) Reason Code. If they fail, it is suggested that the
+> Server does not send a CONNACK at all, as this could alert a potential attacker to the presence of the MQTT-SN Server and encourage such an attacker
+> to launch a denial of service or password-guessing attack.
+
+Clients are allowed to send further MQTT Control Packets immediately after sending a CONNECT packet; Clients need not wait for a CONNACK packet to
+arrive from the Server. [If the Server rejects the CONNECT, it MUST NOT process any data sent by the Client after the CONNECT packet except AUTH
+packets]{.mark} \[MQTT-3.1.4-6\].
+
+> **Informative comment**
+>
+> Clients typically wait for a CONNACK packet, However, if the Client exploits its freedom to send MQTT-SN Control Packets before it receives a
+> CONNACK, it might simplify the Client implementation as it does not have to police the connected state. The Client accepts that any data that it
+> sends before it receives a CONNACK packet from the Server will not be processed if the Server rejects the connection.
+>
+> **Informative comment**
+>
+> Clients that send MQTT-SN Control Packets before they receive CONNACK will be unaware of Server information including whether any existing Session
+> is being used.
+>
+> **Informative comment**
+>
+> The Server can limit reading from the Network if the Client sends too much data before authentication is complete. This is suggested as a way of
+> avoiding denial of service attacks.
 
 ### 3.1.5 CONNACK
 
@@ -2155,13 +2187,13 @@ The Connack *Flags* field includes the following flags:
 > in the CONNACK packet.]{.mark}\
 > \
 > If the value of Session Present received by the Client from the Gateway is not as expected, the Client proceeds as follows:
-
-[If the Client does not have Session State and receives Session Present set to 1 it MUST delete the Virtual Connection.]{.mark} [If it wishes to
-restart with a new Session the Client can reconnect using Clean Start set to 1.]{.mark}
-
-[If the Client does have Session State and receives Session Present set to 0 it MUST discard its Session State if it continues with the Virtual
-Connection.]{.mark}
-
+>
+> [If the Client does not have Session State and receives Session Present set to 1 it MUST delete the Virtual Connection.]{.mark} [If it wishes to
+> restart with a new Session the Client can reconnect using Clean Start set to 1.]{.mark}
+>
+> [If the Client does have Session State and receives Session Present set to 0 it MUST discard its Session State if it continues with the Virtual
+> Connection.]{.mark}
+>
 > [If a Gateway sends a CONNACK packet containing a non-zero Reason Code it MUST set Session Present to 0.]{.mark}
 
 -   **Auth:** Stored in Bit 1 and specifies whether the packet contains Auth material that should be considered.
@@ -2224,35 +2256,48 @@ new Client Identifier not used by any other Session currently in the Gateway]{.m
 
 ### 3.1.6 AUTH
 
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Bit**                  **7**       **6**         **5**            **4**            **3**            **2**            **1**            **0**
-  ------------------------ ----------- ------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
-  Byte 1                   Length                                                                                                         
+  ---------------------------------------------------------------------------------------------------------------------------------------------------------
+  **Bit**                  **7**        **6**         **5**            **4**            **3**            **2**            **1**            **0**
+  ------------------------ ------------ ------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
+  byte 1                   Length                                                                                                          
 
-  Byte 2                   Packet Type                                                                                                    
+  byte 2                   Packet Type                                                                                                     
 
-  Byte 3                   Auth Reason                                                                                                    
-                           Code                                                                                                           
+  byte 3                   Packet                                                                                                          
+                           Identifier                                                                                                      
+                           MSB                                                                                                             
 
-  Byte 4                   Auth Method                                                                                                    
-                           Length (K)                                                                                                     
+  byte 4                   Packet                                                                                                          
+                           Identifier                                                                                                      
+                           LSB                                                                                                             
 
-  Byte 5:5+K               Auth Method                                                                                                    
+  byte 5                   Auth Reason                                                                                                     
+                           Code                                                                                                            
 
-  Byte 6+K:N               Auth Data                                                                                                      
-                           (N)                                                                                                            
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
+  byte 6                   Auth Method                                                                                                     
+                           Length (K)                                                                                                      
+
+  byte 7:7+K               Auth Method                                                                                                     
+
+  byte 8+K:N               Auth Data                                                                                                       
+                           (N)                                                                                                             
+  ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
 [Table 22: AUTH packet]{.underline}
 
 [The authentication method and data is first sent by the Client as part of a CONNECT exchange. If the Server requires additional information to
-complete the authentication, it responds with an AUTH packet to]{.mark} [signal that the Client generates and sends another AUTH packet with the
-required information and so on until the authentication is complete. The server then responds with a CONNACK message.]{.mark}
+complete the authentication, it responds with an AUTH packet to signal that the Client generates and sends another AUTH packet with the required
+information and so on until the authentication is complete. The server then responds with a CONNACK message.]{.mark}
 
 #### 3.1.6.1 Length & Packet Type
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[section
 2.1]{.underline}](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
+
+#### 3.1.7.2 Packet Identifier
+
+Used to identify the corresponding CONNECT, AUTH or CONNACK packet. It should ideally be populated with a random integer value when sent from Client
+to Server. [When sent from Server to Client, it MUST contain the packet identifier of the CONNECT or AUTH packet being responded to]{.mark}.
 
 #### 3.1.6.2 Reason Code
 
@@ -2284,18 +2329,18 @@ The length of the auth method string.
 
   Byte 2               Packet Type                                                                                                        
 
-  Byte 3               Topic Alias                                                                                                        
+  Byte 3               Packet                                                                                                             
+                       Identifier                                                                                                         
                        MSB                                                                                                                
 
-  Byte 4               Topic Alias                                                                                                        
+  Byte 4               Packet                                                                                                             
+                       Identifier                                                                                                         
                        LSB                                                                                                                
 
-  Byte 5               Packet                                                                                                             
-                       Identifier                                                                                                         
-                       MSB                                                                                                                
+  Byte 5               Topic                                                                                                              
+                       AliasMSB                                                                                                           
 
-  Byte 6               Packet                                                                                                             
-                       Identifier                                                                                                         
+  Byte 6               Topic Alias                                                                                                        
                        LSB                                                                                                                
 
   Byte 7...N           Topic Name                                                                                                         
@@ -2311,14 +2356,14 @@ client about the topic alias value it has assigned to the included topic name.
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[section
 2.1]{.underline}](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
-#### 3.1.7.2 Topic Alias
+#### 3.1.7.2 Packet Identifier
+
+Used to identify the corresponding REGACK packet. It should ideally be populated with a random integer value.
+
+#### 3.1.7.3 Topic Alias
 
 If sent by a client, it is coded 0x0000 and is not relevant; if sent by a GW, it contains the topic alias value assigned to the topic name included in
 the Topic Name field.
-
-#### 3.1.7.3 Packet Identifier
-
-Used to identify the corresponding REGACK packet. It should ideally be populated with a random integer value.
 
 #### 3.1.7.4 Topic Name
 
@@ -2339,15 +2384,15 @@ Fixed Length UTF-8 Encoded String Contains the fully qualified topic name.
 
   Byte 3         0                  0                0                  0                 0                       0                  X            X   
 
-  Byte 4         Topic Alias MSB                                                                                                                      
-
-  Byte 5         Topic Alias LSB                                                                                                                      
-
-  Byte 6         Packet Identifier                                                                                                                    
+  Byte 4         Packet Identifier                                                                                                                    
                  MSB                                                                                                                                  
 
-  Byte 7         Packet Identifier                                                                                                                    
+  Byte 5         Packet Identifier                                                                                                                    
                  LSB                                                                                                                                  
+
+  Byte 6         Topic Alias MSB                                                                                                                      
+
+  Byte 7         Topic Alias LSB                                                                                                                      
 
   Byte 8         Reason Code                                                                                                                          
   ----------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -2370,13 +2415,13 @@ The REGACK Flags field includes the following flag:
 -   **Topic Type**. This is a 2-bit field in Bit 0 and 1 which determines the format of the topic value. Refer to [Table 10](#topic-types) for the
     definition of the various topic types.
 
-#### 3.1.8.3 Topic Alias
-
-A Topic Alias is an integer value that is used to identify the Topic instead of the Topic Name. This numeric value is used as the Topic Alias.
-
-#### 3.1.8.4 Packet Identifier
+#### 3.1.8.3 Packet Identifier
 
 The same value as the Packet Identifier in the REGISTER packet being acknowledged.
+
+#### 3.1.8.4 Topic Alias
+
+A Topic Alias is an integer value that is used to identify the Topic instead of the Topic Name. This numeric value is used as the Topic Alias.
 
 #### 3.1.8.5 Reason Code
 
@@ -2502,11 +2547,8 @@ variable length and contains the application data that is being published.
 
 [Table 29: PUBLISH packet]{.underline}
 
-This packet is used by both clients and gateways to publish data for a certain topic.
-
-> **[Normative Comment]{.mark}**
->
-> [PUBLISH QoS 0, 1 & 2 packets received by a Gateway **must** be associated with a valid Client Session.]{.mark}
+This packet is used by both clients and gateways to publish data for a certain topic. [PUBLISH QoS 0, 1 & 2 packets received by a Gateway **must** be
+associated with a valid Client Session.]{.mark} \[MQTT-SN-3.1.11-1\]
 
 #### 3.1.11.1 Length & Packet Type
 
@@ -2523,8 +2565,8 @@ The PUBLISH Flags includes the following flags:
     the definition of the various topic types.
 
 -   **QoS**: This is a 2-bit field stored in Bit 5 and 6. QoS has the same meaning as with MQTT indicating the Quality of Service. Set to "0b00" for
-    QoS 0, "0b01" for QoS 1, "0b10" for QoS 2, and "0b11" for QoS -1. For a detailed description of the various Quality Of Service levels refer to the
-    operational behavior section.
+    QoS 0, "0b01" for QoS 1, "0b10" for QoS 2, and "0b11" for QoS -1. For a detailed description of the various Quality Of Service levels refer to
+    [[section 4.3]{.underline}](#quality-of-service-levels-and-protocol-flows).
 
 -   **Retain**: 1 bit field stored in Bit 4 and has the same meaning as with MQTT. The field signifies whether the existing retained message for this
     topic is replaced or kept.
@@ -3662,11 +3704,11 @@ procedure for setting up a session with a server is illustrated in Fig. 3a and 3
 
 The CONNECT packet contains flags to communicate to the gateway that Auth interactions, or WILL interactions should take place.
 
-![](media/image1.png){width="3.344815179352581in" height="2.4173436132983377in"}
+![](media/image7.png){width="3.344815179352581in" height="2.4173436132983377in"}
 
 Figure 3a: Connect procedure (without Auth flag not Will flag set or no further authentication data required)
 
-![](media/image2.png){width="3.345165135608049in" height="2.963542213473316in"}
+![](media/image8.png){width="3.345165135608049in" height="2.963542213473316in"}
 
 Figure 3b: Connect procedure (with Auth flag set and additional authentication data required)
 
@@ -4084,7 +4126,7 @@ The following rules apply to Topic Names and Topic Filters:
     [[\[Unicode\]]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#Unicode) \[MQTT-SN-4.7.3-2\]
 
 -   [Topic Names and Topic Filters are UTF-8 Encoded Strings; they MUST NOT encode to more than 65,535 bytes]{.mark} \[MQTT-SN-4.7.3-4\]. Refer to
-    [[section 1.5.4]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_UTF-8_Encoded_String).
+    [[section 1.7.4]{.underline}](#utf-8-encoded-string).
 
 There is no limit to the number of levels in a Topic Name or Topic Filter, other than that imposed by the overall length of a UTF-8 Encoded String.
 
@@ -4236,9 +4278,8 @@ During this re-authentication sequence, the flow of other packets between the Cl
 
 ### 4.11.1 Malformed Packet and Protocol Errors
 
-Definitions of Malformed Packet and Protocol Errors are contained in [[section
-1.2]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Terminology) Terminology, some but not all of these error cases are
-noted throughout the specification. The rigor with which a Client or Server checks an MQTT-SN Control Packet it has received will be a compromise
+Definitions of Malformed Packet and Protocol Errors are contained in [[section 1.3]{.underline}](#terminology), some but not all of these error cases
+are noted throughout the specification. The rigor with which a Client or Server checks an MQTT-SN Control Packet it has received will be a compromise
 between:
 
 -   The size of the Client or Server implementation.
@@ -4271,15 +4312,14 @@ The Reason Codes used for Malformed Packet and Protocol Errors are:
 
 -   0xA2 Wildcard Subscriptions not supported
 
-When a Client detects a Malformed Packet or Protocol Error, and a Reason Code is given in the specification, it SHOULD close the Network Connection.
-In the case of an error in an AUTH packet it MUST send a DISCONNECT packet containing the reason code, before deleting the Virtual Connection. In the
-case of an error in any other packet it SHOULD send a DISCONNECT packet containing the reason code. Use Reason Code 0x81 (Malformed Packet) or 0x82
-(Protocol Error) unless a more specific Reason Code has been defined in section 3.14.2.1 [[Disconnect Reason
+[When a Client detects a Malformed Packet or Protocol Error associated with a Virtual Connection it SHOULD send a DISCONNECT packet containing an
+appropriate Reason Code and MUST delete the associated Virtual Connection.]{.mark} Use Reason Code 0x81 (Malformed Packet) or 0x82 (Protocol Error)
+unless a more specific Reason Code has been defined in section 3.14.2.1 [[Disconnect Reason
 Code]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Disconnect_Reason_Code).
 
-[When a Server detects a Malformed Packet or Protocol Error, and a Reason Code is given in the specification, it MUST close the Virtual
-Connection]{.mark} \[MQTT-4.13.1-1\]. In the case of an error in a CONNECT packet it MAY send a CONNACK packet containing the Reason Code. In the case
-of an error in any other packet it SHOULD send a DISCONNECT packet containing the Reason Code. Use Reason Code 0x81 (Malformed Packet) or 0x82
+[When a Server detects a Malformed Packet or Protocol Error for any packet except ADVERTISE, SEARCHGW, GWINFO, PUBWOS and CONNECT, the Server SHOULD
+send a DISCONNECT packet with an appropriate Reason Code and MUST delete the associated Virtual Connection if one exists.]{.mark} \[MQTT-4.13.1-1\] In
+the case of an error in a CONNECT packet it MAY send a CONNACK packet containing the Reason Code. Use Reason Code 0x81 (Malformed Packet) or 0x82
 (Protocol Error) unless a more specific Reason Code has been defined in [[section 3.2.2.2 - Connect Reason
 Code]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Connect_Reason_Code) or in section [[3.14.2.1 -- Disconnect Reason
 Code]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Disconnect_Return_codes). There are no consequences for other
@@ -4297,9 +4337,9 @@ processing of an individual Control Packet.
 Acknowledgment packets PUBACK, PUBREC, PUBREL, PUBCOMP, REGACK, SUBACK, UNSUBACK with a Reason Code of 0x80 or greater indicate that the received
 packet, identified by a Packet Identifier, was in error. There are no consequences for other Sessions or other Packets flowing on the same Session.
 
-[The CONNACK and DISCONNECT packets allow a Reason Code of 0x80 or greater to indicate that the Virtual]{.mark} [Connection will be]{.mark} [closed.
-If a Reason Code of 0x80 or greater is specified, then the Virtual Connection MUST be]{.mark} [closed]{.mark} [whether or not the CONNACK or
-DISCONNECT is sent]{.mark} \[MQTT-4.13.2-1\]. Sending of one of these Reason Codes does not have consequence for any other Session.
+[The CONNACK and DISCONNECT packets allow a Reason Code of 0x80 or greater to indicate that the Virtual Connection will be deleted. If a Reason Code
+of 0x80 or greater is specified, then the Virtual Connection MUST be deleted whether or not the CONNACK or DISCONNECT is sent]{.mark}
+\[MQTT-4.13.2-1\]. Sending one of these Reason Codes has no consequences for any other Session.
 
 If the Control Packet contains multiple errors the receiver of the Packet can validate the Packet in any order and take the appropriate action for any
 of the errors found.
@@ -4333,7 +4373,7 @@ Although the implementation of the transparent Gateway is simpler when compared 
 support a separate connection for each active client. Some MQTT server implementations might impose a limitation on the number of concurrent
 connections that they support.
 
-![](media/image6.png){width="3.994792213473316in" height="2.6661472003499562in"}
+![](media/image9.png){width="3.994792213473316in" height="2.6661472003499562in"}
 
 Figure XX: Transparent Gateway scenario
 
@@ -4344,21 +4384,21 @@ exchanges between a MQTT-SN client and an aggregating Gateway end at the Gateway
 the Server. Although its implementation is more complex than the one of a transparent Gateway, an aggregating Gateway may be helpful in case of WSNs
 with a very large number of SAs because it reduces the number of MQTT connections that the Gateway must support concurrently.
 
-![](media/image5.png){width="4.578125546806649in" height="3.0552755905511813in"}
+![](media/image11.png){width="4.578125546806649in" height="3.0552755905511813in"}
 
 Figure XX: Aggregating Gateway scenario
 
 ### 4.11.3 Forwarder encapsulator
 
-![](media/image13.png){width="4.704773622047244in" height="2.7964599737532807in"}
+![](media/image6.png){width="4.704773622047244in" height="2.7964599737532807in"}
 
-Figure XX: Forwarder encapsulator with TransparentGateway scenario![](media/image4.png){width="4.9003171478565175in" height="2.8304625984251968in"}
+Figure XX: Forwarder encapsulator with TransparentGateway scenario![](media/image10.png){width="4.9003171478565175in" height="2.8304625984251968in"}
 
 Figure XX: Forwarder encapsulator with Aggregating Gateway scenario
 
 ### 4.12.4 MQTT-SN broker
 
-![](media/image8.png){width="2.8596172353455818in" height="2.983947944006999in"}
+![](media/image13.png){width="2.8596172353455818in" height="2.983947944006999in"}
 
 Figure XX: MQTT-SN broker scenario
 
@@ -4450,7 +4490,7 @@ the "Sleeping clients" section.
 |                            | state.                                                                                |                              |
 +----------------------------+---------------------------------------------------------------------------------------+------------------------------+
 
-![](media/image10.png){width="6.5in" height="6.944444444444445in"}
+![](media/image12.png){width="6.5in" height="6.944444444444445in"}
 
 Figure 4: Client's state transition diagram
 
@@ -4729,7 +4769,7 @@ state by sending a CONNECT packet to the server/gateway.
 >
 > The gateway should attempt to make the best effort to reuse the same topic alias mappings that existed during any initial associated ACTIVE states.
 >
-> ![](media/image9.png){width="4.615764435695538in" height="7.453125546806649in"}
+> ![](media/image3.png){width="4.615764435695538in" height="7.453125546806649in"}
 
 Figure 5: Awake ping packet flush
 
