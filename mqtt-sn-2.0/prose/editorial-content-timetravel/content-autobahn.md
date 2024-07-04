@@ -927,10 +927,12 @@ Table 1: Structure of UTF-8 Encoded Strings
 [The character data in a UTF-8 Encoded String MUST be well-formed UTF-8 as defined by the Unicode
 specification [\[Unicode\]](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#Unicode) and restated in RFC
 3629 [\[RFC3629\]](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#RFC3629). In particular, the character data MUST NOT include
-encodings of code points between U+D800 and U+DFFF]{.mark}. \[MQTT-SN-1.7.4-1\] If the Client or Server receives an MQTT-SN Control Packet containing
-ill-formed UTF-8 it is a Malformed Packet. Refer to [[section 4.11]{.underline}](#handling-errors) for information about handling errors.
+encodings of code points between U+D800 and U+DFFF]{.mark} \[MQTT-SN-1.7.4-1\].
 
-[A UTF-8 Encoded String MUST NOT include an encoding of the null character U+0000.]{.mark} \[MQTT-SN-1.7.4-2\] If a receiver (Server or Client)
+If the Client or Server receives an MQTT-SN Control Packet containing ill-formed UTF-8 it is a Malformed Packet. Refer to [[section
+4.11]{.underline}](#handling-errors) for information about handling errors.
+
+[A UTF-8 Encoded String MUST NOT include an encoding of the null character U+0000]{.mark} \[MQTT-SN-1.7.4-2\]. If a receiver (Server or Client)
 receives an MQTT-SN Control Packet containing U+0000 in a UTF-8 Encoded String it is a Malformed Packet.
 
 UTF-8 Encoded Strings SHOULD NOT include the Unicode \[Unicode\] code points listed below. If a receiver (Server or Client) receives an MQTT-SN
@@ -944,7 +946,7 @@ Control Packet with UTF-8 Encoded Strings containing any of them it MAY treat it
     be non-characters (for example U+0FFFF)
 
 [A UTF-8 encoded sequence 0xEF 0xBB 0xBF is always interpreted as U+FEFF (\"ZERO WIDTH NO-BREAK SPACE\") wherever it appears in a string and MUST NOT
-be skipped over or stripped off by a packet receiver]{.mark}. \[MQTT-SN-1.7.4-3\]
+be skipped over or stripped off by a packet receiver]{.mark} \[MQTT-SN-1.7.4-3\].
 
 > **Informative example**
 >
@@ -1270,7 +1272,7 @@ exchanges using the same Packet Identifiers.
 > It is possible for a Client to send a PUBLISH packet with Packet Identifier 0x1234 and then receive a different PUBLISH packet with Packet
 > Identifier 0x1234 from its Server before it receives a PUBACK for the PUBLISH packet that it sent.
 >
-> ![](media/image11.png){width="3.5502898075240594in" height="2.7864588801399823in"}
+> ![](media/image13.png){width="3.5502898075240594in" height="2.7864588801399823in"}
 
 ## 2.3 MQTT-SN Packet Fields
 
@@ -2547,8 +2549,8 @@ variable length and contains the application data that is being published.
 
 [Table 29: PUBLISH packet]{.underline}
 
-This packet is used by both clients and gateways to publish data for a certain topic. [PUBLISH QoS 0, 1 & 2 packets received by a Gateway **must** be
-associated with a valid Client Session.]{.mark} \[MQTT-SN-3.1.11-1\]
+This packet is used by both clients and gateways to publish data for a certain topic. [PUBLISH QoS 0, 1 & 2 packets received by a Gateway MUST be
+associated with a valid Client Session]{.mark} \[MQTT-SN-3.1.11-1\].
 
 #### 3.1.11.1 Length & Packet Type
 
@@ -2619,9 +2621,7 @@ variable length and contains the application data that is being published.
 
 This packet is used by both clients and gateways to publish data for a certain topic.
 
-> **[Normative Comment]{.mark}**
->
-> [PUBLISH QoS 0, 1 & 2 packets received by a Gateway **must** be associated with a valid Client Session.]{.mark}
+[PUBLISH QoS 0, 1 & 2 packets received by a Gateway MUST be associated with a valid Client Session]{.mark} \[MQTT-SN-3.1.12-1\].
 
 #### 3.1.12.1 Length & Packet Type
 
@@ -3704,11 +3704,11 @@ procedure for setting up a session with a server is illustrated in Fig. 3a and 3
 
 The CONNECT packet contains flags to communicate to the gateway that Auth interactions, or WILL interactions should take place.
 
-![](media/image3.png){width="3.344815179352581in" height="2.4173436132983377in"}
+![](media/image5.png){width="3.344815179352581in" height="2.4173436132983377in"}
 
 Figure 3a: Connect procedure (without Auth flag not Will flag set or no further authentication data required)
 
-![](media/image1.png){width="3.345165135608049in" height="2.963542213473316in"}
+![](media/image10.png){width="3.345165135608049in" height="2.963542213473316in"}
 
 Figure 3b: Connect procedure (with Auth flag set and additional authentication data required)
 
@@ -3855,11 +3855,12 @@ Variable Header and is acknowledged by a PUBACK packet.
 
 [In the QoS 1 delivery protocol, the sender]{.mark}
 
--   [MUST assign an unused Packet Identifier each time it has a new Application Message to publish]{.mark}
+-   [MUST assign an unused Packet Identifier each time it has a new Application Message to publish]{.mark} \[MQTT-SN-4.3.3-1\].
 
--   [MUST send a PUBLISH packet containing this Packet Identifier with QoS 1]{.mark} [and DUP flag set to 0]{.mark}
+-   [MUST send a PUBLISH packet containing this Packet Identifier with QoS 1]{.mark} [and DUP flag set to 0]{.mark} \[MQTT-SN-4.3.3-2\].
 
--   [MUST treat the PUBLISH packet as "unacknowledged" until it has received the corresponding PUBACK packet from the receiver]{.mark}.
+-   [MUST treat the PUBLISH packet as "unacknowledged" until it has received the corresponding PUBACK packet from the receiver]{.mark}
+    \[MQTT-SN-4.3.3-3\].
 
 The Packet Identifier becomes available for reuse once the sender has received the PUBACK packet.
 
@@ -3918,10 +3919,6 @@ overhead associated with QoS 2.
 
 The Packet Identifier becomes available for reuse once the sender has received the PUBCOMP packet or a PUBREC with a Reason Code of 0x80 or greater.
 
-**[In this version of MQTT-SN and in contrast to MQTT 5.0, the sender MUST only send further PUBLISH packets with different Packet Identifiers when it
-is not waiting to receive acknowledgements.]{.mark}** **[At any given time a sender has]{.mark}** **[only 1 outstanding application message]{.mark}**
-**[inflight.]{.mark}**
-
 [In the QoS 2 delivery protocol, the receiver]{.mark}:
 
 -   [MUST respond with a PUBREC containing the Packet Identifier from the incoming PUBLISH packet, having accepted ownership of the Application
@@ -3941,13 +3938,13 @@ is not waiting to receive acknowledgements.]{.mark}** **[At any given time a sen
 ## 4.4 Message delivery retry
 
 [When a Client reconnects with Clean Start set to 0 and a session is present, both the Client and Server MUST resend any unacknowledged PUBLISH
-packets (where QoS \> 0) and PUBREL packets using their original Packet Identifiers.]{.mark}
+packets (where QoS \> 0) and PUBREL packets using their original Packet Identifiers]{.mark} \[MQTT-SN-4.4-1\].
 
 [If PUBACK or PUBREC is received containing a Reason Code of 0x80 or greater the corresponding PUBLISH packet is treated as acknowledged, and MUST NOT
-be retransmitted]{.mark} \[MQTT-SN-4.4-1\].
+be retransmitted]{.mark} \[MQTT-SN-4.4-2\].
 
 [The DUP flag MUST be set to 1 by the Client or Server when it attempts to re-deliver or retransmit a PUBLISH packet. The DUP flag must be set to 0
-for all QoS 0 packets.]{.mark} \[MQTT-SN-4.4-2\]
+for all QoS 0 packets.]{.mark} \[MQTT-SN-4.4-3\].
 
 > Figure 4.3 -- QoS 2 protocol flow diagram, non-normative example
 
@@ -4165,7 +4162,26 @@ If there are multiple Clients, each with its own Subscription to the same Topic,
 published on that Topic. This means that the Subscriptions cannot be used to load-balance Application Messages across multiple consuming Clients as in
 such cases every message is delivered to every subscribing Client.
 
-## 4.9 Server redirection
+## 4.9 Flow Control
+
+The maximum number of unacknowledged MQTT-SN requests in one direction within a Virtual Connection for both Clients and Servers is 1. The packets
+which need acknowledgement and are included in this constraint are:
+
+-   PUBLISH (QoS 1 and 2) and PUBREL
+
+-   REGISTER
+
+-   SUBSCRIBE
+
+-   UNSUBSCRIBE
+
+I[f a Client or Server receives an MQTT-SN request and there is already a request outstanding within the same Virtual Connection then it MUST issue a
+DISCONNECT with Reason Code 147 (Receive Maximum Exceeded) and terminate the Virtual Connection]{.mark} \[MQTT-SN-4.9-1\].
+
+Refer to [[section 3.3.4]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#_PUBLISH_Actions) for a description of
+how Clients and Servers react if they are sent more PUBLISH packets than the Receive Maximum allows.
+
+## 4.10 Server redirection
 
 A Server can request that the Client uses another Server by sending a CONNACK or DISCONNECT packet with Reason Codes 0x9C (Use another server), or
 0x9D (Server moved) as described in [[section 4.13]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#S4_13_Errors).
@@ -4176,7 +4192,7 @@ known to the Client.
 The Reason Code 0x9D (Server moved) specifies that the Client SHOULD permanently switch to using another Server. The other Server is already known to
 the Client.
 
-## 4.10 Enhanced authentication
+## 4.11 Enhanced authentication
 
 The CONNECT packet supports basic authentication of a Virtual Connection using the User Name and Password fields. While these fields are named for a
 simple password authentication, they can be used to carry other forms of authentication such as passing a token as the Password.
@@ -4251,7 +4267,7 @@ the CONNECT packet in conjunction with the underlying transport layer..
 
 -   Server to Client CONNACK rc=0 Authentication Method=\"GS2-KRB5\" Authentication Data=outcome of authentication
 
-### 4.10.1 Re-authentication
+### 4.11.1 Re-authentication
 
 [If the Client supplied an Authentication Method in the CONNECT packet it can initiate a re-authentication at any time after receiving a CONNACK. It
 does this by sending an AUTH packet with a Reason Code of 0x19 (Re-authentication). The Client MUST set the Authentication Method to the same value as
@@ -4274,9 +4290,9 @@ During this re-authentication sequence, the flow of other packets between the Cl
 > The Server might limit the scope of the changes the Client can attempt in a re-authentication by rejecting the re-authentication. For instance, if
 > the Server does not allow the User Name to be changed it can fail any re-authentication attempt which changes the User Name.
 
-## 4.11 Handling errors
+## 4.12 Handling errors
 
-### 4.11.1 Malformed Packet and Protocol Errors
+### 4.12.1 Malformed Packet and Protocol Errors
 
 Definitions of Malformed Packet and Protocol Errors are contained in [[section 1.3]{.underline}](#terminology), some but not all of these error cases
 are noted throughout the specification. The rigor with which a Client or Server checks an MQTT-SN Control Packet it has received will be a compromise
@@ -4314,21 +4330,18 @@ The Reason Codes used for Malformed Packet and Protocol Errors are:
 
 [When a Client detects a Malformed Packet or Protocol Error associated with a Virtual Connection it SHOULD send a DISCONNECT packet containing an
 appropriate Reason Code and MUST delete the associated Virtual Connection.]{.mark} Use Reason Code 0x81 (Malformed Packet) or 0x82 (Protocol Error)
-unless a more specific Reason Code has been defined in section 3.14.2.1 [[Disconnect Reason
-Code]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Disconnect_Reason_Code).
+unless a more specific Reason Code has been defined in [[section 2.3.3]{.underline}](#reason-code).
 
 [When a Server detects a Malformed Packet or Protocol Error for any packet except ADVERTISE, SEARCHGW, GWINFO, PUBWOS and CONNECT, the Server SHOULD
 send a DISCONNECT packet with an appropriate Reason Code and MUST delete the associated Virtual Connection if one exists.]{.mark} \[MQTT-4.13.1-1\] In
 the case of an error in a CONNECT packet it MAY send a CONNACK packet containing the Reason Code. Use Reason Code 0x81 (Malformed Packet) or 0x82
-(Protocol Error) unless a more specific Reason Code has been defined in [[section 3.2.2.2 - Connect Reason
-Code]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Connect_Reason_Code) or in section [[3.14.2.1 -- Disconnect Reason
-Code]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Disconnect_Return_codes). There are no consequences for other
-Sessions.
+(Protocol Error) unless a more specific Reason Code has been defined in [[section 2.3.3]{.underline}](#reason-code). There are no consequences for
+other Sessions.
 
 If either the Server or Client omits to check some feature of a Control Packet, it might fail to detect an error, consequently it might allow data to
 be damaged.
 
-### 4.11.2 Other errors
+### 4.12.2 Other errors
 
 Errors other than Malformed Packet and Protocol Errors cannot be anticipated by the sender because the receiver might have constraints which it has
 not communicated to the sender. A receiving Client or Server might encounter a transient error, such as a shortage of memory, that prevents successful
@@ -4346,7 +4359,7 @@ of the errors found.
 
 Refer to section 5.4.9 for information about handling Disallowed Unicode code points.
 
-## 4.12 Example MQTT-SN Architectures
+## 4.13 Example MQTT-SN Architectures
 
 There are three kinds of MQTT-SN components, MQTT-SN *clients*, MQTT-SN *gateways*, and MQTT-SN *forwarders*. MQTT-SN clients connect themselves to an
 MQTT server/broker via an MQTT-SN Gateway using the MQTT-SN protocol. An MQTT-SN Gateway may or may not be integrated with a MQTT server. Where an
@@ -4361,7 +4374,7 @@ decapsulates the frames it receives from the gateway and sends them to the clien
 >
 > The architectures described below are meant as examples and are not exhaustive.
 
-### 4.12.1 Transparent Gateway
+### 4.13.1 Transparent Gateway
 
 For each connected MQTT-SN client a transparent Gateway will set up and maintain a MQTT connection to the MQTT server. This MQTT connection is
 reserved exclusively for the end-to-end and almost transparent packet exchange between the client and the server. There will be as many MQTT
@@ -4373,36 +4386,36 @@ Although the implementation of the transparent Gateway is simpler when compared 
 support a separate connection for each active client. Some MQTT server implementations might impose a limitation on the number of concurrent
 connections that they support.
 
-![](media/image6.png){width="3.994792213473316in" height="2.6661472003499562in"}
+![](media/image1.png){width="3.994792213473316in" height="2.6661472003499562in"}
 
 Figure XX: Transparent Gateway scenario
 
-### 4.12.2 Aggregating Gateway
+### 4.13.2 Aggregating Gateway
 
 Instead of having a MQTT connection for each connected client, an aggregating Gateway will have only one MQTT connection to the Server. All packet
 exchanges between a MQTT-SN client and an aggregating Gateway end at the Gateway. The Gateway then decides which information will be given further to
 the Server. Although its implementation is more complex than the one of a transparent Gateway, an aggregating Gateway may be helpful in case of WSNs
 with a very large number of SAs because it reduces the number of MQTT connections that the Gateway must support concurrently.
 
-![](media/image10.png){width="4.578125546806649in" height="3.0552755905511813in"}
+![](media/image9.png){width="4.578125546806649in" height="3.0552755905511813in"}
 
 Figure XX: Aggregating Gateway scenario
 
 ### 4.11.3 Forwarder encapsulator
 
-![](media/image2.png){width="4.704773622047244in" height="2.7964599737532807in"}
+![](media/image11.png){width="4.704773622047244in" height="2.7964599737532807in"}
 
-Figure XX: Forwarder encapsulator with TransparentGateway scenario![](media/image12.png){width="4.9003171478565175in" height="2.8304625984251968in"}
+Figure XX: Forwarder encapsulator with TransparentGateway scenario![](media/image3.png){width="4.9003171478565175in" height="2.8304625984251968in"}
 
 Figure XX: Forwarder encapsulator with Aggregating Gateway scenario
 
-### 4.12.4 MQTT-SN broker
+### 4.13.4 MQTT-SN broker
 
 ![](media/image7.png){width="2.8596172353455818in" height="2.983947944006999in"}
 
 Figure XX: MQTT-SN broker scenario
 
-## 4.13 Gateway Advertisement and Discovery
+## 4.14 Gateway Advertisement and Discovery
 
 A Gateway may announce its presence by periodically sending an ADVERTISE packet to some or all devices that are currently parts of the network. A
 gateway should only advertise its presence if it is connected to a server, or is itself a server.
@@ -4443,7 +4456,7 @@ client receives a GWINFO packet it will cancel the transmission of its GWINFO pa
 In case of no response the SEARCHGW packet may be retransmitted. In this case the time intervals between consecutive SEARCHGW packets should be
 increased by the exponential backoff algorithm described in the appendix.
 
-## 4.14 Client states
+## 4.15 Client states
 
 At any given point in time, a client may be in one of **5 different states**. Transition through these states is governed by a strictly coordinated
 sequence of packets between client and server/gateway and further mediated by timers resident on the gateway. A client is in the *active* state when
@@ -4490,11 +4503,11 @@ the "Sleeping clients" section.
 |                            | state.                                                                                |                              |
 +----------------------------+---------------------------------------------------------------------------------------+------------------------------+
 
-![](media/image9.png){width="6.5in" height="6.944444444444445in"}
+![](media/image6.png){width="6.5in" height="6.944444444444445in"}
 
 Figure 4: The Server View of the Client State
 
-### 4.14.1 Gateway timers
+### 4.15.1 Gateway timers
 
 The following timers must be managed by a Gateway per Client to handle the different Client states:
 
@@ -4504,7 +4517,7 @@ The following timers must be managed by a Gateway per Client to handle the diffe
 -   "Session Expiry" timer based on the value defined in the CONNECT or the DISCONNECT packet. If expired, the session state associated with the
     Client can be removed.
 
-## 4.15 Clean start
+## 4.16 Clean start
 
 When a client disconnects, its subscriptions are retained for no less than the session expiration interval. They are persistent and valid for new (non
 clean start) sessions, until either they are explicitly un-subscribed by the client, or the client establishes a new session with the "clean start"
@@ -4527,7 +4540,7 @@ The two flags "CleanStart" and "Will" in the CONNECT Packet have the following m
 Note that if a client wants to delete only its Will data at Virtual Connection creation, it could send a CONNECT packet with "CleanStart=false" and
 "Will=false".
 
-## 4.16 Topic Registration
+## 4.17 Topic Registration
 
 Because of the limited bandwidth and the small packet payload in wireless sensor networks, data is not published together with its topic name as in
 MQTT. A registration procedure is introduced which allows both a client and a gateway to inform its peer about the short topic alias and its
@@ -4569,7 +4582,7 @@ topic names that contain wildcard characters such as \# or +.
 >
 > The gateway should attempt to make the best effort to reuse the same topic alias mappings that existed during any initial associated ACTIVE states.
 
-## 4.17 Topic Mapping and Aliasing
+## 4.18 Topic Mapping and Aliasing
 
 [On the gateway the mapping table between registered topic ids and topic names MUST be implemented per client (and not by a single shared pool between
 all clients), to reduce the risk of an incorrect topic id from a client matching another client's valid topic.]{.mark}
@@ -4578,7 +4591,7 @@ For performance and efficiency reasons the broker may choose to align topic alia
 mapping table of predefined topic aliases is separate from normal registered aliases. It is global and shared between all clients and gateways and may
 overlap with registered aliases, since it is in a different pool.
 
-## 4.18 Predefined topic aliases and short topic names
+## 4.19 Predefined topic aliases and short topic names
 
 A "predefined" topic alias is a topic alias whose mapping to a topic name is known in advance by both the client' application and the gateway. This is
 indicated in the *Flags* field of the packet. When using pre-defined topic aliases, both sides can start immediately with the sending of PUBLISH
@@ -4593,7 +4606,7 @@ REGISTER procedure is needed for a short topic name. Otherwise, all rules that a
 however that it does not make sense to do wildcarding in subscriptions to short topic names, because it is not possible to define a meaningful name
 hierarchy with only two characters.
 
-## 4.19 Client's Topic Subscribe/Unsubscribe Procedure
+## 4.209 Client's Topic Subscribe/Unsubscribe Procedure
 
 To subscribe to a topic name, a client sends a SUBSCRIBE packet to the gateway with the topic name included in that packet. If the gateway is able
 accept the subscription, it assigns a topic alias to the received topic name and returns it within a SUBACK packet to the client. If the subscription
@@ -4611,7 +4624,7 @@ To unsubscribe, a client sends an UNSUBSCRIBE packet to the gateway, which will 
 
 As for the REGISTER procedure, a client may have only one SUBSCRIBE or one UNSUBSCRIBE transaction open at a time.
 
-## 4.20 Client's Publish Procedure
+## 4.21 Client's Publish Procedure
 
 After having registered successfully a topic name with the gateway, the client can start publishing data relating to the registered topic name by
 sending PUBLISH packets to the gateway. The PUBLISH packets contain the assigned topic alias.
@@ -4633,7 +4646,7 @@ This prevents retransmitted Qos 1 and Qos 2 messages from being received out of 
 [A Client MUST NOT send a Qos 1 or Qos 2 PUBLISH packet with a new Application Message until it has received a PUBACK or PUBCOMP Packet with the
 Packet Identifier corresponding to the PUBLISH packet previously sent. \[MQTT-SN-???\]]{.mark}
 
-## 4.21 Gateway's Publish Procedure
+## 4.22 Gateway's Publish Procedure
 
 Like the client's PUBLISH procedure described in Section 3.14, the gateway sends PUBLISH packets with the topic alias value that was returned in the
 SUBACK packet to the client.
@@ -4655,7 +4668,7 @@ procedure, i.e. no warning is sent to the affected subscribers.
 [A Gateway MUST NOT send a Qos 1 or Qos 2 PUBLISH packet with a new Application Message until it has received a PUBACK or PUBCOMP Packet with the
 Packet Identifier corresponding to the PUBLISH packet previously sent.]{.mark}
 
-## 4.22 Keep Alive and PING Procedure
+## 4.23 Keep Alive and PING Procedure
 
 As with MQTT, the value of the Keep Alive timer is indicated in the CONNECT packet. The client should send a PINGREQ packet within each Keep Alive
 time period, which the gateway acknowledges with a PINGRESP packet.
@@ -4668,7 +4681,7 @@ the gateway even after multiple retransmissions of the PINGREQ packet, it should
 this gateway. Note that because the clients' keep-alive timers are not synchronized with each other, in case of a gateway failure there is practically
 no danger for a storm of CONNECT packets sent almost at the same time by all affected clients towards a new gateway.
 
-## 4.23 Client's Disconnect Procedure
+## 4.24 Client's Disconnect Procedure
 
 A client sends a DISCONNECT packet to the gateway to indicate that it is about to delete its Virtual Connection. After this point, the client is then
 required to establish a new Virtual Connection with the gateway before it can exchange information with that gateway again. [Like MQTT, sending the
@@ -4680,7 +4693,7 @@ A client may also receive an unsolicited DISCONNECT sent by the gateway. This ma
 identify the client to which a received packet belongs. Upon receiving such a DISCONNECT packet a client should try to setup the Virtual Connection
 again by sending a CONNECT packet to the gateway.
 
-## 4.24 Retransmission Procedure in the Client and Gateway
+## 4.25 Retransmission Procedure in the Client and Gateway
 
 The Client or Gateway will start a retransmission retry timer, T~retry~, when one of the following Packets is sent.
 
@@ -4691,7 +4704,7 @@ encapsulation if there is one, after T~retry~ has passed or delete the Virtual C
 has passed or delete the Virtual Connection.]{.mark}
 
 [The timer is canceled if the corresponding acknowledgement packet is received. The Client or Gateway MUST retransmit the Packet after T~retry~ has
-passed or]{.mark} [close]{.mark} [the Virtual Connection.]{.mark}
+passed or delete the Virtual Connection.]{.mark}
 
 [If a Packet can be retransmitted it MUST be sent using a Unicast address.]{.mark}
 
@@ -4699,19 +4712,19 @@ passed or]{.mark} [close]{.mark} [the Virtual Connection.]{.mark}
 
 [PUBLISH (used for QoS 0) and PUBLISH WITHOUT SESSION Packets MUST NOT be retransmitted.]{.mark}
 
-If the Virtual Connection is closed, the protocol will restart when a new CONNECT packet flows from the Client.
+If the Virtual Connection is deleted, the protocol will restart when a new CONNECT packet flows from the Client.
 
-Non normative comment.
-
-The value of the retry interval T~retry~ is not specified by the protocol, however, to be useful it ought to be longer than the network round trip
-time. If it is excessively long, the time taken to detect and retransmit lost Packets will also be excessively long. Implementers need to take care
-not to use a retry interval that might cause the network to become congested with retried Packets.
+> **Informative comment**
+>
+> The value of the retry interval T~retry~ is not specified by the protocol, however, to be useful it ought to be longer than the network round trip
+> time. If it is excessively long, the time taken to detect and retransmit lost Packets will also be excessively long. Implementers need to take care
+> not to use a retry interval that might cause the network to become congested with retried Packets.
 
 The PINGREQ Packet described in \[[[3.1.21 PINGREQ]{.underline}](#pingreq)\] can also be used to determine whether the virtual connection is alive.
 
 An example of a retry algorithm is described in \[[[Appendix E.F4]{.underline}](#f.4-exponential-backoff)\]
 
-## 4.25 Sleeping clients
+## 4.26 Sleeping clients
 
 *Sleeping* clients are clients residing on (battery-operated) devices that want to save as much energy as possible. These devices need to enter a
 sleep mode whenever they are not active and will wake up whenever they have data to send or to receive. The server/gateway needs to be aware of the
@@ -4769,11 +4782,11 @@ state by sending a CONNECT packet to the server/gateway.
 >
 > The gateway should attempt to make the best effort to reuse the same topic alias mappings that existed during any initial associated ACTIVE states.
 >
-> ![](media/image13.png){width="4.615764435695538in" height="7.453125546806649in"}
+> ![](media/image8.png){width="4.615764435695538in" height="7.453125546806649in"}
 
 Figure 5: Awake ping packet flush
 
-## 4.26 Retained Packets
+## 4.27 Retained Packets
 
 If the RETAIN flag is set to 1 in a PUBLISH packet sent by a Client to a Server, the Server MUST replace any existing retained packet for this topic
 and store the Publish Data, so that it can be delivered to future subscribers whose subscriptions match its Topic Name. If the Publish Data contains
@@ -4781,7 +4794,7 @@ zero bytes it is processed normally by the Server but any retained packet with t
 topic will not receive a retained packet. A retained packet with Publish Data containing zero bytes MUST NOT be stored as a retained packet on the
 Server.
 
-## 4.27 Optional Features
+## 4.28 Optional Features
 
 Support for the ADVERTISE, SEARCHGW, GWINFO and PUBWOS packet types is optional.
 
