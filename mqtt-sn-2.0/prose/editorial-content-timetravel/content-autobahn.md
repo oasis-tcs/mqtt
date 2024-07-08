@@ -1312,7 +1312,7 @@ exchanges using the same Packet Identifiers.
 > It is possible for a Client to send a PUBLISH packet with Packet Identifier 0x1234 and then receive a different PUBLISH packet with Packet
 > Identifier 0x1234 from its Server before it receives a PUBACK for the PUBLISH packet that it sent.
 >
-> ![](media/image13.png){width="3.5502898075240594in" height="2.7864588801399823in"}
+> ![](media/image9.png){width="3.5502898075240594in" height="2.7864588801399823in"}
 
 ## 2.3 MQTT-SN Packet Fields
 
@@ -1974,8 +1974,8 @@ The Connect optional *Will Flags* field includes the following flags:
 
 [If the Will Flag is set to 1 this indicates that a Will Message MUST be stored on the Server and associated with the Session]{.mark}
 \[MQTT-SN-3.1.4.9-1\]. The Will Message consists of the Will Topic, and Will Payload fields in the CONNECT Packet. [The Will Message MUST be published
-after the Session ends, unless the Will Message has been deleted by the Server on receipt of a DISCONNECT packet with Reason Code 0x00 (Normal
-disconnection)]{.mark} \[MQTT-SN\--3.1.4.9-2\].
+after the Virtual Connection is deleted or the Session ends, unless the Will Message has been deleted by the Server on receipt of a DISCONNECT packet
+with Reason Code 0x00 (Normal disconnection)]{.mark} \[MQTT-SN\--3.1.4.9-2\].
 
 Situations in which the Will Message is published include, but are not limited to:
 
@@ -1987,9 +1987,9 @@ Situations in which the Will Message is published include, but are not limited t
 MUST be removed from the stored Session State in the Server once it has been published or the Server has received a DISCONNECT packet with a Reason
 Code of 0x00 (Normal disconnection) from the Client]{.mark} \[MQTT-SN-3.1.4.9-4\].
 
-The Server SHOULD publish Will Messages promptly after the Session ends. In the case of a Server shutdown or failure, the Server MAY defer publication
-of Will Messages until a subsequent restart. If this happens, there might be a delay between the time the Server experienced failure and when the Will
-Message is published.
+The Server SHOULD publish Will Messages promptly after the Virtual Connection is deleted or the Session ends, whichever occurs first. In the case of a
+Server shutdown or failure, the Server MAY defer publication of Will Messages until a subsequent restart. If this happens, there might be a delay
+between the time the Server experienced failure and when the Will Message is published.
 
 #### 3.1.4.10 Will Topic Short or Will Topic Length (optional, only with *Will* flag set)
 
@@ -3343,7 +3343,9 @@ waiting for packets sent by the server/gateway.
 
 #### 3.1.21.4 PINGREQ Actions
 
-[The Server MUST send a PINGRESP packet in response to a PINGREQ packet]{.mark} \[MQTT-SN-3.1.21.4-1\][.]{.mark}
+[The Server MUST send a PINGRESP packet in response to a PINGREQ packet]{.mark} \[MQTT-SN-3.1.21.4-1\].
+
+[The Client MAY send a PINGRESP packet in response to a PINGREQ packet]{.mark} \[MQTT-SN-3.1.21.4-2\].
 
 ### 3.1.22 PINGRESP - Ping Response
 
@@ -3931,7 +3933,7 @@ The CONNECT packet contains flags to communicate to the gateway that Auth intera
 
 Figure 3a: Connect procedure (without Auth flag not Will flag set or no further authentication data required)
 
-![](media/image10.png){width="3.345165135608049in" height="2.963542213473316in"}
+![](media/image6.png){width="3.345165135608049in" height="2.963542213473316in"}
 
 Figure 3b: Connect procedure (with Auth flag set and additional authentication data required)
 
@@ -4665,21 +4667,21 @@ exchanges between a MQTT-SN client and an aggregating Gateway end at the Gateway
 the Server. Although its implementation is more complex than the one of a transparent Gateway, an aggregating Gateway may be helpful in case of WSNs
 with a very large number of SAs because it reduces the number of MQTT connections that the Gateway must support concurrently.
 
-![](media/image5.png){width="4.578125546806649in" height="3.0552755905511813in"}
+![](media/image12.png){width="4.578125546806649in" height="3.0552755905511813in"}
 
 Figure XX: Aggregating Gateway scenario
 
 ### 4.11.3 Forwarder encapsulator
 
-![](media/image6.png){width="4.704773622047244in" height="2.7964599737532807in"}
+![](media/image4.png){width="4.704773622047244in" height="2.7964599737532807in"}
 
-Figure XX: Forwarder encapsulator with TransparentGateway scenario![](media/image4.png){width="4.9003171478565175in" height="2.8304625984251968in"}
+Figure XX: Forwarder encapsulator with TransparentGateway scenario![](media/image13.png){width="4.9003171478565175in" height="2.8304625984251968in"}
 
 Figure XX: Forwarder encapsulator with Aggregating Gateway scenario
 
 ### 4.13.4 MQTT-SN broker
 
-![](media/image9.png){width="2.8596172353455818in" height="2.983947944006999in"}
+![](media/image10.png){width="2.8596172353455818in" height="2.983947944006999in"}
 
 Figure XX: MQTT-SN broker scenario
 
@@ -4771,7 +4773,7 @@ the "Sleeping clients" section.
 |                            | state.                                                                                |                              |
 +----------------------------+---------------------------------------------------------------------------------------+------------------------------+
 
-![](media/image3.png){width="6.5in" height="6.944444444444445in"}
+![](media/image7.png){width="6.5in" height="6.944444444444445in"}
 
 Figure 4: The Server View of the Client State
 
@@ -5019,7 +5021,7 @@ state by sending a CONNECT packet to the server/gateway.
 >
 > The gateway should attempt to make the best effort to reuse the same topic alias mappings that existed during any initial associated ACTIVE states.
 >
-> ![](media/image12.png){width="4.615764435695538in" height="7.453125546806649in"}
+> ![](media/image8.png){width="4.615764435695538in" height="7.453125546806649in"}
 
 Figure 5: Awake ping packet flush
 
