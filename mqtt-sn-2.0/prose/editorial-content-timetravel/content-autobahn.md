@@ -1312,7 +1312,7 @@ exchanges using the same Packet Identifiers.
 > It is possible for a Client to send a PUBLISH packet with Packet Identifier 0x1234 and then receive a different PUBLISH packet with Packet
 > Identifier 0x1234 from its Server before it receives a PUBACK for the PUBLISH packet that it sent.
 >
-> ![](media/image9.png){width="3.5502898075240594in" height="2.7864588801399823in"}
+> ![](media/image13.png){width="3.5502898075240594in" height="2.7864588801399823in"}
 
 ## 2.3 MQTT-SN Packet Fields
 
@@ -2035,25 +2035,20 @@ Note that a Server MAY support multiple protocols on the same network endpoint. 
 validates the connection attempt as follows.
 
 1.  [The Server MUST validate that the CONNECT packet matches the format described in]{.mark} [[[section
-    3.1]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#_CONNECT_%E2%80%93_Connection) and MUST NOT create a
-    Virtual Connection for this CONNECT if it does not match.]{.mark} \[MQTT-SN-3.1.4.17-1\] The Server MAY send a CONNACK with a Reason Code of 0x80
-    or greater as described in section 4.13.
+    3.1.4]{.underline}](#connect---connection-request) and MUST NOT create a Virtual Connection for this CONNECT if it does not match.]{.mark}
+    \[MQTT-SN-3.1.4.17-1\] The Server MAY send a CONNACK with a Reason Code of 0x80 or greater as described in [[section
+    4.12]{.underline}](#handling-errors).
 
-<!-- -->
-
-3.  [The Server MAY check that the contents of the CONNECT packet meet any further restrictions and SHOULD perform authentication and authorization
+2.  [The Server MAY check that the contents of the CONNECT packet meet any further restrictions and SHOULD perform authentication and authorization
     checks. If any of these checks fail, it MUST NOT create a Virtual Connection for this CONNECT]{.mark} \[MQTT-SN-3.1.4.17-2\]. It MAY send an
     appropriate CONNACK response with a Reason Code of 0x80 or greater as described in [[section
-    3.2]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#_CONNACK_%E2%80%93_Connect) and [[section
-    4.13]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#S4_13_Errors).
+    3.1.5]{.underline}](#connack---connect-acknowledgement) and [[section 4.12]{.underline}](#handling-errors).
 
 If validation is successful, the Server performs the following steps.
 
 1.  [If the ClientID represents a Client already connected to the Server, the Server sends a DISCONNECT packet to the existing Client with Reason Code
-    of 0x8E (Session taken over) as described in]{.mark} [[[section
-    4.13]{.underline}](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#S4_13_Errors) and MUST delete the Virtual Connection of
-    the existing Client]{.mark} \[MQTT-SN-3.1.4.17-3\]. If the existing Client has a Will Message, that Will Message is published as described in
-    section 3.1.2.5.
+    of 0x8E (Session taken over) as described in [[section 4.12]{.underline}](#handling-errors) and MUST delete the Virtual Connection of the existing
+    Client]{.mark} \[MQTT-SN-3.1.4.17-3\]. If the existing Client has a Will Message, that Will Message is published as described in section 3.1.2.5.
 
 2.  [The Server MUST perform the processing of Clean Start]{.mark} that is described in [[section 4.16]{.underline}](#clean-start)
     \[MQTT-SN-3.1.4.17-4\].
@@ -3089,14 +3084,14 @@ Handling option is not 2, all matching retained messages are sent to the Client.
 maximum QoS that was granted for that Subscription or indicate that the subscription failed]{.mark} \[MQTT-SN-3.1.17.5-6\]. The Server might grant a
 lower Maximum QoS than the subscriber requested. [The QoS of Application Messages sent in response to a Subscription MUST be the minimum of the QoS of
 the originally published Application message and the Maximum QoS granted by the Server]{.mark} \[MQTT-SN-3.1.17.5-7\]. The server is permitted to send
-duplicate copies of a [Application]{.mark} message to a subscriber in the case where the original [Application]{.mark} message was published with QoS
-1 and the maximum QoS granted was QoS 0.
+duplicate copies of a Application message to a subscriber in the case where the original Application message was published with QoS 1 and the maximum
+QoS granted was QoS 0.
 
 > **Informative comment\
 > **If a subscribing Client has been granted maximum QoS 1 for a particular Topic Filter, then a QoS 0 Application Message matching the filter is
-> delivered to the Client at QoS 0. This means that at most one copy of the [Application]{.mark} message is received by the Client. On the other hand,
-> a QoS 2 [Application]{.mark} Message published to the same topic is downgraded by the Server to QoS 1 for delivery to the Client, so that Client
-> might receive duplicate copies of the [Application]{.mark} Message.
+> delivered to the Client at QoS 0. This means that at most one copy of the Application Message is received by the Client. On the other hand, a QoS 2
+> Application Message published to the same topic is downgraded by the Server to QoS 1 for delivery to the Client, so that Client might receive
+> duplicate copies of the Application Message.
 >
 > **Informative comment**
 >
@@ -3107,8 +3102,8 @@ duplicate copies of a [Application]{.mark} message to a subscriber in the case w
 > **Informative comment**
 >
 > Subscribing to a Topic Filter at QoS 2 is equivalent to saying \"I would like to receive Application Messages matching this filter at the QoS with
-> which they were published\". This means a publisher is responsible for determining the maximum QoS an [Application]{.mark} Message can be delivered
-> at, but a subscriber is able to require that the Server downgrades the QoS to one more suitable for its usage.
+> which they were published\". This means a publisher is responsible for determining the maximum QoS an Application Message can be delivered at, but a
+> subscriber is able to require that the Server downgrades the QoS to one more suitable for its usage.
 
 ### 3.1.18 SUBACK - Subscribe Acknowledgement
 
@@ -3547,8 +3542,8 @@ On receipt of DISCONNECT, the Client:
 [Table 53: Format of an encapsulated MQTT-SN frame]{.underline}
 
 As detailed in Section 4, MQTT-SN clients can also access a gateway via a forwarder in case the gateway is not directly attached to their WSNs. The
-forwarder simply encapsulates the MQTT-SN frames it receives on the wireless side and forwards them unchanged to the gateway; in the opposite
-direction, it decapsulates the frames it receives from the gateway and sends them to the clients, unchanged too.
+forwarder simply encapsulates the MQTT-SN Packets it receives on the wireless side and forwards them unchanged to the gateway; in the opposite
+direction, it decapsulates the Packets it receives from the gateway and sends them to the clients, unchanged too.
 
 #### 3.1.24.1 Length
 
@@ -3881,13 +3876,13 @@ same as those defined by MQTT.
 In order to implement QoS 1 and QoS 2 protocol flows the Client and Server need to associate state with the Client Identifier, this is referred to as
 the Session State. The Server also stores the subscriptions as part of the Session State.
 
-The session can continue across a sequence of Virtual Connections. It lasts as long as the latest Virtual Connection plus the Session Expiry Interval.
+The Session can continue across a sequence of Virtual Connections. It lasts as long as the latest Virtual Connection plus the Session Expiry Interval.
 
 The Session State in the Client consists of:
 
--   QoS 1 and QoS 2 messages which have been sent to the Server, but have not been completely acknowledged.
+-   QoS 1 and QoS 2 PUBLISH Packets which have been sent to the Server, but have not been completely acknowledged.
 
--   QoS 2 messages which have been received from the Server, but have not been completely acknowledged.
+-   QoS 2 PUBLISH Packets which have been received from the Server, but have not been completely acknowledged.
 
 The Session State in the Server consists of:
 
@@ -3895,15 +3890,17 @@ The Session State in the Server consists of:
 
 -   The Client's subscriptions, including any Subscription Identifiers.
 
--   QoS 1 and QoS 2 messages which have been sent to the Client, but have not been completely acknowledged.
+-   QoS 1 and QoS 2 PUBLISH Packets which have been sent to the Client, but have not been completely acknowledged.
 
--   QoS 1 and QoS 2 messages pending transmission to the Client and OPTIONALLY QoS 0 messages pending transmission to the Client.
+-   QoS 1 and QoS 2 PUBLISH Packets pending transmission to the Client and OPTIONALLY QoS 0 PUBLISH Packets pending transmission to the Client.
 
--   QoS 2 messages which have been received from the Client, but have not been completely acknowledged.
+-   QoS 2 PUBLISH Packets which have been received from the Client, but have not been completely acknowledged.
 
 -   The Will Message and the Will Topic (Will data).
 
 -   If the Session is currently not connected, the time at which the Session will end and Session State will be discarded.
+
+Retained messages do not form part of the Session State in the Server, they are not deleted as a result of a Session ending.
 
 ### 4.1.1 Storing Session State
 
@@ -3911,7 +3908,7 @@ The Session State in the Server consists of:
 
 [The Client MUST NOT discard the Session State while the Virtual Connection exists]{.mark} \[MQTT-SN-4.1.1-2\].
 
-[The Server MUST discard the Session State when the Virtual Connection is deleted]{.mark} [and]{.mark} [the Session Expiry Interval has passed]{.mark}
+[The Server MUST discard the Session State when the Virtual Connection is deleted and]{.mark} [the Session Expiry Interval has passed]{.mark}
 \[MQTT-SN-4.1.1-3\].
 
 **Informative comment**
@@ -3929,11 +3926,11 @@ procedure for setting up a session with a server is illustrated in Fig. 3a and 3
 
 The CONNECT packet contains flags to communicate to the gateway that Auth interactions, or WILL interactions should take place.
 
-![](media/image1.png){width="3.344815179352581in" height="2.4173436132983377in"}
+![](media/image12.png){width="3.344815179352581in" height="2.4173436132983377in"}
 
 Figure 3a: Connect procedure (without Auth flag not Will flag set or no further authentication data required)
 
-![](media/image6.png){width="3.345165135608049in" height="2.963542213473316in"}
+![](media/image5.png){width="3.345165135608049in" height="2.963542213473316in"}
 
 Figure 3b: Connect procedure (with Auth flag set and additional authentication data required)
 
@@ -4656,7 +4653,7 @@ Although the implementation of the transparent Gateway is simpler when compared 
 support a separate connection for each active client. Some MQTT server implementations might impose a limitation on the number of concurrent
 connections that they support.
 
-![](media/image11.png){width="3.994792213473316in" height="2.6661472003499562in"}
+![](media/image10.png){width="3.994792213473316in" height="2.6661472003499562in"}
 
 Figure XX: Transparent Gateway scenario
 
@@ -4667,21 +4664,21 @@ exchanges between a MQTT-SN client and an aggregating Gateway end at the Gateway
 the Server. Although its implementation is more complex than the one of a transparent Gateway, an aggregating Gateway may be helpful in case of WSNs
 with a very large number of SAs because it reduces the number of MQTT connections that the Gateway must support concurrently.
 
-![](media/image12.png){width="4.578125546806649in" height="3.0552755905511813in"}
+![](media/image9.png){width="4.578125546806649in" height="3.0552755905511813in"}
 
 Figure XX: Aggregating Gateway scenario
 
 ### 4.11.3 Forwarder encapsulator
 
-![](media/image4.png){width="4.704773622047244in" height="2.7964599737532807in"}
+![](media/image3.png){width="4.704773622047244in" height="2.7964599737532807in"}
 
-Figure XX: Forwarder encapsulator with TransparentGateway scenario![](media/image13.png){width="4.9003171478565175in" height="2.8304625984251968in"}
+Figure XX: Forwarder encapsulator with TransparentGateway scenario![](media/image4.png){width="4.9003171478565175in" height="2.8304625984251968in"}
 
 Figure XX: Forwarder encapsulator with Aggregating Gateway scenario
 
 ### 4.13.4 MQTT-SN broker
 
-![](media/image10.png){width="2.8596172353455818in" height="2.983947944006999in"}
+![](media/image8.png){width="2.8596172353455818in" height="2.983947944006999in"}
 
 Figure XX: MQTT-SN broker scenario
 
@@ -4773,7 +4770,7 @@ the "Sleeping clients" section.
 |                            | state.                                                                                |                              |
 +----------------------------+---------------------------------------------------------------------------------------+------------------------------+
 
-![](media/image7.png){width="6.5in" height="6.944444444444445in"}
+![](media/image11.png){width="6.5in" height="6.944444444444445in"}
 
 Figure 4: The Server View of the Client State
 
@@ -5021,7 +5018,7 @@ state by sending a CONNECT packet to the server/gateway.
 >
 > The gateway should attempt to make the best effort to reuse the same topic alias mappings that existed during any initial associated ACTIVE states.
 >
-> ![](media/image8.png){width="4.615764435695538in" height="7.453125546806649in"}
+> ![](media/image7.png){width="4.615764435695538in" height="7.453125546806649in"}
 
 Figure 5: Awake ping packet flush
 
