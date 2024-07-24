@@ -63,7 +63,7 @@
 (draw-gap (text "Monotonic Counter [OPT]" :cursive  [:normal " (F=E if D == 0 else E+D+1)"]) :optional-byte)
 
 (draw-box "F:M")
-(draw-gap "MQTT SN packet" :byte)
+(draw-gap "Protected MQTT-SN Packet" :byte)
 
 (draw-box "M+1:N")
 (draw-gap "Authentication Tag" :byte)
