@@ -57,10 +57,10 @@
 (draw-gap "Random" :byte)
 
 (draw-box "17:17+C" :bg-lightgray)
-(draw-gap (text "Crypto Material?" :cursive [:normal " (E=17 if C == 0 else 17+C+1)"]) :optional-byte)
+(draw-gap (text "Crypto Material [OPT]" :cursive [:normal " (E=17 if C == 0 else 17+C+1)"]) :optional-byte)
 
 (draw-box "E:E+D" :bg-lightgray)
-(draw-gap (text "Monotonic Counter?" :cursive  [:normal " (F=E if D == 0 else E+D+1)"]) :optional-byte)
+(draw-gap (text "Monotonic Counter [OPT]" :cursive  [:normal " (F=E if D == 0 else E+D+1)"]) :optional-byte)
 
 (draw-box "F:M")
 (draw-gap "MQTT SN packet" :byte)

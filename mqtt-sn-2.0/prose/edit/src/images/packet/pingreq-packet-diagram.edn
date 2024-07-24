@@ -32,6 +32,6 @@
 (draw-box "Packet Identifier LSB" :byte)
 
 (draw-box (text "5 ... N") :bg-lightgray)
-(draw-gap (text "Client Identifier?" :cursive) [:bg-lightgray :byte])
+(draw-gap (text "Client Identifier [OPT]" :cursive) [:bg-lightgray :byte])
 
 (draw-bottom)

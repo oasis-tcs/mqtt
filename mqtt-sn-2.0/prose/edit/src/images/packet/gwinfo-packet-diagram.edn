@@ -28,6 +28,6 @@
 (draw-box "GwId" :byte)
 
 (draw-box (text "4 ... N") :bg-lightgray)
-(draw-gap (text "GwAdd" :plain [:cursive "?"]) [:bg-lightgray :byte])
+(draw-gap (text "GwAdd" :plain [:cursive " [OPT]"]) [:bg-lightgray :byte])
 
 (draw-bottom)

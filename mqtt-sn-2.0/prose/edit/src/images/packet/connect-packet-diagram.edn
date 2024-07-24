@@ -46,7 +46,7 @@
 (draw-box "X" {:span 1})
 
 (draw-box (text ""))
-(draw-box (text "WILL FLAGS" :plain [:cursive "? (ONLY WHEN WILL FLAG SET)"]) [:bg-mediumgray :byte])
+(draw-box (text "WILL FLAGS" :plain [:cursive "[OPT] (ONLY WHEN WILL FLAG SET)"]) [:bg-mediumgray :byte])
 
 (draw-box (text ""))
 (draw-box "Reserved" [:bg-lightgray {:span 3}])
@@ -116,7 +116,7 @@
 (draw-box "Will Payload Or (Will Topic Name + Will Payload)" [:bg-lightgray :byte])
 
 (draw-box (text ""))
-(draw-box (text "AUTH DATA" :plain [:cursive "? (ONLY WHEN AUTH FLAG SET)"]) [:bg-mediumgray :byte])
+(draw-box (text "AUTH DATA" :plain [:cursive "[OPT] (ONLY WHEN AUTH FLAG SET)"]) [:bg-mediumgray :byte])
 
 (draw-box (text "14+1") :bg-lightgray)
 (draw-box "Auth Method Length" [:bg-lightgray :byte])

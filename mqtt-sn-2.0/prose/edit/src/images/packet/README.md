@@ -32,12 +32,12 @@ Example of rendering of SVG from these text files (and subsequent rasterization 
 ❯ svgexport "${packet}"-packet-diagram.svg "${packet}"-packet-diagram.png '100%'
 ```
 
-Processing all (blunt bash hack):
+Processing all (blunt bash hack with short naps to akeep the node diva at ease):
 
 ```bash
 ❯ cd /some/where && for f in ./*.edn; \
   do stem="${f%.*}"; bytefield-svg -s "${stem}.edn" -o "${stem}.svg" \
-    && svgexport "${stem}.svg" "${stem}.png" '100%' \
+    && sleep 1 && svgexport "${stem}.svg" "${stem}.png" '100%' \
     && printf "processed %s\n" "${stem}.edn"; \
   done
 ```
