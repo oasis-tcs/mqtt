@@ -113,7 +113,7 @@
 (draw-box "Will Payload Length LSB" [:bg-lightgray :byte])
 
 (draw-box (text "14+N") :bg-lightgray)
-(draw-box "Will Payload Or (Will Topic Name + Will Payload)" [:bg-lightgray :byte])
+(draw-gap "Will Payload Or (Will Topic Name + Will Payload)" [:bg-lightgray :byte])
 
 (draw-box (text ""))
 (draw-box (text "AUTH DATA" :plain [:cursive "[OPT] (ONLY WHEN AUTH FLAG SET)"]) [:bg-mediumgray :byte])
@@ -131,7 +131,7 @@
 (draw-box "Auth Data Length LSB" [:bg-lightgray :byte])
 
 (draw-box (text "14+5") :bg-lightgray)
-(draw-box "Auth Data" [:bg-lightgray :byte])
+(draw-gap "Auth Data" [:bg-lightgray :byte])
 
 (draw-box (text "15 ... N"))
 (draw-gap "Client Identifier" :byte)
