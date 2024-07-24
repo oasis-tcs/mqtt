@@ -57,7 +57,7 @@
 (draw-box (text "Reason Code [OPT]" :plain [:small " (ONLY WHEN REASON CODE PRESENT FLAG SET)"] " (C=0 or 1)") :optional-byte)
 
 (draw-box "4+C" :bg-lightgray)
-(draw-box (text "Session Expiry Interval MSB?" :plain [:small " (ONLY WHEN SESSION EXPIRY INTERVAL PRESENT FLAG SET)"] " (S=0 or 4)") :optional-byte)
+(draw-box (text "Session Expiry Interval MSB [OPT]" :plain [:small " (ONLY WHEN SESSION EXPIRY INTERVAL PRESENT FLAG SET)"] " (S=0 or 4)") :optional-byte)
 
 (draw-box "5+C" :bg-lightgray)
 (draw-box (text "Session Expiry Interval [OPT]" :plain [:small " (ONLY WHEN SESSION EXPIRY INTERVAL PRESENT FLAG SET)"]) :optional-byte)

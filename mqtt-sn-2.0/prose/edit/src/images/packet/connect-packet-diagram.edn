@@ -98,7 +98,7 @@
 (draw-box "Max Packet Size LSB" :byte)
 
 (draw-box (text ""))
-(draw-box (text "WILL DATA" :plain [:cursive "? (ONLY WHEN WILL FLAG SET)"]) [:bg-mediumgray :byte])
+(draw-box (text "WILL DATA" :plain [:cursive "[OPT] (ONLY WHEN WILL FLAG SET)"]) [:bg-mediumgray :byte])
 
 (draw-box (text "14+1") :bg-lightgray)
 (draw-box "Will Topic Data MSB" [:bg-lightgray :byte])
