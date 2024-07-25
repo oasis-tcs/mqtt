@@ -18,7 +18,7 @@
 
 **Chairs:**
 
-> [Ian Craggs (<icraggs@gmail.com>), Individual member]{.mark}
+> [Ian Craggs (<icraggs@gmail.com>), Individual]{.mark}
 >
 > Simon Johnson (simon.johnson@hivemq.com), HiveMQ
 
@@ -26,19 +26,19 @@
 
 > Andrew Banks (<Andrew_Banks@uk.ibm.com>), [IBM](http://www.ibm.com)
 >
+> Andy Stanford-Clark (andysc@uk.ibm.com), IBM
+>
 > Davide Lenzarini ([[davide.lenzarini@u-blox.com]{.underline}](mailto:davide.lenzarini@u-blox.com)), u-blox
 >
-> [Ian Craggs (<icraggs@gmail.com>), Individual member]{.mark}
+> [Ian Craggs (<icraggs@gmail.com>), Individual]{.mark}
 >
 > Rahul Gupta (<rahul.gupta@us.ibm.com>), [IBM](http://www.ibm.com)
 >
 > Simon Johnson ([simon](mailto:simon622@gmail.com).johnson@hivemq.com), HiveMQ
 >
-> Stefan Hagen ([[stefan@hagen.link]{.underline}](mailto:stefan@hagen.link)), Individual member
+> Stefan Hagen ([[stefan@hagen.link]{.underline}](mailto:stefan@hagen.link)), Individual
 >
 > Tara E. Walker (<tara.walker@microsoft.com>), [Microsoft](http://www.microsoft.com)
->
-> Andy Stanford-Clark (andysc@uk.ibm.com, IBM UK
 
 **Related work:**
 
@@ -694,9 +694,19 @@ A Network Address which represents all or groups of devices on a network. For pa
 >
 > Multicast Address as used in this specification also includes the concept of broadcast addresses, for brevity.
 
+**Network Identity:**
+
+The identity used to establish that a sequence of datagrams originates from the same network source. This could be, for example:
+
+-   A Network Address
+
+-   A DTLS connection ID
+
+-   An MQTT-SN Protection Packet sender ID
+
 **Virtual Connection:**
 
-An MQTT-SN construct corresponding to the network connection in MQTT. It associates a Unicast Address with an MQTT-SN endpoint.
+An MQTT-SN construct corresponding to the network connection in MQTT. It associates a Network Identity with an MQTT-SN endpoint.
 
 **Application Message:**
 
@@ -832,8 +842,15 @@ state of the Client or Server. Refer to [[section 4.11]{.underline}](#handling-e
 
 **Will Message:**
 
-An Application Message which is published by the Server after the Virtual Connection is closed in cases where the Virtual Connection is not closed
+An Application Message which is published by the Server after the Virtual Connection is deleted in cases where the Virtual Connection is not deleted
 normally. Refer to [[section 3.1.4.9]{.underline}](#connect-will-flags-optional-only-with-will-flag-set) for information about Will Messages.
+
+**Retained Message:**
+
+An Application Message which is stored by the Server for a topic on the receipt of a Publish Packet with the retained flag set. When a Client
+subscribes to a topic with a Retained Message set, the Server sends the Retained Message to the Client, depending on the setting of the Retain
+Handling Subscribe Flags. Refer to [[section 3.1.17.2]{.underline}](#subscribe-flags) and [[section 4.26]{.underline}](#retained-messages) for more
+information about Retained Messages.
 
 **Disallowed Unicode code point:**
 
@@ -1148,7 +1165,7 @@ The MQTT-SN Control Packet Type field is 1-byte long and specifies the MQTT-SN C
 |                            |                  |                            |                                                                     |
 |                            |                  | Gateway to Client          |                                                                     |
 +----------------------------+------------------+----------------------------+---------------------------------------------------------------------+
-| **- Reserved -**           | 0x19             |                            | Forbidden                                                           |
+| **WAKEUP**                 | 0x19             |                            | Wake up request                                                     |
 +----------------------------+------------------+----------------------------+---------------------------------------------------------------------+
 | **- Reserved -**           | 0x1A-0x1D        |                            | Forbidden (Old Will Range)                                          |
 +----------------------------+------------------+----------------------------+---------------------------------------------------------------------+
@@ -1312,7 +1329,7 @@ exchanges using the same Packet Identifiers.
 > It is possible for a Client to send a PUBLISH packet with Packet Identifier 0x1234 and then receive a different PUBLISH packet with Packet
 > Identifier 0x1234 from its Server before it receives a PUBACK for the PUBLISH packet that it sent.
 >
-> ![](media/image4.png){width="3.5502898075240594in" height="2.7864588801399823in"}
+> ![](media/image3.png){width="3.5502898075240594in" height="2.7864588801399823in"}
 
 ## 2.3 MQTT-SN Packet Fields
 
@@ -1983,7 +2000,7 @@ Situations in which the Will Message is published include, but are not limited t
 
 -   The Client fails to communicate within the Keep Alive time.
 
--   The Server closes the Network Connection because of a protocol error.
+-   The Server deletes the Virtual Connection because of a protocol error.
 
 [If the Will Flag is set to 1, the Will Topic, and Will Payload fields MUST be present in the Packet]{.mark} \[MQTT-SN-3.1.4.9-3\]. [The Will Message
 MUST be removed from the stored Session State in the Server once it has been published or the Server has received a DISCONNECT packet with a Reason
@@ -2193,7 +2210,7 @@ packets]{.mark} \[MQTT-3.1.4-6\].
 
 [Table 16: CONNACK packet]{.underline}
 
-The CONNACK packet is sent by the Gateway in response to a Virtual Connection request from a client.
+The CONNACK packet is sent by the Gateway in response to a CONNECT request from a client.
 
 #### 3.1.5.1 Length & Packet Type
 
@@ -2705,7 +2722,7 @@ The PUBLISH Flags includes the following flags:
     "0", it signifies that the packet is sent for the first time. If the DUP flag is set to "1", it signifies that the packet was retransmitted or
     retried.
 
--   **Retain**: 1 bit field stored in Bit 4 and has the same meaning as with MQTT. The field signifies whether the existing Retained Message for this
+-   **Retain**: 1 bit field stored in Bit 4 and has the same meaning as with MQTT. The field signifies whether an existing Retained Message for this
     topic is replaced or kept. For a detailed description of Retained Messages see [[section 4.26]{.underline}](#retained-messages).
 
 #### 3.1.12.4 Packet Identifier
@@ -3318,9 +3335,7 @@ Values. The server sending the UNSUBACK packet MUST use one of the UNSUBACK Reas
                        (optional)                                                                                                         
   --------------------------------------------------------------------------------------------------------------------------------------------------------
 
-[Table 42: PINGREQ packet]{.underline}
-
-As with MQTT, the PINGREQ packet is an "are you alive" packet that is sent from or received by a connected client.
+[T]{.underline}he PINGREQ packet is an "are you alive" packet that is sent from or received by a connected client.
 
 #### 3.1.21.1 Length & Packet Type
 
@@ -3369,10 +3384,10 @@ waiting for packets sent by the server/gateway.
 
 [Table 43: PINGRESP packet]{.underline}
 
-As with MQTT, a PINGRESP packet is the response to a PINGREQ packet and means "yes I am alive". PINGREQ packets flow in either direction, sent either
-by a connected client or the gateway. it has only a header and no variable part.
+A PINGRESP packet is the response to a PINGREQ packet and means "yes I am alive". PINGREQ packets flow in either direction, sent either by a connected
+client or the gateway. it has only a header and no variable part.
 
-Moreover, a PINGRESP packet is sent by a gateway to inform a sleeping client that it has no more buffered packets for that client.
+A PINGRESP packet is also sent by a Gateway to inform a sleeping CLient that it has no more buffered packets for that Client.
 
 #### 3.1.22.1 Length & Packet Type
 
@@ -3523,7 +3538,32 @@ On receipt of DISCONNECT, the Client:
 
 -   SHOULD delete the Virtual Connection.
 
-### 3.1.24 Forwarder Encapsulation
+### 3.1.24 WAKEUP - Wake up request
+
+  --------------------------------------------------------------------------------------------------------------------------------------------------------
+  **Bit**              **7**        **6**            **5**            **4**            **3**            **2**            **1**            **0**
+  -------------------- ------------ ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
+  Byte 1               Length                                                                                                             
+
+  Byte 2               Packet Type                                                                                                        
+  --------------------------------------------------------------------------------------------------------------------------------------------------------
+
+[Table ??: WAKEUP packet]{.underline}
+
+The wakeup packet is a signal sent from the gateway to a client. It is an indication from the gateway that the client should wake up. The client is
+not obliged to honor this request, nor may it even receive the packet. It can choose to ignore the request, or undertake one of the sequences outlined
+in the [[4.25 Sleeping clients]{.underline}](#sleeping-clients) section. The client need not respond to this packet.
+
+#### 3.1.24.1 Length & Packet Type
+
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[section
+2.1]{.underline}](https://docs.google.com/document/d/1Q_l-TOttOqktQmnupRv7Un1Y8KzULIxc/edit?pli=1#heading=h.23ckvvd) for a detailed description.
+
+#### 3.1.24.2 WAKEUP Actions
+
+[The Client MAY choose to follow the AWAKE procedure in response to receiving a WAKEUP packet]{.mark} \[MQTT-SN-3.1.21.4-2\].
+
+### 3.1.25 Forwarder Encapsulation
 
   --------------------------------------------------------------------------------------------------------------------------------------------------------
   **Bit**                      **7**       **6**         **5**        **4**            **3**            **2**            **1**            **0**
@@ -3547,15 +3587,15 @@ As detailed in Section 4, MQTT-SN clients can also access a gateway via a forwar
 forwarder simply encapsulates the MQTT-SN Packets it receives on the wireless side and forwards them unchanged to the gateway; in the opposite
 direction, it decapsulates the Packets it receives from the gateway and sends them to the clients, unchanged too.
 
-#### 3.1.24.1 Length
+#### 3.1.25.1 Length
 
 1-byte long, specifies the number of bytes up to the end of the "Wireless Node Id" field (incl. the Length byte itself)
 
-#### 3.1.24.2 Packet Type
+#### 3.1.25.2 Packet Type
 
 Coded "0xFE", see Table 6
 
-#### 3.1.24.3 Ctrl
+#### 3.1.25.3 Ctrl
 
 The Ctrl byte contains control information exchanged between the GW and the forwarder.
 
@@ -3569,20 +3609,20 @@ The Ctrl byte contains control information exchanged between the GW and the forw
 
 [Table 54: Format of the ctrl byte]{.underline}
 
-#### 3.1.24.4 Radius
+#### 3.1.25.4 Radius
 
 Transmission radius (only relevant in direction gateway to forwarder)
 
-#### 3.1.24.5 Wireless Node Id
+#### 3.1.25.5 Wireless Node Id
 
 Identifies the wireless node which has sent or should receive the encapsulated MQTT-SN packet. The mapping between this Id and the address of the
 wireless node is implemented by the forwarder, if needed.
 
-#### 3.1.24.6 MQTT SN Packet
+#### 3.1.25.6 MQTT SN Packet
 
 The MQTT-SN packet, encoded according to the packet type.
 
-### 3.1.25 Protection Encapsulation
+### 3.1.26 Protection Encapsulation
 
 ### 
 
@@ -3652,16 +3692,16 @@ key (indexed by its GwId) is available.]{.mark}
 [If the GW is not enrolled to the Client (so the Client has no access to a key shared with it on the basis of its GwId) and the Client and GW are not
 in a private network, it is recommended for the Client to open a DTLS session and process only MQTT-SN packets received over it.]{.mark}
 
-#### 3.1.25.1 Length
+#### 3.1.26.1 Length
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[section
 2.1]{.underline}](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
-#### 3.1.25.2 Packet Type
+#### 3.1.26.2 Packet Type
 
 Coded "0x1E", see Table 63
 
-#### 3.1.25.3 Protection Flags
+#### 3.1.26.3 Protection Flags
 
 The PROTECTION Flags is 1 byte field in Byte position 3 of the packet, specifying the properties of the PROTECTION.
 
@@ -3716,7 +3756,7 @@ The PROTECTION Flags field includes the following flags:
 
     -   if 0x0, the monotonic counter field is not present.
 
-#### 3.1.25.4 Protection Scheme
+#### 3.1.26.4 Protection Scheme
 
 > A (1 byte) field located at byte 4 should contain one of the not Reserved indexes in the following table. In general two types of protection scheme
 > are considered: **Authentication only** (like HMAC or CMAC) and **AEAD** (Authenticated Encryption with Associated Data, like GCM, CCM or
@@ -3792,7 +3832,7 @@ The PROTECTION Flags field includes the following flags:
 9.  ChaCha20/Poly1305 requires a 12 bytes nonce as indicated in https://www.rfc-editor.org/rfc/rfc8152#section-10.3 obtained by performing SHA256
     truncated to 96 bit of the sequence Byte 1 to Byte R (all packet fields until Protected MQTT-SN Packet)
 
-#### 3.1.25.5 Sender Identifier
+#### 3.1.26.5 Sender Identifier
 
 Located at Bytes 5 - 12 the Sender Id field (8 bytes) should contain:
 
@@ -3825,7 +3865,7 @@ If the message is originated by the ***Gateway***:
 > leftmost 64 bits (8 bytes for each registered ClientID) for the clients having an active session and store a list of authorized Sender Ids for the
 > clients not capable to establish sessions.*
 
-#### 3.1.25.6 Random
+#### 3.1.26.6 Random
 
 **[Located at Byte 13 - 16]{.underline}** , the "**Random**" field (4 bytes) should contain a random number (not guessable) generated at the
 PROTECTION packet creation .
@@ -3841,7 +3881,7 @@ PROTECTION packet creation .
 > choosing a unique IV of 12 bytes for every encryption performed with the same key
 > ([[https://en.wikipedia.org/wiki/Galois/Counter_Mode]{.underline}](https://en.wikipedia.org/wiki/Galois/Counter_Mode)).*
 
-#### 3.1.25.7 Crypto Material
+#### 3.1.26.7 Crypto Material
 
 Located at Byte (17 - P), the optional field "**Crypto Material**" contains [0, 2, 4 or 12 bytes of crypto material that when defined it can be used
 to derive, from a shared master secret, the same keys on the two endpoints and/or, when filled partially or totally with a random value, to further
@@ -3850,20 +3890,20 @@ Material field can be partially filled with a random value of 9 bytes (the remai
 bytes used only once recommended for the nonce used by CCM or it can be partially filled with a random value of 8 bytes in order to reach the 12 bytes
 used only once recommended for the IV/nonce used by GCM or ChaCha20/Poly1305 .]{.mark}
 
-#### 3.1.25.8 Monotonic Counter
+#### 3.1.26.8 Monotonic Counter
 
 Located at Byte Byte (Q - R), the optional field "**Monotonic Counter**" contains [0, 2 or 4 byte number that when defined, is increased by the Client
 or GW for every packet sent. The counters should be considered independent of session or destination. E.g. The UE will keep a counter independently
 from the GW.]{.mark}
 
-#### 3.1.25.9 Protected MQTT-SN Packet
+#### 3.1.26.9 Protected MQTT-SN Packet
 
 Located at Byte (S - T), the field "**Protected MQTT-SN Packet**" contains the MQTT-SN packet that is being secured, encoded as per its packet type.
 
 The "Protected MQTT-SN Packet" should not be a "Forwarder-Encapsulation packet" as the shared key used directly or after derivation for the protection
 must belong to the originator of the content and not to a Forwarder that, in general, is not able to securely identify the originator.
 
-#### 3.1.25.10 Authentication Tag
+#### 3.1.26.10 Authentication Tag
 
 Located at Byte (U - N), the field "**Authentication tag**" field has a length depending on the "Authentication tag length" flag and it is calculated,
 on the basis of the "Protection scheme" selected in Byte 4, on ALL the preceding fields.
@@ -3928,11 +3968,11 @@ procedure for setting up a session with a server is illustrated in Fig. 3a and 3
 
 The CONNECT packet contains flags to communicate to the gateway that Auth interactions, or WILL interactions should take place.
 
-![](media/image10.png){width="3.344815179352581in" height="2.4173436132983377in"}
+![](media/image5.png){width="3.344815179352581in" height="2.4173436132983377in"}
 
 Figure 3a: Connect procedure (without Auth flag not Will flag set or no further authentication data required)
 
-![](media/image11.png){width="3.345165135608049in" height="2.963542213473316in"}
+![](media/image8.png){width="3.345165135608049in" height="2.963542213473316in"}
 
 Figure 3b: Connect procedure (with Auth flag set and additional authentication data required)
 
@@ -4165,7 +4205,7 @@ The Packet Identifier becomes available for reuse once the sender has received t
 
 There are two situations when packets that require acknowledgement are resent by the sender:
 
-1.  when a Virtual Connection ends before the acknowledgement is received by the requester (and clean start is false)
+1.  when a Virtual Connection is deleted before the acknowledgement is received by the requester (and clean start is false)
 
 2.  when no acknowledgment is received by the by the requester within a configured timeout period during the existence of a Virtual Connection
 
@@ -4227,10 +4267,10 @@ for all QoS 0 packets.]{.mark} \[MQTT-SN-4.4-3\].
 The Client or Gateway will start a retransmission retry timer, T~retry~, when one of the following Packets is sent.
 
 [A Client MUST retransmit AUTH, REGISTER, PUBLISH Qos1, PUBLISH Qos2, PUBREL, SUBSCRIBE, UNSUBSCRIBE]{.mark} [Packets, including a PROTECTION
-encapsulation if there is one, after T~retry~ has passed or delete the Virtual Connection.]{.mark}
+encapsulation if there is one, after T~retry~ has passed or the Virtual Connection deleted.]{.mark}
 
 [A Gateway MUST retransmit PUBLISH Qos1, PUBLISH Qos2, PUBREL]{.mark} [Packets, including a PROTECTION encapsulation if there is one, after T~retry~
-has passed or delete the Virtual Connection.]{.mark}
+has passed or the Virtual Connection deleted.]{.mark}
 
 [The timer is canceled if the corresponding acknowledgement packet is received. The Client or Gateway MUST retransmit the Packet after T~retry~ has
 passed or delete the Virtual Connection.]{.mark}
@@ -4249,8 +4289,8 @@ If the Virtual Connection is deleted, the protocol will restart when a new CONNE
 > time. If it is excessively long, the time taken to detect and retransmit lost Packets will also be excessively long. Implementers need to take care
 > not to use a retry interval that might cause the network to become congested with retried Packets.
 
-The PINGREQ Packet described in \[[[3.1.21 PINGREQ]{.underline}](#pingreq---ping-request)\] can also be used to determine whether the virtual
-connection is alive.
+The PINGREQ Packet described in \[[[3.1.21 PINGREQ]{.underline}](#pingreq---ping-request)\] can also be used to determine whether the Virtual
+Connection is alive.
 
 An example of a retry algorithm is described in \[[[Appendix E.F4]{.underline}](#f.4-exponential-backoff)\]
 
@@ -4445,7 +4485,7 @@ which need acknowledgement and are included in this constraint are:
 -   UNSUBSCRIBE
 
 I[f a Client or Server receives an MQTT-SN request and there is already a request outstanding within the same Virtual Connection then it MUST issue a
-DISCONNECT with Reason Code 147 (Receive Maximum Exceeded) and terminate the Virtual Connection]{.mark} \[MQTT-SN-4.9-1\].
+DISCONNECT with Reason Code 147 (Receive Maximum Exceeded) and delete the Virtual Connection]{.mark} \[MQTT-SN-4.9-1\].
 
 Refer to [[section 3.1.12.7]{.underline}](#publish-actions) for a description of how Clients and Servers react if they are sent more than one
 unacknowledged packet.
@@ -4655,7 +4695,7 @@ Although the implementation of the transparent Gateway is simpler when compared 
 support a separate connection for each active client. Some MQTT server implementations might impose a limitation on the number of concurrent
 connections that they support.
 
-![](media/image12.png){width="3.994792213473316in" height="2.6661472003499562in"}
+![](media/image4.png){width="3.994792213473316in" height="2.6661472003499562in"}
 
 Figure XX: Transparent Gateway scenario
 
@@ -4666,21 +4706,21 @@ exchanges between a MQTT-SN client and an aggregating Gateway end at the Gateway
 the Server. Although its implementation is more complex than the one of a transparent Gateway, an aggregating Gateway may be helpful in case of WSNs
 with a very large number of SAs because it reduces the number of MQTT connections that the Gateway must support concurrently.
 
-![](media/image1.png){width="4.578125546806649in" height="3.0552755905511813in"}
+![](media/image12.png){width="4.578125546806649in" height="3.0552755905511813in"}
 
 Figure XX: Aggregating Gateway scenario
 
 ### 4.11.3 Forwarder encapsulator
 
-![](media/image8.png){width="4.704773622047244in" height="2.7964599737532807in"}
+![](media/image13.png){width="4.704773622047244in" height="2.7964599737532807in"}
 
-Figure XX: Forwarder encapsulator with TransparentGateway scenario![](media/image3.png){width="4.9003171478565175in" height="2.8304625984251968in"}
+Figure XX: Forwarder encapsulator with TransparentGateway scenario![](media/image2.png){width="4.9003171478565175in" height="2.8304625984251968in"}
 
 Figure XX: Forwarder encapsulator with Aggregating Gateway scenario
 
 ### 4.13.4 MQTT-SN broker
 
-![](media/image7.png){width="2.8596172353455818in" height="2.983947944006999in"}
+![](media/image10.png){width="2.8596172353455818in" height="2.983947944006999in"}
 
 Figure XX: MQTT-SN broker scenario
 
@@ -4772,7 +4812,7 @@ the "Sleeping clients" section.
 |                            | state.                                                                                |                              |
 +----------------------------+---------------------------------------------------------------------------------------+------------------------------+
 
-![](media/image2.png){width="6.5in" height="6.944444444444445in"}
+![](media/image6.png){width="6.5in" height="6.944444444444445in"}
 
 Figure 4: The Server View of the Client State
 
@@ -4953,9 +4993,9 @@ no danger for a storm of CONNECT packets sent almost at the same time by all aff
 ## 4.24 Client's Disconnect Procedure
 
 A client sends a DISCONNECT packet to the gateway to indicate that it is about to delete its Virtual Connection. After this point, the client is then
-required to establish a new Virtual Connection with the gateway before it can exchange information with that gateway again. [Like MQTT, sending the
+required to create a new Virtual Connection with the gateway before it can exchange information with that gateway again. [Like MQTT, sending the
 DISCONNECT packet does not affect existing subscriptions and Will data. They are persistent until they are either expired or explicitly un-subscribed,
-or deleted, or modified by the client, or if the client establishes a new Virtual Connection with the CleanStart flag set.]{.mark} The gateway
+or deleted, or modified by the client, or if the client creates a new Virtual Connection with the CleanStart flag set.]{.mark} The gateway
 acknowledges the receipt of the DISCONNECT packet by returning a DISCONNECT to the client.
 
 A client may also receive an unsolicited DISCONNECT sent by the gateway. This may happen for example when the gateway, due to an error, cannot
@@ -5020,20 +5060,20 @@ state by sending a CONNECT packet to the server/gateway.
 >
 > The gateway should attempt to make the best effort to reuse the same topic alias mappings that existed during any initial associated ACTIVE states.
 >
-> ![](media/image5.png){width="4.615764435695538in" height="7.453125546806649in"}
+> ![](media/image7.png){width="4.615764435695538in" height="7.453125546806649in"}
 
 Figure 5: Awake ping packet flush
 
 ## 4.26 Retained Messages
 
-[If the RETAIN flag is set to 1 in a PUBLISH or PUBWOS packet received by a Server, the Server MUST replace any existing retained message for this
+[If the RETAIN flag is set to 1 in a PUBLISH or PUBWOS packet received by a Server, the Server MUST replace any existing Retained Message for this
 topic and store the Application Message]{.mark} \[MQTT-SN-4.26-1\], so that it can be delivered to future subscribers whose subscriptions match its
-Topic Name. [If the Payload contains zero bytes it is processed normally by the Server but any retained message with the same topic name MUST be
-removed and any future subscribers for the topic will not receive a retained message]{.mark} \[MQTT-SN-4.26-2\]. [A retained message with a Publish
-Data containing zero bytes MUST NOT be stored as a retained message on the Server]{.mark} \[MQTT-SN-4.26-3\].
+Topic Name. [If the Publish Data contains zero bytes it is processed normally by the Server but any retained message with the same topic name MUST be
+removed and any future subscribers for the topic will not receive a retained message]{.mark} \[MQTT-SN-4.26-2\]. [A Retained Message with a Publish
+Data containing zero bytes MUST NOT be stored as a Retained Message on the Server]{.mark} \[MQTT-SN-4.26-3\].
 
-[If the RETAIN flag is 0 in a PUBLISH packet sent by a Client to a Server, the Server MUST NOT store the message as a retained message and MUST NOT
-remove or replace any existing retained message]{.mark} \[MQTT-SN-4.26-4\].
+[If the RETAIN flag is 0 in a PUBLISH packet sent by a Client to a Server, the Server MUST NOT store the message as a Retained Message and MUST NOT
+remove or replace any existing Retained Message]{.mark} \[MQTT-SN-4.26-4\].
 
 When a new Subscription is made, the last retained message, if any, on each matching topic name is sent to the Client as directed by the Retain
 Handling Subscribe Flag. These messages are sent with the RETAIN flag set to 1. Which retained messages are sent is controlled by the Retain Handling
