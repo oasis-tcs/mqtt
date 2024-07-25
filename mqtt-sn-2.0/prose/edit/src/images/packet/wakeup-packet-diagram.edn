@@ -1,4 +1,4 @@
-;; This is the source for 3.1.XY.a WAKEUP packet diagram of MQTT-SN v2.0.
+;; This is the source for 3.1.24 WAKEUP packet diagram of MQTT-SN v2.0.
 ;; Cf. https://issues.oasis-open.org/browse/MQTT-606?focusedCommentId=84837&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-84837
 (def boxes-per-row 9)
 (def box-width 90)
@@ -25,14 +25,5 @@
 
 (draw-box (text "2"))
 (draw-box "Packet Type" :byte)
-
-(draw-box (text "3"))
-(draw-box "Packet Identifier MSB" :byte)
-
-(draw-box (text "4"))
-(draw-box "Packet Identifier LSB" :byte)
-
-(draw-box (text "5 ... N") :bg-lightgray)
-(draw-gap (text "Client Identifier [OPT]" :cursive) [:bg-lightgray :byte])
 
 (draw-bottom)
