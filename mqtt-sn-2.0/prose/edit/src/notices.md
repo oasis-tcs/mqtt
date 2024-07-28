@@ -8,7 +8,7 @@ toc:
 -->
 # Notices
 
-Copyright © OASIS Open 2023. All Rights Reserved.
+Copyright © OASIS Open 2024. All Rights Reserved.
 
 All capitalized terms in the following text have the meanings assigned to them in
 the OASIS Intellectual Property Rights [Policy](https://www.oasis-open.org/policies-guidelines/ipr/) (the "OASIS IPR Policy").
