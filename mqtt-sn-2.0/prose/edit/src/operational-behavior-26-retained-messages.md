@@ -1,5 +1,5 @@
 <!-- transformation-note: left upstream numbering of headings for verification -->
-## 4.20 Retained Packets
+## 4.26 Retained Messages
 
 If the RETAIN flag is set to 1 in a PUBLISH packet sent by a Client to a Server,
 the Server MUST replace any existing retained packet for this topic and store the Publish Data,

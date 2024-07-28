@@ -1,5 +1,5 @@
 <!-- transformation-note: left upstream numbering of headings for verification -->
-## 4.14 Gateway’s Publish Procedure
+## 4.22 Gateway’s Publish Procedure
 
 <!-- transformation-note: below spelling of "Section" has bee corrected to "section" (lower case). -->
 <!-- transformation-note: below section reference may be wrong, as the 3.14 appears to be PUBREC related. -->

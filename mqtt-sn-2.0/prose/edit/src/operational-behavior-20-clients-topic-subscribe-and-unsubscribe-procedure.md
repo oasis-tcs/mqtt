@@ -1,5 +1,5 @@
 <!-- transformation-note: left upstream numbering of headings for verification -->
-## 4.12 Client’s Topic Subscribe/Unsubscribe Procedure
+## 4.20 Client’s Topic Subscribe/Unsubscribe Procedure
 
 To subscribe to a topic name, a client sends a SUBSCRIBE packet to the gateway with the topic name included in that packet.
 If the gateway is able accept the subscription, it assigns a topic alias to the received topic name and returns it within a SUBACK packet to the client.

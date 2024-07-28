@@ -1,5 +1,5 @@
 <!-- transformation-note: left upstream numbering of headings for verification -->
-## 4.16 Client’s Disconnect Procedure
+## 4.24 Client’s Disconnect Procedure
 
 A client sends a DISCONNECT packet to the gateway to indicate that it is about to close its Virtual Connection.
 After this point, the client is then required to establish a new Virtual Connection with the gateway before it can exchange information with that gateway again.

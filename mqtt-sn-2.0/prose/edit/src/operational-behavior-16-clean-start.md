@@ -1,5 +1,5 @@
 <!-- transformation-note: left upstream numbering of headings for verification -->
-## 4.8 Clean start
+## 4.16 Clean start
 
 With MQTT-SN, when a client disconnects, its subscriptions are retained for no less than the session expiration time.
 They are persistent and valid for new (non clean start) sessions, until either they are explicitly un-subscribed by the client,

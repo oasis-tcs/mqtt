@@ -1,5 +1,5 @@
 <!-- transformation-note: left upstream numbering of headings for verification -->
-## 4.7 Session state
+## 4.1 Session state
 
 Sessions are maintained by both the Client and a Gateway.
 Sessions typically include (but are not limited to):

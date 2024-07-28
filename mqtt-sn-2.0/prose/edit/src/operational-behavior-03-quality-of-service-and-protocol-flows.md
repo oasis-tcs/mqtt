@@ -1,5 +1,5 @@
 <!-- transformation-note: left upstream numbering of headings for verification -->
-## 4.5 Quality of Service Levels and Protocol Flows
+## 4.3 Quality of Service Levels and Protocol Flows
 
 MQTT delivers Application Messages according to the Quality of Service (QoS) levels defined in the following sections.
 The delivery protocol is symmetric, in the description below the Client and Server and Gateway can each take the role of either sender or receiver.
@@ -8,7 +8,10 @@ When the Gateway is delivering an Application Message to more than one Client, e
 The QoS level used to deliver an Application Message outbound to the Client could differ from that of the inbound Application Message.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-### 4.5.1 QoS 0: At Most Once Delivery{#qos-0-at-most-once-delivery}
+### 4.3.1 Publish Without Session: Any Number of Deliveries{#publish-without-session-any-number-of- deliveries}
+
+<!-- transformation-note: left upstream numbering of headings for verification -->
+### 4.3.2 QoS 0: At Most Once Delivery{#qos-0-at-most-once-delivery}
 
 The message is delivered according to the capabilities of the underlying network.
 No response is sent by the receiver and no retry is performed by the sender.
@@ -23,7 +26,7 @@ In the QoS 0 delivery protocol, the receiver
 - Accepts ownership of the message when it receives the PUBLISH packet.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-### 4.5.2 QoS 1: At Least Once Delivery{#qos-1-at-least-once-delivery}
+### 4.3.3 QoS 1: At Least Once Delivery{#qos-1-at-least-once-delivery}
 
 This Quality of Service level ensures that the message arrives at the receiver at least once.
 A QoS 1 PUBLISH packet has a Packet Identifier in its Variable Header and is acknowledged by a PUBACK packet.
@@ -64,7 +67,7 @@ Figure Note(s):
    When its original sender receives the PUBACK packet, ownership of the Application Message is transferred to the receiver.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-### 4.5.3 QoS 2: Exactly Once Delivery{#qos-2-exactly-once-delivery}
+### 4.3.4 QoS 2: Exactly Once Delivery{#qos-2-exactly-once-delivery}
 
 This is the highest Quality of Service level, for use when neither loss nor duplication of messages are acceptable.
 There is an increased overhead associated with QoS 2.

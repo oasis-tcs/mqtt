@@ -1,5 +1,5 @@
 <!-- transformation-note: left upstream numbering of headings for verification -->
-## 4.13 Client’s Publish Procedure
+## 4.21 Client’s Publish Procedure
 
 After having registered successfully a topic name with the gateway,
 the client can start publishing data relating to the registered topic name by sending PUBLISH packets to the gateway.

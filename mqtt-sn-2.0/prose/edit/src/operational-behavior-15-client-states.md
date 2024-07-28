@@ -1,5 +1,5 @@
 <!-- transformation-note: left upstream numbering of headings for verification -->
-## 4.6 Client states
+## 4.15 Client states
 
 At any given point in time, a client may be in one of 5 different states.
 Transition through these states is governed by a strictly coordinated sequence of packets between client and server/gateway and
@@ -29,7 +29,7 @@ Table: States and Transitions.
 Figure 4: Client’s state transition diagram
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-### 4.6.1 Gateway timers
+### 4.15.1 Gateway timers
 
 The following timers must be managed by a Gateway per Client to handle the different Client states:
 

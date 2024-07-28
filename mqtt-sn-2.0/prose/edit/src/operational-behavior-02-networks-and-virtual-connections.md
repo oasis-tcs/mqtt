@@ -1,5 +1,5 @@
 <!-- transformation-note: left upstream numbering of headings for verification -->
-## 4.2 Networks and Transport Layers
+## 4.2 Networks and Virtual Connections
 <!-- transformation-note: replaced ampersand with english word "and" in above section title. -->
 
 The MQTT-SN protocol requires an underlying transport to create a Virtual Connection, this carries Packets from a Client to a Gateway and a Gateway to a Client.

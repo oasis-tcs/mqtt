@@ -1,5 +1,5 @@
 <!-- transformation-note: left upstream numbering of headings for verification -->
-## 4.1 Example MQTT-SN Architecture(s){#example-mqtt-sn-architectures}
+## 4.13 Example MQTT-SN Architecture(s){#example-mqtt-sn-architectures}
 
 <!-- transformation-note: below figure reference will be replaced by semantic reference later. -->
 The architecture of MQTT-SN is shown in figure 1.
@@ -23,7 +23,7 @@ Figure 1: MQTT-SN Architecture
 <!-- transformation-note: above upstream figure number will be replaced by auto-numbering later. -->
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-### 4.1.1 Transparent Gateway
+### 4.13.1 Transparent Gateway
 
 For each connected MQTT-SN client a transparent Gateway will set up and maintain a MQTT connection to the MQTT server.
 This MQTT connection is reserved exclusively for the end-to-end and almost transparent packet exchange between the client and the server.
@@ -42,7 +42,7 @@ Figure 2: Transparent and Aggregating Gateways
 <!-- transformation-note: above upstream figure number will be replaced by auto-numbering later. -->
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-### 4.1.2 Aggregating Gateway
+### 4.13.2 Aggregating Gateway
 
 Instead of having a MQTT connection for each connected client,
 an aggregating Gateway will have only one MQTT connection to the Server.

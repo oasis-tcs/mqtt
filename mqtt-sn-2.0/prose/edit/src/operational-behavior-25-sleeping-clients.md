@@ -1,5 +1,5 @@
 <!-- transformation-note: left upstream numbering of headings for verification -->
-## 4.18 Sleeping Clients
+## 4.25 Sleeping Clients
 <!-- transformation-note: fixed title case in above heading by replacing "clients" with "Clients". -->
 
 Sleeping clients are clients residing on (battery-operated) devices that want to save as much energy as possible.

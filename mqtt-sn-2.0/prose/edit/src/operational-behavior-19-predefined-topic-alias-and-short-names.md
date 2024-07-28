@@ -1,5 +1,5 @@
 <!-- transformation-note: left upstream numbering of headings for verification -->
-## 4.11 Predefined topic alias’ and short topic names
+## 4.19 Predefined topic alias’ and short topic names
 
 A "predefined" topic alias is a topic alias who’s mapping to a topic name is known in advance by both the client’s application and the gateway.
 This is indicated in the Flags field of the packet. When using pre-defined topic alias’, both sides can start immediately with the sending of PUBLISH packets;

@@ -1,5 +1,5 @@
 <!-- transformation-note: left upstream numbering of headings for verification -->
-## 4.19 Authentication
+## 4.11 Enhanced Authentication
 
 Authentication involves the exchange of AUTH packets between the Client and the Server after the CONNECT and before the CONNACK packets.
 

@@ -1,5 +1,5 @@
 <!-- transformation-note: left upstream numbering of headings for verification -->
-## 4.3 Gateway Advertisement and Discovery
+## 4.14 Gateway Advertisement and Discovery
 
 A gateway may announce its presence by transmitting periodically an ADVERTISE packet to all devices that are currently parts of the network.
 A gateway should only advertise its presence if it is connected to a server (or is itself a server).

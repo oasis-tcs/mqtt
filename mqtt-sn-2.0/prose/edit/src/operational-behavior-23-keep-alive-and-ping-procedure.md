@@ -1,5 +1,5 @@
 <!-- transformation-note: left upstream numbering of headings for verification -->
-## 4.15 Keep Alive and PING Procedure
+## 4.23 Keep Alive and PING Procedure
 
 As with MQTT, the value of the Keep Alive timer is indicated in the CONNECT packet.
 The client should send a PINGREQ packet within each Keep Alive time period, which the gateway acknowledges with a PINGRESP packet.
