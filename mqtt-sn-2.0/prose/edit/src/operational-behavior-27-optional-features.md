@@ -1,8 +1,7 @@
 <!-- transformation-note: left upstream numbering of headings for verification -->
 ## 4.27 Optional Features
 
-The ADVERTISE, SEARCHGW, GWINFO and PUBLISH WITHOUT SESSION packet type support is optional.
-For instance, it is not required if the MQTT-SN Gateway is an Internet node reachable via a public IP address.
+Support for the ADVERTISE, SEARCHGW, GWINFO and PUBWOS packet types is optional.
 
 The Forwarder Encapsulation packet type support is optional.
 For instance, it is not required if the MQTT-SN Clients are able to directly reach a MQTT-SN Gateway.

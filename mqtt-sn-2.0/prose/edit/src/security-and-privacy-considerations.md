@@ -27,8 +27,7 @@ adopters can protect against these risks.
 We encourage editors and TC members concerned with this subject to read Guidelines for Writing RFC Text on Security Considerations,
 IETF [RFC3552], for more information.
 -->
-The MQTT SN protocol is optimized for implementation on low-cost,
-battery-powered devices with limited processing and storage resources.
+The MQTT SN protocol is optimized for implementation on low-cost, battery-powered devices with limited processing and storage resources.
 The capabilities are kept simple and the specification allows for partial implementations.
 Device identities are typically created at manufacturing, eliminating the need for special configuration at deployment.
 MQTT-SN can work in isolation from other networks or in conjunction with MQTT.
