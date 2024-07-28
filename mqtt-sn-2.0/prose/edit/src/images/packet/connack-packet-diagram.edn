@@ -80,9 +80,9 @@
 (draw-box "Auth Data Length LSB" [:bg-lightgray :byte])
 
 (draw-box (text "10+5") :bg-lightgray)
-(draw-gap "Auth Data" [:bg-lightgray :byte])
+(draw-gap "Auth Data (K)" [:bg-lightgray :byte])
 
-(draw-box (text "11 ... N") :bg-lightgray)
-(draw-gap (text "Assigned Client Identifier [OPT]" :cursive) [:bg-lightgray :byte])
+(draw-box (text "11+K ... N") :bg-lightgray)
+(draw-gap (text "Assigned Client Identifier [OPT] (N)") [:bg-lightgray :byte])
 
 (draw-bottom)
