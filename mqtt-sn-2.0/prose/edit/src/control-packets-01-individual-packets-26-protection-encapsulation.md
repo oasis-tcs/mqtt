@@ -1,5 +1,5 @@
 <!-- transformation-note: left upstream numbering of headings for verification -->
-### 3.1.25 Protection Encapsulation
+### 3.1.26 Protection Encapsulation
 
 <!-- transformation-note: no table col span in markdown, but we should specify bitfields better (than with layout tables) anyway -->
 <!-- transformation-note: bitfield display candidate could be clearer that X means variable bit values for PROTECTION flags (bits). -->
@@ -52,19 +52,19 @@ and the Client and GW are not in a private network, it is recommended for the Cl
 only MQTT-SN packets received over it.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-#### 3.1.25.1 Length{#protection-encapsulation--length}
+#### 3.1.26.1 Length{#protection-encapsulation--length}
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format.
 Please refer to section 2.1 "Structure of an MQTT-SN Control Packet" for a detailed description.
 <!-- transformation-note: the above section ref upstream 1.8.2 was obviously wrong and should point to section 2.1 "Structure of an MQTT-SN Control Packet". -->
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-#### 3.1.25.2 Packet Type
+#### 3.1.26.2 Packet Type
 
 Coded "0x1E", see Table 63
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-#### 3.1.25.3 Protection Flags
+#### 3.1.26.3 Protection Flags
 
 The PROTECTION Flags is 1 byte field in Byte position 3 of the packet, specifying the properties of the PROTECTION.
 
@@ -97,7 +97,7 @@ The PROTECTION Flags field includes the following flags:
   - if 0x0, the monotonic counter field is not present.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-#### 3.1.25.4 Protection Scheme
+#### 3.1.26.4 Protection Scheme
 
 A (1 byte) field located at byte 4 should contain one of the not Reserved indexes in the following table.
 In general two types of protection scheme are considered: Authentication only (like HMAC or CMAC) and AEAD (Authenticated Encryption with Associated Data, like GCM, CCM or ChaCha20/Poly1305).
@@ -146,7 +146,7 @@ Table: Relating protection schemes (see also table notes).
 <!-- transformation-note: above references should all correspond to informal reference entries. -->
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-#### 3.1.25.5 Sender Id
+#### 3.1.26.5 Sender Id
 
 Located at Bytes 5 - 12 the Sender Id field (8 bytes) should contain:
 
@@ -174,7 +174,7 @@ If the message is originated by the Client:
 > (8 bytes for each registered ClientID) for the clients having an active session and store a list of authorized Sender Ids for the clients not capable to establish sessions.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-#### 3.1.25.6 Random
+#### 3.1.26.6 Random
 
 Located at Byte 13 - 16, the "Random" field (4 bytes) should contain a random number (not guessable) generated at the PROTECTION packet creation.
 
@@ -188,7 +188,7 @@ Located at Byte 13 - 16, the "Random" field (4 bytes) should contain a random nu
 > every encryption performed with the same key (https://en.wikipedia.org/wiki/Galois/Counter_Mode).
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-#### 3.1.25.7 Crypto Material
+#### 3.1.26.7 Crypto Material
 
 Located at Byte (17 - P), the optional field "Crypto Material" contains 0, 2, 4 or 12 bytes of crypto material that when defined it can be used to derive,
 from a shared master secret, the same keys on the two endpoints and/or, when filled partially or totally with a random value,
@@ -198,7 +198,7 @@ For instance when the Crypto material length is set to 0x03, the Crypto Material
 it can be partially filled with a random value of 8 bytes in order to reach the 12 bytes used only once recommended for the IV/nonce used by GCM or ChaCha20/Poly1305.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-#### 3.1.25.8 Monotonic Counter
+#### 3.1.26.8 Monotonic Counter
 
 Located at Byte Byte (Q - R), the optional field "Monotonic Counter" contains 0, 2 or 4 byte number that when defined,
 is increased by the Client or GW for every packet sent.
@@ -206,7 +206,7 @@ The counters should be considered independent of session or destination.
 E.g. The UE will keep a counter independently from the GW.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-#### 3.1.25.9 Protected MQTT-SN Packet
+#### 3.1.26.9 Protected MQTT-SN Packet
 
 Located at Byte (S - T), the field "Protected MQTT-SN Packet" contains the MQTT-SN packet that is being secured, encoded as per its packet type.
 
@@ -214,7 +214,7 @@ The "Protected MQTT-SN Packet" should not be a "Forwarder-Encapsulation packet" 
 the protection must belong to the originator of the content and not to a Forwarder that, in general, is not able to securely identify the originator.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-#### 3.1.25.10 Authentication Tag
+#### 3.1.26.10 Authentication Tag
 
 Located at Byte (U - N), the field "Authentication tag" field has a length depending on the "Authentication tag length" flag and it is calculated,
 on the basis of the "Protection scheme" selected in Byte 4, on ALL the preceding fields.

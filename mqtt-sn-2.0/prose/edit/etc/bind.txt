@@ -35,8 +35,9 @@ control-packets-01-individual-packets-20-unsuback.md
 control-packets-01-individual-packets-21-pingreq.md
 control-packets-01-individual-packets-22-pingresp.md
 control-packets-01-individual-packets-23-disconnect.md
-control-packets-01-individual-packets-24-forwarder-encapsulation.md
-control-packets-01-individual-packets-25-protection-encapsulation.md
+control-packets-01-individual-packets-24-wakeup.md
+control-packets-01-individual-packets-25-forwarder-encapsulation.md
+control-packets-01-individual-packets-26-protection-encapsulation.md
 operational-behavior-00.md
 operational-behavior-01-example-architecture.md
 operational-behavior-02-networks-and-transport-layers.md

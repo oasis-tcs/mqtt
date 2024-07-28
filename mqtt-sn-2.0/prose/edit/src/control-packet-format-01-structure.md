@@ -1,5 +1,5 @@
 <!-- transformation-note: left upstream numbering of headings for verification -->
-## 2.1 Structure of an MQTT-SN Control Packet
+## 2.1 Structure of an MQTT-SN Control Packet{#structure-of-an-mqtt-sn-control-packet}
 
 The MQTT-SN protocol operates by exchanging a series of MQTT-SN Control Packets in a defined way. This section describes
 the format of these packets.
