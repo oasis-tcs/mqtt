@@ -7,7 +7,7 @@ toc:
   children:
   - label: Support of PUBLISH WITHOUT SESSION
     enumerate: F.1
-  - label: "Best practice" values for timers and counters
+  - label: '"Best practice" values for timers and counters'
     enumerate: F.2
   - label: Mapping of Topic Alias to Topic Names and Topic Filters
     enumerate: F.3
