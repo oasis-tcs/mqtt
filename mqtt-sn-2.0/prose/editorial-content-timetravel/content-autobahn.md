@@ -1,4 +1,4 @@
-**07 December 2023**
+**01 August 2024**
 
 **This stage:**
 
@@ -20,25 +20,25 @@
 
 > [Ian Craggs (<icraggs@gmail.com>), Individual]{.mark}
 >
-> Simon Johnson (simon.johnson@hivemq.com), HiveMQ
+> Simon Johnson (simon.johnson@hivemq.com), HiveMQ GmbH
 
 **Editors:**
 
-> Andrew Banks (<Andrew_Banks@uk.ibm.com>), [IBM](http://www.ibm.com)
+> Andrew Banks (andrewdjbanks@gmail.com), Individual
 >
 > Andy Stanford-Clark (andysc@uk.ibm.com), IBM
 >
-> Davide Lenzarini ([[davide.lenzarini@u-blox.com]{.underline}](mailto:davide.lenzarini@u-blox.com)), u-blox
+> Davide Lenzarini (<davide.lenzarini@u-blox.com>), u-blox AG
 >
-> [Ian Craggs (<icraggs@gmail.com>), Individual]{.mark}
+> Ian Craggs (<icraggs@gmail.com>), Individual
 >
 > Rahul Gupta (<rahul.gupta@us.ibm.com>), [IBM](http://www.ibm.com)
 >
-> Simon Johnson ([simon](mailto:simon622@gmail.com).johnson@hivemq.com), HiveMQ
+> Simon Johnson ([simon](mailto:simon622@gmail.com).johnson@hivemq.com), HiveMQ GmbH
 >
-> Stefan Hagen ([[stefan@hagen.link]{.underline}](mailto:stefan@hagen.link)), Individual
+> Stefan Hagen (<stefan@hagen.link>), Individual
 >
-> Tara E. Walker (<tara.walker@microsoft.com>), [Microsoft](http://www.microsoft.com)
+> Tara E. Walker (<tara.walker@microsoft.com>), [Microsoft Corporation](http://www.microsoft.com/)
 
 **Related work:**
 
@@ -89,7 +89,7 @@
 > **\[MQTT-SN-v2.0\]**
 >
 > *MQTT for Sensor Networks Version 2.0*. Edited by Andrew Banks, Davide Lenzarini, Ian Craggs, Rahul Gupta, Simon Johnson, Stefan Hagen, and Tara E.
-> Walker. 08 December 2023. OASIS Committee Specification Draft 01.
+> Walker. 01 August 2024. OASIS Committee Specification Draft 01.
 > [[https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/csd01/mqtt-sn-v2.0-csd01.docx]{.underline}](https://docs.oasis-open.org/mqtt/mqtt-sn/v12.30/csd01/mqtt-sn-v12.30-csd01.docx).
 > Latest stage:
 > [[https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/mqtt-sn-v2.0.docx]{.underline}](https://docs.oasis-open.org/mqtt/mqtt-sn/v12.30/mqtt-sn-v12.30.docx)
@@ -101,7 +101,7 @@
 
 **Notices**
 
-Copyright © OASIS Open 2023. All Rights Reserved.
+Copyright © OASIS Open 2024. All Rights Reserved.
 
 Distributed under the terms of the OASIS IPR Policy,
 \[[[https://www.oasis-open.org/policies-guidelines/ipr/]{.underline}](https://www.oasis-open.org/policies-guidelines/ipr/)\]. For complete copyright
@@ -1329,7 +1329,7 @@ exchanges using the same Packet Identifiers.
 > It is possible for a Client to send a PUBLISH packet with Packet Identifier 0x1234 and then receive a different PUBLISH packet with Packet
 > Identifier 0x1234 from its Server before it receives a PUBACK for the PUBLISH packet that it sent.
 >
-> ![](media/image3.png){width="3.5502898075240594in" height="2.7864588801399823in"}
+> ![](media/image13.png){width="3.5502898075240594in" height="2.7864588801399823in"}
 
 ## 2.3 MQTT-SN Packet Fields
 
@@ -3872,13 +3872,13 @@ PROTECTION packet creation .
 
 -   **[Informative comment]{.underline}**
 
-> *In case of CCM, in the worst case scenario where the "Crypto Material" and the "Monotonic Counter" optional fields are not present, the recommended
-> nonce on 13 bytes will be calculated as SHA256 truncated to 104 bits of the sequence Byte 1 to Byte 16 (all packet fields until Protected MQTT-SN
-> Packet). So considering the same Sender Id, the same nonce can be generated with a probability of 1/2\^32=2.33x10^-10^. With a shorter Random field
-> of 2 bytes, the same nonce would be calculated with a probability of only 1/2\^16=1.53x10^-5^. As CCM is a derivation of CTR (see
-> [[https://en.wikipedia.org/wiki/CCM_mode]{.underline}](https://en.wikipedia.org/wiki/CCM_mode)), the nonce should never be reused for the same key
-> so the probability to generate two identical nonces should be kept as low as possible. Same for GCM and ChaCha20/Poly1305, the security depends on
-> choosing a unique IV of 12 bytes for every encryption performed with the same key
+> *In case of CCM, in the worst case scenario where the "Crypto Material" and the "Monotonic Counter" optional fields are not present,* *the
+> recommended nonce on 13 bytes will be calculated as SHA256 truncated to 104 bits of the sequence Byte 1 to Byte 16 (all packet fields until
+> Protected MQTT-SN Packet). So considering the same Sender Id, the same nonce can be generated with a probability of 1/2\^32=2.33x10^-10^. With a
+> shorter Random field of 2 bytes, the same nonce would be calculated with a probability of only 1/2\^16=1.53x10^-5^. As CCM is a derivation of CTR
+> (see [[https://en.wikipedia.org/wiki/CCM_mode]{.underline}](https://en.wikipedia.org/wiki/CCM_mode)), the nonce should never be reused for the same
+> key so the probability to generate two identical nonces should be kept as low as possible. Same for GCM and ChaCha20/Poly1305, the security depends
+> on choosing a unique IV of 12 bytes for every encryption performed with the same key
 > ([[https://en.wikipedia.org/wiki/Galois/Counter_Mode]{.underline}](https://en.wikipedia.org/wiki/Galois/Counter_Mode)).*
 
 #### 3.1.26.7 Crypto Material
@@ -3968,11 +3968,11 @@ procedure for setting up a session with a server is illustrated in Fig. 3a and 3
 
 The CONNECT packet contains flags to communicate to the gateway that Auth interactions, or WILL interactions should take place.
 
-![](media/image5.png){width="3.344815179352581in" height="2.4173436132983377in"}
+![](media/image4.png){width="3.344815179352581in" height="2.4173436132983377in"}
 
 Figure 3a: Connect procedure (without Auth flag not Will flag set or no further authentication data required)
 
-![](media/image8.png){width="3.345165135608049in" height="2.963542213473316in"}
+![](media/image1.png){width="3.345165135608049in" height="2.963542213473316in"}
 
 Figure 3b: Connect procedure (with Auth flag set and additional authentication data required)
 
@@ -4695,7 +4695,7 @@ Although the implementation of the transparent Gateway is simpler when compared 
 support a separate connection for each active client. Some MQTT server implementations might impose a limitation on the number of concurrent
 connections that they support.
 
-![](media/image4.png){width="3.994792213473316in" height="2.6661472003499562in"}
+![](media/image3.png){width="3.994792213473316in" height="2.6661472003499562in"}
 
 Figure XX: Transparent Gateway scenario
 
@@ -4706,21 +4706,21 @@ exchanges between a MQTT-SN client and an aggregating Gateway end at the Gateway
 the Server. Although its implementation is more complex than the one of a transparent Gateway, an aggregating Gateway may be helpful in case of WSNs
 with a very large number of SAs because it reduces the number of MQTT connections that the Gateway must support concurrently.
 
-![](media/image12.png){width="4.578125546806649in" height="3.0552755905511813in"}
+![](media/image10.png){width="4.578125546806649in" height="3.0552755905511813in"}
 
 Figure XX: Aggregating Gateway scenario
 
 ### 4.11.3 Forwarder encapsulator
 
-![](media/image13.png){width="4.704773622047244in" height="2.7964599737532807in"}
+![](media/image7.png){width="4.704773622047244in" height="2.7964599737532807in"}
 
-Figure XX: Forwarder encapsulator with TransparentGateway scenario![](media/image2.png){width="4.9003171478565175in" height="2.8304625984251968in"}
+Figure XX: Forwarder encapsulator with TransparentGateway scenario![](media/image6.png){width="4.9003171478565175in" height="2.8304625984251968in"}
 
 Figure XX: Forwarder encapsulator with Aggregating Gateway scenario
 
 ### 4.13.4 MQTT-SN broker
 
-![](media/image10.png){width="2.8596172353455818in" height="2.983947944006999in"}
+![](media/image5.png){width="2.8596172353455818in" height="2.983947944006999in"}
 
 Figure XX: MQTT-SN broker scenario
 
@@ -4812,7 +4812,7 @@ the "Sleeping clients" section.
 |                            | state.                                                                                |                              |
 +----------------------------+---------------------------------------------------------------------------------------+------------------------------+
 
-![](media/image6.png){width="6.5in" height="6.944444444444445in"}
+![](media/image11.png){width="6.5in" height="6.944444444444445in"}
 
 Figure 4: The Server View of the Client State
 
@@ -5060,7 +5060,7 @@ state by sending a CONNECT packet to the server/gateway.
 >
 > The gateway should attempt to make the best effort to reuse the same topic alias mappings that existed during any initial associated ACTIVE states.
 >
-> ![](media/image7.png){width="4.615764435695538in" height="7.453125546806649in"}
+> ![](media/image2.png){width="4.615764435695538in" height="7.453125546806649in"}
 
 Figure 5: Awake ping packet flush
 
@@ -5704,7 +5704,7 @@ ran is recalculated after each retry. The random number (ran) should be no large
 
 \[[Required section. Do not change.]{.mark}\]
 
-Copyright © OASIS Open 2023. All Rights Reserved.
+Copyright © OASIS Open 2024. All Rights Reserved.
 
 All capitalized terms in the following text have the meanings assigned to them in the OASIS Intellectual Property Rights Policy (the \"OASIS IPR
 Policy\"). The full [[Policy]{.underline}](https://www.oasis-open.org/policies-guidelines/ipr/) may be found at the OASIS website:
