@@ -168,7 +168,7 @@
   "3.1.26.9": "protected-mqtt-sn-packet",
   "3.1.26.10": "authentication-tag",
   "4": "operational-behavior",
-  "4.1": "example-mqtt-sn-architecture(s)",
+  "4.1": "example-mqtt-sn-architectures",
   "4.1.1": "transparent-gateway",
   "4.1.2": "aggregating-gateway",
   "4.2": "networks-and-transport-layers",

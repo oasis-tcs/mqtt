@@ -1,5 +1,5 @@
 <!-- transformation-note: left upstream numbering of headings for verification -->
-## 4.1 Example MQTT-SN Architecture(s)
+## 4.1 Example MQTT-SN Architecture(s){#example-mqtt-sn-architectures}
 
 <!-- transformation-note: below figure reference will be replaced by semantic reference later. -->
 The architecture of MQTT-SN is shown in figure 1.
