@@ -59,8 +59,8 @@ operational-behavior-17-topic-registration.md
 operational-behavior-18-topic-mapping-and-aliasing.md
 operational-behavior-19-predefined-topic-alias-and-short-names.md
 operational-behavior-20-clients-topic-subscribe-and-unsubscribe-procedure.md
-operational-behavior-21-clients-publish-procedure.md
-operational-behavior-22-gateways-publish-procedure.md
+operational-behavior-21-client-publish-procedure.md
+operational-behavior-22-gateway-publish-procedure.md
 operational-behavior-23-keep-alive-and-ping-procedure.md
 operational-behavior-24-clients-disconnect-procedure.md
 operational-behavior-25-sleeping-clients.md
