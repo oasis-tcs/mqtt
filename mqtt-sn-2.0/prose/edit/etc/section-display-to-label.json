@@ -198,6 +198,8 @@
   "4.13": "example-mqtt-sn-architectures",
   "4.13.1": "transparent-gateway",
   "4.13.2": "aggregating-gateway",
+  "4.13.3": "forwarder-encapsulator",
+  "4.13.4": "mqtt-sn-broker",
   "4.14": "gateway-advertisement-and-discovery",
   "4.15": "client-states",
   "4.15.1": "gateway-timers",
