@@ -717,7 +717,7 @@ payload data, a Quality of Service (QoS), and a Topic Name.
 
 A program or device that uses MQTT-SN. A Client:
 
--   opens a Virtual Connection to a Server.
+-   creates a Virtual Connection to a Server.
 
 -   publishes Application Messages that other Clients might be interested in.
 
@@ -832,12 +832,13 @@ A packet of information that is sent to a Network Address.
 
 **Malformed Packet:**
 
-A Control Packet that cannot be parsed according to this specification. Refer to section 4.12 for information about error handling.
+A Control Packet that cannot be parsed according to this specification. Refer to [[section 4.12]{.underline}](#handling-errors) for information about
+error handling.
 
 **Protocol Error:**
 
 An error that is detected after the packet has been parsed and found to contain data that is not allowed by the protocol or is inconsistent with the
-state of the Client or Server. Refer to section 4.12 for information about error handling.
+state of the Client or Server. Refer to [[section 4.12]{.underline}](#handling-errors) for information about error handling.
 
 **Will Message:**
 
@@ -984,8 +985,8 @@ specification [\[Unicode\]](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mq
 3629 [\[RFC3629\]](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#RFC3629). In particular, the character data MUST NOT include
 encodings of code points between U+D800 and U+DFFF]{.mark} \[MQTT-SN-1.7.4-1\].
 
-If the Client or Server receives an MQTT-SN Control Packet containing ill-formed UTF-8 it is a Malformed Packet. Refer to section 4.12 for information
-about handling errors.
+If the Client or Server receives an MQTT-SN Control Packet containing ill-formed UTF-8 it is a Malformed Packet. Refer to [[section
+4.12]{.underline}](#handling-errors) for information about handling errors.
 
 [A UTF-8 Encoded String MUST NOT include an encoding of the null character U+0000]{.mark} \[MQTT-SN-1.7.4-2\]. If a receiver (Server or Client)
 receives an Control Packet containing U+0000 in a UTF-8 Encoded String it is a Malformed Packet.
@@ -1327,7 +1328,7 @@ exchanges using the same Packet Identifiers.
 > It is possible for a Client to send a PUBLISH packet with Packet Identifier 0x1234 and then receive a different PUBLISH packet with Packet
 > Identifier 0x1234 from its Server before it receives a PUBACK for the PUBLISH packet that it sent.
 >
-> ![](media/image13.png){width="3.5502898075240594in" height="2.7864588801399823in"}
+> ![](media/image1.png){width="3.5502898075240594in" height="2.7864588801399823in"}
 
 ## 2.3 MQTT-SN Packet Fields
 
@@ -2265,22 +2266,23 @@ Client that it is using a value other than that sent by the Client in the CONNEC
 
 #### 3.1.5.6 Authentication Method Length (optional, only with *Auth* flag set)
 
-Single byte value (max 0-255 bytes), representing the length of field used to specify the authentication method. Refer to LINKED TO AUTH for more
-information about extended authentication.
+Single byte value (max 0-255 bytes), representing the length of field used to specify the authentication method. Refer to [[section
+4.11]{.underline}](#enhanced-authentication) for more information about extended authentication.
 
 #### 3.1.5.7 Authentication Method (optional, only with *Auth* flag set)
 
-A UTF-8 Encoded String containing the name of the authentication method. Refer to LINKED TO AUTH for more information about extended authentication.
+A UTF-8 Encoded String containing the name of the authentication method. Refer to [[section 4.11]{.underline}](#enhanced-authentication) for more
+information about extended authentication.
 
 #### 3.1.5.8 Authentication Data Length (optional, only with *Auth* flag set)
 
-Two byte value (max 0-65535 bytes), representing the length of field used to specify the authentication data. Refer to LINKED TO AUTH for more
-information about extended authentication.
+Two byte value (max 0-65535 bytes), representing the length of field used to specify the authentication data. Refer to [[section
+4.11]{.underline}](#enhanced-authentication) for more information about extended authentication.
 
 #### 3.1.5.9 Authentication Data (optional, only with *Auth* flag set)
 
 Binary Data containing authentication data. The contents of this data are defined by the authentication method and the state of already exchanged
-authentication data. Refer to LINKED TO AUTH for more information about extended authentication.
+authentication data. Refer to [[section 4.11]{.underline}](#enhanced-authentication) for more information about extended authentication.
 
 #### 3.1.5.10 Assigned Client Identifier
 
@@ -3966,11 +3968,11 @@ procedure for setting up a session with a server is illustrated in Fig. 3a and 3
 
 The CONNECT packet contains flags to communicate to the gateway that Auth interactions, or WILL interactions should take place.
 
-![](media/image9.png){width="3.344815179352581in" height="2.4173436132983377in"}
+![](media/image4.png){width="3.344815179352581in" height="2.4173436132983377in"}
 
 Figure 3a: Connect procedure (without Auth flag not Will flag set or no further authentication data required)
 
-![](media/image5.png){width="3.345165135608049in" height="2.963542213473316in"}
+![](media/image2.png){width="3.345165135608049in" height="2.963542213473316in"}
 
 Figure 3b: Connect procedure (with Auth flag set and additional authentication data required)
 
@@ -4693,7 +4695,7 @@ Although the implementation of the transparent Gateway is simpler when compared 
 support a separate connection for each active client. Some MQTT server implementations might impose a limitation on the number of concurrent
 connections that they support.
 
-![](media/image4.png){width="3.994792213473316in" height="2.6661472003499562in"}
+![](media/image6.png){width="3.994792213473316in" height="2.6661472003499562in"}
 
 Figure XX: Transparent Gateway scenario
 
@@ -4704,15 +4706,15 @@ exchanges between a MQTT-SN client and an aggregating Gateway end at the Gateway
 the Server. Although its implementation is more complex than the one of a transparent Gateway, an aggregating Gateway may be helpful in case of WSNs
 with a very large number of SAs because it reduces the number of MQTT connections that the Gateway must support concurrently.
 
-![](media/image2.png){width="4.578125546806649in" height="3.0552755905511813in"}
+![](media/image9.png){width="4.578125546806649in" height="3.0552755905511813in"}
 
 Figure XX: Aggregating Gateway scenario
 
 ### 4.11.3 Forwarder encapsulator
 
-![](media/image12.png){width="4.704773622047244in" height="2.7964599737532807in"}
+![](media/image10.png){width="4.704773622047244in" height="2.7964599737532807in"}
 
-Figure XX: Forwarder encapsulator with TransparentGateway scenario![](media/image7.png){width="4.9003171478565175in" height="2.8304625984251968in"}
+Figure XX: Forwarder encapsulator with TransparentGateway scenario![](media/image5.png){width="4.9003171478565175in" height="2.8304625984251968in"}
 
 Figure XX: Forwarder encapsulator with Aggregating Gateway scenario
 
@@ -4810,7 +4812,7 @@ the "Sleeping clients" section.
 |                            | state.                                                                                |                              |
 +----------------------------+---------------------------------------------------------------------------------------+------------------------------+
 
-![](media/image6.png){width="6.5in" height="6.944444444444445in"}
+![](media/image3.png){width="6.5in" height="6.944444444444445in"}
 
 Figure 4: The Server View of the Client State
 
