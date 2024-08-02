@@ -153,7 +153,7 @@ information see the full Notices section in an Appendix below.
 >
 > [2.3 MQTT-SN Packet Fields 24](#mqtt-sn-packet-fields)
 >
-> [2.3.1 Protocol Id 24](#protocol-id)
+> [2.3.1 Protocol Id 24](#protocol-version)
 >
 > [2.3.2 Radius 24](#radius)
 >
@@ -199,7 +199,7 @@ information see the full Notices section in an Appendix below.
 >
 > [3.1.4.3 Packet Identifier 35](#packet-identifier-1)
 >
-> [3.1.4.4 Protocol Version 35](#protocol-version)
+> [3.1.4.4 Protocol Version 35](#protocol-version-1)
 >
 > [3.1.4.5 Keep Alive Timer 35](#keep-alive-timer)
 >
@@ -725,7 +725,7 @@ A program or device that uses MQTT-SN. A Client:
 
 -   unsubscribes to remove a request for Application Messages.
 
--   closes the Virtual Connection to the Server.
+-   deletes the Virtual Connection to the Server.
 
 and/or:
 
@@ -832,13 +832,12 @@ A packet of information that is sent to a Network Address.
 
 **Malformed Packet:**
 
-A Control Packet that cannot be parsed according to this specification. Refer to [[section 4.11]{.underline}](#handling-errors) for information about
-error handling.
+A Control Packet that cannot be parsed according to this specification. Refer to section 4.12 for information about error handling.
 
 **Protocol Error:**
 
 An error that is detected after the packet has been parsed and found to contain data that is not allowed by the protocol or is inconsistent with the
-state of the Client or Server. Refer to [[section 4.11]{.underline}](#handling-errors) for information about error handling.
+state of the Client or Server. Refer to section 4.12 for information about error handling.
 
 **Will Message:**
 
@@ -935,8 +934,7 @@ MQTT-SN can work isolated from other networks or in conjunction with MQTT. The m
 3.  Support for sleeping clients allows battery operated devices to enter a low power mode. In this state, Application Messages for the Client are
     buffered by the Gateway and delivered when the client wakes.
 
-4.  A new Quality of Service level (WITHOUT SESSION) is introduced in MQTT-SN, allowing devices to publish without a GW session having been
-    established.
+4.  A new Quality of Service level (WITHOUT SESSION) is introduced in MQTT-SN, allowing devices to publish without a session having been established.
 
 5.  MQTT-SN has fewer requirements on the underlying transport and it can use connectionless network transports such as User Datagram Protocol (UDP).
 
@@ -986,11 +984,11 @@ specification [\[Unicode\]](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mq
 3629 [\[RFC3629\]](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#RFC3629). In particular, the character data MUST NOT include
 encodings of code points between U+D800 and U+DFFF]{.mark} \[MQTT-SN-1.7.4-1\].
 
-If the Client or Server receives an MQTT-SN Control Packet containing ill-formed UTF-8 it is a Malformed Packet. Refer to [[section
-4.11]{.underline}](#handling-errors) for information about handling errors.
+If the Client or Server receives an MQTT-SN Control Packet containing ill-formed UTF-8 it is a Malformed Packet. Refer to section 4.12 for information
+about handling errors.
 
 [A UTF-8 Encoded String MUST NOT include an encoding of the null character U+0000]{.mark} \[MQTT-SN-1.7.4-2\]. If a receiver (Server or Client)
-receives an MQTT-SN Control Packet containing U+0000 in a UTF-8 Encoded String it is a Malformed Packet.
+receives an Control Packet containing U+0000 in a UTF-8 Encoded String it is a Malformed Packet.
 
 UTF-8 Encoded Strings SHOULD NOT include the Unicode \[Unicode\] code points listed below. If a receiver (Server or Client) receives an MQTT-SN
 Control Packet with UTF-8 Encoded Strings containing any of them it MAY treat it as a Malformed Packet. These are the Disallowed Unicode code points.
@@ -1165,11 +1163,11 @@ The MQTT-SN Control Packet Type field is 1-byte long and specifies the MQTT-SN C
 |                            |                  |                            |                                                                     |
 |                            |                  | Gateway to Client          |                                                                     |
 +----------------------------+------------------+----------------------------+---------------------------------------------------------------------+
-| **WAKEUP**                 | 0x19             |                            | Wake up request                                                     |
+| **WAKEUP**                 | 0x19             | Gateway to Client          | Wake up request                                                     |
 +----------------------------+------------------+----------------------------+---------------------------------------------------------------------+
-| **- Reserved -**           | 0x1A-0x1D        |                            | Forbidden (Old Will Range)                                          |
+| **- Reserved -**           | 0x1A-0x1D        | Forbidden                  | Reserved (Old Will Range)                                           |
 +----------------------------+------------------+----------------------------+---------------------------------------------------------------------+
-| **- Reserved -**           | 0x1E-0xFD        |                            | Forbidden                                                           |
+| **- Reserved -**           | 0x1E-0xFD        | Forbidden                  | Reserved                                                            |
 +----------------------------+------------------+----------------------------+---------------------------------------------------------------------+
 | **FORWARDER                | 0xFE             | Forwarder to Client or     | Encapsulated MQTT-SN packet                                         |
 | ENCAPSULATION**            |                  |                            |                                                                     |
@@ -1278,9 +1276,9 @@ that require a Packet Identifier are shown below:
 
   UNSUBACK                                                          YES
 
-  PINGREQ                                                           NO
+  PINGREQ                                                           YES
 
-  PINGRESP                                                          NO
+  PINGRESP                                                          YES
 
   DISCONNECT                                                        NO
 
@@ -1333,9 +1331,9 @@ exchanges using the same Packet Identifiers.
 
 ## 2.3 MQTT-SN Packet Fields
 
-### 2.3.1 Protocol Id
+### 2.3.1 Protocol Version
 
-The *Protocol Id* is 1-byte long. It is only present in a CONNECT packet and corresponds to the MQTT 'protocol name' and 'protocol version'.
+The *Protocol Version* is 1-byte long. It is only present in a CONNECT packet and corresponds to the MQTT 'protocol name' and 'protocol version'.
 
 It is coded 0x02. 0x01 was used for MQTT-SN 1.2. All other values are reserved.
 
@@ -1574,12 +1572,12 @@ The allowable values are as follows:
             **Topic Type Value**                                 **Name**                         **Description**
   --------- ---------------------------------------------------- -------------------------------- -------------------------------------------------------
   0         0b00                                                 Session Topic Alias              A session topic alias is negotiated between the gateway
-                                                                                                  and client within the scope of a gateway session.
+                                                                                                  and client within the scope of a session.
 
   1         0b01                                                 Predefined Topic Alias           A predefined alias is known statically by both the
-                                                                                                  gateway and the client outside the scope of a gateway
-                                                                                                  session. No negotiation is required since both entities
-                                                                                                  have knowledge of the topic alias mapping.
+                                                                                                  gateway and the client outside the scope of a session.
+                                                                                                  No negotiation is required since both entities have
+                                                                                                  knowledge of the topic alias mapping.
 
   2         0b10                                                 Short Topic Name                 A 2-byte topic name which requires no negotiation.
 
@@ -1663,7 +1661,7 @@ within 1-hop transmission.
 
 > **Informative comment**
 >
-> If the Transport Layer supports multicast, like UDP/IP, the SEARCHGW packet is generally sent using the Multicast Address as destination..
+> If the Transport Layer supports multicast, like UDP/IP, the SEARCHGW packet is generally sent using the Multicast Address as destination.
 
 #### 3.1.2.1 Length & Packet Type
 
@@ -1832,7 +1830,7 @@ and is specified by the Length byte. Optional, only included if the packet is se
 
 [Table 14: CONNECT packet]{.underline}
 
-The CONNECT packet is sent from the Client to the Gateway to create or continue a Session.
+The CONNECT packet is sent from the Client to the Gateway to create a Virtual Connection able to create or continue a Session.
 
 #### 3.1.4.1 Length & Packet Type
 
@@ -1899,8 +1897,8 @@ value. [In the absence of sending any other MQTT-SN Control Packets, the Client
 the session 'LOST' (see state description in table 3.6).]{.mark}
 
 [If a Client does not receive a PINGRESP packet within a *Tretry* amount of time after it has sent a PINGREQ, it SHOULD retry the transmission
-according to [[section 4.24]{.underline}](#unacknowledged-packets) up to the maximum number of attempts. If a PINGRESP is still not received it MUST
-close the Session to the Gateway by way of a DISCONNECT, with the understanding that the GW may no longer be reachable.]{.mark}
+according to]{.mark} [[[section 4.24]{.underline}](#unacknowledged-packets) up to the maximum number of attempts. If a PINGRESP is still not received
+it MUST close the Session to the Gateway by way of a DISCONNECT, with the understanding that the GW may no longer be reachable.]{.mark}
 
 [A Keep Alive must have a value greater than 0. It is considered a protocol error If a Keep Alive value of 0 is set.]{.mark}
 
@@ -3968,11 +3966,11 @@ procedure for setting up a session with a server is illustrated in Fig. 3a and 3
 
 The CONNECT packet contains flags to communicate to the gateway that Auth interactions, or WILL interactions should take place.
 
-![](media/image4.png){width="3.344815179352581in" height="2.4173436132983377in"}
+![](media/image9.png){width="3.344815179352581in" height="2.4173436132983377in"}
 
 Figure 3a: Connect procedure (without Auth flag not Will flag set or no further authentication data required)
 
-![](media/image1.png){width="3.345165135608049in" height="2.963542213473316in"}
+![](media/image5.png){width="3.345165135608049in" height="2.963542213473316in"}
 
 Figure 3b: Connect procedure (with Auth flag set and additional authentication data required)
 
@@ -4695,7 +4693,7 @@ Although the implementation of the transparent Gateway is simpler when compared 
 support a separate connection for each active client. Some MQTT server implementations might impose a limitation on the number of concurrent
 connections that they support.
 
-![](media/image3.png){width="3.994792213473316in" height="2.6661472003499562in"}
+![](media/image4.png){width="3.994792213473316in" height="2.6661472003499562in"}
 
 Figure XX: Transparent Gateway scenario
 
@@ -4706,21 +4704,21 @@ exchanges between a MQTT-SN client and an aggregating Gateway end at the Gateway
 the Server. Although its implementation is more complex than the one of a transparent Gateway, an aggregating Gateway may be helpful in case of WSNs
 with a very large number of SAs because it reduces the number of MQTT connections that the Gateway must support concurrently.
 
-![](media/image10.png){width="4.578125546806649in" height="3.0552755905511813in"}
+![](media/image2.png){width="4.578125546806649in" height="3.0552755905511813in"}
 
 Figure XX: Aggregating Gateway scenario
 
 ### 4.11.3 Forwarder encapsulator
 
-![](media/image7.png){width="4.704773622047244in" height="2.7964599737532807in"}
+![](media/image12.png){width="4.704773622047244in" height="2.7964599737532807in"}
 
-Figure XX: Forwarder encapsulator with TransparentGateway scenario![](media/image6.png){width="4.9003171478565175in" height="2.8304625984251968in"}
+Figure XX: Forwarder encapsulator with TransparentGateway scenario![](media/image7.png){width="4.9003171478565175in" height="2.8304625984251968in"}
 
 Figure XX: Forwarder encapsulator with Aggregating Gateway scenario
 
 ### 4.13.4 MQTT-SN broker
 
-![](media/image5.png){width="2.8596172353455818in" height="2.983947944006999in"}
+![](media/image11.png){width="2.8596172353455818in" height="2.983947944006999in"}
 
 Figure XX: MQTT-SN broker scenario
 
@@ -4812,7 +4810,7 @@ the "Sleeping clients" section.
 |                            | state.                                                                                |                              |
 +----------------------------+---------------------------------------------------------------------------------------+------------------------------+
 
-![](media/image11.png){width="6.5in" height="6.944444444444445in"}
+![](media/image6.png){width="6.5in" height="6.944444444444445in"}
 
 Figure 4: The Server View of the Client State
 
@@ -5060,7 +5058,7 @@ state by sending a CONNECT packet to the server/gateway.
 >
 > The gateway should attempt to make the best effort to reuse the same topic alias mappings that existed during any initial associated ACTIVE states.
 >
-> ![](media/image2.png){width="4.615764435695538in" height="7.453125546806649in"}
+> ![](media/image8.png){width="4.615764435695538in" height="7.453125546806649in"}
 
 Figure 5: Awake ping packet flush
 
