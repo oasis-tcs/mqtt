@@ -28,8 +28,8 @@ Example of rendering of SVG from these text files (and subsequent rasterization 
 
 ```console
 ❯ packet=pubwos
-❯ bytefield-svg -s "${packet}"-packet-diagram.edn -o "${packet}"-packet-diagram.svg
-❯ svgexport "${packet}"-packet-diagram.svg "${packet}"-packet-diagram.png '100%'
+❯ bytefield-svg -s "${packet}".edn -o "${packet}".svg
+❯ svgexport "${packet}".svg "${packet}".png '100%'
 ```
 
 Processing all (blunt bash hack with short naps to akeep the node diva at ease):
