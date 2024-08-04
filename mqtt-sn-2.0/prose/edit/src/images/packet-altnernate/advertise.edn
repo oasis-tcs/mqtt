@@ -1,0 +1,13 @@
+;; This is the source for 3.1.1 ADVERTISE package diagram of MQTT-SN v2.0.
+(def boxes-per-row 8)
+(def box-width 70)
+(def left-margin 20)
+(defattrs :byte {:span 8})
+
+(draw-column-headers {:labels (str/split "7,6,5,4,3,2,1,0" #",")})
+(draw-box "Length" :byte)
+(draw-box "Packet Type" :byte)
+(draw-box "GwId" :byte)
+(draw-box "Duration MSB" :byte)
+(draw-box "Duration LSB" :byte)
+(draw-bottom)
