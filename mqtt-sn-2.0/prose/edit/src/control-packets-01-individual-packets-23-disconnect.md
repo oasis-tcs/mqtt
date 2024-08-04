@@ -1,24 +1,7 @@
 <!-- transformation-note: left upstream numbering of headings for verification -->
 ### 3.1.23 DISCONNECT
 
-<!-- transformation-note: no table col span in markdown, but we should specify bitfields better (than with layout tables) anyway -->
-<!-- transformation-note: bitfield display candidate could be clearer that X means variable bit values for DISCONNECT flags (bits). -->
-| Bit          | 7                                      | 6        | 5        | 4        | 3                   | 2                               | 1                     | 0                    |
-|:-------------|:---------------------------------------|:---------|:---------|:---------|:--------------------|:--------------------------------|:----------------------|:---------------------|
-| Byte 1       | Length                                 |          |          |          |                     |                                 |                       |                      |
-| Byte 2       | Packet Type                            |          |          |          |                     |                                 |                       |                      |
-|              | DISCONNECT FLAGS                       |          |          |          |                     |                                 |                       |                      |
-|              | Reserved                               | Reserved | Reserved | Reserved | Reason Code Present | Session Expiry Interval Present | Reason String Present | Retain Registrations |
-| Byte 3       | 0                                      | 0        | 0        | 0        | X                   | X                               | X                     | X                    |
-| Byte 4       | Reason Code (optional)                 |          |          |          |                     |                                 |                       |                      |
-| Byte 5       | Session Expiry Interval MSB (optional) |          |          |          |                     |                                 |                       |                      |
-| Byte 6       | TSession Expiry Interval (optional)    |          |          |          |                     |                                 |                       |                      |
-| Byte 7       | Session Expiry Interval (optional)     |          |          |          |                     |                                 |                       |                      |
-| Byte 7       | Session Expiry Interval LSB (optional) |          |          |          |                     |                                 |                       |                      |
-| Byte 9 ... N | Reason String (optional)               |          |          |          |                     |                                 |                       |                      |
-
-Table 45: DISCONNECT packet
-<!-- transformation-note: above upstream table number will be replaced by auto-numbering later. -->
+![DISCONNECT Packet](images/packet/disconnect.png "DISCONNECT Packet"){#fig:disconnect-packet}
 
 As with MQTT, the DISCONNECT packet is sent by a client to indicate that it wants to close the Virtual connection.
 The gateway will acknowledge the receipt of that packet by returning a DISCONNECT to the client.
@@ -29,11 +12,10 @@ A DISCONNECT packet with a Session Expiry Interval field is sent by a client whe
 The receipt of this packet is also acknowledged by the gateway by means of a DISCONNECT packet.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-#### 3.1.23.1 Length and Packet Type{#disconnect--length-and-packet-type}
+#### 3.1.23.1 Length &amp; Packet Type{#disconnect--length-and-packet-type}
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format.
-Please refer to section 2.1 "Structure of an MQTT-SN Control Packet" for a detailed description.
-<!-- transformation-note: the above section ref upstream 1.8.2 was obviously wrong and should point to section 2.1 "Structure of an MQTT-SN Control Packet". -->
+Refer to [section 2.1](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
 #### 3.1.23.2 Disconnect Flags

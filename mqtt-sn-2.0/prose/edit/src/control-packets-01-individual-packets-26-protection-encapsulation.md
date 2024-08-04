@@ -1,27 +1,7 @@
 <!-- transformation-note: left upstream numbering of headings for verification -->
 ### 3.1.26 Protection Encapsulation
 
-<!-- transformation-note: no table col span in markdown, but we should specify bitfields better (than with layout tables) anyway -->
-<!-- transformation-note: bitfield display candidate could be clearer that X means variable bit values for PROTECTION flags (bits). -->
-<!-- transformation-note: different style to other packet descriptions: dash instead of ellipsis for ranges and suspicious
-     letter continuations across ranges eg. instead of 17 ... P and P+1 ... Q it states 17 ... P and Q ... R. --->
-| Bit          | 7                            | 6               | 5               | 4               | 3                      | 2                      | 1                        | 0                        |
-|:-------------|:-----------------------------|:----------------|:----------------|:----------------|:-----------------------|:-----------------------|:-------------------------|:-------------------------|
-| Byte 1       | Length                       |                 |                 |                 |                        |                        |                          |                          |
-| Byte 2       | Packet Type                  |                 |                 |                 |                        |                        |                          |                          |
-|              | PROTECTION FLAGS             |                 |                 |                 |                        |                        |                          |                          |
-|              | Auth Tag Length              | Auth Tag Length | Auth Tag Length | Auth Tag Length | Crypto Material Length | Crypto Material Length | Monotonic Counter Length | Monotonic Counter Length |
-| Byte 3       | x                            | x               | x               | x               | X                      | X                      | X                        | X                        |
-| Byte 4       | Protection Scheme            |                 |                 |                 |                        |                        |                          |                          |
-| Byte 5 - 12  | Sender Id                    |                 |                 |                 |                        |                        |                          |                          |
-| Byte 13 - 16 | Random                       |                 |                 |                 |                        |                        |                          |                          |
-| Byte 17 - P  | Crypto Material (Optional)   |                 |                 |                 |                        |                        |                          |                          |
-| Byte Q - R   | Monotonic Counter (Optional) |                 |                 |                 |                        |                        |                          |                          |
-| Byte S - T   | Protected MQTT-SN Packet     |                 |                 |                 |                        |                        |                          |                          |
-| Byte U - N   | Authentication Tag           |                 |                 |                 |                        |                        |                          |                          |
-
-Table 53: Format of the protection encapsulated MQTT-SN packet
-<!-- transformation-note: above upstream table number will be replaced by auto-numbering later. -->
+![Protection Encapsulation](images/packet/protection-encapsulation.png "Protection Encapsulation"){#fig:protection-encapsulation}
 
 Protection encapsulation provides a secure envelope for any MQTT-SN packet (with the exception of the Forward Encapsulation packet).
 The fields provided by the protection encapsulation provide a means by which the sender can be identified and the packet can be protected,
@@ -55,8 +35,7 @@ only MQTT-SN packets received over it.
 #### 3.1.26.1 Length{#protection-encapsulation--length}
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format.
-Please refer to section 2.1 "Structure of an MQTT-SN Control Packet" for a detailed description.
-<!-- transformation-note: the above section ref upstream 1.8.2 was obviously wrong and should point to section 2.1 "Structure of an MQTT-SN Control Packet". -->
+Refer to [section 2.1](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
 #### 3.1.26.2 Packet Type

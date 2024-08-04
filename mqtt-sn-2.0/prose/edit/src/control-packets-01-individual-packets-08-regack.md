@@ -1,32 +1,15 @@
 <!-- transformation-note: left upstream numbering of headings for verification -->
 ### 3.1.8 REGACK
 
-<!-- transformation-note: no table col span in markdown, but we should specify bitfields better (than with layout tables) anyway --> 
-<!-- transformation-note: bitfield display candidate could be clearer that x means variable bit values for REGACK flags (bits). -->
-| Bit    | 7                  | 6        | 5        | 4        | 3        | 2        | 1                | 0                |
-|:-------|:-------------------|:---------|:---------|:---------|:---------|:---------|:-----------------|:-----------------|
-| Byte 1 | Length             |          |          |          |          |          |                  |                  |
-| Byte 2 | Packet Type (0x0C) |          |          |          |          |          |                  |                  |
-|        | REGACK FLAGS       |          |          |          |          |          |                  |                  |
-|        | Reserved           | Reserved | Reserved | Reserved | Reserved | Reserved | Topic Alias Type | Topic Alias Type |
-| Byte 3 | 0                  | 0        | 0        | 0        | 0        | 0        | x                | x                |
-| Byte 4 | Packet Id MSB      |          |          |          |          |          |                  |                  |
-| Byte 5 | Packet Id LSB      |          |          |          |          |          |                  |                  |
-| Byte 6 | Topic Alias MSB    |          |          |          |          |          |                  |                  |
-| Byte 7 | Topic Alias LSB    |          |          |          |          |          |                  |                  |
-| Byte 8 | Reason Code        |          |          |          |          |          |                  |                  |
-
-Table 25: REGACK packet
-<!-- transformation-note: above upstream table number will be replaced by auto-numbering later. -->
+![REGACK Packet](images/packet/regack.png "REGACK Packet"){#fig:regack-packet}
 
 The REGACK packet is sent by a client or by a GW as an acknowledgment to the receipt and processing of a REGISTER packet.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
 #### 3.1.8.1 Length &amp; Packet Type{#regack--length-and-packet-type}
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[section
-2.1]{.underline}](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
-<!-- transformation-note: the above section ref upstream 1.8.2 was obviously wrong and should point to section 2.1 "Structure of an MQTT-SN Control Packet". -->
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format.
+Refer to [section 2.1](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
 #### 3.1.8.2 REGACK Flags

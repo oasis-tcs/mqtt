@@ -1,21 +1,7 @@
 <!-- transformation-note: left upstream numbering of headings for verification -->
 ### 3.1.11 PUBLISH (used for QoS 0){#publish-used-for-qos-0}
 
-<!-- transformation-note: no table col span in markdown, but we should specify bitfields better (than with layout tables) anyway -->
-<!-- transformation-note: bitfield display candidate could be clearer that x means variable bit values for REGACK flags (bits). -->
-| Bit                 | 7                                | 6   | 5   | 4      | 3        | 2        | 1          | 0          |
-|:--------------------|:---------------------------------|:----|:----|:-------|:---------|:---------|:-----------|:-----------|
-| Byte 1              | Length                           |     |     |        |          |          |            |            |
-| Byte 2              | Packet Type (0x0c)               |     |     |        |          |          |            |            |
-|                     | PUBLISH QoS 0 FLAGS              |     |     |        |          |          |            |            |
-|                     | DUP                              | QoS | QoS | Retain | Reserved | Reserved | Topic Type | Topic Type |
-| Byte 3              | X                                | X   | X   | X      | 0        | 0        | X          | X          |
-| Byte 4              | Topic Data MSB                   |     |     |        |          |          |            |            |
-| Byte 5              | Topic Data LSB                   |     |     |        |          |          |            |            |
-| Byte (6 + TL) ... N | Data Or (Full Topic Name + Data) |     |     |        |          |          |            |            |
-
-Table 29: PUBLISH packet
-<!-- transformation-note: above upstream table number will be replaced by auto-numbering later. -->
+![PUBLISH Packet](images/packet/publish-qos-zero.png "PUBLISH Packet"){#fig:publish-qos-zero-packet}
 
 This packet is used by both clients and gateways to publish data for a certain topic.
 
@@ -27,11 +13,10 @@ This packet is used by both clients and gateways to publish data for a certain t
 <!-- transformation-note: replaced above colloquial ampersand with english "and". -->
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-#### 3.1.11.1 Length and Packet Type{#publish-used-for-qos-0--length-and-packet-type}
+#### 3.1.11.1 Length &amp; Packet Type{#publish-used-for-qos-0--length-and-packet-type}
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format.
-Please refer to section 2.1 "Structure of an MQTT-SN Control Packet" for a detailed description.
-<!-- transformation-note: the above section ref upstream 1.8.2 was obviously wrong and should point to section 2.1 "Structure of an MQTT-SN Control Packet". -->
+Refer to [section 2.1](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
 #### 3.1.11.2 PUBLISH Flags{#publish-used-for-qos-0--publish-flags}

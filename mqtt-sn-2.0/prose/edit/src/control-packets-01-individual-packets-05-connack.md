@@ -1,20 +1,15 @@
 <!-- transformation-note: left upstream numbering of headings for verification -->
 ### 3.1.5 CONNACK
 
-<!-- transformation-note: very complex table with many optionals falsifying the byte counts skipped for now,
-      hopefully we can migrate to a different bitfield visualization. -->
-
-Table 16: CONNACK packet
-<!-- transformation-note: above upstream table number will be replaced by auto-numbering later. -->
+![CONNACK Packet](images/packet/connack.png "CONNACK Packet"){#fig:connack-packet}
 
 The CONNACK packet is sent by the Gateway in response to a Virtual Connection request from a client.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
 #### 3.1.5.1 Length &amp; Packet Type{#connack--length-and-packet-type}
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[section
-2.1]{.underline}](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
-<!-- transformation-note: the above section ref upstream 1.8.2 was obviously wrong and should point to section 2.1 "Structure of an MQTT-SN Control Packet". -->
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format.
+Refer to [section 2.1](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
 #### 3.1.5.2 Connack Flags

@@ -1,17 +1,7 @@
 <!-- transformation-note: left upstream numbering of headings for verification -->
 ### 3.1.25 Forwarder Encapsulation
 
-<!-- transformation-note: no table col span in markdown, but we should specify bitfields better (than with layout tables) anyway --> 
-| Bit                | 7                | 6  | 5  | 4  | 3  | 2  | 1  | 0  |
-|:-------------------|:-----------------|:---|:---|:---|:---|:---|:---|:---|
-| Byte 1             | Length           |    |    |    |    |    |    |    |
-| Byte 2             | Packet Type      |    |    |    |    |    |    |    |
-| Byte 3             | Ctrl             |    |    |    |    |    |    |    |
-| Byte 4 ... N       | Wireless Node Id |    |    |    |    |    |    |    |
-| Byte (N + 1 ... M) | MQTT SN packet   |    |    |    |    |    |    |    |
-
-Table 53: Format of an encapsulated MQTT-SN frame
-<!-- transformation-note: above upstream table number will be replaced by auto-numbering later. -->
+![Forwarder encapsulation](images/packet/forwarder-encapsulation.png "Forwarder encapsulation"){#fig:forwarder-encapsulation}
 
 <!-- transformation-note: below section reference to 4 "Operational Behavior" requires verification before turning into a semantic reference. -->
 As detailed in Section 4, MQTT-SN clients can also access a gateway via a forwarder in case the gateway is not directly attached to their WSNs.

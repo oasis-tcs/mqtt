@@ -1,34 +1,16 @@
 <!-- transformation-note: left upstream numbering of headings for verification -->
 ### 3.1.17 SUBSCRIBE
 
-<!-- transformation-note: no table col span in markdown, but we should specify bitfields better (than with layout tables) anyway -->
-<!-- transformation-note: bitfield display candidate could be clearer that x means variable bit values for SUBSCRIBE flags (bits). -->
-<!-- transformation-note: observation: the blind table indicates different widths for QoS as well as retain handling bits. -->
-<!-- transformation-note: observation: alternate inhabitants of bytes 6 and 7 in the case of a topic filter are possibly more (or even less?) than 2 bytes. -->
-| Bit    | 7                                   | 6   | 5   | 4                   | 3               | 2               | 1          | 0          |
-|:-------|:------------------------------------|:----|:----|:--------------------|:----------------|:----------------|:-----------|:-----------|
-| Byte 1 | Length                              |     |     |                     |                 |                 |            |            |
-| Byte 2 | Packet Type (0x0c)                  |     |     |                     |                 |                 |            |            |
-|        | SUBSCRIBE FLAGS                     |     |     |                     |                 |                 |            |            |
-|        | No Local                            | QoS | QoS | Retain as published | Retain Handling | Retain Handling | Topic Type | Topic Type |
-| Byte 3 | X                                   | X   | X   | X                   | X               | X               | X          | X          |
-| Byte 4 | Packet Id MSB                       |     |     |                     |                 |                 |            |            |
-| Byte 5 | Packet Id LSB                       |     |     |                     |                 |                 |            |            |
-| Byte 6 | Topic Data MSB  **OR** Topic Filter |     |     |                     |                 |                 |            |            |
-| Byte 7 | Topic Data LSB  **OR** Byte 6 ... N |     |     |                     |                 |                 |            |            |
-
-
-Table 36: SUBSCRIBE packet
-<!-- transformation-note: above upstream table number will be replaced by auto-numbering later. -->
+![SUBSCRIBE Packet](images/packet/subscribe.png "SUBSCRIBE Packet"){#fig:subscribe-packet}
 
 The SUBSCRIBE packet is used by a client to subscribe to a certain topic name.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-#### 3.1.17.1 Length and Packet Type{#subscribe--length-and-packet-type}
+#### 3.1.17.1 Length &amp; Packet Type{#subscribe--length-and-packet-type}
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format.
-Please refer to section 2.1 "Structure of an MQTT-SN Control Packet" for a detailed description.
-<!-- transformation-note: the above section ref upstream 1.8.2 was obviously wrong and should point to section 2.1 "Structure of an MQTT-SN Control Packet". -->
+Refer to [section 2.1](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
+Packet". -->
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
 #### 3.1.17.2 SUBSCRIBE Flags{#subscribe--subscribe-flags}

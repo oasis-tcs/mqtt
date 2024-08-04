@@ -2,25 +2,7 @@
 ### 3.1.12 PUBLISH (used for QoS 1 and 2){#publish-used-for-qos-1-and-2}
 <!-- transformation-note: replaced above colloquial ampersand with english "and". -->
 
-<!-- transformation-note: no table col span in markdown, but we should specify bitfields better (than with layout tables) anyway -->
-<!-- transformation-note: bitfield display candidate could be clearer that x means variable bit values for REGACK flags (bits). -->
-<!-- transformation-note: replaced below colloquial ampersand with english "and". -->
-<!-- transformation-note: observed inconsistencies in case of hexadecimal numbers and the of the letter "x" in bit value cells. -->
-| Bit                 | 7                                | 6   | 5   | 4      | 3        | 2        | 1          | 0          |
-|:--------------------|:---------------------------------|:----|:----|:-------|:---------|:---------|:-----------|:-----------|
-| Byte 1              | Length                           |     |     |        |          |          |            |            |
-| Byte 2              | Packet Type (0x0C)               |     |     |        |          |          |            |            |
-|                     | PPUBLISH QoS 1 and 2 FLAGS       |     |     |        |          |          |            |            |
-|                     | DUP                              | QoS | QoS | Retain | Reserved | Reserved | Topic Type | Topic Type |
-| Byte 3              | X                                | X   | X   | X      | 0        | 0        | X          | X          |
-| Byte 4              | Packet Id MSB                    |     |     |        |          |          |            |            |
-| Byte 5              | Packet Id LSB                    |     |     |        |          |          |            |            |
-| Byte 6              | Topic Data MSB                   |     |     |        |          |          |            |            |
-| Byte 7              | Topic Data LSB                   |     |     |        |          |          |            |            |
-| Byte (8 + TL) ... N | Data Or (Full Topic Name + Data) |     |     |        |          |          |            |            |
-
-Table 30: PUBLISH packet
-<!-- transformation-note: above upstream table number will be replaced by auto-numbering later. -->
+![PUBLISH Packet](images/packet/publish-qos-1-and-2.png "PUBLISH Packet"){#fig:publish-qos-1-and-2-packet}
 
 This packet is used by both clients and gateways to publish data for a certain topic.
 
@@ -35,8 +17,7 @@ This packet is used by both clients and gateways to publish data for a certain t
 #### 3.1.12.1 Length and Packet Type{#publish-used-for-qos-1-and-2--length-and-packet-type}
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format.
-Please refer to section 2.1 "Structure of an MQTT-SN Control Packet" for a detailed description.
-<!-- transformation-note: the above section ref upstream 1.8.2 was obviously wrong and should point to section 2.1 "Structure of an MQTT-SN Control Packet". -->
+Refer to [section 2.1](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
 #### 3.1.12.2 PUBLISH Flags{#publish-used-for-qos-1-and-2--publish-flags}

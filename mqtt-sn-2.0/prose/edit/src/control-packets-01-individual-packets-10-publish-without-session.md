@@ -1,21 +1,7 @@
 <!-- transformation-note: left upstream numbering of headings for verification -->
 ### 3.1.10 PUBLISH WITHOUT SESSION
 
-<!-- transformation-note: no table col span in markdown, but we should specify bitfields better (than with layout tables) anyway -->
-<!-- transformation-note: bitfield display candidate could be clearer that x means variable bit values for REGACK flags (bits). -->
-| Bit                 | 7                                | 6        | 5        | 4      | 3        | 2        | 1          | 0          |
-|:--------------------|:---------------------------------|:---------|:---------|:-------|:---------|:---------|:-----------|:-----------|
-| Byte 1              | Length                           |          |          |        |          |          |            |            |
-| Byte 2              | Packet Type (0x11)               |          |          |        |          |          |            |            |
-|                     | PUBLISH WITHOUT SESSION          |          |          |        |          |          |            |            |
-|                     | Reserved                         | Reserved | Reserved | Retain | Reserved | Reserved | Topic Type | Topic Type |
-| Byte 3              | 0                                | 0        | 0        | X      | 0        | 0        | X          | X          |
-| Byte 4              | Topic Data MSB                   |          |          |        |          |          |            |            |
-| Byte 5              | Topic Data LSB                   |          |          |        |          |          |            |            |
-| Byte (6 + TL) ... N | Data Or (Full Topic Name + Data) |          |          |        |          |          |            |            |
-
-Table 28: PUBLISH packet
-<!-- transformation-note: above upstream table number will be replaced by auto-numbering later. -->
+![PUBWOS Packet](images/packet/pubwos.png "PUBWOS Packet"){#fig:pubwos-packet}
 
 This packet is used by both clients and gateways to publish data for a certain topic.
 
@@ -32,11 +18,10 @@ Upon being processed, PUBLISH WITHOUT SESSION packets received by a Gateway shou
 > being processed for onward delivery.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
-#### 3.1.10.1 Length and Packet Type{#publish-without-session--length-and-packet-type}
+#### 3.1.10.1 Length &amp; Packet Type{#publish-without-session--length-and-packet-type}
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format.
-Please refer to section 2.1 "Structure of an MQTT-SN Control Packet" for a detailed description.
-<!-- transformation-note: the above section ref upstream 1.8.2 was obviously wrong and should point to section 2.1 "Structure of an MQTT-SN Control Packet". -->
+Refer to [section 2.1](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 <!-- transformation-note: left upstream numbering of headings for verification -->
 #### 3.1.10.2 PUBLISH Flags{#publish-without-session--publish-flags}
