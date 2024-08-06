@@ -211,8 +211,7 @@ information see the full Notices section in an Appendix below.
 >
 > [3.1.4.9 Connect Will Flags (optional, only with Will flag set) 37](#connect-will-flags-optional-only-with-will-flag-set)
 >
-> [3.1.4.10 Will Topic Short or Will Topic Length (optional, only with Will flag set)
-> 37](#will-topic-short-or-will-topic-length-optional-only-with-will-flag-set)
+> [3.1.4.10 Will Topic Short or Will Topic Length (optional, only with Will flag set) 37](#will-topic-data-optional-only-with-will-flag-set)
 >
 > [3.1.4.11 Will Payload Length (optional, only with Will flag set) 37](#will-payload-length-optional-only-with-will-flag-set)
 >
@@ -739,7 +738,7 @@ and/or:
 
 A program or device that acts as an intermediary between Clients which publish Application Messages and Clients which have made Subscriptions.
 
-Also known as a **Gateway**.
+Also known as a **Gateway** **or GW**.
 
 A Server:
 
@@ -1300,7 +1299,7 @@ that require a Packet Identifier are shown below:
   PROTECTION ENCAPSULATION                                          NO
   -----------------------------------------------------------------------------------------------------------------------------------------------------
 
-[Table 8 Packets with Packet Identifier]{.underline}
+[Table 8]{.underline} [Packets with Packet Identifier]{.underline}
 
 [A PUBLISH packet MUST NOT contain a Packet Identifier if its QoS value is set to 0]{.mark}.
 
@@ -1420,7 +1419,9 @@ Each value and meaning of each *Reason Code* field is shown below.
 |          |           |                                        | SUBACK, UNSUBACK, DISCONNECT       |                                              |
 |          |           |                                        | (server only)                      |                                              |
 +----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
-| 136      | 0x88      | Server unavailable                     | CONNACK                            | The MQTT Server is not available.            |
+| 136      | 0x88      | Server unavailable                     | CONNACK                            | The MQTT-SN Server is not available or, in   |
+|          |           |                                        |                                    | case of Transparent gateway, the MQTT server |
+|          |           |                                        |                                    | is not available.                            |
 +----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
 | 137      | 0x89      | Server busy                            | CONNACK, DISCONNECT (server only)  | The Server is busy and cannot continue       |
 |          |           |                                        |                                    | processing requests from this Client.        |
@@ -1449,8 +1450,8 @@ Each value and meaning of each *Reason Code* field is shown below.
 | 144      | 0x90      | Topic name invalid                     | CONNACK, PUBACK, PUBREC,           | The Topic Name is correctly formed, but is   |
 |          |           |                                        | DISCONNECT (server only)           | not accepted by this Client or Server.       |
 +----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
-| 145      | 0x91      | Packet identifier in use               | PUBACK, PUBREC, SUBACK, UNSUBACK   | The specified Packet Identifier is already   |
-|          |           |                                        |                                    | in use.                                      |
+| 145      | 0x91      | Packet identifier in use               | PUBACK, PUBREC, SUBACK, UNSUBACK,  | The specified Packet Identifier is already   |
+|          |           |                                        | PINGRESP                           | in use.                                      |
 +----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
 | 146      | 0x92      | Packet identifier not found            | PUBREL, PUBCOMP                    | The Packet Identifier is not known. This is  |
 |          |           |                                        |                                    | not an error during recovery, but at other   |
@@ -1533,7 +1534,7 @@ Each value and meaning of each *Reason Code* field is shown below.
 +----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
 | 232      | 0xE8      | Unknown Sender Id                      | DISCONNECT                         | Specific to MQTT-SN                          |
 +----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
-| 240      | 0xF0      | Unknown Topic Alias                    | PUBACK, SUBACK                     | Specific to MQTT-SN                          |
+| 240      | 0xF0      | Unknown Topic Alias                    | PUBACK, SUBACK, UNSUBACK, REGACK   | Specific to MQTT-SN                          |
 +----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
 | 241      | 0xF1      | Congestion                             | SUBACK, REGACK, CONNACK, PUBACK    | Specific to MQTT-SN                          |
 +----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
@@ -1541,9 +1542,9 @@ Each value and meaning of each *Reason Code* field is shown below.
 +----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
 | 243      | 0xF3      | Forwarder Encapsulation not supported  | DISCONNECT                         | Specific to MQTT-SN                          |
 +----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
-| 244      | 0xF4      | Unknown topic alias                    | SUBACK, UNSUBACK, PUBACK, REGACK   | Specific to MQTT-SN                          |
+|          |           |                                        |                                    |                                              |
 +----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
-| 245-255  | 0xF5-0xFF | Reserved for MQTT-SN                   |                                    | Specific to MQTT-SN                          |
+| 244-255  | 0xF5-0xFF | Reserved for MQTT-SN                   |                                    | Specific to MQTT-SN                          |
 +----------+-----------+----------------------------------------+------------------------------------+----------------------------------------------+
 
 [Table 9: Reason Code Values]{.underline}
@@ -1901,7 +1902,7 @@ the session 'LOST' (see state description in table 3.6).]{.mark}
 according to]{.mark} [[[section 4.24]{.underline}](#unacknowledged-packets) up to the maximum number of attempts. If a PINGRESP is still not received
 it MUST close the Session to the Gateway by way of a DISCONNECT, with the understanding that the GW may no longer be reachable.]{.mark}
 
-[A Keep Alive must have a value greater than 0. It is considered a protocol error If a Keep Alive value of 0 is set.]{.mark}
+[A Keep Alive must have a value greater than 0. It is considered a protocol error if a Keep Alive value of 0 or below]{.mark} [is set.]{.mark}
 
 > **Informative comment**\
 > The Gateway may have other reasons to disconnect the Client, for instance because it is shutting down. Setting Keep Alive does not guarantee that
@@ -1929,8 +1930,8 @@ If the Session Expiry Interval is 0xFFFFFFFF (UINT_MAX), the Session does not ex
 > **Informative comment**
 >
 > The client and gateway between them should negotiate a reasonable and practical session expiry interval according to the network and infrastructure
-> environment in which they are deployed. For example, it would not be practical to set a session -- expiry -- interval of many months on a gateway
-> whose hardware is only capable of storing a few client sessions.
+> environment in which they are deployed. For example, it would not be practical to set a session expiry interval of many months on a gateway whose
+> hardware is only capable of storing a few client sessions.
 
 #### 3.1.4.7 Maximum Packet Size
 
@@ -1945,8 +1946,8 @@ The packet size is the total number of bytes in an MQTT-SN Control Packet, as de
 2.1]{.underline}](#structure-of-an-mqtt-sn-control-packet). The Client uses the Maximum Packet Size to inform the Server that it will not process
 packets exceeding this limit.
 
- [The Gateway MUST NOT send packets exceeding Maximum Packet Size to the Client. If a Client receives a packet whose size exceeds this limit, this is
-a Protocol Error, the Client uses DISCONNECT with Reason Code 0x95 (Packet too large).]{.mark}
+[The Gateway MUST NOT send packets exceeding Maximum Packet Size to the Client. If a Client receives a packet whose size exceeds this limit, this is a
+Protocol Error, the Client uses DISCONNECT with Reason Code 0x95 (Packet too large).]{.mark}
 
 [Where a Packet is too large to send, the Gateway MUST discard it without sending it and then behave as if it had completed sending that Application
 Message.]{.mark}
@@ -1966,7 +1967,7 @@ be used by Clients and by Gateway to identify the state that they hold relating 
 > A Client Identifier can be between 0 - 65,521 bytes. We advise for practicality, ClientID's are restricted to a reasonable size (less than 243 bytes
 > to fit within a small CONNECT packet).
 
-[When the clientID is present (greater than 0 bytes), the Gateway MUST allow values which are between 1 and 23 UTF-8 encoded bytes in length, and that
+[When the ClientID is present (greater than 0 bytes), the Gateway MUST allow values which are between 1 and 23 UTF-8 encoded bytes in length, and that
 contain only the characters \"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".]{.mark}
 
 [The Gateway may choose to allow more than 23 bytes.]{.mark}
@@ -2009,7 +2010,7 @@ The Server SHOULD publish Will Messages promptly after the Virtual Connection is
 Server shutdown or failure, the Server MAY defer publication of Will Messages until a subsequent restart. If this happens, there might be a delay
 between the time the Server experienced failure and when the Will Message is published.
 
-#### 3.1.4.10 Will Topic Short or Will Topic Length (optional, only with *Will* flag set)
+#### 3.1.4.10 Will Topic Data (optional, only with *Will* flag set)
 
 In the case of Will Topic Type being b11 this field will refer to the length of data assigned to the "Will Full Topic Name", in all other cases, this
 will be the value used as the Will topic alias or Will short topic name.
@@ -2029,23 +2030,22 @@ Will Payload Length fields.
 
 #### 3.1.4.13 Authentication Method Length (optional, only with *Auth* flag set)
 
-Single byte value (max 0-255 bytes), representing the length of field used to specify the authentication method. Refer to [[section
-4.10]{.underline}](#enhanced-authentication) for more information about extended authentication.
+Single byte value (max 0-255 bytes), representing the length of field used to specify the authentication method. Refer to section 4.11 for more
+information about extended authentication.
 
 #### 3.1.4.14 Authentication Method (optional, only with *Auth* flag set)
 
-A UTF-8 Encoded String containing the name of the authentication method. Refer to [[section 4.10]{.underline}](#enhanced-authentication) for more
-information about extended authentication.
+A UTF-8 Encoded String containing the name of the authentication method. Refer to section 4.11 for more information about extended authentication.
 
 #### 3.1.4.15 Authentication Data Length (optional, only with *Auth* flag set)
 
-Two byte value (max 0-65535 bytes), representing the length of field used to specify the authentication data. Refer to [[section
-4.10]{.underline}](#enhanced-authentication) for more information about extended authentication.
+Two byte value (max 0-65535 bytes), representing the length of field used to specify the authentication data. Refer to section 4.11 for more
+information about extended authentication.
 
 #### 3.1.4.16 Authentication Data (optional, only with *Auth* flag set)
 
-Binary Data containing authentication data. The contents of this data are defined by the authentication method. Refer to [[section
-4.10]{.underline}](#enhanced-authentication) for more information about extended authentication.
+Binary Data containing authentication data. The contents of this data are defined by the authentication method. Refer to section 4.11 for more
+information about extended authentication.
 
 #### 3.1.4.17 CONNECT Actions
 
@@ -2218,8 +2218,8 @@ The first 2 or 4 bytes of the packet are encoded according to the variable lengt
 
 #### 3.1.5.2 Connack Flags
 
-The CONNACK FLAGS is a 1 byte field located at byte 4 which contains flags specifying the behavior of the MQTT-SN Virtual Connection on the gateway.
-[Bits 7-2 of the CONNACK FLAGS are reserved and MUST be set to 0]{.mark}.
+The CONNACK FLAGS is a 1 byte field which contains flags specifying the behavior of the MQTT-SN Virtual Connection on the gateway. [Bits 7-2 of the
+CONNACK FLAGS are reserved and MUST be set to 0]{.mark}.
 
 The Connack *Flags* field includes the following flags:
 
@@ -2254,8 +2254,8 @@ The same value as the Packet Identifier in the CONNECT Packet being acknowledged
 
 #### 3.1.5.4 Reason Code
 
-Byte 5 in the CONNACK header contains the Connect Reason Code. The values for the Connect Reason Code field are shown in Table 9: Reason Code Values.
-[The Server sending the CONNACK packet MUST use one of the Connect Reason Code values.]{.mark}
+The values for the Connect Reason Code field are shown in Table 9: Reason Code Values. [The Server sending the CONNACK packet MUST use one of
+the]{.mark} [Connect Reason Code values.]{.mark}
 
 [If a Server sends a CONNACK packet containing a Reason code of]{.mark} [128 or greater it MUST then delete the Virtual Connection.]{.mark}
 
@@ -2344,13 +2344,13 @@ The first 2 or 4 bytes of the packet are encoded according to the variable lengt
 
 #### 3.1.7.2 Packet Identifier
 
-Used to identify the corresponding CONNECT, AUTH or CONNACK packet. It should ideally be populated with a random integer value when sent from Client
-to Server. [When sent from Server to Client, it MUST contain the packet identifier of the CONNECT or AUTH packet being responded to]{.mark}.
+Used to identify the corresponding CONNECT or AUTH packet. It should ideally be populated with a random integer value when sent from Client to Server.
+[When sent from Server to Client, it MUST contain the packet identifier of the CONNECT or AUTH packet being responded to]{.mark}.
 
 #### 3.1.6.2 Reason Code
 
-[Byte 3 in the Auth packet holds the Authentication Reason Code. The values for the Authentication Reason Code field are shown in]{.mark} Table 9:
-Reason Code Values. [The sender of the AUTH Packet MUST use one of the Authenticate Reason Codes.]{.mark}
+[The values for the Authentication Reason Code field are shown in]{.mark} Table 9: Reason Code Values. [The sender of the AUTH Packet MUST use one of
+the Authenticate Reason Codes.]{.mark}
 
 #### 3.1.6.3 Auth Method Length
 
@@ -2398,7 +2398,7 @@ Refer to [[section 4.11]{.underline}](#enhanced-authentication) for more informa
   Byte 7...N           Topic Name                                                                                                         
   --------------------------------------------------------------------------------------------------------------------------------------------------------
 
-[Table 24: REGISTER packet]{.underline}
+[Table]{.underline} [24: REGISTER packet]{.underline}
 
 The REGISTER packet is sent by a client to a GW for requesting a topic alias value for the included topic name. It is also sent by a GW to inform a
 client about the topic alias value it has assigned to the included topic name.
@@ -2464,7 +2464,7 @@ The first 2 or 4 bytes of the packet are encoded according to the variable lengt
 
 #### 3.1.8.2 REGACK Flags
 
-The REGACK Flags is 1 byte field in Byte position 3 of the REGACK packet.
+The REGACK Flags is 1 byte field of the REGACK packet.
 
 The REGACK Flags field includes the following flag:
 
@@ -2481,15 +2481,15 @@ A Topic Alias is an integer value that is used to identify the Topic instead of 
 
 #### 3.1.8.5 Reason Code
 
-[Byte 8 in the REGACK packet holds the Register Reason Code.]{.mark} The values for the Register Reason Code field are shown in Table 9: Reason Code
-Values. [The sender of the REGACK Packet MUST use one of the Register Reason Codes.]{.mark}
+The values for the Register Reason Code field are shown in Table 9: Reason Code Values. [The sender of the REGACK Packet MUST use one of the]{.mark}
+[Register Reason Codes.]{.mark}
 
 ### 3.1.9 Publish Variants
 
 MQTT-SN is designed to be optimized for packet size. For this reason, the PUBLISH packet has been split into 3 variants; Variant 1 catering for
-PUBLISH WITHOUT SESSION where no GW session is required, Variant 2 catering for Quality of Service 0 where no response ACK is required and thus no
-packet identifier is required and Quality of Service 1 and 2 where a response is expected. The table below breaks down the different versions of the
-PUBLISH packet and their respective type identifiers.
+PUBLISH WITHOUT SESSION where no session is required, Variant 2 catering for Quality of Service 0 where no response ACK is required and thus no packet
+identifier is required and Quality of Service 1 and 2 where a response is expected. The table below breaks down the different versions of the PUBLISH
+packet and their respective type identifiers.
 
   ------------------------------------------------------------------------------------------------------------------------------------------------------
   **Packet Type**               **Type**             **Description**
@@ -2549,7 +2549,7 @@ The first 2 or 4 bytes of the packet are encoded according to the variable lengt
 
 #### 3.1.10.2 PUBWOS Flags
 
-The PUBWOS Flags field is 1-byte located in the Byte 3 position of the PUBWOS control packet.
+The PUBWOS Flags field is 1-byte of the PUBWOS control packet.
 
 The PUBWOS Flags includes the following flags:
 
@@ -2606,8 +2606,8 @@ The Client or Server uses a PUBWOS packet to send an Application Message to a Ne
 
 [Table 29: PUBLISH packet]{.underline}
 
-This packet is used by both clients and gateways to publish data for a certain topic. [PUBLISH QoS 0, 1 & 2 packets received by a Gateway MUST be
-associated with a valid Client Session]{.mark} \[MQTT-SN-3.1.11-1\].
+This packet is used by both clients and gateways to publish data for a certain topic. [PUBLISH QoS 0, 1 & 2 packets received by a Gateway]{.mark}
+[MUST be associated with a]{.mark} [Session]{.mark} \[MQTT-SN-3.1.11-1\].
 
 #### 3.1.11.1 Length & Packet Type
 
@@ -2682,7 +2682,7 @@ As described in [[section 3.1.12.7]{.underline}](#publish-actions).
 
 This packet is used by both clients and gateways to publish data for a certain topic.
 
-[PUBLISH QoS 0, 1 & 2 packets received by a Gateway MUST be associated with a valid Client Session]{.mark} \[MQTT-SN-3.1.12-1\].
+[PUBLISH QoS 0, 1 & 2 packets received by a Gateway MUST be associated with a]{.mark} [Session]{.mark} \[MQTT-SN-3.1.12-1\].
 
 #### 3.1.12.1 Length & Packet Type
 
@@ -2691,7 +2691,7 @@ The first 2 or 4 bytes of the packet are encoded according to the variable lengt
 
 #### 3.1.12.2 PUBLISH Flags
 
-The PUBLISH Flags field is 1-byte located in Byte 3 position of the PUBLISH control packet.
+The PUBLISH Flags field is 1-byte of the PUBLISH control packet.
 
 The PUBLISH Flags includes the following flags:
 
@@ -2704,7 +2704,7 @@ The PUBLISH Flags includes the following flags:
   ------------------------------------------------------------------------------------------------------------------------------------------------------
   **QoS value**                       **Bit 6**           **bit 5**          **Description**
   ----------------------------------- ------------------- ------------------ ---------------------------------------------------------------------------
-  0                                   0                   0                  At most once delivery
+                                                                             
 
   1                                   0                   1                  At least once delivery
 
@@ -2737,12 +2737,13 @@ the *Topic Type* field in flags. Determines the topic which this payload will be
 
 #### 3.1.12.6 Data
 
-The *Data* field corresponds to the payload of an MQTT PUBLISH packet. It has a variable length and contains the application data that is being
-published.
+In the case of Topic Type b11 the data section will be prefixed with a "Full Topic Name" encoded with a UTF-8 encoded string value of length
+determined by the previously defined length field. Thereafter, the Data field corresponds to the payload of an MQTT PUBLISH packet. It has a variable
+length and contains the application data that is being published.
 
 #### 3.1.12.7 PUBLISH Actions
 
-[The receiver of a PUBLISH Packet MUST respond with the packet as determined by the QoS in the PUBLISH Packet.]{.mark} \[MQTT-SN-3.1.12.7-1\].
+[The receiver of a PUBLISH packet MUST respond with the packet as determined by the QoS in the PUBLISH Packet.]{.mark} \[MQTT-SN-3.1.12.7-1\].
 
 Table 3‑3 Expected PUBLISH packet response
 
@@ -2775,9 +2776,9 @@ The action of the recipient when it receives a PUBLISH packet depends on the QoS
 > provided by this specification, some information in the Application Message can be lost, and applications which depend on this information might not
 > work correctly.
 
-[The Client MUST NOT send more than one QoS 1 or QoS 2 PUBLISH packet for which it has not received PUBACK, PUBCOMP, or PUBREC with a Reason Code of
-128 or greater from the]{.mark} [Server]{.mark} \[MQTT-3.3.4-7\]. If it receives more than one QoS 1 or QoS 2 PUBLISH packets where it has not sent a
-PUBACK or PUBCOMP in response, the Server uses a DISCONNECT packet with Reason Code 0x93 (Receive Maximum exceeded) as described in [[section
+[The Client MUST NOT send more than one QoS 1 or QoS 2 PUBLISH packet for which it has not received PUBACK, PUBCOMP, or PUBREC]{.mark} [with a Reason
+Code of 128 or greater from the]{.mark} [Server]{.mark} \[MQTT-3.3.4-7\]. If it receives more than one QoS 1 or QoS 2 PUBLISH packets where it has not
+sent a PUBACK or PUBCOMP in response, the Server uses a DISCONNECT packet with Reason Code 0x93 (Receive Maximum exceeded) as described in [[section
 4.12]{.underline}](#handling-errors) Handling errors. Refer to [[section 4.9]{.underline}](#flow-control) for more information about flow control.
 
 > **Informative comment**
@@ -2829,8 +2830,8 @@ The same value as the Packet Identifier in the PUBLISH Packet being acknowledged
 
 #### 3.1.13.3 Reason Code
 
-Byte 5 in the PUBACK packet holds the Reason code in response to the PUBLISH packet. The PUBACK Reason Codes are shown in Table 9: Reason Code Values.
-The Client or Server sending the PUBACK packet MUST use one of the PUBACK Reason Codes.
+The PUBACK Reason Codes are shown in Table 9: Reason Code Values. The Client or Server sending the PUBACK packet MUST use one of the PUBACK Reason
+Codes.
 
 #### 3.1.13.4 PUBACK Actions
 
@@ -2871,8 +2872,8 @@ The same value as the Packet Identifier in the PUBLISH Packet being acknowledged
 
 #### 3.1.14.3 Reason Code
 
-Byte 5 in the PUBREC packet holds the Reason code in response to the PUBLISH packet. The PUBREC Reason Codes are shown in Table 9: Reason Code Values.
-The Client or Server sending the PUBREC packet MUST use one of the PUBREC Reason Codes.
+The PUBREC Reason Codes are shown in Table 9: Reason Code Values. The Client or Server sending the PUBREC packet MUST use one of the PUBREC Reason
+Codes.
 
 #### 3.1.14.4 PUBREC Actions
 
@@ -2913,8 +2914,8 @@ The same value as the Packet Identifier in the PUBLISH Packet being acknowledged
 
 #### 3.1.15.3 Reason Code
 
-Byte 5 in the PUBREL packet holds the Reason code in response to the PUBREC packet. The PUBREL Reason Codes are shown in Table 9: Reason Code Values.
-The Client or Server sending the PUBREL packet MUST use one of the PUBREL Reason Codes.
+The PUBREL Reason Codes are shown in Table 9: Reason Code Values. The Client or Server sending the PUBREL packet MUST use one of the PUBREL Reason
+Codes.
 
 #### 3.1.15.4 PUBREL Actions
 
@@ -2955,8 +2956,8 @@ The same value as the Packet Identifier in the PUBLISH Packet being acknowledged
 
 #### 3.1.16.3 Reason Code
 
-Byte 5 in the PUBCOMP packet holds the Reason code in response to the PUBREL packet. The PUBCOMP Reason Codes are shown in Table 9: Reason Code
-Values. The Client or Server sending the PUBCOMP packet MUST use one of the PUBCOMP Reason Codes.
+The PUBCOMP Reason Codes are shown in Table 9: Reason Code Values. The Client or Server sending the PUBCOMP packet MUST use one of the PUBCOMP Reason
+Codes.
 
 #### 3.1.16.4 PUBCOMP Actions
 
@@ -3968,11 +3969,11 @@ procedure for setting up a session with a server is illustrated in Fig. 3a and 3
 
 The CONNECT packet contains flags to communicate to the gateway that Auth interactions, or WILL interactions should take place.
 
-![](media/image4.png){width="3.344815179352581in" height="2.4173436132983377in"}
+![](media/image6.png){width="3.344815179352581in" height="2.4173436132983377in"}
 
 Figure 3a: Connect procedure (without Auth flag not Will flag set or no further authentication data required)
 
-![](media/image2.png){width="3.345165135608049in" height="2.963542213473316in"}
+![](media/image7.png){width="3.345165135608049in" height="2.963542213473316in"}
 
 Figure 3b: Connect procedure (with Auth flag set and additional authentication data required)
 
@@ -4270,7 +4271,7 @@ The Client or Gateway will start a retransmission retry timer, T~retry~, when on
 encapsulation if there is one, after T~retry~ has passed or the Virtual Connection deleted.]{.mark}
 
 [A Gateway MUST retransmit PUBLISH Qos1, PUBLISH Qos2, PUBREL]{.mark} [Packets, including a PROTECTION encapsulation if there is one, after T~retry~
-has passed or the Virtual Connection deleted.]{.mark}
+has passed]{.mark} [or the Virtual Connection deleted.]{.mark}
 
 [The timer is canceled if the corresponding acknowledgement packet is received. The Client or Gateway MUST retransmit the Packet after T~retry~ has
 passed or delete the Virtual Connection.]{.mark}
@@ -4695,7 +4696,7 @@ Although the implementation of the transparent Gateway is simpler when compared 
 support a separate connection for each active client. Some MQTT server implementations might impose a limitation on the number of concurrent
 connections that they support.
 
-![](media/image6.png){width="3.994792213473316in" height="2.6661472003499562in"}
+![](media/image12.png){width="3.994792213473316in" height="2.6661472003499562in"}
 
 Figure XX: Transparent Gateway scenario
 
@@ -4712,9 +4713,9 @@ Figure XX: Aggregating Gateway scenario
 
 ### 4.11.3 Forwarder encapsulator
 
-![](media/image10.png){width="4.704773622047244in" height="2.7964599737532807in"}
+![](media/image3.png){width="4.704773622047244in" height="2.7964599737532807in"}
 
-Figure XX: Forwarder encapsulator with TransparentGateway scenario![](media/image5.png){width="4.9003171478565175in" height="2.8304625984251968in"}
+Figure XX: Forwarder encapsulator with TransparentGateway scenario![](media/image13.png){width="4.9003171478565175in" height="2.8304625984251968in"}
 
 Figure XX: Forwarder encapsulator with Aggregating Gateway scenario
 
@@ -4812,7 +4813,7 @@ the "Sleeping clients" section.
 |                            | state.                                                                                |                              |
 +----------------------------+---------------------------------------------------------------------------------------+------------------------------+
 
-![](media/image3.png){width="6.5in" height="6.944444444444445in"}
+![](media/image8.png){width="6.5in" height="6.944444444444445in"}
 
 Figure 4: The Server View of the Client State
 
@@ -5060,7 +5061,7 @@ state by sending a CONNECT packet to the server/gateway.
 >
 > The gateway should attempt to make the best effort to reuse the same topic alias mappings that existed during any initial associated ACTIVE states.
 >
-> ![](media/image8.png){width="4.615764435695538in" height="7.453125546806649in"}
+> ![](media/image5.png){width="4.615764435695538in" height="7.453125546806649in"}
 
 Figure 5: Awake ping packet flush
 
