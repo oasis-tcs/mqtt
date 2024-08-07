@@ -1327,7 +1327,7 @@ exchanges using the same Packet Identifiers.
 > It is possible for a Client to send a PUBLISH packet with Packet Identifier 0x1234 and then receive a different PUBLISH packet with Packet
 > Identifier 0x1234 from its Server before it receives a PUBACK for the PUBLISH packet that it sent.
 >
-> ![](media/image1.png){width="3.5502898075240594in" height="2.7864588801399823in"}
+> ![](media/image11.png){width="3.5502898075240594in" height="2.7864588801399823in"}
 
 ## 2.3 MQTT-SN Packet Fields
 
@@ -1987,7 +1987,8 @@ The Connect optional *Will Flags* field includes the following flags:
 -   **Will QoS**: Stored in Bit 2 and 3, these two bits specify the QoS level to be used. The value of Will QoS can be 0 (0x00), 1 (0x01), or 2
     (0x02). A value of 3 (0x03) is a Malformed Packet.
 
--   **Will Retain**: Stored in Bit 4, this bit specifies if the Will Message is to be retained when it is published.
+-   **Will Retain**: Stored in Bit 4, this bit specifies if the Will Message is to be retained when it is published. The Will Message will be retained
+    for a time defined by the server.
 
 [If the Will Flag is set to 1 this indicates that a Will Message MUST be stored on the Server and associated with the Session]{.mark}
 \[MQTT-SN-3.1.4.9-1\]. The Will Message consists of the Will Topic, and Will Payload fields in the CONNECT Packet. [The Will Message MUST be published
@@ -1996,7 +1997,7 @@ with Reason Code 0x00 (Normal disconnection)]{.mark} \[MQTT-SN\--3.1.4.9-2\].
 
 Situations in which the Will Message is published include, but are not limited to:
 
--   An I/O error or network failure detected by the Server.
+-   The Server deletes the Virtual Connection as a result of an I/O error or network failure it has detected.
 
 -   The Client fails to communicate within the Keep Alive time.
 
@@ -2816,8 +2817,8 @@ or PUBCOMP in response, the Client uses DISCONNECT with Reason Code 0x93 (Receiv
 
 [Table 31: PUBACK packet]{.underline}
 
-A PUBACK packet is the response to a PUBLISH packet with QoS 1. It can also be sent as response to a PUBLISH packet of any QoS (*with the exception of
-QoS -1, or PUBWOS*) in case of an error; the error reason is then indicated in the *Reason Code* field.
+A PUBACK packet is the response to a PUBLISH packet with QoS 1. It can also be sent as response to a PUBLISH packet of any QoS (*with the exception
+of* *QoS -1, or PUBWOS*) in case of an error; the error reason is then indicated in the *Reason Code* field.
 
 #### 3.1.13.1 Length & Packet Type
 
@@ -3094,7 +3095,7 @@ The Server is permitted to start sending PUBLISH packets matching the Subscripti
 [If a Server receives a SUBSCRIBE packet containing a Topic Filter that is identical to a Subscription's Topic Filter for the current Session, then it
 MUST replace that existing Subscription with a new Subscription]{.mark} \[MQTT-SN-3.1.17.5-3\]. The Topic Filter in the new Subscription will be
 identical to that in the previous Subscription, although its Subscription Options could be different. [If the Retain Handling option is 0, any
-existing retained messages matching the Topic Filter MUST be re-sent, but Application Messages MUST NOT be lost due to replacing the
+existing retained messages matching the Topic Filter MUST be re-sent,]{.mark} [but Application Messages MUST NOT be lost due to replacing the
 Subscription]{.mark} \[MQTT-SN-3.1.17.5-4\].
 
 If a Server receives a Topic Filter that is not identical to any Topic Filter for the current Session, a new Subscription is created. If the Retain
@@ -3165,7 +3166,7 @@ The first 2 or 4 bytes of the packet are encoded according to the variable lengt
 
 #### 3.1.18.2 Flags
 
-The SUBACK Flags field is 1-byte located in Byte 3 position of the SUBACK control packet. The SUBACK Flags includes the following flags:
+The SUBACK Flags field is 1-byte of the SUBACK control packet. The SUBACK Flags includes the following flags:
 
 -   **Topic Type**. This is a 2-bit field in Bit 0 and 1 which determines the format of the topic data field. Refer to [Table 10](#topic-types) for
     the definition of the various topic types.
@@ -3181,8 +3182,7 @@ The same value as the Packet Identifier in the SUBSCRIBE Packet being acknowledg
 
 #### 3.1.18.5 Reason Code
 
-Byte 8 in the SUBACK packet holds the Reason code in response to the SUBSCRIBE packet. The SUBACK Reason Codes are shown in Table 9: Reason Code
-Values.The Server sending the SUBACK packet MUST use one of the SUBACK Reason Codes.
+The SUBACK Reason Codes are shown in Table 9: Reason Code Values.The Server sending the SUBACK packet MUST use one of the SUBACK Reason Codes.
 
 ### 3.1.19 UNSUBSCRIBE - Unsubscribe Request
 
@@ -3232,7 +3232,7 @@ Values.The Server sending the SUBACK packet MUST use one of the SUBACK Reason Co
 
 [Table 39: UNSUBSCRIBE packet]{.underline}
 
-An UNSUBSCRIBE packet is sent by the client to the GW to unsubscribe from named topics.
+An UNSUBSCRIBE packet is sent by the client to the GW to unsubscribe from topics.
 
 #### 3.1.19.1 Length & Packet Type
 
@@ -3241,12 +3241,12 @@ The first 2 or 4 bytes of the packet are encoded according to the variable lengt
 
 #### 3.1.19.2 UNSUBSCRIBE Flags
 
-For The UNSUBSCRIBE Flags is 1 byte field in Byte position 3 of the UNSUBSCRIBE packet.
+For The UNSUBSCRIBE Flags is 1 byte field of the UNSUBSCRIBE packet.
 
 The UNSUBSCRIBE Flags field includes the following flag:
 
--   **Topic Type.** This is a 2-bit field in Bit 0 and 1 which determines the format of the topic Id value. Refer to [Table 10](#topic-types) for the
-    definition of the various topic types.
+-   **Topic Type.** This is a 2-bit field in Bit 0 and 1 which determines the format of the topic data value. Refer to [Table 10](#topic-types) for
+    the definition of the various topic types.
 
 #### 3.1.19.3 Packet Identifier
 
@@ -3259,18 +3259,19 @@ field in flags. Determines the topic names which this subscription is interested
 
 #### 3.1.19.4 UNSUBSCRIBE Actions
 
-[The Topic Filter (whether it contains wildcards or not) supplied in an UNSUBSCRIBE packet MUST be compared character-by-character with the current
-set of Topic Filters held by the Server for the Client. If any filter matches exactly then its owning Subscription MUST be deleted]{.mark}
+[The]{.mark} [Topic Filter (whether it contains wildcards or not) supplied in an UNSUBSCRIBE packet MUST be compared character-by-character with the
+current set of Topic Filters held by the Server for the Client. If any filter matches exactly then its owning Subscription MUST be deleted]{.mark}
 \[MQTT-SN-3.1.19.4-1\], otherwise no additional processing occurs.
 
 [When a Server receives UNSUBSCRIBE]{.mark} :
 
--   [It MUST stop adding any new Application Messages which match the Topic Filters, for delivery to the Client]{.mark} \[MQTT-SN-3.1.19.4-2\].
+-   [It MUST stop adding any new Application Messages which match the]{.mark} [Topic Filters, for delivery to the Client]{.mark}
+    \[MQTT-SN-3.1.19.4-2\].
 
--   [It MUST complete the delivery of any QoS 1 or QoS 2 Application Messages which match the Topic Filters and it has started to send to the
+-   [It MUST complete the delivery of any QoS 1 or QoS 2 Application Messages which match the]{.mark} [Topic Filters and it has started to send to the
     Client]{.mark} \[MQTT-SN-3.1.19.4-3\].
 
--   It MAY continue to deliver any existing [Application]{.mark} Messages buffered for delivery to the Client.
+-   It MAY continue to deliver any existing [Application]{.mark} Messages which match the Topic Filters buffered for delivery to the Client.
 
 [The Server MUST respond to an UNSUBSCRIBE request by sending an UNSUBACK packet]{.mark} \[MQTT-3.1.19.4-4\]. [The UNSUBACK packet MUST have the same
 Packet Identifier as the UNSUBSCRIBE packet. Even where no Topic Subscriptions are deleted, the Server MUST respond with an UNSUBACK]{.mark}
@@ -3311,8 +3312,7 @@ The same value as the Packet Identifier in the UNSUBSCRIBE packet being acknowle
 
 #### 3.1.20.3 Reason Code
 
-Byte 5 in the UNSUBACK packet holds the Reason code in response to UNSUBSCRIBE packet. The UNSUBACK Reason Codes are shown in Table 9: Reason Code
-Values. The server sending the UNSUBACK packet MUST use one of the UNSUBACK Reason Codes.
+The UNSUBACK Reason Codes are shown in Table 9: Reason Code Values. The server sending the UNSUBACK packet MUST use one of the UNSUBACK Reason Codes.
 
 ### 3.1.21 PINGREQ - Ping Request
 
@@ -3388,7 +3388,7 @@ waiting for packets sent by the server/gateway.
 A PINGRESP packet is the response to a PINGREQ packet and means "yes I am alive". PINGREQ packets flow in either direction, sent either by a connected
 client or the gateway. it has only a header and no variable part.
 
-A PINGRESP packet is also sent by a Gateway to inform a sleeping CLient that it has no more buffered packets for that Client.
+A PINGRESP packet is also sent by a Gateway to inform a sleeping Client that it has no more buffered packets for that Client.
 
 #### 3.1.22.1 Length & Packet Type
 
@@ -3460,9 +3460,9 @@ client\'s awake period. Values can be:
 [Table 45: DISCONNECT packet]{.underline}
 
 As with MQTT, the DISCONNECT packet is sent by a client to indicate that it wants to delete the Virtual connection. The gateway will acknowledge the
-receipt of that packet by returning a DISCONNECT to the client. A server or gateway may also send a DISCONNECT to a client, e.g. in case a gateway,
-due to an error, cannot map a received packet to a client. Upon receiving such a DISCONNECT packet, a client should try to create another Virtual
-Connection by sending a CONNECT packet to the gateway or server.
+receipt of that packet by returning a DISCONNECT to the client. A server may also send a DISCONNECT to a client due to an error when for instance it
+cannot map a received packet to the client. Upon receiving such a DISCONNECT packet, a client should try to create another Virtual Connection by
+sending a CONNECT packet to the gateway or server.
 
 [A Server MUST NOT send a DISCONNECT until after it has sent a CONNACK with Reason Code of less than 0x80 \[MQTT-SN-3.1.23-1\].]{.mark}
 
@@ -3476,9 +3476,7 @@ The first 2 or 4 bytes of the packet are encoded according to the variable lengt
 
 #### 3.1.23.2 Disconnect Flags
 
-The Disconnect Flags is 1 byte field located at byte 3 which contains parameters specifying the behavior of the MQTT-SN sleep on the gateway.
-
-The Disconnect *Flags* field includes the following flags:
+The Disconnect Flags is 1 byte field The Disconnect *Flags* field includes the following flags:
 
 -   **Reason Code Present:** Stored in Bit 3 Does the reason code exist on the packet
 
@@ -3495,8 +3493,7 @@ Malformed Packet.]{.mark}
 
 #### 3.1.23.3 Reason Code
 
-The Reason Code for the DISCONNECT packet is optional. If provided, Byte 3 in the DISCONNECT control packet holds the Reason Code of the
-disconnection. If not provided, 0x00 (Normal disconnection) is assumed.
+The Reason Code for the DISCONNECT packet is optional. If not provided, 0x00 (Normal disconnection) is assumed.
 
 The DISCONNECT Reason Codes are shown in Table 9: Reason Code Values. [The Client or Server sending the DISCONNECT packet MUST use one of the
 DISCONNECT Reason Code values]{.mark} \[MQTT-SN-3.1.23.3-1\].
@@ -3505,7 +3502,7 @@ DISCONNECT Reason Code values]{.mark} \[MQTT-SN-3.1.23.3-1\].
 
 The Session Expiry Interval is a four-byte integer time interval measured in seconds. If the Session Expiry Interval is set to 0 or omitted, the
 Session is transitioned to the "***disconnected***" state. When the value of this field is greater than zero, it is deemed to be sent by a client that
-wants to transition to the "***asleep***" state, see Section 3.19 for further details. At this point the keep alive timer becomes obsolete until the
+wants to transition to the "***asleep***" state, see Section 4.15 for further details. At this point the keep alive timer becomes obsolete until the
 device issues a new CONNECT.
 
 [The Session Expiry Interval MUST NOT be sent on a DISCONNECT by the Server]{.mark} \[MQTT--SN-3.1.23.4-1\].
@@ -3704,7 +3701,7 @@ Coded "0x1E", see Table 63
 
 #### 3.1.26.3 Protection Flags
 
-The PROTECTION Flags is 1 byte field in Byte position 3 of the packet, specifying the properties of the PROTECTION.
+The PROTECTION Flags is 1 byte field of the packet, specifying the properties of the PROTECTION.
 
 The PROTECTION Flags field includes the following flags:
 
@@ -3759,9 +3756,8 @@ The PROTECTION Flags field includes the following flags:
 
 #### 3.1.26.4 Protection Scheme
 
-> A (1 byte) field located at byte 4 should contain one of the not Reserved indexes in the following table. In general two types of protection scheme
-> are considered: **Authentication only** (like HMAC or CMAC) and **AEAD** (Authenticated Encryption with Associated Data, like GCM, CCM or
-> ChaCha20/Poly1305).
+> A (1 byte) field should contain one of the not Reserved indexes in the following table. In general two types of protection scheme are considered:
+> **Authentication only** (like HMAC or CMAC) and **AEAD** (Authenticated Encryption with Associated Data, like GCM, CCM or ChaCha20/Poly1305).
 
   -----------------------------------------------------------------------------------------------------------------------------------------------------
   **Index**          **Name**                                             **Auth Only**             **Key size**              **Tag size**
@@ -3835,7 +3831,7 @@ The PROTECTION Flags field includes the following flags:
 
 #### 3.1.26.5 Sender Identifier
 
-Located at Bytes 5 - 12 the Sender Id field (8 bytes) should contain:
+**[T]{.underline}**he Sender Id field (8 bytes) should contain:
 
 If the message is originated by the ***Gateway***:
 
@@ -3868,8 +3864,7 @@ If the message is originated by the ***Gateway***:
 
 #### 3.1.26.6 Random
 
-**[Located at Byte 13 - 16]{.underline}** , the "**Random**" field (4 bytes) should contain a random number (not guessable) generated at the
-PROTECTION packet creation .
+The "**Random**" field (4 bytes) should contain a random number (not guessable) generated at the PROTECTION packet creation .
 
 -   **[Informative comment]{.underline}**
 
@@ -3884,30 +3879,30 @@ PROTECTION packet creation .
 
 #### 3.1.26.7 Crypto Material
 
-Located at Byte (17 - P), the optional field "**Crypto Material**" contains [0, 2, 4 or 12 bytes of crypto material that when defined it can be used
-to derive, from a shared master secret, the same keys on the two endpoints and/or, when filled partially or totally with a random value, to further
-reduce the probability of IV/nonce reuse for CCM or GCM or ChaCha20/Poly1305. For instance when the Crypto material length is set to 0x03, the Crypto
-Material field can be partially filled with a random value of 9 bytes (the remaining 3 bytes can be set to 0 if not used) in order to reach the 13
-bytes used only once recommended for the nonce used by CCM or it can be partially filled with a random value of 8 bytes in order to reach the 12 bytes
-used only once recommended for the IV/nonce used by GCM or ChaCha20/Poly1305 .]{.mark}
+The optional field "**Crypto Material**" contains [0, 2, 4 or 12 bytes of crypto material that when defined it can be used to derive, from a shared
+master secret, the same keys on the two endpoints and/or, when filled partially or totally with a random value, to further reduce the probability of
+IV/nonce reuse for CCM or GCM or ChaCha20/Poly1305. For instance when the Crypto material length is set to 0x03, the Crypto Material field can be
+partially filled with a random value of 9 bytes (the remaining 3 bytes can be set to 0 if not used) in order to reach the 13 bytes used only once
+recommended for the nonce used by CCM or it can be partially filled with a random value of 8 bytes in order to reach the 12 bytes used only once
+recommended for the IV/nonce used by GCM or ChaCha20/Poly1305 .]{.mark}
 
 #### 3.1.26.8 Monotonic Counter
 
-Located at Byte Byte (Q - R), the optional field "**Monotonic Counter**" contains [0, 2 or 4 byte number that when defined, is increased by the Client
-or GW for every packet sent. The counters should be considered independent of session or destination. E.g. The UE will keep a counter independently
-from the GW.]{.mark}
+[T]{.mark}he optional field "**Monotonic Counter**" contains [0, 2 or 4 byte number that when defined, is increased by the Client or GW for every
+packet sent. The counters should be considered independent of session or destination. E.g. The UE will keep a counter independently from the
+GW.]{.mark}
 
 #### 3.1.26.9 Protected MQTT-SN Packet
 
-Located at Byte (S - T), the field "**Protected MQTT-SN Packet**" contains the MQTT-SN packet that is being secured, encoded as per its packet type.
+[T]{.mark}he field "**Protected MQTT-SN Packet**" contains the MQTT-SN packet that is being secured, encoded as per its packet type.
 
 The "Protected MQTT-SN Packet" should not be a "Forwarder-Encapsulation packet" as the shared key used directly or after derivation for the protection
 must belong to the originator of the content and not to a Forwarder that, in general, is not able to securely identify the originator.
 
 #### 3.1.26.10 Authentication Tag
 
-Located at Byte (U - N), the field "**Authentication tag**" field has a length depending on the "Authentication tag length" flag and it is calculated,
-on the basis of the "Protection scheme" selected in Byte 4, on ALL the preceding fields.
+The field "**Authentication tag**" field has a length depending on the "Authentication tag length" flag and it is calculated, on the basis of the
+"Protection scheme" selected in Byte 4, on ALL the preceding fields.
 
 # 4 Operational behavior
 
@@ -3939,7 +3934,7 @@ The Session State in the Server consists of:
 
 -   QoS 2 PUBLISH Packets which have been received from the Client, but have not been completely acknowledged.
 
--   The Will Message and the Will Topic (Will data).
+-   The Will Payloadand the Will Topic (Will data).
 
 -   If the Session is currently not connected, the time at which the Session will end and Session State will be discarded.
 
@@ -3967,13 +3962,13 @@ Retained messages do not form part of the Session State in the Server, they are 
 As with MQTT, an MQTT-SN client needs to set up a session on the server, unless it is publishing ONLY using PUBLISH WITHOUT SESSION packets. The
 procedure for setting up a session with a server is illustrated in Fig. 3a and 3b.
 
-The CONNECT packet contains flags to communicate to the gateway that Auth interactions, or WILL interactions should take place.
+The CONNECT packet contains flags to communicate to the gateway that Auth interactionsshould take place.
 
-![](media/image6.png){width="3.344815179352581in" height="2.4173436132983377in"}
+![](media/image12.png){width="3.344815179352581in" height="2.4173436132983377in"}
 
-Figure 3a: Connect procedure (without Auth flag not Will flag set or no further authentication data required)
+Figure 3a: Connect procedure (without Auth flag set or no further authentication data required)
 
-![](media/image7.png){width="3.345165135608049in" height="2.963542213473316in"}
+![](media/image8.png){width="3.345165135608049in" height="2.963542213473316in"}
 
 Figure 3b: Connect procedure (with Auth flag set and additional authentication data required)
 
@@ -3986,22 +3981,22 @@ In the case where the client provides no client identifier, the Server MUST resp
 
 ## 4.2 Networks and Virtual Connections
 
-The MQTT-SN protocol requires an Underlying Network to create a Virtual Connection. This carries Packets from a Client to a Gateway and a Gateway to a
-Client. The Underlying Network may also multicast Packets from a Client to more than one Gateway, and from a Gateway to more than one Client.
+The MQTT-SN protocol requires an Underlying Network to create a Virtual Connection. This carries Packets from a Client to a Gateway and from a Gateway
+to a Client. The Underlying Network may also multicast Packets from a Client to more than one Gateway, and from a Gateway to more than one Client.
 
-MQTT-SN Packets which are received must be unaltered and complete.
+MQTT-SN Packets which are received must be unaltered and complete and delivered only once.
 
 -   The underlying transport does not need to be reliable, it is expected that Packets will be lost or delivered out of order.
 
--   If the network might deliver a Packet more than once, then it is highly recommended that the PROTECTION ENCAPSULATION Monotonic Counter is used to
-    eliminate the duplicates.
+-   I.
 
--   The MQTT-SN protocol will tolerate out of order Packets and it will retransmit lost Packets.
+-   The MQTT-SN protocol will tolerate out of order Packets and it will retransmit lost Packets (so Packets for which an expected acknowledgement has
+    not been received).
 
 -   There is no packet error correction in MQTT-SN. If a corrupted or partial packet is received it will cause a protocol error.
 
--   The MQTT-SN implementation may use either the origin network address or the sender identifier in the PROTECTION ENCAPSULATION to determine the
-    identity of the Virtual Connection.
+-   The MQTT-SN implementation may use either the origin network address, or the DTLS connection ID or the sender identifier in the PROTECTION
+    ENCAPSULATION to determine the identity of the Virtual Connection.
 
 -   The Underlying Network may be connectionless. Virtual Connections do not need to have an Underlying Network event that signals their creation or
     deletion.
@@ -4011,10 +4006,10 @@ MQTT-SN Packets which are received must be unaltered and complete.
 **Informative comment**
 
 UDP as defined in \[RFC0768\] can be used for MQTT-SN if the Maximum Transmission Unit is configured to be more than the maximum MQTT-SN Packet size
-used and no Packet fragmentation occurs. Depending on the network configuration, UDP can duplicate Packets. If this can happen, the PROTECTION
-ENCAPSULATION monotonic counter should be used.
+used and no Packet fragmentation occurs. Depending on the network configuration, UDP can duplicate Packets. If this can happen, the MQTT-SN should not
+be used.
 
-Examples of possible consequences of not removing duplicate Packets are:\
+Examples of possible consequences of allowing duplicate Packets are:\
 -- DISCONNECT Packet applied to the wrong Virtual Connection\
 -- SUBSCRIBE and UNSUBSCRIBE Packets applied to the wrong Virtual Connection\
 -- PUBLISH QOS=2 published more than once
@@ -4063,10 +4058,10 @@ A Virtual Connection, which associates a Network Address with a Session, is:
 
 ## 4.3 Quality of Service levels and protocol flows
 
-MQTT delivers Application Messages according to the Quality of Service (QoS) levels defined in the following sections. The delivery protocol is
-symmetric, in the description below the Client and Server & Gateway can each take the role of either sender or receiver. When the Gateway is
-delivering an Application Message to more than one Client, each Client is treated independently. The QoS level used to deliver an Application Message
-outbound to the Client could differ from that of the inbound Application Message.
+MQTT-SN delivers Application Messages according to the Quality of Service (QoS) levels defined in the following sections. The delivery protocol is
+symmetric, in the description below the Client and Server can each take the role of either sender or receiver. When the Gateway is delivering an
+Application Message to more than one Client, each Client is treated independently. The QoS level used to deliver an Application Message outbound to
+the Client could differ from that of the inbound Application Message.
 
 ### 4.3.1 Publish without session: Any number of deliveries
 
@@ -4094,7 +4089,7 @@ sender. The message arrives at the receiver either once or not at all.
 
 [In the QoS 0 delivery protocol, the sender]{.mark}
 
--   [MUST send a PUBLISH packet with QoS 0 and DUP flag set to 0]{.mark}.
+-   [MUST send a PUBLISH packet with QoS 0]{.mark} [and DUP flag set to 0]{.mark}.
 
 In the QoS 0 delivery protocol, the receiver
 
@@ -4122,9 +4117,9 @@ Variable Header and is acknowledged by a PUBACK packet.
 
 -   [MUST assign an unused Packet Identifier each time it has a new Application Message to publish]{.mark} \[MQTT-SN-4.3.3-1\].
 
--   [MUST send a PUBLISH packet containing this Packet Identifier with QoS 1]{.mark} [and DUP flag set to 0]{.mark} \[MQTT-SN-4.3.3-2\].
+-   
 
--   The DUP flag must be set to 0 the first time the PUBLISH QoS 1
+-   [MUST send a PUBLISH packet containing this Packet Identifier with QoS 1]{.mark} [and DUP flag set to 0]{.mark} \[MQTT-SN-4.3.3-2\].
 
 -   [MUST treat the PUBLISH packet as "unacknowledged" until it has received the corresponding PUBACK packet from the receiver]{.mark}
     \[MQTT-SN-4.3.3-3\].
@@ -4140,7 +4135,7 @@ receive acknowledgements.]{.mark}** **[At any given time a sender]{.mark}** **[m
     Message]{.mark}
 
 -   [After it has sent a PUBACK packet the receiver MUST treat any incoming PUBLISH packet that contains the same Packet Identifier as being a new
-    Application Message, irrespective of the setting of its DUP flag]{.mark}
+    Application Message]{.mark}
 
 > Figure 4.2 -- QoS 1 protocol flow diagram, Informative example
 
@@ -4194,7 +4189,7 @@ The Packet Identifier becomes available for reuse once the sender has received t
 -   [If it has sent a PUBREC with a Reason Code of 0x80 or greater, the receiver MUST treat any subsequent PUBLISH packet that contains that Packet
     Identifier as being a new Application Message]{.mark}
 
--   [Until it has received the corresponding PUBREL packet,]{.mark} [the receiver MUST acknowledge any subsequent PUBLISH packet with the same Packet
+-   [Until it has received the corresponding PUBREL packet, the receiver MUST acknowledge any subsequent PUBLISH packet with the same Packet
     Identifier by sending a PUBREC. It MUST NOT cause duplicate messages to be delivered to any onward recipients in this case]{.mark}
 
 -   [MUST respond to a PUBREL packet by sending a PUBCOMP packet containing the same Packet Identifier as the PUBREL]{.mark}
@@ -4204,24 +4199,25 @@ The Packet Identifier becomes available for reuse once the sender has received t
 
 ## 4.4 Packet delivery retry
 
-There are two situations when packets that require acknowledgement are resent by the sender:
+There are two situations when packets that require acknowledgement (CONNECT, REGISTER, PUBLISH QoS 1 and 2, SUBSCRIBE, UNSUBSCRIBE, PUBREC, PUBREL,
+PINGREQ, AUTH) are resent by the sender:
 
 1.  when a Virtual Connection is deleted before the acknowledgement is received by the requester (and clean start is false)
 
-2.  when no acknowledgment is received by the by the requester within a configured timeout period during the existence of a Virtual Connection
+2.  when no acknowledgment is received by the requester within a configured timeout period during the existence of a Virtual Connection
 
 These two situations are described in the following two sections.
 
 ### 4.4.1 Virtual Connection End
 
-[When a Client reconnects with Clean Start set to 0 and a session is present, both the Client and Server MUST resend any unacknowledged PUBLISH
-packets (where QoS \> 0) and PUBREL packets using their original Packet Identifiers]{.mark} \[MQTT-SN-4.4-1\].
+[When a Client reconnects with Clean Start set to 0 and a session is present, both the Client and Server MUST resend any]{.mark} [unacknowledged
+PUBLISH packets (where QoS \> 0) and PUBREL packets using their original Packet Identifiers]{.mark} \[MQTT-SN-4.4-1\].
 
 [If PUBACK or PUBREC is received containing a Reason Code of 0x80 or greater the corresponding PUBLISH packet is treated as acknowledged, and MUST NOT
 be retransmitted]{.mark} \[MQTT-SN-4.4-2\].
 
-[The DUP flag MUST be set to 1 by the Client or Server when it attempts to re-deliver or retransmit a PUBLISH packet. The DUP flag must be set to 0
-for all QoS 0 packets.]{.mark} \[MQTT-SN-4.4-3\].
+[The DUP flag MUST be set to 1 by the Client or Server when it attempts to re-deliver or retransmit a PUBLISH QoS 2]{.mark} [packet.]{.mark} [The DUP
+flag must be set to 0 for all QoS 1 packets.]{.mark} \[MQTT-SN-4.4-3\].
 
 > Figure 4.3 -- QoS 2 protocol flow diagram, non-normative example
 
@@ -4265,13 +4261,13 @@ for all QoS 0 packets.]{.mark} \[MQTT-SN-4.4-3\].
 
 ### 4.4.1 Unacknowledged Packets
 
-The Client or Gateway will start a retransmission retry timer, T~retry~, when one of the following Packets is sent.
+The Client or Gateway will start a retransmission retry timer, T~retry~, when in the following use cases..
 
-[A Client MUST retransmit AUTH, REGISTER, PUBLISH Qos1, PUBLISH Qos2, PUBREL, SUBSCRIBE, UNSUBSCRIBE]{.mark} [Packets, including a PROTECTION
-encapsulation if there is one, after T~retry~ has passed or the Virtual Connection deleted.]{.mark}
+[A Client MUST retransmit AUTH, REGISTER, PUBLISH Qos1, PUBLISH Qos2, PUBREL, SUBSCRIBE,]{.mark} [PINGREQ,]{.mark} [UNSUBSCRIBE]{.mark} [Packets,
+including a PROTECTION encapsulation if there is one, after T~retry~ has passed or the Virtual Connection deleted.]{.mark}
 
-[A Gateway MUST retransmit PUBLISH Qos1, PUBLISH Qos2, PUBREL]{.mark} [Packets, including a PROTECTION encapsulation if there is one, after T~retry~
-has passed]{.mark} [or the Virtual Connection deleted.]{.mark}
+[A Gateway MUST retransmit PUBLISH Qos1, PUBLISH Qos2, REGISTER, AUTH,]{.mark} [PUBREL]{.mark} [Packets, including a PROTECTION encapsulation if there
+is one, after T~retry~ has passed]{.mark} [or the Virtual Connection deleted.]{.mark}
 
 [The timer is canceled if the corresponding acknowledgement packet is received. The Client or Gateway MUST retransmit the Packet after T~retry~ has
 passed or delete the Virtual Connection.]{.mark}
@@ -4280,7 +4276,7 @@ passed or delete the Virtual Connection.]{.mark}
 
 [If a Packet is retransmitted it MUST be identical to the previously transmitted Packet, the PROTECTION encapsulation need not be identical.]{.mark}
 
-[PUBLISH (used for QoS 0) and PUBLISH WITHOUT SESSION Packets MUST NOT be retransmitted.]{.mark}
+[PUBLISH (used for QoS 0) and PUBLISH WITHOUT SESSION and PUBLISH QoS -1]{.mark} [Packets MUST NOT be retransmitted.]{.mark}
 
 If the Virtual Connection is deleted, the protocol will restart when a new CONNECT packet flows from the Client.
 
@@ -4293,7 +4289,7 @@ If the Virtual Connection is deleted, the protocol will restart when a new CONNE
 The PINGREQ Packet described in \[[[3.1.21 PINGREQ]{.underline}](#pingreq---ping-request)\] can also be used to determine whether the Virtual
 Connection is alive.
 
-An example of a retry algorithm is described in \[[[Appendix E.F4]{.underline}](#f.4-exponential-backoff)\]
+An example of a retry algorithm is described in \[Appendix F.4\]
 
 ## 4.5 Application Message receipt
 
@@ -4320,8 +4316,8 @@ provide an administrative or other mechanism to allow one or more Topics to not 
 > When a stream of messages is published and subscribed to an Ordered Topic with QoS 1, the final copy of each message received by the subscribers
 > will be in the order that they were published.
 >
-> As no more than one message is "in-flight" at any one time, no QoS 1 message will be received after any later one even on re-connection. .For
-> example a subscriber might receive them in the order 1,2,3,3,4 but not 1,2,3,2,3,4.
+> As no more than one message is "in-flight" at any one time, no QoS 1 message will be received after any later one even on re-connection. For example
+> a subscriber might receive them in the order 1,2,3,3,4 but not 1,2,3,2,3,4.
 
 ## 4.7 Topic Names and Topic Filters
 
@@ -4696,7 +4692,7 @@ Although the implementation of the transparent Gateway is simpler when compared 
 support a separate connection for each active client. Some MQTT server implementations might impose a limitation on the number of concurrent
 connections that they support.
 
-![](media/image12.png){width="3.994792213473316in" height="2.6661472003499562in"}
+![](media/image4.png){width="3.994792213473316in" height="2.6661472003499562in"}
 
 Figure XX: Transparent Gateway scenario
 
@@ -4707,21 +4703,21 @@ exchanges between a MQTT-SN client and an aggregating Gateway end at the Gateway
 the Server. Although its implementation is more complex than the one of a transparent Gateway, an aggregating Gateway may be helpful in case of WSNs
 with a very large number of SAs because it reduces the number of MQTT connections that the Gateway must support concurrently.
 
-![](media/image9.png){width="4.578125546806649in" height="3.0552755905511813in"}
+![](media/image2.png){width="4.578125546806649in" height="3.0552755905511813in"}
 
 Figure XX: Aggregating Gateway scenario
 
 ### 4.11.3 Forwarder encapsulator
 
-![](media/image3.png){width="4.704773622047244in" height="2.7964599737532807in"}
+![](media/image6.png){width="4.704773622047244in" height="2.7964599737532807in"}
 
-Figure XX: Forwarder encapsulator with TransparentGateway scenario![](media/image13.png){width="4.9003171478565175in" height="2.8304625984251968in"}
+Figure XX: Forwarder encapsulator with TransparentGateway scenario![](media/image5.png){width="4.9003171478565175in" height="2.8304625984251968in"}
 
 Figure XX: Forwarder encapsulator with Aggregating Gateway scenario
 
 ### 4.13.4 MQTT-SN broker
 
-![](media/image11.png){width="2.8596172353455818in" height="2.983947944006999in"}
+![](media/image10.png){width="2.8596172353455818in" height="2.983947944006999in"}
 
 Figure XX: MQTT-SN broker scenario
 
@@ -4813,7 +4809,7 @@ the "Sleeping clients" section.
 |                            | state.                                                                                |                              |
 +----------------------------+---------------------------------------------------------------------------------------+------------------------------+
 
-![](media/image8.png){width="6.5in" height="6.944444444444445in"}
+![](media/image1.png){width="6.5in" height="6.944444444444445in"}
 
 Figure 4: The Server View of the Client State
 
@@ -5061,7 +5057,7 @@ state by sending a CONNECT packet to the server/gateway.
 >
 > The gateway should attempt to make the best effort to reuse the same topic alias mappings that existed during any initial associated ACTIVE states.
 >
-> ![](media/image5.png){width="4.615764435695538in" height="7.453125546806649in"}
+> ![](media/image7.png){width="4.615764435695538in" height="7.453125546806649in"}
 
 Figure 5: Awake ping packet flush
 
@@ -5327,7 +5323,7 @@ The first 2 or 4 bytes of the packet are encoded according to the variable lengt
 
 #### B.1.2 PUBLISH Flags
 
-The PUBLISH Flags field is 1-byte located in Byte 3 position of the PUBLISH control packet.
+The PUBLISH Flags field is 1-byte of the PUBLISH control packet.
 
 The PUBLISH Flags includes the following flags:
 
