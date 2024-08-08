@@ -1327,7 +1327,7 @@ exchanges using the same Packet Identifiers.
 > It is possible for a Client to send a PUBLISH packet with Packet Identifier 0x1234 and then receive a different PUBLISH packet with Packet
 > Identifier 0x1234 from its Server before it receives a PUBACK for the PUBLISH packet that it sent.
 >
-> ![](media/image11.png){width="3.5502898075240594in" height="2.7864588801399823in"}
+> ![](media/image4.png){width="3.5502898075240594in" height="2.7864588801399823in"}
 
 ## 2.3 MQTT-SN Packet Fields
 
@@ -1896,7 +1896,7 @@ value. [In the absence of sending any other MQTT-SN Control Packets, the Client
 > and the Gateway are available.
 
 [If the Gateway does not receive an MQTT-SN Control Packet from the Client within one and a half times the Keep Alive time period, it MUST consider
-the session 'LOST' (see state description in table 3.6).]{.mark}
+the Client]{.mark} ['LOST' (see state description in table 3.6).]{.mark}
 
 [If a Client does not receive a PINGRESP packet within a *Tretry* amount of time after it has sent a PINGREQ, it SHOULD retry the transmission
 according to]{.mark} [[[section 4.24]{.underline}](#unacknowledged-packets) up to the maximum number of attempts. If a PINGRESP is still not received
@@ -2633,8 +2633,8 @@ The PUBLISH Flags includes the following flags:
 
 #### 3.1.11.3 Topic Data
 
-Contains 2 bytes of topic length (if the topic type is Full Topic Name) or the topic alias (predefined or normal), or short topic name as indicated in
-the *Topic Type* field in flags. Determines the topic which this payload will be published to.
+Contains 2 bytes of topic length (if the topic type is Full Topic Name) or the topic alias (predefined or session topic alias), or short topic name as
+indicated in the *Topic Type* field in flags. Determines the topic which this payload will be published to.
 
 #### 3.1.11.4 Data
 
@@ -2733,8 +2733,8 @@ case of QoS 2. It should ideally be populated with a random integer value.
 
 #### 3.1.12.5 Topic Data
 
-Contains 2 bytes of topic length (if the topic type is Full Topic Name) or the topic alias (predefined or normal), or short topic name as indicated in
-the *Topic Type* field in flags. Determines the topic which this payload will be published to.
+Contains 2 bytes of topic length (if the topic type is Full Topic Name) or the topic alias (predefined or session topic alias), or short topic name as
+indicated in the *Topic Type* field in flags. Determines the topic which this payload will be published to.
 
 #### 3.1.12.6 Data
 
@@ -3082,8 +3082,8 @@ Used to identify the corresponding SUBACK packet. It should ideally be populated
 
 #### 3.1.17.4 Topic Data or Topic Filter
 
-Contains Fixed Length UTF-8 Encoded String topic filter, topic alias (predefined or normal), or short topic name as indicated in the *Topic Type*
-field in flags. Determines the topic names which this subscription is interested in.
+Contains Fixed Length UTF-8 Encoded String topic filter, topic alias (predefined or session topic alias), or short topic name as indicated in the
+*Topic Type* field in flags. Determines the topic names which this subscription is interested in.
 
 #### 3.1.17.5 SUBSCRIBE Actions
 
@@ -3254,8 +3254,8 @@ Used to identify the corresponding UNSUBACK packet. It should ideally be populat
 
 #### 3.1.19.4 Topic Data or Topic Filter
 
-Contains Fixed Length UTF-8 Encoded String topic filter, topic alias (predefined or normal), or short topic name as indicated in the *Topic Type*
-field in flags. Determines the topic names which this subscription is interested in.
+Contains Fixed Length UTF-8 Encoded String topic filter, topic alias (predefined or session topic alias), or short topic name as indicated in the
+*Topic Type* field in flags. Determines the topic names which this subscription is interested in.
 
 #### 3.1.19.4 UNSUBSCRIBE Actions
 
@@ -3350,7 +3350,7 @@ Used to identify the corresponding PINGRESP packet. It should ideally be set to 
 #### 3.1.21.3 Client Identifier (optional)
 
 Contains the client identifier (ClientID); this field is optional and is included by a "sleeping" client when it goes to the "awake" state and is
-waiting for packets sent by the server/gateway.
+waiting for packets sent by the gateway.
 
 [The Client Identifier MUST be a Fixed Length UTF-8 Encoded String]{.mark} \[MQTT-SN-3.1.21.3-1\].
 
@@ -3922,6 +3922,8 @@ The Session State in the Client consists of:
 
 -   QoS 2 PUBLISH Packets which have been received from the Server, but have not been completely acknowledged.
 
+-   Session topic alias mapping
+
 The Session State in the Server consists of:
 
 -   The existence of a Session, even if the rest of the Session State is empty.
@@ -3937,6 +3939,8 @@ The Session State in the Server consists of:
 -   The Will Payloadand the Will Topic (Will data).
 
 -   If the Session is currently not connected, the time at which the Session will end and Session State will be discarded.
+
+-   Session topic alias mapping
 
 Retained messages do not form part of the Session State in the Server, they are not deleted as a result of a Session ending.
 
@@ -3964,11 +3968,11 @@ procedure for setting up a session with a server is illustrated in Fig. 3a and 3
 
 The CONNECT packet contains flags to communicate to the gateway that Auth interactionsshould take place.
 
-![](media/image12.png){width="3.344815179352581in" height="2.4173436132983377in"}
+![](media/image13.png){width="3.344815179352581in" height="2.4173436132983377in"}
 
 Figure 3a: Connect procedure (without Auth flag set or no further authentication data required)
 
-![](media/image8.png){width="3.345165135608049in" height="2.963542213473316in"}
+![](media/image1.png){width="3.345165135608049in" height="2.963542213473316in"}
 
 Figure 3b: Connect procedure (with Auth flag set and additional authentication data required)
 
@@ -4457,12 +4461,12 @@ resource for a given Client.
 
 ## 4.8 Subscriptions
 
-A Subscription is associated only with the Session that created it. Each Subscription includes a Topic Filter, indicating the topic(s) for which
-messages are to be delivered on that Session, and Subscription Options. The Server is responsible for collecting messages that match the filter and
-transmitting them on the Session\'s Virtual Connection if and when that Virtual Connection exists.
+A Subscription is associated only with the Session that created it. Each Subscription includes a Topic Data or a Topic Filter, indicating the topic(s)
+for which messages are to be delivered on that Session, and Subscription Options. The Server is responsible for collecting messages that match the
+subscription and transmitting them on the Session\'s Virtual Connection if and when that Virtual Connection exists.
 
-A Session cannot have more than one Subscription with the same Topic Filter, so the Topic Filter can be used as a key to identify the subscription
-within that Session.
+A Session cannot have more than one Subscription with the same Topic Data or Topic Filter, so the Topic Data or Topic Filter can be used as a key to
+identify the subscription within that Session.
 
 If there are multiple Clients, each with its own Subscription to the same Topic, each Client gets its own copy of the Application Messages that are
 published on that Topic. This means that the Subscriptions cannot be used to load-balance Application Messages across multiple consuming Clients as in
@@ -4519,20 +4523,19 @@ other fields in CONNECT, and the exchanges and processing needed by the Client a
 > The Authentication Method is commonly a SASL mechanism, and using such a registered name aids interchange. However, the Authentication Method is not
 > constrained to using registered SASL mechanisms.
 
-If the Authentication Method selected by the Client specifies that the Client sends data first, the Client SHOULD include an Authentication Data
-property in the CONNECT packet. This property can be used to provide data as specified by the Authentication Method. The contents of the
-Authentication Data are defined by the authentication method.
+If the Authentication Method selected by the Client specifies that the Client sends data first, the Client SHOULD include the Authentication Data in
+the CONNECT packet. The contents of the Authentication Data are defined by the authentication method.
 
 [If the Server requires additional information to complete the authentication, it can send an AUTH packet to the Client. This packet MUST contain a
 Reason Code of 0x18 (Continue authentication)]{.mark} \[MQTT-SN-4.10-2\]. If the authentication method requires the Server to send authentication data
-to the Client, it is sent in the Authentication Data.
+to the Client, it is sent in the Authentication Data field of the AUTH packet.
 
 [The Client responds to an AUTH packet from the Server by sending a further AUTH packet. This packet MUST contain a Reason Code of 0x18 (Continue
 authentication)]{.mark} \[MQTT-SN-4.10-3\]. If the authentication method requires the Client to send authentication data for the Server, it is sent in
-the Authentication Data.
+the Authentication Data field of the AUTH packet.
 
 The Client and Server exchange AUTH packets as needed until the Server accepts the authentication by sending a CONNACK with a Reason Code of 0. If the
-acceptance of the authentication requires data to be sent to the Client, it is sent in the Authentication Data.
+acceptance of the authentication requires data to be sent to the Client, it is sent in the Authentication Data field of the CONNACK packet.
 
 The Client can terminate the Virtual Connection at any point in this process by sending a DISCONNECT packet. [The Server can reject the authentication
 at any point in this process. It MUST send a CONNACK with a Reason Code of 0x80 or above as described in]{.mark} [[[section
@@ -4547,7 +4550,7 @@ the CONNECT, the Server MUST NOT send an AUTH packet, and it MUST NOT send an Au
 \[MQTT-SN-4.10-7\].
 
 If the Client does not include an Authentication Method in the CONNECT packet, the Server SHOULD authenticate using some or all of the information in
-the CONNECT packet in conjunction with the underlying transport layer..
+the CONNECT packet in conjunction with the underlying transport layer or in alternative use the Protection Encapsulation packet.
 
 > **Informative example showing a SCRAM challenge**
 
@@ -4575,10 +4578,10 @@ the CONNECT packet in conjunction with the underlying transport layer..
 
 ### 4.11.1 Re-authentication
 
-[If the Client supplied an Authentication Method in the CONNECT packet it can initiate a re-authentication at any time after receiving a CONNACK. It
+[If the Client supplied an Authentication Method in the CONNECT packet, it can initiate a re-authentication at any time after receiving a CONNACK. It
 does this by sending an AUTH packet with a Reason Code of 0x19 (Re-authentication). The Client MUST set the Authentication Method to the same value as
 the Authentication Method originally used to authenticate the Virtual Connection]{.mark} \[MQTT-SN-4.10.1-1\]. If the authentication method requires
-Client data first, this AUTH packet contains the first piece of authentication data as the Authentication Data.
+Client data first, this AUTH packet contains the first piece of authentication data in the Authentication Data field.
 
 The Server responds to this re-authentication request by sending an AUTH packet to the Client with a Reason Code of 0x00 (Success) to indicate that
 the re-authentication is complete, or a Reason Code of 0x18 (Continue authentication) to indicate that more authentication data is needed. The Client
@@ -4638,11 +4641,11 @@ The Reason Codes used for Malformed Packet and Protocol Errors are:
 appropriate Reason Code and MUST delete the associated Virtual Connection.]{.mark} Use Reason Code 0x81 (Malformed Packet) or 0x82 (Protocol Error)
 unless a more specific Reason Code has been defined in [[section 2.3.3]{.underline}](#reason-code).
 
-[When a Server detects a Malformed Packet or Protocol Error for any packet except ADVERTISE, SEARCHGW, GWINFO, PUBWOS and CONNECT, the Server SHOULD
-send a DISCONNECT packet with an appropriate Reason Code and MUST delete the associated Virtual Connection if one exists.]{.mark} \[MQTT-4.13.1-1\] In
-the case of an error in a CONNECT packet it MAY send a CONNACK packet containing the Reason Code. Use Reason Code 0x81 (Malformed Packet) or 0x82
-(Protocol Error) unless a more specific Reason Code has been defined in [[section 2.3.3]{.underline}](#reason-code). There are no consequences for
-other Sessions.
+[When a Server detects a Malformed Packet or Protocol Error for any packet except ADVERTISE, SEARCHGW, GWINFO,]{.mark} [PUBWOS]{.mark} [and CONNECT,
+the Server]{.mark} [SHOULD]{.mark} [send a DISCONNECT packet with an appropriate Reason Code and MUST delete the associated Virtual Connection if one
+exists.]{.mark} \[MQTT-4.13.1-1\] In the case of an error in a CONNECT packet it MAY send a CONNACK packet containing the Reason Code. Use Reason Code
+0x81 (Malformed Packet) or 0x82 (Protocol Error) unless a more specific Reason Code has been defined in [[section 2.3.3]{.underline}](#reason-code).
+There are no consequences for other Sessions.
 
 If either the Server or Client omits to check some feature of a Control Packet, it might fail to detect an error, consequently it might allow data to
 be damaged.
@@ -4668,9 +4671,9 @@ Refer to section 5.4.9 for information about handling Disallowed Unicode code po
 ## 4.13 Example MQTT-SN Architectures
 
 There are three kinds of MQTT-SN components, MQTT-SN *clients*, MQTT-SN *gateways*, and MQTT-SN *forwarders*. MQTT-SN clients connect themselves to an
-MQTT server/broker via an MQTT-SN Gateway using the MQTT-SN protocol. An MQTT-SN Gateway may or may not be integrated with a MQTT server. Where an
-MQTT broker is involved, the MQTT protocol is used between the MQTT broker and the MQTT-SN Gateway. Its main function is the translation between MQTT
-and MQTT-SN.
+MQTT-SN Gateway or to an MQTT server/broker via an MQTT-SN Gateway using the MQTT-SN protocol. An MQTT-SN Gateway may or may not be integrated with a
+MQTT server. Where an MQTT broker is involved, the MQTT protocol is used between the MQTT broker and the MQTT-SN Gateway. Its main function is the
+translation between MQTT and MQTT-SN.
 
 MQTT-SN clients can also access a Gateway via a forwarder in case the Gateway is not directly attached to their network. The forwarder simply
 encapsulates the MQTT-SN frames it receives on the wireless side and forwards them unchanged to the Gateway; in the opposite direction, it
@@ -4692,7 +4695,7 @@ Although the implementation of the transparent Gateway is simpler when compared 
 support a separate connection for each active client. Some MQTT server implementations might impose a limitation on the number of concurrent
 connections that they support.
 
-![](media/image4.png){width="3.994792213473316in" height="2.6661472003499562in"}
+![](media/image6.png){width="3.994792213473316in" height="2.6661472003499562in"}
 
 Figure XX: Transparent Gateway scenario
 
@@ -4700,24 +4703,24 @@ Figure XX: Transparent Gateway scenario
 
 Instead of having a MQTT connection for each connected client, an aggregating Gateway will have only one MQTT connection to the Server. All packet
 exchanges between a MQTT-SN client and an aggregating Gateway end at the Gateway. The Gateway then decides which information will be given further to
-the Server. Although its implementation is more complex than the one of a transparent Gateway, an aggregating Gateway may be helpful in case of WSNs
-with a very large number of SAs because it reduces the number of MQTT connections that the Gateway must support concurrently.
+the MQTT Broker. Although its implementation is more complex than the one of a transparent Gateway, an aggregating Gateway may be helpful in case of
+WSNs with a very large number of SAs because it reduces the number of MQTT connections that the Gateway must support concurrently.
 
-![](media/image2.png){width="4.578125546806649in" height="3.0552755905511813in"}
+![](media/image8.png){width="4.578125546806649in" height="3.0552755905511813in"}
 
 Figure XX: Aggregating Gateway scenario
 
 ### 4.11.3 Forwarder encapsulator
 
-![](media/image6.png){width="4.704773622047244in" height="2.7964599737532807in"}
+![](media/image12.png){width="4.704773622047244in" height="2.7964599737532807in"}
 
-Figure XX: Forwarder encapsulator with TransparentGateway scenario![](media/image5.png){width="4.9003171478565175in" height="2.8304625984251968in"}
+Figure XX: Forwarder encapsulator with TransparentGateway scenario![](media/image10.png){width="4.9003171478565175in" height="2.8304625984251968in"}
 
 Figure XX: Forwarder encapsulator with Aggregating Gateway scenario
 
 ### 4.13.4 MQTT-SN broker
 
-![](media/image10.png){width="2.8596172353455818in" height="2.983947944006999in"}
+![](media/image7.png){width="2.8596172353455818in" height="2.983947944006999in"}
 
 Figure XX: MQTT-SN broker scenario
 
@@ -4727,7 +4730,7 @@ A Gateway may announce its presence by periodically sending an ADVERTISE packet 
 gateway should only advertise its presence if it is connected to a server, or is itself a server.
 
 Multiple Gateways may be active at the same time in the same network. In this case they will have different identifiers. It is up to the Client to
-decide to which Gateway it wants to connect. [At any point in time a Client is allowed to be connected to only one Gateway on the same
+decide to which Gateway it wants to connect. [At any point in time a Client is allowed to have a Virtual Connection to only one Gateway on the same
 network.]{.mark}
 
 A client should maintain a list of active gateways together with their network addresses. This list is populated by means of the ADVERTISE and GWINFO
@@ -4764,14 +4767,14 @@ increased by the exponential backoff algorithm described in the appendix.
 
 ## 4.15 Client states
 
-At any given point in time, a client may be in one of **5 different states**. Transition through these states is governed by a strictly coordinated
-sequence of packets between client and server/gateway and further mediated by timers resident on the gateway. A client is in the *active* state when
-the server/gateway receives a CONNECT packet from that client. This state is supervised by the server/gateway with the "keep alive" timer. If the
-server/gateway does not receive any packet from the client for a period longer than the keep alive duration (indicated in the CONNECT packet), the
-gateway will consider that client as *lost* and activate for example the Will feature for that client. A client goes to the *disconnected* state when
-the server/gateway receives a DISCONNECT without a *session expiry interval* field. This state is not time-supervised by the server/gateway. A client
-moves into the asleep state by issuing a DISCONNECT with a *session expiry interval* field. For more information on the sleep state, please refer to
-the "Sleeping clients" section.
+At any given point in time, a client may be in one of **5 different states** **from the perspective of the gateway**. Transition through these states
+is governed by a strictly coordinated sequence of packets between client and gateway and further mediated by timers resident on the gateway. A client
+is in the *active* state when the gateway receives a CONNECT packet from that client. This state is supervised by the gateway with the "keep alive"
+timer. If the gateway does not receive any packet from the client for a period longer than the keep alive duration (indicated in the CONNECT packet),
+the gateway will consider that client as *lost* and activate for example the Will feature for that client. A client goes to the *disconnected* state
+when the gateway receives a DISCONNECT without a *session expiry interval* field. This state is not time-supervised by the gateway. A client moves
+into the asleep state by issuing a DISCONNECT with a *session expiry interval* field. For more information on the sleep state, please refer to the
+"Sleeping clients" section.
 
 +----------------------------+---------------------------------------------------------------------------------------+------------------------------+
 | **State**                  | **State Description**                                                                 | **Possible Transitions**     |
@@ -4784,7 +4787,7 @@ the "Sleeping clients" section.
 |                            | packets. Its state is supervised by the gateway with the associated "keep alive"      |                              |
 |                            | timers. From here the client may transition to **ASLEEP** (by way of DISCONNECT with  | **LOST**                     |
 |                            | a session expiry interval \> 0), **DISCONNECTED** (by way of DISCONNECT with a        |                              |
-|                            | session expiry of 0) or **LOST** (by way of supervised gateway timers).               |                              |
+|                            | session expiry of 0) or **LOST** (by way of supervised "keep alive" gateway timer).   |                              |
 +----------------------------+---------------------------------------------------------------------------------------+------------------------------+
 | **ASLEEP**                 | The client is engaged in an ongoing session. It cannot receive packets; it can send   | **AWAKE**                    |
 |                            | packets. The gateway should not expect a response from the client in this state until |                              |
@@ -4798,49 +4801,51 @@ the "Sleeping clients" section.
 |                            | packets other than those involved in the receipt of PUBLISH packets (PUBACK, PUBREC,  |                              |
 |                            | PUBCOMP, REGACK) or a DISCONNECT to transition to **DISCONNECTED**. The client        | **DISCONNECTED**             |
 |                            | transitions back to the **ASLEEP** state on receipt of a PINGRESP packet or **LOST**  |                              |
-|                            | (by way of supervised gateway timers).                                                | **LOST**                     |
+|                            | (by way of supervised gateway timers for the possible PUBACK, PUBREC, PUBCOMP or      | **LOST**                     |
+|                            | REGACK packets to be received from the Client).                                       |                              |
 +----------------------------+---------------------------------------------------------------------------------------+------------------------------+
 | **LOST**                   | The client is considered offline and not able to receive packets until it has         | **ACTIVE**                   |
 |                            | re-established a session with the GW by way of a CONNECT. The gateway **must not**    |                              |
 |                            | attempt to send packets to a client in the **LOST** state**.** Any packets received   |                              |
 |                            | from a client whose state is **LOST** should not be processed and a DISCONNECT with   |                              |
 |                            | error should be sent in response, unless the packets received are PUBLISH WITHOUT     |                              |
-|                            | SESSION or PUBLISH -1. Session state may exist on the GW for a client in the **LOST** |                              |
-|                            | state.                                                                                |                              |
+|                            | SESSION or PUBLISH QoS -1. Session state may exist on the GW for a client in the      |                              |
+|                            | **LOST** state.                                                                       |                              |
 +----------------------------+---------------------------------------------------------------------------------------+------------------------------+
 
-![](media/image1.png){width="6.5in" height="6.944444444444445in"}
+![](media/image11.png){width="6.5in" height="6.944444444444445in"}
 
-Figure 4: The Server View of the Client State
+Figure 4: The Server view of the Client State
 
 ### 4.15.1 Gateway timers
 
 The following timers must be managed by a Gateway per Client to handle the different Client states:
 
--   "Keep Alive" timer based on the value defined in the CONNECT packet. If expired, a Client is moved from Active to Lost state or from Asleep to
-    Lost state or from Awake to Lost state.
+-   "Keep Alive" timer based on the value defined in the CONNECT packet. If expired, a Client is moved from Active to Lost state.
 
 -   "Session Expiry" timer based on the value defined in the CONNECT or the DISCONNECT packet. If expired, the session state associated with the
     Client can be removed.
 
+-   Retransmission timers for the packets not yet acknowledged.
+
 ## 4.16 Clean start
 
-When a client disconnects, its subscriptions are retained for no less than the session expiration interval. They are persistent and valid for new (non
-clean start) sessions, until either they are explicitly un-subscribed by the client, or the client establishes a new session with the "clean start"
-flag set or their idle time exceeds the session expiry interval associated with the session.
+When a client disconnects, its session state is retained for no less than the session expiration interval. The session state ispersistent and valid
+for new (non clean start) sessions, until the client establishes a new session with the "clean start" flag set or the idle time exceeds the session
+expiry interval associated with the session.
 
 The two flags "CleanStart" and "Will" in the CONNECT Packet have the following meanings:
 
--   CleanStart=true, Will=true: The Gateway will delete all Session data related to the client, including Will data if present, and it will set the
-    Will data in the Session state with the content of the CONNECT Will fields and will return CONNACK.
+-   CleanStart=true, Will=true: The Gateway will delete all session state data related to the client, including Will data if present, and it will set
+    the Will data in the Session state with the content of the CONNECT Will fields and will return CONNACK.
 
--   CleanStart=true, Will=false: The gateway will delete all subscriptions and Will data, if present, related to the client and it will return
+-   CleanStart=true, Will=false: The gateway will delete all session state data and Will data, if present, related to the client and it will return
     CONNACK.
 
--   CleanStart=false, Will=true: The gateway will keep all the client's data and it will overwrite, if present, or add the Will data related to the
-    client with the content of the CONNECT Will optional fields and it will return CONNACK.
+-   CleanStart=false, Will=true: The gateway will keep all the client's session state data and it will overwrite, if present, or add the Will data
+    related to the client with the content of the CONNECT Will optional fields and it will return CONNACK.
 
--   CleanStart=false, Will=false: The Gateway will keep all the client's subscriptions and it will delete any Will data, if present, and it will
+-   CleanStart=false, Will=false: The Gateway will keep all the client's session state dataand it will delete any Will data, if present, and it will
     return CONNACK.
 
 Note that if a client wants to delete only its Will data at Virtual Connection creation, it could send a CONNECT packet with "CleanStart=false" and
@@ -4862,17 +4867,17 @@ To register a topic name a client sends a REGISTER packet to the Server. If the 
 the received topic name and returns it with a REGACK packet to the client.
 
 If the client initiates a REGISTER against a topic which is known by the Server to have a predefined topic alias associated with it, it is an error
-case, but one which should not be terminal to the session since gateway updates could lead to this scenario. The gateway will specify its topic alias
-type to be predefined and set the topic alias value to match that defined on the gateway in the REGACK, it will also set a reason code on the REGACK
-to indicate the issue. The client can then choose to update its registry of predefined topic aliases if it so wishes.
+case. The gateway will specify in the REGACK its topic alias type to be predefined and set the topic alias value to match that predefined on the
+gateway, it will also set a reason code on the REGACK to indicate the issue. The client can then choose to update its registry of predefined topic
+aliases if it so wishes.
 
-[If a Client sends a PUBLISH to a predefined topic alias, which is not defined on the Server, this is considered a protocol violation.]{.mark}
+[If a Client sends a PUBLISH to a predefined topic alias, which is not defined on the Server, this is considered a protocol error.]{.mark}
 \[MQTT-SN-???\]
 
-If there are no predefined topic aliases, the gateway will pass back a SESSION topic alias type. If the registration can not be accepted, a REGACK is
+If there are no predefined topic aliases, the gateway will pass back a Session topic alias type. If the registration can not be accepted, a REGACK is
 also returned to the client with the failure reason encoded in the *ReasonCode* field.
 
-After having received the REGACK packet with *ReasonCode ="accepted"*, the client shall use the assigned *topicId* to publish data of the
+After having received the REGACK packet with *ReasonCode ="accepted"*, the client shall use the assigned *topic* *alias* to publish data of the
 corresponding topic name. If, however, the REGACK contains a rejection code, the client may try to register later again. If the Reason Code was
 *"Congestion"*, the client should wait for a time *T~WAIT\ ~*before restarting the registration procedure.
 
@@ -4890,25 +4895,26 @@ topic names that contain wildcard characters such as \# or +.
 
 ## 4.18 Topic Mapping and Aliasing
 
-[On the gateway the mapping table between registered topic ids and topic names MUST be implemented per client (and not by a single shared pool between
-all clients), to reduce the risk of an incorrect topic id from a client matching another client's valid topic.]{.mark}
+[On the gateway the mapping table between registered session]{.mark} [topic alias]{.mark} [and topic names MUST be implemented per client (and not by
+a single shared pool between all clients), to reduce the risk of an incorrect topic alias]{.mark} [from a client matching another client's valid
+topic.]{.mark}
 
-For performance and efficiency reasons the broker may choose to align topic aliases for registered normal topic aliases between multiple clients. The
-mapping table of predefined topic aliases is separate from normal registered aliases. It is global and shared between all clients and gateways and may
-overlap with registered aliases, since it is in a different pool.
+For performance and efficiency reasons the broker may choose to align topic aliases for registered session topic aliases between multiple clients. The
+mapping table of predefined topic aliases is separate from session registered aliases. It is global and shared between all clients and gateways and
+may overlap with session registered aliases, since it is in a different pool.
 
 ## 4.19 Predefined topic aliases and short topic names
 
 A "predefined" topic alias is a topic alias whose mapping to a topic name is known in advance by both the client' application and the gateway. This is
-indicated in the *Flags* field of the packet. When using pre-defined topic aliases, both sides can start immediately with the sending of PUBLISH
-packets; there is no need for the REGISTER procedure as in the case of "normal" topic aliases. When receiving a PUBLISH packet with a predefined topic
+indicated in the *Flags* field of the packet. When using predefined topic aliases, both sides can start immediately with the sending of PUBLISH
+packets; there is no need for the REGISTER procedure as in the case of Session topic aliases. When receiving a PUBLISH packet with a predefined topic
 alias, of which the mapping to a topic name is unknown, the receiver should return a PUBACK with the *ReasonCode= "*Unknown Topic Alias*"*.
 
-[The presence of a pre-defined topic alias does not imply any other meaning onto the topic name / topic filter itself. All lifecycle operations, for
+[The presence of a predefined topic alias does not imply any other meaning onto the topic name / topic filter itself. All lifecycle operations, for
 example SUBSCRIBE / UNSUBSCRIBE may still be used in the use of these aliases except for REGISTER.]{.mark}
 
 A "short" topic name is a topic name that has a fixed length of two bytes. It could be carried together with the data within a PUBLISH packet, thus no
-REGISTER procedure is needed for a short topic name. Otherwise, all rules that apply to normal topic names also apply to short topic names. Note
+REGISTER procedure is needed for a short topic name. Otherwise, all rules that apply to session topic names also apply to short topic names. Note
 however that it does not make sense to do wildcarding in subscriptions to short topic names, because it is not possible to define a meaningful name
 hierarchy with only two characters.
 
@@ -4919,12 +4925,12 @@ accept the subscription, it assigns a topic alias to the received topic name and
 cannot be accepted, then a SUBACK packet is also returned to the client with the rejection cause encoded in the *ReasonCode* field. If the rejection
 cause is *"Congestion"*, the client should wait for the time *T~WAIT\ ~*before resending the SUBSCRIBE packet to the gateway.
 
-If the client subscribes to a topic name which contains a wildcard character, the returning SUBACK packet will contain the topic alias value 0x0000.
+If the client subscribes to a topic name which contains a wildcard character, the returning SUBACK packet will contain the topic data value 0x0000.
 The gateway will use the registration procedure to inform the client about the to-be-used topic alias value when it has the first PUBLISH packet with
 a matching topic name to be sent to the client.
 
-Similar to the client's PUBLISH procedure, topic aliases may also be pre-defined for certain topic names. Short topic names may be used as well. In
-those two cases the client still needs to subscribe to those pre-defined topic aliases or short topic names.
+Similar to the client's PUBLISH procedure, topic aliases may also be predefined for certain topic names. Short topic names may be used as well. In
+those two cases the client still needs to subscribe to those predefined topic aliases or short topic names.
 
 To unsubscribe, a client sends an UNSUBSCRIBE packet to the gateway, which will then be answered by means of an UNSUBACK packet.
 
@@ -4933,7 +4939,7 @@ As for the REGISTER procedure, a client may have only one SUBSCRIBE or one UNSUB
 ## 4.21 Client Publish Procedure
 
 After having registered successfully a topic name with the gateway, the client can start publishing data relating to the registered topic name by
-sending PUBLISH packets to the gateway. The PUBLISH packets contain the assigned topic alias.
+sending PUBLISH packets to the gateway.
 
 All three QoS levels and their corresponding packet flows are supported as defined in MQTT. The only difference is the use of topic alias instead of
 topic names in the PUBLISH packets.
@@ -4945,7 +4951,8 @@ For QoS 1 or 2 PUBLISH packets the client may receive in response to its PUBLISH
 
 -   The *ReasonCode= "Congestion"*: in this the client shall stop publishing toward the gateway for at least the time *T~WAIT~*.
 
-A Client or Gateway processes a single outbound QoS 1 or QoS 2 message at a time.
+A Client or Gateway processes a single outbound QoS 1 or QoS 2 message at a time but it is possible to publish QoS 0 or PUBWOS or PUBLISH QoS -1
+packets in the middle of a QoS 1 or QoS 2 exchange.
 
 This prevents retransmitted Qos 1 and Qos 2 messages from being received out of order.
 
@@ -4958,7 +4965,7 @@ Like the client publish procedure described in [[Section 4.21]{.underline}](#cli
 topic alias value that was returned in the SUBACK packet to the client.
 
 Preceding the PUBLISH packet the gateway may send a REGISTER packet to inform the client about the topic name and its assigned topic alias value. This
-will happen for example when the client re-connects without clean start or has subscribed to topic names with wildcard characters. Upon receiving a
+will happen for example when the client re-connects without a clean start or has subscribed to topic names with wildcard characters. Upon receiving a
 REGISTER packet the client replies with a REGACK packet. The gateway will wait for the REGACK packet before it sends the PUBLISH packet to the client.
 
 The client could reject the REGISTER packet with a REGACK packet indicating the rejection reason; this corresponds to an unsubscribe to the topic name
@@ -5002,51 +5009,50 @@ again by sending a CONNECT packet to the gateway.
 ## 4.25 Sleeping clients
 
 *Sleeping* clients are clients residing on (battery-operated) devices that want to save as much energy as possible. These devices need to enter a
-sleep mode whenever they are not active and will wake up whenever they have data to send or to receive. The server/gateway needs to be aware of the
-sleeping state of these clients and will buffer messages destined to them for later delivery when they wake up.
+sleep mode whenever they are not active and will wake up whenever they have data to send or to receive. Thegateway needs to be aware of the sleeping
+state of these clients and will buffer messages destined to them for later delivery when they wake up.
 
-If a client wants to sleep, it sends a DISCONNECT packet which contains a sleep session expiry interval. The server/gateway acknowledges that packet
-with a DISCONNECT packet and considers the client for being in *asleep* state. The *asleep* state is supervised by the server/gateway with the
-indicated sleep session expiry interval. If the server/gateway does not receive any packet from the client for a period longer than the sleep session
-expiry interval, the server/gateway will consider that client as *lost* and - as with the keep alive procedure - activates for example the Will
-feature.
+If a client wants to sleep, it sends a DISCONNECT packet which contains a sleep session expiry interval. The gateway acknowledges that packet with a
+DISCONNECT packet and considers the client for being in *asleep* state. The *asleep* state is supervised by the gateway with the indicated sleep
+session expiry interval. If the gateway does not receive any packet from the client for a period longer than the sleep session expiry interval, the
+gateway will consider that client as *lost* and - as with the keep alive procedure - activates for example the Will feature.
 
-[During the *asleep* state, packets that need to be sent to the client are buffered at the server/gateway. The gateway MUST buffer application
+[During the *asleep* state, packets that need to be sent to the client are buffered at the]{.mark} [gateway. The gateway MUST buffer application
 messages of quality-of-service 1 & 2.]{.mark}
 
 > **Informative comment**
 
 The gateway may *choose* to buffer messages of Quality-of-Service 0, whilst the client is sleeping and is within its session expiry interval.
 
-The sleep timer is stopped when the server/gateway receives a PINGREQ from the client. Like the CONNECT packet, this PINGREQ packet contains the
-*Client Id*. The identified client is then in the *awake* state. If the server/gateway has buffered packets for the client, it will send these packets
-to the client, acknowledging the Default Awake Messages value sent in the CONNECT packet. If the number of messages buffered on the gateway waiting to
-be sent exceeds the value specified by the client in the Default Awake Messages field, the gateway shall send only the Default Awake Messages value
-number of messages, and cut short the AWAKE cycle, responding with a PINGRESP with a messages-left value of either the number of messages remaining in
-the gateway buffer or 0xFFFF (meaning undetermined number of messages greater than 0 remaining).
+The sleep timer is stopped when the gateway receives a PINGREQ from the client. Like the CONNECT packet, this PINGREQ packet contains the *Client Id*.
+The identified client is then in the *awake* state. If the gateway has buffered packets for the client, it will send these packets to the client,
+acknowledging the Default Awake Messages value sent in the CONNECT packet. If the number of messages buffered on the gateway waiting to be sent
+exceeds the value specified by the client in the Default Awake Messages field, the gateway shall send only the Default Awake Messages value number of
+messages, and cut short the AWAKE cycle, responding with a PINGRESP with a messages-left value of either the number of messages remaining in the
+gateway buffer or 0xFFFF (meaning undetermined number of messages greater than 0 remaining).
 
 [During the AWAKE state, for each packet the gateway sends to the client, the application messages' quality of service shall be honored, and a full
 packet interaction shall take place including all normative phases of acknowledgement, including any associated retransmission logic.]{.mark} If,
 during the delivery of application messages from the gateway to the client, the gateway detects a timeout in the delivery, it should transition the
 client state to LOST and a DISCONNECT packet with error sent to the device.
 
-The transfer of packets to the client is closed by the server/gateway by means of a PINGRESP packet, i.e. the server/gateway will consider the client
-as *asleep* and restart the sleep timer again after having sent the PINGRESP packet. If the server/gateway does not have any packets buffered for the
-client, it answers immediately with a PINGRESP packet, returns the client back to the *asleep* state, and restarts the sleep timer for that client.
+The transfer of packets to the client is closed by the gateway by means of a PINGRESP packet, i.e. the gateway will consider the client as *asleep*
+and restart the sleep timer again after having sent the PINGRESP packet. If the gateway does not have any packets buffered for the client, it answers
+immediately with a PINGRESP packet, returns the client back to the *asleep* state, and restarts the sleep timer for that client.
 
-After having sent the PINGREQ to the server/gateway, the client uses the "retransmission procedure" of section 3.18 to supervise the arrival of
-packets sent by the server/gateway, i.e. it restarts timer T~retry~ when it receives a packet other than a PINGRESP, and stops it when it receives a
-PINGRESP. The PINGREQ packet is retransmitted, and timer T~retry~ restarted when timer T~retry~ times out. To avoid a flattening of its battery due to
-excessive retransmission of the PINGREQ packet (e.g. if it loses the gateway), the client should limit the retransmission of the PINGREQ packet (e.g.
-by a retry counter) and go back to sleep when the limit is reached and it still does not receive a PINGRESP packet.
+After having sent the PINGREQ to the gateway, the client uses the "retransmission procedure" of section 3.18 to supervise the arrival of packets sent
+by the gateway, i.e. it restarts timer T~retry~ when it receives a packet other than a PINGRESP, and stops it when it receives a PINGRESP. The PINGREQ
+packet is retransmitted, and timer T~retry~ restarted when timer T~retry~ times out. To avoid a flattening of its battery due to excessive
+retransmission of the PINGREQ packet (e.g. if it loses the gateway), the client should limit the retransmission of the PINGREQ packet (e.g. by a retry
+counter) and go back to sleep when the limit is reached and it still does not receive a PINGRESP packet.
 
 From the *asleep* state, a client can return either to the *active* state by sending a CONNECT packet or to the *disconnected* state by sending a
 normal DISCONNECT packet (i.e. without session expiry interval field). The client can also modify its sleep configuration by sending a DISCONNECT
 packet with a new value of the session expiry interval.
 
-Note that a sleeping client should go to the *awake* state only if it just wants to check whether the server/gateway has any messages buffered for it
-and return as soon as possible to the *asleep* state without sending any packets to the server/gateway. Otherwise, it should return to the *active*
-state by sending a CONNECT packet to the server/gateway.
+Note that a sleeping client should go to the *awake* state only if it just wants to check whether the gateway has any messages buffered for it and
+return as soon as possible to the *asleep* state without sending any packets to the gateway. Otherwise, it should return to the *active* state by
+sending a CONNECT packet to the gateway.
 
 **//TODO SIMON -- add some worlds around retain registration behavior**
 
@@ -5057,17 +5063,17 @@ state by sending a CONNECT packet to the server/gateway.
 >
 > The gateway should attempt to make the best effort to reuse the same topic alias mappings that existed during any initial associated ACTIVE states.
 >
-> ![](media/image7.png){width="4.615764435695538in" height="7.453125546806649in"}
+> ![](media/image3.png){width="4.615764435695538in" height="7.453125546806649in"}
 
 Figure 5: Awake ping packet flush
 
 ## 4.26 Retained Messages
 
-[If the RETAIN flag is set to 1 in a PUBLISH or PUBWOS packet received by a Server, the Server MUST replace any existing Retained Message for this
-topic and store the Application Message]{.mark} \[MQTT-SN-4.26-1\], so that it can be delivered to future subscribers whose subscriptions match its
-Topic Name. [If the Publish Data contains zero bytes it is processed normally by the Server but any retained message with the same topic name MUST be
-removed and any future subscribers for the topic will not receive a retained message]{.mark} \[MQTT-SN-4.26-2\]. [A Retained Message with a Publish
-Data containing zero bytes MUST NOT be stored as a Retained Message on the Server]{.mark} \[MQTT-SN-4.26-3\].
+[If the RETAIN flag is set to 1 in a PUBLISH or PUBWOS or PUBLISH QoS-1]{.mark} [packet received by a Server, the Server MUST replace any existing
+Retained Message for this topic and store the Application Message]{.mark} \[MQTT-SN-4.26-1\], so that it can be delivered to future subscribers whose
+subscriptions match its Topic Name. [If the Publish Data contains zero bytes it is processed normally by the Server but any retained message with the
+same topic name MUST be removed and any future subscribers for the topic will not receive a retained message]{.mark} \[MQTT-SN-4.26-2\]. [A Retained
+Message with a Publish Data containing zero bytes MUST NOT be stored as a Retained Message on the Server]{.mark} \[MQTT-SN-4.26-3\].
 
 [If the RETAIN flag is 0 in a PUBLISH packet sent by a Client to a Server, the Server MUST NOT store the message as a Retained Message and MUST NOT
 remove or replace any existing Retained Message]{.mark} \[MQTT-SN-4.26-4\].
@@ -5106,7 +5112,7 @@ Published subscription option. Refer to [[section 3.1.17.2]{.underline}](#subscr
 
 ## 4.27 Optional Features
 
-Support for the ADVERTISE, SEARCHGW, GWINFO and PUBWOS packet types is optional.
+Support for the ADVERTISE, SEARCHGW, GWINFO, PUBLISH QoS -1 and PUBWOS packet types is optional.
 
 The Forwarder Encapsulation packet type support is optional. For instance, it is not required if the MQTT-SN Clients are able to directly reach a
 MQTT-SN Gateway.
@@ -5341,7 +5347,7 @@ The PUBLISH Flags includes the following flags:
 
 #### B.1.3 Topic Id
 
-Contains the topic id value or the short topic name for which the data is published.
+Contains the topic alias value or the short topic name for which the data is published.
 
 #### B.1.4 Data
 
@@ -5370,9 +5376,9 @@ The MQTT SN protocol is optimized for implementation on low-cost, battery-powere
 capabilities are kept simple and the specification allows for partial implementations. Device identities are typically created at manufacturing,
 eliminating the need for special configuration at deployment. MQTT-SN can work in isolation from other networks or in conjunction with MQTT.
 
-MQTT-SN Client and Gateway/Server implementations SHOULD offer Authentication and Authorization options. Furthermore, the confidentiality and
-authenticity of the MQTT-SN messages can be provided by the underlying transport or can be obtained by encapsulating the MQTT-SN messages into the
-PROTECTION packet.
+MQTT-SN Client and Gateway implementations SHOULD offer Authentication and Authorization options. Furthermore, the confidentiality and authenticity of
+the MQTT-SN messages can be provided by the underlying transport or can be obtained by encapsulating the MQTT-SN messages into the Protection
+Encapsulation packet.
 
 Applications concerned with critical infrastructure, personally identifiable information, or other personal or sensitive information are strongly
 advised to use these security capabilities.
@@ -5659,8 +5665,8 @@ Table 30 shows the "best practice" values for the timers and counters defined in
 
 Table 30: "Best practice" values for timers and counters
 
-The "tolerance" of the sleep and keep-alive timers at the server/gateway depends on the values indicated by the clients. For example, the timer values
-should be 10% higher than the indicated values for periods larger than 1 minute, and 50% higher if less.
+The "tolerance" of the sleep and keep-alive timers at the gateway depends on the values indicated by the clients. For example, the timer values should
+be 10% higher than the indicated values for periods larger than 1 minute, and 50% higher if less.
 
 ## F.3 Mapping of Topic Alias to Topic Names and Topic Filters
 
