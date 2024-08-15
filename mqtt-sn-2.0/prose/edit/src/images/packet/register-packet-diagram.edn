@@ -35,7 +35,7 @@
 (draw-box (text "6"))
 (draw-box "Packet Alias LSB" :byte)
 
-(draw-box (text "7 ... N"))
-(draw-gap "Topic Name" :byte)
+(draw-box (text "7:N"))
+(draw-gap "Topic Name (N)" :byte)
 
 (draw-bottom)
