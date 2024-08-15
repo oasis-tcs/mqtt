@@ -51,7 +51,7 @@
 (draw-box (text "5"))
 (draw-box "Packet Identifier LSB" :byte)
 
-(draw-box (text "6 ... N"))
-(draw-gap "Topic Filter" :byte)
+(draw-box (text "6:N"))
+(draw-gap "Topic Filter (N)" :byte)
 
 (draw-bottom)
