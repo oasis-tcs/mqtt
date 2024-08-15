@@ -34,7 +34,7 @@
 (draw-box "1" {:span 1})
 
 (draw-box (text ""))
-(draw-box (text "(0xF0)") :byte)
+(draw-box (text "'ð' (0xF0)") :byte)
 
 (draw-box (text "2"))
 (draw-box "1" {:span 1})
@@ -47,7 +47,7 @@
 (draw-box "0" {:span 1})
 
 (draw-box (text ""))
-(draw-box (text "(0xAA)") :byte)
+(draw-box (text "'ª' (0xAA)") :byte)
 
 (draw-box (text "3"))
 (draw-box "1" {:span 1})
@@ -60,7 +60,7 @@
 (draw-box "0" {:span 1})
 
 (draw-box (text ""))
-(draw-box (text "(0x9B)") :byte)
+(draw-box (text "'›' (0x9B)") :byte)
 
 (draw-box (text "4"))
 (draw-box "1" {:span 1})
@@ -73,7 +73,7 @@
 (draw-box "1" {:span 1})
 
 (draw-box (text ""))
-(draw-box (text "(0x94)") :byte)
+(draw-box (text "'”' (0x94)") :byte)
 
 (draw-box (text "5"))
 (draw-box "1" {:span 1})
