@@ -33,10 +33,10 @@
 (draw-box "Auth Reason Code" :byte)
 
 (draw-box (text "6"))
-(draw-box "Auth Method Length (K)" :byte)
+(draw-box "Auth Method Length" :byte)
 
 (draw-box (text "7:7+K"))
-(draw-gap "Auth Method" :byte)
+(draw-gap "Auth Method (K)" :byte)
 
 (draw-box (text "8+K:N"))
 (draw-gap "Auth Data (N)" :byte)
