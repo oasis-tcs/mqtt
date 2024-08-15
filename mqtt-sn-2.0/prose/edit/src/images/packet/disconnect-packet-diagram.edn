@@ -69,6 +69,6 @@
 (draw-box (text "Session Expiry Interval LSB [OPT]" :plain [:small " (ONLY WHEN SESSION EXPIRY INTERVAL PRESENT FLAG SET)"]) :optional-byte)
 
 (draw-box "4+C+S:N" :bg-lightgray)
-(draw-gap (text "Reason String [OPT]" :plain [:small " (ONLY WHEN REASON STRING PRESENT FLAG SET) (N)"]) :optional-byte)
+(draw-gap (text "Reason String [OPT]" :plain [:small " (ONLY WHEN REASON STRING PRESENT FLAG SET)"] " (N)") :optional-byte)
 
 (draw-bottom)
