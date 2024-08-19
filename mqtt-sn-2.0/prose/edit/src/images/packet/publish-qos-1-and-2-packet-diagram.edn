@@ -58,6 +58,6 @@
 (draw-box "Topic Data LSB" :byte)
 
 (draw-box (text "8+TL ... N"))
-(draw-gap "Data Or (Full Topic Name + Data)" :byte)
+(draw-gap "Data (N) Or (Full Topic Name + Data)" :byte)
 
 (draw-bottom)

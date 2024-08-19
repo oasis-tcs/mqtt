@@ -22,7 +22,7 @@
 (draw-box (text "1"))
 (draw-box "Length" :byte)
 
-(draw-box (text "´2"))
+(draw-box (text "2"))
 (draw-box "Packet Type" :byte)
 
 (draw-box (text ""))
@@ -64,76 +64,76 @@
 (draw-box "X" [:bg-lightgray {:span 1}])
 (draw-box "X" [:bg-lightgray {:span 1}])
 
-(draw-box (text "4"))
-(draw-box "Packet Identifier MSB" :byte)
+(draw-box (text "Z"))
+(draw-box "Packet Identifier MSB (Z=5 if will flag else 4)" :byte)
 
-(draw-box (text "5"))
+(draw-box (text "Z+1"))
 (draw-box "Packet Identifier LSB" :byte)
 
-(draw-box (text "6"))
+(draw-box (text "Z+2"))
 (draw-box "Protocol Version" :byte)
 
-(draw-box (text "7"))
+(draw-box (text "Z+3"))
 (draw-box "Keep Alive MSB" :byte)
 
-(draw-box (text "8"))
+(draw-box (text "Z+4"))
 (draw-box "Keep Alive LSB" :byte)
 
-(draw-box (text "9"))
+(draw-box (text "Z+5"))
 (draw-box "Session Expiry Interval MSB" :byte)
 
-(draw-box (text "10"))
+(draw-box (text "Z+6"))
 (draw-box "Session Expiry Interval" :byte)
 
-(draw-box (text "11"))
+(draw-box (text "Z+7"))
 (draw-box "Session Expiry Interval" :byte)
 
-(draw-box (text "12"))
+(draw-box (text "Z+8"))
 (draw-box "Session Expiry Interval LSB" :byte)
 
-(draw-box (text "13"))
+(draw-box (text "Z+9"))
 (draw-box "Max Packet Size MSB" :byte)
 
-(draw-box (text "14"))
+(draw-box (text "Z+10"))
 (draw-box "Max Packet Size LSB" :byte)
 
 (draw-box (text ""))
-(draw-box (text "WILL DATA" :plain [:cursive "[OPT] (ONLY WHEN WILL FLAG SET X=14+5, Y=0)"]) [:bg-mediumgray :byte])
+(draw-box (text "WILL DATA" :plain [:cursive "[OPT] (ONLY WHEN WILL FLAG SET Q=Z+11)"]) [:bg-mediumgray :byte])
 
-(draw-box (text "14+1") :bg-lightgray)
+(draw-box (text "Q") :bg-lightgray)
 (draw-box "Will Topic Data MSB" [:bg-lightgray :byte])
 
-(draw-box (text "14+2") :bg-lightgray)
+(draw-box (text "Q+1") :bg-lightgray)
 (draw-box "Will Topic Data LSB" [:bg-lightgray :byte])
 
-(draw-box (text "14+3") :bg-lightgray)
+(draw-box (text "Q+2") :bg-lightgray)
 (draw-box "Will Payload Length MSB" [:bg-lightgray :byte])
 
-(draw-box (text "14+4") :bg-lightgray)
+(draw-box (text "Q+3") :bg-lightgray)
 (draw-box "Will Payload Length LSB" [:bg-lightgray :byte])
 
-(draw-box (text "X ... X+K") :bg-lightgray)
-(draw-gap "Will Payload Or (Will Topic Name + Will Payload) (K, L=0)" [:bg-lightgray :byte])
+(draw-box (text "Q+4:P") :bg-lightgray)
+(draw-gap "Will Payload Or (Will Topic Name + Will Payload) (P=Q+3+K, length K)" [:bg-lightgray :byte])
 
 (draw-box (text ""))
-(draw-box (text "AUTH DATA" :plain [:cursive "[OPT] (ONLY WHEN AUTH FLAG SET X=0, Y=14+5)"]) [:bg-mediumgray :byte])
+(draw-box (text "AUTH DATA" :plain [:cursive "[OPT] (ONLY WHEN AUTH FLAG SET R=P+1)"]) [:bg-mediumgray :byte])
 
-(draw-box (text "14+1") :bg-lightgray)
+(draw-box (text "R") :bg-lightgray)
 (draw-box "Auth Method Length" [:bg-lightgray :byte])
 
-(draw-box (text "14+2") :bg-lightgray)
+(draw-box (text "R+1") :bg-lightgray)
 (draw-box "Auth Method" [:bg-lightgray :byte])
 
-(draw-box (text "14+3") :bg-lightgray)
+(draw-box (text "R+2") :bg-lightgray)
 (draw-box "Auth Data Length MSB" [:bg-lightgray :byte])
 
-(draw-box (text "14+4") :bg-lightgray)
+(draw-box (text "R+3") :bg-lightgray)
 (draw-box "Auth Data Length LSB" [:bg-lightgray :byte])
 
-(draw-box (text "Y ... Y+L") :bg-lightgray)
-(draw-gap "Auth Data (K=0, L)" [:bg-lightgray :byte])
+(draw-box (text "R+4:S") :bg-lightgray)
+(draw-gap "Auth Data (K=0, L) (S=P+3+L, length L)" [:bg-lightgray :byte])
 
-(draw-box (text "M ... N"))
-(draw-gap "Client Identifier (M=X+Y+K+L+1, N)" :byte)
+(draw-box (text "T:U"))
+(draw-gap "Client Identifier (T=S+1, U=T+N-1, length N)" :byte)
 
 (draw-bottom)

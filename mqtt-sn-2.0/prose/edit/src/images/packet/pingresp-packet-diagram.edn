@@ -32,6 +32,6 @@
 (draw-box "Packet Identifier LSB" :byte)
 
 (draw-box (text "5") :bg-lightgray)
-(draw-box (text "Messages Remaining [OPT]" :cursive) [:bg-lightgray :byte])
+(draw-box (text "Application Messages Remaining [OPT]" :cursive) [:bg-lightgray :byte])
 
 (draw-bottom)

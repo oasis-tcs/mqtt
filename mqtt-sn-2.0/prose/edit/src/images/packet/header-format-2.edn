@@ -1,4 +1,4 @@
-;; This is the source for 3.1.7 REGISTER packet diagram of MQTT-SN v2.0.
+;; This is the source for 2.1.1 Packet Header (format 2) diagram of MQTT-SN v2.0.
 (def boxes-per-row 9)
 (def box-width 90)
 (def left-margin 20)
@@ -18,24 +18,15 @@
   (draw-box (text val) :bg-lightblue))
 
 (draw-box (text "1"))
-(draw-box "Length" :byte)
+(draw-box "Length 0x01" :byte)
 
 (draw-box (text "2"))
-(draw-box "Packet Type" :byte)
+(draw-box "Length MSB" :byte)
 
 (draw-box (text "3"))
-(draw-box "Packet Identifier MSB" :byte)
+(draw-box "Length LSB" :byte)
 
 (draw-box (text "4"))
-(draw-box "Packet Identifier LSB" :byte)
-
-(draw-box (text "5"))
-(draw-box "Packet Alias MSB" :byte)
-
-(draw-box (text "6"))
-(draw-box "Packet Alias LSB" :byte)
-
-(draw-box (text "7:N"))
-(draw-gap "Topic Name (N)" :byte)
+(draw-box "MQTT-SN Control Packet Type" :byte)
 
 (draw-bottom)
