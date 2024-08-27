@@ -169,7 +169,7 @@ information see the full Notices section in an Appendix below.
 
 > [3.1 Format of Individual Packets 31](#format-of-individual-packets)
 >
-> [3.1.1 ADVERTISE - Gateway Advertisement 31](#advertise---gateway-advertisement)
+> [3.1.1 ADVERTISE - Gateway Advertisement 31](#_heading=h.2dlolyb)
 >
 > [3.1.1.1 Length & Packet Type 31](#length-packet-type)
 >
@@ -177,13 +177,13 @@ information see the full Notices section in an Appendix below.
 >
 > [3.1.1.3 Duration 31](#duration)
 >
-> [3.1.2 SEARCHGW - Search for A Gateway 32](#searchgw---search-for-a-gateway)
+> [3.1.2 SEARCHGW - Search for A Gateway 32](#_heading=h.4bvk7pj)
 >
 > [3.1.2.1 Length & Packet Type 32](#length-packet-type-1)
 >
 > [3.1.2.2 Radius 32](#radius-1)
 >
-> [3.1.3 GWINFO - Gateway Information 32](#gwinfo---gateway-information)
+> [3.1.3 GWINFO - Gateway Information 32](#_heading=h.3q5sasy)
 >
 > [3.1.3.1 Length & Packet Type 33](#length-packet-type-2)
 >
@@ -191,7 +191,7 @@ information see the full Notices section in an Appendix below.
 >
 > [3.1.3.3 GwAdd 33](#gwadd)
 >
-> [3.1.4 CONNECT - Connection Request 33](#connect---connection-request)
+> [3.1.4 CONNECT - Connection Request 33](#_heading=h.1jlao46)
 >
 > [3.1.4.1 Length & Packet Type 34](#length-packet-type-3)
 >
@@ -227,7 +227,7 @@ information see the full Notices section in an Appendix below.
 >
 > [3.1.4.17 CONNECT Actions 38](#connect-actions)
 >
-> [3.1.5 CONNACK - Connect Acknowledgement 39](#connack---connect-acknowledgement)
+> [3.1.5 CONNACK - Connect Acknowledgement 39](#_heading=h.39kk8xu)
 >
 > [3.1.5.1 Length & Packet Type 40](#length-packet-type-4)
 >
@@ -249,7 +249,7 @@ information see the full Notices section in an Appendix below.
 >
 > [3.1.5.10 Assigned Client Identifier 41](#assigned-client-identifier)
 >
-> [3.1.6 AUTH - Authentication Exchange 42](#auth---authentication-exchange)
+> [3.1.6 AUTH - Authentication Exchange 42](#_heading=h.184mhaj)
 >
 > [3.1.6.1 Length & Packet Type 42](#length-packet-type-5)
 >
@@ -265,7 +265,7 @@ information see the full Notices section in an Appendix below.
 >
 > [3.1.6.6 Auth Actions 43](#auth-actions)
 >
-> [3.1.7 REGISTER - Register Topic Alias Request 43](#register---register-topic-alias-request)
+> [3.1.7 REGISTER - Register Topic Alias Request 43](#_heading=h.45jfvxd)
 >
 > [3.1.7.1 Length & Packet Type 43](#length-packet-type-6)
 >
@@ -277,7 +277,7 @@ information see the full Notices section in an Appendix below.
 >
 > [3.1.7.5 Register Actions 44](#register-actions)
 >
-> [3.1.8 REGACK - Register Topic Alias Response 44](#regack---register-topic-alias-response)
+> [3.1.8 REGACK - Register Topic Alias Response 44](#_heading=h.4iylrwe)
 >
 > [3.1.8.1 Length & Packet Type 44](#length-packet-type-7)
 >
@@ -291,7 +291,7 @@ information see the full Notices section in an Appendix below.
 >
 > [3.1.9 Publish Variants 45](#publish-variants)
 >
-> [3.1.10 PUBWOS - Publish Without Session 45](#pubwos---publish-without-session)
+> [3.1.10 PUBWOS - Publish Without Session 45](#_heading=h.j8sehv)
 >
 > [3.1.10.1 Length & Packet Type 46](#length-packet-type-8)
 >
@@ -303,7 +303,7 @@ information see the full Notices section in an Appendix below.
 >
 > [3.1.12.7 PUBWOS Actions 46](#pubwos-actions)
 >
-> [3.1.11 PUBLISH - QoS 0 47](#publish---qos-0)
+> [3.1.11 PUBLISH - QoS 0 47](#_heading=h.wnyagw)
 >
 > [3.1.11.1 Length & Packet Type 47](#length-packet-type-9)
 >
@@ -315,7 +315,7 @@ information see the full Notices section in an Appendix below.
 >
 > [3.1.11.5 PUBLISH - QoS 0 Actions 48](#publish---qos-0-actions)
 >
-> [3.1.12 PUBLISH - QoS 1 and 2 48](#publish---qos-1-and-2)
+> [3.1.12 PUBLISH - QoS 1 and 2 48](#_heading=h.1a346fx)
 >
 > [3.1.12.1 Length & Packet Type 48](#length-packet-type-10)
 >
@@ -329,7 +329,7 @@ information see the full Notices section in an Appendix below.
 >
 > [3.1.12.7 PUBLISH Actions 49](#publish-actions)
 >
-> [3.1.13 PUBACK -- Publish Acknowledgement 50](#puback-publish-acknowledgement)
+> [3.1.13 PUBACK -- Publish Acknowledgement 50](#_heading=h.11si5id)
 >
 > [3.1.13.1 Length & Packet Type 51](#length-packet-type-11)
 >
@@ -339,7 +339,7 @@ information see the full Notices section in an Appendix below.
 >
 > [3.1.13.4 PUBACK Actions 51](#puback-actions)
 >
-> [3.1.14 PUBREC (QoS 2 delivery part 1) 51](#pubrec-qos-2-delivery-part-1)
+> [3.1.14 PUBREC (QoS 2 delivery part 1) 51](#_heading=h.302dr9l)
 >
 > [3.1.14.1 Length & Packet Type 51](#length-packet-type-12)
 >
@@ -349,7 +349,7 @@ information see the full Notices section in an Appendix below.
 >
 > [3.1.14.4 PUBREC Actions 52](#pubrec-actions)
 >
-> [3.1.15 PUBREL (QoS 2 delivery part 2) 52](#pubrel-qos-2-delivery-part-2)
+> [3.1.15 PUBREL (QoS 2 delivery part 2) 52](#_heading=h.2eclud0)
 >
 > [3.1.15.1 Length & Packet Type 52](#length-packet-type-13)
 >
@@ -359,7 +359,7 @@ information see the full Notices section in an Appendix below.
 >
 > [3.1.15.4 PUBREL Actions 52](#pubrel-actions)
 >
-> [3.1.16 PUBCOMP - Publish Complete (QoS 2 delivery part 3) 52](#pubcomp---publish-complete-qos-2-delivery-part-3)
+> [3.1.16 PUBCOMP - Publish Complete (QoS 2 delivery part 3) 52](#_heading=h.1smtxgf)
 >
 > [3.1.16.1 Length & Packet Type 53](#length-packet-type-14)
 >
@@ -369,7 +369,7 @@ information see the full Notices section in an Appendix below.
 >
 > [3.1.16.4 PUBCOMP Actions 53](#pubcomp-actions)
 >
-> [3.1.17 SUBSCRIBE - Subscribe Request 53](#subscribe---subscribe-request)
+> [3.1.17 SUBSCRIBE - Subscribe Request 53](#_heading=h.16x20ju)
 >
 > [3.1.17.1 Length & Packet Type 54](#length-packet-type-15)
 >
@@ -381,7 +381,7 @@ information see the full Notices section in an Appendix below.
 >
 > [3.1.17.5 SUBSCRIBE Actions 54](#subscribe-actions)
 >
-> [3.1.18 SUBACK - Subscribe Acknowledgement 55](#suback---subscribe-acknowledgement)
+> [3.1.18 SUBACK - Subscribe Acknowledgement 55](#_heading=h.1kc7wiv)
 >
 > [3.1.18.1 Length & Packet Type 56](#length-packet-type-16)
 >
@@ -393,7 +393,7 @@ information see the full Notices section in an Appendix below.
 >
 > [3.1.18.5 Reason Code 56](#reason-code-8)
 >
-> [3.1.19 UNSUBSCRIBE - Unsubscribe Request 56](#unsubscribe---unsubscribe-request)
+> [3.1.19 UNSUBSCRIBE - Unsubscribe Request 56](#_heading=h.4hr1b5p)
 >
 > [3.1.19.1 Length & Packet Type 57](#length-packet-type-17)
 >
@@ -405,7 +405,7 @@ information see the full Notices section in an Appendix below.
 >
 > [3.1.19.4 UNSUBSCRIBE Actions 57](#unsubscribe-actions)
 >
-> [3.1.20 UNSUBACK - Unsubscribe Acknowledgement 58](#unsuback---unsubscribe-acknowledgement)
+> [3.1.20 UNSUBACK - Unsubscribe Acknowledgement 58](#_heading=h.3abhhcj)
 >
 > [3.1.20.1 Length & Packet Type 58](#length-packet-type-18)
 >
@@ -413,7 +413,7 @@ information see the full Notices section in an Appendix below.
 >
 > [3.1.20.3 Reason Code 58](#reason-code-9)
 >
-> [3.1.21 PINGREQ - Ping Request 58](#pingreq---ping-request)
+> [3.1.21 PINGREQ - Ping Request 58](#_heading=h.13qzunr)
 >
 > [3.1.21.1 Length & Packet Type 59](#length-packet-type-19)
 >
@@ -423,7 +423,7 @@ information see the full Notices section in an Appendix below.
 >
 > [3.1.21.4 PINGREQ Actions 59](#pingreq-actions)
 >
-> [3.1.22 PINGRESP - Ping Response 59](#pingresp---ping-response)
+> [3.1.22 PINGRESP - Ping Response 59](#_heading=h.i17xr6)
 >
 > [3.1.22.1 Length & Packet Type 60](#length-packet-type-20)
 >
@@ -431,7 +431,7 @@ information see the full Notices section in an Appendix below.
 >
 > [3.1.22.3 Application Messages Remaining 60](#application-messages-remaining)
 >
-> [3.1.23 DISCONNECT - Disconnect Notification 60](#disconnect---disconnect-notification)
+> [3.1.23 DISCONNECT - Disconnect Notification 60](#_heading=h.415t9al)
 >
 > [3.1.23.1 Length & Packet Type 61](#length-packet-type-21)
 >
@@ -967,9 +967,9 @@ characters in support of text-based communications.
 Unless stated otherwise all variable length UTF-8 encoded strings can have any length in the range 0 to 65,535 bytes.
 
   ---------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Bit**                                           **7**        **6**        **5**        **4**        **3**        **2**        **1**        **0**
+  Byte \\ **Bit**                                   **7**        **6**        **5**        **4**        **3**        **2**        **1**        **0**
   ------------------------------------------------- ------------ ------------ ------------ ------------ ------------ ------------ ------------ ------------
-  byte 1 ....                                       UTF-8                                                                                      
+  1 ....                                            UTF-8                                                                                      
                                                     encoded                                                                                    
                                                     character                                                                                  
                                                     data, if                                                                                   
@@ -1009,25 +1009,25 @@ be skipped over or stripped off by a packet receiver]{.mark} \[MQTT-SN-1.7.4-3\]
 > character) is encoded as follows:
 
   -----------------------------------------------------------------------------------------------------------------------------------------------------
-  **Bit**                       **7**          **6**          **5**          **4**          **3**          **2**          **1**          **0**
+  Byte \\ Bit                   **7**          **6**          **5**          **4**          **3**          **2**          **1**          **0**
   ----------------------------- -------------- -------------- -------------- -------------- -------------- -------------- -------------- --------------
-  byte 1                        'A' (0x41)                                                                                               
+  1                             'A' (0x41)                                                                                               
 
                                 0              1              0              0              0              0              0              1
 
-  byte 2                        (0xF0)                                                                                                   
+  2                             (0xF0)                                                                                                   
 
                                 1              1              1              1              0              0              0              0
 
-  byte 3                        (0xAA)                                                                                                   
+  3                             (0xAA)                                                                                                   
 
                                 1              0              1              0              1              0              1              0
 
-  byte 4                        (0x9B)                                                                                                   
+  4                             (0x9B)                                                                                                   
 
                                 1              0              0              1              1              0              1              1
 
-  byte 5                        (0x94)                                                                                                   
+  5                             (0x94)                                                                                                   
 
                                 1              0              0              1              0              1              0              0
   -----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1180,58 +1180,16 @@ The MQTT-SN Control Packet Type field is 1-byte long and specifies the MQTT-SN C
 
 [Table 6: Packet type listing]{.underline}
 
-  ------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Name**                      **Value**           **Direction of flow**         **Description**
   ----------------------------- ------------------- ----------------------------- ----------------------------------------------------------------------
-  Reserved                      0x00                Forbidden                     Reserved
+                                                                                  
 
-  **CONNECT**                   0x01                                              
+                                                                                  
 
-  **CONNACK**                   0x02                                              
+                                                                                  
 
-  **PUBLISH**                   0x03                                              
+                                                                                  
 
-  **PUBACK**                    0x04                                              
-
-  **PUBREC**                    0x05                                              
-
-  **PUBREL**                    0x06                                              
-
-  **PUBCOMP**                   0x07                                              
-
-  **SUBSCRIBE**                 0x08                                              
-
-  **SUBACK**                    0x09                                              
-
-  **UNSUBSCRIBE**               0x0A                                              
-
-  **UNSUBACK**                  0x0B                                              
-
-  **PINGREQ**                   0x0C                                              
-
-  **PINGRESP**                  0x0D                                              
-
-  **DISCONNECT**                0x0E                                              
-
-  **AUTH**                      0x0F                                              
-
-  **Reserved**                                                                    
-
-  **REGISTER**                                                                    
-
-  **REGACK**                                                                      
-
-  **PUBLISHWOS**                                                                  
-
-  **ADVERTISE**                                                                   
-
-  **SEARCHGW**                                                                    
-
-  **GWINFO**                                                                      
-
-  **FORWARDER ENCAPSULATION**                                                     
-
-  **PROTECTION ENCAPSULATION**                                                    
+                                                                                  
 
                                                                                   
 
@@ -1242,7 +1200,47 @@ The MQTT-SN Control Packet Type field is 1-byte long and specifies the MQTT-SN C
                                                                                   
 
                                                                                   
-  ------------------------------------------------------------------------------------------------------------------------------------------------------
+
+                                                                                  
+
+                                                                                  
+
+                                                                                  
+
+                                                                                  
+
+                                                                                  
+
+                                                                                  
+
+                                                                                  
+
+                                                                                  
+
+                                                                                  
+
+                                                                                  
+
+                                                                                  
+
+                                                                                  
+
+                                                                                  
+
+                                                                                  
+
+                                                                                  
+
+                                                                                  
+
+                                                                                  
+
+                                                                                  
+
+                                                                                  
+
+                                                                                  
+  ----------------------------- ------------------- ----------------------------- ----------------------------------------------------------------------
 
 ## 2.2 Packet Identifier
 
@@ -1327,7 +1325,7 @@ exchanges using the same Packet Identifiers.
 > It is possible for a Client to send a PUBLISH packet with Packet Identifier 0x1234 and then receive a different PUBLISH packet with Packet
 > Identifier 0x1234 from its Server before it receives a PUBACK for the PUBLISH packet that it sent.
 >
-> ![](media/image4.png){width="3.5502898075240594in" height="2.7864588801399823in"}
+> ![](media/image32.png){width="3.5502898075240594in" height="2.7864588801399823in"}
 
 ## 2.3 MQTT-SN Packet Fields
 
@@ -1598,19 +1596,19 @@ This section specifies the format of the individual MQTT-SN packets.
 
 ### 3.1.1 ADVERTISE - Gateway Advertisement
 
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Bit**              **7**        **6**            **5**            **4**            **3**            **2**            **1**            **0**
+[]{#_heading=h.2dlolyb .anchor}![](media/image20.png){width="6.5in" height="1.4166666666666667in"}
+
   -------------------- ------------ ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
-  Byte 1               Length                                                                                                             
+                                                                                                                                          
 
-  Byte 2               Packet Type                                                                                                        
+                                                                                                                                          
 
-  Byte 3               GwId                                                                                                               
+                                                                                                                                          
 
-  Byte 4               Duration MSB                                                                                                       
+                                                                                                                                          
 
-  Byte 5               Duration LSB                                                                                                       
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                          
+  -------------------- ------------ ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
 
 [Table 11: ADVERTISE Packet]{.underline}
 
@@ -1645,15 +1643,15 @@ The maximum value that can be encoded is approximately 18 hours.
 
 ### 3.1.2 SEARCHGW - Search for A Gateway
 
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Bit**              **7**        **6**            **5**            **4**            **3**            **2**            **1**            **0**
+[]{#_heading=h.4bvk7pj .anchor}![](media/image28.png){width="6.5in" height="0.9583333333333334in"}
+
   -------------------- ------------ ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
-  Byte 1               Length                                                                                                             
+                                                                                                                                          
 
-  Byte 2               Packet Type                                                                                                        
+                                                                                                                                          
 
-  Byte 3               Radius                                                                                                             
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                          
+  -------------------- ------------ ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
 
 [Table 12: SEARCHGW packet]{.underline}
 
@@ -1680,18 +1678,17 @@ If a Client or a Gateway forwards the SEARCHGW received, it MUST reduce the Radi
 
 ### 3.1.3 GWINFO - Gateway Information
 
-  ----------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Bit**              **7**          **6**            **5**            **4**            **3**            **2**            **1**            **0**
-  -------------------- -------------- ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
-  Byte 1               Length                                                                                                               
+[]{#_heading=h.3q5sasy .anchor}![](media/image12.png){width="6.5in" height="1.7361111111111112in"}
 
-  Byte 2               Packet Type                                                                                                          
+  -------------------- ------------ ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
+                                                                                                                                          
 
-  Byte 3               GwId                                                                                                                 
+                                                                                                                                          
 
-  Byte 4 ... N         GwAddress                                                                                                            
-                       *(optional)*                                                                                                         
-  ----------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                          
+
+                                                                                                                                          
+  -------------------- ------------ ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
 
 [Table 13: GWINFO packet]{.underline}
 
@@ -1718,117 +1715,73 @@ and is specified by the Length byte. Optional, only included if the packet is se
 
 ### 3.1.4 CONNECT - Connection Request
 
-  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Bit**                 **7**         **6**                     **5**         **4**            **3**                      **2**        **1**                 **0**   
-  ----------------------- ------------- -------------- ---------- ------- ----- ---------------- ------- ------------------ ------------ ------- ------------- ------- -----------------------
-  Byte 1                  Length                                                                                                                                       
+[]{#_heading=h.1jlao46 .anchor}![](media/image30.png){width="6.5in" height="8.48611111111111in"}
 
-  Byte 2                  Packet Type                                                                                                                                  
+  ----------------------- -------- -------------- ------ ----- -- ---------------- -- ------------------ ------------ --- ------------- -- -----------------------
+                                                                                                                                           
 
-                          ***CONNECT                                                                                                                                   
-                          FLAGS***                                                                                                                                     
+                                                                                                                                           
 
-                          *Reserved*                   Default                                                              Auth                 Will                  Clean Start
-                                                       Awake                                                                                                           
-                                                       Messages                                                                                                        
+                                                                                                                                           
 
-  Byte 3                  *0*                          *X*        *X*     *X*                            *X*                *X*                  *X*                   *X*
+                                                                                                                                           
 
-                          ***WILL FLAGS                                                                                                                                
-                          (OPTIONAL -                                                                                                                                  
-                          ONLY WHEN                                                                                                                                    
-                          WILL FLAG                                                                                                                                    
-                          SET)***                                                                                                                                      
+                                                                                                                                           
 
-                          *Reserved*                                            Will Retain      Will                                            Will Topic            
-                                                                                                 QoS                                             Type                  
+                                                                                                                                           
 
-  Byte (3 + 1)            *0*           *0*            *0*                *X*                    *X*                        *X*                  *X*                   *X*
+                                                                                                                                           
 
-  Byte 4                  Packet                                                                                                                                       
-                          Identifier                                                                                                                                   
-                          MSB                                                                                                                                          
+                                                                                                                                           
 
-  Byte 5                  Packet                                                                                                                                       
-                          Identifier                                                                                                                                   
-                          LSB                                                                                                                                          
+                                                                                                                                           
 
-  Byte 6                  Protocol                                                                                                                                     
-                          Version                                                                                                                                      
+                                                                                                                                           
 
-  Byte 7                  Keep Alive                                                                                                                                   
-                          MSB                                                                                                                                          
+                                                                                                                                           
 
-  Byte 8                  Keep Alive                                                                                                                                   
-                          LSB                                                                                                                                          
+                                                                                                                                           
 
-  Byte 9                  Session                                                                                                                                      
-                          Expiry                                                                                                                                       
-                          Interval MSB                                                                                                                                 
+                                                                                                                                           
 
-  Byte 10                 Session                                                                                                                                      
-                          Expiry                                                                                                                                       
-                          Interval                                                                                                                                     
+                                                                                                                                           
 
-  Byte 11                 Session                                                                                                                                      
-                          Expiry                                                                                                                                       
-                          Interval                                                                                                                                     
+                                                                                                                                           
 
-  Byte 12                 Session                                                                                                                                      
-                          Expiry                                                                                                                                       
-                          Interval LSB                                                                                                                                 
+                                                                                                                                           
 
-  Byte 13                 Max Packet                                                                                                                                   
-                          Size MSB                                                                                                                                     
+                                                                                                                                           
 
-  Byte 14                 Max Packet                                                                                                                                   
-                          Size LSB                                                                                                                                     
+                                                                                                                                           
 
-                          ***WILL DATA                                                                                                                                 
-                          (OPTIONAL -                                                                                                                                  
-                          ONLY WHEN                                                                                                                                    
-                          WILL FLAG                                                                                                                                    
-                          SET)***                                                                                                                                      
+                                                                                                                                           
 
-  Byte (14 + 1)           Will Topic                                                                                                                                   
-                          Data MSB                                                                                                                                     
+                                                                                                                                           
 
-  Byte (14 + 2)           Will Topic                                                                                                                                   
-                          Data LSB                                                                                                                                     
+                                                                                                                                           
 
-  Byte (14 + 3)           Will Payload                                                                                                                                 
-                          Length MSB                                                                                                                                   
+                                                                                                                                           
 
-  Byte (14 + 4)           Will Payload                                                                                                                                 
-                          Length LSB                                                                                                                                   
+                                                                                                                                           
 
-  Byte (14 + N)           Will Payload                                                                                                                                 
-                          Or (Will                                                                                                                                     
-                          Topic Name +                                                                                                                                 
-                          Will Payload)                                                                                                                                
+                                                                                                                                           
 
-                          ***AUTH DATA                                                                                                                                 
-                          (OPTIONAL -                                                                                                                                  
-                          ONLY WHEN                                                                                                                                    
-                          AUTH FLAG                                                                                                                                    
-                          SET)***                                                                                                                                      
+                                                                                                                                           
 
-  Byte (14 + 1)           Auth Method                                                                                                                                  
-                          Length                                                                                                                                       
+                                                                                                                                           
 
-  Byte (14 + 2)           Auth Method                                                                                                                                  
+                                                                                                                                           
 
-  Byte (14 + 3)           Auth Data                                                                                                                                    
-                          Length MSB                                                                                                                                   
+                                                                                                                                           
 
-  Byte (14 + 4)           Auth Data                                                                                                                                    
-                          Length LSB                                                                                                                                   
+                                                                                                                                           
 
-  Byte (14 + 5)           Auth Data                                                                                                                                    
+                                                                                                                                           
 
-  Byte 15 ... N           Client                                                                                                                                       
-                          Identifier                                                                                                                                   
-  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                           
+
+                                                                                                                                           
+  ----------------------- -------- -------------- ------ ----- -- ---------------- -- ------------------ ------------ --- ------------- -- -----------------------
 
 [Table 14: CONNECT packet]{.underline}
 
@@ -2053,15 +2006,14 @@ information about extended authentication.
 Note that a Server MAY support multiple protocols on the same network endpoint. If the Server determines that the protocol is MQTT-SN 2.0 then it
 validates the connection attempt as follows.
 
-1.  [The Server MUST validate that the CONNECT packet matches the format described in]{.mark} [[[section
-    3.1.4]{.underline}](#connect---connection-request) and MUST NOT create a Virtual Connection for this CONNECT if it does not match.]{.mark}
-    \[MQTT-SN-3.1.4.17-1\] The Server MAY send a CONNACK with a Reason Code of 0x80 or greater as described in [[section
-    4.12]{.underline}](#handling-errors).
+1.  [The Server MUST validate that the CONNECT packet matches the format described in]{.mark} [[[section 3.1.4]{.underline}](#_heading=h.1jlao46) and
+    MUST NOT create a Virtual Connection for this CONNECT if it does not match.]{.mark} \[MQTT-SN-3.1.4.17-1\] The Server MAY send a CONNACK with a
+    Reason Code of 0x80 or greater as described in [[section 4.12]{.underline}](#handling-errors).
 
 2.  [The Server MAY check that the contents of the CONNECT packet meet any further restrictions and SHOULD perform authentication and authorization
     checks. If any of these checks fail, it MUST NOT create a Virtual Connection for this CONNECT]{.mark} \[MQTT-SN-3.1.4.17-2\]. It MAY send an
-    appropriate CONNACK response with a Reason Code of 0x80 or greater as described in [[section
-    3.1.5]{.underline}](#connack---connect-acknowledgement) and [[section 4.12]{.underline}](#handling-errors).
+    appropriate CONNACK response with a Reason Code of 0x80 or greater as described in [[section 3.1.5]{.underline}](#_heading=h.39kk8xu) and
+    [[section 4.12]{.underline}](#handling-errors).
 
 If validation is successful, the Server performs the following steps.
 
@@ -2105,108 +2057,49 @@ packets]{.mark} \[MQTT-3.1.4-6\].
 
 ### 3.1.5 CONNACK - Connect Acknowledgement
 
-+---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
-| **Bit**             | **7**  | * |            | * |            | * |            | * |            | * |             | * |              | **0**                |
-|                     |        | * |            | * |            | * |            | * |            | * |             | * |              |                      |
-|                     |        | 6 |            | 5 |            | 4 |            | 3 |            | 2 |             | 1 |              |                      |
-|                     |        | * |            | * |            | * |            | * |            | * |             | * |              |                      |
-|                     |        | * |            | * |            | * |            | * |            | * |             | * |              |                      |
-+=====================+========+===+============+===+============+===+============+===+============+===+=============+===+==============+======================+
-| Byte 1              | Length |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-+---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
-| Byte 2              | Packet |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | Type   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-+---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
-|                     | ***C   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | ONNACK |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | FL     |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | AGS*** |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-+---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
-|                     | *Res   |   |            |   |            |   |            |   |            |   |             |   | Auth         | Session              |
-|                     | erved* |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     |        |   |            |   |            |   |            |   |            |   |             |   |              | Present              |
-+---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
-| Byte 3              | 0      |   | 0          |   | 0          |   | 0          |   | 0          |   | 0           |   | X            | X                    |
-+---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
-| Byte 4              | Packet |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | Iden   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | tifier |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | MSB    |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-+---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
-| Byte 5              | Packet |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | Iden   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | tifier |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | LSB    |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-+---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
-| Byte 6              | Reason |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | Code   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-+---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
-| Byte 7              | S      |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | ession |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | Expiry |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | In     |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | terval |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | MSB    |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-+---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
-| Byte 8              | S      |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | ession |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | Expiry |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | In     |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | terval |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-+---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
-| Byte 9              | S      |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | ession |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | Expiry |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | In     |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | terval |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-+---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
-| Byte 10             | S      |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | ession |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | Expiry |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | In     |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | terval |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | LSB    |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-+---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
-|                     | *      |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | **AUTH |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | DATA   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | (OPTI  |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | ONAL - |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | ONLY   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | WHEN   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | AUTH   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | FLAG   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | S      |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | ET)*** |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-+---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
-| Byte (10+1)         | Auth   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | Method |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | Length |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-+---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
-| Byte (10+2)         | Auth   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | Method |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-+---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
-| Byte (10+3)         | Auth   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | Data   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | Length |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | MSB    |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-+---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
-| Byte (10+4)         | Auth   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | Data   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | Length |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | LSB    |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-+---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
-| Byte (10+5)         | Auth   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | Data   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-+---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
-| Byte 11...N         | As     |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | signed |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | Client |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | Iden   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | tifier |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | (opt   |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-|                     | ional) |   |            |   |            |   |            |   |            |   |             |   |              |                      |
-+---------------------+--------+---+------------+---+------------+---+------------+---+------------+---+-------------+---+--------------+----------------------+
+[]{#_heading=h.39kk8xu .anchor}![](media/image22.png){width="6.5in" height="3.638888888888889in"}
+
+  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                            
+  ---------------------- --------- -- ------------- -- ------------- -- ------------- -- ------------- -- -------------- -- --------------- -----------------------
+                                                                                                                                            
+
+                                                                                                                                            
+
+                                                                                                                                            
+
+                                                                                                                                            
+
+                                                                                                                                            
+
+                                                                                                                                            
+
+                                                                                                                                            
+
+                                                                                                                                            
+
+                                                                                                                                            
+
+                                                                                                                                            
+
+                                                                                                                                            
+
+                                                                                                                                            
+
+                                                                                                                                            
+
+                                                                                                                                            
+
+                                                                                                                                            
+
+                                                                                                                                            
+
+                                                                                                                                            
+
+                                                                                                                                            
+
+                                                                                                                                            
+  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 [Table 16: CONNACK packet]{.underline}
 
@@ -2305,32 +2198,25 @@ new Client Identifier not used by any other Session currently in the Gateway]{.m
 
 ### 3.1.6 AUTH - Authentication Exchange
 
-  ---------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Bit**                  **7**        **6**         **5**            **4**            **3**            **2**            **1**            **0**
-  ------------------------ ------------ ------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
-  byte 1                   Length                                                                                                          
+[]{#_heading=h.184mhaj .anchor}![](media/image14.png){width="6.5in" height="3.2222222222222223in"}
 
-  byte 2                   Packet Type                                                                                                     
+  ------------------------ ----------- ------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
+                                                                                                                                          
 
-  byte 3                   Packet                                                                                                          
-                           Identifier                                                                                                      
-                           MSB                                                                                                             
+                                                                                                                                          
 
-  byte 4                   Packet                                                                                                          
-                           Identifier                                                                                                      
-                           LSB                                                                                                             
+                                                                                                                                          
 
-  byte 5                   Auth Reason                                                                                                     
-                           Code                                                                                                            
+                                                                                                                                          
 
-  byte 6                   Auth Method                                                                                                     
-                           Length (K)                                                                                                      
+                                                                                                                                          
 
-  byte 7:7+K               Auth Method                                                                                                     
+                                                                                                                                          
 
-  byte 8+K:N               Auth Data                                                                                                       
-                           (N)                                                                                                             
-  ---------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                          
+
+                                                                                                                                          
+  ------------------------ ----------- ------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
 
 [Table 22: AUTH packet]{.underline}
 
@@ -2375,29 +2261,23 @@ Refer to [[section 4.11]{.underline}](#enhanced-authentication) for more informa
 
 ### 3.1.7 REGISTER - Register Topic Alias Request
 
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Bit**              **7**        **6**            **5**            **4**            **3**            **2**            **1**            **0**
+[]{#_heading=h.45jfvxd .anchor}![](media/image31.png){width="6.5in" height="2.4444444444444446in"}
+
   -------------------- ------------ ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
-  Byte 1               Length                                                                                                             
+                                                                                                                                          
 
-  Byte 2               Packet Type                                                                                                        
+                                                                                                                                          
 
-  Byte 3               Packet                                                                                                             
-                       Identifier                                                                                                         
-                       MSB                                                                                                                
+                                                                                                                                          
 
-  Byte 4               Packet                                                                                                             
-                       Identifier                                                                                                         
-                       LSB                                                                                                                
+                                                                                                                                          
 
-  Byte 5               Topic Alias                                                                                                        
-                       MSB                                                                                                                
+                                                                                                                                          
 
-  Byte 6               Topic Alias                                                                                                        
-                       LSB                                                                                                                
+                                                                                                                                          
 
-  Byte 7...N           Topic Name                                                                                                         
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                          
+  -------------------- ------------ ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
 
 [Table]{.underline} [24: REGISTER packet]{.underline}
 
@@ -2428,31 +2308,29 @@ As described in [[section 4.17]{.underline}](#topic-registration).
 
 ### 3.1.8 REGACK - Register Topic Alias Response
 
-  ----------------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Bit**        **7**              **6**            **5**              **4**             **3**           **2**                      **1**            **0**
-  -------------- ------------------ ---------------- ------------------ ----------------- --------------- ------- ------------------ ------------ --- ------------
-  Byte 1         Length                                                                                                                               
+[]{#_heading=h.4iylrwe .anchor}![](media/image1.png){width="6.5in" height="2.5972222222222223in"}
 
-  Byte 2         Packet Type                                                                                                                          
+  -------------- ------------------ ---------------- ------------------ ----------------- --------------- -- ------------------ ------------ -- ------------
+                                                                                                                                                
 
-                 ***REGACK FLAGS***                                                                                                                   
+                                                                                                                                                
 
-                 Reserved           Reserved         Reserved           Reserved          Reserved                Reserved           Topic Type       
+                                                                                                                                                
 
-  Byte 3         0                  0                0                  0                 0                       0                  X            X   
+                                                                                                                                                
 
-  Byte 4         Packet Identifier                                                                                                                    
-                 MSB                                                                                                                                  
+                                                                                                                                                
 
-  Byte 5         Packet Identifier                                                                                                                    
-                 LSB                                                                                                                                  
+                                                                                                                                                
 
-  Byte 6         Topic Alias MSB                                                                                                                      
+                                                                                                                                                
 
-  Byte 7         Topic Alias LSB                                                                                                                      
+                                                                                                                                                
 
-  Byte 8         Reason Code                                                                                                                          
-  ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                                
+
+                                                                                                                                                
+  -------------- ------------------ ---------------- ------------------ ----------------- --------------- -- ------------------ ------------ -- ------------
 
 [Table 25: REGACK packet]{.underline}
 
@@ -2502,30 +2380,25 @@ packet and their respective type identifiers.
 
 ### 3.1.10 PUBWOS - Publish Without Session
 
-  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Bit**           **7**            **6**                 **5**                   **4**          **3**                                **2**                           **1**          **0**   
-  ----------------- ---------------- ------- ------------- ------------ ---------- -------------- ------- ------------ --------------- ---------------------- -------- -------------- ------- ---------------
-  Byte 1            Length                                                                                                                                                                    
+[]{#_heading=h.j8sehv .anchor}![](media/image4.png){width="6.5in" height="2.6805555555555554in"}
 
-  Byte 2            Packet Type                                                                                                                                                               
-                    (0x11)                                                                                                                                                                    
+  ----------------- ---------------- -- ------------- ------------ -- -------------- -- -- --------------- ---------------------- -- -------------- -- ---------------
+                                                                                                                                                       
 
-                    ***PUBWOS                                                                                                                                                                 
-                    FLAGS***                                                                                                                                                                  
+                                                                                                                                                       
 
-                    *Reserved*                                          *Retain*                          *Reserved*                                          *Topic                          
-                                                                                                                                                              Type*                           
+                                                                                                                                                       
 
-  Byte 3            *0*                      *0*           *0*          *X*                               *0*                          *0*                    *X*                             *X*
+                                                                                                                                                       
 
-  Byte 4            Topic Data MSB                                                                                                                                                            
+                                                                                                                                                       
 
-  Byte 5            Topic Data LSB                                                                                                                                                            
+                                                                                                                                                       
 
-  Byte (6 + TL) ..  Data Or (Full                                                                                                                                                             
-  N                 Topic Name +                                                                                                                                                              
-                    Data)                                                                                                                                                                     
-  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                                       
+
+                                                                                                                                                       
+  ----------------- ---------------- -- ------------- ------------ -- -------------- -- -- --------------- ---------------------- -- -------------- -- ---------------
 
 [Table 28: PUBWOS packet]{.underline}
 
@@ -2580,30 +2453,25 @@ The Client or Server uses a PUBWOS packet to send an Application Message to a Ne
 
 ### 3.1.11 PUBLISH - QoS 0
 
-  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Bit**          **7**           **6**                **5**                   **4**          **3**                                **2**                           **1**          **0**   
-  ---------------- --------------- ------- ------------ ------------ ---------- -------------- ------- ------------ --------------- ---------------------- -------- -------------- ------- ---------------
-  Byte 1           Length                                                                                                                                                                  
+[]{#_heading=h.wnyagw .anchor}![](media/image27.png){width="6.5in" height="2.6805555555555554in"}
 
-  Byte 2           Packet Type                                                                                                                                                             
-                   (0x0C)                                                                                                                                                                  
+  ---------------- --------------- -- ------------ ------------ -- -------------- -- -- --------------- ---------------------- -- -------------- -- ---------------
+                                                                                                                                                    
 
-                   ***PUBLISH QoS                                                                                                                                                          
-                   0 FLAGS***                                                                                                                                                              
+                                                                                                                                                    
 
-                   *Reserved*              *QoS*                     *Retain*                          *Reserved*                   *Reserved*             *Topic                          
-                                                                                                                                                           Type*                           
+                                                                                                                                                    
 
-  Byte 3           *0*                     *0*          *0*          *X*                               *0*                          *0*                    *X*                             *X*
+                                                                                                                                                    
 
-  Byte 4           Topic Data MSB                                                                                                                                                          
+                                                                                                                                                    
 
-  Byte 5           Topic Data LSB                                                                                                                                                          
+                                                                                                                                                    
 
-  Byte (6 + TL) .. Data Or (Full                                                                                                                                                           
-  N                Topic Name +                                                                                                                                                            
-                   Data)                                                                                                                                                                   
-  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                                    
+
+                                                                                                                                                    
+  ---------------- --------------- -- ------------ ------------ -- -------------- -- -- --------------- ---------------------- -- -------------- -- ---------------
 
 [Table 29: PUBLISH packet]{.underline}
 
@@ -2648,36 +2516,29 @@ As described in [[section 3.1.12.7]{.underline}](#publish-actions).
 
 ### 3.1.12 PUBLISH - QoS 1 and 2
 
-  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Bit**           **7**            **6**                 **5**                   **4**          **3**                                **2**                           **1**          **0**   
-  ----------------- ---------------- ------- ------------- ------------ ---------- -------------- ------- ------------ --------------- ---------------------- -------- -------------- ------- ---------------
-  Byte 1            Length                                                                                                                                                                    
+[]{#_heading=h.1a346fx .anchor}![](media/image29.png){width="6.5in" height="3.138888888888889in"}
 
-  Byte 2            Packet Type                                                                                                                                                               
-                    (0x0C)                                                                                                                                                                    
+  ----------------- ---------------- -- ------------- ------------ -- -------------- -- -- --------------- ---------------------- -- -------------- -- ---------------
+                                                                                                                                                       
 
-                    ***PUBLISH QoS                                                                                                                                                            
-                    1&2 FLAGS***                                                                                                                                                              
+                                                                                                                                                       
 
-                    *DUP*                    *QoS*                      *Retain*                          *Reserved*                   *Reserved*             *Topic                          
-                                                                                                                                                              Type*                           
+                                                                                                                                                       
 
-  Byte 3            *X*                      *X*           *X*          *X*                               *0*                          *0*                    *X*                             *X*
+                                                                                                                                                       
 
-  Byte 4            Packet                                                                                                                                                                    
-                    Identifier MSB                                                                                                                                                            
+                                                                                                                                                       
 
-  Byte 5            Packet                                                                                                                                                                    
-                    Identifier LSB                                                                                                                                                            
+                                                                                                                                                       
 
-  Byte 6            Topic Data MSB                                                                                                                                                            
+                                                                                                                                                       
 
-  Byte 7            Topic Data LSB                                                                                                                                                            
+                                                                                                                                                       
 
-  Byte (8 + TL) ..  Data Or (Full                                                                                                                                                             
-  N                 Topic Name +                                                                                                                                                              
-                    Data)                                                                                                                                                                     
-  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                                       
+
+                                                                                                                                                       
+  ----------------- ---------------- -- ------------- ------------ -- -------------- -- -- --------------- ---------------------- -- -------------- -- ---------------
 
 [Table 30: PUBLISH packet]{.underline}
 
@@ -2797,23 +2658,19 @@ or PUBCOMP in response, the Client uses DISCONNECT with Reason Code 0x93 (Receiv
 
 ### 3.1.13 PUBACK -- Publish Acknowledgement
 
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Bit**              **7**        **6**            **5**            **4**            **3**            **2**            **1**            **0**
+[]{#_heading=h.11si5id .anchor}![](media/image7.png){width="6.5in" height="1.4166666666666667in"}
+
   -------------------- ------------ ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
-  Byte 1               Length                                                                                                             
+                                                                                                                                          
 
-  Byte 2               Packet Type                                                                                                        
+                                                                                                                                          
 
-  Byte 3               Packet                                                                                                             
-                       Identifier                                                                                                         
-                       MSB                                                                                                                
+                                                                                                                                          
 
-  Byte 4               Packet                                                                                                             
-                       Identifier                                                                                                         
-                       LSB                                                                                                                
+                                                                                                                                          
 
-  Byte 5               Reason Code                                                                                                        
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                          
+  -------------------- ------------ ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
 
 [Table 31: PUBACK packet]{.underline}
 
@@ -2840,23 +2697,19 @@ As described in [[section 4.3.3]{.underline}](#qos-1-at-least-once-delivery).
 
 ### 3.1.14 PUBREC (QoS 2 delivery part 1)
 
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Bit**              **7**        **6**            **5**            **4**            **3**            **2**            **1**            **0**
+[]{#_heading=h.302dr9l .anchor}![](media/image7.png){width="6.5in" height="1.4166666666666667in"}
+
   -------------------- ------------ ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
-  Byte 1               Length                                                                                                             
+                                                                                                                                          
 
-  Byte 2               Packet Type                                                                                                        
+                                                                                                                                          
 
-  Byte 3               Packet                                                                                                             
-                       Identifier                                                                                                         
-                       MSB                                                                                                                
+                                                                                                                                          
 
-  Byte 4               Packet                                                                                                             
-                       Identifier                                                                                                         
-                       LSB                                                                                                                
+                                                                                                                                          
 
-  Byte 5               Reason Code                                                                                                        
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                          
+  -------------------- ------------ ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
 
 [Table 33: PUBREC packet]{.underline}
 
@@ -2882,23 +2735,19 @@ As described in [[section 4.3.4]{.underline}](#qos-2-exactly-once-delivery).
 
 ### 3.1.15 PUBREL (QoS 2 delivery part 2)
 
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Bit**              **7**        **6**            **5**            **4**            **3**            **2**            **1**            **0**
+[]{#_heading=h.2eclud0 .anchor}![](media/image7.png){width="6.5in" height="1.4166666666666667in"}
+
   -------------------- ------------ ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
-  Byte 1               Length                                                                                                             
+                                                                                                                                          
 
-  Byte 2               Packet Type                                                                                                        
+                                                                                                                                          
 
-  Byte 3               Packet                                                                                                             
-                       Identifier                                                                                                         
-                       MSB                                                                                                                
+                                                                                                                                          
 
-  Byte 4               Packet                                                                                                             
-                       Identifier                                                                                                         
-                       LSB                                                                                                                
+                                                                                                                                          
 
-  Byte 5               Reason Code                                                                                                        
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                          
+  -------------------- ------------ ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
 
 [Table 34: PUBREL packet]{.underline}
 
@@ -2924,23 +2773,19 @@ As described in [[section 4.3.4]{.underline}](#qos-2-exactly-once-delivery).
 
 ### 3.1.16 PUBCOMP - Publish Complete (QoS 2 delivery part 3)
 
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Bit**              **7**        **6**            **5**            **4**            **3**            **2**            **1**            **0**
+[]{#_heading=h.1smtxgf .anchor}![](media/image7.png){width="6.5in" height="1.4166666666666667in"}
+
   -------------------- ------------ ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
-  Byte 1               Length                                                                                                             
+                                                                                                                                          
 
-  Byte 2               Packet Type                                                                                                        
+                                                                                                                                          
 
-  Byte 3               Packet                                                                                                             
-                       Identifier                                                                                                         
-                       MSB                                                                                                                
+                                                                                                                                          
 
-  Byte 4               Packet                                                                                                             
-                       Identifier                                                                                                         
-                       LSB                                                                                                                
+                                                                                                                                          
 
-  Byte 5               Reason Code                                                                                                        
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                          
+  -------------------- ------------ ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
 
 [Table 35: PUBCOMP packet]{.underline}
 
@@ -2966,77 +2811,31 @@ As described in [[section 4.3.4]{.underline}](#qos-2-exactly-once-delivery).
 
 ### 3.1.17 SUBSCRIBE - Subscribe Request
 
-+----------------+---------------+---+------------+---+---------+---+------------------------+------------+---+-------------+-------------+---+---------------+
-| **Bit**        | **7**         | * |            | * |         |   | **4**                  | **3**      |   | **2**       | **1**       | * |               |
-|                |               | * |            | * |         |   |                        |            |   |             |             | * |               |
-|                |               | 6 |            | 5 |         |   |                        |            |   |             |             | 0 |               |
-|                |               | * |            | * |         |   |                        |            |   |             |             | * |               |
-|                |               | * |            | * |         |   |                        |            |   |             |             | * |               |
-+================+===============+===+============+===+=========+===+========================+============+===+=============+=============+===+===============+
-| Byte 1         | Length        |   |            |   |         |   |                        |            |   |             |             |   |               |
-+----------------+---------------+---+------------+---+---------+---+------------------------+------------+---+-------------+-------------+---+---------------+
-| Byte 2         | Packet Type   |   |            |   |         |   |                        |            |   |             |             |   |               |
-+----------------+---------------+---+------------+---+---------+---+------------------------+------------+---+-------------+-------------+---+---------------+
-|                | ***SUBSCRIBE  |   |            |   |         |   |                        |            |   |             |             |   |               |
-|                | FLAGS***      |   |            |   |         |   |                        |            |   |             |             |   |               |
-+----------------+---------------+---+------------+---+---------+---+------------------------+------------+---+-------------+-------------+---+---------------+
-|                | *No Local*    |   | *QoS*      |   |         | * |                        | *Retain    |   |             | *Topic      |   |               |
-|                |               |   |            |   |         | R |                        | Handling*  |   |             | Type*       |   |               |
-|                |               |   |            |   |         | e |                        |            |   |             |             |   |               |
-|                |               |   |            |   |         | t |                        |            |   |             |             |   |               |
-|                |               |   |            |   |         | a |                        |            |   |             |             |   |               |
-|                |               |   |            |   |         | i |                        |            |   |             |             |   |               |
-|                |               |   |            |   |         | n |                        |            |   |             |             |   |               |
-|                |               |   |            |   |         | a |                        |            |   |             |             |   |               |
-|                |               |   |            |   |         | s |                        |            |   |             |             |   |               |
-|                |               |   |            |   |         | p |                        |            |   |             |             |   |               |
-|                |               |   |            |   |         | u |                        |            |   |             |             |   |               |
-|                |               |   |            |   |         | b |                        |            |   |             |             |   |               |
-|                |               |   |            |   |         | l |                        |            |   |             |             |   |               |
-|                |               |   |            |   |         | i |                        |            |   |             |             |   |               |
-|                |               |   |            |   |         | s |                        |            |   |             |             |   |               |
-|                |               |   |            |   |         | h |                        |            |   |             |             |   |               |
-|                |               |   |            |   |         | e |                        |            |   |             |             |   |               |
-|                |               |   |            |   |         | d |                        |            |   |             |             |   |               |
-|                |               |   |            |   |         | * |                        |            |   |             |             |   |               |
-+----------------+---------------+---+------------+---+---------+---+------------------------+------------+---+-------------+-------------+---+---------------+
-| Byte 3         | *X*           |   | *X*        | * |         | * |                        | *X*        |   | *X*         | *X*         |   | *X*           |
-|                |               |   |            | X |         | X |                        |            |   |             |             |   |               |
-|                |               |   |            | * |         | * |                        |            |   |             |             |   |               |
-+----------------+---------------+---+------------+---+---------+---+------------------------+------------+---+-------------+-------------+---+---------------+
-| Byte 4         | Packet        |   |            |   |         |   |                        |            |   |             |             |   |               |
-|                | Identifier    |   |            |   |         |   |                        |            |   |             |             |   |               |
-|                | MSB           |   |            |   |         |   |                        |            |   |             |             |   |               |
-+----------------+---------------+---+------------+---+---------+---+------------------------+------------+---+-------------+-------------+---+---------------+
-| Byte 5         | Packet        |   |            |   |         |   |                        |            |   |             |             |   |               |
-|                | Identifier    |   |            |   |         |   |                        |            |   |             |             |   |               |
-|                | LSB           |   |            |   |         |   |                        |            |   |             |             |   |               |
-+----------------+---------------+---+------------+---+---------+---+------------------------+------------+---+-------------+-------------+---+---------------+
-| Byte 6         | Topic Data    |   |            |   | **OR**  |   |                        |            | T |             |             |   |               |
-|                | MSB           |   |            |   |         |   |                        |            | o |             |             |   |               |
-|                |               |   |            |   |         |   |                        |            | p |             |             |   |               |
-|                |               |   |            |   |         |   |                        |            | i |             |             |   |               |
-|                |               |   |            |   |         |   |                        |            | c |             |             |   |               |
-|                |               |   |            |   |         |   |                        |            | F |             |             |   |               |
-|                |               |   |            |   |         |   |                        |            | i |             |             |   |               |
-|                |               |   |            |   |         |   |                        |            | l |             |             |   |               |
-|                |               |   |            |   |         |   |                        |            | t |             |             |   |               |
-|                |               |   |            |   |         |   |                        |            | e |             |             |   |               |
-|                |               |   |            |   |         |   |                        |            | r |             |             |   |               |
-|                |               |   |            |   |         |   |                        |            |   |             |             |   |               |
-|                |               |   |            |   |         |   |                        |            | B |             |             |   |               |
-|                |               |   |            |   |         |   |                        |            | y |             |             |   |               |
-|                |               |   |            |   |         |   |                        |            | t |             |             |   |               |
-|                |               |   |            |   |         |   |                        |            | e |             |             |   |               |
-|                |               |   |            |   |         |   |                        |            | 6 |             |             |   |               |
-|                |               |   |            |   |         |   |                        |            | . |             |             |   |               |
-|                |               |   |            |   |         |   |                        |            | . |             |             |   |               |
-|                |               |   |            |   |         |   |                        |            | . |             |             |   |               |
-|                |               |   |            |   |         |   |                        |            | N |             |             |   |               |
-+----------------+---------------+---+------------+---+---------+---+------------------------+------------+---+-------------+-------------+---+---------------+
-| Byte 7         | Topic Data    |   |            |   |         |   |                        |            |   |             |             |   |               |
-|                | LSB           |   |            |   |         |   |                        |            |   |             |             |   |               |
-+----------------+---------------+---+------------+---+---------+---+------------------------+------------+---+-------------+-------------+---+---------------+
+![](media/image17.png){width="6.5in" height="1.3055555555555556in"}
+
+Or
+
+[]{#_heading=h.16x20ju .anchor}![](media/image2.png){width="6.5in" height="1.4722222222222223in"}
+
+  ----------------- ---------------- -- ------------- -- ---------- -- ------------------------ ------------- -- -------------- -------------- -- ----------------
+                                                                                                                                                  
+
+                                                                                                                                                  
+
+                                                                                                                                                  
+
+                                                                                                                                                  
+
+                                                                                                                                                  
+
+                                                                                                                                                  
+
+                                                                                                                                                  
+
+                                                                                                                                                  
+
+                                                                                                                                                  
+  ----------------- ---------------- -- ------------- -- ---------- -- ------------------------ ------------- -- -------------- -------------- -- ----------------
 
 [Table 36: SUBSCRIBE packet]{.underline}
 
@@ -3128,32 +2927,29 @@ QoS granted was QoS 0.
 
 ### 3.1.18 SUBACK - Subscribe Acknowledgement
 
-  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Bit**            **7**             **6**                  **5**                      **4**           **3**                     **2**            **1**                  **0**   
-  ------------------ ----------------- ------- -------------- ------------- ------------ --------------- ------- ----------------- ---------------- ------- -------------- ------- ----------------
-  Byte 1             Length                                                                                                                                                        
+[]{#_heading=h.1kc7wiv .anchor}![](media/image16.png){width="6.5in" height="2.5972222222222223in"}
 
-  Byte 2             Packet Type                                                                                                                                                   
+  ------------------ ----------------- -- -------------- ------------- -- --------------- -- ----------------- ---------------- -- -------------- -- ----------------
+                                                                                                                                                     
 
-                     ***SUBACK                                                                                                                                                     
-                     FLAGS***                                                                                                                                                      
+                                                                                                                                                     
 
-                     *Reserved*                *Reserved*                   *Reserved*                           *Reserved*        *Reserved*               *Topic Type*           
+                                                                                                                                                     
 
-  Byte 3             *0*                       *0*            *0*           *0*                                  *0*               *0*                      *X*                    *X*
+                                                                                                                                                     
 
-  Byte 4             Topic Data MSB                                                                                                                                                
+                                                                                                                                                     
 
-  Byte 5             Topic Data LSB                                                                                                                                                
+                                                                                                                                                     
 
-  Byte 6             Packet Identifier                                                                                                                                             
-                     MSB                                                                                                                                                           
+                                                                                                                                                     
 
-  Byte 7             Packet Identifier                                                                                                                                             
-                     LSB                                                                                                                                                           
+                                                                                                                                                     
 
-  Byte 8             Reason Code                                                                                                                                                   
-  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                                     
+
+                                                                                                                                                     
+  ------------------ ----------------- -- -------------- ------------- -- --------------- -- ----------------- ---------------- -- -------------- -- ----------------
 
 [Table 37: SUBACK packet]{.underline}
 
@@ -3186,49 +2982,31 @@ The SUBACK Reason Codes are shown in Table 9: Reason Code Values.The Server send
 
 ### 3.1.19 UNSUBSCRIBE - Unsubscribe Request
 
-+----------------+----------------+---+------------+------------+---+--------------+---+---+-------+---------+----------------+--------------+---+--------------+
-| **Bit**        | **7**          | * |            | **5**      |   | **4**        | * |   |       |         | **2**          | **1**        | * |              |
-|                |                | * |            |            |   |              | * |   |       |         |                |              | * |              |
-|                |                | 6 |            |            |   |              | 3 |   |       |         |                |              | 0 |              |
-|                |                | * |            |            |   |              | * |   |       |         |                |              | * |              |
-|                |                | * |            |            |   |              | * |   |       |         |                |              | * |              |
-+================+================+===+============+============+===+==============+===+===+=======+=========+================+==============+===+==============+
-| Byte 1         | Length         |   |            |            |   |              |   |   |       |         |                |              |   |              |
-+----------------+----------------+---+------------+------------+---+--------------+---+---+-------+---------+----------------+--------------+---+--------------+
-| Byte 2         | Packet Type    |   |            |            |   |              |   |   |       |         |                |              |   |              |
-+----------------+----------------+---+------------+------------+---+--------------+---+---+-------+---------+----------------+--------------+---+--------------+
-|                | ***UNSUBSCRIBE |   |            |            |   |              |   |   |       |         |                |              |   |              |
-|                | FLAGS***       |   |            |            |   |              |   |   |       |         |                |              |   |              |
-+----------------+----------------+---+------------+------------+---+--------------+---+---+-------+---------+----------------+--------------+---+--------------+
-|                | *Reserved*     |   | *Reserved* |            | * |              |   | * |       |         | *Reserved*     | *Topic Type* |   |              |
-|                |                |   |            |            | R |              |   | R |       |         |                |              |   |              |
-|                |                |   |            |            | e |              |   | e |       |         |                |              |   |              |
-|                |                |   |            |            | s |              |   | s |       |         |                |              |   |              |
-|                |                |   |            |            | e |              |   | e |       |         |                |              |   |              |
-|                |                |   |            |            | r |              |   | r |       |         |                |              |   |              |
-|                |                |   |            |            | v |              |   | v |       |         |                |              |   |              |
-|                |                |   |            |            | e |              |   | e |       |         |                |              |   |              |
-|                |                |   |            |            | d |              |   | d |       |         |                |              |   |              |
-|                |                |   |            |            | * |              |   | * |       |         |                |              |   |              |
-+----------------+----------------+---+------------+------------+---+--------------+---+---+-------+---------+----------------+--------------+---+--------------+
-| Byte 3         | *0*            |   | *0*        | *0*        | * |              |   | * |       |         | *0*            | *X*          |   | *X*          |
-|                |                |   |            |            | 0 |              |   | 0 |       |         |                |              |   |              |
-|                |                |   |            |            | * |              |   | * |       |         |                |              |   |              |
-+----------------+----------------+---+------------+------------+---+--------------+---+---+-------+---------+----------------+--------------+---+--------------+
-| Byte 4         | Packet         |   |            |            |   |              |   |   |       |         |                |              |   |              |
-|                | Identifier MSB |   |            |            |   |              |   |   |       |         |                |              |   |              |
-+----------------+----------------+---+------------+------------+---+--------------+---+---+-------+---------+----------------+--------------+---+--------------+
-| Byte 5         | Packet         |   |            |            |   |              |   |   |       |         |                |              |   |              |
-|                | Identifier LSB |   |            |            |   |              |   |   |       |         |                |              |   |              |
-+----------------+----------------+---+------------+------------+---+--------------+---+---+-------+---------+----------------+--------------+---+--------------+
-| Byte 6         | Topic Data MSB |   |            |            |   |              |   |   | *     | Topic   |                |              |   |              |
-|                |                |   |            |            |   |              |   |   | *OR** | Filter  |                |              |   |              |
-|                |                |   |            |            |   |              |   |   |       |         |                |              |   |              |
-|                |                |   |            |            |   |              |   |   |       | Byte 6  |                |              |   |              |
-|                |                |   |            |            |   |              |   |   |       | ... N   |                |              |   |              |
-+----------------+----------------+---+------------+------------+---+--------------+---+---+-------+---------+----------------+--------------+---+--------------+
-| Byte 7         | Topic Data LSB |   |            |            |   |              |   |   |       |         |                |              |   |              |
-+----------------+----------------+---+------------+------------+---+--------------+---+---+-------+---------+----------------+--------------+---+--------------+
+![](media/image25.png){width="6.5in" height="2.361111111111111in"}
+
+Or:
+
+[]{#_heading=h.4hr1b5p .anchor}![](media/image13.png){width="6.5in" height="2.6805555555555554in"}
+
+  ----------------- ----------------- -- ------------- ------------- -- --------------- -- -- -------- ---------- ----------------- --------------- -- ---------------
+                                                                                                                                                       
+
+                                                                                                                                                       
+
+                                                                                                                                                       
+
+                                                                                                                                                       
+
+                                                                                                                                                       
+
+                                                                                                                                                       
+
+                                                                                                                                                       
+
+                                                                                                                                                       
+
+                                                                                                                                                       
+  ----------------- ----------------- -- ------------- ------------- -- --------------- -- -- -------- ---------- ----------------- --------------- -- ---------------
 
 [Table 39: UNSUBSCRIBE packet]{.underline}
 
@@ -3279,23 +3057,19 @@ Packet Identifier as the UNSUBSCRIBE packet. Even where no Topic Subscriptions a
 
 ### 3.1.20 UNSUBACK - Unsubscribe Acknowledgement
 
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Bit**              **7**        **6**            **5**            **4**            **3**            **2**            **1**            **0**
+[]{#_heading=h.3abhhcj .anchor}![](media/image7.png){width="6.5in" height="1.4166666666666667in"}
+
   -------------------- ------------ ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
-  Byte 1               Length                                                                                                             
+                                                                                                                                          
 
-  Byte 2               Packet Type                                                                                                        
+                                                                                                                                          
 
-  Byte 3               Packet                                                                                                             
-                       Identifier                                                                                                         
-                       MSB                                                                                                                
+                                                                                                                                          
 
-  Byte 4               Packet                                                                                                             
-                       Identifier                                                                                                         
-                       LSB                                                                                                                
+                                                                                                                                          
 
-  Byte 5               Reason Code                                                                                                        
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                          
+  -------------------- ------------ ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
 
 [Table 40: UNSUBACK packet]{.underline}
 
@@ -3316,25 +3090,19 @@ The UNSUBACK Reason Codes are shown in Table 9: Reason Code Values. The server s
 
 ### 3.1.21 PINGREQ - Ping Request
 
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Bit**              **7**        **6**            **5**            **4**            **3**            **2**            **1**            **0**
+[]{#_heading=h.13qzunr .anchor}![](media/image24.png){width="6.5in" height="1.9722222222222223in"}
+
   -------------------- ------------ ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
-  Byte 1               Length                                                                                                             
+                                                                                                                                          
 
-  Byte 2               Packet Type                                                                                                        
+                                                                                                                                          
 
-  Byte 3               Packet                                                                                                             
-                       Identifier                                                                                                         
-                       MSB                                                                                                                
+                                                                                                                                          
 
-  Byte 4               Packet                                                                                                             
-                       Identifier                                                                                                         
-                       LSB                                                                                                                
+                                                                                                                                          
 
-  Byte 5...N           Client                                                                                                             
-                       Identifier                                                                                                         
-                       (optional)                                                                                                         
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                          
+  -------------------- ------------ ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
 
 [T]{.underline}he PINGREQ packet is an "are you alive" packet that is sent from or received by a connected client.
 
@@ -3362,26 +3130,19 @@ waiting for packets sent by the gateway.
 
 ### 3.1.22 PINGRESP - Ping Response
 
-  ---------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Bit**              **7**         **6**            **5**            **4**            **3**            **2**            **1**            **0**
-  -------------------- ------------- ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
-  Byte 1               Length                                                                                                              
+[]{#_heading=h.i17xr6 .anchor}![](media/image15.png){width="6.5in" height="1.4166666666666667in"}
 
-  Byte 2               Packet Type                                                                                                         
+  -------------------- ------------ ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
+                                                                                                                                          
 
-  Byte 3               Packet                                                                                                              
-                       Identifier                                                                                                          
-                       MSB                                                                                                                 
+                                                                                                                                          
 
-  Byte 4               Packet                                                                                                              
-                       Identifier                                                                                                          
-                       LSB                                                                                                                 
+                                                                                                                                          
 
-  Byte 5               Application                                                                                                         
-                       Messages                                                                                                            
-                       Remaining                                                                                                           
-                       (optional)                                                                                                          
-  ---------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                          
+
+                                                                                                                                          
+  -------------------- ------------ ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
 
 [Table 43: PINGRESP packet]{.underline}
 
@@ -3418,44 +3179,31 @@ client\'s awake period. Values can be:
 
 ### 3.1.23 DISCONNECT - Disconnect Notification
 
-  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Bit**            **7**           **6**                   **5**                   **4**                   **3**               **2**                   **1**                   **0**       
-  ------------------ --------------- ------- --------------- ------- --------------- ------- --------------- ------- ----------- ------- --------------- ------- --------------- ------- --- ----------------
-  Byte 1             Length                                                                                                                                                                  
+[]{#_heading=h.415t9al .anchor}![](media/image5.png){width="6.5in" height="3.736111111111111in"}
 
-  Byte 2             Packet Type                                                                                                                                                             
+  ------------------ ----------- -- --------------- -- --------------- -- --------------- -- ----------- -- --------------- -- --------------- -- -- ----------------
+                                                                                                                                                     
 
-                     ***DISCONNECT                                                                                                                                                           
-                     FLAGS***                                                                                                                                                                
+                                                                                                                                                     
 
-                     *Reserved*                                                                                      *Reason             *Session Expiry         *Reason String              *Retain
-                                                                                                                     Code                Interval                Present*                    Registrations*
-                                                                                                                     Present*            Present*                                            
+                                                                                                                                                     
 
-  Byte 3             0                       0                       0                       0                       X                   X                       X                       X   
+                                                                                                                                                     
 
-  Byte 4             Reason Code                                                                                                                                                             
-                     (optional)                                                                                                                                                              
+                                                                                                                                                     
 
-  Byte 5             Session Expiry                                                                                                                                                          
-                     Interval MSB                                                                                                                                                            
-                     (optional)                                                                                                                                                              
+                                                                                                                                                     
 
-  Byte 6             Session Expiry                                                                                                                                                          
-                     Interval                                                                                                                                                                
-                     (optional)                                                                                                                                                              
+                                                                                                                                                     
 
-  Byte 7             Session Expiry                                                                                                                                                          
-                     Interval                                                                                                                                                                
-                     (optional)                                                                                                                                                              
+                                                                                                                                                     
 
-  Byte 8             Session Expiry                                                                                                                                                          
-                     Interval LSB                                                                                                                                                            
-                     (optional)                                                                                                                                                              
+                                                                                                                                                     
 
-  Bytes 9..N         Reason String                                                                                                                                                           
-                     (optional)                                                                                                                                                              
-  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                                     
+
+                                                                                                                                                     
+  ------------------ ----------- -- --------------- -- --------------- -- --------------- -- ----------- -- --------------- -- --------------- -- -- ----------------
 
 [Table 45: DISCONNECT packet]{.underline}
 
@@ -3538,13 +3286,13 @@ On receipt of DISCONNECT, the Client:
 
 ### 3.1.24 WAKEUP - Wake up request
 
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Bit**              **7**        **6**            **5**            **4**            **3**            **2**            **1**            **0**
-  -------------------- ------------ ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
-  Byte 1               Length                                                                                                             
+![](media/image6.png){width="6.5in" height="0.7222222222222222in"}
 
-  Byte 2               Packet Type                                                                                                        
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
+  -------------------- ------------ ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
+                                                                                                                                          
+
+                                                                                                                                          
+  -------------------- ------------ ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ----------------
 
 [Table ??: WAKEUP packet]{.underline}
 
@@ -3563,21 +3311,19 @@ The first 2 or 4 bytes of the packet are encoded according to the variable lengt
 
 ### 3.1.25 Forwarder Encapsulation
 
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Bit**                      **7**       **6**         **5**        **4**            **3**            **2**            **1**            **0**
+![](media/image3.png){width="6.5in" height="2.986111111111111in"}
+
   ---------------------------- ----------- ------------- ------------ ---------------- ---------------- ---------------- ---------------- ----------------
-  Byte 1                       Length                                                                                                     
+                                                                                                                                          
 
-  Byte 2                       Packet Type                                                                                                
+                                                                                                                                          
 
-  Byte 3                       Ctrl                                                                                                       
+                                                                                                                                          
 
-  Byte 4 .. N                  Wireless                                                                                                   
-                               Node Id                                                                                                    
+                                                                                                                                          
 
-  Byte (N + 1 ,,, M)           MQTT SN                                                                                                    
-                               packet                                                                                                     
-  --------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                          
+  ---------------------------- ----------- ------------- ------------ ---------------- ---------------- ---------------- ---------------- ----------------
 
 [Table 53: Format of an encapsulated MQTT-SN frame]{.underline}
 
@@ -3622,43 +3368,33 @@ The MQTT-SN packet, encoded according to the packet type.
 
 ### 3.1.26 Protection Encapsulation
 
-### 
+### ![](media/image34.png){width="6.5in" height="5.736111111111111in"}
 
-  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Bit**            **7**            **6**                 **5**               **4**          **3**                     **2**            **1**                    **0**
-  ------------------ ---------------- ------- ------------- ------------- ----- -------------- ------- ----------------- ---------------- ------- ---------------- ----------------
-  Byte 1             Length                                                                                                                                        
+  ------------------ --------------- -- ------------- ------------- -- -------------- -- ----------------- ---------------- -- ---------------- ----------------
+                                                                                                                                                
 
-  Byte 2             Packet Type                                                                                                                                   
+                                                                                                                                                
 
-                     *PROTECTION                                                                                                                                   
-                     FLAGS*                                                                                                                                        
+                                                                                                                                                
 
-                     *Auth Tag                                                                         *Crypto Material                           *Monotonic       
-                     Length*                                                                           Length*                                    Counter Length*  
+                                                                                                                                                
 
-  Byte 3             *X*                      *X*           *X*           *X*                          *X*               *X*                      *X*              *X*
+                                                                                                                                                
 
-  Byte 4             Protection                                                                                                                                    
-                     Scheme                                                                                                                                        
+                                                                                                                                                
 
-  Byte 5 - 12        Sender Id                                                                                                                                     
+                                                                                                                                                
 
-  Byte 13 - 16       Random                                                                                                                                        
+                                                                                                                                                
 
-  Byte 17 - P        Crypto Material                                                                                                                               
-                     (Optional)                                                                                                                                    
+                                                                                                                                                
 
-  Byte Q - R         Monotonic                                                                                                                                     
-                     Counter                                                                                                                                       
-                     (Optional)                                                                                                                                    
+                                                                                                                                                
 
-  Byte S - T         Protected                                                                                                                                     
-                     MQTT-SN Packet                                                                                                                                
+                                                                                                                                                
 
-  Byte U - N         Authentication                                                                                                                                
-                     Tag                                                                                                                                           
-  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                                
+  ------------------ --------------- -- ------------- ------------- -- -------------- -- ----------------- ---------------- -- ---------------- ----------------
 
 [Table 53: Format of the protection encapsulated MQTT-SN packet]{.underline}
 
@@ -3968,11 +3704,11 @@ procedure for setting up a session with a server is illustrated in Fig. 3a and 3
 
 The CONNECT packet contains flags to communicate to the gateway that Auth interactionsshould take place.
 
-![](media/image13.png){width="3.344815179352581in" height="2.4173436132983377in"}
+![](media/image18.png){width="3.344815179352581in" height="2.4173436132983377in"}
 
 Figure 3a: Connect procedure (without Auth flag set or no further authentication data required)
 
-![](media/image1.png){width="3.345165135608049in" height="2.963542213473316in"}
+![](media/image19.png){width="3.345165135608049in" height="2.963542213473316in"}
 
 Figure 3b: Connect procedure (with Auth flag set and additional authentication data required)
 
@@ -4290,8 +4026,8 @@ If the Virtual Connection is deleted, the protocol will restart when a new CONNE
 > time. If it is excessively long, the time taken to detect and retransmit lost Packets will also be excessively long. Implementers need to take care
 > not to use a retry interval that might cause the network to become congested with retried Packets.
 
-The PINGREQ Packet described in \[[[3.1.21 PINGREQ]{.underline}](#pingreq---ping-request)\] can also be used to determine whether the Virtual
-Connection is alive.
+The PINGREQ Packet described in \[[[3.1.21 PINGREQ]{.underline}](#_heading=h.13qzunr)\] can also be used to determine whether the Virtual Connection
+is alive.
 
 An example of a retry algorithm is described in \[Appendix F.4\]
 
@@ -4695,7 +4431,7 @@ Although the implementation of the transparent Gateway is simpler when compared 
 support a separate connection for each active client. Some MQTT server implementations might impose a limitation on the number of concurrent
 connections that they support.
 
-![](media/image6.png){width="3.994792213473316in" height="2.6661472003499562in"}
+![](media/image39.png){width="3.994792213473316in" height="2.6661472003499562in"}
 
 Figure XX: Transparent Gateway scenario
 
@@ -4706,21 +4442,21 @@ exchanges between a MQTT-SN client and an aggregating Gateway end at the Gateway
 the MQTT Broker. Although its implementation is more complex than the one of a transparent Gateway, an aggregating Gateway may be helpful in case of
 WSNs with a very large number of SAs because it reduces the number of MQTT connections that the Gateway must support concurrently.
 
-![](media/image8.png){width="4.578125546806649in" height="3.0552755905511813in"}
+![](media/image35.png){width="4.578125546806649in" height="3.0552755905511813in"}
 
 Figure XX: Aggregating Gateway scenario
 
 ### 4.11.3 Forwarder encapsulator
 
-![](media/image12.png){width="4.704773622047244in" height="2.7964599737532807in"}
+![](media/image36.png){width="4.704773622047244in" height="2.7964599737532807in"}
 
-Figure XX: Forwarder encapsulator with TransparentGateway scenario![](media/image10.png){width="4.9003171478565175in" height="2.8304625984251968in"}
+Figure XX: Forwarder encapsulator with TransparentGateway scenario![](media/image33.png){width="4.9003171478565175in" height="2.8304625984251968in"}
 
 Figure XX: Forwarder encapsulator with Aggregating Gateway scenario
 
 ### 4.13.4 MQTT-SN broker
 
-![](media/image7.png){width="2.8596172353455818in" height="2.983947944006999in"}
+![](media/image37.png){width="2.8596172353455818in" height="2.983947944006999in"}
 
 Figure XX: MQTT-SN broker scenario
 
@@ -4813,7 +4549,7 @@ into the asleep state by issuing a DISCONNECT with a *session expiry interval* f
 |                            | **LOST** state.                                                                       |                              |
 +----------------------------+---------------------------------------------------------------------------------------+------------------------------+
 
-![](media/image11.png){width="6.5in" height="6.944444444444445in"}
+![](media/image21.png){width="6.5in" height="6.944444444444445in"}
 
 Figure 4: The Server view of the Client State
 
@@ -5063,7 +4799,7 @@ sending a CONNECT packet to the gateway.
 >
 > The gateway should attempt to make the best effort to reuse the same topic alias mappings that existed during any initial associated ACTIVE states.
 >
-> ![](media/image3.png){width="4.615764435695538in" height="7.453125546806649in"}
+> ![](media/image23.png){width="4.615764435695538in" height="7.453125546806649in"}
 
 Figure 5: Awake ping packet flush
 
