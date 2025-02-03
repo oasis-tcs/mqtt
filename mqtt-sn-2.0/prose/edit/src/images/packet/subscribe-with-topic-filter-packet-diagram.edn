@@ -1,6 +1,6 @@
 ;; This is the source for 3.1.17.b SUBSCRIBE (Variant with Topic Data in Payload) packet diagram of MQTT-SN v2.0.
 (def boxes-per-row 9)
-(def box-width 165)
+(def box-width 90)
 (def left-margin 20)
 (defattrs :plain {:font-family "Arial" :font-size 18})
 (defattrs :cursive {:font-family "Arial" :font-size 18 :font-style "italic"})
@@ -31,8 +31,8 @@
 (draw-box (text ""))
 (draw-box "No Local" [:bg-lightgray {:span 1}])
 (draw-box "QoS" [:bg-lightgray {:span 2}])
-(draw-box "Retain as published" [:bg-lightgray {:span 1}])
-(draw-box "Session Present" [:bg-lightgray {:span 2}])
+(draw-box "RaP" [:bg-lightgray {:span 1}])
+(draw-box "Retain Handling" [:bg-lightgray {:span 2}])
 (draw-box "Topic Type" [:bg-lightgray {:span 2}])
 
 (draw-box (text "3"))
