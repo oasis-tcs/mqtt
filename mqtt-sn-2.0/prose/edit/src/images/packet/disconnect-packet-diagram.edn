@@ -36,7 +36,8 @@
 (draw-box (text "DISCONNECT FLAGS") [:bg-mediumgray :byte])
 
 (draw-box nil :huge-height)
-(draw-box "Reserved" [:huge-height :bg-lightgray {:span 4}])
+(draw-box "Reserved" [:huge-height :bg-lightgray {:span 3}])
+(draw-box (text "Packet Identifier Present" :vertical) [:huge-height :bg-lightgray {:span 1}])
 (draw-box (text "Reason Code Present" :vertical) [:huge-height :bg-lightgray {:span 1}])
 (draw-box (text "Session Expiry Interval Present" :vertical) [:huge-height :bg-lightgray {:span 1}])
 (draw-box (text "Reason String Present" :vertical) [:huge-height :bg-lightgray {:span 1}])
@@ -47,17 +48,23 @@
 (draw-box "0" {:span 1})
 (draw-box "0" {:span 1})
 (draw-box "0" {:span 1})
-(draw-box "0" {:span 1})
+(draw-box "X" {:span 1})
 (draw-box "X" {:span 1})
 (draw-box "X" {:span 1})
 (draw-box "X" {:span 1})
 (draw-box "X" {:span 1})
 
 (draw-box "4" :bg-lightgray)
-(draw-box (text "Reason Code [OPT]" :plain [:small " (ONLY WHEN REASON CODE PRESENT FLAG SET)"] " (C=0 or 1)") :optional-byte)
+(draw-box (text "Packet Identifier MSB [OPT]" :plain [:small " (ONLY WHEN PACKET IDENTIFIER PRESENT FLAG SET)"] " (I=0 or 2)") :optional-byte)
+
+(draw-box "5" :bg-lightgray )
+(draw-box (text "Packet Identifier MSB [OPT]" :plain [:small " (ONLY WHEN PACKET IDENTIFIER PRESENT FLAG SET)"]) :optional-byte)
+
+(draw-box "4+I" :bg-lightgray)
+(draw-box (text "Reason Code [OPT]" :plain [:small " (ONLY WHEN REASON CODE PRESENT FLAG SET)"] " (C=I or I+1)") :optional-byte)
 
 (draw-box "4+C" :bg-lightgray)
-(draw-box (text "Session Expiry Interval MSB [OPT]" :plain [:small " (ONLY WHEN SESSION EXPIRY INTERVAL PRESENT FLAG SET)"] " (S=0 or 4)") :optional-byte)
+(draw-box (text "Session Expiry Interval MSB [OPT]" :plain [:small " (ONLY WHEN SESSION EXPIRY INTERVAL PRESENT FLAG SET)"] " (S=C or C+4)") :optional-byte)
 
 (draw-box "5+C" :bg-lightgray)
 (draw-box (text "Session Expiry Interval [OPT]" :plain [:small " (ONLY WHEN SESSION EXPIRY INTERVAL PRESENT FLAG SET)"]) :optional-byte)
@@ -68,7 +75,7 @@
 (draw-box "7+C" :bg-lightgray)
 (draw-box (text "Session Expiry Interval LSB [OPT]" :plain [:small " (ONLY WHEN SESSION EXPIRY INTERVAL PRESENT FLAG SET)"]) :optional-byte)
 
-(draw-box "4+C+S ... N" :bg-lightgray)
-(draw-gap (text "Reason String [OPT]" :plain [:small " (ONLY WHEN REASON STRING PRESENT FLAG SET)"]) :optional-byte)
+(draw-box "4+S ... N" :bg-lightgray)
+(draw-gap (text "Reason String [OPT]" :plain [:small " (ONLY WHEN REASON STRING PRESENT FLAG SET) (N)"]) :optional-byte)
 
 (draw-bottom)
