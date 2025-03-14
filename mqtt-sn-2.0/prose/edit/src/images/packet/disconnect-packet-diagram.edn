@@ -1,7 +1,6 @@
 ;; This is the source for 3.1.23 DISCONNECT packet diagram of MQTT-SN v2.0.
 (def boxes-per-row 9)
-(def box-width 110)
-(def row-height 30) ;; default
+(def box-width 90)
 (def huge-height 180) ;; vertically labeled boxes
 (def left-margin 20)
 (defattrs :plain {:font-family "Arial" :font-size 18})
@@ -15,7 +14,7 @@
 (defattrs :vertical {:font-family "Arial" :font-size 12 :text-anchor "start" :writing-mode "vertical-lr"})
 (defattrs :byte {:span 8})
 (defattrs :optional-byte [:bg-lightgray :byte])
-(defattrs :huge-height {:height huge-height})
+(defattrs :field-name [:bold {:span 9 :text-anchor "start"}])
 
 (defn row-header-fn
   [{:keys [address gap?]}]
@@ -32,17 +31,16 @@
 (draw-box "2")
 (draw-box "Packet Type" :byte)
 
-(draw-box nil)
-(draw-box (text "DISCONNECT FLAGS") [:bg-mediumgray :byte])
+(draw-box (text "Disconnect Flags") [:bg-mediumgray :field-name])
 
-(draw-box nil :huge-height)
-(draw-box "Reserved" [:huge-height :bg-lightgray {:span 3}])
-(draw-box (text "Packet Identifier Present" :vertical) [:huge-height :bg-lightgray {:span 1}])
-(draw-box (text "Reason Code Present" :vertical) [:huge-height :bg-lightgray {:span 1}])
-(draw-box (text "Session Expiry Interval Present" :vertical) [:huge-height :bg-lightgray {:span 1}])
-(draw-box (text "Reason String Present" :vertical) [:huge-height :bg-lightgray {:span 1}])
-(draw-box (text "Retain Registrations" :vertical) [:huge-height :bg-lightgray {:span 1}])
-(next-row huge-height)
+(draw-box (text ""))
+(draw-box "Reserved" [:bg-lightgray {:span 3}])
+
+(draw-box "Reason S" [:bg-lightgray {:span 1}])
+(draw-box "Sess Exp" [:bg-lightgray {:span 1}])
+(draw-box "Reason C" [:bg-lightgray {:span 1}])
+(draw-box "PacketId" [:bg-lightgray {:span 1}])
+(draw-box "Retain R" [:bg-lightgray {:span 1}])
 
 (draw-box "3")
 (draw-box "0" {:span 1})
@@ -54,28 +52,32 @@
 (draw-box "X" {:span 1})
 (draw-box "X" {:span 1})
 
+(draw-box (text "Packet Identifier [optional] (only when packet identifier flag set)") [:bg-lightgray :field-name])
+
 (draw-box "4" :bg-lightgray)
-(draw-box (text "Packet Identifier MSB [OPT]" :plain [:small " (ONLY WHEN PACKET IDENTIFIER PRESENT FLAG SET)"] " (I=0 or 2)") :optional-byte)
+(draw-box (text "Packet Identifier MSB (I=0 or 2)") [:optional-byte {:text-anchor "start"}])
 
 (draw-box "5" :bg-lightgray )
-(draw-box (text "Packet Identifier MSB [OPT]" :plain [:small " (ONLY WHEN PACKET IDENTIFIER PRESENT FLAG SET)"]) :optional-byte)
+(draw-box (text "Packet Identifier LSB") [:optional-byte {:text-anchor "start"}])
 
 (draw-box "4+I" :bg-lightgray)
-(draw-box (text "Reason Code [OPT]" :plain [:small " (ONLY WHEN REASON CODE PRESENT FLAG SET)"] " (C=I or I+1)") :optional-byte)
+(draw-box (text "Reason Code [optional] (only when reason code flag set) (C=I or I+1)") :optional-byte)
+
+(draw-box (text "Session Expiry Interval [optional] (only when session expiry interval flag set)") [:bg-lightgray :field-name])
 
 (draw-box "4+C" :bg-lightgray)
-(draw-box (text "Session Expiry Interval MSB [OPT]" :plain [:small " (ONLY WHEN SESSION EXPIRY INTERVAL PRESENT FLAG SET)"] " (S=C or C+4)") :optional-byte)
+(draw-box (text "Session Expiry Interval MSB (S=C or C+4)") [:optional-byte {:text-anchor "start"}])
 
 (draw-box "5+C" :bg-lightgray)
-(draw-box (text "Session Expiry Interval [OPT]" :plain [:small " (ONLY WHEN SESSION EXPIRY INTERVAL PRESENT FLAG SET)"]) :optional-byte)
+(draw-box (text "Session Expiry Interval") [:optional-byte {:text-anchor "start"}])
 
 (draw-box "6+C" :bg-lightgray)
-(draw-box (text "Session Expiry Interval [OPT]" :plain [:small " (ONLY WHEN SESSION EXPIRY INTERVAL PRESENT FLAG SET)"]) :optional-byte)
+(draw-box (text "Session Expiry Interval") [:optional-byte {:text-anchor "start"}])
 
 (draw-box "7+C" :bg-lightgray)
-(draw-box (text "Session Expiry Interval LSB [OPT]" :plain [:small " (ONLY WHEN SESSION EXPIRY INTERVAL PRESENT FLAG SET)"]) :optional-byte)
+(draw-box (text "Session Expiry Interval LSB") [:optional-byte {:text-anchor "start"}])
 
 (draw-box "4+S ... N" :bg-lightgray)
-(draw-gap (text "Reason String [OPT]" :plain [:small " (ONLY WHEN REASON STRING PRESENT FLAG SET) (N)"]) :optional-byte)
+(draw-gap (text "Reason String [optional] (only when reason string flag set) (N)") :optional-byte)
 
 (draw-bottom)
