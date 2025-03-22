@@ -7,8 +7,9 @@
 (defattrs :bg-lightblue {:fill "#cfe2f3"})
 (defattrs :bg-mediumgray {:fill "#dddddd"})
 (defattrs :bg-lightgray {:fill "#eeeeee"})
-;;(defattrs :left {:text-anchor "start"})
-(defattrs :byte {:span 8})
+(defattrs :left {:text-anchor "start"})
+(defattrs :byte [{:span 8} :left])
+(defattrs :field-name [{:span 9} :left])
 
 (defn row-header-fn
   [{:keys [address gap?]}]
@@ -23,10 +24,9 @@
 (draw-box "Length" :byte)
 
 (draw-box (text "2"))
-(draw-box "Packet Type (0x0C)" :byte)
+(draw-box "Packet Type" :byte)
 
-(draw-box (text ""))
-(draw-box (text "PUBLISH QoS 1&amp;2 FLAGS") [:bg-mediumgray :byte])
+(draw-box (text "Publish QoS 1 and 2 Flags") [:bg-mediumgray :field-name])
 
 (draw-box (text ""))
 (draw-box "DUP" [:bg-lightgray {:span 1}])
@@ -51,13 +51,16 @@
 (draw-box (text "5"))
 (draw-box "Packet Identifier LSB" :byte)
 
-(draw-box (text "6"))
-(draw-box "Topic Data MSB" :byte)
+(draw-box "6")
+(draw-box "Topic Alias or Topic Name Length MSB" :byte)
 
-(draw-box (text "7"))
-(draw-box "Topic Data LSB" :byte)
+(draw-box "7")
+(draw-box "Topic Alias or Topic Name Length LSB" :byte)
 
-(draw-box (text "8+TL ... N"))
-(draw-gap "Data Or (Full Topic Name + Data)" :byte)
+(draw-box "8")
+(draw-gap (text "Topic Name" :plain [:cursive " (N) - only present when Topic Type is Topic Name"]) [:bg-lightgray])
+
+(draw-box "8+N")
+(draw-gap "Payload" :byte)
 
 (draw-bottom)
