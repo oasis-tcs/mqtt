@@ -95,7 +95,7 @@
 (draw-box "14+F" :bg-lightgray)
 (draw-box "Session Expiry Interval LSB" :optional-byte-left)
 
-(draw-box (text "Will Data" :plain [:cursive " (W=4+N+P+S or S) - only present when Will flag is set"]) [:bg-mediumgray :field-name])
+(draw-box (text "Will Fields" :plain [:cursive " (W=4+N+P+S or S) - only present when Will flag is set"]) [:bg-mediumgray :field-name])
 (draw-box (text "11+S") :bg-lightgray)
 (draw-box "Will Topic Alias or Will Topic Name Length MSB" [:bg-lightgray :byte-left])
 (draw-box (text "12+S") :bg-lightgray)
@@ -111,7 +111,7 @@
 (draw-box (text "15+S+N") :bg-lightgray)
 (draw-gap (text "Will Payload"  :plain [:cursive " (P)"]) :bg-lightgray)
 
-(draw-box (text "Authentication Data" :plain [:cursive " (A=3+M+D+W or W) - only present when Auth flag is set"]) [:bg-mediumgray :field-name])
+(draw-box (text "Authentication Fields" :plain [:cursive " (A=3+M+D+W or W) - only present when Auth flag is set"]) [:bg-mediumgray :field-name])
 (draw-box (text "11+W") :bg-lightgray)
 (draw-box "Authentication Method Length" [:bg-lightgray :byte-left])
 (draw-box (text "12+W") :bg-lightgray)
