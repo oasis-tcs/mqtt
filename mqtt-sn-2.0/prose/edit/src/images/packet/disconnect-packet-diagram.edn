@@ -10,11 +10,12 @@
 (defattrs :bg-mediumgray {:fill "#dddddd"})
 (defattrs :bg-lightgray {:fill "#eeeeee"})
 (defattrs :left {:text-anchor "start"})
-(defattrs :small {:font-family "Arial" :font-size 12})
-(defattrs :vertical {:font-family "Arial" :font-size 12 :text-anchor "start" :writing-mode "vertical-lr"})
+
 (defattrs :byte {:span 8})
 (defattrs :optional-byte [:bg-lightgray :byte])
 (defattrs :field-name [:bold {:span 9 :text-anchor "start"}])
+(defattrs :byte-left {:span 8 :text-anchor "start"})
+(defattrs :optional-byte-left [:bg-lightgray :byte-left])
 
 (defn row-header-fn
   [{:keys [address gap?]}]
@@ -26,19 +27,18 @@
   (draw-box (text val) :bg-lightblue))
 
 (draw-box "1")
-(draw-box "Length" :byte)
+(draw-box "Length" :byte-left)
 
 (draw-box "2")
-(draw-box "Packet Type" :byte)
+(draw-box "Packet Type" :byte-left)
 
 (draw-box (text "Disconnect Flags") [:bg-mediumgray :field-name])
 
 (draw-box (text ""))
-(draw-box "Reserved" [:bg-lightgray {:span 3}])
+(draw-box "Reserved" [:bg-lightgray {:span 4}])
 
-(draw-box "Reason S" [:bg-lightgray {:span 1}])
-(draw-box "Sess Exp" [:bg-lightgray {:span 1}])
 (draw-box "Reason C" [:bg-lightgray {:span 1}])
+(draw-box "Sess Exp" [:bg-lightgray {:span 1}])
 (draw-box "PacketId" [:bg-lightgray {:span 1}])
 (draw-box "Retain R" [:bg-lightgray {:span 1}])
 
@@ -46,38 +46,39 @@
 (draw-box "0" {:span 1})
 (draw-box "0" {:span 1})
 (draw-box "0" {:span 1})
-(draw-box "X" {:span 1})
+(draw-box "0" {:span 1})
 (draw-box "X" {:span 1})
 (draw-box "X" {:span 1})
 (draw-box "X" {:span 1})
 (draw-box "X" {:span 1})
 
-(draw-box (text "Packet Identifier [optional] (only when packet identifier flag set)") [:bg-lightgray :field-name])
+(draw-box (text "Packet Identifier" :plain [:cursive " (I=2 or 0) - only present when PacketId flag is set"]) [:bg-mediumgray :field-name])
 
 (draw-box "4" :bg-lightgray)
-(draw-box (text "Packet Identifier MSB (I=0 or 2)") [:optional-byte {:text-anchor "start"}])
+(draw-box "Packet Identifier MSB" :optional-byte-left)
 
 (draw-box "5" :bg-lightgray )
-(draw-box (text "Packet Identifier LSB") [:optional-byte {:text-anchor "start"}])
+(draw-box (text "Packet Identifier LSB") :optional-byte-left)
+
+(draw-box (text "Session Expiry Interval" :plain [:cursive " (S=4+I or I) - only present when Sess Exp flag is set"]) [:bg-mediumgray :field-name])
 
 (draw-box "4+I" :bg-lightgray)
-(draw-box (text "Reason Code [optional] (only when reason code flag set) (C=I or I+1)") :optional-byte)
+(draw-box (text "Session Expiry Interval MSB") :optional-byte-left)
 
-(draw-box (text "Session Expiry Interval [optional] (only when session expiry interval flag set)") [:bg-lightgray :field-name])
+(draw-box "5+I" :bg-lightgray)
+(draw-box (text "Session Expiry Interval") :optional-byte-left)
 
-(draw-box "4+C" :bg-lightgray)
-(draw-box (text "Session Expiry Interval MSB (S=C or C+4)") [:optional-byte {:text-anchor "start"}])
+(draw-box "6+I" :bg-lightgray)
+(draw-box (text "Session Expiry Interval") :optional-byte-left)
 
-(draw-box "5+C" :bg-lightgray)
-(draw-box (text "Session Expiry Interval") [:optional-byte {:text-anchor "start"}])
+(draw-box "7+I" :bg-lightgray)
+(draw-box (text "Session Expiry Interval LSB") :optional-byte-left)
 
-(draw-box "6+C" :bg-lightgray)
-(draw-box (text "Session Expiry Interval") [:optional-byte {:text-anchor "start"}])
+(draw-box (text "Reason Code" :plain [:cursive " (R=1+S or S) - only present when Reason C flag is set"]) [:bg-mediumgray :field-name])
+(draw-box "4+S" :bg-lightgray)
+(draw-box (text "Reason Code") :optional-byte-left)
 
-(draw-box "7+C" :bg-lightgray)
-(draw-box (text "Session Expiry Interval LSB") [:optional-byte {:text-anchor "start"}])
-
-(draw-box "4+S ... N" :bg-lightgray)
-(draw-gap (text "Reason String [optional] (only when reason string flag set) (N)") :optional-byte)
+(draw-box "4+R" :bg-lightgray)
+(draw-gap (text "Reason String - optional") :optional-byte)
 
 (draw-bottom)
