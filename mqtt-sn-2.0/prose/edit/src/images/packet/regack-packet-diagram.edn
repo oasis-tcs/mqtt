@@ -7,8 +7,9 @@
 (defattrs :bg-lightblue {:fill "#cfe2f3"})
 (defattrs :bg-mediumgray {:fill "#dddddd"})
 (defattrs :bg-lightgray {:fill "#eeeeee"})
-;;(defattrs :left {:text-anchor "start"})
-(defattrs :byte {:span 8})
+(defattrs :left {:text-anchor "start"})
+(defattrs :byte [{:span 8} :left])
+(defattrs :field-name [{:span 9} :left])
 
 (defn row-header-fn
   [{:keys [address gap?]}]
@@ -25,8 +26,7 @@
 (draw-box (text "2"))
 (draw-box "Packet Type" :byte)
 
-(draw-box (text ""))
-(draw-box (text "REGACK FLAGS") [:bg-mediumgray :byte])
+(draw-box (text "REGACK Flags") [:bg-mediumgray :field-name])
 
 (draw-box (text ""))
 (draw-box "Reserved" [:bg-lightgray {:span 6}])
