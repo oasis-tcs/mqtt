@@ -3,9 +3,10 @@
 (def box-width 90)
 (def left-margin 20)
 (defattrs :plain {:font-family "Arial" :font-size 18})
+(defattrs :cursive {:font-family "Arial" :font-size 18 :font-style "italic"})
 (defattrs :bg-lightblue {:fill "#cfe2f3"})
-;;(defattrs :left {:text-anchor "start"})
-(defattrs :byte {:span 8})
+(defattrs :left {:text-anchor "start"})
+(defattrs :byte [:left {:span 8}])
 
 (defn row-header-fn
   [{:keys [address gap?]}]
