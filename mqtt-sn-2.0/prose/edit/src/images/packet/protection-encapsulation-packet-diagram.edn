@@ -1,17 +1,19 @@
 ;; This is the source for 3.1.26 Protection Encapsulation diagram of MQTT-SN v2.0.
 (def boxes-per-row 9)
-(def box-width 100)
+(def box-width 90)
 (def left-margin 20)
-;;(defattrs :plain {:font-family "Arial" :font-size 18})
 (defattrs :cursive {:font-family "Arial" :font-size 18 :font-style "italic"})
 (defattrs :normal {:font-family "Arial" :font-size 18 :font-style "normal"})
+(defattrs :medium {:font-family "Arial" :font-size 14})
+(defattrs :plain {:font-family "Arial" :font-size 18})
+(defattrs :cursive {:font-family "Arial" :font-size 18 :font-style "italic"})
 (defattrs :bg-lightblue {:fill "#cfe2f3"})
 (defattrs :bg-mediumgray {:fill "#dddddd"})
 (defattrs :bg-lightgray {:fill "#eeeeee"})
-;;(defattrs :left {:text-anchor "start"})
-(defattrs :medium {:font-family "Arial" :font-size 14})
+(defattrs :left {:text-anchor "start"})
 (defattrs :bit {:span 1})
-(defattrs :byte {:span 8})
+(defattrs :byte [{:span 8} :left])
+(defattrs :field-name [{:span 9} :left])
 (defattrs :optional-byte [:bg-lightgray :byte])
 
 (defn row-header-fn
@@ -29,13 +31,12 @@
 (draw-box "2")
 (draw-box "Packet Type" :byte)
 
-(draw-box nil)
-(draw-box "PROTECTION FLAGS" [:bg-mediumgray :byte])
+(draw-box (text "Protection Flags") [:bg-mediumgray :field-name])
 
 (draw-box nil)
-(draw-box (text "Auth Tag Length" :medium) [:bg-lightgray {:span 4}])
-(draw-box (text "Crypto Material Length (C)" :medium) [:bg-lightgray {:span 2}])
-(draw-box (text "Monotonic Counter Length (D)" :medium) [:bg-lightgray {:span 2}])
+(draw-box (text "Authentication Tag Length") [:bg-lightgray {:span 4}])
+(draw-box (text "Crypto Length (C)") [:bg-lightgray {:span 2}])
+(draw-box (text "Counter Length (M)") [:bg-lightgray {:span 2}])
 
 (draw-box "3")
 (draw-box "X" :bit)
@@ -50,22 +51,22 @@
 (draw-box "4")
 (draw-box "Protection Scheme" :byte)
 
-(draw-box "5:12")
-(draw-gap "Sender Id" :byte)
+(draw-box "5")
+(draw-gap "Sender Identifier (8)" :byte)
 
-(draw-box "13:16")
-(draw-gap "Random" :byte)
+(draw-box "13")
+(draw-gap "Random (4)" :byte)
 
-(draw-box "17:17+C" :bg-lightgray)
-(draw-gap (text "Crypto Material [OPT]" :cursive [:normal " (E=17 if C == 0 else 17+C+1)"]) :optional-byte)
+(draw-box "17" :bg-lightgray)
+(draw-gap (text "Crypto Material (C)" :plain [:cursive " - only present if Crypto Length > 0"]) :optional-byte)
 
-(draw-box "E:E+D" :bg-lightgray)
-(draw-gap (text "Monotonic Counter [OPT]" :cursive  [:normal " (F=E if D == 0 else E+D+1)"]) :optional-byte)
+(draw-box "17+C" :bg-lightgray)
+(draw-gap (text "Monotonic Counter (M)" :plain [:cursive " - only present if Counter Length > 0"]) :optional-byte)
 
-(draw-box "F:M")
-(draw-gap "Protected MQTT-SN Packet" :byte)
+(draw-box "17+C+M")
+(draw-gap "Protected MQTT-SN Packet (P)" :byte)
 
-(draw-box "M+1:N")
+(draw-box (text "17+C+M+P" :medium))
 (draw-gap "Authentication Tag" :byte)
 
 (draw-bottom)
