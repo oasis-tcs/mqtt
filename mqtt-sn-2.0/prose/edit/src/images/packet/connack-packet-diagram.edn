@@ -9,7 +9,10 @@
 (defattrs :bg-lightgray {:fill "#eeeeee"})
 ;;(defattrs :left {:text-anchor "start"})
 (defattrs :byte {:span 8})
-(defattrs :field-name {:span 9 :text-anchor "start"})
+(defattrs :optional-byte [:bg-lightgray :byte])
+(defattrs :field-name [:bold {:span 9 :text-anchor "start"}])
+(defattrs :byte-left {:span 8 :text-anchor "start"})
+(defattrs :optional-byte-left [:bg-lightgray :byte-left])
 
 (defn row-header-fn
   [{:keys [address gap?]}]
@@ -21,10 +24,10 @@
   (draw-box (text val) :bg-lightblue))
 
 (draw-box (text "1"))
-(draw-box "Length" :byte)
+(draw-box "Length" :byte-left)
 
 (draw-box (text "2"))
-(draw-box "Packet Type" :byte)
+(draw-box "Packet Type" :byte-left)
 
 (draw-box (text "Connack Flags") [:bg-mediumgray :field-name])
 
@@ -45,46 +48,46 @@
 (draw-box "X" {:span 1})
 
 (draw-box (text "4"))
-(draw-box "Packet Identifier MSB" :byte)
+(draw-box "Packet Identifier MSB" :byte-left)
 
 (draw-box (text "5"))
-(draw-box "Packet Identifier LSB" :byte)
+(draw-box "Packet Identifier LSB" :byte-left)
 
 (draw-box (text "6"))
-(draw-box "Reason Code" :byte)
+(draw-box "Reason Code" :byte-left)
 
-(draw-box (text "Session Expiry" :plain [:cursive " [optional] (only when Sess Exp flag set)"]) [:bg-mediumgray :field-name])
+(draw-box (text "Session Expiry Interval" :plain [:cursive " (S=4 or 0) - only present when Sess Exp flag is set"]) [:bg-mediumgray :field-name])
 
 (draw-box (text "7") :bg-lightgray)
-(draw-box "Session Expiry Interval MSB" [:bg-lightgray :byte])
+(draw-box "Session Expiry Interval MSB" :optional-byte-left)
 
 (draw-box (text "8") :bg-lightgray)
-(draw-box "Session Expiry Interval" [:bg-lightgray :byte])
+(draw-box "Session Expiry Interval" :optional-byte-left)
 
 (draw-box (text "9") :bg-lightgray)
-(draw-box "Session Expiry Interval" [:bg-lightgray :byte])
+(draw-box "Session Expiry Interval" :optional-byte-left)
 
 (draw-box (text "10") :bg-lightgray)
-(draw-box "Session Expiry Interval LSB" [:bg-lightgray :byte])
+(draw-box "Session Expiry Interval LSB" :optional-byte-left)
 
-(draw-box (text "Authentication" :plain [:cursive " [optional] (only when Auth flag set)"]) [:bg-mediumgray :field-name])
+(draw-box (text "Authentication Data" :plain [:cursive " (A=3+M+D+W or W) - only present when Auth flag is set"]) [:bg-mediumgray :field-name])
 
-(draw-box (text "10+1") :bg-lightgray)
-(draw-box "Authentication Method Length" [:bg-lightgray :byte])
+(draw-box (text "7+S") :bg-lightgray)
+(draw-box "Authentication Method Length" :optional-byte-left)
 
-(draw-box (text "10+2") :bg-lightgray)
-(draw-box "Authentication Method" [:bg-lightgray :byte])
+(draw-box (text "8+S") :bg-lightgray)
+(draw-gap "Authentication Method (M)" :optional-byte-left)
 
-(draw-box (text "10+3") :bg-lightgray)
-(draw-box "Authentication Data Length MSB" [:bg-lightgray :byte])
+(draw-box (text "8+S+M") :bg-lightgray)
+(draw-box "Authentication Data Length MSB" :optional-byte-left)
 
-(draw-box (text "10+4") :bg-lightgray)
-(draw-box "Authentication Data Length LSB" [:bg-lightgray :byte])
+(draw-box (text "9+S+M") :bg-lightgray)
+(draw-box "Authentication Data Length LSB" :optional-byte-left)
 
-(draw-box (text "10+5") :bg-lightgray)
-(draw-gap "Authentication Data (K)" [:bg-lightgray :byte])
+(draw-box (text "10+S+M") :bg-lightgray)
+(draw-gap "Authentication Data (D)" :optional-byte-left)
 
-(draw-box (text "11+K ... N") :bg-lightgray)
-(draw-gap (text "Assigned Client Identifier [optional] (N)") [:bg-lightgray :byte])
+(draw-box (text "7+A") :bg-lightgray)
+(draw-gap (text "Assigned Client Identifier (I) - optional") :optional-byte-left)
 
 (draw-bottom)
