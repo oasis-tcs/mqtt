@@ -37,8 +37,8 @@
 
 (draw-box "3")
 (draw-box "0" {:span 1})
-(draw-box "0" {:span 1})
-(draw-box "0" {:span 1})
+(draw-box "1" {:span 1})
+(draw-box "1" {:span 1})
 (draw-box "X" {:span 1})
 (draw-box "0" {:span 1})
 (draw-box "0" {:span 1})
