@@ -2,14 +2,15 @@
 (def boxes-per-row 9)
 (def box-width 90)
 (def left-margin 20)
-;;(defattrs :plain {:font-family "Arial" :font-size 18})
-;;(defattrs :cursive {:font-family "Arial" :font-size 18 :font-style "italic"})
+(defattrs :plain {:font-family "Arial" :font-size 18})
+(defattrs :cursive {:font-family "Arial" :font-size 18 :font-style "italic"})
 (defattrs :bg-lightblue {:fill "#cfe2f3"})
 (defattrs :bg-mediumgray {:fill "#dddddd"})
 (defattrs :bg-lightgray {:fill "#eeeeee"})
-;;(defattrs :left {:text-anchor "start"})
+(defattrs :left {:text-anchor "start"})
 (defattrs :bit {:span 1})
-(defattrs :byte {:span 8})
+(defattrs :byte [{:span 8} :left])
+(defattrs :field-name [{:span 9} :left])
 
 (defn row-header-fn
   [{:keys [address gap?]}]
@@ -21,13 +22,12 @@
   (draw-box (text val) :bg-lightblue))
 
 (draw-box "1")
-(draw-box "Length" :byte)
+(draw-box "Length (L)" :byte)
 
 (draw-box "2")
 (draw-box "Packet Type" :byte)
 
-(draw-box nil)
-(draw-box "CTRL" [:bg-mediumgray :byte])
+(draw-box (text "Control") [:bg-mediumgray :field-name])
 
 (draw-box nil)
 (draw-box "Reserved" [:bg-lightgray {:span 6}])
@@ -43,10 +43,10 @@
 (draw-box "X" :bit)
 (draw-box "X" :bit)
 
-(draw-box "4 ... N")
+(draw-box "4")
 (draw-gap "Wireless Node Id" :byte)
 
-(draw-box "N+1 ... M")
+(draw-box "L+1")
 (draw-gap "MQTT SN packet" :byte)
 
 (draw-bottom)
