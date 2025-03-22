@@ -4,9 +4,10 @@
 (def left-margin 20)
 (defattrs :plain {:font-family "Arial" :font-size 18})
 (defattrs :cursive {:font-family "Arial" :font-size 18 :font-style "italic"})
+(defattrs :bg-lightgray {:fill "#eeeeee"})
 (defattrs :bg-lightblue {:fill "#cfe2f3"})
-;;(defattrs :left {:text-anchor "start"})
-(defattrs :byte {:span 8})
+(defattrs :left {:text-anchor "start"})
+(defattrs :byte [:left {:span 8}])
 
 (defn row-header-fn
   [{:keys [address gap?]}]
@@ -30,15 +31,15 @@
 (draw-box "Packet Identifier LSB" :byte)
 
 (draw-box (text "5"))
-(draw-box "Auth Reason Code" :byte)
+(draw-box "Reason Code" :byte)
 
 (draw-box (text "6"))
-(draw-box "Auth Method Length (K)" :byte)
+(draw-box "Authentication Method Length" :byte)
 
-(draw-box (text "7:7+K"))
-(draw-gap "Auth Method" :byte)
+(draw-box (text "7"))
+(draw-gap "Authentication Method (M)" :byte)
 
-(draw-box (text "8+K:N"))
-(draw-gap "Auth Data (N)" :byte)
+(draw-box (text "7+M"))
+(draw-gap "Authentication Data" :byte)
 
 (draw-bottom)
