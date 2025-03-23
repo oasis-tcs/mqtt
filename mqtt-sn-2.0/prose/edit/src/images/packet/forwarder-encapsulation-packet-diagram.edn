@@ -44,7 +44,7 @@
 (draw-box "X" :bit)
 
 (draw-box "4")
-(draw-gap "Wireless Node Id" :byte)
+(draw-gap "Wireless Node Identifier" :byte)
 
 (draw-box "L+1")
 (draw-gap "MQTT SN packet" :byte)
