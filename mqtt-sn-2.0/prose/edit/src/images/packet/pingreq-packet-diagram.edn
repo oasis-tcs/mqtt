@@ -33,6 +33,6 @@
 (draw-box "Packet Identifier LSB" :byte)
 
 (draw-box (text "5") :bg-lightgray)
-(draw-gap (text "Client Identifier" :plain [:cursive " - optional"]) [:bg-lightgray])
+(draw-gap (text "Session Identifier" :plain [:cursive " - optional"]) [:bg-lightgray])
 
 (draw-bottom)
