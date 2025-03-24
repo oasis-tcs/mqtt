@@ -49,10 +49,10 @@
 (draw-box "Packet Identifier LSB" :byte)
 
 (draw-box (text "6"))
-(draw-box "Topic Data MSB" :byte)
+(draw-box "Topic Alias MSB" :byte)
 
 (draw-box (text "7"))
-(draw-box "Topic Data LSB" :byte)
+(draw-box "Topic Alias LSB" :byte)
 
 (draw-box (text "8"))
 (draw-box "Reason Code" :byte)
