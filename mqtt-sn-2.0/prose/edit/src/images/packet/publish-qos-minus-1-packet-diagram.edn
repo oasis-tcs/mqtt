@@ -1,4 +1,4 @@
-;; This is the source for 3.1.10 PUBWOS packet diagram of MQTT-SN v2.0.
+; This is the source for 3.1.10 PUBWOS packet diagram of MQTT-SN v2.0.
 (def boxes-per-row 9)
 (def box-width 90)
 (def left-margin 20)
@@ -9,6 +9,7 @@
 (defattrs :bg-lightgray {:fill "#eeeeee"})
 (defattrs :left {:text-anchor "start"})
 (defattrs :byte [{:span 8} :left])
+(defattrs :optional-byte [:bg-lightgray :byte])
 (defattrs :field-name [{:span 9} :left])
 
 (defn row-header-fn
@@ -45,11 +46,23 @@
 (draw-box "X" {:span 1})
 (draw-box "X" {:span 1})
 
+(draw-box (text "Topic Alias" :plain [:cursive " - only present when Topic Type is Predefined Topic Alias"]) [:bg-mediumgray :field-name])
 (draw-box "4")
-(draw-box "Topic Alias or Topic Name Length MSB" :byte)
-
+(draw-box "Topic Alias MSB" :optional-byte)
 (draw-box "5")
-(draw-box "Topic Alias or Topic Name Length LSB" :byte)
+(draw-box "Topic Alias LSB" :optional-byte)
+
+(draw-box (text "Topic Short Name" :plain [:cursive " - only present when Topic Type is Topic Short Name"]) [:bg-mediumgray :field-name])
+(draw-box "4")
+(draw-box "Topic Short Name 1" :optional-byte)
+(draw-box "5")
+(draw-box "Topic Short Name 2" :optional-byte)
+
+(draw-box (text "Topic Name Length" :plain [:cursive " - only present when Topic Type is Topic Name"]) [:bg-mediumgray :field-name])
+(draw-box "4")
+(draw-box "Topic Name Length MSB" :optional-byte)
+(draw-box "5")
+(draw-box "Topic Name Length LSB" :optional-byte)
 
 (draw-box "6")
 (draw-box "0x00 - Fixed Field Value" :byte)
