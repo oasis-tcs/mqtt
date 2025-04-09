@@ -4,10 +4,10 @@
 (def left-margin 20)
 (defattrs :plain {:font-family "Arial" :font-size 18})
 (defattrs :cursive {:font-family "Arial" :font-size 18 :font-style "italic"})
-(defattrs :bg-lightblue {:fill "#cfe2f3"})
 (defattrs :bg-lightgray {:fill "#eeeeee"})
-;;(defattrs :left {:text-anchor "start"})
-(defattrs :byte {:span 8})
+(defattrs :bg-lightblue {:fill "#cfe2f3"})
+(defattrs :left {:text-anchor "start"})
+(defattrs :byte [:left {:span 8}])
 
 (defn row-header-fn
   [{:keys [address gap?]}]
@@ -25,9 +25,9 @@
 (draw-box "Packet Type" :byte)
 
 (draw-box (text "3"))
-(draw-box "GwId" :byte)
+(draw-box "Gateway Identifier" :byte)
 
-(draw-box (text "4 ... N") :bg-lightgray)
-(draw-gap (text "GwAdd" :plain [:cursive " [OPT]"]) [:bg-lightgray :byte])
+(draw-box (text "4") :bg-lightgray)
+(draw-gap (text "Gateway Address" :plain [:cursive " - optional"]) [:bg-lightgray :byte])
 
 (draw-bottom)
