@@ -29,7 +29,8 @@
 (draw-box (text "SUBACK Flags") [:bg-mediumgray :field-name])
 
 (draw-box (text ""))
-(draw-box "Reserved" [:bg-lightgray {:span 6}])
+(draw-box "Reserved" [:bg-lightgray {:span 5}])
+(draw-box "Topic Alias" [:bg-lightgray {:span 1}])
 (draw-box "Topic Type" [:bg-lightgray {:span 2}])
 
 (draw-box (text "3"))
@@ -38,7 +39,7 @@
 (draw-box "0" {:span 1})
 (draw-box "0" {:span 1})
 (draw-box "0" {:span 1})
-(draw-box "0" {:span 1})
+(draw-box "X" {:span 1})
 (draw-box "X" {:span 1})
 (draw-box "X" {:span 1})
 
@@ -48,13 +49,14 @@
 (draw-box (text "5"))
 (draw-box "Packet Identifier LSB" :byte)
 
+(draw-box (text "Topic Alias" :plain [:cursive " (A=2 or 0) - only present when Topic Alias flag is set"]) [:bg-mediumgray :field-name])
 (draw-box (text "6"))
 (draw-box "Topic Alias MSB" :byte)
 
 (draw-box (text "7"))
 (draw-box "Topic Alias LSB" :byte)
 
-(draw-box (text "8"))
+(draw-box (text "6+A"))
 (draw-box "Reason Code" :byte)
 
 (draw-bottom)
