@@ -1,4 +1,4 @@
-;; This is the source for 3.1.18 SUBACK packet diagram of MQTT-SN v2.0.
+;; This is the source for 3.1.17.a SUBSCRIBE (Variant with Topic Data in Payload) packet diagram of MQTT-SN v2.0.
 (def boxes-per-row 9)
 (def box-width 90)
 (def left-margin 20)
@@ -26,19 +26,22 @@
 (draw-box (text "2"))
 (draw-box "Packet Type" :byte)
 
-(draw-box (text "SUBACK Flags") [:bg-mediumgray :field-name])
+(draw-box (text "Subscribe Flags") [:bg-mediumgray :field-name])
 
 (draw-box (text ""))
-(draw-box "Reserved" [:bg-lightgray {:span 6}])
+(draw-box "No Local" [:bg-lightgray {:span 1}])
+(draw-box "QoS" [:bg-lightgray {:span 2}])
+(draw-box "RaP" [:bg-lightgray {:span 1}])
+(draw-box "Retain Handling" [:bg-lightgray {:span 2}])
 (draw-box "Topic Type" [:bg-lightgray {:span 2}])
 
 (draw-box (text "3"))
-(draw-box "0" {:span 1})
-(draw-box "0" {:span 1})
-(draw-box "0" {:span 1})
-(draw-box "0" {:span 1})
-(draw-box "0" {:span 1})
-(draw-box "0" {:span 1})
+(draw-box "X" {:span 1})
+(draw-box "X" {:span 1})
+(draw-box "X" {:span 1})
+(draw-box "X" {:span 1})
+(draw-box "X" {:span 1})
+(draw-box "X" {:span 1})
 (draw-box "X" {:span 1})
 (draw-box "X" {:span 1})
 
@@ -48,13 +51,14 @@
 (draw-box (text "5"))
 (draw-box "Packet Identifier LSB" :byte)
 
-(draw-box (text "6"))
-(draw-box "Topic Alias MSB" :byte)
+(draw-box (text "Topic Alias" :plain [:cursive " - only present when Topic Type is Topic Alias"]) [:bg-mediumgray :field-name])
+(draw-box (text "6") :bg-lightgray)
+(draw-box "Topic Alias MSB" [:bg-lightgray :byte])
 
-(draw-box (text "7"))
-(draw-box "Topic Alias LSB" :byte)
+(draw-box (text "7") :bg-lightgray)
+(draw-box "Topic Alias LSB" [:bg-lightgray :byte])
 
-(draw-box (text "8"))
-(draw-box "Reason Code" :byte)
+(draw-box (text "6") :bg-lightgray)
+(draw-gap (text "Topic Filter" :plain [:cursive " - only present when Topic Type is Topic Name"]) [:bg-lightgray :byte])
 
 (draw-bottom)
