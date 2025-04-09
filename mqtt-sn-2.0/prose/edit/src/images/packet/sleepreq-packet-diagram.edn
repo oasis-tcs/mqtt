@@ -26,22 +26,39 @@
 (draw-box "2" :bg-lightgray)
 (draw-box "Packet Type" :byte)
 
-(draw-box "3" :bg-lightgray)
-(draw-box "Packet Identifier MSB" :byte)
+(draw-box (text "SLEEPREQ Flags") [:bg-mediumgray :field-name])
+
+(draw-box (text ""))
+(draw-box "Reserved" [:bg-lightgray {:span 7}])
+
+(draw-box "Retain R" [:bg-lightgray {:span 1}])
+
+(draw-box "3")
+(draw-box "0" {:span 1})
+(draw-box "0" {:span 1})
+(draw-box "0" {:span 1})
+(draw-box "0" {:span 1})
+(draw-box "0" {:span 1})
+(draw-box "0" {:span 1})
+(draw-box "0" {:span 1})
+(draw-box "X" {:span 1})
 
 (draw-box "4" :bg-lightgray)
-(draw-box "Packet Identifier LSB" :byte)
+(draw-box "Packet Identifier MSB" :byte)
 
 (draw-box "5" :bg-lightgray)
-(draw-box "Sleep Duration MSB" :byte)
+(draw-box "Packet Identifier LSB" :byte)
 
 (draw-box "6" :bg-lightgray)
-(draw-box "Sleep Duration" :byte)
+(draw-box "Sleep Duration MSB" :byte)
 
 (draw-box "7" :bg-lightgray)
 (draw-box "Sleep Duration" :byte)
 
 (draw-box "8" :bg-lightgray)
+(draw-box "Sleep Duration" :byte)
+
+(draw-box "9" :bg-lightgray)
 (draw-box "Sleep Duration LSB" :byte)
 
 (draw-bottom)
