@@ -33,12 +33,12 @@
 (draw-box "Topic Type" [:bg-lightgray {:span 2}])
 
 (draw-box (text "3"))
-(draw-box "X" {:span 1})
-(draw-box "X" {:span 1})
-(draw-box "X" {:span 1})
-(draw-box "X" {:span 1})
-(draw-box "X" {:span 1})
-(draw-box "X" {:span 1})
+(draw-box "0" {:span 1})
+(draw-box "0" {:span 1})
+(draw-box "0" {:span 1})
+(draw-box "0" {:span 1})
+(draw-box "0" {:span 1})
+(draw-box "0" {:span 1})
 (draw-box "X" {:span 1})
 (draw-box "X" {:span 1})
 
