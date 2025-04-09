@@ -7,8 +7,9 @@
 (defattrs :bg-lightblue {:fill "#cfe2f3"})
 (defattrs :bg-mediumgray {:fill "#dddddd"})
 (defattrs :bg-lightgray {:fill "#eeeeee"})
-;;(defattrs :left {:text-anchor "start"})
-(defattrs :byte {:span 8})
+(defattrs :left {:text-anchor "start"})
+(defattrs :byte [{:span 8} :left])
+(defattrs :field-name [{:span 9} :left])
 
 (defn row-header-fn
   [{:keys [address gap?]}]
@@ -31,7 +32,7 @@
 (draw-box (text "4"))
 (draw-box "Packet Identifier LSB" :byte)
 
-(draw-box (text "5 ... N") :bg-lightgray)
-(draw-gap (text "Client Identifier [OPT]" :cursive) [:bg-lightgray :byte])
+(draw-box (text "5") :bg-lightgray)
+(draw-gap (text "Session Identifier" :plain [:cursive " - optional"]) [:bg-lightgray])
 
 (draw-bottom)

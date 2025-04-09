@@ -7,8 +7,9 @@
 (defattrs :bg-lightblue {:fill "#cfe2f3"})
 (defattrs :bg-mediumgray {:fill "#dddddd"})
 (defattrs :bg-lightgray {:fill "#eeeeee"})
-;;(defattrs :left {:text-anchor "start"})
-(defattrs :byte {:span 8})
+(defattrs :left {:text-anchor "start"})
+(defattrs :byte [{:span 8} :left])
+(defattrs :field-name [{:span 9} :left])
 
 (defn row-header-fn
   [{:keys [address gap?]}]
@@ -32,6 +33,6 @@
 (draw-box "Packet Identifier LSB" :byte)
 
 (draw-box (text "5") :bg-lightgray)
-(draw-box (text "Messages Remaining [OPT]" :cursive) [:bg-lightgray :byte])
+(draw-box (text "Application Messages Remaining" :plain [:cursive " - optional"]) [:bg-lightgray :byte])
 
 (draw-bottom)
