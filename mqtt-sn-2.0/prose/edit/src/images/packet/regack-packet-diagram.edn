@@ -29,7 +29,8 @@
 (draw-box (text "REGACK Flags") [:bg-mediumgray :field-name])
 
 (draw-box (text ""))
-(draw-box "Reserved" [:bg-lightgray {:span 6}])
+(draw-box "Reserved" [:bg-lightgray {:span 5}])
+(draw-box "Topic Alias" [:bg-lightgray {:span 1}])
 (draw-box "Topic Type" [:bg-lightgray {:span 2}])
 
 (draw-box (text "3"))
@@ -38,7 +39,7 @@
 (draw-box "0" {:span 1})
 (draw-box "0" {:span 1})
 (draw-box "0" {:span 1})
-(draw-box "0" {:span 1})
+(draw-box "X" {:span 1})
 (draw-box "X" {:span 1})
 (draw-box "X" {:span 1})
 
@@ -48,13 +49,14 @@
 (draw-box (text "5"))
 (draw-box "Packet Identifier LSB" :byte)
 
-(draw-box (text "6"))
-(draw-box "Topic Alias MSB" :byte)
+(draw-box (text "Topic Alias (T=2 or 0)" :plain [:cursive " - only present when Topic Alias flag is 1"]) [:bg-mediumgray :field-name])
+(draw-box (text "6") :bg-lightgray)
+(draw-box "Topic Alias MSB" [:bg-lightgray :byte])
 
-(draw-box (text "7"))
-(draw-box "Topic Alias LSB" :byte)
+(draw-box (text "7") :bg-lightgray)
+(draw-box "Topic Alias LSB" [:bg-lightgray :byte])
 
-(draw-box (text "8"))
+(draw-box (text "6+T"))
 (draw-box "Reason Code" :byte)
 
 (draw-bottom)
