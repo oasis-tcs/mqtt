@@ -1,11 +1,11 @@
 sequenceDiagram
     participant Client
     participant Gateway
-    Client->>Gateway: PUBLISH with Packed Id = 0x1234
+    Client->>Gateway: PUBLISH with Packet Identifier = 0x1234
     activate Gateway
-    Gateway->>Client: PUBLISH with Packed Id = 0x1234
+    Gateway->>Client: PUBLISH with Packet Identifier = 0x1234
     activate Client
-    Client->>Gateway: PUBACK with Packed Id = 0x1234
+    Client->>Gateway: PUBACK with Packet Identifier = 0x1234
     deactivate Client
-    Gateway->>Client: PUBACK with Packed Id = 0x1234
+    Gateway->>Client: PUBACK with Packet Identifier = 0x1234
     deactivate Gateway
