@@ -32,8 +32,9 @@
 (draw-box (text "Connack Flags") [:bg-mediumgray :field-name])
 
 (draw-box (text ""))
-(draw-box "Reserved" [:bg-lightgray {:span 5}])
+(draw-box "Reserved" [:bg-lightgray {:span 4}])
 (draw-box "Auth" [:bg-lightgray {:span 1}])
+(draw-box "Server KA" [:bg-lightgray {:span 1}])
 (draw-box "Sess Exp" [:bg-lightgray {:span 1}])
 (draw-box "Sess Pres" [:bg-lightgray {:span 1}])
 
@@ -42,7 +43,7 @@
 (draw-box "0" {:span 1})
 (draw-box "0" {:span 1})
 (draw-box "0" {:span 1})
-(draw-box "0" {:span 1})
+(draw-box "X" {:span 1})
 (draw-box "X" {:span 1})
 (draw-box "X" {:span 1})
 (draw-box "X" {:span 1})
@@ -70,21 +71,28 @@
 (draw-box (text "10") :bg-lightgray)
 (draw-box "Session Expiry Interval LSB" :optional-byte-left)
 
-(draw-box (text "Authentication Data" :plain [:cursive " (A=3+M+D+W or W) - only present when Auth flag is set"]) [:bg-mediumgray :field-name])
-
+(draw-box (text "Server Keep Alive" :plain [:cursive " (K=2+S or S) - only present when Server KA flag is set"]) [:bg-mediumgray :field-name])
 (draw-box (text "7+S") :bg-lightgray)
-(draw-box "Authentication Method Length" :optional-byte-left)
+(draw-box "Server Keep Alive MSB" :optional-byte-left)
 
 (draw-box (text "8+S") :bg-lightgray)
+(draw-box "Server Keep Alive LSB" :optional-byte-left)
+
+(draw-box (text "Authentication Data" :plain [:cursive " (A=3+M+D+K or K) - only present when Auth flag is set"]) [:bg-mediumgray :field-name])
+
+(draw-box (text "7+K") :bg-lightgray)
+(draw-box "Authentication Method Length" :optional-byte-left)
+
+(draw-box (text "8+K") :bg-lightgray)
 (draw-gap "Authentication Method (M)" :optional-byte-left)
 
-(draw-box (text "8+S+M") :bg-lightgray)
+(draw-box (text "8+K+M") :bg-lightgray)
 (draw-box "Authentication Data Length MSB" :optional-byte-left)
 
-(draw-box (text "9+S+M") :bg-lightgray)
+(draw-box (text "9+K+M") :bg-lightgray)
 (draw-box "Authentication Data Length LSB" :optional-byte-left)
 
-(draw-box (text "10+S+M") :bg-lightgray)
+(draw-box (text "10+K+M") :bg-lightgray)
 (draw-gap "Authentication Data (D)" :optional-byte-left)
 
 (draw-box (text "7+A") :bg-lightgray)
