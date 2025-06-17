@@ -4,8 +4,8 @@ sequenceDiagram
     Client->>Gateway: CONNECT (with DefaultAwakeMessages>0)
     Gateway->>Client: CONNACK
     Note over Client,Gateway: Session established
-    Client->>Gateway: DISCONNECT (with SessionExpiryInterval>0)
-    Gateway->>Client: DISCONNECT
+    Client->>Gateway: SLEEPREQ
+    Gateway->>Client: SLEEPRESP
     Note over Client: Client in Asleep state
     Client->>Gateway: PINGREQ
     Note over Client: Client in Awake state
@@ -28,3 +28,4 @@ sequenceDiagram
     Gateway->>Client: PINGRESP (with MessagesRemaining=0 or BufferedMessages-DefaultAwakeMessages)
     Note over Client: Client in Asleep state
     end
+
