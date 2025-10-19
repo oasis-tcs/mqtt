@@ -1,15 +1,17 @@
 ;; This is the source for 3.1.8 REGACK packet diagram of MQTT-SN v2.0.
 (def boxes-per-row 9)
-(def box-width 90)
+(def box-width 100)
 (def left-margin 20)
 (defattrs :plain {:font-family "Arial" :font-size 18})
 (defattrs :cursive {:font-family "Arial" :font-size 18 :font-style "italic"})
 (defattrs :bg-lightblue {:fill "#cfe2f3"})
 (defattrs :bg-mediumgray {:fill "#dddddd"})
 (defattrs :bg-lightgray {:fill "#eeeeee"})
-(defattrs :left {:text-anchor "start"})
-(defattrs :byte [{:span 8} :left])
-(defattrs :field-name [{:span 9} :left])
+(defattrs :byte {:span 8})
+(defattrs :optional-byte [:bg-lightgray :byte])
+(defattrs :field-name [:bold {:span 9 :text-anchor "start"}])
+(defattrs :byte-left {:span 8 :text-anchor "start"})
+(defattrs :optional-byte-left [:bg-lightgray :byte-left])
 
 (defn row-header-fn
   [{:keys [address gap?]}]
@@ -21,10 +23,10 @@
   (draw-box (text val) :bg-lightblue))
 
 (draw-box (text "1"))
-(draw-box "Length" :byte)
+(draw-box "Length" :byte-left)
 
 (draw-box (text "2"))
-(draw-box "Packet Type" :byte)
+(draw-box "Packet Type" :byte-left)
 
 (draw-box (text "REGACK Flags") [:bg-mediumgray :field-name])
 
@@ -44,19 +46,19 @@
 (draw-box "X" {:span 1})
 
 (draw-box (text "4"))
-(draw-box "Packet Identifier MSB" :byte)
+(draw-box "Packet Identifier MSB" :byte-left)
 
 (draw-box (text "5"))
-(draw-box "Packet Identifier LSB" :byte)
+(draw-box "Packet Identifier LSB" :byte-left)
 
 (draw-box (text "Topic Alias (T=2 or 0)" :plain [:cursive " - only present when Topic Alias flag is 1"]) [:bg-mediumgray :field-name])
 (draw-box (text "6") :bg-lightgray)
-(draw-box "Topic Alias MSB" [:bg-lightgray :byte])
+(draw-box "Topic Alias MSB" [:bg-lightgray :byte-left])
 
 (draw-box (text "7") :bg-lightgray)
-(draw-box "Topic Alias LSB" [:bg-lightgray :byte])
+(draw-box "Topic Alias LSB" [:bg-lightgray :byte-left])
 
-(draw-box (text "6+T"))
-(draw-box "Reason Code" :byte)
+(draw-box (text "6+T") :bg-lightgray)
+(draw-box (text "Reason Code"  :plain [:cursive " - optional"]) :optional-byte-left)
 
 (draw-bottom)
