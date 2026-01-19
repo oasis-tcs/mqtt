@@ -1743,8 +1743,6 @@ If validation is successful, the Server performs the following steps.
 
 «<mark title="Requirement MQTT-SN-3.1.19-7"><a name="MQTT-SN-3.1.19-7"></a>The Server MUST NOT process any data sent by the Client after the CONNECT packet and before the CONNACK response is sent, except AUTH packets</mark>»\[MQTT‑SN‑3.1.19‑7].
 
-## 
-
 ## 3.2 CONNACK - Connect Acknowledgement<a name="connack---connect-acknowledgement"></a>
 
 *Figure 3-3 -- CONNACK Packet*
@@ -3114,8 +3112,6 @@ The field Protected MQTT-SN Packet contains the MQTT-SN packet that is being sec
 ### 3.17.9 Authentication Tag<a name="authentication-tag"></a>
 
 The Authentication Tag field has a length that depends on the Authentication Tag Length. Its content authenticates ALL the preceding fields and is obtained on the basis of the protection scheme selected in the Protection Scheme field.
-
-## 
 
 ## 3.18 Connection Encapsulation<a name="connection-encapsulation"></a>
 
@@ -4871,8 +4867,6 @@ For CONNECT, PUBLISH, SUBSCRIBE and REGISTER requests, the Server may return the
 
 The requester should wait a reasonable amount of time (*[Congestion Delay)]* before sending a new request to the Server. What constitutes *a reasonable amount of time* depends on the implementation characteristics - it should be configured in the client application based on those. See [[C.4 Timer and Counter Values]](#c.3-example-timer-and-counter-values) for an example value.
 
-## 
-
 ## C.3 Example Timer and Counter Values<a name="c.3-example-timer-and-counter-values"></a>
 
 Figure C-6 gives some values for the timers and counters defined in this specification derived from implementation experience.
@@ -4880,8 +4874,6 @@ Figure C-6 gives some values for the timers and counters defined in this specifi
 *Figure C-6 -- Best practice values for timers and counters*
 
 To balance reaction speed with reliability, the tolerance of the sleep timers at the Server may depend on the values indicated by the clients. For example, the timer values may be 10% higher than the indicated values for periods larger than 1 minute, and 50% higher if less.
-
-## 
 
 ## C.4 Exponential Backoff<a name="c.4-exponential-backoff"></a>
 
@@ -4922,8 +4914,6 @@ The following diagrams are illustrative, graphical views of the states and trans
 *Figure C-8 -- Server View of Client States - informative*
 
 ![](media/image27.jpg)<!-- .width="6.5in", .height="6.958333333333333in" -->
-
-## 
 
 ## C.6 PUBLISH with QoS -1<a name="c.6-publish-with-qos--1"></a>
 
@@ -5008,8 +4998,6 @@ The Payload contains the payload data of the Application Message that is being p
 The Client or Server uses a PUBLISH QoS -1 packet to send an Application Message to a Network Address, for possible receipt by a Server or another Client.
 
 If received by a Client or Server, the PUBLISH QoS -1 packet is treated as if its QoS were 0 as described in [[3.6.3.7 PUBLISH Actions]](#publish-actions).
-
-## 
 
 ## C.7 Gateway Advertisement and Discovery<a name="c.7-gateway-advertisement-and-discovery"></a>
 
