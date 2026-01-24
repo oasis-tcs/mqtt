@@ -62,15 +62,13 @@ Tara E. Walker (tara.walker@microsoft.com), [Microsoft Corporation](https://www.
 >
 > Note that any machine-readable content ([Computer Language Definitions](https://www.oasis-open.org/policies-guidelines/tc-process#wpComponentsCompLang)) declared Normative for this Work Product is provided in separate plain text files. In the event of a discrepancy between any such plain text file and display content in the Work Product\'s prose narrative document(s), the content in the separate plain text file prevails.
 
-#### Citation format:**
+#### Citation format:
 
 > When referencing this document, the following citation format should be used:
 >
 > **\[MQTT-SN-v2.0\]**
 >
 > *MQTT for Sensor Networks Version 2.0*. Edited by Andrew Banks, Davide Lenzarini, Ian Craggs, Rahul Gupta, Simon Johnson, Stefan Hagen, and Tara E. Walker. 01 May 2025. OASIS Committee Specification Draft 01. [[https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/csd01/mqtt-sn-v2.0-csd01.docx]](https://docs.oasis-open.org/mqtt/mqtt-sn/v12.30/csd01/mqtt-sn-v12.30-csd01.docx). Latest stage: [[https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/mqtt-sn-v2.0.docx]](https://docs.oasis-open.org/mqtt/mqtt-sn/v12.30/mqtt-sn-v12.30.docx)
->
-> <mark title="Ephemeral region marking">(**Note:** Publication URIs are managed by OASIS TC Administration; please don\'t modify. The [OASIS TC Process](https://www.oasis-open.org/policies-guidelines/tc-process#wpComponentsGeneral) requires that Work Products at any level of approval must use the [OASIS file naming scheme](https://docs.oasis-open.org/specGuidelines/ndr/namingDirectives.html), and must include the OASIS copyright notice. The URIs above have been constructed according to the file naming scheme. Remove this note before submitting for publication.)</mark>
 
 ## Notices
 
