@@ -1,0 +1,30 @@
+---
+label:
+  prefix: MSIP_Label_98b953fa-91d1-4d38-9ca7-a624f2d0fa8c_
+  site-id: 52b7666d-4095-43f5-8610-9c3bcd09c639
+  action-id: ac6bc07d-4af0-461e-8153-0194052df8c6
+  approvals-yml-name: approvals.yml
+  metadata-yml-name: metadata.yml
+  bookmatter-tex-name: bookmatter.tex
+  document-tex-name: document.tex
+  driver-tex-name: driver.tex
+  metadata-tex-name: metadata.tex
+  publisher-tex-name: publisher.tex
+  setup-tex-name: setup.tex
+  this-tex-name: this.tex
+  classification: Public
+  creator:
+  - Andrew Banks, Andy Stanford-Clark, Davide Lenzarini, Ian Craggs, Rahul Gupta, Simon Johnson, Stefan Hagen, and Tara E. Walker
+  keywords:
+    - Edge
+    - IoT
+    - MQTT-SN
+    - Network
+    - Publish
+    - Sensors
+    - Subscribe
+    - Telemetry
+    - UDP
+  subject: OASIS Message Queuing Telemetry Transport (MQTT) TC
+  title: MQTT for Sensor Networks Version 2.0
+

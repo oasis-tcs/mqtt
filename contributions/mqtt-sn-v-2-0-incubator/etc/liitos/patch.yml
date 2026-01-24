@@ -1,0 +1,7 @@
+---
+- - 'src/https:/docs.oasis-open.org/templates/OASISLogo-v3.0.png'
+  - 'images/OASISLogo-v3.0.png'
+- - '\begin{quote}'
+  - '\begin{blockquote}'
+- - '\end{quote}'
+  - '\end{blockquote}'
