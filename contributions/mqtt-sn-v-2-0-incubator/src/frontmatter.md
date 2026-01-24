@@ -31,7 +31,7 @@ Simon Johnson (simon.johnson@hivemq.com), [HiveMQ GmbH](https://www.hivemq.com)
 #### Editors:
 Andrew Banks (andrewdjbanks@gmail.com), Individual \
 Andy Stanford-Clark (andysc@uk.ibm.com), [IBM](https://www.ibm.com) \
-Davide Lenzarini (<davide.lenzarini@u-blox.com>), [u-blox AG](https://www.u-blox.com/)}\\
+Davide Lenzarini (<davide.lenzarini@u-blox.com>), [u-blox AG](https://www.u-blox.com/) \
 Ian Craggs (icraggs@gmail.com), Individual \
 Rahul Gupta (rahul.gupta@us.ibm.com), [IBM](https://www.ibm.com) \
 Simon Johnson (simon.johnson@hivemq.com), [HiveMQ GmbH](https://www.hivemq.com) \
