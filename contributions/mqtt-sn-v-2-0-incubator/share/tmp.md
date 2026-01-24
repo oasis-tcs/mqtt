@@ -94,697 +94,697 @@ The name \"OASIS\" is a trademark of [[OASIS]](https://www.oasis-open.org/), the
 
 **Table of Contents**
 
-[1 Introduction 14](#introduction)
+[1 Introduction](#introduction)
 
-> [1.0 Intellectual property rights policy 14](#intellectual-property-rights-policy)
+> [1.0 Intellectual property rights policy](#intellectual-property-rights-policy)
 >
-> [1.1 Changes from earlier Versions 14](#changes-from-earlier-versions)
+> [1.1 Changes from earlier Versions](#changes-from-earlier-versions)
 >
-> [1.1.1 MQTT-SN 1.2 14](#mqtt-sn-1.2)
+> [1.1.1 MQTT-SN 1.2](#mqtt-sn-1.2)
 >
-> [1.2 Organization of the MQTT-SN specification 14](#organization-of-the-mqtt-sn-specification)
+> [1.2 Organization of the MQTT-SN specification](#organization-of-the-mqtt-sn-specification)
 >
-> [1.3 Terminology 15](#terminology)
+> [1.3 Terminology](#terminology)
 >
-> [1.4 Normative references 19](#normative-references)
+> [1.4 Normative references](#normative-references)
 >
-> [1.5 Informative References 21](#informative-references)
+> [1.5 Informative References](#informative-references)
 >
-> [1.6 MQTT For Sensor Networks (MQTT-SN) 21](#mqtt-for-sensor-networks-mqtt-sn)
+> [1.6 MQTT For Sensor Networks (MQTT-SN)](#mqtt-for-sensor-networks-mqtt-sn)
 >
-> [1.6.1 Differences Between MQTT-SN and MQTT 22](#differences-between-mqtt-sn-and-mqtt)
+> [1.6.1 Differences Between MQTT-SN and MQTT](#differences-between-mqtt-sn-and-mqtt)
 >
-> [1.7 Data representation 22](#data-representation)
+> [1.7 Data representation](#data-representation)
 >
-> [1.7.1 Bits (Byte) 22](#bits-byte)
+> [1.7.1 Bits (Byte)](#bits-byte)
 >
-> [1.7.2 Two Byte Integer 22](#two-byte-integer)
+> [1.7.2 Two Byte Integer](#two-byte-integer)
 >
-> [1.7.3 Four Byte Integer 22](#four-byte-integer)
+> [1.7.3 Four Byte Integer](#four-byte-integer)
 >
-> [1.7.4 UTF-8 Encoded String 22](#utf-8-encoded-string)
+> [1.7.4 UTF-8 Encoded String](#utf-8-encoded-string)
 
-[2 MQTT-SN Control Packet format 25](#mqtt-sn-control-packet-format)
+[2 MQTT-SN Control Packet format](#mqtt-sn-control-packet-format)
 
-> [2.1 Structure of an MQTT-SN Control Packet 25](#structure-of-an-mqtt-sn-control-packet)
+> [2.1 Structure of an MQTT-SN Control Packet](#structure-of-an-mqtt-sn-control-packet)
 >
-> [2.1.1 Packet Header 25](#packet-header)
+> [2.1.1 Packet Header](#packet-header)
 >
-> [2.1.2 Length 25](#length)
+> [2.1.2 Length](#length)
 >
-> [2.1.3 MQTT-SN Control Packet Type 26](#mqtt-sn-control-packet-type)
+> [2.1.3 MQTT-SN Control Packet Type](#mqtt-sn-control-packet-type)
 >
-> [2.2 Packet Identifier 27](#packet-identifier)
+> [2.2 Packet Identifier](#packet-identifier)
 >
-> [2.3 Reason Code 30](#reason-code)
+> [2.3 Reason Code](#reason-code)
 >
-> [2.4 Topic Types 36](#topic-types)
+> [2.4 Topic Types](#topic-types)
 
-[3 MQTT-SN Control Packets 37](#mqtt-sn-control-packets)
+[3 MQTT-SN Control Packets](#mqtt-sn-control-packets)
 
-> [3.1 CONNECT - Connection Request 37](#connect---connection-request)
+> [3.1 CONNECT - Connection Request](#connect---connection-request)
 >
-> [3.1.1 CONNECT Header 38](#connect-header)
+> [3.1.1 CONNECT Header](#connect-header)
 >
-> [3.1.2 Connect Flags 38](#connect-flags)
+> [3.1.2 Connect Flags](#connect-flags)
 >
-> [3.1.2.1 Clean Start Flag 38](#clean-start-flag)
+> [3.1.2.1 Clean Start Flag](#clean-start-flag)
 >
-> [3.1.2.2 Will Flag 38](#will-flag)
+> [3.1.2.2 Will Flag](#will-flag)
 >
-> [3.1.2.3 Authentication Flag 39](#authentication-flag)
+> [3.1.2.3 Authentication Flag](#authentication-flag)
 >
-> [3.1.2.4 Session Expiry Flag 39](#session-expiry-flag)
+> [3.1.2.4 Session Expiry Flag](#session-expiry-flag)
 >
-> [3.1.2.5 Default Number of Awake Messages Flag 39](#default-number-of-awake-messages-flag)
+> [3.1.2.5 Default Number of Awake Messages Flag](#default-number-of-awake-messages-flag)
 >
-> [3.1.2.6 Allow Network Address Changes Flag 39](#allow-network-address-changes-flag)
+> [3.1.2.6 Allow Network Address Changes Flag](#allow-network-address-changes-flag)
 >
-> [3.1.2.7 Allow Server Suggested Values Flag 40](#allow-server-suggested-values-flag)
+> [3.1.2.7 Allow Server Suggested Values Flag](#allow-server-suggested-values-flag)
 >
-> [3.1.3 Will Flags 40](#will-flags)
+> [3.1.3 Will Flags](#will-flags)
 >
-> [3.1.3.1 Will Topic Type 40](#will-topic-type)
+> [3.1.3.1 Will Topic Type](#will-topic-type)
 >
-> [3.1.3.2 Will QoS 40](#will-qos)
+> [3.1.3.2 Will QoS](#will-qos)
 >
-> [3.1.3.3 Will Retain 41](#will-retain)
+> [3.1.3.3 Will Retain](#will-retain)
 >
-> [3.1.4 Packet Identifier 41](#packet-identifier-1)
+> [3.1.4 Packet Identifier](#packet-identifier-1)
 >
-> [3.1.5 Protocol Version 41](#protocol-version)
+> [3.1.5 Protocol Version](#protocol-version)
 >
-> [3.1.6 Keep Alive 41](#keep-alive)
+> [3.1.6 Keep Alive](#keep-alive)
 >
-> [3.1.7 Maximum Packet Size 42](#maximum-packet-size)
+> [3.1.7 Maximum Packet Size](#maximum-packet-size)
 >
-> [3.1.8 Default Awake Messages 43](#default-awake-messages)
+> [3.1.8 Default Awake Messages](#default-awake-messages)
 >
-> [3.1.9 Session Expiry Interval 43](#session-expiry-interval)
+> [3.1.9 Session Expiry Interval](#session-expiry-interval)
 >
-> [3.1.10 Will Topic Alias or Will Topic Name Length 44](#will-topic-alias-or-will-topic-name-length)
+> [3.1.10 Will Topic Alias or Will Topic Name Length](#will-topic-alias-or-will-topic-name-length)
 >
-> [3.1.11 Will Topic Name 44](#will-topic-name)
+> [3.1.11 Will Topic Name](#will-topic-name)
 >
-> [3.1.12 Will Payload Length 44](#will-payload-length)
+> [3.1.12 Will Payload Length](#will-payload-length)
 >
-> [3.1.13 Will Payload 44](#will-payload)
+> [3.1.13 Will Payload](#will-payload)
 >
-> [3.1.14 Authentication Method Length 44](#authentication-method-length)
+> [3.1.14 Authentication Method Length](#authentication-method-length)
 >
-> [3.1.15 Authentication Method 44](#authentication-method)
+> [3.1.15 Authentication Method](#authentication-method)
 >
-> [3.1.16 Authentication Data Length 44](#authentication-data-length)
+> [3.1.16 Authentication Data Length](#authentication-data-length)
 >
-> [3.1.17 Authentication Data 45](#authentication-data)
+> [3.1.17 Authentication Data](#authentication-data)
 >
-> [3.1.18 Client Identifier 45](#client-identifier)
+> [3.1.18 Client Identifier](#client-identifier)
 >
-> [3.1.19 CONNECT Actions 45](#connect-actions)
+> [3.1.19 CONNECT Actions](#connect-actions)
 >
-> [3.2 CONNACK - Connect Acknowledgement 47](#connack---connect-acknowledgement)
+> [3.2 CONNACK - Connect Acknowledgement](#connack---connect-acknowledgement)
 >
-> [3.2.1 CONNACK Header 47](#connack-header)
+> [3.2.1 CONNACK Header](#connack-header)
 >
-> [3.2.2 CONNACK Flags 48](#connack-flags)
+> [3.2.2 CONNACK Flags](#connack-flags)
 >
-> [3.2.2.1 Session Present 48](#session-present)
+> [3.2.2.1 Session Present](#session-present)
 >
-> [3.2.2.2 Session Expiry Interval Flag 48](#session-expiry-interval-flag)
+> [3.2.2.2 Session Expiry Interval Flag](#session-expiry-interval-flag)
 >
-> [3.2.2.3 Server Keep Alive Flag 48](#server-keep-alive-flag)
+> [3.2.2.3 Server Keep Alive Flag](#server-keep-alive-flag)
 >
-> [3.2.2.4 Authentication Flag 49](#authentication-flag-1)
+> [3.2.2.4 Authentication Flag](#authentication-flag-1)
 >
-> [3.2.3 Packet Identifier 49](#packet-identifier-2)
+> [3.2.3 Packet Identifier](#packet-identifier-2)
 >
-> [3.2.4 Reason Code 49](#reason-code-1)
+> [3.2.4 Reason Code](#reason-code-1)
 >
-> [3.2.5 Session Expiry Interval 49](#session-expiry-interval-1)
+> [3.2.5 Session Expiry Interval](#session-expiry-interval-1)
 >
-> [3.2.6 Server Keep Alive 49](#server-keep-alive)
+> [3.2.6 Server Keep Alive](#server-keep-alive)
 >
-> [3.2.7 Authentication Method Length 50](#authentication-method-length-1)
+> [3.2.7 Authentication Method Length](#authentication-method-length-1)
 >
-> [3.2.8 Authentication Method 50](#authentication-method-1)
+> [3.2.8 Authentication Method](#authentication-method-1)
 >
-> [3.2.9 Authentication Data Length 50](#authentication-data-length-1)
+> [3.2.9 Authentication Data Length](#authentication-data-length-1)
 >
-> [3.2.10 Authentication Data 50](#authentication-data-1)
+> [3.2.10 Authentication Data](#authentication-data-1)
 >
-> [3.2.11 Assigned Client Identifier 50](#assigned-client-identifier)
+> [3.2.11 Assigned Client Identifier](#assigned-client-identifier)
 >
-> [3.3 AUTH - Authentication Exchange 51](#auth---authentication-exchange)
+> [3.3 AUTH - Authentication Exchange](#auth---authentication-exchange)
 >
-> [3.3.1 AUTH Header 51](#auth-header)
+> [3.3.1 AUTH Header](#auth-header)
 >
-> [3.3.2 Packet Identifier 51](#packet-identifier-3)
+> [3.3.2 Packet Identifier](#packet-identifier-3)
 >
-> [3.3.3 Reason Code 51](#reason-code-2)
+> [3.3.3 Reason Code](#reason-code-2)
 >
-> [3.3.4 Authentication Method Length 52](#authentication-method-length-2)
+> [3.3.4 Authentication Method Length](#authentication-method-length-2)
 >
-> [3.3.5 Authentication Method 52](#authentication-method-2)
+> [3.3.5 Authentication Method](#authentication-method-2)
 >
-> [3.3.6 Authentication Data 52](#authentication-data-2)
+> [3.3.6 Authentication Data](#authentication-data-2)
 >
-> [3.3.7 AUTH Actions 52](#auth-actions)
+> [3.3.7 AUTH Actions](#auth-actions)
 >
-> [3.4 REGISTER - Register Topic Alias Request 52](#register---register-topic-alias-request)
+> [3.4 REGISTER - Register Topic Alias Request](#register---register-topic-alias-request)
 >
-> [3.4.1 REGISTER Header 53](#register-header)
+> [3.4.1 REGISTER Header](#register-header)
 >
-> [3.4.2 REGISTER Flags 53](#register-flags)
+> [3.4.2 REGISTER Flags](#register-flags)
 >
-> [3.4.2.1 Topic Alias Flag 53](#topic-alias-flag)
+> [3.4.2.1 Topic Alias Flag](#topic-alias-flag)
 >
-> [3.4.2 Packet Identifier 53](#packet-identifier-4)
+> [3.4.2 Packet Identifier](#packet-identifier-4)
 >
-> [3.4.3 Topic Alias 53](#topic-alias)
+> [3.4.3 Topic Alias](#topic-alias)
 >
-> [3.4.4 Topic Name 53](#topic-name)
+> [3.4.4 Topic Name](#topic-name)
 >
-> [3.4.5 REGISTER Actions 53](#register-actions)
+> [3.4.5 REGISTER Actions](#register-actions)
 >
-> [3.5 REGACK - Register Topic Alias Acknowledgement 54](#regack---register-topic-alias-acknowledgement)
+> [3.5 REGACK - Register Topic Alias Acknowledgement](#regack---register-topic-alias-acknowledgement)
 >
-> [3.5.1 REGACK Header 54](#regack-header)
+> [3.5.1 REGACK Header](#regack-header)
 >
-> [3.5.2 REGACK Flags 54](#regack-flags)
+> [3.5.2 REGACK Flags](#regack-flags)
 >
-> [3.5.2.1 Topic Type 54](#topic-type)
+> [3.5.2.1 Topic Type](#topic-type)
 >
-> [3.5.2.2 Topic Alias Flag 55](#topic-alias-flag-1)
+> [3.5.2.2 Topic Alias Flag](#topic-alias-flag-1)
 >
-> [3.5.3 Packet Identifier 55](#packet-identifier-5)
+> [3.5.3 Packet Identifier](#packet-identifier-5)
 >
-> [3.5.4 Topic Alias 55](#topic-alias-1)
+> [3.5.4 Topic Alias](#topic-alias-1)
 >
-> [3.5.5 Reason Code 55](#reason-code-3)
+> [3.5.5 Reason Code](#reason-code-3)
 >
-> [3.6 Publish Requests and Responses 55](#publish-requests-and-responses)
+> [3.6 Publish Requests and Responses](#publish-requests-and-responses)
 >
-> [3.6.1 PUBWOS - Publish Without Session 56](#pubwos---publish-without-session)
+> [3.6.1 PUBWOS - Publish Without Session](#pubwos---publish-without-session)
 >
-> [3.6.1.1 PUBWOS Header 56](#pubwos-header)
+> [3.6.1.1 PUBWOS Header](#pubwos-header)
 >
-> [3.6.1.2 PUBWOS Flags 57](#pubwos-flags)
+> [3.6.1.2 PUBWOS Flags](#pubwos-flags)
 >
-> [3.6.1.2.1 Topic Type 57](#topic-type-1)
+> [3.6.1.2.1 Topic Type](#topic-type-1)
 >
-> [3.6.1.2.2 Retain 57](#retain)
+> [3.6.1.2.2 Retain](#retain)
 >
-> [3.6.1.3 Topic Alias or Topic Name Length 57](#topic-alias-or-topic-name-length)
+> [3.6.1.3 Topic Alias or Topic Name Length](#topic-alias-or-topic-name-length)
 >
-> [3.6.1.4 Topic Name 57](#topic-name-1)
+> [3.6.1.4 Topic Name](#topic-name-1)
 >
-> [3.6.1.5 Payload 57](#payload)
+> [3.6.1.5 Payload](#payload)
 >
-> [3.6.1.6 PUBWOS Actions 57](#pubwos-actions)
+> [3.6.1.6 PUBWOS Actions](#pubwos-actions)
 >
-> [3.6.2 PUBLISH with QoS 0 58](#publish-with-qos-0)
+> [3.6.2 PUBLISH with QoS 0](#publish-with-qos-0)
 >
-> [3.6.2.1 PUBLISH Header 58](#publish-header)
+> [3.6.2.1 PUBLISH Header](#publish-header)
 >
-> [3.6.2.2 PUBLISH Flags 58](#publish-flags)
+> [3.6.2.2 PUBLISH Flags](#publish-flags)
 >
-> [3.6.2.2.1 Topic Type 58](#topic-type-2)
+> [3.6.2.2.1 Topic Type](#topic-type-2)
 >
-> [3.6.2.2.2 QoS 59](#qos)
+> [3.6.2.2.2 QoS](#qos)
 >
-> [3.6.2.2.3 Retain 59](#retain-1)
+> [3.6.2.2.3 Retain](#retain-1)
 >
-> [3.6.2.3 Topic Alias or Topic Name Length 59](#topic-alias-or-topic-name-length-1)
+> [3.6.2.3 Topic Alias or Topic Name Length](#topic-alias-or-topic-name-length-1)
 >
-> [3.6.2.4 Topic Name 59](#topic-name-2)
+> [3.6.2.4 Topic Name](#topic-name-2)
 >
-> [3.6.2.5 Payload 59](#payload-1)
+> [3.6.2.5 Payload](#payload-1)
 >
-> [3.6.2.6 PUBLISH - QoS 0 Actions 59](#publish---qos-0-actions)
+> [3.6.2.6 PUBLISH - QoS 0 Actions](#publish---qos-0-actions)
 >
-> [3.6.3 PUBLISH with QoS 1 and 2 60](#publish-with-qos-1-and-2)
+> [3.6.3 PUBLISH with QoS 1 and 2](#publish-with-qos-1-and-2)
 >
-> [3.6.3.1 PUBLISH Header 60](#publish-header-1)
+> [3.6.3.1 PUBLISH Header](#publish-header-1)
 >
-> [3.6.3.2 PUBLISH Flags 60](#publish-flags-1)
+> [3.6.3.2 PUBLISH Flags](#publish-flags-1)
 >
-> [3.6.3.2.1 Topic Type 60](#topic-type-3)
+> [3.6.3.2.1 Topic Type](#topic-type-3)
 >
-> [3.6.3.2.2 QoS 61](#qos-1)
+> [3.6.3.2.2 QoS](#qos-1)
 >
-> [3.6.3.2.3 DUP 61](#dup)
+> [3.6.3.2.3 DUP](#dup)
 >
-> [3.6.3.2.4 Retain 61](#retain-2)
+> [3.6.3.2.4 Retain](#retain-2)
 >
-> [3.6.3.3 Packet Identifier 61](#packet-identifier-6)
+> [3.6.3.3 Packet Identifier](#packet-identifier-6)
 >
-> [3.6.3.4 Topic Alias or Topic Name Length 61](#topic-alias-or-topic-name-length-2)
+> [3.6.3.4 Topic Alias or Topic Name Length](#topic-alias-or-topic-name-length-2)
 >
-> [3.6.3.5 Topic Name 61](#topic-name-3)
+> [3.6.3.5 Topic Name](#topic-name-3)
 >
-> [3.6.3.6 Payload 62](#payload-2)
+> [3.6.3.6 Payload](#payload-2)
 >
-> [3.6.3.7 PUBLISH Actions 62](#publish-actions)
+> [3.6.3.7 PUBLISH Actions](#publish-actions)
 >
-> [3.6.4 PUBACK -- Publish Acknowledgement (QoS 1 delivery) 63](#puback-publish-acknowledgement-qos-1-delivery)
+> [3.6.4 PUBACK -- Publish Acknowledgement (QoS 1 delivery)](#puback-publish-acknowledgement-qos-1-delivery)
 >
-> [3.6.4.1 PUBACK Header 63](#puback-header)
+> [3.6.4.1 PUBACK Header](#puback-header)
 >
-> [3.6.4.2 Packet Identifier 63](#packet-identifier-7)
+> [3.6.4.2 Packet Identifier](#packet-identifier-7)
 >
-> [3.6.4.3 Reason Code 63](#reason-code-4)
+> [3.6.4.3 Reason Code](#reason-code-4)
 >
-> [3.6.4.4 PUBACK Actions 63](#puback-actions)
+> [3.6.4.4 PUBACK Actions](#puback-actions)
 >
-> [3.6.5 PUBREC - Publish Received (QoS 2 delivery part 1) 63](#pubrec---publish-received-qos-2-delivery-part-1)
+> [3.6.5 PUBREC - Publish Received (QoS 2 delivery part 1)](#pubrec---publish-received-qos-2-delivery-part-1)
 >
-> [3.6.5.1 PUBREC Header 63](#pubrec-header)
+> [3.6.5.1 PUBREC Header](#pubrec-header)
 >
-> [3.6.5.2 Packet Identifier 64](#packet-identifier-8)
+> [3.6.5.2 Packet Identifier](#packet-identifier-8)
 >
-> [3.6.5.3 Reason Code 64](#reason-code-5)
+> [3.6.5.3 Reason Code](#reason-code-5)
 >
-> [3.6.5.4 PUBREC Actions 64](#pubrec-actions)
+> [3.6.5.4 PUBREC Actions](#pubrec-actions)
 >
-> [3.6.6 PUBREL - Publish Release (QoS 2 delivery part 2) 64](#pubrel---publish-release-qos-2-delivery-part-2)
+> [3.6.6 PUBREL - Publish Release (QoS 2 delivery part 2)](#pubrel---publish-release-qos-2-delivery-part-2)
 >
-> [3.6.6.1 PUBREL Header 64](#pubrel-header)
+> [3.6.6.1 PUBREL Header](#pubrel-header)
 >
-> [3.6.6.2 Packet Identifier 64](#packet-identifier-9)
+> [3.6.6.2 Packet Identifier](#packet-identifier-9)
 >
-> [3.6.6.3 Reason Code 64](#reason-code-6)
+> [3.6.6.3 Reason Code](#reason-code-6)
 >
-> [3.6.6.4 PUBREL Actions 64](#pubrel-actions)
+> [3.6.6.4 PUBREL Actions](#pubrel-actions)
 >
-> [3.6.7 PUBCOMP - Publish Complete (QoS 2 delivery part 3) 65](#pubcomp---publish-complete-qos-2-delivery-part-3)
+> [3.6.7 PUBCOMP - Publish Complete (QoS 2 delivery part 3)](#pubcomp---publish-complete-qos-2-delivery-part-3)
 >
-> [3.6.7.1 PUBCOMP Header 65](#pubcomp-header)
+> [3.6.7.1 PUBCOMP Header](#pubcomp-header)
 >
-> [3.6.7.2 Packet Identifier 65](#packet-identifier-10)
+> [3.6.7.2 Packet Identifier](#packet-identifier-10)
 >
-> [3.6.7.3 Reason Code 65](#reason-code-7)
+> [3.6.7.3 Reason Code](#reason-code-7)
 >
-> [3.6.7.4 PUBCOMP Actions 65](#pubcomp-actions)
+> [3.6.7.4 PUBCOMP Actions](#pubcomp-actions)
 >
-> [3.7 SUBSCRIBE - Subscribe Request 66](#subscribe---subscribe-request)
+> [3.7 SUBSCRIBE - Subscribe Request](#subscribe---subscribe-request)
 >
-> [3.7.1 SUBSCRIBE Header 66](#subscribe-header)
+> [3.7.1 SUBSCRIBE Header](#subscribe-header)
 >
-> [3.7.2 SUBSCRIBE Flags 66](#subscribe-flags)
+> [3.7.2 SUBSCRIBE Flags](#subscribe-flags)
 >
-> [3.7.2.1 Topic Type 66](#topic-type-4)
+> [3.7.2.1 Topic Type](#topic-type-4)
 >
-> [3.7.2.2 Retain handling 66](#retain-handling)
+> [3.7.2.2 Retain handling](#retain-handling)
 >
-> [3.7.2.3 Retain as Published 67](#retain-as-published)
+> [3.7.2.3 Retain as Published](#retain-as-published)
 >
-> [3.7.2.4 QoS 67](#qos-2)
+> [3.7.2.4 QoS](#qos-2)
 >
-> [3.7.2.5 No Local 67](#no-local)
+> [3.7.2.5 No Local](#no-local)
 >
-> [3.7.3 Packet Identifier 67](#packet-identifier-11)
+> [3.7.3 Packet Identifier](#packet-identifier-11)
 >
-> [3.7.4 Topic Alias 67](#topic-alias-2)
+> [3.7.4 Topic Alias](#topic-alias-2)
 >
-> [3.7.5 Topic Filter 68](#topic-filter)
+> [3.7.5 Topic Filter](#topic-filter)
 >
-> [3.7.6 SUBSCRIBE Actions 68](#subscribe-actions)
+> [3.7.6 SUBSCRIBE Actions](#subscribe-actions)
 >
-> [3.8 SUBACK - Subscribe Acknowledgement 69](#suback---subscribe-acknowledgement)
+> [3.8 SUBACK - Subscribe Acknowledgement](#suback---subscribe-acknowledgement)
 >
-> [3.8.1 SUBACK Header 69](#suback-header)
+> [3.8.1 SUBACK Header](#suback-header)
 >
-> [3.8.2 SUBACK Flags 70](#suback-flags)
+> [3.8.2 SUBACK Flags](#suback-flags)
 >
-> [3.8.2.1 Topic Type 70](#topic-type-5)
+> [3.8.2.1 Topic Type](#topic-type-5)
 >
-> [3.8.2.1 Topic Alias Flag 70](#topic-alias-flag-2)
+> [3.8.2.1 Topic Alias Flag](#topic-alias-flag-2)
 >
-> [3.8.3 Packet Identifier 70](#packet-identifier-12)
+> [3.8.3 Packet Identifier](#packet-identifier-12)
 >
-> [3.8.4 Topic Alias 70](#topic-alias-3)
+> [3.8.4 Topic Alias](#topic-alias-3)
 >
-> [3.8.5 Reason Code 70](#reason-code-8)
+> [3.8.5 Reason Code](#reason-code-8)
 >
-> [3.9 UNSUBSCRIBE - Unsubscribe Request 71](#unsubscribe---unsubscribe-request)
+> [3.9 UNSUBSCRIBE - Unsubscribe Request](#unsubscribe---unsubscribe-request)
 >
-> [3.9.1 UNSUBSCRIBE Header 71](#unsubscribe-header)
+> [3.9.1 UNSUBSCRIBE Header](#unsubscribe-header)
 >
-> [3.9.2 UNSUBSCRIBE Flags 71](#unsubscribe-flags)
+> [3.9.2 UNSUBSCRIBE Flags](#unsubscribe-flags)
 >
-> [3.9.2.1 Topic Type 71](#topic-type-6)
+> [3.9.2.1 Topic Type](#topic-type-6)
 >
-> [3.9.3 Packet Identifier 71](#packet-identifier-13)
+> [3.9.3 Packet Identifier](#packet-identifier-13)
 >
-> [3.9.4 Topic Alias 72](#topic-alias-4)
+> [3.9.4 Topic Alias](#topic-alias-4)
 >
-> [3.9.5 Topic Filter 72](#topic-filter-1)
+> [3.9.5 Topic Filter](#topic-filter-1)
 >
-> [3.9.6 UNSUBSCRIBE Actions 72](#unsubscribe-actions)
+> [3.9.6 UNSUBSCRIBE Actions](#unsubscribe-actions)
 >
-> [3.10 UNSUBACK - Unsubscribe Acknowledgement 72](#unsuback---unsubscribe-acknowledgement)
+> [3.10 UNSUBACK - Unsubscribe Acknowledgement](#unsuback---unsubscribe-acknowledgement)
 >
-> [3.10.1 UNSUBACK Header 73](#unsuback-header)
+> [3.10.1 UNSUBACK Header](#unsuback-header)
 >
-> [3.10.2 Packet Identifier 73](#packet-identifier-14)
+> [3.10.2 Packet Identifier](#packet-identifier-14)
 >
-> [3.10.3 Reason Code 73](#reason-code-9)
+> [3.10.3 Reason Code](#reason-code-9)
 >
-> [3.11 PINGREQ - Ping Request 73](#pingreq---ping-request)
+> [3.11 PINGREQ - Ping Request](#pingreq---ping-request)
 >
-> [3.11.1 PINGREQ Header 74](#pingreq-header)
+> [3.11.1 PINGREQ Header](#pingreq-header)
 >
-> [3.11.2 Packet Identifier 74](#packet-identifier-15)
+> [3.11.2 Packet Identifier](#packet-identifier-15)
 >
-> [3.11.3 PINGREQ Actions 74](#pingreq-actions)
+> [3.11.3 PINGREQ Actions](#pingreq-actions)
 >
-> [3.12 PINGRESP - Ping Response 74](#pingresp---ping-response)
+> [3.12 PINGRESP - Ping Response](#pingresp---ping-response)
 >
-> [3.12.1 PINGRESP Header 74](#pingresp-header)
+> [3.12.1 PINGRESP Header](#pingresp-header)
 >
-> [3.12.2 Packet Identifier 75](#packet-identifier-16)
+> [3.12.2 Packet Identifier](#packet-identifier-16)
 >
-> [3.12.3 Application Messages Remaining 75](#application-messages-remaining)
+> [3.12.3 Application Messages Remaining](#application-messages-remaining)
 >
-> [3.13 DISCONNECT - Disconnect Notification 76](#disconnect---disconnect-notification)
+> [3.13 DISCONNECT - Disconnect Notification](#disconnect---disconnect-notification)
 >
-> [3.13.1 DISCONNECT Header 76](#disconnect-header)
+> [3.13.1 DISCONNECT Header](#disconnect-header)
 >
-> [3.13.2 DISCONNECT Flags 77](#disconnect-flags)
+> [3.13.2 DISCONNECT Flags](#disconnect-flags)
 >
-> [3.13.2.1 Packet Identifier Flag 77](#packet-identifier-flag)
+> [3.13.2.1 Packet Identifier Flag](#packet-identifier-flag)
 >
-> [3.13.2.2 Session Expiry Interval Flag 77](#session-expiry-interval-flag-1)
+> [3.13.2.2 Session Expiry Interval Flag](#session-expiry-interval-flag-1)
 >
-> [3.13.2.3 Reason Code Flag 77](#reason-code-flag)
+> [3.13.2.3 Reason Code Flag](#reason-code-flag)
 >
-> [3.13.3 Packet Identifier 77](#packet-identifier-17)
+> [3.13.3 Packet Identifier](#packet-identifier-17)
 >
-> [3.13.4 Reason Code 77](#reason-code-10)
+> [3.13.4 Reason Code](#reason-code-10)
 >
-> [3.13.5 Session Expiry Interval 78](#session-expiry-interval-2)
+> [3.13.5 Session Expiry Interval](#session-expiry-interval-2)
 >
-> [3.13.6 Reason String 78](#reason-string)
+> [3.13.6 Reason String](#reason-string)
 >
-> [3.13.7 DISCONNECT Actions 78](#disconnect-actions)
+> [3.13.7 DISCONNECT Actions](#disconnect-actions)
 >
-> [3.14 WAKEUP - Wake up request 78](#wakeup---wake-up-request)
+> [3.14 WAKEUP - Wake up request](#wakeup---wake-up-request)
 >
-> [3.14.1 WAKEUP Header 79](#wakeup-header)
+> [3.14.1 WAKEUP Header](#wakeup-header)
 >
-> [3.14.2 WAKEUP Actions 79](#wakeup-actions)
+> [3.14.2 WAKEUP Actions](#wakeup-actions)
 >
-> [3.15 SLEEPREQ - Sleep request 79](#sleepreq---sleep-request)
+> [3.15 SLEEPREQ - Sleep request](#sleepreq---sleep-request)
 >
-> [3.15.1 SLEEPREQ Header 79](#sleepreq-header)
+> [3.15.1 SLEEPREQ Header](#sleepreq-header)
 >
-> [3.15.2 SLEEPREQ Flags 80](#sleepreq-flags)
+> [3.15.2 SLEEPREQ Flags](#sleepreq-flags)
 >
-> [3.15.2.1 Retain Topic Aliases 80](#retain-topic-aliases)
+> [3.15.2.1 Retain Topic Aliases](#retain-topic-aliases)
 >
-> [3.15.3 Packet Identifier 80](#packet-identifier-18)
+> [3.15.3 Packet Identifier](#packet-identifier-18)
 >
-> [3.15.4 Sleep Duration 80](#sleep-duration)
+> [3.15.4 Sleep Duration](#sleep-duration)
 >
-> [3.15.5 SLEEPREQ Actions 80](#sleepreq-actions)
+> [3.15.5 SLEEPREQ Actions](#sleepreq-actions)
 >
-> [3.16 SLEEPRESP - Sleep response 81](#sleepresp---sleep-response)
+> [3.16 SLEEPRESP - Sleep response](#sleepresp---sleep-response)
 >
-> [3.16.1 SLEEPRESP Header 82](#sleepresp-header)
+> [3.16.1 SLEEPRESP Header](#sleepresp-header)
 >
-> [3.16.2 SLEEPRESP Flags 82](#sleepresp-flags)
+> [3.16.2 SLEEPRESP Flags](#sleepresp-flags)
 >
-> [3.16.2.1 Sleep Duration Flag 82](#sleep-duration-flag)
+> [3.16.2.1 Sleep Duration Flag](#sleep-duration-flag)
 >
-> [3.16.2 Packet Identifier 82](#packet-identifier-19)
+> [3.16.2 Packet Identifier](#packet-identifier-19)
 >
-> [3.16.3 Sleep Duration 82](#sleep-duration-1)
+> [3.16.3 Sleep Duration](#sleep-duration-1)
 >
-> [3.16.4 Reason Code 83](#reason-code-11)
+> [3.16.4 Reason Code](#reason-code-11)
 >
-> [3.17 Protection Encapsulation 84](#protection-encapsulation)
+> [3.17 Protection Encapsulation](#protection-encapsulation)
 >
-> [3.17.1 Protection Encapsulation Header 85](#protection-encapsulation-header)
+> [3.17.1 Protection Encapsulation Header](#protection-encapsulation-header)
 >
-> [3.17.2 Protection Flags 85](#protection-flags)
+> [3.17.2 Protection Flags](#protection-flags)
 >
-> [3.17.2.1 Monotonic Counter Length 85](#monotonic-counter-length)
+> [3.17.2.1 Monotonic Counter Length](#monotonic-counter-length)
 >
-> [3.17.2.2 Cryptographic Material Length 86](#cryptographic-material-length)
+> [3.17.2.2 Cryptographic Material Length](#cryptographic-material-length)
 >
-> [3.17.2.3 Authentication Tag Length 86](#authentication-tag-length)
+> [3.17.2.3 Authentication Tag Length](#authentication-tag-length)
 >
-> [3.17.3 Protection Scheme 87](#protection-scheme)
+> [3.17.3 Protection Scheme](#protection-scheme)
 >
-> [3.17.4 Sender Identifier 89](#sender-identifier)
+> [3.17.4 Sender Identifier](#sender-identifier)
 >
-> [3.17.5 Random 89](#random)
+> [3.17.5 Random](#random)
 >
-> [3.17.6 Cryptographic Material 89](#cryptographic-material)
+> [3.17.6 Cryptographic Material](#cryptographic-material)
 >
-> [3.17.7 Monotonic Counter 90](#monotonic-counter)
+> [3.17.7 Monotonic Counter](#monotonic-counter)
 >
-> [3.17.8 Protected MQTT-SN Packet 90](#protected-mqtt-sn-packet)
+> [3.17.8 Protected MQTT-SN Packet](#protected-mqtt-sn-packet)
 >
-> [3.17.9 Authentication Tag 90](#authentication-tag)
+> [3.17.9 Authentication Tag](#authentication-tag)
 >
-> [3.18 Connection Encapsulation 91](#connection-encapsulation)
+> [3.18 Connection Encapsulation](#connection-encapsulation)
 >
-> [3.18.1 Connection Encapsulation Header 92](#connection-encapsulation-header)
+> [3.18.1 Connection Encapsulation Header](#connection-encapsulation-header)
 >
-> [3.18.2 Client Identifier 92](#client-identifier-1)
+> [3.18.2 Client Identifier](#client-identifier-1)
 >
-> [3.18.3 MQTT-SN Packet 92](#mqtt-sn-packet)
+> [3.18.3 MQTT-SN Packet](#mqtt-sn-packet)
 >
-> [3.19 Forwarder Encapsulation 92](#forwarder-encapsulation)
+> [3.19 Forwarder Encapsulation](#forwarder-encapsulation)
 >
-> [3.19.1 Forwarder Encapsulation Header 92](#forwarder-encapsulation-header)
+> [3.19.1 Forwarder Encapsulation Header](#forwarder-encapsulation-header)
 >
-> [3.19.2 Client Addressing Information 93](#client-addressing-information)
+> [3.19.2 Client Addressing Information](#client-addressing-information)
 >
-> [3.19.3 MQTT-SN Packet 93](#mqtt-sn-packet-1)
+> [3.19.3 MQTT-SN Packet](#mqtt-sn-packet-1)
 >
-> [3.20 Gateway Discovery Packets 93](#gateway-discovery-packets)
+> [3.20 Gateway Discovery Packets](#gateway-discovery-packets)
 >
-> [3.20.1 ADVERTISE - Gateway Advertisement 93](#advertise---gateway-advertisement)
+> [3.20.1 ADVERTISE - Gateway Advertisement](#advertise---gateway-advertisement)
 >
-> [3.20.1.1 ADVERTISE Header 93](#advertise-header)
+> [3.20.1.1 ADVERTISE Header](#advertise-header)
 >
-> [3.20.1.2 Gateway Identifier 94](#gateway-identifier)
+> [3.20.1.2 Gateway Identifier](#gateway-identifier)
 >
-> [3.20.1.3 Duration 94](#duration)
+> [3.20.1.3 Duration](#duration)
 >
-> [3.20.2 SEARCHGW - Search for A Gateway 94](#searchgw---search-for-a-gateway)
+> [3.20.2 SEARCHGW - Search for A Gateway](#searchgw---search-for-a-gateway)
 >
-> [3.20.2.1 SEARCHGW Header 94](#searchgw-header)
+> [3.20.2.1 SEARCHGW Header](#searchgw-header)
 >
-> [3.20.2.2 Additional Network Information 94](#additional-network-information)
+> [3.20.2.2 Additional Network Information](#additional-network-information)
 >
-> [3.20.3 GWINFO - Gateway Information 95](#gwinfo---gateway-information)
+> [3.20.3 GWINFO - Gateway Information](#gwinfo---gateway-information)
 >
-> [3.20.3.1 GWINFO Header 95](#gwinfo-header)
+> [3.20.3.1 GWINFO Header](#gwinfo-header)
 >
-> [3.20.3.2 Gateway Identifier 95](#gateway-identifier-1)
+> [3.20.3.2 Gateway Identifier](#gateway-identifier-1)
 >
-> [3.20.3.3 Gateway Address 95](#gateway-address)
+> [3.20.3.3 Gateway Address](#gateway-address)
 
-[4 Operational behavior 96](#operational-behavior)
+[4 Operational behavior](#operational-behavior)
 
-> [4.1 Session state 96](#session-state)
+> [4.1 Session state](#session-state)
 >
-> [4.1.1 Storing Session State 96](#storing-session-state)
+> [4.1.1 Storing Session State](#storing-session-state)
 >
-> [4.1.2 Session Establishment 97](#session-establishment)
+> [4.1.2 Session Establishment](#session-establishment)
 >
-> [4.2 Networks and Virtual Connections 98](#networks-and-virtual-connections)
+> [4.2 Networks and Virtual Connections](#networks-and-virtual-connections)
 >
-> [4.2.1 Virtual Connections 99](#virtual-connections)
+> [4.2.1 Virtual Connections](#virtual-connections)
 >
-> [4.3 Quality of Service levels and protocol flows 100](#quality-of-service-levels-and-protocol-flows)
+> [4.3 Quality of Service levels and protocol flows](#quality-of-service-levels-and-protocol-flows)
 >
-> [4.3.1 Publish without session 100](#publish-without-session)
+> [4.3.1 Publish without session](#publish-without-session)
 >
-> [4.3.2 QoS 0: At most once delivery 101](#qos-0-at-most-once-delivery)
+> [4.3.2 QoS 0: At most once delivery](#qos-0-at-most-once-delivery)
 >
-> [4.3.3 QoS 1: At least once delivery 101](#qos-1-at-least-once-delivery)
+> [4.3.3 QoS 1: At least once delivery](#qos-1-at-least-once-delivery)
 >
-> [4.3.4 QoS 2: Exactly once delivery 102](#qos-2-exactly-once-delivery)
+> [4.3.4 QoS 2: Exactly once delivery](#qos-2-exactly-once-delivery)
 >
-> [4.4 Packet delivery retry 104](#packet-delivery-retry)
+> [4.4 Packet delivery retry](#packet-delivery-retry)
 >
-> [4.4.1 Virtual Connection End 104](#virtual-connection-end)
+> [4.4.1 Virtual Connection End](#virtual-connection-end)
 >
-> [4.4.2 Unacknowledged Packets 104](#unacknowledged-packets)
+> [4.4.2 Unacknowledged Packets](#unacknowledged-packets)
 >
-> [4.5 Application Message receipt 106](#application-message-receipt)
+> [4.5 Application Message receipt](#application-message-receipt)
 >
-> [4.6 Application Message ordering 106](#application-message-ordering)
+> [4.6 Application Message ordering](#application-message-ordering)
 >
-> [4.7 Topics 106](#topics)
+> [4.7 Topics](#topics)
 >
-> [4.7.1 Topic Names and Topic Filters 106](#topic-names-and-topic-filters)
+> [4.7.1 Topic Names and Topic Filters](#topic-names-and-topic-filters)
 >
-> [4.7.1.1 Topic wildcards 107](#topic-wildcards)
+> [4.7.1.1 Topic wildcards](#topic-wildcards)
 >
-> [4.7.1.1.1 Topic level separator 107](#topic-level-separator)
+> [4.7.1.1.1 Topic level separator](#topic-level-separator)
 >
-> [4.7.1.1.2 Multi-level wildcard 107](#multi-level-wildcard)
+> [4.7.1.1.2 Multi-level wildcard](#multi-level-wildcard)
 >
-> [4.7.1.1.3 Single-level wildcard 107](#single-level-wildcard)
+> [4.7.1.1.3 Single-level wildcard](#single-level-wildcard)
 >
-> [4.7.1.2 Topics beginning with \$ 108](#topics-beginning-with)
+> [4.7.1.2 Topics beginning with \$](#topics-beginning-with)
 >
-> [4.7.1.3 Topic semantic and usage 108](#topic-semantic-and-usage)
+> [4.7.1.3 Topic semantic and usage](#topic-semantic-and-usage)
 >
-> [4.7.2 Topic Aliases 109](#topic-aliases)
+> [4.7.2 Topic Aliases](#topic-aliases)
 >
-> [4.7.2.1 Predefined Topic Aliases 110](#predefined-topic-aliases)
+> [4.7.2.1 Predefined Topic Aliases](#predefined-topic-aliases)
 >
-> [4.7.2.2 Session Topic Aliases 110](#session-topic-aliases)
+> [4.7.2.2 Session Topic Aliases](#session-topic-aliases)
 >
-> [4.8 Subscriptions 111](#subscriptions)
+> [4.8 Subscriptions](#subscriptions)
 >
-> [4.9 Flow Control 111](#flow-control)
+> [4.9 Flow Control](#flow-control)
 >
-> [4.10 Server redirection 112](#server-redirection)
+> [4.10 Server redirection](#server-redirection)
 >
-> [4.11 Authentication 112](#authentication)
+> [4.11 Authentication](#authentication)
 >
-> [4.11.1 CONNECT and AUTH packets 112](#connect-and-auth-packets)
+> [4.11.1 CONNECT and AUTH packets](#connect-and-auth-packets)
 >
-> [4.11.1.1 Re-authentication 114](#re-authentication)
+> [4.11.1.1 Re-authentication](#re-authentication)
 >
-> [4.11.1.2 MQTT User Name and Password Support 115](#mqtt-user-name-and-password-support)
+> [4.11.1.2 MQTT User Name and Password Support](#mqtt-user-name-and-password-support)
 >
-> [4.12 Handling errors 117](#handling-errors)
+> [4.12 Handling errors](#handling-errors)
 >
-> [4.12.1 Malformed Packet and Protocol Errors 117](#malformed-packet-and-protocol-errors)
+> [4.12.1 Malformed Packet and Protocol Errors](#malformed-packet-and-protocol-errors)
 >
-> [4.12.2 Other errors 118](#other-errors)
+> [4.12.2 Other errors](#other-errors)
 >
-> [4.13 Retained Messages 118](#retained-messages)
+> [4.13 Retained Messages](#retained-messages)
 >
-> [4.14 Client states 120](#client-states)
+> [4.14 Client states](#client-states)
 >
-> [4.14.1 Session Timers 121](#session-timers)
+> [4.14.1 Session Timers](#session-timers)
 >
-> [4.14.2 Sleeping Clients 122](#sleeping-clients)
+> [4.14.2 Sleeping Clients](#sleeping-clients)
 >
-> [4.15 Optional Features 124](#optional-features)
+> [4.15 Optional Features](#optional-features)
 
-[**5 Security (Informative) 126**](#security-informative)
+[5 Security (Informative)](#security-informative)
 
-> [5.1 Introduction 126](#introduction-1)
+> [5.1 Introduction](#introduction-1)
 >
-> [5.2 MQTT-SN solutions: security and certification 126](#mqtt-sn-solutions-security-and-certification)
+> [5.2 MQTT-SN solutions: security and certification](#mqtt-sn-solutions-security-and-certification)
 >
-> [5.3 Lightweight cryptography and constrained devices 127](#lightweight-cryptography-and-constrained-devices)
+> [5.3 Lightweight cryptography and constrained devices](#lightweight-cryptography-and-constrained-devices)
 >
-> [5.4 Implementation notes 127](#implementation-notes)
+> [5.4 Implementation notes](#implementation-notes)
 >
-> [5.4.1 Authentication of Clients by the Server 128](#authentication-of-clients-by-the-server)
+> [5.4.1 Authentication of Clients by the Server](#authentication-of-clients-by-the-server)
 >
-> [5.4.2 Authorization of Clients by the Server 128](#authorization-of-clients-by-the-server)
+> [5.4.2 Authorization of Clients by the Server](#authorization-of-clients-by-the-server)
 >
-> [5.4.3 Authentication of the Server by the Client 129](#authentication-of-the-server-by-the-client)
+> [5.4.3 Authentication of the Server by the Client](#authentication-of-the-server-by-the-client)
 >
-> [5.4.4 Integrity of Application Messages and MQTT-SN Control Packets 129](#integrity-of-application-messages-and-mqtt-sn-control-packets)
+> [5.4.4 Integrity of Application Messages and MQTT-SN Control Packets](#integrity-of-application-messages-and-mqtt-sn-control-packets)
 >
-> [5.4.5 Privacy of Application Messages and MQTT-SN Control Packets 129](#privacy-of-application-messages-and-mqtt-sn-control-packets)
+> [5.4.5 Privacy of Application Messages and MQTT-SN Control Packets](#privacy-of-application-messages-and-mqtt-sn-control-packets)
 >
-> [5.4.6 Non-repudiation of message transmission 129](#non-repudiation-of-message-transmission)
+> [5.4.6 Non-repudiation of message transmission](#non-repudiation-of-message-transmission)
 >
-> [5.4.7 Detecting compromise of Clients and Servers 130](#detecting-compromise-of-clients-and-servers)
+> [5.4.7 Detecting compromise of Clients and Servers](#detecting-compromise-of-clients-and-servers)
 >
-> [5.4.8 Detecting abnormal behaviors 130](#detecting-abnormal-behaviors)
+> [5.4.8 Detecting abnormal behaviors](#detecting-abnormal-behaviors)
 >
-> [5.4.9 Handling of Disallowed Unicode code points 130](#handling-of-disallowed-unicode-code-points)
+> [5.4.9 Handling of Disallowed Unicode code points](#handling-of-disallowed-unicode-code-points)
 >
-> [5.4.9.1 Considerations for the use of Disallowed Unicode code points 131](#considerations-for-the-use-of-disallowed-unicode-code-points)
+> [5.4.9.1 Considerations for the use of Disallowed Unicode code points](#considerations-for-the-use-of-disallowed-unicode-code-points)
 >
-> [5.4.9.2 Interactions between Publishers and Subscribers 131](#interactions-between-publishers-and-subscribers)
+> [5.4.9.2 Interactions between Publishers and Subscribers](#interactions-between-publishers-and-subscribers)
 >
-> [5.4.9.3 Remedies 132](#remedies)
+> [5.4.9.3 Remedies](#remedies)
 >
-> [5.4.10 Other security considerations 132](#other-security-considerations)
+> [5.4.10 Other security considerations](#other-security-considerations)
 >
-> [5.4.11 Use of SOCKS 132](#use-of-socks)
+> [5.4.11 Use of SOCKS](#use-of-socks)
 >
-> [5.4.12 Security profiles 133](#security-profiles)
+> [5.4.12 Security profiles](#security-profiles)
 >
-> [5.4.12.1 Clear communication profile 133](#clear-communication-profile)
+> [5.4.12.1 Clear communication profile](#clear-communication-profile)
 >
-> [5.4.12.2 Secured network communication profile 133](#secured-network-communication-profile)
+> [5.4.12.2 Secured network communication profile](#secured-network-communication-profile)
 >
-> [5.4.12.3 Secured transport profile 133](#secured-transport-profile)
+> [5.4.12.3 Secured transport profile](#secured-transport-profile)
 >
-> [5.4.12.4 Industry specific security profiles 133](#industry-specific-security-profiles)
+> [5.4.12.4 Industry specific security profiles](#industry-specific-security-profiles)
 
-[6 Conformance 134](#conformance)
+[6 Conformance](#conformance)
 
-> [6.1 Conformance clauses 134](#conformance-clauses)
+> [6.1 Conformance clauses](#conformance-clauses)
 >
-> [6.1.1 MQTT-SN Server conformance clause 134](#mqtt-sn-server-conformance-clause)
+> [6.1.1 MQTT-SN Server conformance clause](#mqtt-sn-server-conformance-clause)
 >
-> [6.1.2 MQTT-SN Client conformance clause 134](#mqtt-sn-client-conformance-clause)
+> [6.1.2 MQTT-SN Client conformance clause](#mqtt-sn-client-conformance-clause)
 
-[**Appendix A. Acknowledgments 135**](#appendix-a.-acknowledgments)
+[Appendix A. Acknowledgments](#appendix-a.-acknowledgments)
 
-> [A.1 Special Thanks 135](#a.1-special-thanks)
+> [A.1 Special Thanks](#a.1-special-thanks)
 >
-> [A.2 Participants 135](#a.2-participants)
+> [A.2 Participants](#a.2-participants)
 
-[**Appendix B. Mandatory normative statements (informative) 136**](#appendix-b.-mandatory-normative-statements-informative)
+[Appendix B. Mandatory normative statements (informative)](#appendix-b.-mandatory-normative-statements-informative)
 
-[**Appendix C. Implementation Guidance (Informative) 161**](#appendix-c.-implementation-guidance-informative)
+[Appendix C. Implementation Guidance (Informative)](#appendix-c.-implementation-guidance-informative)
 
-> [C.1 Example MQTT-SN Architectures 161](#c.1-example-mqtt-sn-architectures)
+> [C.1 Example MQTT-SN Architectures](#c.1-example-mqtt-sn-architectures)
 >
-> [C.1.1 Transparent Gateway 161](#c.1.1-transparent-gateway)
+> [C.1.1 Transparent Gateway](#c.1.1-transparent-gateway)
 >
-> [C.1.2 Aggregating Gateway 162](#c.1.2-aggregating-gateway)
+> [C.1.2 Aggregating Gateway](#c.1.2-aggregating-gateway)
 >
-> [C.1.3 Forwarder 163](#c.1.3-forwarder)
+> [C.1.3 Forwarder](#c.1.3-forwarder)
 >
-> [C.1.4 MQTT-SN Broker 164](#c.1.4-mqtt-sn-broker)
+> [C.1.4 MQTT-SN Broker](#c.1.4-mqtt-sn-broker)
 >
-> [C.2 Server Congestion 165](#c.2-server-congestion)
+> [C.2 Server Congestion](#c.2-server-congestion)
 >
-> [C.3 Example Timer and Counter Values 166](#c.3-example-timer-and-counter-values)
+> [C.3 Example Timer and Counter Values](#c.3-example-timer-and-counter-values)
 >
-> [C.4 Exponential Backoff 167](#c.4-exponential-backoff)
+> [C.4 Exponential Backoff](#c.4-exponential-backoff)
 >
-> [C.5 Client State Diagrams 168](#c.5-client-state-diagrams)
+> [C.5 Client State Diagrams](#c.5-client-state-diagrams)
 >
-> [C.6 PUBLISH with QoS -1 170](#c.6-publish-with-qos--1)
+> [C.6 PUBLISH with QoS -1](#c.6-publish-with-qos--1)
 >
-> [C.6.1 PUBLISH Header 170](#c.6.1-publish-header)
+> [C.6.1 PUBLISH Header](#c.6.1-publish-header)
 >
-> [C.6.2 PUBLISH Flags 170](#c.6.2-publish-flags)
+> [C.6.2 PUBLISH Flags](#c.6.2-publish-flags)
 >
-> [C.6.2.1 Topic Type 171](#c.6.2.1-topic-type)
+> [C.6.2.1 Topic Type](#c.6.2.1-topic-type)
 >
-> [C.6.2.2 QoS 171](#c.6.2.2-qos)
+> [C.6.2.2 QoS](#c.6.2.2-qos)
 >
-> [C.6.2.3 DUP 171](#c.6.2.3-dup)
+> [C.6.2.3 DUP](#c.6.2.3-dup)
 >
-> [C.6.2.4 Retain 171](#c.6.2.4-retain)
+> [C.6.2.4 Retain](#c.6.2.4-retain)
 >
-> [C.6.3 Topic Alias 171](#c.6.3-topic-alias)
+> [C.6.3 Topic Alias](#c.6.3-topic-alias)
 >
-> [C.6.4 Topic Short Name 171](#c.6.4-topic-short-name)
+> [C.6.4 Topic Short Name](#c.6.4-topic-short-name)
 >
-> [C.6.5 Topic Name Length 171](#c.6.5-topic-name-length)
+> [C.6.5 Topic Name Length](#c.6.5-topic-name-length)
 >
-> [C.6.6 Topic Name 171](#c.6.6-topic-name)
+> [C.6.6 Topic Name](#c.6.6-topic-name)
 >
-> [C.6.7 Payload 172](#c.6.7-payload)
+> [C.6.7 Payload](#c.6.7-payload)
 >
-> [C.6.8 PUBLISH with QoS -1 Actions 172](#c.6.8-publish-with-qos--1-actions)
+> [C.6.8 PUBLISH with QoS -1 Actions](#c.6.8-publish-with-qos--1-actions)
 >
-> [C.7 Gateway Advertisement and Discovery 173](#c.7-gateway-advertisement-and-discovery)
+> [C.7 Gateway Advertisement and Discovery](#c.7-gateway-advertisement-and-discovery)
 
-[**Appendix D. Revision History (informative) 175**](#appendix-d.-revision-history-informative)
+[Appendix D. Revision History (informative)](#appendix-d.-revision-history-informative)
 
 # 1 Introduction<a name="introduction"></a>
 
