@@ -1,4 +1,4 @@
-csaf:
+mqtt-sn:
 - pdf:
     approvals: approvals.yml
     bind: bind.txt
