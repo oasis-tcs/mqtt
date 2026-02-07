@@ -1,4 +1,4 @@
-## Client State Diagrams{#c.5-client-state-diagrams}
+## C.5 Client State Diagrams{#c.5-client-state-diagrams}
 
 The following diagrams are illustrative, graphical views of the states and transitions. They are not comprehensive but included for guidance.
 

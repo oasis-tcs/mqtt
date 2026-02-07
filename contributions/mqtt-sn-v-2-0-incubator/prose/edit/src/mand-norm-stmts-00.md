@@ -1,4 +1,4 @@
-# B. Mandatory normative statements (informative){#appendix-b.-mandatory-normative-statements-informative}
+# Appendix B. Mandatory normative statements (informative){#appendix-b.-mandatory-normative-statements-informative}
 
 This Appendix is non-normative and is provided as a convenient summary of the numbered conformance statements found in the main body of this document. Refer to [[6 Conformance]](#conformance) for a definitive list of conformance requirements.
 

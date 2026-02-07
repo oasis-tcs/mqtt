@@ -1,4 +1,4 @@
-## Server Congestion{#c.2-server-congestion}
+## C.2 Server Congestion{#c.2-server-congestion}
 
 For CONNECT, PUBLISH, SUBSCRIBE and REGISTER requests, the Server may return the Reason Code *Congestion*, meaning *try again later*.
 

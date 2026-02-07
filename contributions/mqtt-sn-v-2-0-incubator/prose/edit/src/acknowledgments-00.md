@@ -1,4 +1,4 @@
-# A. Acknowledgments{#appendix-a.-acknowledgments}
+# Appendix A. Acknowledgments{#appendix-a.-acknowledgments}
 
 \[<mark title="Ephemeral region marking">Required section.</mark>\]
 

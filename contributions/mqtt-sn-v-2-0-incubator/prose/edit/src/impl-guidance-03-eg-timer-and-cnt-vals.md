@@ -1,4 +1,4 @@
-## Example Timer and Counter Values{#c.3-example-timer-and-counter-values}
+## C.3 Example Timer and Counter Values{#c.3-example-timer-and-counter-values}
 
 Figure C-6 gives some values for the timers and counters defined in this specification derived from implementation experience.
 

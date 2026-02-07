@@ -1,4 +1,4 @@
-## Gateway Advertisement and Discovery{#c.7-gateway-advertisement-and-discovery}
+## C.7 Gateway Advertisement and Discovery{#c.7-gateway-advertisement-and-discovery}
 
 Clients might have foreknowledge of how to reach a Gateway, but in dynamic networks they may not. MQTT-SN supports mechanisms to allow Clients to find available MQTT-SN Gateways. This support is optional - it may not be needed. In some implementations, the underlying network technology might be used for this purpose instead.
 
