@@ -314,7 +314,7 @@ The first 2 or 4 bytes of the packet are encoded according to the variable lengt
 
 The same value as the Packet Identifier in the PUBLISH Packet being acknowledged.
 
-#### 3.6.6.3 Reason Code
+#### Reason Code{#pprq2dp2---reason-code}
 
 The Reason Code for the PUBREL packet is optional - its existence is inferred from the Packet length. If not provided, 0x00 (Success) is assumed.
 
