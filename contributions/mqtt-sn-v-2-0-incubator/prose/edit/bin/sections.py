@@ -350,8 +350,16 @@ def main(argv: list[str]) -> int:
             a_root = appr
         db.append([is_appendix, a_root, level, text, slug])
 
+    if DEBUG:
+        for is_appendix, a_root, level, text, slug in db:
+            print(f'{"        " if not is_appendix else "APPENDIX"} | {a_root} | {(HASH * level).rjust(7)} "{text}" <-- {slug}')
+
     for is_appendix, a_root, level, text, slug in db:
-        print(f'{"        " if not is_appendix else "APPENDIX"} | {a_root} | {(HASH * level).rjust(7)} "{text}" <-- {slug}')
+        if not is_appendix:
+            display = f'{a_root}{"" if level == 1 else DOT * (level - 1)}'
+        else:
+            display, text = text.split(SPACE, 1)
+        print(f'    "{display}": "{text}",')
 
     BUILD_AT.mkdir(parents=True, exist_ok=True)
     dump_assembly(lines, BUILD_AT / 'tmp.md')
