@@ -354,24 +354,45 @@ def main(argv: list[str]) -> int:
         for is_appendix, a_root, level, text, slug in db:
             print(f'{"        " if not is_appendix else "APPENDIX"} | {a_root} | {(HASH * level).rjust(7)} "{text}" <-- {slug}')
 
+    display_to_label = {}
+    lvl_min, lvl_sup = 1, 7
+    sec_cnt = {f'{HASH * level} ': 0 for level in range(lvl_min, lvl_sup)}
+    sec_lvl = {f'{HASH * level} ': level for level in range(lvl_min, lvl_sup)}
+    lvl_sec = {level: f'{HASH * level} ' for level in range(lvl_min, lvl_sup)}
+    H1 = f'{HASH} '
+    cur_lvl = sec_lvl[H1]
     for is_appendix, a_root, level, text, slug in db:
         if not is_appendix:
-            display = f'{a_root}{"" if level == 1 else DOT * (level - 1)}'
+            tag = f'{HASH * level} '
+            # auto counters
+            nxt_lvl = sec_lvl[tag]
+            sec_cnt[tag] += 1
+            if nxt_lvl < cur_lvl:
+                for level in range(nxt_lvl + 1, lvl_sup):
+                    sec_cnt[lvl_sec[level]] = 0
+            sec_cnt_disp_vec = []
+            for s_tag, cnt in sec_cnt.items():
+                if cnt == 0:
+                    raise RuntimeError(f'ERROR: Counting is hard: {sec_cnt} at {tag} for {text}')
+                sec_cnt_disp_vec.append(str(cnt))
+                if s_tag == tag:
+                    break
+            sec_cnt_disp = FULL_STOP.join(sec_cnt_disp_vec)
+            # Hack to amend first level numeric section counter displays with a full stop - do not ask ...
+            if FULL_STOP not in sec_cnt_disp:
+                sec_cnt_disp += FULL_STOP
+            cur_lvl = nxt_lvl
+
+            display = sec_cnt_disp.rstrip(DOT)
         else:
             display, text = text.split(SPACE, 1)
-        print(f'    "{display}": "{text}",')
+        display_to_label[display] = slug
 
     BUILD_AT.mkdir(parents=True, exist_ok=True)
     dump_assembly(lines, BUILD_AT / 'tmp.md')
 
-    if DUMP_LUT:
-        with SECTION_DISPLAY_TO_LABEL_AT.open('wt', encoding=ENCODING) as handle:
-            json.dump(SECTION_DISPLAY_TO_LABEL, handle, indent=2)
-        SECTION_LABEL_TO_DISPLAY = {
-            label: disp for label, disp in sorted((label, disp) for disp, label in SECTION_DISPLAY_TO_LABEL.items())
-        }
-        with SECTION_LABEL_TO_DISPLAY_AT.open('wt', encoding=ENCODING) as handle:
-            json.dump(SECTION_LABEL_TO_DISPLAY, handle, indent=2)
+    with SECTION_DISPLAY_TO_LABEL_AT.open('wt', encoding=ENCODING) as handle:
+        json.dump(display_to_label, handle, indent=2)
 
     return 0
 
