@@ -336,8 +336,6 @@ def main(argv: list[str]) -> int:
         text_plus = section[level + 1:]
         if '<mark title="Ephemeral region marking">' in text_plus:
             text_plus = text_plus.replace('<mark title="Ephemeral region marking">', '').replace('</mark>', '')
-        if text_plus[:3] in ('A. ', 'B. ', 'C. ', 'D. '):
-            text_plus = 'Appendix ' + text_plus
         if text_plus.startswith('Appendix '):
             appr = text_plus.replace('Appendix ', '')[0]
             is_appendix = True
