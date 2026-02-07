@@ -16,7 +16,7 @@ The CONNACK Flags is a 1 byte field which contains flags specifying the behavior
 
 «<mark title="Requirement MQTT-SN-3.2.2-2"><a name="MQTT-SN-3.2.2-2"></a>The Client MUST validate that the reserved flags in the CONNACK packet are set to 0. If any of the reserved flags is not 0 it is a Malformed Packet</mark>»\[MQTT‑SN‑3.2.2‑2].
 
-#### **3.**2**.2.1 Session Present**
+#### Session Present
 
 **Position**: bit 0 of the CONNACK Flags. Labelled *Sess Pres* in Figure 3-6.
 
