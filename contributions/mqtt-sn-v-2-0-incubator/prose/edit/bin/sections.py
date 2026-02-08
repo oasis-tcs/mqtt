@@ -4,7 +4,7 @@ import pathlib
 import os
 import sys
 
-from inverso.implementation import process as process_inversion, nonjective
+from inverso.implementation import process as process_inversion, nonjective  # type: ignore
 from muuntuu.implementation import json_dump  # type: ignore
 
 # "Un-lit(t)er-al" the code
@@ -15,6 +15,7 @@ ENC_ERRS = 'ignore'
 FULL_STOP = '.'
 HASH = '#'
 NL = '\n'
+RS = chr(30)  # Record Separator
 SPACE = ' '
 
 PathLike = str | pathlib.Path
@@ -47,7 +48,7 @@ def load_document(path: PathLike) -> list[str]:
 def slugify(
     text: str,
     connector: str = DASH,
-    marker: str = chr(30),
+    marker: str = RS,
     gremlins: str = GREMLINS,
     policy: str = 'lower',
 ) -> str:
@@ -74,15 +75,19 @@ def slugify(
     )()
 
 
-def invert(source: dict[str, str], options: dict[str, bool | str] | None = None) -> dict[str, str]:
-    """Invert between and within the known formats."""
+def invert(
+    source: dict[str, str],
+    options: dict[str, bool | int | str] | None = None
+) -> dict[str, str]:
+    """Invert between and within the known formats (inverso API has a gap)."""
     if options is None:
-        options: dict[str, bool | str] = {}
-    auto_serial = options.get('auto_serial', False)
-    auto_serial_step = options.get('auto_serial_step', 1)
-    generator_caveat = options.get('generator_caveat', True)
-    marker_token = options.get('marker_token', None)
-    marker_is_value = options.get('marker_is_value', False)
+        options = {}
+    auto_serial: bool = options.get('auto_serial', False)
+    auto_serial_step: int = options.get('auto_serial_step', 1)
+    generator_caveat: bool = options.get('generator_caveat', True)
+    marker_token: str = options.get('marker_token', '')
+    marker_is_value: bool = options.get('marker_is_value', False)
+
     cleansed: dict[str, str] = {}
     for k, v in source.items():
         key, value, seen = process_inversion(k, v, auto_serial, marker_token, marker_is_value)
@@ -126,7 +131,6 @@ def main(argv: list[str]) -> int:
     clean_headings = False
     sections = []
     for line in lines:
-        DEBUG and print('IGNORED >>>>>>>', line.rstrip(NL)[:42], '...')
         if line.startswith(CLEAN_MD_START):
             clean_headings = True
 
@@ -138,7 +142,6 @@ def main(argv: list[str]) -> int:
 
         if line.startswith(HASH) and not in_fenced_block:
             if line.lstrip(HASH).startswith(SPACE):
-                DEBUG and print('SECTION >>>>>>>', line.rstrip(NL))
                 sections.append(line.rstrip(NL))
 
     print(f'Identified {len(sections)} relevant sections ...')
@@ -152,7 +155,10 @@ def main(argv: list[str]) -> int:
         if level > previous_level:
             if level - previous_level > 1:
                 defects += 1
-                print(f'! LEVEL_NEST_ERROR jumping from level {previous_level} directly to {level}')
+                print(
+                    f'! LEVEL_NEST_ERROR jumping from level {previous_level}'
+                    f' directly to {level}'
+                )
                 print(f'>>> {section}')
         previous_level = level
 
@@ -166,7 +172,7 @@ def main(argv: list[str]) -> int:
 
     db = []
     is_appendix = False
-    root: int | str = 0
+    root: int = 0
     appr = ''
     for section in sections:
         level = len(section.split(SPACE, 1)[0])
@@ -174,7 +180,11 @@ def main(argv: list[str]) -> int:
             root += 1
         text_plus = section[level + 1:]
         if '<mark title="Ephemeral region marking">' in text_plus:
-            text_plus = text_plus.replace('<mark title="Ephemeral region marking">', '').replace('</mark>', '')
+            text_plus = (
+                text_plus
+                .replace('<mark title="Ephemeral region marking">', '')
+                .replace('</mark>', '')
+            )
         if text_plus.startswith('Appendix '):
             appr = text_plus.replace('Appendix ', '')[0]
             is_appendix = True
@@ -184,25 +194,28 @@ def main(argv: list[str]) -> int:
             text = text_plus.rstrip(SPACE)
             slug = slugify(text)
         if not is_appendix:
-            a_root = root
+            a_root = str(root)
         else:
             a_root = appr
         db.append([is_appendix, a_root, level, text, slug])
 
     if DEBUG:
         for is_appendix, a_root, level, text, slug in db:
-            print(f'{"        " if not is_appendix else "APPENDIX"} | {a_root} | {(HASH * level).rjust(7)} "{text}" <-- {slug}')
+            print(
+                f'{"        " if not is_appendix else "APPENDIX"} | {a_root} |'
+                f' {(HASH * level).rjust(7)} "{text}" <-- {slug}'
+            )
 
     display_to_label = {}
     lvl_min, lvl_sup = 1, 7
-    sec_cnt = {f'{HASH * level} ': 0 for level in range(lvl_min, lvl_sup)}
-    sec_lvl = {f'{HASH * level} ': level for level in range(lvl_min, lvl_sup)}
-    lvl_sec = {level: f'{HASH * level} ' for level in range(lvl_min, lvl_sup)}
-    cur_lvl = sec_lvl[f'{HASH * 1} ']
+    level_domain: tuple[int, ...] = tuple(range(lvl_min, lvl_sup))
+    sec_cnt: dict[str, int] = {f'{HASH * level} ': 0 for level in level_domain}
+    sec_lvl: dict[str, int] = {f'{HASH * level} ': level for level in level_domain}
+    lvl_sec: dict[int, str] = {level: f'{HASH * level} ' for level in level_domain}
+    cur_lvl: int = sec_lvl[f'{HASH * 1} ']
     for is_appendix, a_root, level, text, slug in db:
         if not is_appendix:
             tag = f'{HASH * level} '
-            # auto counters
             nxt_lvl = sec_lvl[tag]
             sec_cnt[tag] += 1
             if nxt_lvl < cur_lvl:
@@ -216,9 +229,6 @@ def main(argv: list[str]) -> int:
                 if s_tag == tag:
                     break
             sec_cnt_disp = FULL_STOP.join(sec_cnt_disp_vec)
-            # Hack to amend first level numeric section counter displays with a full stop - do not ask ...
-            if FULL_STOP not in sec_cnt_disp:
-                sec_cnt_disp += FULL_STOP
             cur_lvl = nxt_lvl
 
             display = sec_cnt_disp.rstrip(DOT)
