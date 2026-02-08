@@ -622,6 +622,8 @@ and MQTT</a></li>
 String</a></li>
 </ul>
 </li>
+<li>1.9 <a href="#typographical-conventions">Typographical
+Conventions</a></li>
 </ul>
 </li>
 <li>2. <a href="#mqtt-sn-control-packet-format">MQTT-SN Control
@@ -2006,10 +2008,36 @@ IDEOGRAPH EXTENSION B character) is encoded as follows:</p>
 </blockquote>
 <p><em>Figure 1-2 -- Fixed Length UTF-8 Encoded String informative
 example</em></p>
-<blockquote>
-<p><img src="images/image31.png" />
+<p><mark title="Ephemeral region marking">[figure below is part of
+informative example]</mark> <img src="images/image31.png" />
 <!-- .width="6.5in", .height="2.5972222222222223in" --></p>
+<h2 id="19-typographical-conventions-">1.9 Typographical
+Conventions <a id='typographical-conventions'></a></h2>
+<p>Keywords defined by this specification use this
+<code>monospaced</code> font.</p>
+<pre><code>    Normative source code uses this paragraph style.</code></pre>
+<p>Text following the special symbol («) – an opening Guillemet (or
+French quotation mark) – within this specification identifies
+automatically testable requirements to aid assertion tools. Every
+such statement is separated from the following text with the
+special end symbol (») – a closing Guillemet and has been assigned
+a reference that follows that end symbol as the pattern
+<code>[MQTT‑SN‑section#-local#]</code>.</p>
+<p>These normative requirements are tabulated in <a href=
+"#appendix-b.-mandatory-normative-statements-informative">Appendix
+B. "Mandatory normative statements (informative)"</a>.</p>
+<p>All examples in this document are informative only.</p>
+<p>All other text is normative unless otherwise labeled e.g. like
+the following informative comment:</p>
+<blockquote>
+<p>This is a pure informative comment that may be present, because
+the information conveyed is deemed useful advice or common pitfalls
+learned from implementer or operator experience and often given
+including the rationale.</p>
 </blockquote>
+<hr />
+<p>This document adheres to the Modern Language Association (MLA)
+style guidelines for formatting titles and terms.</p>
 <h1 id="2-mqtt-sn-control-packet-format-">2. MQTT-SN Control Packet
 format <a id='mqtt-sn-control-packet-format'></a></h1>
 <h2 id="21-structure-of-an-mqtt-sn-control-packet-">2.1 Structure
@@ -11208,10 +11236,9 @@ Server to support a separate connection for each active Client.
 Some MQTT Server implementations might impose a limitation on the
 number of concurrent connections that they support.</p>
 <p><em>Figure C-1 -- Transparent Gateway</em></p>
-<blockquote>
-<p><img src="images/image40.png" />
+<p><mark title="Ephemeral region marking">[figure below is part of
+informative example]</mark> <img src="images/image40.png" />
 <!-- .width="3.994792213473316in", .height="2.6661472003499562in" --></p>
-</blockquote>
 <p>Because PUBWOS packets could be sent at any time by Clients with
 no Virtual Connection, a Transparent Gateway would need to maintain
 a dedicated MQTT connection with the MQTT Server to support those

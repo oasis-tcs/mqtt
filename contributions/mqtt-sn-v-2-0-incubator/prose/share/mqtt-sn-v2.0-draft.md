@@ -111,6 +111,7 @@ The name \"OASIS\" is a trademark of [[OASIS]](https://www.oasis-open.org/), the
 		1.8.2 [Two Byte Integer](#two-byte-integer)  
 		1.8.3 [Four Byte Integer](#four-byte-integer)  
 		1.8.4 [UTF-8 Encoded String](#utf-8-encoded-string)  
+	1.9 [Typographical Conventions](#typographical-conventions)  
 2. [MQTT-SN Control Packet format](#mqtt-sn-control-packet-format)  
 	2.1 [Structure of an MQTT-SN Control Packet](#structure-of-an-mqtt-sn-control-packet)  
 		2.1.1 [Packet Header](#packet-header)  
@@ -846,7 +847,35 @@ UTF-8 Encoded Strings SHOULD NOT include the Unicode \[Unicode\] code points lis
 
 *Figure 1-2 -- Fixed Length UTF-8 Encoded String informative example*
 
-> ![](images/image31.png)<!-- .width="6.5in", .height="2.5972222222222223in" -->
+<mark title="Ephemeral region marking">\[figure below is part of informative example\]</mark>
+![](images/image31.png)<!-- .width="6.5in", .height="2.5972222222222223in" -->
+
+## 1.9 Typographical Conventions <a id='typographical-conventions'></a>
+
+Keywords defined by this specification use this `monospaced` font.
+
+```
+    Normative source code uses this paragraph style.
+```
+
+Text following the special symbol («) – an opening Guillemet (or French quotation mark) – within this specification
+identifies automatically testable requirements to aid assertion tools.
+Every such statement is separated from the following text with the special end symbol (») – a closing Guillemet and
+has been assigned a reference that follows that end symbol as the pattern `[MQTT‑SN‑section#-local#]`.
+
+These normative requirements are tabulated
+in [Appendix B. "Mandatory normative statements (informative)"](#appendix-b.-mandatory-normative-statements-informative).
+
+All examples in this document are informative only.
+
+All other text is normative unless otherwise labeled e.g. like the following informative comment:
+
+> This is a pure informative comment that may be present, because the information conveyed is deemed useful advice or
+> common pitfalls learned from implementer or operator experience and often given including the rationale.
+
+-------
+
+This document adheres to the Modern Language Association (MLA) style guidelines for formatting titles and terms.
 
 # 2. MQTT-SN Control Packet format <a id='mqtt-sn-control-packet-format'></a>
 
@@ -4471,7 +4500,8 @@ Although the implementation of the Transparent Gateway may be somewhat simpler t
 
 *Figure C-1 -- Transparent Gateway*
 
-> ![](images/image40.png)<!-- .width="3.994792213473316in", .height="2.6661472003499562in" -->
+<mark title="Ephemeral region marking">\[figure below is part of informative example\]</mark>
+![](images/image40.png)<!-- .width="3.994792213473316in", .height="2.6661472003499562in" -->
 
 Because PUBWOS packets could be sent at any time by Clients with no Virtual Connection, a Transparent Gateway would need to maintain a dedicated MQTT connection with the MQTT Server to support those packets.
 
