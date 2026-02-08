@@ -900,11 +900,11 @@ Each MQTT-SN Control Packet contains a Header of format 1 or format 2 as shown b
 
 *Figure 2-2 -- Packet Header Format 1*
 
-![](images/image12.png)<!-- .width="6.5in", .height="0.7222222222222222in" -->
+![Packet Header Format 1](images/image12.png "Packet Header Format 1")<!-- .width="6.5in", .height="0.7222222222222222in" -->
 
 *Figure 2-3 -- Packet Header Format 2*
 
-![](images/image16.png)<!-- .width="6.5in", .height="1.1944444444444444in" -->
+![Packet Header Format 2](images/image16.png "Packet Header Format 2")<!-- .width="6.5in", .height="1.1944444444444444in" -->
 
 ### 2.1.2 Length <a id='length'></a>
 
@@ -926,37 +926,37 @@ The MQTT-SN Control Packet Type field is a 1-byte unsigned value, the values are
 
 *Figure 2-4 -- MQTT-SN Control Packet Types*
 
-| Name | Value | Direction of flow | Description |
-| :---: | :---: | :---: | ----- |
-| **Reserved** | 0x00 | Forbidden | Reserved |
-| **CONNECT** | 0x01 | Client to Server | Virtual Connection request |
-| **CONNACK** | 0x02 | Server to Client | Virtual Connection acknowledgement |
-| **PUBLISH** | 0x03 | Client to Server or Server to Client | Publish message |
-| **PUBACK** | 0x04 | Client to Server or Server to Client | Publish acknowledgment (QoS 1\) or Publish error (Any QoS). |
-| **PUBREC** | 0x05 | Client to Server or Server to Client | Publish received (QoS 2 delivery part 1\) |
-| **PUBREL** | 0x06 | Client to Server or Server to Client | Publish release (QoS 2 delivery part 2\) |
-| **PUBCOMP** | 0x07 | Client to Server or Server to Client | Publish complete (QoS 2 delivery part 3\) |
-| **SUBSCRIBE** | 0x08 | Client to Server | Subscribe request |
-| **SUBACK** | 0x09 | Server to Client | Subscribe acknowledgment |
-| **UNSUBSCRIBE** | 0x0A | Client to Server | Unsubscribe request |
-| **UNSUBACK** | 0x0B | Server to Client | Unsubscribe acknowledgment |
-| **PINGREQ** | 0x0C | Client to Server | PING request |
-| **PINGRESP** | 0x0D | Server to Client | PING response |
-| **DISCONNECT** | 0x0E | Client to Server or Server to Client | Disconnect notification |
-| **AUTH** | 0x0F | Client to Server or Server to Client | Authentication handshake |
-| **REGISTER** | 0x10 | Client to Server | Request topic alias |
-| **REGACK** | 0x11 | Server to Client | Supply topic alias |
-| **PUBWOS** | 0x12 | Client to Server or Server to Client | Publish packet for out of session messages which have no session on the receiver |
-| **SLEEPREQ** | 0x13 | Client to Server | Sleep request |
-| **SLEEPRESP** | 0x14 | Server to Client | Sleep response |
-| **WAKEUP**  | 0x15 | Server to Client | Wake up request |
-| **ADVERTISE** | 0x16 | Server to Clients | Advertise the Server presence |
-| **SEARCHGW** | 0x17 | Client to Servers | Client GWINFO request |
-| **GWINFO** | 0x18 | Server to Client | Response to a SEARCHGW |
-| **Reserved**  | 0x19-0xFC | Forbidden | Reserved |
-| **Forwarder Encapsulation** | 0xFD | Forwarder to Client or Forwarder to Server | MQTT-SN packet envelope to add addressing information for Forwarders |
-| **Session Encapsulation** | 0xFE | Client to Server | MQTT-SN Packet envelope to add session identification |
-| **Protection Encapsulation** | 0xFF | Client to Server or Server to Client | A protection envelope that can encapsulate any MQTT-SN packet with the exception of Forwarder-Encapsulation packet (0xFE) |
+|             Name             |   Value   |             Direction of flow              | Description                                                                                                               |
+|:----------------------------:|:---------:|:------------------------------------------:|---------------------------------------------------------------------------------------------------------------------------|
+|         **Reserved**         |   0x00    |                 Forbidden                  | Reserved                                                                                                                  |
+|         **CONNECT**          |   0x01    |              Client to Server              | Virtual Connection request                                                                                                |
+|         **CONNACK**          |   0x02    |              Server to Client              | Virtual Connection acknowledgement                                                                                        |
+|         **PUBLISH**          |   0x03    |    Client to Server or Server to Client    | Publish message                                                                                                           |
+|          **PUBACK**          |   0x04    |    Client to Server or Server to Client    | Publish acknowledgment (QoS 1\) or Publish error (Any QoS).                                                               |
+|          **PUBREC**          |   0x05    |    Client to Server or Server to Client    | Publish received (QoS 2 delivery part 1\)                                                                                 |
+|          **PUBREL**          |   0x06    |    Client to Server or Server to Client    | Publish release (QoS 2 delivery part 2\)                                                                                  |
+|         **PUBCOMP**          |   0x07    |    Client to Server or Server to Client    | Publish complete (QoS 2 delivery part 3\)                                                                                 |
+|        **SUBSCRIBE**         |   0x08    |              Client to Server              | Subscribe request                                                                                                         |
+|          **SUBACK**          |   0x09    |              Server to Client              | Subscribe acknowledgment                                                                                                  |
+|       **UNSUBSCRIBE**        |   0x0A    |              Client to Server              | Unsubscribe request                                                                                                       |
+|         **UNSUBACK**         |   0x0B    |              Server to Client              | Unsubscribe acknowledgment                                                                                                |
+|         **PINGREQ**          |   0x0C    |              Client to Server              | PING request                                                                                                              |
+|         **PINGRESP**         |   0x0D    |              Server to Client              | PING response                                                                                                             |
+|        **DISCONNECT**        |   0x0E    |    Client to Server or Server to Client    | Disconnect notification                                                                                                   |
+|           **AUTH**           |   0x0F    |    Client to Server or Server to Client    | Authentication handshake                                                                                                  |
+|         **REGISTER**         |   0x10    |              Client to Server              | Request topic alias                                                                                                       |
+|          **REGACK**          |   0x11    |              Server to Client              | Supply topic alias                                                                                                        |
+|          **PUBWOS**          |   0x12    |    Client to Server or Server to Client    | Publish packet for out of session messages which have no session on the receiver                                          |
+|         **SLEEPREQ**         |   0x13    |              Client to Server              | Sleep request                                                                                                             |
+|        **SLEEPRESP**         |   0x14    |              Server to Client              | Sleep response                                                                                                            |
+|          **WAKEUP**          |   0x15    |              Server to Client              | Wake up request                                                                                                           |
+|        **ADVERTISE**         |   0x16    |             Server to Clients              | Advertise the Server presence                                                                                             |
+|         **SEARCHGW**         |   0x17    |             Client to Servers              | Client GWINFO request                                                                                                     |
+|          **GWINFO**          |   0x18    |              Server to Client              | Response to a SEARCHGW                                                                                                    |
+|         **Reserved**         | 0x19-0xFC |                 Forbidden                  | Reserved                                                                                                                  |
+| **Forwarder Encapsulation**  |   0xFD    | Forwarder to Client or Forwarder to Server | MQTT-SN packet envelope to add addressing information for Forwarders                                                      |
+|  **Session Encapsulation**   |   0xFE    |              Client to Server              | MQTT-SN Packet envelope to add session identification                                                                     |
+| **Protection Encapsulation** |   0xFF    |    Client to Server or Server to Client    | A protection envelope that can encapsulate any MQTT-SN packet with the exception of Forwarder-Encapsulation packet (0xFE) |
 
 ## 2.2 Packet Identifier <a id='packet-identifier'></a>
 
@@ -964,34 +964,34 @@ The Variable Header component of many of the MQTT-SN Control Packet types includ
 
 *Figure 2-5 -- Packets with Packet Identifier*
 
-| MQTT-SN Control Packet | Packet Identifier field |
-| ----- | ----- |
-| ADVERTISE | NO |
-| AUTH | YES |
-| CONNACK | YES |
-| CONNECT | YES |
-| DISCONNECT | OPTIONAL |
-| FORWARDER ENCAPSULATION | NO |
-| GWINFO | NO |
-| PINGREQ | YES |
-| PINGRESP | YES |
-| PROTECTION ENCAPSULATION | NO |
-| PUBACK | YES |
-| PUBCOMP | YES |
-| PUBLISH | YES (If QoS \> 0\) |
-| PUBREC | YES |
-| PUBREL | YES |
-| PUBWOS | NO |
-| REGACK | YES |
-| REGISTER | YES |
-| SEARCHGW | NO |
-| SLEEPREQ | YES |
-| SLEEPRESP | YES |
-| SUBACK | YES |
-| SUBSCRIBE | YES |
-| UNSUBACK | YES |
-| UNSUBSCRIBE | YES |
-| WAKEUP | NO |
+| MQTT-SN Control Packet   | Packet Identifier field |
+|:-------------------------|:------------------------|
+| ADVERTISE                | NO                      |
+| AUTH                     | YES                     |
+| CONNACK                  | YES                     |
+| CONNECT                  | YES                     |
+| DISCONNECT               | OPTIONAL                |
+| FORWARDER ENCAPSULATION  | NO                      |
+| GWINFO                   | NO                      |
+| PINGREQ                  | YES                     |
+| PINGRESP                 | YES                     |
+| PROTECTION ENCAPSULATION | NO                      |
+| PUBACK                   | YES                     |
+| PUBCOMP                  | YES                     |
+| PUBLISH                  | YES (If QoS \> 0\)      |
+| PUBREC                   | YES                     |
+| PUBREL                   | YES                     |
+| PUBWOS                   | NO                      |
+| REGACK                   | YES                     |
+| REGISTER                 | YES                     |
+| SEARCHGW                 | NO                      |
+| SLEEPREQ                 | YES                     |
+| SLEEPRESP                | YES                     |
+| SUBACK                   | YES                     |
+| SUBSCRIBE                | YES                     |
+| UNSUBACK                 | YES                     |
+| UNSUBSCRIBE              | YES                     |
+| WAKEUP                   | NO                      |
 
 «<mark title="Requirement MQTT-SN-2.2-1"><a name="MQTT-SN-2.2-1"></a>Each time a Client sends a new MQTT-SN Control Packet which is identified in Figure 2-5 as requiring a Packet Identifier, it MUST assign it a non-zero Packet Identifier that is currently unused</mark>»\[MQTT‑SN‑2.2‑1].
 
@@ -1011,7 +1011,8 @@ The Client and Server assign Packet Identifiers independently of each other. As 
 >
 > It is possible for a Client to send a PUBLISH packet with Packet Identifier 0x1234 and then receive a different PUBLISH packet with Packet Identifier 0x1234 from its Server before it receives a PUBACK for the PUBLISH packet that it sent.
 
-*Figure 2-6 - Publishes with the same Packet Identifier*![](images/image13.png)<!-- .width="5.2in", .height="3.2303029308836395in" -->
+*Figure 2-6 - Publishes with the same Packet Identifier*
+![Publishes with the same Packet Identifier](images/image13.png "Publishes with the same Packet Identifier")<!-- .width="5.2in", .height="3.2303029308836395in" -->
 
 ## 2.3 Reason Code <a id='reason-code'></a>
 
@@ -1021,64 +1022,64 @@ The Reason Codes share a common set of values as shown below.
 
 *Figure 2-7 -- Reason Codes*
 
-| Identifier |  | Name | Packets  | Description  |
-| ----- | ----- | ----- | ----- | ----- |
-| Dec | Hex |  |  |  |
-| 0 | 0x00 | Success | CONNACK, SUBACK, UNSUBACK, REGACK, PUBACK, PUBREC, PUBREL, PUBCOMP, SLEEPRESP, AUTH (server only) | The operation was successful. |
-| 0 | 0x00 | Normal disconnection | DISCONNECT | Delete the Virtual Connection normally. Do not send the Will Message. |
-| 0 | 0x00 | Granted QoS 0 | SUBACK | The subscription is accepted and the maximum QoS sent will be QoS 0\. This might be a lower QoS than was requested. |
-| 1 | 0x01 | Granted QoS 1 | SUBACK | The subscription is accepted and the maximum QoS sent will be QoS 1\. This might be a lower QoS than was requested. |
-| 2 | 0x02 | Granted QoS 2 | SUBACK | The subscription is accepted and any received QoS will be sent to this subscription. |
-| 4 | 0x04 | Disconnect with will message | DISCONNECT (client only) | The Client wishes to disconnect but requires that the Server also publishes its Will Message.  |
-| 16 | 0x10 | No matching subscribers | PUBACK, PUBREC | The Application Message is accepted but there are no subscribers. If the Server knows that there are no matching subscribers, it MAY use this Reason Code instead of 0x00 (Success). |
-| 17 | 0x11 | No subscription existed | UNSUBACK | No matching Topic Filter is being used by the Client. |
-| 24 | 0x18 | Continue authentication | AUTH | Continue the authentication with another step. |
-| 25 | 0x19 | Re-authenticate | AUTH (client only) | Initiate a re-authentication. |
-| 26 | 0x1A | Topic Alias Exists | REGACK | A Session Topic Alias was requested, but a Session or Predefined Topic Alias already exists. (MQTT-SN only) |
-| 128 | 0x80 | Unspecified error | CONNACK, PUBACK, PUBREC, SUBACK, UNSUBACK, DISCONNECT | The receiver does not accept the request but either does not want to reveal the reason, or it does not match one of the other values. |
-| 129 | 0x81 | Malformed packet | CONNACK, DISCONNECT | The received packet does not conform to this specification. |
-| 130 | 0x82 | Protocol error | CONNACK, DISCONNECT | An unexpected or out of order packet was received. |
-| 131 | 0x83 | Implementation specific error | CONNACK, PUBACK, PUBREC, REGACK, SUBACK, UNSUBACK, DISCONNECT | The packet received is valid but cannot be processed by this implementation. |
-| 132 | 0x84 | Unsupported Protocol Version | CONNACK | The Server does not support the version of the MQTT or MQTT-SN protocol requested by the Client. |
-| 133 | 0x85 | Client identifier not valid | CONNACK | The Client Identifier is a valid string but is not allowed by the Server. |
-| 134 | 0x86 | Bad user name or password | CONNACK | The Server does not accept the User Name or Password specified by the Client  |
-| 135 | 0x87 | Not authorized | CONNACK, PUBACK, PUBREC, REGACK, SUBACK, UNSUBACK, DISCONNECT (server only) | The request is not authorized. |
-| 136 | 0x88 | Server unavailable | CONNACK | The MQTT-SN Server is not available or, in the case of a Transparent gateway, the MQTT server is not available. |
-| 137 | 0x89 | Server busy | CONNACK, DISCONNECT (server only) | The Server is busy and cannot continue processing requests from this Client. |
-| 138 | 0x8A | Banned | CONNACK | This Client has been banned by administrative action. Contact the server administrator. |
-| 139 | 0x8B | Server shutting down | DISCONNECT (server only) | The Server is shutting down.  |
-| 140 | 0x8C | Bad authentication method | CONNACK, DISCONNECT | The authentication method is not supported or does not match the authentication method currently in use. |
-| 141 | 0x8D | Keep alive timeout | DISCONNECT (server only) | The Connection is closed because no packet has been received for 1.5 times the Keepalive time. |
-| 142 | 0x8E | Session taken over | DISCONNECT (server only) | Another Connection using the same Client Identifier has connected causing this Connection to be closed. |
-| 143 | 0x8F | Topic filter invalid | SUBACK, UNSUBACK, DISCONNECT (server only) | The Topic Filter is correctly formed, but is not accepted by this Server. |
-| 144 | 0x90 | Topic name invalid | CONNACK, PUBACK, PUBREC, DISCONNECT (server only) | The Topic Name is correctly formed, but is not accepted by this Client or Server. |
-| 145 | 0x91 | Packet identifier in use | PUBACK, PUBREC, SUBACK, UNSUBACK, REGACK, PINGRESP, SLEEPRESP | The specified Packet Identifier is already in use. |
-| 146 | 0x92 | Packet identifier not found | PUBREL, PUBCOMP | The Packet Identifier is not known. This is not an error during recovery, but at other times indicates a mismatch between the Session State on the Client and Server.  |
-| 147 | 0x93 | Receive maximum exceeded | DISCONNECT | The Client or Server has received more than Receive Maximum publication for which it has not sent PUBACK or PUBCOMP.  |
-| 148 | 0x94 | Topic alias invalid | DISCONNECT (server only) | The Client or Server has received a PUBLISH packet containing a Topic Alias which is greater than the Maximum Topic Alias it sent in the CONNECT or CONNACK packet.  (Transparent gateway only) |
-| 149 | 0x95 | Packet too large | CONNACK, DISCONNECT | The packet size is greater than Maximum Packet Size for this Client or Server. |
-| 150 | 0x96 | Packet rate too high | DISCONNECT | The received data rate is too high. |
-| 151 | 0x97 | Quota exceeded | REGACK, SUBACK, DISCONNECT | An implementation or administrative imposed limit has been exceeded. |
-| 152 | 0x98 | Administrative action | DISCONNECT | The Virtual Connection is deleted due to an administrative action. |
-| 153 | 0x99 | Payload format invalid | PUBACK, PUBREC, DISCONNECT (server only) | The MQTT payload format does not match the one specified by the Payload Format Indicator. (Transparent gateway only) |
-| 154 | 0x9A | Retain not supported | CONNACK, DISCONNECT (server only) | The MQTT Server does not support retained messages. (Transparent gateway only) |
-| 155 | 0x9B | QoS not supported | CONNACK, DISCONNECT (server only) | The Client specified a QoS greater than the QoS specified in a Maximum QoS in the MQTT CONNACK. (Transparent gateway only) |
-| 156 | 0x9C | Use another server | CONNACK, DISCONNECT (server only) | The Client should temporarily change its Server. |
-| 157 | 0x9D | Server moved | CONNACK, DISCONNECT (server only) | The Server is moved and the Client should permanently change its server location. |
-| 158 | 0x9E | Shared subscription not supported | SUBACK, DISCONNECT (server only) | The MQTT Server does not support Shared Subscriptions. (Transparent gateway only) |
-| 159 | 0x9F | Connection rate exceeded | CONNACK, DISCONNECT (server only) | This Virtual Connection is deleted because the connection rate is too high. |
-| 160 | 0xAD | Maximum connect time | DISCONNECT (server only) | The maximum connection time authorized for this Virtual Connection has been exceeded. |
-| 161 | 0xA1 | Subscription identifiers not supported | SUBACK, DISCONNECT (server only) | The MQTT Server does not support Subscription Identifiers; the subscription is not accepted. (Transparent gateway only) |
-| 162 | 0xA2 | Wildcard subscription not supported | SUBACK, DISCONNECT (server only) | The MQTT Server does not support Wildcard Subscriptions; the subscription is not accepted. (Transparent Gateway only) |
-| 230 | 0xE6 | Only PROTECTION packet supported (Note 1\) | Any packet except PROTECTION and Forwarder Encapsulation | The Receiver was expecting a packet to be Protection Encapsulated.  (MQTT-SN only) |
-| 231 | 0xE7 | Protection scheme invalid | DISCONNECT | Specific to MQTT-SN |
-| 232 | 0xE8 | Unknown Sender Id | DISCONNECT | Specific to MQTT-SN |
-| 240 | 0xF0 | Unknown Topic Alias | PUBACK, PUBREC, SUBACK, UNSUBACK, REGACK | Specific to MQTT-SN |
-| 241 | 0xF1 | Congestion | SUBACK, REGACK, CONNACK, PUBACK, PUBREC | Try again later. See [C.3 Server Congestion](#c.2-server-congestion) (MQTT-SN only) |
-| 242 | 0xF2 | Protection packet not supported | DISCONNECT | Specific to MQTT-SN |
-| 243 | 0xF3 | Forwarder Encapsulation not supported | DISCONNECT | Specific to MQTT-SN |
-| 244 | 0xF4 | No Virtual Connection exists | DISCONNECT | Specific to MQTT-SN |
-| 245 \- 255 | 0xF5 \- 0xFF | Reserved for MQTT-SN |  | Specific to MQTT-SN |
+| Identifier |              | Name                                       | Packets                                                                                           | Description                                                                                                                                                                                     |
+|------------|--------------|--------------------------------------------|---------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Dec        | Hex          |                                            |                                                                                                   |                                                                                                                                                                                                 |
+| 0          | 0x00         | Success                                    | CONNACK, SUBACK, UNSUBACK, REGACK, PUBACK, PUBREC, PUBREL, PUBCOMP, SLEEPRESP, AUTH (server only) | The operation was successful.                                                                                                                                                                   |
+| 0          | 0x00         | Normal disconnection                       | DISCONNECT                                                                                        | Delete the Virtual Connection normally. Do not send the Will Message.                                                                                                                           |
+| 0          | 0x00         | Granted QoS 0                              | SUBACK                                                                                            | The subscription is accepted and the maximum QoS sent will be QoS 0\. This might be a lower QoS than was requested.                                                                             |
+| 1          | 0x01         | Granted QoS 1                              | SUBACK                                                                                            | The subscription is accepted and the maximum QoS sent will be QoS 1\. This might be a lower QoS than was requested.                                                                             |
+| 2          | 0x02         | Granted QoS 2                              | SUBACK                                                                                            | The subscription is accepted and any received QoS will be sent to this subscription.                                                                                                            |
+| 4          | 0x04         | Disconnect with will message               | DISCONNECT (client only)                                                                          | The Client wishes to disconnect but requires that the Server also publishes its Will Message.                                                                                                   |
+| 16         | 0x10         | No matching subscribers                    | PUBACK, PUBREC                                                                                    | The Application Message is accepted but there are no subscribers. If the Server knows that there are no matching subscribers, it MAY use this Reason Code instead of 0x00 (Success).            |
+| 17         | 0x11         | No subscription existed                    | UNSUBACK                                                                                          | No matching Topic Filter is being used by the Client.                                                                                                                                           |
+| 24         | 0x18         | Continue authentication                    | AUTH                                                                                              | Continue the authentication with another step.                                                                                                                                                  |
+| 25         | 0x19         | Re-authenticate                            | AUTH (client only)                                                                                | Initiate a re-authentication.                                                                                                                                                                   |
+| 26         | 0x1A         | Topic Alias Exists                         | REGACK                                                                                            | A Session Topic Alias was requested, but a Session or Predefined Topic Alias already exists. (MQTT-SN only)                                                                                     |
+| 128        | 0x80         | Unspecified error                          | CONNACK, PUBACK, PUBREC, SUBACK, UNSUBACK, DISCONNECT                                             | The receiver does not accept the request but either does not want to reveal the reason, or it does not match one of the other values.                                                           |
+| 129        | 0x81         | Malformed packet                           | CONNACK, DISCONNECT                                                                               | The received packet does not conform to this specification.                                                                                                                                     |
+| 130        | 0x82         | Protocol error                             | CONNACK, DISCONNECT                                                                               | An unexpected or out of order packet was received.                                                                                                                                              |
+| 131        | 0x83         | Implementation specific error              | CONNACK, PUBACK, PUBREC, REGACK, SUBACK, UNSUBACK, DISCONNECT                                     | The packet received is valid but cannot be processed by this implementation.                                                                                                                    |
+| 132        | 0x84         | Unsupported Protocol Version               | CONNACK                                                                                           | The Server does not support the version of the MQTT or MQTT-SN protocol requested by the Client.                                                                                                |
+| 133        | 0x85         | Client identifier not valid                | CONNACK                                                                                           | The Client Identifier is a valid string but is not allowed by the Server.                                                                                                                       |
+| 134        | 0x86         | Bad user name or password                  | CONNACK                                                                                           | The Server does not accept the User Name or Password specified by the Client                                                                                                                    |
+| 135        | 0x87         | Not authorized                             | CONNACK, PUBACK, PUBREC, REGACK, SUBACK, UNSUBACK, DISCONNECT (server only)                       | The request is not authorized.                                                                                                                                                                  |
+| 136        | 0x88         | Server unavailable                         | CONNACK                                                                                           | The MQTT-SN Server is not available or, in the case of a Transparent gateway, the MQTT server is not available.                                                                                 |
+| 137        | 0x89         | Server busy                                | CONNACK, DISCONNECT (server only)                                                                 | The Server is busy and cannot continue processing requests from this Client.                                                                                                                    |
+| 138        | 0x8A         | Banned                                     | CONNACK                                                                                           | This Client has been banned by administrative action. Contact the server administrator.                                                                                                         |
+| 139        | 0x8B         | Server shutting down                       | DISCONNECT (server only)                                                                          | The Server is shutting down.                                                                                                                                                                    |
+| 140        | 0x8C         | Bad authentication method                  | CONNACK, DISCONNECT                                                                               | The authentication method is not supported or does not match the authentication method currently in use.                                                                                        |
+| 141        | 0x8D         | Keep alive timeout                         | DISCONNECT (server only)                                                                          | The Connection is closed because no packet has been received for 1.5 times the Keepalive time.                                                                                                  |
+| 142        | 0x8E         | Session taken over                         | DISCONNECT (server only)                                                                          | Another Connection using the same Client Identifier has connected causing this Connection to be closed.                                                                                         |
+| 143        | 0x8F         | Topic filter invalid                       | SUBACK, UNSUBACK, DISCONNECT (server only)                                                        | The Topic Filter is correctly formed, but is not accepted by this Server.                                                                                                                       |
+| 144        | 0x90         | Topic name invalid                         | CONNACK, PUBACK, PUBREC, DISCONNECT (server only)                                                 | The Topic Name is correctly formed, but is not accepted by this Client or Server.                                                                                                               |
+| 145        | 0x91         | Packet identifier in use                   | PUBACK, PUBREC, SUBACK, UNSUBACK, REGACK, PINGRESP, SLEEPRESP                                     | The specified Packet Identifier is already in use.                                                                                                                                              |
+| 146        | 0x92         | Packet identifier not found                | PUBREL, PUBCOMP                                                                                   | The Packet Identifier is not known. This is not an error during recovery, but at other times indicates a mismatch between the Session State on the Client and Server.                           |
+| 147        | 0x93         | Receive maximum exceeded                   | DISCONNECT                                                                                        | The Client or Server has received more than Receive Maximum publication for which it has not sent PUBACK or PUBCOMP.                                                                            |
+| 148        | 0x94         | Topic alias invalid                        | DISCONNECT (server only)                                                                          | The Client or Server has received a PUBLISH packet containing a Topic Alias which is greater than the Maximum Topic Alias it sent in the CONNECT or CONNACK packet.  (Transparent gateway only) |
+| 149        | 0x95         | Packet too large                           | CONNACK, DISCONNECT                                                                               | The packet size is greater than Maximum Packet Size for this Client or Server.                                                                                                                  |
+| 150        | 0x96         | Packet rate too high                       | DISCONNECT                                                                                        | The received data rate is too high.                                                                                                                                                             |
+| 151        | 0x97         | Quota exceeded                             | REGACK, SUBACK, DISCONNECT                                                                        | An implementation or administrative imposed limit has been exceeded.                                                                                                                            |
+| 152        | 0x98         | Administrative action                      | DISCONNECT                                                                                        | The Virtual Connection is deleted due to an administrative action.                                                                                                                              |
+| 153        | 0x99         | Payload format invalid                     | PUBACK, PUBREC, DISCONNECT (server only)                                                          | The MQTT payload format does not match the one specified by the Payload Format Indicator. (Transparent gateway only)                                                                            |
+| 154        | 0x9A         | Retain not supported                       | CONNACK, DISCONNECT (server only)                                                                 | The MQTT Server does not support retained messages. (Transparent gateway only)                                                                                                                  |
+| 155        | 0x9B         | QoS not supported                          | CONNACK, DISCONNECT (server only)                                                                 | The Client specified a QoS greater than the QoS specified in a Maximum QoS in the MQTT CONNACK. (Transparent gateway only)                                                                      |
+| 156        | 0x9C         | Use another server                         | CONNACK, DISCONNECT (server only)                                                                 | The Client should temporarily change its Server.                                                                                                                                                |
+| 157        | 0x9D         | Server moved                               | CONNACK, DISCONNECT (server only)                                                                 | The Server is moved and the Client should permanently change its server location.                                                                                                               |
+| 158        | 0x9E         | Shared subscription not supported          | SUBACK, DISCONNECT (server only)                                                                  | The MQTT Server does not support Shared Subscriptions. (Transparent gateway only)                                                                                                               |
+| 159        | 0x9F         | Connection rate exceeded                   | CONNACK, DISCONNECT (server only)                                                                 | This Virtual Connection is deleted because the connection rate is too high.                                                                                                                     |
+| 160        | 0xAD         | Maximum connect time                       | DISCONNECT (server only)                                                                          | The maximum connection time authorized for this Virtual Connection has been exceeded.                                                                                                           |
+| 161        | 0xA1         | Subscription identifiers not supported     | SUBACK, DISCONNECT (server only)                                                                  | The MQTT Server does not support Subscription Identifiers; the subscription is not accepted. (Transparent gateway only)                                                                         |
+| 162        | 0xA2         | Wildcard subscription not supported        | SUBACK, DISCONNECT (server only)                                                                  | The MQTT Server does not support Wildcard Subscriptions; the subscription is not accepted. (Transparent Gateway only)                                                                           |
+| 230        | 0xE6         | Only PROTECTION packet supported (Note 1\) | Any packet except PROTECTION and Forwarder Encapsulation                                          | The Receiver was expecting a packet to be Protection Encapsulated.  (MQTT-SN only)                                                                                                              |
+| 231        | 0xE7         | Protection scheme invalid                  | DISCONNECT                                                                                        | Specific to MQTT-SN                                                                                                                                                                             |
+| 232        | 0xE8         | Unknown Sender Id                          | DISCONNECT                                                                                        | Specific to MQTT-SN                                                                                                                                                                             |
+| 240        | 0xF0         | Unknown Topic Alias                        | PUBACK, PUBREC, SUBACK, UNSUBACK, REGACK                                                          | Specific to MQTT-SN                                                                                                                                                                             |
+| 241        | 0xF1         | Congestion                                 | SUBACK, REGACK, CONNACK, PUBACK, PUBREC                                                           | Try again later. See [C.3 Server Congestion](#c.2-server-congestion) (MQTT-SN only)                                                                                                             |
+| 242        | 0xF2         | Protection packet not supported            | DISCONNECT                                                                                        | Specific to MQTT-SN                                                                                                                                                                             |
+| 243        | 0xF3         | Forwarder Encapsulation not supported      | DISCONNECT                                                                                        | Specific to MQTT-SN                                                                                                                                                                             |
+| 244        | 0xF4         | No Virtual Connection exists               | DISCONNECT                                                                                        | Specific to MQTT-SN                                                                                                                                                                             |
+| 245 \- 255 | 0xF5 \- 0xFF | Reserved for MQTT-SN                       |                                                                                                   | Specific to MQTT-SN                                                                                                                                                                             |
 
 Note(s):
 
@@ -1092,12 +1093,12 @@ Several packets refer to a Topic Type in their flags. This is a 2-bit field whic
 
 *Figure 2-8 -- Topic Types*
 
-|  | Topic Type Value | Name | Description |
-| ----- | ----- | ----- | ----- |
-| 0 | 0b00 | Session Topic Alias | A session Topic Alias is negotiated between the Server and Client within the scope of a session. |
-| 1 | 0b01 | Predefined Topic Alias | A predefined Topic Alias is known statically by both the Server and the Client outside the scope of a session. No negotiation is required since both entities have knowledge of the topic alias mapping. |
-| 2 | 0b10 |  | Reserved |
-| 3 | 0b11 | Topic Name or Filter | A Topic Name or Topic Filter, which requires no session negotiation. |
+|   | Topic Type Value | Name                   | Description                                                                                                                                                                                              |
+|---|------------------|------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 0 | 0b00             | Session Topic Alias    | A session Topic Alias is negotiated between the Server and Client within the scope of a session.                                                                                                         |
+| 1 | 0b01             | Predefined Topic Alias | A predefined Topic Alias is known statically by both the Server and the Client outside the scope of a session. No negotiation is required since both entities have knowledge of the topic alias mapping. |
+| 2 | 0b10             |                        | Reserved                                                                                                                                                                                                 |
+| 3 | 0b11             | Topic Name or Filter   | A Topic Name or Topic Filter, which requires no session negotiation.                                                                                                                                     |
 
 Predefined and Session Topic Aliases are assigned from different pools so there is no danger of collision.
 
@@ -1109,7 +1110,7 @@ Refer to [[4.7 Topics]](#topics) for detailed descriptions of Topic Names and To
 
 *Figure 3-1 -- CONNECT Packet*
 
-![](images/image26.png)<!-- .width="5.2in", .height="8.075757874015748in" -->
+![CONNECT Packet](images/image26.png "CONNECT Packet")<!-- .width="5.2in", .height="8.075757874015748in" -->
 
 The CONNECT packet is sent from the Client to the Server to request the creation of or continuation of a Session.
 
@@ -1430,7 +1431,7 @@ If validation is successful, the Server performs the following steps.
 
 *Figure 3-3 -- CONNACK Packet*
 
-![](images/image6.png)<!-- .width="6.5in", .height="7.291666666666667in" -->
+![CONNACK Packet](images/image6.png "CONNACK Packet")<!-- .width="6.5in", .height="7.291666666666667in" -->
 
 The CONNACK packet is sent by the Server in response to a CONNECT request from a client.
 
@@ -1562,7 +1563,7 @@ It is suggested that the 36 character Universally Unique IDentifier (UUID) forma
 
 *Figure 3-4 -- AUTH Packet*
 
-![](images/image8.png)<!-- .width="6.5in", .height="3.2222222222222223in" -->
+![AUTH Packet](images/image8.png "AUTH Packet")<!-- .width="6.5in", .height="3.2222222222222223in" -->
 
 <mark title="Ephemeral region marking">The authentication method and data is first sent by the Client as part of a CONNECT exchange. If the Server requires additional information to complete the authentication, it responds with an AUTH packet to signal that the Client generates and sends another AUTH packet with the required information and so on until the authentication is complete. The server then responds with a CONNACK message.</mark>
 
@@ -1598,7 +1599,7 @@ Refer to [[4.11 Authentication]](#authentication) for more information about aut
 
 *Figure 3-5 -- REGISTER Packet*
 
-![](images/image39.png)<!-- .width="6.5in", .height="3.375in" -->
+![REGISTER Packet](images/image39.png "REGISTER Packet")<!-- .width="6.5in", .height="3.375in" -->
 
 A REGISTER packet is sent by a Client or Server to create a Session Topic Alias, before sending a PUBLISH with that Session Topic Alias.
 
@@ -1654,7 +1655,7 @@ As described in [[4.7.2 Topic Aliases]](#topic-aliases).
 
 *Figure 3-6 -- REGACK Packet*
 
-![](images/image1.png)<!-- .width="6.5in", .height="2.5555555555555554in" -->
+![REGACK Packet](images/image1.png "REGACK Packet")<!-- .width="6.5in", .height="2.5555555555555554in" -->
 
 The REGACK packet is sent by a Client or by a Server as an acknowledgment to the receipt and processing of a REGISTER packet.
 
@@ -1722,16 +1723,16 @@ The table below shows the two packet types.
 
 *Figure 3-7 -- Publish Packet Types*
 
-| Packet Name | Type | Description |
-| :---- | :---- | ----- |
-| **Publish** | 0x0C | A PUBLISH packet corresponding to Quality of Service (QoS) 0, 1 or 2 |
+| Packet Name                 | Type | Description                                                                      |
+|:----------------------------|:-----|----------------------------------------------------------------------------------|
+| **Publish**                 | 0x0C | A PUBLISH packet corresponding to Quality of Service (QoS) 0, 1 or 2             |
 | **Publish Without Session** | 0x11 | A PUBWOS Packet sent by a Client and does not need not to have an active Session |
 
 ### 3.6.1 PUBWOS - Publish Without Session <a id='pubwos---publish-without-session'></a>
 
 *Figure 3-8 -- PUBWOS Packet*
 
-![](images/image3.png)<!-- .width="6.5in", .height="3.4583333333333335in" -->
+![PUBWOS Packet](images/image3.png "PUBWOS Packet")<!-- .width="6.5in", .height="3.4583333333333335in" -->
 
 This packet is used by both clients and Servers to publish data for a certain topic.
 
@@ -1793,7 +1794,7 @@ The Client or Server uses a PUBWOS packet to send an Application Message to a Ne
 
 *Figure 3-9 -- PUBLISH Packet for QoS 0*
 
-![](images/image19.png)<!-- .width="6.5in", .height="3.4583333333333335in" -->
+![PUBLISH Packet for QoS 0](images/image19.png "PUBLISH Packet for QoS 0")<!-- .width="6.5in", .height="3.4583333333333335in" -->
 
 A PUBLISH packet is sent from a Client to a Server or from a Server to a Client to transport an Application Message.
 
@@ -1853,7 +1854,7 @@ As described in [[3.6.3.7 PUBLISH Actions]](#publish-actions).
 
 *Figure 3-10 -- PUBLISH Packet for QoS 1 and 2*
 
-![](images/image11.png)<!-- .width="6.5in", .height="3.9305555555555554in" -->
+![PUBLISH Packet for QoS 1 and 2](images/image11.png "PUBLISH Packet for QoS 1 and 2")<!-- .width="6.5in", .height="3.9305555555555554in" -->
 
 A PUBLISH packet is sent from a Client to a Server or from a Server to a Client to transport an Application Message.
 
@@ -1885,12 +1886,12 @@ Quality of Service - as in MQTT. The QoS levels are:
 
 *Figure 3-11 -- QoS Definitions*
 
-| QoS value | Bit 6 | bit 5 | Description |
-| :---: | :---: | :---: | ----- |
-| 0 | 0 | 0 | At most once delivery |
-| 1 | 0 | 1 | At least once delivery |
-| 2 | 1 | 0 | Exactly once delivery |
-| \- | 1 | 1 | Reserved – must not be used |
+| QoS value | Bit 6 | bit 5 | Description                 |
+|:---------:|:-----:|:-----:|-----------------------------|
+|     0     |   0   |   0   | At most once delivery       |
+|     1     |   0   |   1   | At least once delivery      |
+|     2     |   1   |   0   | Exactly once delivery       |
+|    \-     |   1   |   1   | Reserved – must not be used |
 
 For a detailed description of the various Quality Of Service levels refer to [[4.3 Quality of Service levels and protocol flows]](#quality-of-service-levels-and-protocol-flows).
 
@@ -1933,10 +1934,10 @@ The Payload contains the payload data of the Application Message that is being p
 *Figure 3-12 -- Expected PUBLISH packet responses*
 
 | QoS Level | Expected Response |
-| ----- | ----- |
-| QoS 0 | None |
-| QoS 1 | PUBACK packet |
-| QoS 2 | PUBREC packet |
+|:----------|:------------------|
+| QoS 0     | None              |
+| QoS 1     | PUBACK packet     |
+| QoS 2     | PUBREC packet     |
 
 The Client uses a PUBLISH packet to send an Application Message to the Server, for distribution to Clients with matching subscriptions.
 
@@ -1960,7 +1961,7 @@ No more than one QoS 1 or 2 PUBLISH requests MUST be outstanding for a Sender at
 
 *Figure 3-13 -- PUBACK Packet*
 
-![](images/image9.png)<!-- .width="6.5in", .height="1.2777777777777777in" -->
+![PUBACK Packet](images/image9.png "PUBACK Packet")<!-- .width="6.5in", .height="1.2777777777777777in" -->
 
 A PUBACK packet is the response to a PUBLISH packet with QoS 1.
 
@@ -1986,7 +1987,7 @@ As described in [[4.3.3 QoS 1: At least once delivery]](#qos-1-at-least-once-del
 
 *Figure 3-14 -- PUBREC Packet*
 
-![](images/image9.png)<!-- .width="6.5in", .height="1.2777777777777777in" -->
+![PUBREC Packet](images/image9.png "PUBREC Packet")<!-- .width="6.5in", .height="1.2777777777777777in" -->
 
 A PUBREC packet is the response to a PUBLISH packet with QoS 2. It is the second packet of the QoS 2 protocol exchange.
 
@@ -2012,7 +2013,7 @@ As described in [[4.3.4 QoS 2: Exactly once delivery]](#qos-2-exactly-once-deliv
 
 *Figure 3-15 -- PUBREL Packet*
 
-![](images/image9.png)<!-- .width="6.5in", .height="1.2777777777777777in" -->
+![PUBREL Packet](images/image9.png "PUBREL Packet")<!-- .width="6.5in", .height="1.2777777777777777in" -->
 
 A PUBREL packet is the response to a PUBREC packet. It is the third packet of the QoS 2 protocol exchange.
 
@@ -2038,7 +2039,7 @@ As described in [[4.3.4 QoS 2: Exactly once delivery]](#qos-2-exactly-once-deliv
 
 *Figure 3-16 -- PUBCOMP Packet*
 
-![](images/image9.png)<!-- .width="6.5in", .height="1.2777777777777777in" -->
+![PUBCOMP Packet](images/image9.png "PUBCOMP Packet")<!-- .width="6.5in", .height="1.2777777777777777in" -->
 
 The PUBCOMP packet is the response to a PUBREL packet. It is the fourth and final packet of the QoS 2 protocol exchange.
 
@@ -2064,7 +2065,7 @@ As described in [[4.3.4 QoS 2: Exactly once delivery]](#qos-2-exactly-once-deliv
 
 *Figure 3-17 -- SUBSCRIBE Packet*
 
-![](images/image7.png)<!-- .width="6.5in", .height="3.375in" -->
+![SUBSCRIBE Packet](images/image7.png "SUBSCRIBE Packet")<!-- .width="6.5in", .height="3.375in" -->
 
 The SUBSCRIBE packet is sent from the Client to the Server to create one or more Subscriptions. A Subscription registers a Client's interest in one or more Topics. The Server sends PUBLISH packets to the Client to forward Application Messages that were published to Topics that match the Subscription. The SUBSCRIBE packet also specifies the maximum QoS with which the Server can send Application Messages to the Client.
 
@@ -2172,7 +2173,7 @@ If a Server receives a Topic Filter that is not identical to any Topic Filter fo
 
 *Figure 3-18 -- SUBACK Packet*
 
-![](images/image4.png)<!-- .width="6.5in", .height="2.5555555555555554in" -->
+![SUBACK Packet](images/image4.png "SUBACK Packet")<!-- .width="6.5in", .height="2.5555555555555554in" -->
 
 The SUBACK packet is sent by a Server to a client as an acknowledgment to the receipt and processing of a SUBSCRIBE packet.
 
@@ -2226,7 +2227,7 @@ The values of Reason Codes are shown in «<mark title="Requirement MQTT-SN-3.8.5
 
 *Figure 3-19 -- UNSUBSCRIBE Packet*
 
-![](images/image25.png)<!-- .width="6.5in", .height="3.375in" -->
+![UNSUBSCRIBE Packet](images/image25.png "UNSUBSCRIBE Packet")<!-- .width="6.5in", .height="3.375in" -->
 
 An UNSUBSCRIBE packet is sent by the Client to the Server to remove subscriptions to topics.
 
@@ -2286,7 +2287,7 @@ The Topic Filter is an UTF-8 Encoded String. The existence or absence of this fi
 
 *Figure 3-20 -- UNSUBACK Packet*
 
-![](images/image9.png)<!-- .width="6.5in", .height="1.2777777777777777in" -->
+![UNSUBACK Packet](images/image9.png "UNSUBACK Packet")<!-- .width="6.5in", .height="1.2777777777777777in" -->
 
 An UNSUBACK packet is sent by a Server to acknowledge the receipt and processing of an UNSUBSCRIBE packet.
 
@@ -2308,7 +2309,7 @@ The UNSUBACK Reason Codes are shown in «<mark title="Requirement MQTT-SN-3.10.3
 
 *Figure 3-21 -- PINGREQ Packet*
 
-![](images/image36.png)<!-- .width="6.5in", .height="1.1944444444444444in" -->
+![PINGREQ Packet](images/image36.png "PINGREQ Packet")<!-- .width="6.5in", .height="1.1944444444444444in" -->
 
 The PINGREQ packet is sent from a Client to the Server. It can be used to:
 
@@ -2342,7 +2343,7 @@ Used to identify the corresponding PINGRESP packet. It should ideally be set to 
 
 *Figure 3-22 -- PINGRESP Packet*
 
-![](images/image17.png)<!-- .width="6.5in", .height="1.4166666666666667in" -->
+![PINGRESP Packet](images/image17.png "PINGRESP Packet")<!-- .width="6.5in", .height="1.4166666666666667in" -->
 
 A PINGRESP Packet is sent by the Server to the Client in response to a PINGREQ packet. It indicates that the Server is alive.
 
@@ -2378,7 +2379,7 @@ Values can be:
 
 *Figure 3-24 -- DISCONNECT Packet*
 
-![](images/image34.png)<!-- .width="6.5in", .height="4.555555555555555in" -->
+![DISCONNECT Packet](images/image34.png "DISCONNECT Packet")<!-- .width="6.5in", .height="4.555555555555555in" -->
 
 The DISCONNECT packet is sent by a Client to indicate that it is going to delete the Virtual connection and go to the Disconnected state.
 
@@ -2470,7 +2471,7 @@ After receiving a DISCONNECT, a Client can make a new Virtual Connection by send
 
 *Figure 3-25 -- WAKEUP Packet*
 
-![](images/image18.png)<!-- .width="6.5in", .height="0.7222222222222222in" -->
+![WAKEUP Packet](images/image18.png "WAKEUP Packet")<!-- .width="6.5in", .height="0.7222222222222222in" -->
 
 The wakeup packet is a signal sent from the Server to a client. It is an indication from the Server that the client should wake up. The client is not obliged to honor this request, nor may it even receive the packet. It can choose to ignore the request, or undertake one of the sequences outlined in [[4.14.2 Sleeping Clients]](#sleeping-clients). The client need not respond to this packet.
 
@@ -2486,7 +2487,7 @@ The first 2 or 4 bytes of the packet are encoded according to the variable lengt
 
 *Figure 3-26 -- SLEEPREQ Packet*
 
-![](images/image28.png)<!-- .width="6.5in", .height="2.8333333333333335in" -->
+![SLEEPREQ Packet](images/image28.png "SLEEPREQ Packet")<!-- .width="6.5in", .height="2.8333333333333335in" -->
 
 The SLEEPREQ packet is sent from the Client to the Server to indicate that it is going to sleep (moving to the Asleep state).
 
@@ -2552,7 +2553,7 @@ A Client might not wait, or might stop waiting, if it is concerned that it will 
 
 *Figure 3-27 -- SLEEPRESP Packet*
 
-![](images/image21.png)<!-- .width="6.5in", .height="2.9722222222222223in" -->
+![SLEEPRESP Packet](images/image21.png "SLEEPRESP Packet")<!-- .width="6.5in", .height="2.9722222222222223in" -->
 
 ### 3.16.1 SLEEPRESP Header <a id='sleepresp-header'></a>
 
@@ -2598,7 +2599,7 @@ The values for Reason Codes are shown in «<mark title="Requirement MQTT-SN-3.16
 
 *Figure 3-28 -- Format of an Protection Encapsulated MQTT-SN Packet*
 
-![](images/image24.png)<!-- .width="6.5in", .height="6.347222222222222in" -->
+![Format of an Protection Encapsulated MQTT-SN Packet](images/image24.png "Format of an Protection Encapsulated MQTT-SN Packet")<!-- .width="6.5in", .height="6.347222222222222in" -->
 
 Protection encapsulation provides a secure envelope for any MQTT-SN packet (with the exception of the Forward Encapsulation packet). The fields provided by the Protection Encapsulation provide a means by which the sender is identified and the packet is protected, using a number of prescribed protection schemes. Where the phrase "protected Packet" is used in this document, it means an MQTT-SN Packet surrounded by the Protection Encapsulation.
 
@@ -2798,7 +2799,7 @@ The Authentication Tag field has a length that depends on the Authentication Tag
 
 *Figure 3-30 -- Format of a Connection Encapsulated MQTT-SN Packet*
 
-![](images/image35.png)<!-- .width="6.5in", .height="2.2777777777777777in" -->
+![Format of a Connection Encapsulated MQTT-SN Packet](images/image35.png "Format of a Connection Encapsulated MQTT-SN Packet")<!-- .width="6.5in", .height="2.2777777777777777in" -->
 
 This envelope wraps an MQTT-SN Packet to allow it to be associated with an existing Virtual Connection where other methods are not sufficient. Only Clients can use the Connection Encapsulation because it is assumed that the Network Address for the Server is static for the duration of the Virtual Connection. If the Server Network Address is not static, then another method of identifying the Packet sender must be used, such as the Protection Encapsulation or DTLS.
 
@@ -2836,7 +2837,7 @@ The MQTT-SN packet, encoded according to the packet type, follows immediately af
 
 *Figure 3-31 -- Format of an Forwarder Encapsulated MQTT-SN Packet*
 
-![](images/image38.png)<!-- .width="6.5in", .height="2.2777777777777777in" -->
+![Format of an Forwarder Encapsulated MQTT-SN Packet](images/image38.png "Format of an Forwarder Encapsulated MQTT-SN Packet")<!-- .width="6.5in", .height="2.2777777777777777in" -->
 
 An MQTT-SN Client can access a Server through a Forwarder in case the Server is not directly attached to the same Underlying Network as the Client. The Forwarder encapsulates the MQTT-SN Packets it receives from the Client and sends them unchanged to the Server. In the opposite direction, it decapsulates the Packets it receives from the Server and sends them unchanged to the Clients.
 
@@ -2870,7 +2871,7 @@ The Packets in this section are optional. A description of how this functionalit
 
 *Figure 3-32 -- ADVERTISE Packet*
 
-![](images/image23.png)<!-- .width="6.5in", .height="1.4166666666666667in" -->
+![ADVERTISE Packet](images/image23.png "ADVERTISE Packet")<!-- .width="6.5in", .height="1.4166666666666667in" -->
 
 The ADVERTISE packet is sent periodically by a Gateway to advertise its presence. The time interval until the next transmission is indicated by the *Duration* field.
 
@@ -2898,7 +2899,7 @@ The maximum value that can be encoded is approximately 18 hours.
 
 *Figure 3-33 -- SEARCHGW Packet*
 
-![](images/image30.png)<!-- .width="6.5in", .height="1.5in" -->
+![SEARCHGW Packet](images/image30.png "SEARCHGW Packet")<!-- .width="6.5in", .height="1.5in" -->
 
 The SEARCHGW packet is sent by a Client to find a Gateway to send Application Messages to, and receive Application Messages from.
 
@@ -2926,7 +2927,7 @@ This field is optional - its existence or absence is inferred from the Packet le
 
 *Figure 3-34 -- GWINFO Packet*
 
-![](images/image32.png)<!-- .width="6.5in", .height="1.7361111111111112in" -->
+![GWINFO Packet](images/image32.png "GWINFO Packet")<!-- .width="6.5in", .height="1.7361111111111112in" -->
 
 The GWINFO packet is sent as response to a SEARCHGW packet. If sent by a Gateway, it contains only the identifier of the sending Gateway; otherwise, if sent by a client, it also includes the Network Address of the Gateway.
 
@@ -4501,7 +4502,7 @@ Although the implementation of the Transparent Gateway may be somewhat simpler t
 *Figure C-1 -- Transparent Gateway*
 
 <mark title="Ephemeral region marking">\[figure below is part of informative example\]</mark>
-![](images/image40.png)<!-- .width="3.994792213473316in", .height="2.6661472003499562in" -->
+![Transparent Gateway](images/image40.png "Transparent Gateway")<!-- .width="3.994792213473316in", .height="2.6661472003499562in" -->
 
 Because PUBWOS packets could be sent at any time by Clients with no Virtual Connection, a Transparent Gateway would need to maintain a dedicated MQTT connection with the MQTT Server to support those packets.
 
@@ -4511,7 +4512,7 @@ Instead of having one MQTT connection for each connected MQTT-SN Client, an aggr
 
 *Figure C-2 -- Aggregating Gateway*
 
-![](images/image10.png)<!-- .width="4.578125546806649in", .height="3.0552755905511813in" -->
+![Aggregating Gateway](images/image10.png "Aggregating Gateway")<!-- .width="4.578125546806649in", .height="3.0552755905511813in" -->
 
 To support PUBWOS packets from MQTT-SN clients without a Virtual Connection, an Aggregating may use any aggregating MQTT connection to forward those packets to an MQTT Server.
 
@@ -4525,11 +4526,11 @@ The following diagrams illustrate how a Forwarder may interact with an Aggregati
 
 *Figure C-3 -- Forwarder with Transparent Gateway*
 
-![](images/image22.png)<!-- .width="4.704773622047244in", .height="2.7964599737532807in" -->
+![Forwarder with Transparent Gateway](images/image22.png "Forwarder with Transparent Gateway")<!-- .width="4.704773622047244in", .height="2.7964599737532807in" -->
 
 *Figure C-4 -- Forwarder with Aggregating Gateway*
 
-![](images/image29.png)<!-- .width="4.9003171478565175in", .height="2.8304625984251968in" -->
+![Forwarder with Aggregating Gateway](images/image29.png "Forwarder with Aggregating Gateway")<!-- .width="4.9003171478565175in", .height="2.8304625984251968in" -->
 
 ### 9.1.4 C.1.4 MQTT-SN Broker <a id='c.1.4-mqtt-sn-broker'></a>
 
@@ -4539,7 +4540,7 @@ It will allow MQTT-SN Clients to set up subscriptions, and publish messages to o
 
 *Figure C-5 -- MQTT-SN Broker*
 
-![](images/image37.png)<!-- .width="2.8596172353455818in", .height="2.983947944006999in" -->
+![MQTT-SN Broker](images/image37.png "MQTT-SN Broker")<!-- .width="2.8596172353455818in", .height="2.983947944006999in" -->
 
 An MQTT-SN Server may choose to incorporate elements of a Broker, Aggregating and Transparent Gateway together. Typically, an Aggregating Gateway will also act as an MQTT-SN Broker.
 
@@ -4591,11 +4592,11 @@ The following diagrams are illustrative, graphical views of the states and trans
 
 *Figure C-7 -- Server View of Client States - informative*
 
-![](images/image27.jpg)<!-- .width="6.5in", .height="6.958333333333333in" -->
+![Server View of Client States - informative](images/image27.jpg "Server View of Client States - informative")<!-- .width="6.5in", .height="6.958333333333333in" -->
 
 *Figure C-8 -- Server View of Client States - informative*
 
-![](images/image27.jpg)<!-- .width="6.5in", .height="6.958333333333333in" -->
+![Server View of Client States - informative](images/image27.jpg "Server View of Client States - informative")<!-- .width="6.5in", .height="6.958333333333333in" -->
 
 ## 9.6 C.6 PUBLISH with QoS -1 <a id='c.6-publish-with-qos--1'></a>
 

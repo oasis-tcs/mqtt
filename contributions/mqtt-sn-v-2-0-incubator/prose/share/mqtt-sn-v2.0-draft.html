@@ -2061,10 +2061,12 @@ Packets</p>
 <p>Each MQTT-SN Control Packet contains a Header of format 1 or
 format 2 as shown below.</p>
 <p><em>Figure 2-2 -- Packet Header Format 1</em></p>
-<p><img src="images/image12.png" />
+<p><img src="images/image12.png" title="Packet Header Format 1"
+alt="Packet Header Format 1" />
 <!-- .width="6.5in", .height="0.7222222222222222in" --></p>
 <p><em>Figure 2-3 -- Packet Header Format 2</em></p>
-<p><img src="images/image16.png" />
+<p><img src="images/image16.png" title="Packet Header Format 2"
+alt="Packet Header Format 2" />
 <!-- .width="6.5in", .height="1.1944444444444444in" --></p>
 <h3 id="212-length-">2.1.2 Length <a id='length'></a></h3>
 <p>The <em>Length</em> field is either 1-byte or 3-byte integer and
@@ -2308,114 +2310,114 @@ in Figure 2-5.</p>
 <table>
 <thead>
 <tr>
-<th>MQTT-SN Control Packet</th>
-<th>Packet Identifier field</th>
+<th style="text-align: left;">MQTT-SN Control Packet</th>
+<th style="text-align: left;">Packet Identifier field</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>ADVERTISE</td>
-<td>NO</td>
+<td style="text-align: left;">ADVERTISE</td>
+<td style="text-align: left;">NO</td>
 </tr>
 <tr>
-<td>AUTH</td>
-<td>YES</td>
+<td style="text-align: left;">AUTH</td>
+<td style="text-align: left;">YES</td>
 </tr>
 <tr>
-<td>CONNACK</td>
-<td>YES</td>
+<td style="text-align: left;">CONNACK</td>
+<td style="text-align: left;">YES</td>
 </tr>
 <tr>
-<td>CONNECT</td>
-<td>YES</td>
+<td style="text-align: left;">CONNECT</td>
+<td style="text-align: left;">YES</td>
 </tr>
 <tr>
-<td>DISCONNECT</td>
-<td>OPTIONAL</td>
+<td style="text-align: left;">DISCONNECT</td>
+<td style="text-align: left;">OPTIONAL</td>
 </tr>
 <tr>
-<td>FORWARDER ENCAPSULATION</td>
-<td>NO</td>
+<td style="text-align: left;">FORWARDER ENCAPSULATION</td>
+<td style="text-align: left;">NO</td>
 </tr>
 <tr>
-<td>GWINFO</td>
-<td>NO</td>
+<td style="text-align: left;">GWINFO</td>
+<td style="text-align: left;">NO</td>
 </tr>
 <tr>
-<td>PINGREQ</td>
-<td>YES</td>
+<td style="text-align: left;">PINGREQ</td>
+<td style="text-align: left;">YES</td>
 </tr>
 <tr>
-<td>PINGRESP</td>
-<td>YES</td>
+<td style="text-align: left;">PINGRESP</td>
+<td style="text-align: left;">YES</td>
 </tr>
 <tr>
-<td>PROTECTION ENCAPSULATION</td>
-<td>NO</td>
+<td style="text-align: left;">PROTECTION ENCAPSULATION</td>
+<td style="text-align: left;">NO</td>
 </tr>
 <tr>
-<td>PUBACK</td>
-<td>YES</td>
+<td style="text-align: left;">PUBACK</td>
+<td style="text-align: left;">YES</td>
 </tr>
 <tr>
-<td>PUBCOMP</td>
-<td>YES</td>
+<td style="text-align: left;">PUBCOMP</td>
+<td style="text-align: left;">YES</td>
 </tr>
 <tr>
-<td>PUBLISH</td>
-<td>YES (If QoS &gt; 0)</td>
+<td style="text-align: left;">PUBLISH</td>
+<td style="text-align: left;">YES (If QoS &gt; 0)</td>
 </tr>
 <tr>
-<td>PUBREC</td>
-<td>YES</td>
+<td style="text-align: left;">PUBREC</td>
+<td style="text-align: left;">YES</td>
 </tr>
 <tr>
-<td>PUBREL</td>
-<td>YES</td>
+<td style="text-align: left;">PUBREL</td>
+<td style="text-align: left;">YES</td>
 </tr>
 <tr>
-<td>PUBWOS</td>
-<td>NO</td>
+<td style="text-align: left;">PUBWOS</td>
+<td style="text-align: left;">NO</td>
 </tr>
 <tr>
-<td>REGACK</td>
-<td>YES</td>
+<td style="text-align: left;">REGACK</td>
+<td style="text-align: left;">YES</td>
 </tr>
 <tr>
-<td>REGISTER</td>
-<td>YES</td>
+<td style="text-align: left;">REGISTER</td>
+<td style="text-align: left;">YES</td>
 </tr>
 <tr>
-<td>SEARCHGW</td>
-<td>NO</td>
+<td style="text-align: left;">SEARCHGW</td>
+<td style="text-align: left;">NO</td>
 </tr>
 <tr>
-<td>SLEEPREQ</td>
-<td>YES</td>
+<td style="text-align: left;">SLEEPREQ</td>
+<td style="text-align: left;">YES</td>
 </tr>
 <tr>
-<td>SLEEPRESP</td>
-<td>YES</td>
+<td style="text-align: left;">SLEEPRESP</td>
+<td style="text-align: left;">YES</td>
 </tr>
 <tr>
-<td>SUBACK</td>
-<td>YES</td>
+<td style="text-align: left;">SUBACK</td>
+<td style="text-align: left;">YES</td>
 </tr>
 <tr>
-<td>SUBSCRIBE</td>
-<td>YES</td>
+<td style="text-align: left;">SUBSCRIBE</td>
+<td style="text-align: left;">YES</td>
 </tr>
 <tr>
-<td>UNSUBACK</td>
-<td>YES</td>
+<td style="text-align: left;">UNSUBACK</td>
+<td style="text-align: left;">YES</td>
 </tr>
 <tr>
-<td>UNSUBSCRIBE</td>
-<td>YES</td>
+<td style="text-align: left;">UNSUBSCRIBE</td>
+<td style="text-align: left;">YES</td>
 </tr>
 <tr>
-<td>WAKEUP</td>
-<td>NO</td>
+<td style="text-align: left;">WAKEUP</td>
+<td style="text-align: left;">NO</td>
 </tr>
 </tbody>
 </table>
@@ -2458,8 +2460,10 @@ Identifier 0x1234 and then receive a different PUBLISH packet with
 Packet Identifier 0x1234 from its Server before it receives a
 PUBACK for the PUBLISH packet that it sent.</p>
 </blockquote>
-<p><em>Figure 2-6 - Publishes with the same Packet
-Identifier</em><img src="images/image13.png" />
+<p><em>Figure 2-6 - Publishes with the same Packet Identifier</em>
+<img src="images/image13.png" title=
+"Publishes with the same Packet Identifier" alt=
+"Publishes with the same Packet Identifier" />
 <!-- .width="5.2in", .height="3.2303029308836395in" --></p>
 <h2 id="23-reason-code-">2.3 Reason Code <a id=
 'reason-code'></a></h2>
@@ -2990,7 +2994,8 @@ descriptions of Topic Names and Topic Aliases.</p>
 <h2 id="31-connect---connection-request-">3.1 CONNECT - Connection
 Request <a id='connect---connection-request'></a></h2>
 <p><em>Figure 3-1 -- CONNECT Packet</em></p>
-<p><img src="images/image26.png" />
+<p><img src="images/image26.png" title="CONNECT Packet" alt=
+"CONNECT Packet" />
 <!-- .width="5.2in", .height="8.075757874015748in" --></p>
 <p>The CONNECT packet is sent from the Client to the Server to
 request the creation of or continuation of a Session.</p>
@@ -3607,7 +3612,8 @@ packets</mark>»[MQTT‑SN‑3.1.19‑7].</p>
 Connect Acknowledgement <a id=
 'connack---connect-acknowledgement'></a></h2>
 <p><em>Figure 3-3 -- CONNACK Packet</em></p>
-<p><img src="images/image6.png" />
+<p><img src="images/image6.png" title="CONNACK Packet" alt=
+"CONNACK Packet" />
 <!-- .width="6.5in", .height="7.291666666666667in" --></p>
 <p>The CONNACK packet is sent by the Server in response to a
 CONNECT request from a client.</p>
@@ -3823,7 +3829,8 @@ with their versions returned from the MQTT Server.</p>
 Authentication Exchange <a id=
 'auth---authentication-exchange'></a></h2>
 <p><em>Figure 3-4 -- AUTH Packet</em></p>
-<p><img src="images/image8.png" />
+<p><img src="images/image8.png" title="AUTH Packet" alt=
+"AUTH Packet" />
 <!-- .width="6.5in", .height="3.2222222222222223in" --></p>
 <p><mark title="Ephemeral region marking">The authentication method
 and data is first sent by the Client as part of a CONNECT exchange.
@@ -3875,8 +3882,8 @@ more information about authentication.</p>
 Register Topic Alias Request <a id=
 'register---register-topic-alias-request'></a></h2>
 <p><em>Figure 3-5 -- REGISTER Packet</em></p>
-<p><img src="images/image39.png" />
-<!-- .width="6.5in", .height="3.375in" --></p>
+<p><img src="images/image39.png" title="REGISTER Packet" alt=
+"REGISTER Packet" /><!-- .width="6.5in", .height="3.375in" --></p>
 <p>A REGISTER packet is sent by a Client or Server to create a
 Session Topic Alias, before sending a PUBLISH with that Session
 Topic Alias.</p>
@@ -3946,7 +3953,8 @@ Aliases]</a>.</p>
 REGACK - Register Topic Alias Acknowledgement <a id=
 'regack---register-topic-alias-acknowledgement'></a></h2>
 <p><em>Figure 3-6 -- REGACK Packet</em></p>
-<p><img src="images/image1.png" />
+<p><img src="images/image1.png" title="REGACK Packet" alt=
+"REGACK Packet" />
 <!-- .width="6.5in", .height="2.5555555555555554in" --></p>
 <p>The REGACK packet is sent by a Client or by a Server as an
 acknowledgment to the receipt and processing of a REGISTER
@@ -4078,7 +4086,8 @@ an active Session</td>
 Publish Without Session <a id=
 'pubwos---publish-without-session'></a></h3>
 <p><em>Figure 3-8 -- PUBWOS Packet</em></p>
-<p><img src="images/image3.png" />
+<p><img src="images/image3.png" title="PUBWOS Packet" alt=
+"PUBWOS Packet" />
 <!-- .width="6.5in", .height="3.4583333333333335in" --></p>
 <p>This packet is used by both clients and Servers to publish data
 for a certain topic.</p>
@@ -4171,7 +4180,8 @@ were 0</mark>»[MQTT‑SN‑3.6.1.6‑1] as described in <a href=
 <h3 id="362-publish-with-qos-0-">3.6.2 PUBLISH with QoS 0 <a id=
 'publish-with-qos-0'></a></h3>
 <p><em>Figure 3-9 -- PUBLISH Packet for QoS 0</em></p>
-<p><img src="images/image19.png" />
+<p><img src="images/image19.png" title="PUBLISH Packet for QoS 0"
+alt="PUBLISH Packet for QoS 0" />
 <!-- .width="6.5in", .height="3.4583333333333335in" --></p>
 <p>A PUBLISH packet is sent from a Client to a Server or from a
 Server to a Client to transport an Application Message.</p>
@@ -4252,7 +4262,9 @@ Actions]</a>.</p>
 <h3 id="363-publish-with-qos-1-and-2-">3.6.3 PUBLISH with QoS 1 and
 2 <a id='publish-with-qos-1-and-2'></a></h3>
 <p><em>Figure 3-10 -- PUBLISH Packet for QoS 1 and 2</em></p>
-<p><img src="images/image11.png" />
+<p><img src="images/image11.png" title=
+"PUBLISH Packet for QoS 1 and 2" alt=
+"PUBLISH Packet for QoS 1 and 2" />
 <!-- .width="6.5in", .height="3.9305555555555554in" --></p>
 <p>A PUBLISH packet is sent from a Client to a Server or from a
 Server to a Client to transport an Application Message.</p>
@@ -4386,22 +4398,22 @@ QoS in the PUBLISH Packet.</mark>»[MQTT‑SN‑3.6.3.7‑1].</p>
 <table>
 <thead>
 <tr>
-<th>QoS Level</th>
-<th>Expected Response</th>
+<th style="text-align: left;">QoS Level</th>
+<th style="text-align: left;">Expected Response</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>QoS 0</td>
-<td>None</td>
+<td style="text-align: left;">QoS 0</td>
+<td style="text-align: left;">None</td>
 </tr>
 <tr>
-<td>QoS 1</td>
-<td>PUBACK packet</td>
+<td style="text-align: left;">QoS 1</td>
+<td style="text-align: left;">PUBACK packet</td>
 </tr>
 <tr>
-<td>QoS 2</td>
-<td>PUBREC packet</td>
+<td style="text-align: left;">QoS 2</td>
+<td style="text-align: left;">PUBREC packet</td>
 </tr>
 </tbody>
 </table>
@@ -4447,7 +4459,8 @@ packets for Flow Control reasons.</p>
 3.6.4 PUBACK -- Publish Acknowledgement (QoS 1 delivery) <a id=
 'puback-publish-acknowledgement-qos-1-delivery'></a></h3>
 <p><em>Figure 3-13 -- PUBACK Packet</em></p>
-<p><img src="images/image9.png" />
+<p><img src="images/image9.png" title="PUBACK Packet" alt=
+"PUBACK Packet" />
 <!-- .width="6.5in", .height="1.2777777777777777in" --></p>
 <p>A PUBACK packet is the response to a PUBLISH packet with QoS
 1.</p>
@@ -4479,7 +4492,8 @@ QoS 1: At least once delivery]</a>.</p>
 PUBREC - Publish Received (QoS 2 delivery part 1) <a id=
 'pubrec-publish-received-qos-2-delivery-part-1'></a></h3>
 <p><em>Figure 3-14 -- PUBREC Packet</em></p>
-<p><img src="images/image9.png" />
+<p><img src="images/image9.png" title="PUBREC Packet" alt=
+"PUBREC Packet" />
 <!-- .width="6.5in", .height="1.2777777777777777in" --></p>
 <p>A PUBREC packet is the response to a PUBLISH packet with QoS 2.
 It is the second packet of the QoS 2 protocol exchange.</p>
@@ -4511,7 +4525,8 @@ QoS 2: Exactly once delivery]</a>.</p>
 PUBREL - Publish Release (QoS 2 delivery part 2) <a id=
 'pubrel---publish-release-qos-2-delivery-part-2'></a></h3>
 <p><em>Figure 3-15 -- PUBREL Packet</em></p>
-<p><img src="images/image9.png" />
+<p><img src="images/image9.png" title="PUBREL Packet" alt=
+"PUBREL Packet" />
 <!-- .width="6.5in", .height="1.2777777777777777in" --></p>
 <p>A PUBREL packet is the response to a PUBREC packet. It is the
 third packet of the QoS 2 protocol exchange.</p>
@@ -4543,7 +4558,8 @@ QoS 2: Exactly once delivery]</a>.</p>
 3.6.7 PUBCOMP - Publish Complete (QoS 2 delivery part 3) <a id=
 'pubcomp---publish-complete-qos-2-delivery-part-3'></a></h3>
 <p><em>Figure 3-16 -- PUBCOMP Packet</em></p>
-<p><img src="images/image9.png" />
+<p><img src="images/image9.png" title="PUBCOMP Packet" alt=
+"PUBCOMP Packet" />
 <!-- .width="6.5in", .height="1.2777777777777777in" --></p>
 <p>The PUBCOMP packet is the response to a PUBREL packet. It is the
 fourth and final packet of the QoS 2 protocol exchange.</p>
@@ -4574,8 +4590,8 @@ QoS 2: Exactly once delivery]</a>.</p>
 <h2 id="37-subscribe---subscribe-request-">3.7 SUBSCRIBE -
 Subscribe Request <a id='subscribe---subscribe-request'></a></h2>
 <p><em>Figure 3-17 -- SUBSCRIBE Packet</em></p>
-<p><img src="images/image7.png" />
-<!-- .width="6.5in", .height="3.375in" --></p>
+<p><img src="images/image7.png" title="SUBSCRIBE Packet" alt=
+"SUBSCRIBE Packet" /><!-- .width="6.5in", .height="3.375in" --></p>
 <p>The SUBSCRIBE packet is sent from the Client to the Server to
 create one or more Subscriptions. A Subscription registers a
 Client's interest in one or more Topics. The Server sends PUBLISH
@@ -4756,7 +4772,8 @@ usage.</p>
 Subscribe Acknowledgement <a id=
 'suback---subscribe-acknowledgement'></a></h2>
 <p><em>Figure 3-18 -- SUBACK Packet</em></p>
-<p><img src="images/image4.png" />
+<p><img src="images/image4.png" title="SUBACK Packet" alt=
+"SUBACK Packet" />
 <!-- .width="6.5in", .height="2.5555555555555554in" --></p>
 <p>The SUBACK packet is sent by a Server to a client as an
 acknowledgment to the receipt and processing of a SUBSCRIBE
@@ -4838,7 +4855,8 @@ SUBACK</mark>»[MQTT‑SN‑3.8.5‑1].</p>
 Unsubscribe Request <a id=
 'unsubscribe---unsubscribe-request'></a></h2>
 <p><em>Figure 3-19 -- UNSUBSCRIBE Packet</em></p>
-<p><img src="images/image25.png" />
+<p><img src="images/image25.png" title="UNSUBSCRIBE Packet" alt=
+"UNSUBSCRIBE Packet" />
 <!-- .width="6.5in", .height="3.375in" --></p>
 <p>An UNSUBSCRIBE packet is sent by the Client to the Server to
 remove subscriptions to topics.</p>
@@ -4943,7 +4961,8 @@ UNSUBACK</mark> [MQTT-3.9.6-6].</p>
 - Unsubscribe Acknowledgement <a id=
 'unsuback---unsubscribe-acknowledgement'></a></h2>
 <p><em>Figure 3-20 -- UNSUBACK Packet</em></p>
-<p><img src="images/image9.png" />
+<p><img src="images/image9.png" title="UNSUBACK Packet" alt=
+"UNSUBACK Packet" />
 <!-- .width="6.5in", .height="1.2777777777777777in" --></p>
 <p>An UNSUBACK packet is sent by a Server to acknowledge the
 receipt and processing of an UNSUBSCRIBE packet.</p>
@@ -4970,7 +4989,8 @@ Reason Codes</mark>»[MQTT‑SN‑3.10.3‑1].</p>
 <h2 id="311-pingreq---ping-request-">3.11 PINGREQ - Ping Request
 <a id='pingreq---ping-request'></a></h2>
 <p><em>Figure 3-21 -- PINGREQ Packet</em></p>
-<p><img src="images/image36.png" />
+<p><img src="images/image36.png" title="PINGREQ Packet" alt=
+"PINGREQ Packet" />
 <!-- .width="6.5in", .height="1.1944444444444444in" --></p>
 <p>The PINGREQ packet is sent from a Client to the Server. It can
 be used to:</p>
@@ -5032,7 +5052,8 @@ processing</mark>»[MQTT‑SN‑3.11.3‑4].</p>
 <h2 id="312-pingresp---ping-response-">3.12 PINGRESP - Ping
 Response <a id='pingresp---ping-response'></a></h2>
 <p><em>Figure 3-22 -- PINGRESP Packet</em></p>
-<p><img src="images/image17.png" />
+<p><img src="images/image17.png" title="PINGRESP Packet" alt=
+"PINGRESP Packet" />
 <!-- .width="6.5in", .height="1.4166666666666667in" --></p>
 <p>A PINGRESP Packet is sent by the Server to the Client in
 response to a PINGREQ packet. It indicates that the Server is
@@ -5090,7 +5111,8 @@ to be delivered greater than 0.</td>
 - Disconnect Notification <a id=
 'disconnect---disconnect-notification'></a></h2>
 <p><em>Figure 3-24 -- DISCONNECT Packet</em></p>
-<p><img src="images/image34.png" />
+<p><img src="images/image34.png" title="DISCONNECT Packet" alt=
+"DISCONNECT Packet" />
 <!-- .width="6.5in", .height="4.555555555555555in" --></p>
 <p>The DISCONNECT packet is sent by a Client to indicate that it is
 going to delete the Virtual connection and go to the Disconnected
@@ -5246,7 +5268,8 @@ Connection by sending a CONNECT Packet to the Server.</p>
 <h2 id="314-wakeup---wake-up-request-">3.14 WAKEUP - Wake up
 request <a id='wakeup---wake-up-request'></a></h2>
 <p><em>Figure 3-25 -- WAKEUP Packet</em></p>
-<p><img src="images/image18.png" />
+<p><img src="images/image18.png" title="WAKEUP Packet" alt=
+"WAKEUP Packet" />
 <!-- .width="6.5in", .height="0.7222222222222222in" --></p>
 <p>The wakeup packet is a signal sent from the Server to a client.
 It is an indication from the Server that the client should wake up.
@@ -5270,7 +5293,8 @@ packet</mark>»[MQTT‑SN‑3.14.2‑1].</p>
 <h2 id="315-sleepreq---sleep-request-">3.15 SLEEPREQ - Sleep
 request <a id='sleepreq---sleep-request'></a></h2>
 <p><em>Figure 3-26 -- SLEEPREQ Packet</em></p>
-<p><img src="images/image28.png" />
+<p><img src="images/image28.png" title="SLEEPREQ Packet" alt=
+"SLEEPREQ Packet" />
 <!-- .width="6.5in", .height="2.8333333333333335in" --></p>
 <p>The SLEEPREQ packet is sent from the Client to the Server to
 indicate that it is going to sleep (moving to the Asleep
@@ -5382,7 +5406,8 @@ Server has received the SLEEPREQ.</p>
 <h2 id="316-sleepresp---sleep-response-">3.16 SLEEPRESP - Sleep
 response <a id='sleepresp---sleep-response'></a></h2>
 <p><em>Figure 3-27 -- SLEEPRESP Packet</em></p>
-<p><img src="images/image21.png" />
+<p><img src="images/image21.png" title="SLEEPRESP Packet" alt=
+"SLEEPRESP Packet" />
 <!-- .width="6.5in", .height="2.9722222222222223in" --></p>
 <h3 id="3161-sleepresp-header-">3.16.1 SLEEPRESP Header <a id=
 'sleepresp-header'></a></h3>
@@ -5454,7 +5479,9 @@ values applicable to SLEEPRESP</mark>»[MQTT‑SN‑3.16.4‑1].</p>
 Encapsulation <a id='protection-encapsulation'></a></h2>
 <p><em>Figure 3-28 -- Format of an Protection Encapsulated MQTT-SN
 Packet</em></p>
-<p><img src="images/image24.png" />
+<p><img src="images/image24.png" title=
+"Format of an Protection Encapsulated MQTT-SN Packet" alt=
+"Format of an Protection Encapsulated MQTT-SN Packet" />
 <!-- .width="6.5in", .height="6.347222222222222in" --></p>
 <p>Protection encapsulation provides a secure envelope for any
 MQTT-SN packet (with the exception of the Forward Encapsulation
@@ -6022,7 +6049,9 @@ scheme selected in the Protection Scheme field.</p>
 Encapsulation <a id='connection-encapsulation'></a></h2>
 <p><em>Figure 3-30 -- Format of a Connection Encapsulated MQTT-SN
 Packet</em></p>
-<p><img src="images/image35.png" />
+<p><img src="images/image35.png" title=
+"Format of a Connection Encapsulated MQTT-SN Packet" alt=
+"Format of a Connection Encapsulated MQTT-SN Packet" />
 <!-- .width="6.5in", .height="2.2777777777777777in" --></p>
 <p>This envelope wraps an MQTT-SN Packet to allow it to be
 associated with an existing Virtual Connection where other methods
@@ -6083,7 +6112,9 @@ follows immediately after the Client Identifier field.</p>
 <a id='forwarder-encapsulation'></a></h2>
 <p><em>Figure 3-31 -- Format of an Forwarder Encapsulated MQTT-SN
 Packet</em></p>
-<p><img src="images/image38.png" />
+<p><img src="images/image38.png" title=
+"Format of an Forwarder Encapsulated MQTT-SN Packet" alt=
+"Format of an Forwarder Encapsulated MQTT-SN Packet" />
 <!-- .width="6.5in", .height="2.2777777777777777in" --></p>
 <p>An MQTT-SN Client can access a Server through a Forwarder in
 case the Server is not directly attached to the same Underlying
@@ -6137,7 +6168,8 @@ Advertisement and Discovery]</a>.</p>
 Gateway Advertisement <a id=
 'advertise---gateway-advertisement'></a></h3>
 <p><em>Figure 3-32 -- ADVERTISE Packet</em></p>
-<p><img src="images/image23.png" />
+<p><img src="images/image23.png" title="ADVERTISE Packet" alt=
+"ADVERTISE Packet" />
 <!-- .width="6.5in", .height="1.4166666666666667in" --></p>
 <p>The ADVERTISE packet is sent periodically by a Gateway to
 advertise its presence. The time interval until the next
@@ -6172,8 +6204,8 @@ hours.</p>
 Search for A Gateway <a id=
 'searchgw---search-for-a-gateway'></a></h3>
 <p><em>Figure 3-33 -- SEARCHGW Packet</em></p>
-<p><img src="images/image30.png" />
-<!-- .width="6.5in", .height="1.5in" --></p>
+<p><img src="images/image30.png" title="SEARCHGW Packet" alt=
+"SEARCHGW Packet" /><!-- .width="6.5in", .height="1.5in" --></p>
 <p>The SEARCHGW packet is sent by a Client to find a Gateway to
 send Application Messages to, and receive Application Messages
 from.</p>
@@ -6210,7 +6242,8 @@ from the Packet length.</p>
 <h3 id="3203-gwinfo---gateway-information-">3.20.3 GWINFO - Gateway
 Information <a id='gwinfo---gateway-information'></a></h3>
 <p><em>Figure 3-34 -- GWINFO Packet</em></p>
-<p><img src="images/image32.png" />
+<p><img src="images/image32.png" title="GWINFO Packet" alt=
+"GWINFO Packet" />
 <!-- .width="6.5in", .height="1.7361111111111112in" --></p>
 <p>The GWINFO packet is sent as response to a SEARCHGW packet. If
 sent by a Gateway, it contains only the identifier of the sending
@@ -11237,7 +11270,8 @@ Some MQTT Server implementations might impose a limitation on the
 number of concurrent connections that they support.</p>
 <p><em>Figure C-1 -- Transparent Gateway</em></p>
 <p><mark title="Ephemeral region marking">[figure below is part of
-informative example]</mark> <img src="images/image40.png" />
+informative example]</mark> <img src="images/image40.png" title=
+"Transparent Gateway" alt="Transparent Gateway" />
 <!-- .width="3.994792213473316in", .height="2.6661472003499562in" --></p>
 <p>Because PUBWOS packets could be sent at any time by Clients with
 no Virtual Connection, a Transparent Gateway would need to maintain
@@ -11254,7 +11288,8 @@ Although its implementation may be more complex than a transparent
 Gateway, an aggregating Gateway reduces the number of MQTT
 connections between the Gateway and MQTT Server.</p>
 <p><em>Figure C-2 -- Aggregating Gateway</em></p>
-<p><img src="images/image10.png" />
+<p><img src="images/image10.png" title="Aggregating Gateway" alt=
+"Aggregating Gateway" />
 <!-- .width="4.578125546806649in", .height="3.0552755905511813in" --></p>
 <p>To support PUBWOS packets from MQTT-SN clients without a Virtual
 Connection, an Aggregating may use any aggregating MQTT connection
@@ -11273,10 +11308,14 @@ instance.</p>
 <p>The following diagrams illustrate how a Forwarder may interact
 with an Aggregating or Transparent Gateway.</p>
 <p><em>Figure C-3 -- Forwarder with Transparent Gateway</em></p>
-<p><img src="images/image22.png" />
+<p><img src="images/image22.png" title=
+"Forwarder with Transparent Gateway" alt=
+"Forwarder with Transparent Gateway" />
 <!-- .width="4.704773622047244in", .height="2.7964599737532807in" --></p>
 <p><em>Figure C-4 -- Forwarder with Aggregating Gateway</em></p>
-<p><img src="images/image29.png" />
+<p><img src="images/image29.png" title=
+"Forwarder with Aggregating Gateway" alt=
+"Forwarder with Aggregating Gateway" />
 <!-- .width="4.9003171478565175in", .height="2.8304625984251968in" --></p>
 <h3 id="914-c14-mqtt-sn-broker-">9.1.4 C.1.4 MQTT-SN Broker <a id=
 'c.1.4-mqtt-sn-broker'></a></h3>
@@ -11289,7 +11328,8 @@ relevant topics. It may support the receipt and sending of PUBWOS
 packets - it is an implementation decision on how to handle
 them.</p>
 <p><em>Figure C-5 -- MQTT-SN Broker</em></p>
-<p><img src="images/image37.png" />
+<p><img src="images/image37.png" title="MQTT-SN Broker" alt=
+"MQTT-SN Broker" />
 <!-- .width="2.8596172353455818in", .height="2.983947944006999in" --></p>
 <p>An MQTT-SN Server may choose to incorporate elements of a
 Broker, Aggregating and Transparent Gateway together. Typically, an
@@ -11375,11 +11415,15 @@ states and transitions. They are not comprehensive but included for
 guidance.</p>
 <p><em>Figure C-7 -- Server View of Client States -
 informative</em></p>
-<p><img src="images/image27.jpg" />
+<p><img src="images/image27.jpg" title=
+"Server View of Client States - informative" alt=
+"Server View of Client States - informative" />
 <!-- .width="6.5in", .height="6.958333333333333in" --></p>
 <p><em>Figure C-8 -- Server View of Client States -
 informative</em></p>
-<p><img src="images/image27.jpg" />
+<p><img src="images/image27.jpg" title=
+"Server View of Client States - informative" alt=
+"Server View of Client States - informative" />
 <!-- .width="6.5in", .height="6.958333333333333in" --></p>
 <h2 id="96-c6-publish-with-qos--1-">9.6 C.6 PUBLISH with QoS -1
 <a id='c.6-publish-with-qos--1'></a></h2>
