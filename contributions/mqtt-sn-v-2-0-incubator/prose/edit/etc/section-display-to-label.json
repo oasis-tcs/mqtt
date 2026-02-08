@@ -14,6 +14,7 @@
   "1.8.2": "two-byte-integer",
   "1.8.3": "four-byte-integer",
   "1.8.4": "utf-8-encoded-string",
+  "1.9": "typographical-conventions",
   "2": "mqtt-sn-control-packet-format",
   "2.1": "structure-of-an-mqtt-sn-control-packet",
   "2.1.1": "packet-header",

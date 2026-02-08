@@ -9,6 +9,7 @@ intro-05-norm-refs.md
 intro-06-info-refs.md
 intro-07-mqtt-for-sn.md
 intro-08-data-repr.md
+intro-09-typo-conv.md
 
 ctrl-pack-format-00.md
 ctrl-pack-format-01-structure.md

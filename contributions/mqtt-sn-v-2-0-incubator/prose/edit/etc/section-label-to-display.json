@@ -314,6 +314,7 @@
   "topics": "4.7",
   "topics-beginning-with-dollar": "4.7.1.2",
   "two-byte-integer": "1.8.2",
+  "typographical-conventions": "1.9",
   "unacknowledged-packets": "4.4.2",
   "unsuback---unsubscribe-acknowledgement": "3.10",
   "unsuback-header": "3.10.1",
