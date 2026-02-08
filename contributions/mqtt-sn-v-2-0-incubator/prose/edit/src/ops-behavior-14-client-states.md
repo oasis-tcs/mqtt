@@ -81,4 +81,4 @@ Session Topic Aliases last for the duration of a Session which exists throughout
 
 *Figure 4-9 -- Awake PINGRESP Packet flush*
 
-![](images/image2.png)<!-- .width="4.615764435695538in", .height="7.453125546806649in" -->
+![Awake PINGRESP Packet flush](images/image2.png "Awake PINGRESP Packet flush")<!-- .width="4.615764435695538in", .height="7.453125546806649in" -->

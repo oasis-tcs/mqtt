@@ -52,11 +52,11 @@ The CONNECT packet contains flags to communicate to the Server that authenticati
 
 *Figure 4-1 -- Connect Procedure (without Auth flag set, or no further authentication data required)*
 
-![](images/image15.png)<!-- .width="3.344815179352581in", .height="2.4173436132983377in" -->
+![Connect Procedure (without Auth flag set, or no further authentication data required)](images/image15.png "Connect Procedure (without Auth flag set, or no further authentication data required)")<!-- .width="3.344815179352581in", .height="2.4173436132983377in" -->
 
 *Figure 4-2 -- Connect Procedure (with Auth flag set and further authentication data required)*
 
-![](images/image33.png)<!-- .width="3.345165135608049in", .height="2.963542213473316in" -->
+![Connect Procedure (with Auth flag set and further authentication data required)](images/image33.png "Connect Procedure (with Auth flag set and further authentication data required)")<!-- .width="3.345165135608049in", .height="2.963542213473316in" -->
 
 If the Server can not accept the CONNECT request the Server returns a CONNACK packet with the rejection Reason Code.
 

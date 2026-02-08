@@ -20,7 +20,7 @@ Unless stated otherwise all variable length UTF-8 encoded strings can have any l
 
 *Figure 1-1 -- Structure of UTF-8 Encoded Strings*
 
-![](images/image14.png)<!-- .width="6.5in", .height="1.0277777777777777in" -->
+![Structure of UTF-8 Encoded Strings](images/image14.png "Structure of UTF-8 Encoded Strings")<!-- .width="6.5in", .height="1.0277777777777777in" -->
 
 «<mark title="Requirement MQTT-SN-1.7.4-1"><a name="MQTT-SN-1.7.4-1"></a>The character data in a UTF-8 Encoded String MUST be well-formed UTF-8 as defined by the Unicode specification [\[Unicode\]](#Unicode) and restated in RFC 3629 [\[RFC3629\]](#RFC3629). In particular, the character data MUST NOT include encodings of code points between U+D800 and U+DFFF</mark>»\[MQTT‑SN‑1.7.4‑1].
 
@@ -45,4 +45,4 @@ UTF-8 Encoded Strings SHOULD NOT include the Unicode \[Unicode\] code points lis
 *Figure 1-2 -- Fixed Length UTF-8 Encoded String informative example*
 
 <mark title="Ephemeral region marking">\[figure below is part of informative example\]</mark>
-![](images/image31.png)<!-- .width="6.5in", .height="2.5972222222222223in" -->
+![Fixed Length UTF-8 Encoded String informative example](images/image31.png "Fixed Length UTF-8 Encoded String informative example")<!-- .width="6.5in", .height="2.5972222222222223in" -->
