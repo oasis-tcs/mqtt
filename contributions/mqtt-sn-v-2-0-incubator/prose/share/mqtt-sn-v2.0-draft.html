@@ -600,7 +600,7 @@ earlier Versions</a>
 <li>1.3 <a href=
 "#organization-of-the-mqtt-sn-specification">Organization of the
 MQTT-SN specification</a></li>
-<li>1.4 <a href="#terminology">1.3 Terminology</a></li>
+<li>1.4 <a href="#terminology">Terminology</a></li>
 <li>1.5 <a href="#normative-references">Normative
 references</a></li>
 <li>1.6 <a href="#informative-references">Informative
@@ -707,9 +707,7 @@ Connect Acknowledgement</a>
 <li>3.2.1 <a href="#connack-header">CONNACK Header</a></li>
 <li>3.2.2 <a href="#connack-flags">CONNACK Flags</a>
 <ul>
-<li>3.2.2.1 <a href=
-"#**3-**2**-2-1-session-present**">**3.**2**.2.1 Session
-Present**</a></li>
+<li>3.2.2.1 <a href="#session-present">Session Present</a></li>
 <li>3.2.2.2 <a href="#session-expiry-interval-flag">Session Expiry
 Interval Flag</a></li>
 <li>3.2.2.3 <a href="#server-keep-alive-flag">Server Keep Alive
@@ -881,9 +879,7 @@ Release (QoS 2 delivery part 2)</a>
 <li>3.6.6.1 <a href="#pubrel-header">PUBREL Header</a></li>
 <li>3.6.6.2 <a href="#pprq2dp2---packet-identifier">Packet
 Identifier</a></li>
-<li>3.6.6.3 <a href="#3-6-6-3-reason-code-a-name=">3.6.6.3 Reason
-Code</a><a name="pprq2dp2---reason-code" id=
-"pprq2dp2---reason-code"></a></li>
+<li>3.6.6.3 <a href="#pprq2dp2---reason-code">Reason Code</a></li>
 <li>3.6.6.4 <a href="#pubrel-actions">PUBREL Actions</a></li>
 </ul>
 </li>
@@ -1314,63 +1310,67 @@ Client conformance clause</a></li>
 </li>
 </ul>
 </li>
-<li>7. <a href="#appendix-a.-acknowledgments">A.
+<li>7. <a href="#appendix-a.-acknowledgments">Appendix A.
 Acknowledgments</a>
 <ul>
-<li>7.1 <a href="#a.1-special-thanks">Special Thanks</a></li>
-<li>7.2 <a href="#a.2-participants">Participants</a></li>
+<li>7.1 <a href="#a.1-special-thanks">A.1 Special Thanks</a></li>
+<li>7.2 <a href="#a.2-participants">A.2 Participants</a></li>
 </ul>
 </li>
 <li>8. <a href=
-"#appendix-b.-mandatory-normative-statements-informative">B.
-Mandatory normative statements (informative)</a></li>
+"#appendix-b.-mandatory-normative-statements-informative">Appendix
+B. Mandatory normative statements (informative)</a></li>
 <li>9. <a href=
-"#appendix-c.-implementation-guidance-informative">C.
+"#appendix-c.-implementation-guidance-informative">Appendix C.
 Implementation Guidance (Informative)</a>
 <ul>
-<li>9.1 <a href="#c.1-example-mqtt-sn-architectures">Example
+<li>9.1 <a href="#c.1-example-mqtt-sn-architectures">C.1 Example
 MQTT-SN Architectures</a>
 <ul>
-<li>9.1.1 <a href="#c.1.1-transparent-gateway">Transparent
+<li>9.1.1 <a href="#c.1.1-transparent-gateway">C.1.1 Transparent
 Gateway</a></li>
-<li>9.1.2 <a href="#c.1.2-aggregating-gateway">Aggregating
+<li>9.1.2 <a href="#c.1.2-aggregating-gateway">C.1.2 Aggregating
 Gateway</a></li>
-<li>9.1.3 <a href="#c.1.3-forwarder">Forwarder</a></li>
-<li>9.1.4 <a href="#c.1.4-mqtt-sn-broker">MQTT-SN Broker</a></li>
+<li>9.1.3 <a href="#c.1.3-forwarder">C.1.3 Forwarder</a></li>
+<li>9.1.4 <a href="#c.1.4-mqtt-sn-broker">C.1.4 MQTT-SN
+Broker</a></li>
 </ul>
 </li>
-<li>9.2 <a href="#c.2-server-congestion">Server Congestion</a></li>
-<li>9.3 <a href="#c.3-example-timer-and-counter-values">Example
+<li>9.2 <a href="#c.2-server-congestion">C.2 Server
+Congestion</a></li>
+<li>9.3 <a href="#c.3-example-timer-and-counter-values">C.3 Example
 Timer and Counter Values</a></li>
-<li>9.4 <a href="#exponential-backoff-a-name=">Exponential
-Backoff</a><a name="c.4-exponential-backoff" id=
-"c.4-exponential-backoff"></a></li>
-<li>9.5 <a href="#c.5-client-state-diagrams">Client State
+<li>9.4 <a href="#c-4-exponential-backoff">C.4 Exponential
+Backoff</a></li>
+<li>9.5 <a href="#c.5-client-state-diagrams">C.5 Client State
 Diagrams</a></li>
-<li>9.6 <a href="#c.6-publish-with-qos--1">PUBLISH with QoS -1</a>
+<li>9.6 <a href="#c.6-publish-with-qos--1">C.6 PUBLISH with QoS
+-1</a>
 <ul>
-<li>9.6.1 <a href="#c.6.1-publish-header">PUBLISH Header</a></li>
-<li>9.6.2 <a href="#c.6.2-publish-flags">PUBLISH Flags</a>
+<li>9.6.1 <a href="#c.6.1-publish-header">C.6.1 PUBLISH
+Header</a></li>
+<li>9.6.2 <a href="#c.6.2-publish-flags">C.6.2 PUBLISH Flags</a>
 <ul>
-<li>9.6.2.1 <a href="#c.6.2.1-topic-type">Topic Type</a></li>
-<li>9.6.2.2 <a href="#c.6.2.2-qos">QoS</a></li>
-<li>9.6.2.3 <a href="#c.6.2.3-dup">DUP</a></li>
-<li>9.6.2.4 <a href="#c.6.2.4-retain">Retain</a></li>
+<li>9.6.2.1 <a href="#c.6.2.1-topic-type">C.6.2.1 Topic
+Type</a></li>
+<li>9.6.2.2 <a href="#c.6.2.2-qos">C.6.2.2 QoS</a></li>
+<li>9.6.2.3 <a href="#c.6.2.3-dup">C.6.2.3 DUP</a></li>
+<li>9.6.2.4 <a href="#c.6.2.4-retain">C.6.2.4 Retain</a></li>
 </ul>
 </li>
-<li>9.6.3 <a href="#c.6.3-topic-alias">Topic Alias</a></li>
-<li>9.6.4 <a href="#c.6.4-topic-short-name">Topic Short
+<li>9.6.3 <a href="#c.6.3-topic-alias">C.6.3 Topic Alias</a></li>
+<li>9.6.4 <a href="#c.6.4-topic-short-name">C.6.4 Topic Short
 Name</a></li>
-<li>9.6.5 <a href="#c.6.5-topic-name-length">Topic Name
+<li>9.6.5 <a href="#c.6.5-topic-name-length">C.6.5 Topic Name
 Length</a></li>
-<li>9.6.6 <a href="#c.6.6-topic-name">Topic Name</a></li>
-<li>9.6.7 <a href="#c.6.7-payload">Payload</a></li>
-<li>9.6.8 <a href="#c.6.8-publish-with-qos--1-actions">PUBLISH with
-QoS -1 Actions</a></li>
+<li>9.6.6 <a href="#c.6.6-topic-name">C.6.6 Topic Name</a></li>
+<li>9.6.7 <a href="#c.6.7-payload">C.6.7 Payload</a></li>
+<li>9.6.8 <a href="#c.6.8-publish-with-qos--1-actions">C.6.8
+PUBLISH with QoS -1 Actions</a></li>
 </ul>
 </li>
-<li>9.7 <a href="#c.7-gateway-advertisement-and-discovery">Gateway
-Advertisement and Discovery</a></li>
+<li>9.7 <a href="#c.7-gateway-advertisement-and-discovery">C.7
+Gateway Advertisement and Discovery</a></li>
 </ul>
 </li>
 <li>10. <a href="#mark-title="><mark title=
@@ -1477,7 +1477,7 @@ Organization of the MQTT-SN specification <a id=
 <p>Chapter 6 -- Conformance</p>
 </li>
 </ul>
-<h2 id="14-13-terminology-">1.4 1.3 Terminology <a id=
+<h2 id="14-terminology-">1.4 Terminology <a id=
 'terminology'></a></h2>
 <p>The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
 NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL"
@@ -3602,9 +3602,8 @@ Flags are reserved and MUST be set to
 that the reserved flags in the CONNACK packet are set to 0. If any
 of the reserved flags is not 0 it is a Malformed
 Packet</mark>»[MQTT‑SN‑3.2.2‑2].</p>
-<h4 id="3221-3221-session-present-">3.2.2.1
-<strong>3.</strong>2.2.1 Session Present <a id=
-'**3-**2**-2-1-session-present**'></a></h4>
+<h4 id="3221-session-present-">3.2.2.1 Session Present <a id=
+'session-present'></a></h4>
 <p><strong>Position</strong>: bit 0 of the CONNACK Flags. Labelled
 <em>Sess Pres</em> in Figure 3-6.</p>
 <p>Specifies whether an existing session was present on the Server
@@ -4498,9 +4497,8 @@ MQTT-SN Control Packet]</a> for a detailed description.</p>
 'pprq2dp2---packet-identifier'></a></h4>
 <p>The same value as the Packet Identifier in the PUBLISH Packet
 being acknowledged.</p>
-<h4 id="3663-3663-reason-code-">3.6.6.3 3.6.6.3 Reason Code<a name=
-"pprq2dp2---reason-code" id="pprq2dp2---reason-code"></a> <a id=
-'3-6-6-3-reason-code-a-name="pprq2dp2-reason-code"-a'></a></h4>
+<h4 id="3663-reason-code-">3.6.6.3 Reason Code <a id=
+'pprq2dp2---reason-code'></a></h4>
 <p>The Reason Code for the PUBREL packet is optional - its
 existence is inferred from the Packet length. If not provided, 0x00
 (Success) is assumed.</p>
@@ -8909,8 +8907,8 @@ the specification in order to interoperate with any other
 conformant implementation.</p>
 </li>
 </ol>
-<h1 id="7-a-acknowledgments-">7. A. Acknowledgments <a id=
-'appendix-a.-acknowledgments'></a></h1>
+<h1 id="7-appendix-a-acknowledgments-">7. Appendix A.
+Acknowledgments <a id='appendix-a.-acknowledgments'></a></h1>
 <p>[<mark title="Ephemeral region marking">Required
 section.</mark>]</p>
 <p><mark title="Ephemeral region marking">Note: A Work Product
@@ -8921,7 +8919,7 @@ initially compiled by the Chair, and any Member of the TC may add
 or remove their names from the list by request.</mark></p>
 <p><mark title="Ephemeral region marking">Remove these yellow notes
 before submitting for publication.</mark></p>
-<h2 id="71-special-thanks-">7.1 Special Thanks <a id=
+<h2 id="71-a1-special-thanks-">7.1 A.1 Special Thanks <a id=
 'a.1-special-thanks'></a></h2>
 <p><mark title="Ephemeral region marking">Note: This is an optional
 subsection to call out contributions from TC members. If a TC wants
@@ -8931,7 +8929,7 @@ to thank non-TC members then they should avoid using the term
 <p>Substantial contributions to this document from the following
 individuals are gratefully acknowledged:</p>
 <p>[Participant Name, Affiliation | Individual Member]</p>
-<h2 id="72-participants-">7.2 Participants <a id=
+<h2 id="72-a2-participants-">7.2 A.2 Participants <a id=
 'a.2-participants'></a></h2>
 <p><mark title="Ephemeral region marking">Note: A TC can determine
 who they list here, however, Observers must not be listed. It is
@@ -8942,8 +8940,8 @@ decision on who they want to list and not list.</mark></p>
 Committee during the creation of this document and their
 contributions are gratefully acknowledged:</p>
 <p>[Participant Name, Affiliation | Individual Member]</p>
-<h1 id="8-b-mandatory-normative-statements-informative-">8. B.
-Mandatory normative statements (informative) <a id=
+<h1 id="8-appendix-b-mandatory-normative-statements-informative-">
+8. Appendix B. Mandatory normative statements (informative) <a id=
 'appendix-b.-mandatory-normative-statements-informative'></a></h1>
 <p>This Appendix is non-normative and is provided as a convenient
 summary of the numbered conformance statements found in the main
@@ -11149,11 +11147,12 @@ PINGRESP packet.</td>
 </tr>
 </tbody>
 </table>
-<h1 id="9-c-implementation-guidance-informative-">9. C.
-Implementation Guidance (Informative) <a id=
+<h1 id="9-appendix-c-implementation-guidance-informative-">9.
+Appendix C. Implementation Guidance (Informative) <a id=
 'appendix-c.-implementation-guidance-informative'></a></h1>
-<h2 id="91-example-mqtt-sn-architectures-">9.1 Example MQTT-SN
-Architectures <a id='c.1-example-mqtt-sn-architectures'></a></h2>
+<h2 id="91-c1-example-mqtt-sn-architectures-">9.1 C.1 Example
+MQTT-SN Architectures <a id=
+'c.1-example-mqtt-sn-architectures'></a></h2>
 <p>Among the kinds of MQTT-SN components, there are <em>Clients and
 Servers</em> (sub-divided into <em>Gateways, Brokers and
 Forwarders)</em>.</p>
@@ -11190,8 +11189,8 @@ MQTT-SN frames it receives on the Client side and forwards them
 unchanged to the Gateway; in the opposite direction, it removes the
 encapsulation from the frames it receives from the Gateway and
 sends them unchanged to the Clients.</p>
-<h3 id="911-transparent-gateway-">9.1.1 Transparent Gateway <a id=
-'c.1.1-transparent-gateway'></a></h3>
+<h3 id="911-c11-transparent-gateway-">9.1.1 C.1.1 Transparent
+Gateway <a id='c.1.1-transparent-gateway'></a></h3>
 <p>For each connected MQTT-SN Client a Transparent Gateway will set
 up and maintain an MQTT connection to the MQTT server. This MQTT
 connection is reserved exclusively for the end-to-end and almost
@@ -11217,8 +11216,8 @@ number of concurrent connections that they support.</p>
 no Virtual Connection, a Transparent Gateway would need to maintain
 a dedicated MQTT connection with the MQTT Server to support those
 packets.</p>
-<h3 id="912-aggregating-gateway-">9.1.2 Aggregating Gateway <a id=
-'c.1.2-aggregating-gateway'></a></h3>
+<h3 id="912-c12-aggregating-gateway-">9.1.2 C.1.2 Aggregating
+Gateway <a id='c.1.2-aggregating-gateway'></a></h3>
 <p>Instead of having one MQTT connection for each connected MQTT-SN
 Client, an aggregating Gateway has one MQTT connection to the MQTT
 Server. All packet exchanges between an MQTT-SN client and an
@@ -11236,7 +11235,7 @@ to forward those packets to an MQTT Server.</p>
 <p>A hybrid Gateway may contain elements of both Aggregating and
 Transparent Gateways, using different approaches depending on the
 characteristics of the MQTT-SN Clients connecting to them.</p>
-<h3 id="913-forwarder-">9.1.3 Forwarder <a id=
+<h3 id="913-c13-forwarder-">9.1.3 C.1.3 Forwarder <a id=
 'c.1.3-forwarder'></a></h3>
 <p>An MQTT-SN Forwarder connects two networks which cannot transmit
 messages directly to and from each other. It serves as a bridge for
@@ -11252,7 +11251,7 @@ with an Aggregating or Transparent Gateway.</p>
 <p><em>Figure C-4 -- Forwarder with Aggregating Gateway</em></p>
 <p><img src="images/image29.png" />
 <!-- .width="4.9003171478565175in", .height="2.8304625984251968in" --></p>
-<h3 id="914-mqtt-sn-broker-">9.1.4 MQTT-SN Broker <a id=
+<h3 id="914-c14-mqtt-sn-broker-">9.1.4 C.1.4 MQTT-SN Broker <a id=
 'c.1.4-mqtt-sn-broker'></a></h3>
 <p>An MQTT-SN Server may have no interaction with an MQTT Server,
 in which case, much like an MQTT Server, it will act as an
@@ -11268,7 +11267,7 @@ them.</p>
 <p>An MQTT-SN Server may choose to incorporate elements of a
 Broker, Aggregating and Transparent Gateway together. Typically, an
 Aggregating Gateway will also act as an MQTT-SN Broker.</p>
-<h2 id="92-server-congestion-">9.2 Server Congestion <a id=
+<h2 id="92-c2-server-congestion-">9.2 C.2 Server Congestion <a id=
 'c.2-server-congestion'></a></h2>
 <p>For CONNECT, PUBLISH, SUBSCRIBE and REGISTER requests, the
 Server may return the Reason Code <em>Congestion</em>, meaning
@@ -11280,8 +11279,8 @@ depends on the implementation characteristics - it should be
 configured in the client application based on those. See <a href=
 "#c.3-example-timer-and-counter-values">[C.4 Timer and Counter
 Values]</a> for an example value.</p>
-<h2 id="93-example-timer-and-counter-values-">9.3 Example Timer and
-Counter Values <a id=
+<h2 id="93-c3-example-timer-and-counter-values-">9.3 C.3 Example
+Timer and Counter Values <a id=
 'c.3-example-timer-and-counter-values'></a></h2>
 <p>Figure C-6 gives some values for the timers and counters defined
 in this specification derived from implementation experience.</p>
@@ -11292,9 +11291,8 @@ sleep timers at the Server may depend on the values indicated by
 the clients. For example, the timer values may be 10% higher than
 the indicated values for periods larger than 1 minute, and 50%
 higher if less.</p>
-<h2 id="94-exponential-backoff-">9.4 Exponential Backoff<a name=
-"c.4-exponential-backoff" id="c.4-exponential-backoff"></a> <a id=
-'exponential-backoff-a-name="c-4-exponential-backoff"-a'></a></h2>
+<h2 id="94-c4-exponential-backoff-">9.4 C.4 Exponential Backoff
+<a id='c-4-exponential-backoff'></a></h2>
 <p>The <em>Retry Interval</em> for unacknowledged packets can be
 increased on each retry, to avoid overwhelming recipient network
 nodes while allowing efficient Virtual Connection reestablishment.
@@ -11343,8 +11341,8 @@ synchronized by some situation, and all retry at once. The value of
 the random number ran is recalculated after each retry. The random
 number should be no larger than the initial <em>Retry
 Interval</em>.</p>
-<h2 id="95-client-state-diagrams-">9.5 Client State Diagrams <a id=
-'c.5-client-state-diagrams'></a></h2>
+<h2 id="95-c5-client-state-diagrams-">9.5 C.5 Client State Diagrams
+<a id='c.5-client-state-diagrams'></a></h2>
 <p>The following diagrams are illustrative, graphical views of the
 states and transitions. They are not comprehensive but included for
 guidance.</p>
@@ -11356,8 +11354,8 @@ informative</em></p>
 informative</em></p>
 <p><img src="images/image27.jpg" />
 <!-- .width="6.5in", .height="6.958333333333333in" --></p>
-<h2 id="96-publish-with-qos--1-">9.6 PUBLISH with QoS -1 <a id=
-'c.6-publish-with-qos--1'></a></h2>
+<h2 id="96-c6-publish-with-qos--1-">9.6 C.6 PUBLISH with QoS -1
+<a id='c.6-publish-with-qos--1'></a></h2>
 <p><em>Figure C-9 -- PUBLISH Packet for QoS -1</em></p>
 <p><img src="images/image5.png" />
 <!-- .width="6.5in", .height="5.569444444444445in" --></p>
@@ -11368,13 +11366,13 @@ wants to send to. Implementation of this packet is optional.</p>
 <p>This packet can be used by both Clients and Servers to publish
 data to a topic without establishing a Virtual Connection or
 Session.</p>
-<h3 id="961-publish-header-">9.6.1 PUBLISH Header <a id=
+<h3 id="961-c61-publish-header-">9.6.1 C.6.1 PUBLISH Header <a id=
 'c.6.1-publish-header'></a></h3>
 <p>The first 2 or 4 bytes of the packet are encoded according to
 the variable length packet header format. Refer to <a href=
 "#structure-of-an-mqtt-sn-control-packet">[2.1 Structure of an
 MQTT-SN Control Packet]</a> for a detailed description.</p>
-<h3 id="962-publish-flags-">9.6.2 PUBLISH Flags <a id=
+<h3 id="962-c62-publish-flags-">9.6.2 C.6.2 PUBLISH Flags <a id=
 'c.6.2-publish-flags'></a></h3>
 <p>The PUBLISH Flags is a 1 byte field which contains flags
 specifying the content of the packet and the Server behavior. Bits
@@ -11382,7 +11380,7 @@ specifying the content of the packet and the Server behavior. Bits
 <p>The Client validates that the reserved flags in the PUBLISH
 packet are set to 0. If any of the reserved flags is not 0 it is a
 Malformed Packet.</p>
-<h4 id="9621-topic-type-">9.6.2.1 Topic Type <a id=
+<h4 id="9621-c621-topic-type-">9.6.2.1 C.6.2.1 Topic Type <a id=
 'c.6.2.1-topic-type'></a></h4>
 <p><strong>Position</strong>: bits 0 and 1 of the PUBLISH
 Flags.</p>
@@ -11403,54 +11401,58 @@ syntax as Topic Name. However, some 1.2 implementations treated
 this as a binary field.</p>
 </li>
 </ul>
-<h4 id="9622-qos-">9.6.2.2 QoS <a id='c.6.2.2-qos'></a></h4>
+<h4 id="9622-c622-qos-">9.6.2.2 C.6.2.2 QoS <a id=
+'c.6.2.2-qos'></a></h4>
 <p><strong>Position</strong>: bits 5 and 6 of the PUBLISH
 Flags.</p>
 <p>Set this field to "0b11" for QoS -1.</p>
-<h4 id="9623-dup-">9.6.2.3 DUP <a id='c.6.2.3-dup'></a></h4>
+<h4 id="9623-c623-dup-">9.6.2.3 C.6.2.3 DUP <a id=
+'c.6.2.3-dup'></a></h4>
 <p><strong>Position</strong>: bit 7 of the PUBLISH Flags.</p>
 <p>Set to 0.</p>
-<h4 id="9624-retain-">9.6.2.4 Retain <a id=
+<h4 id="9624-c624-retain-">9.6.2.4 C.6.2.4 Retain <a id=
 'c.6.2.4-retain'></a></h4>
 <p><strong>Position</strong>: bit 4 of the PUBLISH Flags.</p>
 <p>This flag signifies whether the message is published as a
 retained message or not. See <a href="#retained-messages">[4.13
 Retained Messages]</a> for more information.</p>
-<h3 id="963-topic-alias-">9.6.3 Topic Alias <a id=
+<h3 id="963-c63-topic-alias-">9.6.3 C.6.3 Topic Alias <a id=
 'c.6.3-topic-alias'></a></h3>
 <p>Only present if the Topic Type is Predefined Topic Alias.
 Contain a Topic Alias which is preconfigured to be known to both
 the sender and receiver.</p>
-<h3 id="964-topic-short-name-">9.6.4 Topic Short Name <a id=
-'c.6.4-topic-short-name'></a></h3>
+<h3 id="964-c64-topic-short-name-">9.6.4 C.6.4 Topic Short Name
+<a id='c.6.4-topic-short-name'></a></h3>
 <p>Only present if the Topic Type is Short Topic Name.</p>
 <p>This is a two byte Topic Name. This Topic Type does not exist in
 later versions of MQTT-SN. It existed because the original MQTT-SN
 1.2 did not allow a Long Topic Name, so the only other option for
 this packet was a Predefined Topic Alias.</p>
-<h3 id="965-topic-name-length-">9.6.5 Topic Name Length <a id=
-'c.6.5-topic-name-length'></a></h3>
+<h3 id="965-c65-topic-name-length-">9.6.5 C.6.5 Topic Name Length
+<a id='c.6.5-topic-name-length'></a></h3>
 <p>Only present if the Topic Type is Topic Name.</p>
 <p>The length of the Topic Name field.</p>
-<h3 id="966-topic-name-">9.6.6 Topic Name <a id=
+<h3 id="966-c66-topic-name-">9.6.6 C.6.6 Topic Name <a id=
 'c.6.6-topic-name'></a></h3>
 <p>Only present if the Topic Type is Topic Name.</p>
 <p>Topic Name is a UTF-8 encoded string of length Topic Name
 Length.</p>
-<h3 id="967-payload-">9.6.7 Payload <a id='c.6.7-payload'></a></h3>
+<h3 id="967-c67-payload-">9.6.7 C.6.7 Payload <a id=
+'c.6.7-payload'></a></h3>
 <p>The Payload contains the payload data of the Application Message
 that is being published. The content and format of the data is
 application specific. It is valid for a PUBLISH packet to contain a
 zero length Payload.</p>
-<h3 id="968-publish-with-qos--1-actions-">9.6.8 PUBLISH with QoS -1
-Actions <a id='c.6.8-publish-with-qos--1-actions'></a></h3>
+<h3 id="968-c68-publish-with-qos--1-actions-">9.6.8 C.6.8 PUBLISH
+with QoS -1 Actions <a id=
+'c.6.8-publish-with-qos--1-actions'></a></h3>
 <p>The Client or Server uses a PUBLISH QoS -1 packet to send an
 Application Message to a Network Address, for possible receipt by a
 Server or another Client.</p>
 <p>If received by a Client or Server, the PUBLISH QoS -1 packet is
 treated as if its QoS were 0 as described in <a href=
 "#publish-actions">[3.6.3.7 PUBLISH Actions]</a>.</p>
-<h2 id="97-gateway-advertisement-and-discovery-">9.7 Gateway
+<h2 id="97-c7-gateway-advertisement-and-discovery-">9.7 C.7 Gateway
 Advertisement and Discovery <a id=
 'c.7-gateway-advertisement-and-discovery'></a></h2>
 <p>Clients might have foreknowledge of how to reach a Gateway, but
