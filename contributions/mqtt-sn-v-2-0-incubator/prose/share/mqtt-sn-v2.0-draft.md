@@ -823,7 +823,7 @@ Unless stated otherwise all variable length UTF-8 encoded strings can have any l
 
 *Figure 1-1 -- Structure of UTF-8 Encoded Strings*
 
-![](images/image14.png)<!-- .width="6.5in", .height="1.0277777777777777in" -->
+![Structure of UTF-8 Encoded Strings](images/image14.png "Structure of UTF-8 Encoded Strings")<!-- .width="6.5in", .height="1.0277777777777777in" -->
 
 «<mark title="Requirement MQTT-SN-1.7.4-1"><a name="MQTT-SN-1.7.4-1"></a>The character data in a UTF-8 Encoded String MUST be well-formed UTF-8 as defined by the Unicode specification [\[Unicode\]](#Unicode) and restated in RFC 3629 [\[RFC3629\]](#RFC3629). In particular, the character data MUST NOT include encodings of code points between U+D800 and U+DFFF</mark>»\[MQTT‑SN‑1.7.4‑1].
 
@@ -848,7 +848,7 @@ UTF-8 Encoded Strings SHOULD NOT include the Unicode \[Unicode\] code points lis
 *Figure 1-2 -- Fixed Length UTF-8 Encoded String informative example*
 
 <mark title="Ephemeral region marking">\[figure below is part of informative example\]</mark>
-![](images/image31.png)<!-- .width="6.5in", .height="2.5972222222222223in" -->
+![Fixed Length UTF-8 Encoded String informative example](images/image31.png "Fixed Length UTF-8 Encoded String informative example")<!-- .width="6.5in", .height="2.5972222222222223in" -->
 
 ## 1.9 Typographical Conventions <a id='typographical-conventions'></a>
 
@@ -3007,11 +3007,11 @@ The CONNECT packet contains flags to communicate to the Server that authenticati
 
 *Figure 4-1 -- Connect Procedure (without Auth flag set, or no further authentication data required)*
 
-![](images/image15.png)<!-- .width="3.344815179352581in", .height="2.4173436132983377in" -->
+![Connect Procedure (without Auth flag set, or no further authentication data required)](images/image15.png "Connect Procedure (without Auth flag set, or no further authentication data required)")<!-- .width="3.344815179352581in", .height="2.4173436132983377in" -->
 
 *Figure 4-2 -- Connect Procedure (with Auth flag set and further authentication data required)*
 
-![](images/image33.png)<!-- .width="3.345165135608049in", .height="2.963542213473316in" -->
+![Connect Procedure (with Auth flag set and further authentication data required)](images/image33.png "Connect Procedure (with Auth flag set and further authentication data required)")<!-- .width="3.345165135608049in", .height="2.963542213473316in" -->
 
 If the Server can not accept the CONNECT request the Server returns a CONNACK packet with the rejection Reason Code.
 
@@ -3644,7 +3644,7 @@ This is a one-way transfer of information - the response MUST be a CONNACK, not 
 
 *Figure 4-6 -- CONNECT with MQTT User Name and Password, informative example*
 
-![](images/image20.png)<!-- .width="6.5in", .height="7.430555555555555in" -->
+![CONNECT with MQTT User Name and Password, informative example](images/image20.png "CONNECT with MQTT User Name and Password, informative example")<!-- .width="6.5in", .height="7.430555555555555in" -->
 
 To support the equivalent of the MQTT User Name and Password together with MQTT Enhanced Authentication, in the CONNECT packet do the following:
 
@@ -3825,7 +3825,7 @@ Session Topic Aliases last for the duration of a Session which exists throughout
 
 *Figure 4-9 -- Awake PINGRESP Packet flush*
 
-![](images/image2.png)<!-- .width="4.615764435695538in", .height="7.453125546806649in" -->
+![Awake PINGRESP Packet flush](images/image2.png "Awake PINGRESP Packet flush")<!-- .width="4.615764435695538in", .height="7.453125546806649in" -->
 
 ## 4.15 Optional Features <a id='optional-features'></a>
 
@@ -4602,7 +4602,7 @@ The following diagrams are illustrative, graphical views of the states and trans
 
 *Figure C-9 -- PUBLISH Packet for QoS -1*
 
-![](images/image5.png)<!-- .width="6.5in", .height="5.569444444444445in" -->
+![PUBLISH Packet for QoS -1](images/image5.png "PUBLISH Packet for QoS -1")<!-- .width="6.5in", .height="5.569444444444445in" -->
 
 This packet is the MQTT-SN 1.2 equivalent of PUBWOS. It could be supported by a Server if there are existing MQTT-SN 1.2 transmitters that the Server wants to listen to, or receivers it wants to send to. Implementation of this packet is optional.
 
