@@ -44,4 +44,5 @@ UTF-8 Encoded Strings SHOULD NOT include the Unicode \[Unicode\] code points lis
 
 *Figure 1-2 -- Fixed Length UTF-8 Encoded String informative example*
 
-> ![](images/image31.png)<!-- .width="6.5in", .height="2.5972222222222223in" -->
+<mark title="Ephemeral region marking">\[figure below is part of informative example\]</mark>
+![](images/image31.png)<!-- .width="6.5in", .height="2.5972222222222223in" -->

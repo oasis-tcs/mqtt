@@ -24,7 +24,8 @@ Although the implementation of the Transparent Gateway may be somewhat simpler t
 
 *Figure C-1 -- Transparent Gateway*
 
-> ![](images/image40.png)<!-- .width="3.994792213473316in", .height="2.6661472003499562in" -->
+<mark title="Ephemeral region marking">\[figure below is part of informative example\]</mark>
+![](images/image40.png)<!-- .width="3.994792213473316in", .height="2.6661472003499562in" -->
 
 Because PUBWOS packets could be sent at any time by Clients with no Virtual Connection, a Transparent Gateway would need to maintain a dedicated MQTT connection with the MQTT Server to support those packets.
 
