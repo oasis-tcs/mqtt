@@ -2,7 +2,7 @@
 
 *Figure 3-1 -- CONNECT Packet*
 
-![](images/image26.png)<!-- .width="5.2in", .height="8.075757874015748in" -->
+![CONNECT Packet](images/image26.png "CONNECT Packet")<!-- .width="5.2in", .height="8.075757874015748in" -->
 
 The CONNECT packet is sent from the Client to the Server to request the creation of or continuation of a Session.
 

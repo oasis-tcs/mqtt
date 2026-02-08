@@ -2,7 +2,7 @@
 
 *Figure 3-3 -- CONNACK Packet*
 
-![](images/image6.png)<!-- .width="6.5in", .height="7.291666666666667in" -->
+![CONNACK Packet](images/image6.png "CONNACK Packet")<!-- .width="6.5in", .height="7.291666666666667in" -->
 
 The CONNACK packet is sent by the Server in response to a CONNECT request from a client.
 

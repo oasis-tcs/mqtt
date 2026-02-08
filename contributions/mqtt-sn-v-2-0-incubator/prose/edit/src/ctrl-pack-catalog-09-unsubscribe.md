@@ -2,7 +2,7 @@
 
 *Figure 3-19 -- UNSUBSCRIBE Packet*
 
-![](images/image25.png)<!-- .width="6.5in", .height="3.375in" -->
+![UNSUBSCRIBE Packet](images/image25.png "UNSUBSCRIBE Packet")<!-- .width="6.5in", .height="3.375in" -->
 
 An UNSUBSCRIBE packet is sent by the Client to the Server to remove subscriptions to topics.
 

@@ -2,7 +2,7 @@
 
 *Figure 3-5 -- REGISTER Packet*
 
-![](images/image39.png)<!-- .width="6.5in", .height="3.375in" -->
+![REGISTER Packet](images/image39.png "REGISTER Packet")<!-- .width="6.5in", .height="3.375in" -->
 
 A REGISTER packet is sent by a Client or Server to create a Session Topic Alias, before sending a PUBLISH with that Session Topic Alias.
 

@@ -6,7 +6,7 @@ The Packets in this section are optional. A description of how this functionalit
 
 *Figure 3-32 -- ADVERTISE Packet*
 
-![](images/image23.png)<!-- .width="6.5in", .height="1.4166666666666667in" -->
+![ADVERTISE Packet](images/image23.png "ADVERTISE Packet")<!-- .width="6.5in", .height="1.4166666666666667in" -->
 
 The ADVERTISE packet is sent periodically by a Gateway to advertise its presence. The time interval until the next transmission is indicated by the *Duration* field.
 
@@ -34,7 +34,7 @@ The maximum value that can be encoded is approximately 18 hours.
 
 *Figure 3-33 -- SEARCHGW Packet*
 
-![](images/image30.png)<!-- .width="6.5in", .height="1.5in" -->
+![SEARCHGW Packet](images/image30.png "SEARCHGW Packet")<!-- .width="6.5in", .height="1.5in" -->
 
 The SEARCHGW packet is sent by a Client to find a Gateway to send Application Messages to, and receive Application Messages from.
 
@@ -62,7 +62,7 @@ This field is optional - its existence or absence is inferred from the Packet le
 
 *Figure 3-34 -- GWINFO Packet*
 
-![](images/image32.png)<!-- .width="6.5in", .height="1.7361111111111112in" -->
+![GWINFO Packet](images/image32.png "GWINFO Packet")<!-- .width="6.5in", .height="1.7361111111111112in" -->
 
 The GWINFO packet is sent as response to a SEARCHGW packet. If sent by a Gateway, it contains only the identifier of the sending Gateway; otherwise, if sent by a client, it also includes the Network Address of the Gateway.
 

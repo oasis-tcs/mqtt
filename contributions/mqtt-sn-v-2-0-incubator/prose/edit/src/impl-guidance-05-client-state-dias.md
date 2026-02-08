@@ -4,8 +4,8 @@ The following diagrams are illustrative, graphical views of the states and trans
 
 *Figure C-7 -- Server View of Client States - informative*
 
-![](images/image27.jpg)<!-- .width="6.5in", .height="6.958333333333333in" -->
+![Server View of Client States - informative](images/image27.jpg "Server View of Client States - informative")<!-- .width="6.5in", .height="6.958333333333333in" -->
 
 *Figure C-8 -- Server View of Client States - informative*
 
-![](images/image27.jpg)<!-- .width="6.5in", .height="6.958333333333333in" -->
+![Server View of Client States - informative](images/image27.jpg "Server View of Client States - informative")<!-- .width="6.5in", .height="6.958333333333333in" -->

@@ -2,7 +2,7 @@
 
 *Figure 3-20 -- UNSUBACK Packet*
 
-![](images/image9.png)<!-- .width="6.5in", .height="1.2777777777777777in" -->
+![UNSUBACK Packet](images/image9.png "UNSUBACK Packet")<!-- .width="6.5in", .height="1.2777777777777777in" -->
 
 An UNSUBACK packet is sent by a Server to acknowledge the receipt and processing of an UNSUBSCRIBE packet.
 

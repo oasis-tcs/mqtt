@@ -2,7 +2,7 @@
 
 *Figure 3-28 -- Format of an Protection Encapsulated MQTT-SN Packet*
 
-![](images/image24.png)<!-- .width="6.5in", .height="6.347222222222222in" -->
+![Format of an Protection Encapsulated MQTT-SN Packet](images/image24.png "Format of an Protection Encapsulated MQTT-SN Packet")<!-- .width="6.5in", .height="6.347222222222222in" -->
 
 Protection encapsulation provides a secure envelope for any MQTT-SN packet (with the exception of the Forward Encapsulation packet). The fields provided by the Protection Encapsulation provide a means by which the sender is identified and the packet is protected, using a number of prescribed protection schemes. Where the phrase "protected Packet" is used in this document, it means an MQTT-SN Packet surrounded by the Protection Encapsulation.
 

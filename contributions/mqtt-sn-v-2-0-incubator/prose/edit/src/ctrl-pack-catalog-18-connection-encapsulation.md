@@ -2,7 +2,7 @@
 
 *Figure 3-30 -- Format of a Connection Encapsulated MQTT-SN Packet*
 
-![](images/image35.png)<!-- .width="6.5in", .height="2.2777777777777777in" -->
+![Format of a Connection Encapsulated MQTT-SN Packet](images/image35.png "Format of a Connection Encapsulated MQTT-SN Packet")<!-- .width="6.5in", .height="2.2777777777777777in" -->
 
 This envelope wraps an MQTT-SN Packet to allow it to be associated with an existing Virtual Connection where other methods are not sufficient. Only Clients can use the Connection Encapsulation because it is assumed that the Network Address for the Server is static for the duration of the Virtual Connection. If the Server Network Address is not static, then another method of identifying the Packet sender must be used, such as the Protection Encapsulation or DTLS.
 

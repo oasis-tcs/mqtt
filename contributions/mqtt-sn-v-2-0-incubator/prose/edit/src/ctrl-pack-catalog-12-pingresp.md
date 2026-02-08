@@ -2,7 +2,7 @@
 
 *Figure 3-22 -- PINGRESP Packet*
 
-![](images/image17.png)<!-- .width="6.5in", .height="1.4166666666666667in" -->
+![PINGRESP Packet](images/image17.png "PINGRESP Packet")<!-- .width="6.5in", .height="1.4166666666666667in" -->
 
 A PINGRESP Packet is sent by the Server to the Client in response to a PINGREQ packet. It indicates that the Server is alive.
 

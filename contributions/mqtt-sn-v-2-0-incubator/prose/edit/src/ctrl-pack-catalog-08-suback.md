@@ -2,7 +2,7 @@
 
 *Figure 3-18 -- SUBACK Packet*
 
-![](images/image4.png)<!-- .width="6.5in", .height="2.5555555555555554in" -->
+![SUBACK Packet](images/image4.png "SUBACK Packet")<!-- .width="6.5in", .height="2.5555555555555554in" -->
 
 The SUBACK packet is sent by a Server to a client as an acknowledgment to the receipt and processing of a SUBSCRIBE packet.
 

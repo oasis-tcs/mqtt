@@ -2,7 +2,7 @@
 
 *Figure 3-21 -- PINGREQ Packet*
 
-![](images/image36.png)<!-- .width="6.5in", .height="1.1944444444444444in" -->
+![PINGREQ Packet](images/image36.png "PINGREQ Packet")<!-- .width="6.5in", .height="1.1944444444444444in" -->
 
 The PINGREQ packet is sent from a Client to the Server. It can be used to:
 

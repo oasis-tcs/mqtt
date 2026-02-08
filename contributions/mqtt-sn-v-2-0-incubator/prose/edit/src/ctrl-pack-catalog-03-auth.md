@@ -2,7 +2,7 @@
 
 *Figure 3-4 -- AUTH Packet*
 
-![](images/image8.png)<!-- .width="6.5in", .height="3.2222222222222223in" -->
+![AUTH Packet](images/image8.png "AUTH Packet")<!-- .width="6.5in", .height="3.2222222222222223in" -->
 
 <mark title="Ephemeral region marking">The authentication method and data is first sent by the Client as part of a CONNECT exchange. If the Server requires additional information to complete the authentication, it responds with an AUTH packet to signal that the Client generates and sends another AUTH packet with the required information and so on until the authentication is complete. The server then responds with a CONNACK message.</mark>
 

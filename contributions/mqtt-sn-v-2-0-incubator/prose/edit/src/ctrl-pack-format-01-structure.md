@@ -19,11 +19,11 @@ Each MQTT-SN Control Packet contains a Header of format 1 or format 2 as shown b
 
 *Figure 2-2 -- Packet Header Format 1*
 
-![](images/image12.png)<!-- .width="6.5in", .height="0.7222222222222222in" -->
+![Packet Header Format 1](images/image12.png "Packet Header Format 1")<!-- .width="6.5in", .height="0.7222222222222222in" -->
 
 *Figure 2-3 -- Packet Header Format 2*
 
-![](images/image16.png)<!-- .width="6.5in", .height="1.1944444444444444in" -->
+![Packet Header Format 2](images/image16.png "Packet Header Format 2")<!-- .width="6.5in", .height="1.1944444444444444in" -->
 
 ### Length{#length}
 
@@ -45,34 +45,34 @@ The MQTT-SN Control Packet Type field is a 1-byte unsigned value, the values are
 
 *Figure 2-4 -- MQTT-SN Control Packet Types*
 
-| Name | Value | Direction of flow | Description |
-| :---: | :---: | :---: | ----- |
-| **Reserved** | 0x00 | Forbidden | Reserved |
-| **CONNECT** | 0x01 | Client to Server | Virtual Connection request |
-| **CONNACK** | 0x02 | Server to Client | Virtual Connection acknowledgement |
-| **PUBLISH** | 0x03 | Client to Server or Server to Client | Publish message |
-| **PUBACK** | 0x04 | Client to Server or Server to Client | Publish acknowledgment (QoS 1\) or Publish error (Any QoS). |
-| **PUBREC** | 0x05 | Client to Server or Server to Client | Publish received (QoS 2 delivery part 1\) |
-| **PUBREL** | 0x06 | Client to Server or Server to Client | Publish release (QoS 2 delivery part 2\) |
-| **PUBCOMP** | 0x07 | Client to Server or Server to Client | Publish complete (QoS 2 delivery part 3\) |
-| **SUBSCRIBE** | 0x08 | Client to Server | Subscribe request |
-| **SUBACK** | 0x09 | Server to Client | Subscribe acknowledgment |
-| **UNSUBSCRIBE** | 0x0A | Client to Server | Unsubscribe request |
-| **UNSUBACK** | 0x0B | Server to Client | Unsubscribe acknowledgment |
-| **PINGREQ** | 0x0C | Client to Server | PING request |
-| **PINGRESP** | 0x0D | Server to Client | PING response |
-| **DISCONNECT** | 0x0E | Client to Server or Server to Client | Disconnect notification |
-| **AUTH** | 0x0F | Client to Server or Server to Client | Authentication handshake |
-| **REGISTER** | 0x10 | Client to Server | Request topic alias |
-| **REGACK** | 0x11 | Server to Client | Supply topic alias |
-| **PUBWOS** | 0x12 | Client to Server or Server to Client | Publish packet for out of session messages which have no session on the receiver |
-| **SLEEPREQ** | 0x13 | Client to Server | Sleep request |
-| **SLEEPRESP** | 0x14 | Server to Client | Sleep response |
-| **WAKEUP**  | 0x15 | Server to Client | Wake up request |
-| **ADVERTISE** | 0x16 | Server to Clients | Advertise the Server presence |
-| **SEARCHGW** | 0x17 | Client to Servers | Client GWINFO request |
-| **GWINFO** | 0x18 | Server to Client | Response to a SEARCHGW |
-| **Reserved**  | 0x19-0xFC | Forbidden | Reserved |
-| **Forwarder Encapsulation** | 0xFD | Forwarder to Client or Forwarder to Server | MQTT-SN packet envelope to add addressing information for Forwarders |
-| **Session Encapsulation** | 0xFE | Client to Server | MQTT-SN Packet envelope to add session identification |
-| **Protection Encapsulation** | 0xFF | Client to Server or Server to Client | A protection envelope that can encapsulate any MQTT-SN packet with the exception of Forwarder-Encapsulation packet (0xFE) |
+|             Name             |   Value   |             Direction of flow              | Description                                                                                                               |
+|:----------------------------:|:---------:|:------------------------------------------:|---------------------------------------------------------------------------------------------------------------------------|
+|         **Reserved**         |   0x00    |                 Forbidden                  | Reserved                                                                                                                  |
+|         **CONNECT**          |   0x01    |              Client to Server              | Virtual Connection request                                                                                                |
+|         **CONNACK**          |   0x02    |              Server to Client              | Virtual Connection acknowledgement                                                                                        |
+|         **PUBLISH**          |   0x03    |    Client to Server or Server to Client    | Publish message                                                                                                           |
+|          **PUBACK**          |   0x04    |    Client to Server or Server to Client    | Publish acknowledgment (QoS 1\) or Publish error (Any QoS).                                                               |
+|          **PUBREC**          |   0x05    |    Client to Server or Server to Client    | Publish received (QoS 2 delivery part 1\)                                                                                 |
+|          **PUBREL**          |   0x06    |    Client to Server or Server to Client    | Publish release (QoS 2 delivery part 2\)                                                                                  |
+|         **PUBCOMP**          |   0x07    |    Client to Server or Server to Client    | Publish complete (QoS 2 delivery part 3\)                                                                                 |
+|        **SUBSCRIBE**         |   0x08    |              Client to Server              | Subscribe request                                                                                                         |
+|          **SUBACK**          |   0x09    |              Server to Client              | Subscribe acknowledgment                                                                                                  |
+|       **UNSUBSCRIBE**        |   0x0A    |              Client to Server              | Unsubscribe request                                                                                                       |
+|         **UNSUBACK**         |   0x0B    |              Server to Client              | Unsubscribe acknowledgment                                                                                                |
+|         **PINGREQ**          |   0x0C    |              Client to Server              | PING request                                                                                                              |
+|         **PINGRESP**         |   0x0D    |              Server to Client              | PING response                                                                                                             |
+|        **DISCONNECT**        |   0x0E    |    Client to Server or Server to Client    | Disconnect notification                                                                                                   |
+|           **AUTH**           |   0x0F    |    Client to Server or Server to Client    | Authentication handshake                                                                                                  |
+|         **REGISTER**         |   0x10    |              Client to Server              | Request topic alias                                                                                                       |
+|          **REGACK**          |   0x11    |              Server to Client              | Supply topic alias                                                                                                        |
+|          **PUBWOS**          |   0x12    |    Client to Server or Server to Client    | Publish packet for out of session messages which have no session on the receiver                                          |
+|         **SLEEPREQ**         |   0x13    |              Client to Server              | Sleep request                                                                                                             |
+|        **SLEEPRESP**         |   0x14    |              Server to Client              | Sleep response                                                                                                            |
+|          **WAKEUP**          |   0x15    |              Server to Client              | Wake up request                                                                                                           |
+|        **ADVERTISE**         |   0x16    |             Server to Clients              | Advertise the Server presence                                                                                             |
+|         **SEARCHGW**         |   0x17    |             Client to Servers              | Client GWINFO request                                                                                                     |
+|          **GWINFO**          |   0x18    |              Server to Client              | Response to a SEARCHGW                                                                                                    |
+|         **Reserved**         | 0x19-0xFC |                 Forbidden                  | Reserved                                                                                                                  |
+| **Forwarder Encapsulation**  |   0xFD    | Forwarder to Client or Forwarder to Server | MQTT-SN packet envelope to add addressing information for Forwarders                                                      |
+|  **Session Encapsulation**   |   0xFE    |              Client to Server              | MQTT-SN Packet envelope to add session identification                                                                     |
+| **Protection Encapsulation** |   0xFF    |    Client to Server or Server to Client    | A protection envelope that can encapsulate any MQTT-SN packet with the exception of Forwarder-Encapsulation packet (0xFE) |

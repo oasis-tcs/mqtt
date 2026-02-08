@@ -2,7 +2,7 @@
 
 *Figure 3-17 -- SUBSCRIBE Packet*
 
-![](images/image7.png)<!-- .width="6.5in", .height="3.375in" -->
+![SUBSCRIBE Packet](images/image7.png "SUBSCRIBE Packet")<!-- .width="6.5in", .height="3.375in" -->
 
 The SUBSCRIBE packet is sent from the Client to the Server to create one or more Subscriptions. A Subscription registers a Client's interest in one or more Topics. The Server sends PUBLISH packets to the Client to forward Application Messages that were published to Topics that match the Subscription. The SUBSCRIBE packet also specifies the maximum QoS with which the Server can send Application Messages to the Client.
 

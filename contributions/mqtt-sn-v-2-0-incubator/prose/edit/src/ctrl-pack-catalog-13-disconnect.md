@@ -2,7 +2,7 @@
 
 *Figure 3-24 -- DISCONNECT Packet*
 
-![](images/image34.png)<!-- .width="6.5in", .height="4.555555555555555in" -->
+![DISCONNECT Packet](images/image34.png "DISCONNECT Packet")<!-- .width="6.5in", .height="4.555555555555555in" -->
 
 The DISCONNECT packet is sent by a Client to indicate that it is going to delete the Virtual connection and go to the Disconnected state.
 

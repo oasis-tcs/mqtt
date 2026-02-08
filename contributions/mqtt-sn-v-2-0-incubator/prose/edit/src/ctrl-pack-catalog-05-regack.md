@@ -2,7 +2,7 @@
 
 *Figure 3-6 -- REGACK Packet*
 
-![](images/image1.png)<!-- .width="6.5in", .height="2.5555555555555554in" -->
+![REGACK Packet](images/image1.png "REGACK Packet")<!-- .width="6.5in", .height="2.5555555555555554in" -->
 
 The REGACK packet is sent by a Client or by a Server as an acknowledgment to the receipt and processing of a REGISTER packet.
 

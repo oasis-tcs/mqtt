@@ -2,7 +2,7 @@
 
 *Figure 3-26 -- SLEEPREQ Packet*
 
-![](images/image28.png)<!-- .width="6.5in", .height="2.8333333333333335in" -->
+![SLEEPREQ Packet](images/image28.png "SLEEPREQ Packet")<!-- .width="6.5in", .height="2.8333333333333335in" -->
 
 The SLEEPREQ packet is sent from the Client to the Server to indicate that it is going to sleep (moving to the Asleep state).
 
