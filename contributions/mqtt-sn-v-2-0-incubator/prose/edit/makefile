@@ -17,7 +17,7 @@ target_pdf = pdf
 
 out_html = ../share/mqtt-sn-v2.0-draft.html
 out_gfm_plus = ../share/mqtt-sn-v2.0-draft.md
-out_pdf = ../share/mqtt-v2.0-draft.pdf
+out_pdf = ../share/mqtt-sn-v2.0-draft.pdf
 
 .PHONY: all
 all: lint types build
@@ -51,8 +51,13 @@ invert-examples:
 
 .PHONY: invert-sections
 invert-sections:
+	bin/sections.py
+	echo "Called sections mapper."
+	git status | grep etc/section || true
 	command -v inverso >/dev/null 2>&1 || { echo >&2 "make invert-sections requires inverso but it's not installed - you can install with: 'pip install inverso'.  Aborting."; exit 1; }
 	inverso -g etc/section-display-to-label.json etc/section-label-to-display.json
+	echo "Called inverso."
+	git status | grep etc/section || true
 
 .PHONY: render
 render: render-html
