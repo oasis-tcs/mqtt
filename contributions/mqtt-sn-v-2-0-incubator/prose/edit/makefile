@@ -91,7 +91,7 @@ render-pdf:
 		printf "pdf.md\n" > $(build_root)bind.txt && \
 		mkdir -p $(build_root)/images/ && \
 		cp -a ../media/OASISLogo-v3.0.png $(build_root)images/ && \
-		cp -a src/images/*.png $(build_root)images/ && \
+		cp -a src/images/*.{png,jpg} $(build_root)images/ && \
 		mkdir -p $(build_pdf)images/ && \
 		cp -a ../media/OASISLogo-v3.0.png $(build_pdf)images/ && \
 		cp -a $(liitos_templates)approvals.yml $(build_root) && \
