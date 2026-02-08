@@ -145,11 +145,13 @@ The one-byte unsigned value that represents the revision level of the protocol u
 
 *Figure 3-2 -- Protocol Versions*
 
-| Protocol Version | Value |
-| ----- | :---: |
-| Version 1.2 | 0x01 |
-| **Version 2.0** | **0x02** |
+| Protocol Version        |    Value    |
+|:------------------------|:-----------:|
+| Version 1.2             |    0x01     |
+| **Version 2.0**         |  **0x02**   |
 | Reserved for future use | 0x03 – 0xFF |
+
+Table: Protocol Versions
 
 «<mark title="Requirement MQTT-SN-3.1.5-1"><a name="MQTT-SN-3.1.5-1"></a>The value of the Protocol Version field for MQTT-SN version 2.0 MUST be 2 (0x02)</mark>»\[MQTT‑SN‑3.1.5‑1].
 

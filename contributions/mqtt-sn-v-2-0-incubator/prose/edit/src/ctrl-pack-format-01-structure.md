@@ -13,6 +13,8 @@ An MQTT-SN Control Packet consists of up to two parts, always in the following o
 
   -----------------------------------------------------------------------------------------------------------------------------------------------------
 
+Table: Structure of an MQTT-SN Control Packet
+
 ### Packet Header{#packet-header}
 
 Each MQTT-SN Control Packet contains a Header of format 1 or format 2 as shown below.
@@ -76,3 +78,5 @@ The MQTT-SN Control Packet Type field is a 1-byte unsigned value, the values are
 | **Forwarder Encapsulation**  |   0xFD    | Forwarder to Client or Forwarder to Server | MQTT-SN packet envelope to add addressing information for Forwarders                                                      |
 |  **Session Encapsulation**   |   0xFE    |              Client to Server              | MQTT-SN Packet envelope to add session identification                                                                     |
 | **Protection Encapsulation** |   0xFF    |    Client to Server or Server to Client    | A protection envelope that can encapsulate any MQTT-SN packet with the exception of Forwarder-Encapsulation packet (0xFE) |
+
+Table: MQTT-SN Control Packet Types

@@ -28,8 +28,10 @@ Values can be:
 
 *Figure 3-23 -- PINGRESP continuation values*
 
-| Allowed Values | Description |
-| :---: | ----- |
-| 0 | No Application Messages are waiting to be delivered |
-| 1 – 254 (incl.) | The number of Application Messages waiting to be delivered |
-| 255 (0xFF) | An unspecified positive number of Application Messages waiting to be delivered greater than 0\. |
+| Allowed Values  | Description                                                                                     |
+|:---------------:|-------------------------------------------------------------------------------------------------|
+|        0        | No Application Messages are waiting to be delivered                                             |
+| 1 – 254 (incl.) | The number of Application Messages waiting to be delivered                                      |
+|   255 (0xFF)    | An unspecified positive number of Application Messages waiting to be delivered greater than 0\. |
+
+Table: PINGRESP continuation values

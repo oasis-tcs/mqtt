@@ -12,6 +12,8 @@ At any time, a Client will be in one of the following states from the perspectiv
 | **Asleep**       | The Client is engaged in an ongoing Session, and a Virtual Connection exists. The Client cannot receive Packets (except possibly the WAKEUP hint); it can send Packets. The Server should not expect a response from the client in this state.<br><br> A Client may transition from here to **Awake** (by way of PINGREQ), **Active** by way of CONNECT, **Disconnected** (by way of DISCONNECT, Sleep timeout or Retry timeout).<br><br> The Server may send a WAKEUP packet to the Client, as an indication that messages are waiting - it is up to the Client to act, if it is even able to notice it. | **Awake**<br><br>**Active**<br><br>**Disconnected**  |
 | **Awake**        | The Client is partially engaged in an ongoing session and a Virtual Connection exists.<br><br> The client transitions back to the **Asleep** state on receipt of a PINGRESP packet or **Disconnected** (by way of DISCONNECT, or on Keep Alive or Retry timeout for the possible PUBACK, PUBREL, PUBREC, PUBCOMP or REGACK packets to be received from the Client). The Client may also move to the **Active** state by way of CONNECT.                                                                                                                                                                   | **Asleep**<br><br>**Active**<br><br>**Disconnected** |
 
+Table: Client States
+
 «<mark title="Requirement MQTT-SN-4.14-1"><a name="MQTT-SN-4.14-1"></a>A Server **MUST NOT** attempt to send packets to a Disconnected Client</mark>»\[MQTT‑SN‑4.14‑1].
 
 «<mark title="Requirement MQTT-SN-4.14-2"><a name="MQTT-SN-4.14-2"></a>Any packet except CONNECT received from a Disconnected Client MUST NOT be processed</mark>»\[MQTT‑SN‑4.14‑2]. A DISCONNECT with error should be sent in response, unless the packet received is PUBWOS.
@@ -42,6 +44,8 @@ The following timers are used by Servers, on a per Client basis, to handle Clien
 | Sleep Duration | Asleep                | Disconnected  | SLEEPREQ             | \[[4.14.2 Sleeping Clients](#sleeping-clients)]          |
 | Session Expiry | Disconnected          | None          | CONNECT, DISCONNECT  | \[[4.1.1 Storing Session State](#storing-session-state)] |
 | Retry          | Active, Awake, Asleep | Disconnected  | Sender configuration | \[[4.4 Packet delivery retry](#packet-delivery-retry)]   |
+
+Table: Session Timers
 
 For example values of these timers, see [[C.3 Example Timer and Counter Values]](#c.3-example-timer-and-counter-values).
 

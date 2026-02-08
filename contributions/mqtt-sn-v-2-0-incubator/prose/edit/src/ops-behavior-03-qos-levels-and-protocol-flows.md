@@ -40,6 +40,8 @@ In the QoS 0 delivery protocol, the receiver
 |               | \-\-\-\-\-\-\-\-\--> |                                                                |
 |               |                      | Deliver Application Message to appropriate onward recipient(s) |
 
+Table: QoS 0 protocol flow, informative example
+
 ### QoS 1: At least once delivery{#qos-1-at-least-once-delivery}
 
 This Quality of Service level ensures that the message arrives at the receiver at least once. A QoS 1 PUBLISH packet has a Packet Identifier in its Variable Header and is acknowledged by a PUBACK packet.
@@ -71,6 +73,8 @@ The sender is NOT permitted to send further packets with different Packet Identi
 |                                                   |                         | Initiate onward delivery of the Application Message (1) |
 |                                                   | &lt;\-\-\-\-\-\-\-\-\-- | Send PUBACK &lt;Packet Identifier>                      |
 | Discard message                                   |                         |                                                         |
+
+Table: QoS 1 protocol flow, informative example
 
 > ^1^The receiver does not need to complete delivery of the Application Message before sending the PUBACK. When its original sender receives the PUBACK packet, ownership of the Application Message is transferred to the receiver.
 
@@ -127,5 +131,7 @@ The Packet Identifier becomes available for reuse once the sender has received t
 |                                                               |                            | Send PUBCOMP &lt;Packet Identifier>                                                                                  |
 |                                                               |  &lt;\-\-\-\-\-\-\-\-\--   |                                                                                                                      |
 | Discard stored state                                          |                            |                                                                                                                      |
+
+Table: QoS 2 protocol flow, informative example
 
 > ^1^ The receiver does not need to complete delivery of the Application Message before sending the PUBREC or PUBCOMP. When its original sender receives the PUBREC packet, ownership of the Application Message is transferred to the receiver. However, the receiver needs to perform all checks for conditions which might result in a forwarding failure (for example, quota exceeded or authorization) before accepting ownership. The receiver indicates success or failure using the appropriate Reason Code in the PUBREC.

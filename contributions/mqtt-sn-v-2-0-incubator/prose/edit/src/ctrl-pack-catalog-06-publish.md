@@ -17,6 +17,8 @@ The table below shows the two packet types.
 | **Publish**                 | 0x0C | A PUBLISH packet corresponding to Quality of Service (QoS) 0, 1 or 2             |
 | **Publish Without Session** | 0x11 | A PUBWOS Packet sent by a Client and does not need not to have an active Session |
 
+Table: Publish Packet Types
+
 ### PUBWOS - Publish Without Session{#pubwos---publish-without-session}
 
 *Figure 3-8 -- PUBWOS Packet*
@@ -182,6 +184,8 @@ Quality of Service - as in MQTT. The QoS levels are:
 |     2     |   1   |   0   | Exactly once delivery       |
 |    \-     |   1   |   1   | Reserved – must not be used |
 
+Table: QoS Definitions
+
 For a detailed description of the various Quality Of Service levels refer to [[4.3 Quality of Service levels and protocol flows]](#quality-of-service-levels-and-protocol-flows).
 
 ##### DUP{#dup}
@@ -227,6 +231,8 @@ The Payload contains the payload data of the Application Message that is being p
 | QoS 0     | None              |
 | QoS 1     | PUBACK packet     |
 | QoS 2     | PUBREC packet     |
+
+Table: Expected PUBLISH packet responses
 
 The Client uses a PUBLISH packet to send an Application Message to the Server, for distribution to Clients with matching subscriptions.
 

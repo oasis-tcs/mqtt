@@ -33,6 +33,8 @@ The Variable Header component of many of the MQTT-SN Control Packet types includ
 | UNSUBSCRIBE              | YES                     |
 | WAKEUP                   | NO                      |
 
+Table: Packets with Packet Identifier
+
 «<mark title="Requirement MQTT-SN-2.2-1"><a name="MQTT-SN-2.2-1"></a>Each time a Client sends a new MQTT-SN Control Packet which is identified in Figure 2-5 as requiring a Packet Identifier, it MUST assign it a non-zero Packet Identifier that is currently unused</mark>»\[MQTT‑SN‑2.2‑1].
 
 «<mark title="Requirement MQTT-SN-2.2-2"><a name="MQTT-SN-2.2-2"></a>A PUBLISH packet MUST NOT contain a Packet Identifier if its QoS value is set to 0</mark>»\[MQTT‑SN‑2.2‑2],

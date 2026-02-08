@@ -118,27 +118,29 @@ In general two types of protection scheme are considered: **Authentication only*
 
 *Figure 3-29 -- Protection Schemes*
 
-| Index | Name | Authentication Only | Key Size | Nominal Tag Size |
-| ----- | ----- | ----- | ----- | ----- |
-| 0x00 | HMAC-SHA256 (Note 1\) | Yes | Any size (Note 2\) | 256 bits |
-| 0x01 | HMAC-SHA3\_256 (Note 1\) | Yes | Any size (Note 2\) | 256 bits |
-| 0x02 | CMAC-128 (Note 3\) | Yes | 128 bits | 128 bits |
-| 0x03 | CMAC-192 (Note 3\) | Yes | 192 bits | 128 bits |
-| 0x04 | CMAC-256 (Note 3\) | Yes | 256 bits | 128 bits |
-| 0x05-0x3B | RESERVED |   |  |  |
-| 0x3C-0x3F | Provider defined | Yes | Provider defined | Provider defined |
-| 0x40 | AES-CCM-64-128 (Notes 4,5) | No | 128 bits | 64 bits |
-| 0x41 | AES-CCM-64-192 (Notes 4,5) | No | 192 bits | 64 bits |
-| 0x42 | AES-CCM-64-256 (Notes 4,5) | No | 256 bits | 64 bits |
-| 0x43 | AES-CCM-128-128 (Notes 4,5) | No | 128 bits | 128 bits |
-| 0x44 | AES-CCM-128-192 (Notes 4,5) | No | 192 bits | 128 bits |
-| 0x45 | AES-CCM-128-256 (Notes 4,5) | No | 256 bits | 128 bits |
-| 0x46 | AES-GCM-128-128 (Notes 6,7) | No | 128 bits | 128 bits |
-| 0x47 | AES-GCM-128-192 (Notes 6,7) | No | 192 bits | 128 bits |
-| 0x48 | AES-GCM-128-256 (Notes 6,7) | No | 256 bits | 128 bits |
-| 0x49 | ChaCha20/Poly1305 (Notes 8,9) | No | 256 bits | 128 bits |
-| 0x4A-0xEF | RESERVED |   |  |  |
-| 0xF0-0xFF | Provider defined | No | Provider defined | Provider defined |
+| Index     | Name                          |Authentication Only  | Key Size           | Nominal Tag Size |
+|:----------|:------------------------------|:-------------------:|:-------------------|:-----------------|
+| 0x00      | HMAC-SHA256 (Note 1\)         |         Yes         | Any size (Note 2\) | 256 bits         |
+| 0x01      | HMAC-SHA3\_256 (Note 1\)      |         Yes         | Any size (Note 2\) | 256 bits         |
+| 0x02      | CMAC-128 (Note 3\)            |         Yes         | 128 bits           | 128 bits         |
+| 0x03      | CMAC-192 (Note 3\)            |         Yes         | 192 bits           | 128 bits         |
+| 0x04      | CMAC-256 (Note 3\)            |         Yes         | 256 bits           | 128 bits         |
+| 0x05-0x3B | RESERVED                      |                     |                    |                  |
+| 0x3C-0x3F | Provider defined              |         Yes         | Provider defined   | Provider defined |
+| 0x40      | AES-CCM-64-128 (Notes 4,5)    |         No          | 128 bits           | 64 bits          |
+| 0x41      | AES-CCM-64-192 (Notes 4,5)    |         No          | 192 bits           | 64 bits          |
+| 0x42      | AES-CCM-64-256 (Notes 4,5)    |         No          | 256 bits           | 64 bits          |
+| 0x43      | AES-CCM-128-128 (Notes 4,5)   |         No          | 128 bits           | 128 bits         |
+| 0x44      | AES-CCM-128-192 (Notes 4,5)   |         No          | 192 bits           | 128 bits         |
+| 0x45      | AES-CCM-128-256 (Notes 4,5)   |         No          | 256 bits           | 128 bits         |
+| 0x46      | AES-GCM-128-128 (Notes 6,7)   |         No          | 128 bits           | 128 bits         |
+| 0x47      | AES-GCM-128-192 (Notes 6,7)   |         No          | 192 bits           | 128 bits         |
+| 0x48      | AES-GCM-128-256 (Notes 6,7)   |         No          | 256 bits           | 128 bits         |
+| 0x49      | ChaCha20/Poly1305 (Notes 8,9) |         No          | 256 bits           | 128 bits         |
+| 0x4A-0xEF | RESERVED                      |                     |                    |                  |
+| 0xF0-0xFF | Provider defined              |         No          | Provider defined   | Provider defined |
+
+Table: Protection Schemes
 
 **Note(s):**
 
