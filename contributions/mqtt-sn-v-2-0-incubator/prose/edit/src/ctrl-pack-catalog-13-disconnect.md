@@ -14,7 +14,7 @@ If a Client or Server receives a packet which requires a Virtual Connection (all
 
 ### DISCONNECT Header{#disconnect-header}
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [sec](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [sec](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 ### DISCONNECT Flags{#disconnect-flags}
 

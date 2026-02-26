@@ -9,7 +9,7 @@ The CONNECT packet is sent from the Client to the Server to request the creation
 
 ### CONNECT Header{#connect-header}
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format.Refer to [sec](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format.Refer to [sec](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 ### Connect Flags{#connect-flags}
 
@@ -194,7 +194,7 @@ A Two Byte (16-bit) Integer representing the Maximum Packet Size the Client is w
 >
 > It is the responsibility of the application to select a suitable Maximum Packet Size value if it chooses to restrict the Maximum Packet Size.
 
-The packet size is the total number of bytes in an MQTT-SN Control Packet, as defined in [sec](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet". The Client uses the Maximum Packet Size to inform the Server that it will not process packets exceeding this limit.
+The packet size is the total number of bytes in an MQTT-SN Control Packet, as defined in [sec](#structure-of-an-mqtt-sn-control-packet). The Client uses the Maximum Packet Size to inform the Server that it will not process packets exceeding this limit.
 
 «<mark title="Requirement MQTT-SN-3.1.7-1"><a name="MQTT-SN-3.1.7-1"></a>The Maximum Packet Size value MUST be 10 or greater</mark>»\<mark title="Ephemeral region marking">MQTT-SN-3.1.7-1][,</mark> as this is the minimum size that the CONNECT Packet can be.
 

@@ -8,7 +8,7 @@ The SLEEPREQ packet is sent from the Client to the Server to indicate that it is
 
 ### SLEEPREQ Header{#sleepreq-header}
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [sec](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [sec](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 ### SLEEPREQ Flags{#sleepreq-flags}
 

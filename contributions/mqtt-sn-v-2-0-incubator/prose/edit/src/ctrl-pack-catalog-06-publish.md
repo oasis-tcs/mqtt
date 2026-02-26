@@ -39,7 +39,7 @@ The PUBWOS packet does not have a corresponding feature in MQTT. «<mark title="
 
 #### PUBWOS Header{#pubwos-header}
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [sec](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [sec](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 #### PUBWOS Flags{#pubwos-flags}
 
@@ -93,7 +93,7 @@ A PUBLISH packet is sent from a Client to a Server or from a Server to a Client 
 
 #### PUBLISH Header{#publish-header}
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [sec](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [sec](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 #### PUBLISH Flags{#publish-flags}
 
@@ -153,7 +153,7 @@ A PUBLISH packet is sent from a Client to a Server or from a Server to a Client 
 
 #### PUBLISH Header{#pwq1a2---publish-header}
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [sec](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [sec](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 #### PUBLISH Flags{#pwq1a2---publish-flags}
 
@@ -262,7 +262,7 @@ A PUBACK packet is the response to a PUBLISH packet with QoS 1.
 
 #### PUBACK Header{#puback-header}
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [sec](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [sec](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 #### Packet Identifier{#ppaq1d---packet-identifier}
 
@@ -288,7 +288,7 @@ A PUBREC packet is the response to a PUBLISH packet with QoS 2. It is the second
 
 #### PUBREC Header{#pubrec-header}
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [sec](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [sec](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 #### Packet Identifier{#pprq2dp1---packet-identifier}
 
@@ -314,7 +314,7 @@ A PUBREL packet is the response to a PUBREC packet. It is the third packet of th
 
 #### PUBREL Header{#pubrel-header}
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [sec](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [sec](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 #### Packet Identifier{#pprq2dp2---packet-identifier}
 
@@ -340,7 +340,7 @@ The PUBCOMP packet is the response to a PUBREL packet. It is the fourth and fina
 
 #### PUBCOMP Header{#pubcomp-header}
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [sec](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [sec](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 #### Packet Identifier{#ppcq2dp3---packet-identifier}
 

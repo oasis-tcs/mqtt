@@ -16,6 +16,7 @@ from typing import Union
 import yaml
 
 ENCODING = 'utf-8'
+ENC_ERRS = 'ignore'
 NL = '\n'
 CB_END = '}'
 COLON = ':'
@@ -39,6 +40,7 @@ SOURCE_AT = pathlib.Path('src')
 BUILD_AT = pathlib.Path('build')
 SECTION_DISPLAY_TO_LABEL_AT = pathlib.Path('etc') / 'section-display-to-label.json'
 SECTION_LABEL_TO_DISPLAY_AT = pathlib.Path('etc') / 'section-label-to-display.json'
+SECTION_DISPLAY_TO_TEXT_AT = pathlib.Path('etc') / 'section-display-to-text.json'
 EG_GLOBAL_TO_LABEL_AT = pathlib.Path('etc') / 'example-global-to-local.json'
 EG_LABEL_TO_GLOBAL_AT = pathlib.Path('etc') / 'example-local-to-global.json'
 
@@ -120,7 +122,7 @@ META_TOC_TYPE = dict[str, dict[str, Union[bool, str, list[dict[str, str]]]]]
 
 def load_binder(binder_at: Union[str, pathlib.Path]) -> list[pathlib.Path]:
     """Load the linear binder text file into a list of file paths."""
-    with open(binder_at, 'rt', encoding=ENCODING) as resource:
+    with open(binder_at, 'rt', encoding=ENCODING, errors=ENC_ERRS) as resource:
         return [pathlib.Path(entry.strip()) for entry in resource.readlines() if entry.strip()]
 
 
@@ -147,13 +149,13 @@ def detect_meta(text_lines: list[str]) -> tuple[META_TOC_TYPE, list[str]]:
 
 def load_document(path: Union[str, pathlib.Path]) -> tuple[META_TOC_TYPE, list[str]]:
     """Load the text file into a list of strings and harvest any YAML meta info (if present remove the lines)."""
-    with open(path, 'rt', encoding=ENCODING) as resource:
+    with open(path, 'rt', encoding=ENCODING, errors=ENC_ERRS) as resource:
         return detect_meta(resource.readlines())
 
 
 def dump_assembly(text_lines: list[str], to_path: Union[str, pathlib.Path]) -> None:
     """Dump the lines of text into the text file at path."""
-    with open(to_path, 'wt', encoding=ENCODING) as resource:
+    with open(to_path, 'wt', encoding=ENCODING, errors=ENC_ERRS) as resource:
         resource.write(''.join(text_lines))
 
 
@@ -199,25 +201,31 @@ def code_block_label_in(text: str) -> bool:
 
 def load_label_to_display_lut(path: Union[str, pathlib.Path] = SECTION_LABEL_TO_DISPLAY_AT) -> dict[str, str]:
     """Load the LUT for section labels -> display."""
-    with pathlib.Path(path).open('rt', encoding=ENCODING) as handle:
+    with pathlib.Path(path).open('rt', encoding=ENCODING, errors=ENC_ERRS) as handle:
         return json.load(handle)
 
 
 def load_display_to_label_lut(path: Union[str, pathlib.Path] = SECTION_DISPLAY_TO_LABEL_AT) -> dict[str, str]:
     """Load the LUT for section display -> labels."""
-    with pathlib.Path(path).open('rt', encoding=ENCODING) as handle:
+    with pathlib.Path(path).open('rt', encoding=ENCODING, errors=ENC_ERRS) as handle:
+        return json.load(handle)
+
+
+def load_display_to_text_lut(path: Union[str, pathlib.Path] = SECTION_DISPLAY_TO_TEXT_AT) -> dict[str, str]:
+    """Load the LUT for section display -> labels."""
+    with pathlib.Path(path).open('rt', encoding=ENCODING, errors=ENC_ERRS) as handle:
         return json.load(handle)
 
 
 def load_eg_label_to_global_lut(path: Union[str, pathlib.Path] = EG_LABEL_TO_GLOBAL_AT) -> dict[str, str]:
     """Load the LUT for example labels -> global."""
-    with pathlib.Path(path).open('rt', encoding=ENCODING) as handle:
+    with pathlib.Path(path).open('rt', encoding=ENCODING, errors=ENC_ERRS) as handle:
         return json.load(handle)
 
 
 def load_eg_global_to_label_lut(path: Union[str, pathlib.Path] = EG_GLOBAL_TO_LABEL_AT) -> dict[str, str]:
     """Load the LUT for example global -> labels."""
-    with pathlib.Path(path).open('rt', encoding=ENCODING) as handle:
+    with pathlib.Path(path).open('rt', encoding=ENCODING, errors=ENC_ERRS) as handle:
         return json.load(handle)
 
 
@@ -251,7 +259,7 @@ def insert_any_citation(record: str) -> str:
     return record
 
 
-def insert_any_section_reference(record: str) -> str:
+def insert_any_section_reference(record: str, heading_text_lut: dict[str, str]) -> str:
     """Insert section reference into section ref placeholder or return record unchanged."""
     if label_in(record):
         for ref in SEC_REF_DETECT.finditer(record):
@@ -265,8 +273,9 @@ def insert_any_section_reference(record: str) -> str:
                 if label not in SEC_LABEL_TEXT:
                     raise RuntimeError(f'missing register label for sec ref in ({record.rstrip(NL)})')
                 text = SEC_LABEL_TEXT[label]
+                heading_text = heading_text_lut.get(text, 'HEADING-NOT-FOUND')
                 sem_ref = f'[sec](#{label})'
-                evil_ref = f'[{text}](#{label})'  # [GFMCMARK](#GFMCMARK)
+                evil_ref = f'[{text}"{heading_text}"](#{label})'  # [GFMCMARK](#GFMCMARK)
                 record = record.replace(sem_ref, evil_ref)
     return record
 
@@ -282,6 +291,7 @@ def main(argv: list[str]) -> int:
             return 1
 
     display_from = load_label_to_display_lut()
+    heading_text_of = load_display_to_text_lut()
     eg_global_from = load_eg_label_to_global_lut()
 
     lines: list[str] = []
@@ -542,7 +552,7 @@ def main(argv: list[str]) -> int:
 
     # Process the text display of section refs
     for slot, line in enumerate(lines):
-        completed = insert_any_section_reference(line)
+        completed = insert_any_section_reference(line, heading_text_of)
         if line != completed:
             lines[slot] = completed
 

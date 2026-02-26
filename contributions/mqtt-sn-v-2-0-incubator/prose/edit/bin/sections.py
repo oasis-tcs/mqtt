@@ -28,6 +28,7 @@ BINDER_AT = pathlib.Path('etc') / 'bind.txt'
 SOURCE_AT = pathlib.Path('src')
 SECTION_DISPLAY_TO_LABEL_AT = pathlib.Path('etc') / 'section-display-to-label.json'
 SECTION_LABEL_TO_DISPLAY_AT = pathlib.Path('etc') / 'section-label-to-display.json'
+SECTION_DISPLAY_TO_TEXT_AT = pathlib.Path('etc') / 'section-display-to-text.json'
 TOK_LAB = '{#'
 CLEAN_MD_START = '# Introduction'
 FENCED_BLOCK_FLIP_FLOP = '```'
@@ -207,6 +208,7 @@ def main(argv: list[str]) -> int:
             )
 
     display_to_label = {}
+    display_to_text = {}
     lvl_min, lvl_sup = 1, 7
     level_domain: tuple[int, ...] = tuple(range(lvl_min, lvl_sup))
     sec_cnt: dict[str, int] = {f'{HASH * level} ': 0 for level in level_domain}
@@ -235,9 +237,11 @@ def main(argv: list[str]) -> int:
         else:
             display, text = text.split(SPACE, 1)
         display_to_label[display] = slug
+        display_to_text[display] = text
 
     json_dump(display_to_label, SECTION_DISPLAY_TO_LABEL_AT, options={'debug': DEBUG})
     json_dump(invert(display_to_label), SECTION_LABEL_TO_DISPLAY_AT, options={'debug': DEBUG})
+    json_dump(display_to_text, SECTION_DISPLAY_TO_TEXT_AT, options={'debug': DEBUG})
 
     return 0
 
