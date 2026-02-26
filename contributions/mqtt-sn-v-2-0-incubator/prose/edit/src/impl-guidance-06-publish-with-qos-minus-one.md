@@ -10,7 +10,7 @@ This packet can be used by both Clients and Servers to publish data to a topic w
 
 ### C.6.1 PUBLISH Header{#c.6.1-publish-header}
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[2.1 Structure of an MQTT-SN Control Packet]](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [sec](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 ### C.6.2 PUBLISH Flags{#c.6.2-publish-flags}
 
@@ -48,7 +48,7 @@ Set to 0.
 
 **Position**: bit 4 of the PUBLISH Flags.
 
-This flag signifies whether the message is published as a retained message or not. See [[4.13 Retained Messages]](#retained-messages) for more information.
+This flag signifies whether the message is published as a retained message or not. See [sec](#retained-messages) for more information.
 
 ### C.6.3 Topic Alias{#c.6.3-topic-alias}
 
@@ -80,4 +80,4 @@ The Payload contains the payload data of the Application Message that is being p
 
 The Client or Server uses a PUBLISH QoS -1 packet to send an Application Message to a Network Address, for possible receipt by a Server or another Client.
 
-If received by a Client or Server, the PUBLISH QoS -1 packet is treated as if its QoS were 0 as described in [[3.6.3.7 PUBLISH Actions]](#publish-actions).
+If received by a Client or Server, the PUBLISH QoS -1 packet is treated as if its QoS were 0 as described in [sec](#publish-actions).

@@ -15,4 +15,4 @@ Table: Topic Types
 
 Predefined and Session Topic Aliases are assigned from different pools so there is no danger of collision.
 
-Refer to [[4.7 Topics]](#topics) for detailed descriptions of Topic Names and Topic Aliases.
+Refer to [sec](#topics) for detailed descriptions of Topic Names and Topic Aliases.

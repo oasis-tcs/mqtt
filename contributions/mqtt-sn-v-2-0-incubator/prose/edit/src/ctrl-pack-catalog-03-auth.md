@@ -16,7 +16,7 @@ Used to identify the corresponding CONNECT or AUTH packet. It should ideally be 
 
 ### Reason Code{#aae---reason-code}
 
-«<mark title="Requirement MQTT-SN-3.3.3-1"><a name="MQTT-SN-3.3.3-1"></a>The values for the Authentication Reason Code field are shown in]{.mark} [[2.3 Reason Code]](#reason-code). [The sender of the AUTH Packet MUST use one of the Reason Codes shown as applicable to the AUTH packet</mark>»\[MQTT‑SN‑3.3.3‑1].
+«<mark title="Requirement MQTT-SN-3.3.3-1"><a name="MQTT-SN-3.3.3-1"></a>The values for the Authentication Reason Code field are shown in]{.mark} [sec](#reason-code). [The sender of the AUTH Packet MUST use one of the Reason Codes shown as applicable to the AUTH packet</mark>»\[MQTT‑SN‑3.3.3‑1].
 
 ### Authentication Method Length{#aae---authentication-method-length}
 
@@ -32,4 +32,4 @@ The length of the Authentication Method string.
 
 ### AUTH Actions{#auth-actions}
 
-Refer to [[4.11 Authentication]](#authentication) for more information about authentication.
+Refer to [sec](#authentication) for more information about authentication.

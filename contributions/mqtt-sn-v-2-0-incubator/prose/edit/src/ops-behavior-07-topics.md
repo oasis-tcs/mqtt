@@ -100,9 +100,9 @@ The following rules apply to Topic Names and Topic Filters:
 
 - A Topic Name or Topic Filter consisting only of the '/' character is valid
 
-- <mark title="Ephemeral region marking">Topic Names and Topic Filters MUST NOT include the null character (Unicode U+0000)</mark> [[\[Unicode\]]](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#Unicode) \[MQTT-SN-4.7.1.3-2\]
+- «<mark title="Requirement MQTT-SN-4.7.1.3-2"><a name="MQTT-SN-4.7.1.3-2"></a>Topic Names and Topic Filters MUST NOT include the null character (Unicode U+0000) [\[Unicode\]](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#Unicode)</mark>»\[MQTT-SN-4.7.1.3-2\]
 
-- «<mark title="Requirement MQTT-SN-4.7.1.3-3"><a name="MQTT-SN-4.7.1.3-3"></a>Topic Names and Topic Filters are UTF-8 Encoded Strings; they MUST NOT encode to more than 65,535 bytes</mark>»\[MQTT‑SN‑4.7.1.3‑3]. Refer to [[1.7.4 UTF-8 Encoded String]](#utf-8-encoded-string).
+- «<mark title="Requirement MQTT-SN-4.7.1.3-3"><a name="MQTT-SN-4.7.1.3-3"></a>Topic Names and Topic Filters are UTF-8 Encoded Strings; they MUST NOT encode to more than 65,535 bytes</mark>»\[MQTT‑SN‑4.7.1.3‑3]. Refer to [sec](#utf-8-encoded-string).
 
 There is no limit to the number of levels in a Topic Name or Topic Filter, other than that imposed by the overall length of a UTF-8 Encoded String.
 

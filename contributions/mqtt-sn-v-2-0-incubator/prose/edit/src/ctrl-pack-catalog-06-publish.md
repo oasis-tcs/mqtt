@@ -57,7 +57,7 @@ This determines the format of the topic data field. Refer to «<mark title="Requ
 
 **Position**: bit 4 of the PUBWOS Flags.
 
-This field signifies whether the existing Retained Message for this topic is replaced or kept. For a detailed description of Retained Messages see [[4.13 Retained Messages]](#retained-messages).
+This field signifies whether the existing Retained Message for this topic is replaced or kept. For a detailed description of Retained Messages see [sec](#retained-messages).
 
 #### Topic Alias or Topic Name Length{#ppws--topic-alias-or-topic-name-length}
 
@@ -79,7 +79,7 @@ The Payload contains the payload data of the Application Message that is being p
 
 The Client or Server uses a PUBWOS packet to send an Application Message to a Network Address, for possible receipt by a Server or another Client.
 
-«<mark title="Requirement MQTT-SN-3.6.1.6-1"><a name="MQTT-SN-3.6.1.6-1"></a>If received by a Client or Server, the PUBWOS packet MUST be treated as if its QoS were 0</mark>»\[MQTT‑SN‑3.6.1.6‑1] as described in [[3.6.3.7 PUBLISH Actions]](#publish-actions).
+«<mark title="Requirement MQTT-SN-3.6.1.6-1"><a name="MQTT-SN-3.6.1.6-1"></a>If received by a Client or Server, the PUBWOS packet MUST be treated as if its QoS were 0</mark>»\[MQTT‑SN‑3.6.1.6‑1] as described in [sec](#publish-actions).
 
 ### PUBLISH with QoS 0{#publish-with-qos-0}
 
@@ -105,7 +105,7 @@ The PUBLISH Flags is a 1 byte field which contains flags specifying the content 
 
 **Position**: bits 0 and 1 of the PUBLISH Flags.
 
-This determines the content of the Topic Alias and Topic Name fields. Refer to [[2.4 Topic Types]](#topic-types) for the definition of the various topic types.
+This determines the content of the Topic Alias and Topic Name fields. Refer to [sec](#topic-types) for the definition of the various topic types.
 
 The Topic Type may be Topic Name, Predefined Topic Alias or Session Topic Alias.
 
@@ -113,13 +113,13 @@ The Topic Type may be Topic Name, Predefined Topic Alias or Session Topic Alias.
 
 **Position**: bits 5 and 6 of the PUBLISH Flags.
 
-This field is set to "0b00" for QoS 0. For a detailed description of the various Quality Of Service levels refer to [[4.3 Quality of Service levels and protocol flows]](#quality-of-service-levels-and-protocol-flows).
+This field is set to "0b00" for QoS 0. For a detailed description of the various Quality Of Service levels refer to [sec](#quality-of-service-levels-and-protocol-flows).
 
 ##### Retain{#pwq0---retain}
 
 **Position**: bit 4 of the PUBLISH Flags.
 
-This flag signifies whether the message is published as a retained message or not. See [[4.13 Retained Messages]](#retained-messages) for more information about Retained Messages.
+This flag signifies whether the message is published as a retained message or not. See [sec](#retained-messages) for more information about Retained Messages.
 
 #### Topic Alias or Topic Name Length{#ppwq0---topic-alias-or-topic-name-length}
 
@@ -139,7 +139,7 @@ The Payload contains the payload data of the Application Message that is being p
 
 #### PUBLISH - QoS 0 Actions{#publish---qos-0-actions}
 
-As described in [[3.6.3.7 PUBLISH Actions]](#publish-actions).
+As described in [sec](#publish-actions).
 
 ### PUBLISH with QoS 1 and 2{#publish-with-qos-1-and-2}
 
@@ -165,7 +165,7 @@ The PUBLISH Flags is a 1 byte field which contains flags specifying the content 
 
 **Position**: bits 0 and 1 of the PUBLISH Flags.
 
-This determines the format of the Topic Data field. Refer to [[2.4 Topic Types]](#topic-types) for the definition of Topic Types.
+This determines the format of the Topic Data field. Refer to [sec](#topic-types) for the definition of Topic Types.
 
 The Topic Type may be Topic Name, Predefined Topic Alias or Session Topic Alias.
 
@@ -186,7 +186,7 @@ Quality of Service - as in MQTT. The QoS levels are:
 
 Table: QoS Definitions
 
-For a detailed description of the various Quality Of Service levels refer to [[4.3 Quality of Service levels and protocol flows]](#quality-of-service-levels-and-protocol-flows).
+For a detailed description of the various Quality Of Service levels refer to [sec](#quality-of-service-levels-and-protocol-flows).
 
 ##### DUP{#dup}
 
@@ -198,7 +198,7 @@ The DUP flag indicates the duplicate delivery of QoS 2 PUBLISH packets. If the D
 
 **Position**: bit 4 of the PUBLISH Flags.
 
-This flag signifies whether the message is published as a retained message or not. See [[4.13 Retained Messages]](#retained-messages) for more information about Retained Messages.
+This flag signifies whether the message is published as a retained message or not. See [sec](#retained-messages) for more information about Retained Messages.
 
 #### Packet Identifier{#pwq1a2---packet-identifier}
 
@@ -240,13 +240,13 @@ The Server uses a PUBLISH packet to send an Application Message to each Client w
 
 When Clients make subscriptions with Topic Filters that include wildcards, it is possible for a Client's subscriptions to overlap so that a published Application Message might match multiple filters. «<mark title="Requirement MQTT-SN-3.6.3.7-2"><a name="MQTT-SN-3.6.3.7-2"></a>In this case the Server MUST deliver the Application Message to the Client respecting the maximum QoS of all the matching subscriptions</mark>»\[MQTT‑SN‑3.6.3.7‑2]. In addition, the Server MAY deliver further copies of the Application Message, one for each additional matching subscription and respecting the subscription's QoS in each case.
 
-The action of the recipient when it receives a PUBLISH packet depends on the QoS level as described in [[4.3 Quality of Service levels and protocol flows]](#quality-of-service-levels-and-protocol-flows).
+The action of the recipient when it receives a PUBLISH packet depends on the QoS level as described in [sec](#quality-of-service-levels-and-protocol-flows).
 
 **Informative Comment**
 
 > If the Server distributes Application Messages to Clients to different protocols and levels (such as MQTT V3.1.1) which do not support features provided by this specification, some information in the Application Message can be lost, and applications which depend on this information might not work correctly.
 
-No more than one QoS 1 or 2 PUBLISH requests MUST be outstanding for a Sender at any one time. Other packets are included in this constraint - refer to [[4.9 Flow Control]](#flow-control) for more information about Flow Control.
+No more than one QoS 1 or 2 PUBLISH requests MUST be outstanding for a Sender at any one time. Other packets are included in this constraint - refer to [sec](#flow-control) for more information about Flow Control.
 
 > **Informative comment**
 >
@@ -276,7 +276,7 @@ The values for Reason Codes are shown in «<mark title="Requirement MQTT-SN-3.6.
 
 #### PUBACK Actions{#puback-actions}
 
-As described in [[4.3.3 QoS 1: At least once delivery]](#qos-1-at-least-once-delivery).
+As described in [sec](#qos-1-at-least-once-delivery).
 
 ### PUBREC - Publish Received (QoS 2 delivery part 1){#pubrec-publish-received-qos-2-delivery-part-1}
 
@@ -302,7 +302,7 @@ The values for Reason Codes are shown in «<mark title="Requirement MQTT-SN-3.6.
 
 #### PUBREC Actions{#pubrec-actions}
 
-As described in [[4.3.4 QoS 2: Exactly once delivery]](#qos-2-exactly-once-delivery).
+As described in [sec](#qos-2-exactly-once-delivery).
 
 ### PUBREL - Publish Release (QoS 2 delivery part 2){#pubrel---publish-release-qos-2-delivery-part-2}
 
@@ -328,7 +328,7 @@ The values for Reason Codes are shown in «<mark title="Requirement MQTT-SN-3.6.
 
 #### PUBREL Actions{#pubrel-actions}
 
-As described in [[4.3.4 QoS 2: Exactly once delivery]](#qos-2-exactly-once-delivery).
+As described in [sec](#qos-2-exactly-once-delivery).
 
 ### PUBCOMP - Publish Complete (QoS 2 delivery part 3){#pubcomp---publish-complete-qos-2-delivery-part-3}
 
@@ -354,4 +354,4 @@ The values for Reason Codes are shown in «<mark title="Requirement MQTT-SN-3.6.
 
 #### PUBCOMP Actions{#pubcomp-actions}
 
-As described in [[4.3.4 QoS 2: Exactly once delivery]](#qos-2-exactly-once-delivery).
+As described in [sec](#qos-2-exactly-once-delivery).

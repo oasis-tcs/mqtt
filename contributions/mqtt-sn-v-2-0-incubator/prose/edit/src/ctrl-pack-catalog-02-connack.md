@@ -58,9 +58,9 @@ Indicates whether the packet includes a Server Keep Alive or not.
 
 Specifies whether the packet contains authentication material to be considered.
 
-​​«<mark title="Requirement MQTT-SN-3.2.2.4-1"><a name="MQTT-SN-3.2.2.4-1"></a>If the Authentication Flag is set to 0, Authentication Method and Data MUST NOT be present in the Packet</mark>»\[MQTT‑SN‑3.2.2.4‑1].
+«<mark title="Requirement MQTT-SN-3.2.2.4-1"><a name="MQTT-SN-3.2.2.4-1"></a>If the Authentication Flag is set to 0, Authentication Method and Data MUST NOT be present in the Packet</mark>»\[MQTT‑SN‑3.2.2.4‑1].
 
-<mark title="Ephemeral region marking">If the Authentication Flag is set to 1, Authentication Method and Data MUST be present in the Packet</mark> \[MQTT-N-3.2.2.4-2\].
+«<mark title="Requirement MQTT-SN-3.2.2.4-2"><a name="MQTT-SN-3.2.2.4-2"></a>If the Authentication Flag is set to 1, Authentication Method and Data MUST be present in the Packet</mark>»\[MQTT-SN-3.2.2.4-2\].
 
 ### Packet Identifier{#cca---packet-identifier}
 
@@ -80,7 +80,7 @@ The values for Reason Codes are shown in «<mark title="Requirement MQTT-SN-3.2.
 
 If the Session Expiry Interval is absent the value of Session Expiry Interval in the CONNECT Packet is used. The Server uses this field to inform the Client that it is using a value other than that sent by the Client in the CONNECT.
 
-Refer to [[3.1.9 Session Expiry Interval]](#session-expiry-interval) for a description of the use of Session Expiry Interval.
+Refer to [sec](#session-expiry-interval) for a description of the use of Session Expiry Interval.
 
 ### Server Keep Alive{#server-keep-alive}
 
@@ -90,7 +90,7 @@ The Server uses this field to inform the Client that it is using a value other t
 
 «<mark title="Requirement MQTT-SN-3.2.6-2"><a name="MQTT-SN-3.2.6-2"></a>If the Server does not send the Server Keep Alive, the Server MUST use the Keep Alive value set by the Client on CONNECT</mark>»\[MQTT‑SN‑3.2.6‑2].
 
-Refer to [[3.4.6 Keep Alive]](#keep-alive) for a description of the use of Keep Alive Interval.
+Refer to [sec](#keep-alive) for a description of the use of Keep Alive Interval.
 
 > **Informative comment**
 >
@@ -98,19 +98,19 @@ Refer to [[3.4.6 Keep Alive]](#keep-alive) for a description of the use of Keep 
 
 ### Authentication Method Length{#cca---authentication-method-length}
 
-Single byte value (max 0-255 bytes), representing the length of field used to specify the authentication method. Refer to [[4.11 Authentication]](#authentication) for more information about authentication.
+Single byte value (max 0-255 bytes), representing the length of field used to specify the authentication method. Refer to [sec](#authentication) for more information about authentication.
 
 ### Authentication Method{#cca---authentication-method}
 
-A UTF-8 Encoded String containing the name of the authentication method. Refer to [[4.11 Authentication]](#authentication) for more information about authentication.
+A UTF-8 Encoded String containing the name of the authentication method. Refer to [sec](#authentication) for more information about authentication.
 
 ### Authentication Data Length{#cca---authentication-data-length}
 
-Two byte value (max 0-65535 bytes), representing the length of field used to specify the authentication data. Refer to [[4.11 Authentication]](#authentication) for more information about authentication.
+Two byte value (max 0-65535 bytes), representing the length of field used to specify the authentication data. Refer to [sec](#authentication) for more information about authentication.
 
 ### Authentication Data{#cca---authentication-data}
 
-Binary Data containing authentication data. The contents of this data are defined by the authentication method and the state of already exchanged authentication data. Refer to [[4.11 Authentication]](#authentication) for more information about authentication.
+Binary Data containing authentication data. The contents of this data are defined by the authentication method and the state of already exchanged authentication data. Refer to [sec](#authentication) for more information about authentication.
 
 ### Assigned Client Identifier{#assigned-client-identifier}
 

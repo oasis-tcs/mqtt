@@ -18,4 +18,4 @@ The same value as the Packet Identifier in the UNSUBSCRIBE packet being acknowle
 
 The Reason Code for the UNSUBACK packet is optional - its existence is inferred from the Packet length. If not provided, 0x00 (Success) is assumed.
 
-The UNSUBACK Reason Codes are shown in «<mark title="Requirement MQTT-SN-3.10.3-1"><a name="MQTT-SN-3.10.3-1"></a>[2.3 Reason Code]](#reason-code). [The Server sending the UNSUBACK Packet MUST use one of the UNSUBACK Reason Codes</mark>»\[MQTT‑SN‑3.10.3‑1].
+The UNSUBACK Reason Codes are shown in «<mark title="Requirement MQTT-SN-3.10.3-1"><a name="MQTT-SN-3.10.3-1"></a>[sec](#reason-code). The Server sending the UNSUBACK Packet MUST use one of the UNSUBACK Reason Codes</mark>»\[MQTT‑SN‑3.10.3‑1].

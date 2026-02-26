@@ -20,7 +20,7 @@ The UNSUBSCRIBE Flags is a 1 byte field which contains flags specifying the cont
 
 **Position**: bits 0 and 1 of the UNSUBSCRIBE Flags.
 
-Determines the existence of the Topic Alias or Topic Filter. Refer to [[2.4 Topic Types]](#topic-types) for the definition of the various topic types.
+Determines the existence of the Topic Alias or Topic Filter. Refer to [sec](#topic-types) for the definition of the various topic types.
 
 ### Packet Identifier{#uur---packet-identifier}
 
@@ -56,4 +56,4 @@ The Topic Filter is an UTF-8 Encoded String. The existence or absence of this fi
 
 - It MAY continue to deliver any existing Application Messages which match the Topic Filters buffered for delivery to the Client.
 
-<mark title="Ephemeral region marking">The Server MUST respond to an UNSUBSCRIBE request by sending an UNSUBACK packet]{.mark} \[MQTT-3.9.6-5\]. [The UNSUBACK packet MUST have the same Packet Identifier as the UNSUBSCRIBE packet. Even where no Topic Subscriptions are deleted, the Server MUST respond with an UNSUBACK</mark> \[MQTT-3.9.6-6\].
+«<mark title="Requirement MQTT-SN-3.9.6-5"><a name="MQTT-SN-3.9.6-5"></a>The Server MUST respond to an UNSUBSCRIBE request by sending an UNSUBACK packet</mark> \[MQTT-SN-3.9.6-5\]. «<mark title="Requirement MQTT-SN-3.9.6-6">The UNSUBACK packet MUST have the same Packet Identifier as the UNSUBSCRIBE packet. Even where no Topic Subscriptions are deleted, the Server MUST respond with an UNSUBACK</mark> \[MQTT-SN-3.9.6-6\].

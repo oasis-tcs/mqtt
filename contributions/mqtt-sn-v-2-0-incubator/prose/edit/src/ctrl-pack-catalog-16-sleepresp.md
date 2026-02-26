@@ -36,7 +36,7 @@ The Server uses this field to inform the Client that it is using a value other t
 
 «<mark title="Requirement MQTT-SN-3.16.3-2"><a name="MQTT-SN-3.16.3-2"></a>If the Server does not send the Sleep Duration, the Server MUST use the Sleep Duration value set by the Client in the SLEEPREQ packet</mark>»\[MQTT‑SN‑3.16.3‑2].
 
-Refer to [[4.14.2 Sleeping Clients]](#sleeping-clients) for more information on Sleeping Clients.
+Refer to [sec](#sleeping-clients) for more information on Sleeping Clients.
 
 ### Reason Code{#ssres---reason-code}
 

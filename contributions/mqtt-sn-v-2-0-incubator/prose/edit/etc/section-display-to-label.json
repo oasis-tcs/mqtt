@@ -327,7 +327,7 @@
   "C.1.4": "c.1.4-mqtt-sn-broker",
   "C.2": "c.2-server-congestion",
   "C.3": "c.3-example-timer-and-counter-values",
-  "C.4": "c-4-exponential-backoff",
+  "C.4": "c.4-exponential-backoff",
   "C.5": "c.5-client-state-diagrams",
   "C.6": "c.6-publish-with-qos--1",
   "C.6.1": "c.6.1-publish-header",

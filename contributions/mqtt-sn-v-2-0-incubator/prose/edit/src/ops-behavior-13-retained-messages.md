@@ -12,11 +12,11 @@ When a new Subscription is made, the last retained message, if any, on each matc
 
 - «<mark title="Requirement MQTT-SN-4.13-7"><a name="MQTT-SN-4.13-7"></a>If Retain Handling is set to 2, the Server MUST NOT send the retained messages</mark>»\[MQTT‑SN‑4.13‑7].
 
-Refer to [[3.7.2 SUBSCRIBE Flags]](#subscribe-flags) for a definition of the Subscription Flags.
+Refer to [sec](#subscribe-flags) for a definition of the Subscription Flags.
 
 If the Server receives a PUBLISH packet with the RETAIN flag set to 1, and QoS 0 it SHOULD store the new QoS 0 message as the new retained message for that topic, but MAY choose to discard it at any time. If this happens there will be no retained message for that topic.
 
-The setting of the RETAIN flag in an Application Message forwarded by the Server from an established Virtual Connection is controlled by the Retain As Published subscription option. Refer to [[3.7.2 SUBSCRIBE Flags]](#subscribe-flags) for a definition of the Subscription Flags.
+The setting of the RETAIN flag in an Application Message forwarded by the Server from an established Virtual Connection is controlled by the Retain As Published subscription option. Refer to [sec](#subscribe-flags) for a definition of the Subscription Flags.
 
 - «<mark title="Requirement MQTT-SN-4.13-8"><a name="MQTT-SN-4.13-8"></a>If the value of Retain As Published subscription option is set to 0, the Server MUST set the RETAIN flag to 0 when forwarding an Application Message regardless of how the RETAIN flag was set in the received PUBLISH packet</mark>»\[MQTT‑SN‑4.13‑8].
 

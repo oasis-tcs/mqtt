@@ -1,6 +1,6 @@
 ## Gateway Discovery Packets{#gateway-discovery-packets}
 
-The Packets in this section are optional. A description of how this functionality works can be found in [[C.2 Gateway Advertisement and Discovery]](#c.7-gateway-advertisement-and-discovery).
+The Packets in this section are optional. A description of how this functionality works can be found in [sec](#c.7-gateway-advertisement-and-discovery).
 
 ### ADVERTISE - Gateway Advertisement{#advertise---gateway-advertisement}
 

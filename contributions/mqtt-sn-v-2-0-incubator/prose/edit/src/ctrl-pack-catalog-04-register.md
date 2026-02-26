@@ -10,7 +10,7 @@ The REGISTER packet is sent by a Client to a Server to request a Session Topic A
 
 It is sent by a Server to inform a Client about the Session Topic Alias it has assigned to the included Topic Name.
 
-Topic Aliases are always assigned and managed by the Server, not the Client. For more information see [[4.7.2 Topic Aliases]](#topic-aliases).
+Topic Aliases are always assigned and managed by the Server, not the Client. For more information see [sec](#topic-aliases).
 
 A REGISTER packet may be sent by the Server when the Client is in the Awake state if the Retain Topic Aliases flag on the SLEEPREQ was set to 0, to reinform the Client of a Session Topic Alias.
 
@@ -52,4 +52,4 @@ Fixed Length UTF-8 Encoded String Contains the fully qualified topic name.
 
 ### REGISTER Actions{#register-actions}
 
-As described in [[4.7.2 Topic Aliases]](#topic-aliases).
+As described in [sec](#topic-aliases).

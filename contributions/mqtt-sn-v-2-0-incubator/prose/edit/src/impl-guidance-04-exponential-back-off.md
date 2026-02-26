@@ -1,4 +1,4 @@
-## C.4 Exponential Backoff
+## C.4 Exponential Backoff{#c.4-exponential-backoff}
 
 The *Retry Interval* for unacknowledged packets can be increased on each retry, to avoid overwhelming recipient network nodes while allowing efficient Virtual Connection reestablishment. The client periodically retries a failed packet with increasing delays between attempts, constrained by a Maximum Retry Interval, interleaved with a suitable seed of randomness.
 

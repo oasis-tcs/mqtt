@@ -8,7 +8,7 @@ In MQTT-SN there are two principal ways for Clients and Gateways to find each ot
 
 2.  The Client can elicit a response from one or more Gateways, or Clients which know the network location of a Gateway, by broadcasting a SEARCHGW packet. The response, from either a Gateway or a Client on the Gateway's behalf, is a GWINFO packet.
 
-A Gateway should only advertise its presence, or respond to SEARCHGW requests, if it is able to accept subscriptions and forward messages. For instance, a [[Transparent Gateway]](#c.1.1-transparent-gateway) which is not currently connected to an MQTT Server, should not advertise.
+A Gateway should only advertise its presence, or respond to SEARCHGW requests, if it is able to accept subscriptions and forward messages. For instance, a [sec](#c.1.1-transparent-gateway) which is not currently connected to an MQTT Server, should not advertise.
 
 Multiple Gateways may be active at the same time in the same network, in which case they will have different identifiers. It is up to the Client to decide to which Gateway it wants to connect.
 
@@ -24,4 +24,4 @@ Upon receiving a SEARCHGW packet a Gateway replies with a GWINFO packet containi
 
 To give priority to Gateways a client delays its sending of the GWINFO packet for a random time *[GWINFO Delay]*. If during this delay the Client receives a GWINFO packet it cancels the sending of its own GWINFO packet.
 
-If there is no response, the SEARCHGW packet may be retransmitted. In this case the time intervals between consecutive SEARCHGW packets should be increased by an exponential backoff algorithm such as that described in [[C.4 Exponential Backoff]](#c.4-exponential-backoff).
+If there is no response, the SEARCHGW packet may be retransmitted. In this case the time intervals between consecutive SEARCHGW packets should be increased by an exponential backoff algorithm such as that described in [sec](#c.4-exponential-backoff).

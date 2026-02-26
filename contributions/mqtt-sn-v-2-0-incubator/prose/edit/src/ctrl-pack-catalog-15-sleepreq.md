@@ -30,7 +30,7 @@ Used to identify the corresponding SLEEPRESP packet. It should ideally be set to
 
 ### Sleep Duration{#sleep-duration}
 
-The Sleep Duration is a four-byte integer time interval measured in seconds. It is the maximum amount of time that a client may stay asleep without being disconnected by the Server. For more information on sleeping clients, and the purpose of Sleep Duration, see [[4.14.2 Sleeping Clients]](#sleeping-clients).
+The Sleep Duration is a four-byte integer time interval measured in seconds. It is the maximum amount of time that a client may stay asleep without being disconnected by the Server. For more information on sleeping clients, and the purpose of Sleep Duration, see [sec](#sleeping-clients).
 
 «<mark title="Requirement MQTT-SN-3.15.4-1"><a name="MQTT-SN-3.15.4-1"></a>The Sleep Duration MUST be greater than 0</mark>»\[MQTT‑SN‑3.15.4‑1].
 

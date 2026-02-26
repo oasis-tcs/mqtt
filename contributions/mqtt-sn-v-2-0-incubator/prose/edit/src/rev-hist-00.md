@@ -1,4 +1,4 @@
-# <mark title="Ephemeral region marking">Appendix D. Revision History (informative)</mark>
+# Appendix D. Revision History (informative)
 
 <mark title="Ephemeral region marking">\[Optional section.\]</mark>
 

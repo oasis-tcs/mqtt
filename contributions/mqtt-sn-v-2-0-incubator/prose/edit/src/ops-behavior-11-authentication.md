@@ -2,7 +2,7 @@
 
 The MQTT-SN CONNECT and AUTH packets contain Authentication Method and Data fields for use in authentication.
 
-Authentication in MQTT-SN is equivalent to Enhanced Authentication in MQTT 5.0. For an implementation of MQTT 3.1.1 Authentication or MQTT 5.0 Basic Authentication (User Name and Password), refer to [[4.11.1.2 MQTT User Name and Password Support]](#mqtt-user-name-and-password-support).
+Authentication in MQTT-SN is equivalent to Enhanced Authentication in MQTT 5.0. For an implementation of MQTT 3.1.1 Authentication or MQTT 5.0 Basic Authentication (User Name and Password), refer to [sec](#mqtt-user-name-and-password-support).
 
 Alternatively, the Underlying Network may support authentication technology, such as DTLS in the case that the Underlying Network is UDP.
 
@@ -10,7 +10,7 @@ Alternatively, the Underlying Network may support authentication technology, suc
 
 The authentication information in MQTT-SN CONNECT and AUTH packets allows a range of options from username and password to challenge / response style authentication. It might involve the exchange of AUTH packets between the Client and the Server after the CONNECT and before the CONNACK packets.
 
-To begin authentication, the Client sets the AUTH flag in the CONNECT packet and includes an Authentication Method and optionally Data, depending on the Authentication Method, used in the CONNECT packet. This specifies the authentication method to use and its parameters. «<mark title="Requirement MQTT-SN-4.11.1-1"><a name="MQTT-SN-4.11.1-1"></a>If the Server does not support the Authentication Method supplied by the Client, it MAY send a CONNACK with a Reason Code of 0x8C (Bad authentication method) or 0x87 (Not Authorized) as described in [[2.3 Reason Code]](#reason-code) and MUST delete the Virtual Connection</mark>»\[MQTT‑SN‑4.11.1‑1].
+To begin authentication, the Client sets the AUTH flag in the CONNECT packet and includes an Authentication Method and optionally Data, depending on the Authentication Method, used in the CONNECT packet. This specifies the authentication method to use and its parameters. «<mark title="Requirement MQTT-SN-4.11.1-1"><a name="MQTT-SN-4.11.1-1"></a>If the Server does not support the Authentication Method supplied by the Client, it MAY send a CONNACK with a Reason Code of 0x8C (Bad authentication method) or 0x87 (Not Authorized) as described in [sec](#reason-code) and MUST delete the Virtual Connection</mark>»\[MQTT‑SN‑4.11.1‑1].
 
 The Authentication Method is an agreement between the Client and Server about the meaning of the data sent in the Authentication Data and optionally the Client Identifier, and the exchanges and processing needed by the Client and Server to complete the authentication.
 
@@ -26,7 +26,7 @@ If the Authentication Method selected by the Client specifies that the Client se
 
 The Client and Server exchange AUTH packets as needed until the Server accepts the authentication by sending a CONNACK with a Reason Code of 0x00. If the acceptance of the authentication requires data to be sent to the Client, it is sent in the Authentication Data field of the CONNACK packet.
 
-The Client can terminate the Virtual Connection at any point in this process by sending a DISCONNECT packet. «<mark title="Requirement MQTT-SN-4.11.1-4"><a name="MQTT-SN-4.11.1-4"></a>The Server can reject the authentication at any point in this process. It MUST send a CONNACK with a Reason Code of 0x80 or above as described in [[4.12 Handling errors]](#handling-errors)</mark>»\[MQTT‑SN‑4.11.1‑4].
+The Client can terminate the Virtual Connection at any point in this process by sending a DISCONNECT packet. «<mark title="Requirement MQTT-SN-4.11.1-4"><a name="MQTT-SN-4.11.1-4"></a>The Server can reject the authentication at any point in this process. It MUST send a CONNACK with a Reason Code of 0x80 or above as described in [sec](#handling-errors)</mark>»\[MQTT‑SN‑4.11.1‑4].
 
 «<mark title="Requirement MQTT-SN-4.11.1-5"><a name="MQTT-SN-4.11.1-5"></a>If the initial CONNECT packet included an Authentication Method then all AUTH packets, and any successful CONNACK packet MUST include an Authentication Method with the same value as in the CONNECT packet</mark>»\[MQTT‑SN‑4.11.1‑5].
 
@@ -64,7 +64,7 @@ If the Client does not include an Authentication Method in the CONNECT packet, t
 
 The Server responds to this re-authentication request by sending an AUTH packet to the Client with a Reason Code of 0x00 (Success) to indicate that the re-authentication is complete, or a Reason Code of 0x18 (Continue authentication) to indicate that more authentication data is needed. The Client can respond with additional authentication data by sending an AUTH packet with a Reason Code of 0x18 (Continue authentication). This flow continues as with the original authentication until the re-authentication is complete or the re-authentication fails.
 
-«<mark title="Requirement MQTT-SN-4.11.1.1-2"><a name="MQTT-SN-4.11.1.1-2"></a>If the re-authentication fails, the Client or Server MUST send DISCONNECT with an appropriate Reason Code as described in [[4.12 Handling errors]](#handling-errors), and MUST delete the Virtual Connection</mark>»\[MQTT‑SN‑4.11.1.1‑2].
+«<mark title="Requirement MQTT-SN-4.11.1.1-2"><a name="MQTT-SN-4.11.1.1-2"></a>If the re-authentication fails, the Client or Server MUST send DISCONNECT with an appropriate Reason Code as described in [sec](#handling-errors), and MUST delete the Virtual Connection</mark>»\[MQTT‑SN‑4.11.1.1‑2].
 
 During this re-authentication sequence, the flow of other packets between the Client and Server is paused, pending the new authentication outcome.
 
@@ -76,11 +76,11 @@ During this re-authentication sequence, the flow of other packets between the Cl
 
 To support the equivalent of the MQTT User Name and Password fields in the CONNECT packet, do the following:
 
-- Set the [[Authentication Method]](#authentication-method) field to MQTT-BASIC.
+- Set the [sec](#authentication-method) field to MQTT-BASIC.
 
-- Set the [[Authentication Data]](#authentication-data) field to to:
+- Set the [sec](#authentication-data) field to to:
 
-1.  MQTT User Name: a Two Byte Integer length followed by a UTF-8 Encoded String as defined in [[1.7.4 UTF-8 Encoded String]](#utf-8-encoded-string).
+1.  MQTT User Name: a Two Byte Integer length followed by a UTF-8 Encoded String as defined in [sec](#utf-8-encoded-string).
 
 2.  MQTT Password: a Two Byte Integer length followed by binary data.
 
@@ -98,15 +98,15 @@ This is a one-way transfer of information - the response MUST be a CONNACK, not 
 
 To support the equivalent of the MQTT User Name and Password together with MQTT Enhanced Authentication, in the CONNECT packet do the following:
 
-- Set the [[Authentication Method]](#authentication-method) field to MQTT-ENHANCED.
+- Set the [sec](#authentication-method) field to MQTT-ENHANCED.
 
-- Set the [[Authentication Data]](#authentication-data) field to:
+- Set the [sec](#authentication-data) field to:
 
-  a.  MQTT User Name: a Two Byte Integer length followed by a UTF-8 Encoded String as defined in [[1.7.4 UTF-8 Encoded String]](#utf-8-encoded-string).
+  a.  MQTT User Name: a Two Byte Integer length followed by a UTF-8 Encoded String as defined in [sec](#utf-8-encoded-string).
 
   b.  MQTT Password: a Two Byte Integer length followed by binary data.
 
-  c.  MQTT Authentication Method: a Two Byte Integer length followed by a UTF-8 Encoded String as defined in [[1.7.4 UTF-8 Encoded String]](#utf-8-encoded-string) .
+  c.  MQTT Authentication Method: a Two Byte Integer length followed by a UTF-8 Encoded String as defined in [sec](#utf-8-encoded-string) .
 
   d.  MQTT Authentication Data: a Two Byte Integer length followed by binary data.
 

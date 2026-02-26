@@ -9,10 +9,10 @@ Keywords defined by this specification use this `monospaced` font.
 Text following the special symbol («) – an opening Guillemet (or French quotation mark) – within this specification
 identifies automatically testable requirements to aid assertion tools.
 Every such statement is separated from the following text with the special end symbol (») – a closing Guillemet and
-has been assigned a reference that follows that end symbol as the pattern `[MQTT‑SN‑section#-local#]`.
+has been assigned a reference that follows that end symbol as the pattern `[MQTT-SN-section#-local#]`.
 
 These normative requirements are tabulated
-in [Appendix B. "Mandatory normative statements (informative)"](#appendix-b.-mandatory-normative-statements-informative).
+in [sec](#appendix-b.-mandatory-normative-statements-informative).
 
 All examples in this document are informative only.
 

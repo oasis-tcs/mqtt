@@ -275,7 +275,7 @@ def insert_any_section_reference(record: str, heading_text_lut: dict[str, str]) 
                 text = SEC_LABEL_TEXT[label]
                 heading_text = heading_text_lut.get(text, 'HEADING-NOT-FOUND')
                 sem_ref = f'[sec](#{label})'
-                evil_ref = f'[{text}"{heading_text}"](#{label})'  # [GFMCMARK](#GFMCMARK)
+                evil_ref = f'[{text} {heading_text}](#{label})'  # [GFMCMARK](#GFMCMARK)
                 record = record.replace(sem_ref, evil_ref)
     return record
 

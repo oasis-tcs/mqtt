@@ -50,11 +50,11 @@ An MQTT-SN Sender may be configured with two parameters to govern its resending 
 
 2.  Maximum Retry Count
 
-on the basis of the expected characteristics of the Underlying Network. Example values for these are suggested in [[C.4 Timer and Counter Values]](#c.3-example-timer-and-counter-values). See also [[C.5 Exponential Backoff]](#c.4-exponential-backoff) for guidance on varying the *Retry Interval* to reduce potential network congestion.
+on the basis of the expected characteristics of the Underlying Network. Example values for these are suggested in [sec](#c.3-example-timer-and-counter-values). See also [sec](#c.4-exponential-backoff) for guidance on varying the *Retry Interval* to reduce potential network congestion.
 
 When no response to one of the above packets is received in the *Retry Interval*, the Sender may resend the packet, at *Retry Interval* intervals, until the *Maximum Retry Count* is reached. After the *Maximum Retry Count* is reached and a further *Retry Interval* has passed without a response, it is deemed that there is no response.
 
-«<mark title="Requirement MQTT-SN-4.4.2-3"><a name="MQTT-SN-4.4.2-3"></a>In the absence of a response to a packet which expects one, the Sender MUST delete the Virtual Connection</mark>»\<mark title="Ephemeral region marking">MQTT-SN-4.4.2-3]. [</mark>If the Sender is a Server and a Will Message is defined for the Virtual Connection, the Will Message is be published as described in [[3.1.2.2 Will Flag]](#will-flag). A new connection will have to be established to continue.
+«<mark title="Requirement MQTT-SN-4.4.2-3"><a name="MQTT-SN-4.4.2-3"></a>In the absence of a response to a packet which expects one, the Sender MUST delete the Virtual Connection</mark>»\<mark title="Ephemeral region marking">MQTT-SN-4.4.2-3]. [</mark>If the Sender is a Server and a Will Message is defined for the Virtual Connection, the Will Message is be published as described in [sec](#will-flag). A new connection will have to be established to continue.
 
 «<mark title="Requirement MQTT-SN-4.4.2-4"><a name="MQTT-SN-4.4.2-4"></a>If a Packet is retransmitted, it MUST have Protection Encapsulation if the previously transmitted Packet had Protection Encapsulation</mark>»\[MQTT‑SN‑4.4.2‑4].
 

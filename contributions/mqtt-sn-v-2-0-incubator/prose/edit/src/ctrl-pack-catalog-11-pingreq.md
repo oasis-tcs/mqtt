@@ -6,13 +6,13 @@
 
 The PINGREQ packet is sent from a Client to the Server. It can be used to:
 
-- Indicate to the Server that the Client is alive in the absence of any other MQTT-SN Control Packets being sent from the Client to the Server. For more information refer to [[3.1.6 Keep Alive]](#keep-alive).
+- Indicate to the Server that the Client is alive in the absence of any other MQTT-SN Control Packets being sent from the Client to the Server. For more information refer to [sec](#keep-alive).
 
 - Request that the Server responds to confirm that it is alive and that it has a Virtual Connection for the Client.
 
 - Exercise the network to determine whether communications are working.
 
-- Inform the Server that the Client has awoken from being Asleep and is now waiting for any queued up Application Messages at the Server to be sent to it. For more information refer to [[4.14.2 Sleeping Clients]](#sleeping-clients).
+- Inform the Server that the Client has awoken from being Asleep and is now waiting for any queued up Application Messages at the Server to be sent to it. For more information refer to [sec](#sleeping-clients).
 
 ### PINGREQ Header{#pingreq-header}
 

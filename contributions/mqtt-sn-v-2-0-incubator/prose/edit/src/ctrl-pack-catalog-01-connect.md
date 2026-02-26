@@ -15,13 +15,13 @@ The first 2 or 4 bytes of the packet are encoded according to the variable lengt
 
 The Connect Flags is 1 byte field which contains several parameters specifying the behavior of the MQTT-SN Virtual Connection. It also indicates the presence or absence of fields in the Packet.
 
-«<mark title="Requirement MQTT-SN-3.1.2-1"><a name="MQTT-SN-3.1.2-1"></a>The Server MUST validate that the reserved flags in the CONNECT packet are set to 0</mark>»\[MQTT‑SN‑3.1.2‑1]. If any of the reserved flags is not 0 it is a Malformed Packet. Refer to [[4.12 Handling errors]](#handling-errors) for information about handling errors.
+«<mark title="Requirement MQTT-SN-3.1.2-1"><a name="MQTT-SN-3.1.2-1"></a>The Server MUST validate that the reserved flags in the CONNECT packet are set to 0</mark>»\[MQTT‑SN‑3.1.2‑1]. If any of the reserved flags is not 0 it is a Malformed Packet. Refer to [sec](#handling-errors) for information about handling errors.
 
 #### Clean Start Flag{#clean-start-flag}
 
 **Position:** bit 0 of the Connect Flags byte.
 
-This flag specifies whether the Virtual Connection starts a new Session or is a continuation of an existing Session. Refer to [[4.1 Session state]](#session-state) for a definition of the Session State.
+This flag specifies whether the Virtual Connection starts a new Session or is a continuation of an existing Session. Refer to [sec](#session-state) for a definition of the Session State.
 
 «<mark title="Requirement MQTT-SN-3.1.2.1-1"><a name="MQTT-SN-3.1.2.1-1"></a>If a CONNECT packet is received with Clean Start is set to 1, the Client and Server MUST discard any existing Session and start a new Session</mark>»\[MQTT‑SN‑3.1.2.1‑1]. Consequently, the Session Present flag in CONNACK is always set to 0 if Clean Start is set to 1.
 
@@ -117,7 +117,7 @@ The *Will Flags* is 1 byte field which contains several parameters specifying th
 
 **Position:** bits 1 and 0 of the Will Flags byte.
 
-This is a 2-bit field which determines the format of the topic value. Refer to [[2.4 Topic Types]](#topic-types) for the definition of the various topic types.
+This is a 2-bit field which determines the format of the topic value. Refer to [sec](#topic-types) for the definition of the various topic types.
 
 #### Will QoS{#will-qos}
 
@@ -129,7 +129,7 @@ These two bits specify the QoS level to be used. The value of Will QoS can be 0 
 
 **Position:** bit 4 of the Will Flags byte.
 
-This specifies if the Will Message is to be retained when it is published. See [[4.13 Retained Messages]](#retained-messages) for more information about Retained Messages.
+This specifies if the Will Message is to be retained when it is published. See [sec](#retained-messages) for more information about Retained Messages.
 
 «<mark title="Requirement MQTT-SN-3.1.3.3-1"><a name="MQTT-SN-3.1.3.3-1"></a>If the Will Flag is set to 1 and Will Retain is set to 0, the Server MUST publish the Will Message as a non-retained message</mark>»\[MQTT‑SN‑3.1.3.3‑1].
 
@@ -165,9 +165,9 @@ The Keep Alive is a Two Byte Integer greater than 0 (1 - 65,535), which is a tim
 >
 > The Client can send PINGREQ at any time, irrespective of the Keep Alive value, and check for a corresponding PINGRESP to determine that the network and the Server are available.
 
-«<mark title="Requirement MQTT-SN-3.1.6-2"><a name="MQTT-SN-3.1.6-2"></a>If the Server does not receive an MQTT-SN Control Packet from the Client within one and a half times the Keep Alive time period, it MUST delete the Virtual Connection and move the Client to the Disconnected state (see [[4.14 Client states]](#client-states))</mark>»\[MQTT‑SN‑3.1.6‑2].
+«<mark title="Requirement MQTT-SN-3.1.6-2"><a name="MQTT-SN-3.1.6-2"></a>If the Server does not receive an MQTT-SN Control Packet from the Client within one and a half times the Keep Alive time period, it MUST delete the Virtual Connection and move the Client to the Disconnected state (see [sec](#client-states))</mark>»\[MQTT‑SN‑3.1.6‑2].
 
-«<mark title="Requirement MQTT-SN-3.1.6-3"><a name="MQTT-SN-3.1.6-3"></a>If a Client does not receive a PINGRESP packet within a *[Retry Interval]* amount of time after it has sent a PINGREQ, it SHOULD retry the transmission according to [[4.4.2 Unacknowledged Packets]](#unacknowledged-packets) up to the maximum number of attempts. If a PINGRESP is still not received it MUST delete the Virtual Connection to the Server by way of a DISCONNECT, with the understanding that the Server may no longer be reachable</mark>»\[MQTT‑SN‑3.1.6‑3].
+«<mark title="Requirement MQTT-SN-3.1.6-3"><a name="MQTT-SN-3.1.6-3"></a>If a Client does not receive a PINGRESP packet within a *[Retry Interval]* amount of time after it has sent a PINGREQ, it SHOULD retry the transmission according to [sec](#unacknowledged-packets) up to the maximum number of attempts. If a PINGRESP is still not received it MUST delete the Virtual Connection to the Server by way of a DISCONNECT, with the understanding that the Server may no longer be reachable</mark>»\[MQTT‑SN‑3.1.6‑3].
 
 > **Informative Comment**
 >
@@ -242,7 +242,7 @@ In the case of Will Topic Type being Topic Name, this field will refer to the le
 
 ### Will Topic Name{#will-topic-name}
 
-If the Will Flag is set to 1 and the Will Topic Type is set to Topic Name (0b11), the Will Topic Name is the next field in the Packet. «<mark title="Requirement MQTT-SN-3.1.11-1"><a name="MQTT-SN-3.1.11-1"></a>The Will Topic Name MUST be a UTF-8 Encoded String as defined in [[1.7.4 UTF-8 Encoded String]](#utf-8-encoded-string)</mark>»\[MQTT‑SN‑3.1.11‑1].
+If the Will Flag is set to 1 and the Will Topic Type is set to Topic Name (0b11), the Will Topic Name is the next field in the Packet. «<mark title="Requirement MQTT-SN-3.1.11-1"><a name="MQTT-SN-3.1.11-1"></a>The Will Topic Name MUST be a UTF-8 Encoded String as defined in [sec](#utf-8-encoded-string)</mark>»\[MQTT‑SN‑3.1.11‑1].
 
 ### Will Payload Length{#will-payload-length}
 
@@ -250,23 +250,23 @@ If the Will Flag is set to 1, the Will Payload Length is the next field in the P
 
 ### Will Payload{#will-payload}
 
-If the Will Flag is set to 1, the Will Payload is the next field in the Packet. The Will Payload defines the Application Message Payload that is to be published to the Will Topic as described in [[3.1.2.2 Will Flag]](#will-flag). This field consists of Binary Data.
+If the Will Flag is set to 1, the Will Payload is the next field in the Packet. The Will Payload defines the Application Message Payload that is to be published to the Will Topic as described in [sec](#will-flag). This field consists of Binary Data.
 
 ### Authentication Method Length{#authentication-method-length}
 
-If the Auth Flag is set to 1, the Authentication Method Length is the next field in the Packet. It is a single byte value (max 0-255 bytes), representing the length of the field used to specify the authentication method. Refer to [[4.11 Authentication]](#authentication) for more information about authentication.
+If the Auth Flag is set to 1, the Authentication Method Length is the next field in the Packet. It is a single byte value (max 0-255 bytes), representing the length of the field used to specify the authentication method. Refer to [sec](#authentication) for more information about authentication.
 
 ### Authentication Method{#authentication-method}
 
 If the Auth Flag is set to 1, the Authentication Method is the next field in the Packet. It is a UTF-8 Encoded String containing the name of the Authentication Method.
 
-To support the equivalent of the MQTT User Name and Password fields in the CONNECT packet, see [[4.11.1.2 MQTT User Name and Password Support]](#mqtt-user-name-and-password-support).
+To support the equivalent of the MQTT User Name and Password fields in the CONNECT packet, see [sec](#mqtt-user-name-and-password-support).
 
-Refer to [[4.11 Authentication]](#authentication) for more information about authentication.
+Refer to [sec](#authentication) for more information about authentication.
 
 ### Authentication Data Length{#authentication-data-length}
 
-If the Auth Flag is set to 1, the Authentication Data Length is the next field in the Packet. It is a two byte value (max 0-65535 bytes), representing the length of the field used to specify the authentication data. Refer to [[4.11 Authentication]](#authentication) for more information about authentication.
+If the Auth Flag is set to 1, the Authentication Data Length is the next field in the Packet. It is a two byte value (max 0-65535 bytes), representing the length of the field used to specify the authentication data. Refer to [sec](#authentication) for more information about authentication.
 
 ### Authentication Data{#authentication-data}
 
@@ -274,9 +274,9 @@ If the Auth Flag is set to 1, the Authentication Data is the next field in the P
 
 Binary Data containing authentication data. The contents of this data are defined by the authentication method.
 
-To support the equivalent of the MQTT User Name and Password CONNECT packet fields, see [[4.11.1.2 MQTT User Name and Password Support]](#mqtt-user-name-and-password-support).
+To support the equivalent of the MQTT User Name and Password CONNECT packet fields, see [sec](#mqtt-user-name-and-password-support).
 
-Refer to [[4.11 Authentication]](#authentication) for more information about authentication.
+Refer to [sec](#authentication) for more information about authentication.
 
 ### Client Identifier{#client-identifier}
 
@@ -294,21 +294,21 @@ The Client Identifier identifies the Client to the Server. Each Client connectin
 
 > **Informative comment**
 >
-> The minimum supported length of between 1 and 23 bytes for the Client Identifier in the Server is for compatibility with MQTT. A longer length might be necessary to be supported if a UUID is used as an Assigned Client Identifier as suggested in [[3.2.11 Assigned Client Identifier]](#assigned-client-identifier).
+> The minimum supported length of between 1 and 23 bytes for the Client Identifier in the Server is for compatibility with MQTT. A longer length might be necessary to be supported if a UUID is used as an Assigned Client Identifier as suggested in [sec](#assigned-client-identifier).
 
 ### CONNECT Actions{#connect-actions}
 
 Note that a Server MAY support multiple protocols on the same network endpoint. If the Server determines that the protocol is MQTT-SN 2.0 then it validates the connection attempt as follows.
 
-1.  «<mark title="Requirement MQTT-SN-3.1.19-1"><a name="MQTT-SN-3.1.19-1"></a>The Server MUST validate that the CONNECT packet matches the format described in [[3.1 CONNECT]](#connect---connection-request) and MUST NOT create a Virtual Connection for this CONNECT if it does not match</mark>»\[MQTT‑SN‑3.1.19‑1]. The Server MAY send a CONNACK with a Reason Code of 0x80 or greater as described in [[4.12 Handling errors]](#handling-errors).
+1.  «<mark title="Requirement MQTT-SN-3.1.19-1"><a name="MQTT-SN-3.1.19-1"></a>The Server MUST validate that the CONNECT packet matches the format described in [sec](#connect---connection-request) and MUST NOT create a Virtual Connection for this CONNECT if it does not match</mark>»\[MQTT‑SN‑3.1.19‑1]. The Server MAY send a CONNACK with a Reason Code of 0x80 or greater as described in [sec](#handling-errors).
 
-2.  «<mark title="Requirement MQTT-SN-3.1.19-2"><a name="MQTT-SN-3.1.19-2"></a>The Server MAY check that the contents of the CONNECT packet meet any further restrictions and SHOULD perform authentication and authorization checks. If any of these checks fail, it MUST NOT create a Virtual Connection for this CONNECT</mark>»\[MQTT‑SN‑3.1.19‑2]. It MAY send an appropriate CONNACK response with a Reason Code of 0x80 or greater as described in [[3.5 CONNACK]](#connack---connect-acknowledgement) and [[4.12 Handling errors]](#handling-errors).
+2.  «<mark title="Requirement MQTT-SN-3.1.19-2"><a name="MQTT-SN-3.1.19-2"></a>The Server MAY check that the contents of the CONNECT packet meet any further restrictions and SHOULD perform authentication and authorization checks. If any of these checks fail, it MUST NOT create a Virtual Connection for this CONNECT</mark>»\[MQTT‑SN‑3.1.19‑2]. It MAY send an appropriate CONNACK response with a Reason Code of 0x80 or greater as described in [sec](#connack---connect-acknowledgement) and [sec](#handling-errors).
 
 If validation is successful, the Server performs the following steps.
 
-1.  «<mark title="Requirement MQTT-SN-3.1.19-3"><a name="MQTT-SN-3.1.19-3"></a>If the Client Identifier represents a Client already connected to the Server, the Server sends a DISCONNECT packet to the existing Client with Reason Code of 0x8E (Session taken over) as described in [[4.12 Handling errors]](#handling-errors) and MUST delete the Virtual Connection of the existing Client</mark>»\[MQTT‑SN‑3.1.19‑3]. If the existing Client has a Will Message, that Will Message is published as described in [[3.4.3 Will Flags]](#will-flags).
+1.  «<mark title="Requirement MQTT-SN-3.1.19-3"><a name="MQTT-SN-3.1.19-3"></a>If the Client Identifier represents a Client already connected to the Server, the Server sends a DISCONNECT packet to the existing Client with Reason Code of 0x8E (Session taken over) as described in [sec](#handling-errors) and MUST delete the Virtual Connection of the existing Client</mark>»\[MQTT‑SN‑3.1.19‑3]. If the existing Client has a Will Message, that Will Message is published as described in [sec](#will-flags).
 
-2.  «<mark title="Requirement MQTT-SN-3.1.19-4"><a name="MQTT-SN-3.1.19-4"></a>The Server MUST perform the processing of Clean Start that is described in [[3.1.2.1 Clean Start Flag]](#clean-start-flag)</mark>»\[MQTT‑SN‑3.1.19‑4].
+2.  «<mark title="Requirement MQTT-SN-3.1.19-4"><a name="MQTT-SN-3.1.19-4"></a>The Server MUST perform the processing of Clean Start that is described in [sec](#clean-start-flag)</mark>»\[MQTT‑SN‑3.1.19‑4].
 
 3.  «<mark title="Requirement MQTT-SN-3.1.19-5"><a name="MQTT-SN-3.1.19-5"></a>The Server MUST acknowledge the CONNECT packet with a CONNACK packet containing a 0x00 (Success) Reason Code</mark>»\[MQTT‑SN‑3.1.19‑5].
 

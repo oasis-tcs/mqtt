@@ -18,7 +18,7 @@ The SUBSCRIBE Flags field is 1 byte and governs the behavior of subscriptions.
 
 **Position**: bits 0 and 1 of the SUBSCRIBE Flags.
 
-This field determines the content of the Topic Alias and Topic Filter fields. Refer to [[2.4 Topic Types]](#topic-types) for the definition of the various topic types.
+This field determines the content of the Topic Alias and Topic Filter fields. Refer to [sec](#topic-types) for the definition of the various topic types.
 
 The Topic Type may be Topic Filter, Predefined Topic Alias or Session Topic Alias.
 
@@ -34,7 +34,7 @@ This option specifies whether retained messages are sent when the subscription i
 >
 > 2: Do not send retained messages at the time of the subscribe
 
-It is a Protocol Error to send a Retain Handling value of 3. See [[4.13 Retained Messages]](#retained-messages) for more information about the operation of the Retain Handling field.
+It is a Protocol Error to send a Retain Handling value of 3. See [sec](#retained-messages) for more information about the operation of the Retain Handling field.
 
 #### Retain as Published{#retain-as-published}
 
@@ -44,7 +44,7 @@ If 1, Application Messages forwarded using this subscription keep the RETAIN fla
 
 If 0, Application Messages forwarded using this subscription have the RETAIN flag set to 0. Retained messages sent when the subscription is established have the RETAIN flag set to 1.
 
-See [[4.13 Retained Messages]](#retained-messages) for more information about the operation of the Retain as Published flag.
+See [sec](#retained-messages) for more information about the operation of the Retain as Published flag.
 
 #### QoS{#ssr---qos}
 
@@ -80,7 +80,7 @@ Contains Fixed Length UTF-8 Encoded String topic filter or Topic Alias (Predefin
 
 «<mark title="Requirement MQTT-SN-3.7.5-2"><a name="MQTT-SN-3.7.5-2"></a>If the Topic Type is Predefined Topic Alias or Session Topic Alias, then the Topic Filter field MUST NOT be present in the SUBSCRIBE packet</mark>»\[MQTT‑SN‑3.7.5‑2].
 
-The Topic Filter is a UTF-8 encoded string, which may contain wildcards. A SUBSCRIBE packet with a zero length Topic Filter is a Protocol Error. Refer to [[4.12 Handling errors]](#handling-errors) for information about handling errors.
+The Topic Filter is a UTF-8 encoded string, which may contain wildcards. A SUBSCRIBE packet with a zero length Topic Filter is a Protocol Error. Refer to [sec](#handling-errors) for information about handling errors.
 
 This existence or absence of this field is inferred from the Packet length.
 

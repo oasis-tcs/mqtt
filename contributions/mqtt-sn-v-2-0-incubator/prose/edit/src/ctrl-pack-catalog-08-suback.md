@@ -20,7 +20,7 @@ The SUBACK Flags is a 1 byte field which contains flags specifying the contents 
 
 **Position**: bits 0 and 1 of the SUBACK Flags.
 
-Determines the format of the topic value. Refer to [[2.4 Topic Types]](#topic-types) for the definition of the various topic types.
+Determines the format of the topic value. Refer to [sec](#topic-types) for the definition of the various topic types.
 
 «<mark title="Requirement MQTT-SN-3.8.2.1-1"><a name="MQTT-SN-3.8.2.1-1"></a>The Topic Type in the SUBACK packet MUST be either Predefined Topic Alias or Session Topic Alias</mark>»\[MQTT‑SN‑3.8.2.1‑1].
 

@@ -20,13 +20,13 @@ The REGACK Flags is a 1 byte field which contains flags specifying the contents 
 
 **Position**: bits 0 and 1 of the REGACK Flags.
 
-Determines the format of the topic value. Refer to [[2.4 Topic Types]](#topic-types) for the definition of the various topic types.
+Determines the format of the topic value. Refer to [sec](#topic-types) for the definition of the various topic types.
 
 «<mark title="Requirement MQTT-SN-3.5.2.1-1"><a name="MQTT-SN-3.5.2.1-1"></a>The Topic Type in the REGACK packet MUST be Predefined Topic Alias or Session Topic Alias</mark>»\[MQTT‑SN‑3.5.2.1‑1]. Any other value is a Protocol Error.
 
 > **Informative Comment**
 >
-> A Predefined Topic Alias can be returned in the REGACK Packet if a Client tries to register a Session Topic Alias for a Topic Name which the Server already knows is a Predefined Topic Alias. See [[4.7.2.2 Session Topic Aliases]](#session-topic-aliases) for details.
+> A Predefined Topic Alias can be returned in the REGACK Packet if a Client tries to register a Session Topic Alias for a Topic Name which the Server already knows is a Predefined Topic Alias. See [sec](#session-topic-aliases) for details.
 
 #### Topic Alias Flag{#rrtaa---topic-alias-flag}
 

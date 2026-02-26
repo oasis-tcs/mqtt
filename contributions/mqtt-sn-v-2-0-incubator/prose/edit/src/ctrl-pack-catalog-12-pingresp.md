@@ -6,9 +6,9 @@
 
 A PINGRESP Packet is sent by the Server to the Client in response to a PINGREQ packet. It indicates that the Server is alive.
 
-This Packet is used in Keep Alive processing. Refer to [[3.1.6 Keep Alive]](#keep-alive) for more details.
+This Packet is used in Keep Alive processing. Refer to [sec](#keep-alive) for more details.
 
-A PINGRESP packet is also sent by the Server to inform a Client in the Awake state that it has no more buffered packets for that Client. See [[4.14.2 Sleeping Clients]](#sleeping-clients) for more information about sleeping Clients.
+A PINGRESP packet is also sent by the Server to inform a Client in the Awake state that it has no more buffered packets for that Client. See [sec](#sleeping-clients) for more information about sleeping Clients.
 
 ### PINGRESP Header{#pingresp-header}
 

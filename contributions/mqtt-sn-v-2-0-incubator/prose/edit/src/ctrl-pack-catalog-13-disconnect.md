@@ -54,15 +54,15 @@ This field is optional. It can be used by a Server when responding to a Client p
 
 The Reason Code for the DISCONNECT packet is optional. If not provided, 0x00 (Normal disconnection) is assumed.
 
-The values for Reason Codes are shown in «<mark title="Requirement MQTT-SN-3.13.4-1"><a name="MQTT-SN-3.13.4-1"></a>[2.3 Reason Code]](#reason-code). [The sender of the DISCONNECT packet MUST use one of the Reason Code values applicable to DISCONNECT</mark>»\[MQTT‑SN‑3.13.4‑1].
+The values for Reason Codes are shown in «<mark title="Requirement MQTT-SN-3.13.4-1"><a name="MQTT-SN-3.13.4-1"></a>[sec](#reason-code). [The sender of the DISCONNECT packet MUST use one of the Reason Code values applicable to DISCONNECT</mark>»\[MQTT‑SN‑3.13.4‑1].
 
 ### Session Expiry Interval{#ddn---session-expiry-interval}
 
 The Session Expiry Interval is a four-byte integer time interval measured in seconds. If the Session Expiry Interval is absent, the Session Expiry Interval in the CONNECT packet is used.
 
-<mark title="Ephemeral region marking">The Session Expiry Interval MUST NOT be sent on a DISCONNECT by the Server</mark> \[MQTT--SN-3.13.5-1\].
+«<mark title="Requirement MQTT-SN-3.13.5-1"><a name="MQTT-SN-3.13.5-1"></a>The Session Expiry Interval MUST NOT be sent on a DISCONNECT by the Server</mark>»\[MQTT-SN-3.13.5-1\].
 
-If the Session Expiry Interval in the CONNECT packet was zero, then it is a Protocol Error to set a non-zero Session Expiry Interval in the DISCONNECT packet sent by the Client. If such a non-zero Session Expiry Interval is received by the Server, it does not treat it as a valid DISCONNECT packet. The Server uses DISCONNECT with Reason Code 0x82 (Protocol Error) as described in [[4.12 Handling errors]](#handling-errors).
+If the Session Expiry Interval in the CONNECT packet was zero, then it is a Protocol Error to set a non-zero Session Expiry Interval in the DISCONNECT packet sent by the Client. If such a non-zero Session Expiry Interval is received by the Server, it does not treat it as a valid DISCONNECT packet. The Server uses DISCONNECT with Reason Code 0x82 (Protocol Error) as described in [sec](#handling-errors).
 
 ### Reason String{#reason-string}
 
@@ -80,7 +80,7 @@ This field is optional - its existence or absence is inferred from the Packet le
 
 <mark title="Ephemeral region marking">On receipt of DISCONNECT with a Reason Code of 0x00 (Success) the Server</mark>:
 
-- «<mark title="Requirement MQTT-SN-3.13.7-3"><a name="MQTT-SN-3.13.7-3"></a>MUST discard any Will Message associated with the current Connection without publishing it</mark>»\[MQTT‑SN‑3.13.7‑3], as described in [[3.1.3 Will Flags]](#will-flags).
+- «<mark title="Requirement MQTT-SN-3.13.7-3"><a name="MQTT-SN-3.13.7-3"></a>MUST discard any Will Message associated with the current Connection without publishing it</mark>»\[MQTT‑SN‑3.13.7‑3], as described in [sec](#will-flags).
 
 <mark title="Ephemeral region marking">On receipt of DISCONNECT, the receiver:</mark>
 
