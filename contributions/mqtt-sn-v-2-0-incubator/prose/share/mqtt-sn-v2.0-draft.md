@@ -1126,7 +1126,7 @@ The CONNECT packet is sent from the Client to the Server to request the creation
 
 ### 3.1.1 CONNECT Header <a id='connect-header'></a>
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format.Refer to [[2.1 Structure of an MQTT-SN Control Packet]](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format.Refer to [2.1](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
 
 ### 3.1.2 Connect Flags <a id='connect-flags'></a>
 
@@ -1311,7 +1311,7 @@ A Two Byte (16-bit) Integer representing the Maximum Packet Size the Client is w
 >
 > It is the responsibility of the application to select a suitable Maximum Packet Size value if it chooses to restrict the Maximum Packet Size.
 
-The packet size is the total number of bytes in an MQTT-SN Control Packet, as defined in [[2.1 Structure of an MQTT-SN Control Packet]](#structure-of-an-mqtt-sn-control-packet). The Client uses the Maximum Packet Size to inform the Server that it will not process packets exceeding this limit.
+The packet size is the total number of bytes in an MQTT-SN Control Packet, as defined in [2.1](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet". The Client uses the Maximum Packet Size to inform the Server that it will not process packets exceeding this limit.
 
 «<mark title="Requirement MQTT-SN-3.1.7-1"><a name="MQTT-SN-3.1.7-1"></a>The Maximum Packet Size value MUST be 10 or greater</mark>»\<mark title="Ephemeral region marking">MQTT-SN-3.1.7-1][,</mark> as this is the minimum size that the CONNECT Packet can be.
 
@@ -1449,7 +1449,7 @@ The CONNACK packet is sent by the Server in response to a CONNECT request from a
 
 ### 3.2.1 CONNACK Header <a id='connack-header'></a>
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[2.1 Structure of an MQTT-SN Control Packet]](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [2.1](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
 
 ### 3.2.2 CONNACK Flags <a id='connack-flags'></a>
 
@@ -1581,7 +1581,7 @@ It is suggested that the 36 character Universally Unique IDentifier (UUID) forma
 
 ### 3.3.1 AUTH Header <a id='auth-header'></a>
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[2.1 Structure of an MQTT-SN Control Packet]](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [2.1](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
 
 ### 3.3.2 Packet Identifier <a id='aae---packet-identifier'></a>
 
@@ -1629,7 +1629,7 @@ A REGISTER packet may be sent by the Server when the Client is in the Awake stat
 
 ### 3.4.1 REGISTER Header <a id='register-header'></a>
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[2.1 Structure of an MQTT-SN Control Packet]](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [2.1](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
 
 ### 3.4.2 REGISTER Flags <a id='register-flags'></a>
 
@@ -1673,7 +1673,7 @@ The REGACK packet is sent by a Client or by a Server as an acknowledgment to the
 
 ### 3.5.1 REGACK Header <a id='regack-header'></a>
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[2.1 Structure of an MQTT-SN Control Packet]](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [2.1](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
 
 ### 3.5.2 REGACK Flags <a id='regack-flags'></a>
 
@@ -1762,7 +1762,7 @@ The PUBWOS packet does not have a corresponding feature in MQTT. «<mark title="
 
 #### 3.6.1.1 PUBWOS Header <a id='pubwos-header'></a>
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[2.1 Structure of an MQTT-SN Control Packet]](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [2.1](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
 
 #### 3.6.1.2 PUBWOS Flags <a id='pubwos-flags'></a>
 
@@ -1816,7 +1816,7 @@ A PUBLISH packet is sent from a Client to a Server or from a Server to a Client 
 
 #### 3.6.2.1 PUBLISH Header <a id='publish-header'></a>
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[2.1 Structure of an MQTT-SN Control Packet]](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [2.1](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
 
 #### 3.6.2.2 PUBLISH Flags <a id='publish-flags'></a>
 
@@ -1876,7 +1876,7 @@ A PUBLISH packet is sent from a Client to a Server or from a Server to a Client 
 
 #### 3.6.3.1 PUBLISH Header <a id='pwq1a2---publish-header'></a>
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[2.1 Structure of an MQTT-SN Control Packet]](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [2.1](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
 
 #### 3.6.3.2 PUBLISH Flags <a id='pwq1a2---publish-flags'></a>
 
@@ -1985,7 +1985,7 @@ A PUBACK packet is the response to a PUBLISH packet with QoS 1.
 
 #### 3.6.4.1 PUBACK Header <a id='puback-header'></a>
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[2.1 Structure of an MQTT-SN Control Packet]](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [2.1](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
 
 #### 3.6.4.2 Packet Identifier <a id='ppaq1d---packet-identifier'></a>
 
@@ -2011,7 +2011,7 @@ A PUBREC packet is the response to a PUBLISH packet with QoS 2. It is the second
 
 #### 3.6.5.1 PUBREC Header <a id='pubrec-header'></a>
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[2.1 Structure of an MQTT-SN Control Packet]](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [2.1](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
 
 #### 3.6.5.2 Packet Identifier <a id='pprq2dp1---packet-identifier'></a>
 
@@ -2037,7 +2037,7 @@ A PUBREL packet is the response to a PUBREC packet. It is the third packet of th
 
 #### 3.6.6.1 PUBREL Header <a id='pubrel-header'></a>
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[2.1 Structure of an MQTT-SN Control Packet]](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [2.1](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
 
 #### 3.6.6.2 Packet Identifier <a id='pprq2dp2---packet-identifier'></a>
 
@@ -2063,7 +2063,7 @@ The PUBCOMP packet is the response to a PUBREL packet. It is the fourth and fina
 
 #### 3.6.7.1 PUBCOMP Header <a id='pubcomp-header'></a>
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[2.1 Structure of an MQTT-SN Control Packet]](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [2.1](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
 
 #### 3.6.7.2 Packet Identifier <a id='ppcq2dp3---packet-identifier'></a>
 
@@ -2089,7 +2089,7 @@ The SUBSCRIBE packet is sent from the Client to the Server to create one or more
 
 ### 3.7.1 SUBSCRIBE Header <a id='subscribe-header'></a>
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[2.1 Structure of an MQTT-SN Control Packet]](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [2.1](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
 
 ### 3.7.2 SUBSCRIBE Flags <a id='subscribe-flags'></a>
 
@@ -2197,7 +2197,7 @@ The SUBACK packet is sent by a Server to a client as an acknowledgment to the re
 
 ### 3.8.1 SUBACK Header <a id='suback-header'></a>
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[2.1 Structure of an MQTT-SN Control Packet]](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [2.1](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
 
 ### 3.8.2 SUBACK Flags <a id='suback-flags'></a>
 
@@ -2251,7 +2251,7 @@ An UNSUBSCRIBE packet is sent by the Client to the Server to remove subscription
 
 ### 3.9.1 UNSUBSCRIBE Header <a id='unsubscribe-header'></a>
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[2.1 Structure of an MQTT-SN Control Packet]](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [2.1](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
 
 ### 3.9.2 UNSUBSCRIBE Flags <a id='unsubscribe-flags'></a>
 
@@ -2311,7 +2311,7 @@ An UNSUBACK packet is sent by a Server to acknowledge the receipt and processing
 
 ### 3.10.1 UNSUBACK Header <a id='unsuback-header'></a>
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[2.1 Structure of an MQTT-SN Control Packet]](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [2.1](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
 
 ### 3.10.2 Packet Identifier <a id='uua---packet-identifier'></a>
 
@@ -2341,7 +2341,7 @@ The PINGREQ packet is sent from a Client to the Server. It can be used to:
 
 ### 3.11.1 PINGREQ Header <a id='pingreq-header'></a>
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[2.1 Structure of an MQTT-SN Control Packet]](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [2.1](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
 
 ### 3.11.2 Packet Identifier <a id='ppreq---packet-identifier'></a>
 
@@ -2371,7 +2371,7 @@ A PINGRESP packet is also sent by the Server to inform a Client in the Awake sta
 
 ### 3.12.1 PINGRESP Header <a id='pingresp-header'></a>
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[2.1 Structure of an MQTT-SN Control Packet]](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [2.1](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
 
 ### 3.12.2 Packet Identifier <a id='ppres-packet-identifier'></a>
 
@@ -2411,7 +2411,7 @@ If a Client or Server receives a packet which requires a Virtual Connection (all
 
 ### 3.13.1 DISCONNECT Header <a id='disconnect-header'></a>
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[2.1 Structure of an MQTT-SN Control Packet]](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [2.1](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
 
 ### 3.13.2 DISCONNECT Flags <a id='disconnect-flags'></a>
 
@@ -2497,7 +2497,7 @@ The wakeup packet is a signal sent from the Server to a client. It is an indicat
 
 ### 3.14.1 WAKEUP Header <a id='wakeup-header'></a>
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[2.1 Structure of an MQTT-SN Control Packet]](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [2.1](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
 
 ### 3.14.2 WAKEUP Actions <a id='wakeup-actions'></a>
 
@@ -2513,7 +2513,7 @@ The SLEEPREQ packet is sent from the Client to the Server to indicate that it is
 
 ### 3.15.1 SLEEPREQ Header <a id='sleepreq-header'></a>
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[2.1 Structure of an MQTT-SN Control Packet]](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [2.1](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
 
 ### 3.15.2 SLEEPREQ Flags <a id='sleepreq-flags'></a>
 
@@ -2577,7 +2577,7 @@ A Client might not wait, or might stop waiting, if it is concerned that it will 
 
 ### 3.16.1 SLEEPRESP Header <a id='sleepresp-header'></a>
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[2.1 Structure of an MQTT-SN Control Packet]](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [2.1](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
 
 ### 3.16.2 SLEEPRESP Flags <a id='sleepresp-flags'></a>
 
@@ -2653,7 +2653,7 @@ A Session that is created using a Protected CONNECT Packet is known as a protect
 
 ### 3.17.1 Protection Encapsulation Header <a id='protection-encapsulation-header'></a>
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[2.1 Structure of an MQTT-SN Control Packet]](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to section  [2.1](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
 
 ### 3.17.2 Protection Flags <a id='protection-flags'></a>
 
@@ -2795,8 +2795,8 @@ Table: Protection Schemes
 
 The four byte Random field should contain a random number which is not guessable, generated at the time of Protection Encapsulation packet creation.
 
-- **Informative comment**
-
+> **Informative comment**
+> 
 > In the case of CCM, in the worst case scenario where the "Cryptographic Material" and the "Monotonic Counter" optional fields are not present, the recommended nonce on 13 bytes has to be calculated as SHA256 truncated to 104 bits of the sequence Byte 1 to Byte 16 (all packet fields up to the Protected MQTT-SN Packet). So considering the same Sender Identifier, the same nonce can be generated with a probability of 1/2\^32=2.33x10^-10^. With a shorter Random field of 2 bytes, the same nonce would be calculated with a probability of only 1/2\^16=1.53x10^-5^. As CCM is a derivation of CTR (see [[https://en.wikipedia.org/wiki/CCM_mode]](https://en.wikipedia.org/wiki/CCM_mode)), the nonce should never be reused for the same key so the probability of generating two identical nonces should be kept as low as possible. The same applies to GCM and ChaCha20/Poly1305, the security depends on choosing a unique IV of 12 bytes for every encryption performed with the same key ([[https://en.wikipedia.org/wiki/Galois/Counter_Mode]](https://en.wikipedia.org/wiki/Galois/Counter_Mode)).
 
 ### 3.17.6 Cryptographic Material <a id='cryptographic-material'></a>
@@ -2843,7 +2843,7 @@ This envelope wraps an MQTT-SN Packet to allow it to be associated with an exist
 
 ### 3.18.1 Connection Encapsulation Header <a id='connection-encapsulation-header'></a>
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[2.1 Structure of an MQTT-SN Control Packet]](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [2.1](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
 
 The Length field specifies the number of bytes up to the end of the Client Identifier field, including the Length field itself.
 
@@ -2867,7 +2867,7 @@ The Forwarder Encapsulation contains the addressing information needed by the Fo
 
 ### 3.19.1 Forwarder Encapsulation Header <a id='forwarder-encapsulation-header'></a>
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[2.1 Structure of an MQTT-SN Control Packet]](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [2.1](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
 
 The Length field specifies the number of bytes up to the end of the Client Addressing Information field, including the Length field itself.
 
@@ -2903,7 +2903,7 @@ The ADVERTISE packet is sent periodically by a Gateway to advertise its presence
 
 #### 3.20.1.1 ADVERTISE Header <a id='advertise-header'></a>
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[2.1 Structure of an MQTT-SN Control Packet]](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [2.1](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
 
 #### 3.20.1.2 Gateway Identifier <a id='gateway-identifier'></a>
 
@@ -2933,7 +2933,7 @@ The SEARCHGW packet is sent by a Client to find a Gateway to send Application Me
 
 #### 3.20.2.1 SEARCHGW Header <a id='searchgw-header'></a>
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[2.1 Structure of an MQTT-SN Control Packet]](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [2.1](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
 
 #### 3.20.2.2 Additional Network Information <a id='additional-network-information'></a>
 
@@ -2959,7 +2959,7 @@ The GWINFO packet is sent as response to a SEARCHGW packet. If sent by a Gateway
 
 #### 3.20.3.1 GWINFO Header <a id='gwinfo-header'></a>
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[2.1 Structure of an MQTT-SN Control Packet]](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [2.1](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
 
 #### 3.20.3.2 Gateway Identifier <a id='gwinfo---gateway-identifier'></a>
 
