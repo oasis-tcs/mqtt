@@ -178,8 +178,8 @@ Table: Protection Schemes
 
 The four byte Random field should contain a random number which is not guessable, generated at the time of Protection Encapsulation packet creation.
 
-- **Informative comment**
-
+> **Informative comment**
+> 
 > In the case of CCM, in the worst case scenario where the "Cryptographic Material" and the "Monotonic Counter" optional fields are not present, the recommended nonce on 13 bytes has to be calculated as SHA256 truncated to 104 bits of the sequence Byte 1 to Byte 16 (all packet fields up to the Protected MQTT-SN Packet). So considering the same Sender Identifier, the same nonce can be generated with a probability of 1/2\^32=2.33x10^-10^. With a shorter Random field of 2 bytes, the same nonce would be calculated with a probability of only 1/2\^16=1.53x10^-5^. As CCM is a derivation of CTR (see [[https://en.wikipedia.org/wiki/CCM_mode]](https://en.wikipedia.org/wiki/CCM_mode)), the nonce should never be reused for the same key so the probability of generating two identical nonces should be kept as low as possible. The same applies to GCM and ChaCha20/Poly1305, the security depends on choosing a unique IV of 12 bytes for every encryption performed with the same key ([[https://en.wikipedia.org/wiki/Galois/Counter_Mode]](https://en.wikipedia.org/wiki/Galois/Counter_Mode)).
 
 ### Cryptographic Material{#cryptographic-material}
