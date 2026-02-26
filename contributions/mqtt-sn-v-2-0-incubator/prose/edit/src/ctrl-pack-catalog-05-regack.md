@@ -8,7 +8,7 @@ The REGACK packet is sent by a Client or by a Server as an acknowledgment to the
 
 ### REGACK Header{#regack-header}
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [[2.1 Structure of an MQTT-SN Control Packet]](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [sec](#structure-of-an-mqtt-sn-control-packet) "Structure of an MQTT-SN Control Packet" for a detailed description.
 
 ### REGACK Flags{#regack-flags}
 
