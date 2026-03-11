@@ -2,6 +2,7 @@
 """Extract sections from source files concat per binder and write display to label(slug) mapping."""
 import pathlib
 import os
+import re
 import sys
 
 from inverso.implementation import process as process_inversion, nonjective  # type: ignore
@@ -32,6 +33,7 @@ SECTION_DISPLAY_TO_TEXT_AT = pathlib.Path('etc') / 'section-display-to-text.json
 TOK_LAB = '{#'
 CLEAN_MD_START = '# Introduction'
 FENCED_BLOCK_FLIP_FLOP = '```'
+APPENDIX_INNER_PATTERN = re.compile(r'(?P<display>[A-Z][\.0-9]+)\ +(?P<rest>.+)')
 
 
 def load_binder(binder_at: PathLike) -> list[pathlib.Path]:
@@ -176,6 +178,7 @@ def main(argv: list[str]) -> int:
     root: int = 0
     appr = ''
     for section in sections:
+        display = ''
         level = len(section.split(SPACE, 1)[0])
         if level == 1:
             root += 1
@@ -188,7 +191,16 @@ def main(argv: list[str]) -> int:
             )
         if text_plus.startswith('Appendix '):
             appr = text_plus.replace('Appendix ', '')[0]
+            display = f'Appendix {appr}.'
+            text_plus = text_plus.replace(f'{display} ', '')
             is_appendix = True
+        else:
+            match = APPENDIX_INNER_PATTERN.match(text_plus)
+            if match:
+                found = match.groupdict()
+                display = found['display']
+                text_plus = text_plus.replace(f'{display} ', '')
+
         if TOK_LAB in text_plus:
             text, slug = text_plus.rstrip(SPACE).rstrip('}').split(TOK_LAB, 1)
         else:
@@ -198,10 +210,10 @@ def main(argv: list[str]) -> int:
             a_root = str(root)
         else:
             a_root = appr
-        db.append([is_appendix, a_root, level, text, slug])
+        db.append([is_appendix, a_root, level, display, text, slug])
 
     if DEBUG:
-        for is_appendix, a_root, level, text, slug in db:
+        for is_appendix, a_root, level, display, text, slug in db:
             print(
                 f'{"        " if not is_appendix else "APPENDIX"} | {a_root} |'
                 f' {(HASH * level).rjust(7)} "{text}" <-- {slug}'
@@ -215,7 +227,7 @@ def main(argv: list[str]) -> int:
     sec_lvl: dict[str, int] = {f'{HASH * level} ': level for level in level_domain}
     lvl_sec: dict[int, str] = {level: f'{HASH * level} ' for level in level_domain}
     cur_lvl: int = sec_lvl[f'{HASH * 1} ']
-    for is_appendix, a_root, level, text, slug in db:
+    for is_appendix, a_root, level, display, text, slug in db:
         if not is_appendix:
             tag = f'{HASH * level} '
             nxt_lvl = sec_lvl[tag]
@@ -235,9 +247,11 @@ def main(argv: list[str]) -> int:
 
             display = sec_cnt_disp.rstrip(DOT)
         else:
-            display, text = text.split(SPACE, 1)
+            pass  # display, text = text.split(SPACE, 1)
         display_to_label[display] = slug
         display_to_text[display] = text
+        if DEBUG:
+            print(f' {display} "{display_to_text[display]}" <-- {slug}')
 
     json_dump(display_to_label, SECTION_DISPLAY_TO_LABEL_AT, options={'debug': DEBUG})
     json_dump(invert(display_to_label), SECTION_LABEL_TO_DISPLAY_AT, options={'debug': DEBUG})

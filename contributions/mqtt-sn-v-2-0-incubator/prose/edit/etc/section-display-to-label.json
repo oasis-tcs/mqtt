@@ -317,9 +317,11 @@
   "6.1": "conformance-clauses",
   "6.1.1": "mqtt-sn-server-conformance-clause",
   "6.1.2": "mqtt-sn-client-conformance-clause",
-  "Appendix": "appendix-d-revision-history-informative",
+  "Appendix A.": "appendix-a.-acknowledgments",
   "A.1": "a.1-special-thanks",
   "A.2": "a.2-participants",
+  "Appendix B.": "appendix-b.-mandatory-normative-statements-informative",
+  "Appendix C.": "appendix-c.-implementation-guidance-informative",
   "C.1": "c.1-example-mqtt-sn-architectures",
   "C.1.1": "c.1.1-transparent-gateway",
   "C.1.2": "c.1.2-aggregating-gateway",
@@ -342,5 +344,6 @@
   "C.6.6": "c.6.6-topic-name",
   "C.6.7": "c.6.7-payload",
   "C.6.8": "c.6.8-publish-with-qos--1-actions",
-  "C.7": "c.7-gateway-advertisement-and-discovery"
+  "C.7": "c.7-gateway-advertisement-and-discovery",
+  "Appendix D.": "revision-history-informative"
 }

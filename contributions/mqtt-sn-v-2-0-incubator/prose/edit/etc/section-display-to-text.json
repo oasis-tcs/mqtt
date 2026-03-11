@@ -317,9 +317,11 @@
   "6.1": "Conformance clauses",
   "6.1.1": "MQTT-SN Server conformance clause",
   "6.1.2": "MQTT-SN Client conformance clause",
-  "Appendix": "D. Revision History (informative)",
+  "Appendix A.": "Acknowledgments",
   "A.1": "Special Thanks",
   "A.2": "Participants",
+  "Appendix B.": "Mandatory normative statements (informative)",
+  "Appendix C.": "Implementation Guidance (Informative)",
   "C.1": "Example MQTT-SN Architectures",
   "C.1.1": "Transparent Gateway",
   "C.1.2": "Aggregating Gateway",
@@ -342,5 +344,6 @@
   "C.6.6": "Topic Name",
   "C.6.7": "Payload",
   "C.6.8": "PUBLISH with QoS -1 Actions",
-  "C.7": "Gateway Advertisement and Discovery"
+  "C.7": "Gateway Advertisement and Discovery",
+  "Appendix D.": "Revision History (informative)"
 }
