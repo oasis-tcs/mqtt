@@ -707,7 +707,7 @@ def main(argv: list[str]) -> int:
 
         # Process the text display of section refs left over in first pass
         for slot, record in rem_defects:
-            completed = insert_any_section_reference(record)
+            completed = insert_any_section_reference(record, display_from, heading_text_of)
             if record != completed:
                 lines[slot] = completed
 
