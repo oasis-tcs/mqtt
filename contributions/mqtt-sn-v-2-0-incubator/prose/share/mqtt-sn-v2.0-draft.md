@@ -96,7 +96,8 @@ The name \"OASIS\" is a trademark of [[OASIS]](https://www.oasis-open.org/), the
 
 # Table of Contents
 
-1. [Introduction](#introduction)  
+
+1 [Introduction](#introduction)  
 	1.1 [Intellectual property rights policy](#intellectual-property-rights-policy)  
 	1.2 [Changes from earlier Versions](#changes-from-earlier-versions)  
 		1.2.1 [MQTT-SN 1.2](#mqtt-sn-1.2)  
@@ -112,7 +113,7 @@ The name \"OASIS\" is a trademark of [[OASIS]](https://www.oasis-open.org/), the
 		1.8.3 [Four Byte Integer](#four-byte-integer)  
 		1.8.4 [UTF-8 Encoded String](#utf-8-encoded-string)  
 	1.9 [Typographical Conventions](#typographical-conventions)  
-2. [MQTT-SN Control Packet format](#mqtt-sn-control-packet-format)  
+2 [MQTT-SN Control Packet format](#mqtt-sn-control-packet-format)  
 	2.1 [Structure of an MQTT-SN Control Packet](#structure-of-an-mqtt-sn-control-packet)  
 		2.1.1 [Packet Header](#packet-header)  
 		2.1.2 [Length](#length)  
@@ -120,7 +121,7 @@ The name \"OASIS\" is a trademark of [[OASIS]](https://www.oasis-open.org/), the
 	2.2 [Packet Identifier](#packet-identifier)  
 	2.3 [Reason Code](#reason-code)  
 	2.4 [Topic Types](#topic-types)  
-3. [MQTT-SN Control Packets](#mqtt-sn-control-packets)  
+3 [MQTT-SN Control Packets](#mqtt-sn-control-packets)  
 	3.1 [CONNECT - Connection Request](#connect---connection-request)  
 		3.1.1 [CONNECT Header](#connect-header)  
 		3.1.2 [Connect Flags](#connect-flags)  
@@ -344,7 +345,7 @@ The name \"OASIS\" is a trademark of [[OASIS]](https://www.oasis-open.org/), the
 			3.20.3.1 [GWINFO Header](#gwinfo-header)  
 			3.20.3.2 [Gateway Identifier](#gwinfo---gateway-identifier)  
 			3.20.3.3 [Gateway Address](#gateway-address)  
-4. [Operational behavior](#operational-behavior)  
+4 [Operational behavior](#operational-behavior)  
 	4.1 [Session state](#session-state)  
 		4.1.1 [Storing Session State](#storing-session-state)  
 		4.1.2 [Session Establishment](#session-establishment)  
@@ -386,7 +387,7 @@ The name \"OASIS\" is a trademark of [[OASIS]](https://www.oasis-open.org/), the
 		4.14.1 [Session Timers](#session-timers)  
 		4.14.2 [Sleeping Clients](#sleeping-clients)  
 	4.15 [Optional Features](#optional-features)  
-5. [Security (Informative)](#security-informative)  
+5 [Security (Informative)](#security-informative)  
 	5.1 [Introduction](#si---introduction)  
 	5.2 [MQTT-SN solutions: security and certification](#mqtt-sn-solutions-security-and-certification)  
 	5.3 [Lightweight cryptography and constrained devices](#lightweight-cryptography-and-constrained-devices)  
@@ -410,42 +411,42 @@ The name \"OASIS\" is a trademark of [[OASIS]](https://www.oasis-open.org/), the
 			5.4.12.2 [Secured network communication profile](#secured-network-communication-profile)  
 			5.4.12.3 [Secured transport profile](#secured-transport-profile)  
 			5.4.12.4 [Industry specific security profiles](#industry-specific-security-profiles)  
-6. [Conformance](#conformance)  
+6 [Conformance](#conformance)  
 	6.1 [Conformance clauses](#conformance-clauses)  
 		6.1.1 [MQTT-SN Server conformance clause](#mqtt-sn-server-conformance-clause)  
 		6.1.2 [MQTT-SN Client conformance clause](#mqtt-sn-client-conformance-clause)  
-7. [Appendix A. Acknowledgments](#appendix-a.-acknowledgments)  
-	7.1 [A.1 Special Thanks](#a.1-special-thanks)  
-	7.2 [A.2 Participants](#a.2-participants)  
-8. [Appendix B. Mandatory normative statements (informative)](#appendix-b.-mandatory-normative-statements-informative)  
-9. [Appendix C. Implementation Guidance (Informative)](#appendix-c.-implementation-guidance-informative)  
-	9.1 [C.1 Example MQTT-SN Architectures](#c.1-example-mqtt-sn-architectures)  
-		9.1.1 [C.1.1 Transparent Gateway](#c.1.1-transparent-gateway)  
-		9.1.2 [C.1.2 Aggregating Gateway](#c.1.2-aggregating-gateway)  
-		9.1.3 [C.1.3 Forwarder](#c.1.3-forwarder)  
-		9.1.4 [C.1.4 MQTT-SN Broker](#c.1.4-mqtt-sn-broker)  
-	9.2 [C.2 Server Congestion](#c.2-server-congestion)  
-	9.3 [C.3 Example Timer and Counter Values](#c.3-example-timer-and-counter-values)  
-	9.4 [C.4 Exponential Backoff](#c.4-exponential-backoff)  
-	9.5 [C.5 Client State Diagrams](#c.5-client-state-diagrams)  
-	9.6 [C.6 PUBLISH with QoS -1](#c.6-publish-with-qos--1)  
-		9.6.1 [C.6.1 PUBLISH Header](#c.6.1-publish-header)  
-		9.6.2 [C.6.2 PUBLISH Flags](#c.6.2-publish-flags)  
-			9.6.2.1 [C.6.2.1 Topic Type](#c.6.2.1-topic-type)  
-			9.6.2.2 [C.6.2.2 QoS](#c.6.2.2-qos)  
-			9.6.2.3 [C.6.2.3 DUP](#c.6.2.3-dup)  
-			9.6.2.4 [C.6.2.4 Retain](#c.6.2.4-retain)  
-		9.6.3 [C.6.3 Topic Alias](#c.6.3-topic-alias)  
-		9.6.4 [C.6.4 Topic Short Name](#c.6.4-topic-short-name)  
-		9.6.5 [C.6.5 Topic Name Length](#c.6.5-topic-name-length)  
-		9.6.6 [C.6.6 Topic Name](#c.6.6-topic-name)  
-		9.6.7 [C.6.7 Payload](#c.6.7-payload)  
-		9.6.8 [C.6.8 PUBLISH with QoS -1 Actions](#c.6.8-publish-with-qos--1-actions)  
-	9.7 [C.7 Gateway Advertisement and Discovery](#c.7-gateway-advertisement-and-discovery)  
-10. [Appendix D. Revision History (informative)](#appendix-d-revision-history-informative)  
+Appendix A. [Acknowledgments](#appendix-a.-acknowledgments)  
+	A.1 [Special Thanks](#a.1-special-thanks)  
+	A.2 [Participants](#a.2-participants)  
+Appendix B. [Mandatory normative statements (informative)](#appendix-b.-mandatory-normative-statements-informative)  
+Appendix C. [Implementation Guidance (Informative)](#appendix-c.-implementation-guidance-informative)  
+	C.1 [Example MQTT-SN Architectures](#c.1-example-mqtt-sn-architectures)  
+		C.1.1 [Transparent Gateway](#c.1.1-transparent-gateway)  
+		C.1.2 [Aggregating Gateway](#c.1.2-aggregating-gateway)  
+		C.1.3 [Forwarder](#c.1.3-forwarder)  
+		C.1.4 [MQTT-SN Broker](#c.1.4-mqtt-sn-broker)  
+	C.2 [Server Congestion](#c.2-server-congestion)  
+	C.3 [Example Timer and Counter Values](#c.3-example-timer-and-counter-values)  
+	C.4 [Exponential Backoff](#c.4-exponential-backoff)  
+	C.5 [Client State Diagrams](#c.5-client-state-diagrams)  
+	C.6 [PUBLISH with QoS -1](#c.6-publish-with-qos--1)  
+		C.6.1 [PUBLISH Header](#c.6.1-publish-header)  
+		C.6.2 [PUBLISH Flags](#c.6.2-publish-flags)  
+			C.6.2.1 [Topic Type](#c.6.2.1-topic-type)  
+			C.6.2.2 [QoS](#c.6.2.2-qos)  
+			C.6.2.3 [DUP](#c.6.2.3-dup)  
+			C.6.2.4 [Retain](#c.6.2.4-retain)  
+		C.6.3 [Topic Alias](#c.6.3-topic-alias)  
+		C.6.4 [Topic Short Name](#c.6.4-topic-short-name)  
+		C.6.5 [Topic Name Length](#c.6.5-topic-name-length)  
+		C.6.6 [Topic Name](#c.6.6-topic-name)  
+		C.6.7 [Payload](#c.6.7-payload)  
+		C.6.8 [PUBLISH with QoS -1 Actions](#c.6.8-publish-with-qos--1-actions)  
+	C.7 [Gateway Advertisement and Discovery](#c.7-gateway-advertisement-and-discovery)  
+Appendix D. [Revision History (informative)](#revision-history-informative)  
 -------
 
-# 1. Introduction <a id='introduction'></a>
+# 1 Introduction <a id='introduction'></a>
 
 \[<mark title="Ephemeral region marking">All text is normative unless otherwise labeled</mark>\]
 
@@ -864,7 +865,7 @@ Every such statement is separated from the following text with the special end s
 has been assigned a reference that follows that end symbol as the pattern `[MQTT-SN-section#-local#]`.
 
 These normative requirements are tabulated
-in [8 HEADING-NOT-FOUND](#appendix-b.-mandatory-normative-statements-informative).
+in [Appendix B. Mandatory normative statements (informative)](#appendix-b.-mandatory-normative-statements-informative).
 
 All examples in this document are informative only.
 
@@ -877,7 +878,7 @@ All other text is normative unless otherwise labeled e.g. like the following inf
 
 This document adheres to the Modern Language Association (MLA) style guidelines for formatting titles and terms.
 
-# 2. MQTT-SN Control Packet format <a id='mqtt-sn-control-packet-format'></a>
+# 2 MQTT-SN Control Packet format <a id='mqtt-sn-control-packet-format'></a>
 
 ## 2.1 Structure of an MQTT-SN Control Packet <a id='structure-of-an-mqtt-sn-control-packet'></a>
 
@@ -1113,7 +1114,7 @@ Predefined and Session Topic Aliases are assigned from different pools so there 
 
 Refer to [4.7 Topics](#topics) for detailed descriptions of Topic Names and Topic Aliases.
 
-# 3. MQTT-SN Control Packets <a id='mqtt-sn-control-packets'></a>
+# 3 MQTT-SN Control Packets <a id='mqtt-sn-control-packets'></a>
 
 ## 3.1 CONNECT - Connection Request <a id='connect---connection-request'></a>
 
@@ -2861,7 +2862,7 @@ The MQTT-SN packet, encoded according to the packet type, follows immediately af
 
 An MQTT-SN Client can access a Server through a Forwarder in case the Server is not directly attached to the same Underlying Network as the Client. The Forwarder encapsulates the MQTT-SN Packets it receives from the Client and sends them unchanged to the Server. In the opposite direction, it decapsulates the Packets it receives from the Server and sends them unchanged to the Clients.
 
-The Forwarder Encapsulation contains the addressing information needed by the Forwarder to allow MQTT-SN Packets reach their intended destination(s). Refer to [9.1.3 HEADING-NOT-FOUND](#c.1.3-forwarder) for examples.
+The Forwarder Encapsulation contains the addressing information needed by the Forwarder to allow MQTT-SN Packets reach their intended destination(s). Refer to [C.1.3 Forwarder](#c.1.3-forwarder) for examples.
 
 ### 3.19.1 Forwarder Encapsulation Header <a id='forwarder-encapsulation-header'></a>
 
@@ -2885,7 +2886,7 @@ The MQTT-SN packet, encoded according to the packet type.
 
 ## 3.20 Gateway Discovery Packets <a id='gateway-discovery-packets'></a>
 
-The Packets in this section are optional. A description of how this functionality works can be found in [9.7 HEADING-NOT-FOUND](#c.7-gateway-advertisement-and-discovery).
+The Packets in this section are optional. A description of how this functionality works can be found in [C.7 Gateway Advertisement and Discovery](#c.7-gateway-advertisement-and-discovery).
 
 ### 3.20.1 ADVERTISE - Gateway Advertisement <a id='advertise---gateway-advertisement'></a>
 
@@ -2969,7 +2970,7 @@ The *Gateway Address* field has a variable length and contains the Network Addre
 
 This field is optional - its existence or absence is inferred from the Packet length. It is only included if the Packet is sent by a Client.
 
-# 4. Operational behavior <a id='operational-behavior'></a>
+# 4 Operational behavior <a id='operational-behavior'></a>
 
 An important design point of MQTT-SN is to be as close as possible to MQTT. Therefore, all protocol semantics should remain, as far as possible, the same as those defined by MQTT.
 
@@ -3316,7 +3317,7 @@ An MQTT-SN Sender may be configured with two parameters to govern its resending 
 
 2.  Maximum Retry Count
 
-on the basis of the expected characteristics of the Underlying Network. Example values for these are suggested in [9.3 HEADING-NOT-FOUND](#c.3-example-timer-and-counter-values). See also [9.4 HEADING-NOT-FOUND](#c.4-exponential-backoff) for guidance on varying the *Retry Interval* to reduce potential network congestion.
+on the basis of the expected characteristics of the Underlying Network. Example values for these are suggested in [C.3 Example Timer and Counter Values](#c.3-example-timer-and-counter-values). See also [C.4 Exponential Backoff](#c.4-exponential-backoff) for guidance on varying the *Retry Interval* to reduce potential network congestion.
 
 When no response to one of the above packets is received in the *Retry Interval*, the Sender may resend the packet, at *Retry Interval* intervals, until the *Maximum Retry Count* is reached. After the *Maximum Retry Count* is reached and a further *Retry Interval* has passed without a response, it is deemed that there is no response.
 
@@ -3796,7 +3797,7 @@ Table: Client States
 
 Transition through these states is governed by a sequence of packets between Client and Server and mediated by [[timers]](#session-timers) resident on the Server. A Client is in the Active state when the Server receives a CONNECT packet from that Client. This state is supervised by the Server with the [3.1.6 Keep Alive](#keep-alive) timer. If the Server does not receive any packet from the Client in a defined period, the Server will consider that client as Disconnected and delete the Virtual Connection. The Disconnected state is governed by the Session Expiry timer - on expiry the Server is free to remove the Client session. A Client moves into the Asleep state by issuing a SLEEPREQ packet. To be certain that the Server has also recorded the Client as being asleep, the Client needs to wait for a positive SLEEPRESP response. For more information on the Asleep state, refer to [4.14.2 Sleeping Clients](#sleeping-clients).
 
-See [9.5 HEADING-NOT-FOUND](#c.5-client-state-diagrams) for informative state diagrams to help illustrate these transitions.
+See [C.5 Client State Diagrams](#c.5-client-state-diagrams) for informative state diagrams to help illustrate these transitions.
 
 > **Informative Comment**
 >
@@ -3817,7 +3818,7 @@ The following timers are used by Servers, on a per Client basis, to handle Clien
 
 Table: Session Timers
 
-For example values of these timers, see [9.3 HEADING-NOT-FOUND](#c.3-example-timer-and-counter-values).
+For example values of these timers, see [C.3 Example Timer and Counter Values](#c.3-example-timer-and-counter-values).
 
 ### 4.14.2 Sleeping Clients <a id='sleeping-clients'></a>
 
@@ -3865,7 +3866,7 @@ The Forwarder Encapsulation packet type support is optional. For instance, it is
 
 The Protection Encapsulation packet type support is optional. For instance, it is not required if the MQTT-SN Server and the MQTT-SN Clients interact over a secure communication channel, such as DTLS, or any communication channel assuring the authenticity and optionally the confidentiality of MQTT-SN data.
 
-# 5. Security (Informative) <a id='security-informative'></a>
+# 5 Security (Informative) <a id='security-informative'></a>
 
 ## 5.1 Introduction <a id='si---introduction'></a>
 
@@ -4115,7 +4116,7 @@ It is anticipated that the MQTT-SN (and MQTT) protocols will be designed into in
 
 [\[NSAB\]](#bookmark=id.is565v) NSA Suite B Cryptography
 
-# 6. Conformance <a id='conformance'></a>
+# 6 Conformance <a id='conformance'></a>
 
 The MQTT specification defines conformance for MQTT Client implementations and MQTT Server implementations. An MQTT implementation can conform as both an MQTT Client and an MQTT Server.
 
@@ -4165,7 +4166,7 @@ An MQTT-SN Client conforms to this specification only if it satisfies all the st
 
 4.  It does not require the use of any extensions defined outside of the specification in order to interoperate with any other conformant implementation.
 
-# 7. Appendix A. Acknowledgments <a id='appendix-a.-acknowledgments'></a>
+# Appendix A. Acknowledgments <a id='appendix-a.-acknowledgments'></a>
 
 \[<mark title="Ephemeral region marking">Required section.</mark>\]
 
@@ -4173,7 +4174,7 @@ An MQTT-SN Client conforms to this specification only if it satisfies all the st
 
 <mark title="Ephemeral region marking">Remove these yellow notes before submitting for publication.</mark>
 
-## 7.1 A.1 Special Thanks <a id='a.1-special-thanks'></a>
+## A.1 Special Thanks <a id='a.1-special-thanks'></a>
 
 <mark title="Ephemeral region marking">Note: This is an optional subsection to call out contributions from TC members. If a TC wants to thank non-TC members then they should avoid using the term \"contribution\" and instead thank them for their \"expertise\" or \"assistance\".</mark>
 
@@ -4181,7 +4182,7 @@ Substantial contributions to this document from the following individuals are gr
 
 \[Participant Name, Affiliation \| Individual Member\]
 
-## 7.2 A.2 Participants <a id='a.2-participants'></a>
+## A.2 Participants <a id='a.2-participants'></a>
 
 <mark title="Ephemeral region marking">Note: A TC can determine who they list here, however, Observers must not be listed. It is common practice for TCs to list everyone that was part of the TC during the creation of the document, but this is ultimately a TC decision on who they want to list and not list.</mark>
 
@@ -4189,7 +4190,7 @@ The following individuals were members of this Technical Committee during the cr
 
 \[Participant Name, Affiliation \| Individual Member\]
 
-# 8. Appendix B. Mandatory normative statements (informative) <a id='appendix-b.-mandatory-normative-statements-informative'></a>
+# Appendix B. Mandatory normative statements (informative) <a id='appendix-b.-mandatory-normative-statements-informative'></a>
 
 This Appendix is non-normative and is provided as a convenient summary of the numbered conformance statements found in the main body of this document.
 Refer to [6 Conformance](#conformance) for a definitive list of conformance requirements.
@@ -4506,9 +4507,9 @@ Refer to [6 Conformance](#conformance) for a definitive list of conformance requ
 
 Table: Numbered conformance statements
 
-# 9. Appendix C. Implementation Guidance (Informative) <a id='appendix-c.-implementation-guidance-informative'></a>
+# Appendix C. Implementation Guidance (Informative) <a id='appendix-c.-implementation-guidance-informative'></a>
 
-## 9.1 C.1 Example MQTT-SN Architectures <a id='c.1-example-mqtt-sn-architectures'></a>
+## C.1 Example MQTT-SN Architectures <a id='c.1-example-mqtt-sn-architectures'></a>
 
 Among the kinds of MQTT-SN components, there are *Clients and Servers* (sub-divided into *Gateways, Brokers and Forwarders)*.
 
@@ -4526,7 +4527,7 @@ An MQTT-SN Server may or may not communicate with an MQTT Server. An MQTT-SN Gat
 
 If the Gateway is not directly attached to the Clients' network, MQTT-SN Clients can communicate with a Gateway through an MQTT-SN Forwarder. The forwarder encapsulates (see [3.19 Forwarder Encapsulation](#forwarder-encapsulation)) the MQTT-SN frames it receives on the Client side and forwards them unchanged to the Gateway; in the opposite direction, it removes the encapsulation from the frames it receives from the Gateway and sends them unchanged to the Clients.
 
-### 9.1.1 C.1.1 Transparent Gateway <a id='c.1.1-transparent-gateway'></a>
+### C.1.1 Transparent Gateway <a id='c.1.1-transparent-gateway'></a>
 
 For each connected MQTT-SN Client a Transparent Gateway will set up and maintain an MQTT connection to the MQTT server. This MQTT connection is reserved exclusively for the end-to-end and almost transparent packet exchange between the Client and the MQTT Server. There will be as many MQTT connections between the Gateway and the MQTT Server as MQTT-SN clients connected to the Gateway. The Transparent Gateway will perform a translation between the two protocols. Since all packet exchanges are end-to-end between the MQTT-SN client and the MQTT Server, functions and features that are implemented by the MQTT Server can be offered to the MQTT-SN Client.
 
@@ -4539,7 +4540,7 @@ Although the implementation of the Transparent Gateway may be somewhat simpler t
 
 Because PUBWOS packets could be sent at any time by Clients with no Virtual Connection, a Transparent Gateway would need to maintain a dedicated MQTT connection with the MQTT Server to support those packets.
 
-### 9.1.2 C.1.2 Aggregating Gateway <a id='c.1.2-aggregating-gateway'></a>
+### C.1.2 Aggregating Gateway <a id='c.1.2-aggregating-gateway'></a>
 
 Instead of having one MQTT connection for each connected MQTT-SN Client, an aggregating Gateway has one MQTT connection to the MQTT Server. All packet exchanges between an MQTT-SN client and an aggregating Gateway end at the Gateway. The Gateway then decides which information will be given further to the MQTT Server. Although its implementation may be more complex than a transparent Gateway, an aggregating Gateway reduces the number of MQTT connections between the Gateway and MQTT Server.
 
@@ -4551,7 +4552,7 @@ To support PUBWOS packets from MQTT-SN clients without a Virtual Connection, an 
 
 A hybrid Gateway may contain elements of both Aggregating and Transparent Gateways, using different approaches depending on the characteristics of the MQTT-SN Clients connecting to them.
 
-### 9.1.3 C.1.3 Forwarder <a id='c.1.3-forwarder'></a>
+### C.1.3 Forwarder <a id='c.1.3-forwarder'></a>
 
 An MQTT-SN Forwarder connects two networks which cannot transmit messages directly to and from each other. It serves as a bridge for MQTT-SN messages between the two networks, allowing MQTT-SN Clients in one to connect to an MQTT-SN Gateway in the other. The two networks could be Zigbee on one side and UDP on the other, for instance.
 
@@ -4565,7 +4566,7 @@ The following diagrams illustrate how a Forwarder may interact with an Aggregati
 
 ![Forwarder with Aggregating Gateway](images/image29.png "Forwarder with Aggregating Gateway")<!-- .width="4.9003171478565175in", .height="2.8304625984251968in" -->
 
-### 9.1.4 C.1.4 MQTT-SN Broker <a id='c.1.4-mqtt-sn-broker'></a>
+### C.1.4 MQTT-SN Broker <a id='c.1.4-mqtt-sn-broker'></a>
 
 An MQTT-SN Server may have no interaction with an MQTT Server, in which case, much like an MQTT Server, it will act as an intermediary between MQTT-SN Clients.
 
@@ -4577,13 +4578,13 @@ It will allow MQTT-SN Clients to set up subscriptions, and publish messages to o
 
 An MQTT-SN Server may choose to incorporate elements of a Broker, Aggregating and Transparent Gateway together. Typically, an Aggregating Gateway will also act as an MQTT-SN Broker.
 
-## 9.2 C.2 Server Congestion <a id='c.2-server-congestion'></a>
+## C.2 Server Congestion <a id='c.2-server-congestion'></a>
 
 For CONNECT, PUBLISH, SUBSCRIBE and REGISTER requests, the Server may return the Reason Code *Congestion*, meaning *try again later*.
 
-The requester should wait a reasonable amount of time (*[Congestion Delay)]* before sending a new request to the Server. What constitutes *a reasonable amount of time* depends on the implementation characteristics - it should be configured in the client application based on those. See [9.3 HEADING-NOT-FOUND](#c.3-example-timer-and-counter-values) for an example value.
+The requester should wait a reasonable amount of time (*[Congestion Delay)]* before sending a new request to the Server. What constitutes *a reasonable amount of time* depends on the implementation characteristics - it should be configured in the client application based on those. See [C.3 Example Timer and Counter Values](#c.3-example-timer-and-counter-values) for an example value.
 
-## 9.3 C.3 Example Timer and Counter Values <a id='c.3-example-timer-and-counter-values'></a>
+## C.3 Example Timer and Counter Values <a id='c.3-example-timer-and-counter-values'></a>
 
 Figure C-6 gives some values for the timers and counters defined in this specification derived from implementation experience.
 
@@ -4591,7 +4592,7 @@ Figure C-6 gives some values for the timers and counters defined in this specifi
 
 To balance reaction speed with reliability, the tolerance of the sleep timers at the Server may depend on the values indicated by the clients. For example, the timer values may be 10% higher than the indicated values for periods larger than 1 minute, and 50% higher if less.
 
-## 9.4 C.4 Exponential Backoff <a id='c.4-exponential-backoff'></a>
+## C.4 Exponential Backoff <a id='c.4-exponential-backoff'></a>
 
 The *Retry Interval* for unacknowledged packets can be increased on each retry, to avoid overwhelming recipient network nodes while allowing efficient Virtual Connection reestablishment. The client periodically retries a failed packet with increasing delays between attempts, constrained by a Maximum Retry Interval, interleaved with a suitable seed of randomness.
 
@@ -4619,7 +4620,7 @@ with n incremented by 1 for each iteration (or operation) and the scaling factor
 
 The random number helps to avoid cases where many clients are synchronized by some situation, and all retry at once. The value of the random number ran is recalculated after each retry. The random number should be no larger than the initial *Retry Interval*.
 
-## 9.5 C.5 Client State Diagrams <a id='c.5-client-state-diagrams'></a>
+## C.5 Client State Diagrams <a id='c.5-client-state-diagrams'></a>
 
 The following diagrams are illustrative, graphical views of the states and transitions. They are not comprehensive but included for guidance.
 
@@ -4631,7 +4632,7 @@ The following diagrams are illustrative, graphical views of the states and trans
 
 ![Server View of Client States - informative](images/image27.jpg "Server View of Client States - informative")<!-- .width="6.5in", .height="6.958333333333333in" -->
 
-## 9.6 C.6 PUBLISH with QoS -1 <a id='c.6-publish-with-qos--1'></a>
+## C.6 PUBLISH with QoS -1 <a id='c.6-publish-with-qos--1'></a>
 
 *Figure C-9 -- PUBLISH Packet for QoS -1*
 
@@ -4641,17 +4642,17 @@ This packet is the MQTT-SN 1.2 equivalent of PUBWOS. It could be supported by a 
 
 This packet can be used by both Clients and Servers to publish data to a topic without establishing a Virtual Connection or Session.
 
-### 9.6.1 C.6.1 PUBLISH Header <a id='c.6.1-publish-header'></a>
+### C.6.1 PUBLISH Header <a id='c.6.1-publish-header'></a>
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [2.1 Structure of an MQTT-SN Control Packet](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
-### 9.6.2 C.6.2 PUBLISH Flags <a id='c.6.2-publish-flags'></a>
+### C.6.2 PUBLISH Flags <a id='c.6.2-publish-flags'></a>
 
 The PUBLISH Flags is a 1 byte field which contains flags specifying the content of the packet and the Server behavior. Bits 3-2 of the PUBLISH Flags are reserved and are set to 0.
 
 The Client validates that the reserved flags in the PUBLISH packet are set to 0. If any of the reserved flags is not 0 it is a Malformed Packet.
 
-#### 9.6.2.1 C.6.2.1 Topic Type <a id='c.6.2.1-topic-type'></a>
+#### C.6.2.1 Topic Type <a id='c.6.2.1-topic-type'></a>
 
 **Position**: bits 0 and 1 of the PUBLISH Flags.
 
@@ -4665,57 +4666,57 @@ The Topic Type in MQTT-SN 1.2 is different to that in MQTT-SN 2.0. The values ap
 
 - 0b10 - Short Topic Name. A two byte Topic Name, with the same syntax as Topic Name. However, some 1.2 implementations treated this as a binary field.
 
-#### 9.6.2.2 C.6.2.2 QoS <a id='c.6.2.2-qos'></a>
+#### C.6.2.2 QoS <a id='c.6.2.2-qos'></a>
 
 **Position**: bits 5 and 6 of the PUBLISH Flags.
 
 Set this field to "0b11" for QoS -1.
 
-#### 9.6.2.3 C.6.2.3 DUP <a id='c.6.2.3-dup'></a>
+#### C.6.2.3 DUP <a id='c.6.2.3-dup'></a>
 
 **Position**: bit 7 of the PUBLISH Flags.
 
 Set to 0.
 
-#### 9.6.2.4 C.6.2.4 Retain <a id='c.6.2.4-retain'></a>
+#### C.6.2.4 Retain <a id='c.6.2.4-retain'></a>
 
 **Position**: bit 4 of the PUBLISH Flags.
 
 This flag signifies whether the message is published as a retained message or not. See [4.13 Retained Messages](#retained-messages) for more information.
 
-### 9.6.3 C.6.3 Topic Alias <a id='c.6.3-topic-alias'></a>
+### C.6.3 Topic Alias <a id='c.6.3-topic-alias'></a>
 
 Only present if the Topic Type is Predefined Topic Alias. Contain a Topic Alias which is preconfigured to be known to both the sender and receiver.
 
-### 9.6.4 C.6.4 Topic Short Name <a id='c.6.4-topic-short-name'></a>
+### C.6.4 Topic Short Name <a id='c.6.4-topic-short-name'></a>
 
 Only present if the Topic Type is Short Topic Name.
 
 This is a two byte Topic Name. This Topic Type does not exist in later versions of MQTT-SN. It existed because the original MQTT-SN 1.2 did not allow a Long Topic Name, so the only other option for this packet was a Predefined Topic Alias.
 
-### 9.6.5 C.6.5 Topic Name Length <a id='c.6.5-topic-name-length'></a>
+### C.6.5 Topic Name Length <a id='c.6.5-topic-name-length'></a>
 
 Only present if the Topic Type is Topic Name.
 
 The length of the Topic Name field.
 
-### 9.6.6 C.6.6 Topic Name <a id='c.6.6-topic-name'></a>
+### C.6.6 Topic Name <a id='c.6.6-topic-name'></a>
 
 Only present if the Topic Type is Topic Name.
 
 Topic Name is a UTF-8 encoded string of length Topic Name Length.
 
-### 9.6.7 C.6.7 Payload <a id='c.6.7-payload'></a>
+### C.6.7 Payload <a id='c.6.7-payload'></a>
 
 The Payload contains the payload data of the Application Message that is being published. The content and format of the data is application specific. It is valid for a PUBLISH packet to contain a zero length Payload.
 
-### 9.6.8 C.6.8 PUBLISH with QoS -1 Actions <a id='c.6.8-publish-with-qos--1-actions'></a>
+### C.6.8 PUBLISH with QoS -1 Actions <a id='c.6.8-publish-with-qos--1-actions'></a>
 
 The Client or Server uses a PUBLISH QoS -1 packet to send an Application Message to a Network Address, for possible receipt by a Server or another Client.
 
 If received by a Client or Server, the PUBLISH QoS -1 packet is treated as if its QoS were 0 as described in [3.6.3.7 PUBLISH Actions](#publish-actions).
 
-## 9.7 C.7 Gateway Advertisement and Discovery <a id='c.7-gateway-advertisement-and-discovery'></a>
+## C.7 Gateway Advertisement and Discovery <a id='c.7-gateway-advertisement-and-discovery'></a>
 
 Clients might have foreknowledge of how to reach a Gateway, but in dynamic networks they may not. MQTT-SN supports mechanisms to allow Clients to find available MQTT-SN Gateways. This support is optional - it may not be needed. In some implementations, the underlying network technology might be used for this purpose instead.
 
@@ -4725,7 +4726,7 @@ In MQTT-SN there are two principal ways for Clients and Gateways to find each ot
 
 2.  The Client can elicit a response from one or more Gateways, or Clients which know the network location of a Gateway, by broadcasting a SEARCHGW packet. The response, from either a Gateway or a Client on the Gateway's behalf, is a GWINFO packet.
 
-A Gateway should only advertise its presence, or respond to SEARCHGW requests, if it is able to accept subscriptions and forward messages. For instance, a [9.1.1 HEADING-NOT-FOUND](#c.1.1-transparent-gateway) which is not currently connected to an MQTT Server, should not advertise.
+A Gateway should only advertise its presence, or respond to SEARCHGW requests, if it is able to accept subscriptions and forward messages. For instance, a [C.1.1 Transparent Gateway](#c.1.1-transparent-gateway) which is not currently connected to an MQTT Server, should not advertise.
 
 Multiple Gateways may be active at the same time in the same network, in which case they will have different identifiers. It is up to the Client to decide to which Gateway it wants to connect.
 
@@ -4741,9 +4742,9 @@ Upon receiving a SEARCHGW packet a Gateway replies with a GWINFO packet containi
 
 To give priority to Gateways a client delays its sending of the GWINFO packet for a random time *[GWINFO Delay]*. If during this delay the Client receives a GWINFO packet it cancels the sending of its own GWINFO packet.
 
-If there is no response, the SEARCHGW packet may be retransmitted. In this case the time intervals between consecutive SEARCHGW packets should be increased by an exponential backoff algorithm such as that described in [9.4 HEADING-NOT-FOUND](#c.4-exponential-backoff).
+If there is no response, the SEARCHGW packet may be retransmitted. In this case the time intervals between consecutive SEARCHGW packets should be increased by an exponential backoff algorithm such as that described in [C.4 Exponential Backoff](#c.4-exponential-backoff).
 
-# 10. Appendix D. Revision History (informative) <a id='appendix-d-revision-history-informative'></a>
+# Appendix D. Revision History (informative) <a id='revision-history-informative'></a>
 
 <mark title="Ephemeral region marking">\[Optional section.\]</mark>
 
