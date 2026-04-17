@@ -599,28 +599,29 @@ earlier Versions</a>
 <li>1.3 <a href=
 "#organization-of-the-mqtt-sn-specification">Organization of the
 MQTT-SN specification</a></li>
-<li>1.4 <a href="#normative-references">Normative
-references</a></li>
-<li>1.5 <a href="#informative-references">Informative
+<li>1.4 <a href="#terminology">Terminology</a></li>
+<li>1.5 <a href="#normative-references">Normative
 References</a></li>
-<li>1.6 <a href="#mqtt-for-sensor-networks-mqtt-sn">MQTT For Sensor
+<li>1.6 <a href="#informative-references">Informative
+References</a></li>
+<li>1.7 <a href="#mqtt-for-sensor-networks-mqtt-sn">MQTT For Sensor
 Networks (MQTT-SN)</a>
 <ul>
-<li>1.6.1 <a href=
+<li>1.7.1 <a href=
 "#differences-between-mqtt-sn-and-mqtt">Differences Between MQTT-SN
 and MQTT</a></li>
 </ul>
 </li>
-<li>1.7 <a href="#data-representation">Data representation</a>
+<li>1.8 <a href="#data-representation">Data representation</a>
 <ul>
-<li>1.7.1 <a href="#bits-byte">Bits (Byte)</a></li>
-<li>1.7.2 <a href="#two-byte-integer">Two Byte Integer</a></li>
-<li>1.7.3 <a href="#four-byte-integer">Four Byte Integer</a></li>
-<li>1.7.4 <a href="#utf-8-encoded-string">UTF-8 Encoded
+<li>1.8.1 <a href="#bits-byte">Bits (Byte)</a></li>
+<li>1.8.2 <a href="#two-byte-integer">Two Byte Integer</a></li>
+<li>1.8.3 <a href="#four-byte-integer">Four Byte Integer</a></li>
+<li>1.8.4 <a href="#utf-8-encoded-string">UTF-8 Encoded
 String</a></li>
 </ul>
 </li>
-<li>1.8 <a href="#typographical-conventions">Typographical
+<li>1.9 <a href="#typographical-conventions">Typographical
 Conventions</a></li>
 </ul>
 </li>
@@ -1476,614 +1477,213 @@ Organization of the MQTT-SN specification <a id=
 <p>Chapter 6 -- Conformance</p>
 </li>
 </ul>
+<h2 id="14-terminology-">1.4 Terminology <a id=
+'terminology'></a></h2>
+<p>The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL"
+in this specification are to be interpreted as described in IETF
+RFC 2119 [<a href="#RFC2119">RFC2119</a>], except where they appear
+in text that is marked as non-normative.</p>
 <dl>
-<dt id="def;##-terminology-#terminology">##
-Terminology{#terminology}</dt>
-<dd></dd>
-<dt id=
-"def;the-keywords-must-must-not-required-shall-shall-not-should-should-not-recommended-may-and-optional-in-this-specification-are-to-be-interpreted-as-described-in-ietf-rfc-2119-rfc2119-except-where-they-appear-in-text-that-is-marked-as-non-normative">
-The keywords \"MUST\", \"MUST NOT\", \"REQUIRED\", \"SHALL\",
-\"SHALL NOT\", \"SHOULD\", \"SHOULD NOT\", \"RECOMMENDED\",
-\"MAY\", and \"OPTIONAL\" in this specification are to be
-interpreted as described in IETF RFC 2119 \[RFC2119\], except where
-they appear in text that is marked as non-normative.</dt>
-<dd></dd>
-<dt id="def;**datagram-**">**Datagram:**</dt>
-<dd></dd>
-<dt id=
-"def;an-independent-self-contained-sequence-of-bytes-if-received-the-contents-of-a-datagram-must-be-correct">
-An independent, self-contained sequence of bytes. If received, the
-contents of a datagram must be correct.</dt>
-<dd></dd>
-<dt id="def;**underlying-network-**">**Underlying Network:**</dt>
-<dd></dd>
-<dt id=
-"def;the-underlying-network-which-provides-the-means-to-send-datagrams-from-one-network-endpoint-to-another">
-The underlying network which provides the means to send datagrams
-from one network endpoint to another.</dt>
-<dd></dd>
-<dt id="def;**network-address-**">**Network Address:**</dt>
-<dd></dd>
-<dt id=
-"def;a-unique-label-provided-by-the-underlying-network-to-identify-a-network-endpoint">
-A unique label provided by the Underlying Network to identify a
-network endpoint.</dt>
-<dd></dd>
-<dt id=
-"def;to-receive-datagrams-an-mqtt-sn-client-or-server-listens-to-the-network-for-packets-addressed-to-a-specific-network-address">
-To receive datagrams, an MQTT-SN Client or Server listens to the
-network for packets addressed to a specific Network Address.</dt>
-<dd></dd>
-<dt id="def;**network-identity-**">**Network Identity:**</dt>
-<dd></dd>
-<dt id=
-"def;the-identity-used-to-establish-that-a-sequence-of-datagrams-originates-from-the-same-sender-this-could-be-for-example">
-The identity used to establish that a sequence of datagrams
-originates from the same sender. This could be, for example:</dt>
-<dd></dd>
-<dt id="def;--a-network-address">- A Network Address</dt>
-<dd></dd>
-<dt id="def;--a-dtls-connection-id">- A DTLS connection ID</dt>
-<dd></dd>
-<dt id="def;--an-mqtt-sn-protection-packet-sender-identifier">- An
-MQTT-SN Protection Packet Sender Identifier</dt>
-<dd></dd>
-<dt id="def;**virtual-connection-**">**Virtual Connection:**</dt>
-<dd></dd>
-<dt id=
-"def;an-mqtt-sn-construct-corresponding-to-the-network-connection-in-mqtt-it-associates-a-network-identity-with-a-session-by-means-of-the-client-identifier">
-An MQTT-SN construct corresponding to the network connection in
+<dt id="def;datagram">Datagram</dt>
+<dd>An independent, self-contained sequence of bytes. If received,
+the contents of a datagram must be correct.</dd>
+<dt id="def;underlying-network">Underlying Network</dt>
+<dd>The underlying network which provides the means to send
+datagrams from one network endpoint to another.</dd>
+<dt id="def;network-address">Network Address</dt>
+<dd>A unique label provided by the Underlying Network to identify a
+network endpoint. To receive datagrams, an MQTT-SN Client or Server
+listens to the network for packets addressed to a specific Network
+Address.</dd>
+<dt id="def;network-identity">Network Identity</dt>
+<dd>The identity used to establish that a sequence of datagrams
+originates from the same sender. This could be, for example:<br />
+- A Network Address<br />
+- A DTLS connection ID<br />
+- An MQTT-SN Protection Packet Sender Identifier</dd>
+<dt id="def;virtual-connection">Virtual Connection</dt>
+<dd>An MQTT-SN construct corresponding to the network connection in
 MQTT. It associates a Network Identity with a Session, by means of
-the Client Identifier.</dt>
-<dd></dd>
-<dt id="def;**application-message-**">**Application Message:**</dt>
-<dd></dd>
-<dt id=
-"def;the-data-carried-by-the-mqtt-sn-or-mqtt-protocols-across-the-network-for-the-application-when-an-application-message-is-transported-by-mqtt-sn-or-mqtt-it-contains-payload-data-a-quality-of-service-qos-and-a-topic-name">
-The data carried by the MQTT-SN (or MQTT) protocols across the
+the Client Identifier.</dd>
+<dt id="def;application-message">Application Message</dt>
+<dd>The data carried by the MQTT-SN (or MQTT) protocols across the
 network for the application. When an Application Message is
 transported by MQTT-SN (or MQTT) it contains payload data, a
-Quality of Service (QoS), and a Topic Name.</dt>
-<dd></dd>
-<dt id="def;**client-**">**Client:**</dt>
-<dd></dd>
-<dt id=
-"def;a-program-or-device-that-uses-mqtt-sn-an-mqtt-sn-client-does-one-or-more-of-the-following">
-A program or device that uses MQTT-SN. An MQTT-SN Client does one
-or more of the following:</dt>
-<dd></dd>
-<dt id="def;--creates-a-virtual-connection-to-a-server-then">-
-creates a Virtual Connection to a Server, then:</dt>
-<dd></dd>
-<dt id=
-"def;--publishes-application-messages-that-other-clients-might-be-interested-in">
-- publishes Application Messages that other Clients might be
-interested in.</dt>
-<dd></dd>
-<dt id=
-"def;--subscribes-to-request-application-messages-that-it-is-interested-in-receiving">
-- subscribes to request Application Messages that it is interested
-in receiving.</dt>
-<dd></dd>
-<dt id=
-"def;--unsubscribes-to-remove-a-request-for-application-messages">-
-unsubscribes to remove a request for Application Messages.</dt>
-<dd></dd>
-<dt id="def;--deletes-the-virtual-connection-to-the-server">-
-deletes the Virtual Connection to the Server.</dt>
-<dd></dd>
-<dt id="def;--without-using-a-virtual-connection">- without using a
-Virtual Connection</dt>
-<dd></dd>
-<dt id=
-"def;--publishes-application-messages-to-one-or-more-recipients">-
-publishes Application Messages to one or more recipients.</dt>
-<dd></dd>
-<dt id="def;**server-**">**Server:**</dt>
-<dd></dd>
-<dt id=
-"def;a-program-or-device-that-acts-as-an-intermediary-between-clients-which-publish-application-messages-and-clients-which-have-made-subscriptions">
-A program or device that acts as an intermediary between Clients
-which publish Application Messages and Clients which have made
-Subscriptions.</dt>
-<dd></dd>
-<dt id="def;a-server-does-one-or-more-of-the-following">A Server
-does one or more of the following:</dt>
-<dd></dd>
-<dt id="def;--accepts-connect-requests-from-clients-and-then">-
-accepts CONNECT requests from Clients and then:</dt>
-<dd></dd>
-<dt id="def;--accepts-application-messages-published-by-clients">-
-accepts Application Messages published by Clients.</dt>
-<dd></dd>
-<dt id=
-"def;--processes-subscribe-and-unsubscribe-requests-from-clients">-
-processes Subscribe and Unsubscribe requests from Clients.</dt>
-<dd></dd>
-<dt id=
-"def;--forwards-application-messages-that-match-client-subscriptions">
-- forwards Application Messages that match Client
-Subscriptions.</dt>
-<dd></dd>
-<dt id="def;--accepts-disconnect-requests-from-connected-clients">-
-accepts DISCONNECT requests from connected Clients.</dt>
-<dd></dd>
-<dt id="def;--without-using-a-virtual-connection">- without using a
-Virtual Connection:</dt>
-<dd></dd>
-<dt id="def;--accepts-application-messages">- accepts Application
-Messages.</dt>
-<dd></dd>
-<dt id=
-"def;--opens-an-mqtt-network-connection-to-an-mqtt-server-then">-
-opens an MQTT Network Connection to an MQTT Server, then:</dt>
-<dd></dd>
-<dt id=
-"def;--accepts-application-messages-from-the-mqtt-server-and-forwards-some-or-all-to-mqtt-sn-clients">
-- accepts Application Messages from the MQTT Server and forwards
-some or all to MQTT-SN Clients.</dt>
-<dd></dd>
-<dt id=
-"def;--accepts-application-messages-from-mqtt-sn-clients-and-forwards-some-or-all-to-the-mqtt-server">
-- accepts Application Messages from MQTT-SN Clients and forwards
-some or all to the MQTT Server.</dt>
-<dd></dd>
-<dt id=
-"def;--opens-an-mqtt-network-connection-to-an-mqtt-server-when-an-mqtt-sn-connect-request-is-received-then">
+Quality of Service (QoS), and a Topic Name.</dd>
+<dt id="def;client">Client</dt>
+<dd>A program or device that uses MQTT-SN. An MQTT-SN Client does
+one or more of the following:<br />
+- creates a Virtual Connection to a Server, then:<br />
+&nbsp;&nbsp;- publishes Application Messages that other Clients
+might be interested in.<br />
+&nbsp;&nbsp;- subscribes to request Application Messages that it is
+interested in receiving.<br />
+&nbsp;&nbsp;- unsubscribes to remove a request for Application
+Messages.<br />
+&nbsp;&nbsp;- deletes the Virtual Connection to the Server.<br />
+- without using a Virtual Connection<br />
+&nbsp;&nbsp;- publishes Application Messages to one or more
+recipients.</dd>
+<dt id="def;server">Server</dt>
+<dd>A program or device that acts as an intermediary between
+Clients which publish Application Messages and Clients which have
+made Subscriptions. A Server does one or more of the
+following:<br />
+- accepts CONNECT requests from Clients and then:<br />
+&nbsp;&nbsp;- accepts Application Messages published by
+Clients.<br />
+&nbsp;&nbsp;- processes Subscribe and Unsubscribe requests from
+Clients.<br />
+&nbsp;&nbsp;- forwards Application Messages that match Client
+Subscriptions.<br />
+&nbsp;&nbsp;- accepts DISCONNECT requests from connected
+Clients.<br />
+- without using a Virtual Connection:<br />
+&nbsp;&nbsp;- accepts Application Messages.<br />
+- opens an MQTT Network Connection to an MQTT Server, then:<br />
+&nbsp;&nbsp;- accepts Application Messages from the MQTT Server and
+forwards some or all to MQTT-SN Clients.<br />
+&nbsp;&nbsp;- accepts Application Messages from MQTT-SN Clients and
+forwards some or all to the MQTT Server.<br />
 - opens an MQTT Network Connection to an MQTT Server when an
-MQTT-SN CONNECT request is received, then:</dt>
-<dd></dd>
-<dt id=
-"def;--forwards-equivalent-mqtt-packets-to-the-mqtt-server-for-each-mqtt-sn-packet-received">
-- forwards equivalent MQTT packets to the MQTT Server for each
-MQTT-SN packet received</dt>
-<dd></dd>
-<dt id=
-"def;--forwards-equivalent-mqtt-sn-packets-to-the-mqtt-sn-client-for-each-mqtt-packet-received">
-- forwards equivalent MQTT-SN packets to the MQTT-SN Client for
-each MQTT packet received</dt>
-<dd></dd>
-<dt id=
-"def;--closes-the-mqtt-network-connection-when-the-mqtt-sn-virtual-connection-is-deleted">
-- closes the MQTT Network Connection when the MQTT-SN Virtual
-Connection is deleted</dt>
-<dd></dd>
-<dt id="def;-----"><!-- --></dt>
-<dd></dd>
-<dt id="def;-">-</dt>
-<dd></dd>
-<dt id=
-"def;--accepts-application-messages-from-mqtt-sn-clients-and-forwards-some-or-all-to-the-mqtt-server">
+MQTT-SN CONNECT request is received, then:<br />
+&nbsp;&nbsp;- forwards equivalent MQTT packets to the MQTT Server
+for each MQTT-SN packet received<br />
+&nbsp;&nbsp;- forwards equivalent MQTT-SN packets to the MQTT-SN
+Client for each MQTT packet received<br />
+&nbsp;&nbsp;- closes the MQTT Network Connection when the MQTT-SN
+Virtual Connection is deleted<br />
 - accepts Application Messages from MQTT-SN Clients and forwards
-some or all to the MQTT Server.</dt>
-<dd></dd>
-<dt id="def;**gateway-**">**Gateway:**</dt>
-<dd></dd>
-<dt id=
-"def;an-mqtt-sn-server-that-uses-one-or-more-tcp-connections-to-communicate-with-an-mqtt-server">
-An MQTT-SN Server that uses one or more TCP connections to
-communicate with an MQTT Server.</dt>
-<dd></dd>
-<dt id="def;**mqtt-client-**">**MQTT Client:**</dt>
-<dd></dd>
-<dt id="def;a-program-or-device-that-uses-mqtt-an-mqtt-client">A
-program or device that uses MQTT. An MQTT Client:</dt>
-<dd></dd>
-<dt id="def;--opens-the-network-connection-to-the-mqtt-server">-
-opens the Network Connection to the MQTT Server.</dt>
-<dd></dd>
-<dt id=
-"def;--publishes-application-messages-that-other-mqtt-or-mqtt-sn-clients-might-be-interested-in">
+some or all to the MQTT Server.</dd>
+<dt id="def;gateway">Gateway</dt>
+<dd>An MQTT-SN Server that uses one or more TCP connections to
+communicate with an MQTT Server.</dd>
+<dt id="def;mqtt-client">MQTT Client</dt>
+<dd>A program or device that uses MQTT. An MQTT Client:<br />
+- opens the Network Connection to the MQTT Server.<br />
 - publishes Application Messages that other MQTT (or MQTT-SN)
-Clients might be interested in.</dt>
-<dd></dd>
-<dt id=
-"def;--subscribes-to-request-application-messages-that-it-is-interested-in-receiving">
+Clients might be interested in.<br />
 - subscribes to request Application Messages that it is interested
-in receiving.</dt>
-<dd></dd>
-<dt id=
-"def;--unsubscribes-to-remove-a-request-for-application-messages">-
-unsubscribes to remove a request for Application Messages.</dt>
-<dd></dd>
-<dt id="def;--closes-the-network-connection-to-the-server">- closes
-the Network Connection to the Server.</dt>
-<dd></dd>
-<dt id="def;**mqtt-server-**">**MQTT Server:**</dt>
-<dd></dd>
-<dt id=
-"def;a-program-or-device-that-acts-as-an-intermediary-between-mqtt-clients-which-publish-application-messages-and-mqtt-clients-which-have-made-subscriptions">
-A program or device that acts as an intermediary between MQTT
+in receiving.<br />
+- unsubscribes to remove a request for Application Messages.<br />
+- closes the Network Connection to the Server.</dd>
+<dt id="def;mqtt-server">MQTT Server</dt>
+<dd>A program or device that acts as an intermediary between MQTT
 Clients which publish Application Messages and MQTT Clients which
-have made Subscriptions.</dt>
-<dd></dd>
-<dt id="def;also-known-informally-as-an-mqtt-**broker**">Also known
-informally as an MQTT **Broker**.</dt>
-<dd></dd>
-<dt id="def;an-mqtt-server">An MQTT Server:</dt>
-<dd></dd>
-<dt id="def;--accepts-network-connections-from-mqtt-clients">-
-accepts Network Connections from MQTT Clients.</dt>
-<dd></dd>
-<dt id=
-"def;--accepts-application-messages-published-by-mqtt-clients">-
-accepts Application Messages published by MQTT Clients.</dt>
-<dd></dd>
-<dt id=
-"def;--processes-subscribe-and-unsubscribe-requests-from-mqtt-clients">
+have made Subscriptions. Also known informally as an MQTT
+**Broker**.<br />
+An MQTT Server:<br />
+- accepts Network Connections from MQTT Clients.<br />
+- accepts Application Messages published by MQTT Clients.<br />
 - processes Subscribe and Unsubscribe requests from MQTT
-Clients.</dt>
-<dd></dd>
-<dt id=
-"def;--forwards-application-messages-that-match-mqtt-client-subscriptions">
+Clients.<br />
 - forwards Application Messages that match MQTT Client
-Subscriptions.</dt>
-<dd></dd>
-<dt id="def;--closes-the-network-connection-from-the-mqtt-client">-
-closes the Network Connection from the MQTT Client.</dt>
-<dd></dd>
-<dt id="def;**client-identifier-**">**Client Identifier:**</dt>
-<dd></dd>
-<dt id=
-"def;a-utf-8-encoded-character-string-which-uniquely-identifies-every-client-connecting-to-a-server">
-A UTF-8 encoded character string which uniquely identifies every
-Client connecting to a Server.</dt>
-<dd></dd>
-<dt id="def;**session-**">**Session:**</dt>
-<dd></dd>
-<dt id=
-"def;a-stateful-interaction-between-a-client-and-a-server-which-is-associated-with-a-client-identifier-some-sessions-last-only-as-long-as-the-virtual-connection-others-can-span-multiple-consecutive-virtual-connections-between-a-client-and-a-server">
-A stateful interaction between a Client and a Server which is
+Subscriptions.<br />
+- closes the Network Connection from the MQTT Client.</dd>
+<dt id="def;client-identifier">Client Identifier</dt>
+<dd>A UTF-8 encoded character string which uniquely identifies
+every Client connecting to a Server.</dd>
+<dt id="def;session">Session</dt>
+<dd>A stateful interaction between a Client and a Server which is
 associated with a Client Identifier. Some Sessions last only as
 long as the Virtual Connection, others can span multiple
-consecutive Virtual Connections between a Client and a Server.</dt>
-<dd></dd>
-<dt id="def;**session-state-**">**Session State:**</dt>
-<dd></dd>
-<dt id=
-"def;the-set-of-data-that-describes-a-session-the-session-state-held-by-a-client-is-different-to-that-held-by-a-server-see-4-1-session-state-#session-state-for-details">
-The set of data that describes a Session. The Session State held by
-a Client is different to that held by a Server. See [[4.1 Session
-state]](#session-state) for details.</dt>
-<dd></dd>
-<dt id="def;**subscription-**">**Subscription:**</dt>
-<dd></dd>
-<dt id=
-"def;a-subscription-comprises-a-topic-filter-and-a-maximum-qos-a-subscription-is-associated-with-a-single-session-a-session-can-contain-more-than-one-subscription-each-subscription-within-a-session-has-a-different-topic-filter">
-A Subscription comprises a Topic Filter and a maximum QoS. A
+consecutive Virtual Connections between a Client and a Server.</dd>
+<dt id="def;session-state">Session State</dt>
+<dd>The set of data that describes a Session. The Session State
+held by a Client is different to that held by a Server. See
+<a href="#session-state">sec</a> for details.</dd>
+<dt id="def;subscription">Subscription</dt>
+<dd>A Subscription comprises a Topic Filter and a maximum QoS. A
 Subscription is associated with a single Session. A Session can
 contain more than one Subscription. Each Subscription within a
-Session has a different Topic Filter.</dt>
-<dd></dd>
-<dt id="def;**wildcard-subscription-**">**Wildcard
-Subscription:**</dt>
-<dd></dd>
-<dt id=
-"def;a-wildcard-subscription-is-a-subscription-with-a-topic-filter-containing-one-or-more-wildcard-characters-this-allows-the-subscription-to-match-more-than-one-topic-name-refer-to-4-7-1-1-topic-wildcards-#topic-wildcards-for-a-description-of-wildcard-characters-in-a-topic-filter">
-A Wildcard Subscription is a Subscription with a Topic Filter
+Session has a different Topic Filter.</dd>
+<dt id="def;wildcard-subscription">Wildcard Subscription</dt>
+<dd>A Wildcard Subscription is a Subscription with a Topic Filter
 containing one or more wildcard characters. This allows the
-subscription to match more than one Topic Name. Refer to [[4.7.1.1
-Topic wildcards]](#topic-wildcards) for a description of wildcard
-characters in a Topic Filter.</dt>
-<dd></dd>
-<dt id="def;**topic-name-**">**Topic Name:**</dt>
-<dd></dd>
-<dt id=
-"def;a-label-attached-to-an-application-message-which-is-matched-against-the-subscriptions-known-to-the-server">
-A label attached to an Application Message which is matched against
-the Subscriptions known to the Server.</dt>
-<dd></dd>
-<dt id="def;**topic-alias-**">**Topic Alias:**</dt>
-<dd></dd>
-<dt id=
-"def;a-topic-alias-is-a-two-byte-integer-value-that-is-used-to-identify-the-topic-instead-of-using-the-topic-name-this-reduces-packet-sizes-and-is-useful-when-the-topic-names-are-long-and-the-same-topic-names-are-used-repetitively-within-a-virtual-connection">
-A Topic Alias is a Two Byte Integer value that is used to identify
-the Topic instead of using the Topic Name. This reduces Packet
-sizes, and is useful when the Topic Names are long and the same
-Topic Names are used repetitively within a Virtual Connection.</dt>
-<dd></dd>
-<dt id="def;**topic-filter-**">**Topic Filter:**</dt>
-<dd></dd>
-<dt id=
-"def;an-expression-contained-in-a-subscription-to-indicate-an-interest-in-one-or-more-topics-a-topic-filter-can-include-wildcard-characters-and-can-match-more-than-one-topic-name">
-An expression contained in a Subscription to indicate an interest
-in one or more topics. A Topic Filter can include wildcard
-characters and can match more than one Topic Name.</dt>
-<dd></dd>
-<dt id="def;**mqtt-sn-control-packet-**">**MQTT-SN Control
-Packet:**</dt>
-<dd></dd>
-<dt id=
-"def;a-packet-of-information-that-is-sent-to-a-network-address">A
-packet of information that is sent to a Network Address.</dt>
-<dd></dd>
-<dt id="def;**malformed-packet-**">**Malformed Packet:**</dt>
-<dd></dd>
-<dt id=
-"def;a-control-packet-that-cannot-be-parsed-according-to-this-specification-refer-to-4-12-handling-errors-#handling-errors-for-information-about-error-handling">
-A Control Packet that cannot be parsed according to this
-specification. Refer to [[4.12 Handling errors]](#handling-errors)
-for information about error handling.</dt>
-<dd></dd>
-<dt id="def;**protocol-error-**">**Protocol Error:**</dt>
-<dd></dd>
-<dt id=
-"def;an-error-that-is-detected-after-the-packet-has-been-parsed-and-found-to-contain-data-that-is-not-allowed-by-the-protocol-or-is-inconsistent-with-the-state-of-the-client-or-server-refer-to-4-12-handling-errors-#handling-errors-for-information-about-error-handling">
-An error that is detected after the packet has been parsed and
+subscription to match more than one Topic Name. Refer to <a href=
+"#topic-wildcards">sec</a> for a description of wildcard characters
+in a Topic Filter.</dd>
+<dt id="def;topic-name">Topic Name</dt>
+<dd>A label attached to an Application Message which is matched
+against the Subscriptions known to the Server.</dd>
+<dt id="def;topic-alias">Topic Alias</dt>
+<dd>A Topic Alias is a Two Byte Integer value that is used to
+identify the Topic instead of using the Topic Name. This reduces
+Packet sizes, and is useful when the Topic Names are long and the
+same Topic Names are used repetitively within a Virtual
+Connection.</dd>
+<dt id="def;topic-filter">Topic Filter</dt>
+<dd>An expression contained in a Subscription to indicate an
+interest in one or more topics. A Topic Filter can include wildcard
+characters and can match more than one Topic Name.</dd>
+<dt id="def;mqtt-sn-control-packet">MQTT-SN Control Packet</dt>
+<dd>A packet of information that is sent to a Network Address.</dd>
+<dt id="def;malformed-packet">Malformed Packet</dt>
+<dd>A Control Packet that cannot be parsed according to this
+specification. Refer to <a href="#handling-errors">sec</a> for
+information about error handling.</dd>
+<dt id="def;protocol-error">Protocol Error</dt>
+<dd>An error that is detected after the packet has been parsed and
 found to contain data that is not allowed by the protocol or is
 inconsistent with the state of the Client or Server. Refer to
-[[4.12 Handling errors]](#handling-errors) for information about
-error handling.</dt>
-<dd></dd>
-<dt id="def;**will-message-**">**Will Message:**</dt>
-<dd></dd>
-<dt id=
-"def;an-application-message-which-is-published-by-the-server-after-the-virtual-connection-is-deleted-in-cases-where-the-virtual-connection-is-not-deleted-normally-refer-to-3-1-3-will-flags-#will-flags-for-information-about-will-messages">
-An Application Message which is published by the Server after the
-Virtual Connection is deleted in cases where the Virtual Connection
-is not deleted normally. Refer to [[3.1.3 Will Flags]](#will-flags)
-for information about Will Messages.</dt>
-<dd></dd>
-<dt id="def;**retained-message-**">**Retained Message:**</dt>
-<dd></dd>
-<dt id=
-"def;an-application-message-which-is-stored-by-the-server-for-a-topic-name-when-a-client-subscribes-to-a-topic-which-has-a-retained-message-set-the-server-sends-the-retained-message-to-the-client-depending-on-the-setting-of-the-retain-handling-subscribe-flags-refer-to-3-7-2-subscribe-flags-#subscribe-flags-and-4-13-retained-messages-#retained-messages-for-more-information-about-retained-messages">
-An Application Message which is stored by the Server for a Topic
-Name. When a Client subscribes to a topic which has a Retained
-Message set, the Server sends the Retained Message to the Client,
-depending on the setting of the Retain Handling Subscribe Flags.
-Refer to [[3.7.2 SUBSCRIBE Flags]](#subscribe-flags) and [[4.13
-Retained Messages]](#retained-messages) for more information about
-Retained Messages.</dt>
-<dd></dd>
-<dt id="def;**disallowed-unicode-code-point-**">**Disallowed
-Unicode code point:**</dt>
-<dd></dd>
-<dt id=
-"def;the-set-of-unicode-control-codes-and-unicode-noncharacters-which-should-not-be-included-in-a-utf-8-encoded-string-refer-to-1-7-4-utf-8-encoded-string-#utf-8-encoded-string-for-more-information-about-the-disallowed-unicode-code-points">
-The set of Unicode Control Codes and Unicode Noncharacters which
-should not be included in a UTF-8 Encoded String. Refer to [[1.7.4
-UTF-8 Encoded String]](#utf-8-encoded-string) for more information
-about the Disallowed Unicode code points.</dt>
-<dd></dd>
+<a href="#handling-errors">sec</a> for information about error
+handling.</dd>
+<dt id="def;will-message">Will Message</dt>
+<dd>An Application Message which is published by the Server after
+the Virtual Connection is deleted in cases where the Virtual
+Connection is not deleted normally. Refer to <a href=
+"#will-flags">sec</a> for information about Will Messages.</dd>
+<dt id="def;retained-message">Retained Message</dt>
+<dd>An Application Message which is stored by the Server for a
+Topic Name. When a Client subscribes to a topic which has a
+Retained Message set, the Server sends the Retained Message to the
+Client, depending on the setting of the Retain Handling Subscribe
+Flags. Refer to <a href="#subscribe-flags">sec</a> and <a href=
+"#retained-messages">sec</a> for more information about Retained
+Messages.</dd>
+<dt id="def;disallowed-unicode-code-point">Disallowed Unicode code
+point</dt>
+<dd>The set of Unicode Control Codes and Unicode Noncharacters
+which should not be included in a UTF-8 Encoded String. Refer to
+<a href="#utf-8-encoded-string">sec</a> for more information about
+the Disallowed Unicode code points.</dd>
 </dl>
-<h2 id="14-normative-references-">1.4 Normative references <a id=
+<h2 id="15-normative-references-">1.5 Normative References <a id=
 'normative-references'></a></h2>
-<p><strong>[</strong>&lt;span id="<mark title=
-"Ephemeral region marking">[Required section.]</mark>"
-class="anchor"&gt;<strong><mark title=
-"Ephemeral region marking">[Required section.]</mark>]</strong></p>
-<p><strong>[</strong>&lt;span id="<mark title=
-"Ephemeral region marking">This appendix contains the normative and
-informative references that are used in this document.</mark>"
-class="anchor"&gt;<strong><mark title=
-"Ephemeral region marking">This appendix contains the normative and
-informative references that are used in this
-document.</mark>]</strong></p>
-<p><strong>[</strong>&lt;span id="<mark title=
-"Ephemeral region marking">While any hyperlinks included in this
-appendix were valid at the time of publication, OASIS cannot
-guarantee their long-term validity.</mark>"
-class="anchor"&gt;<strong><mark title=
-"Ephemeral region marking">While any hyperlinks included in this
-appendix were valid at the time of publication, OASIS cannot
-guarantee their long-term validity.</mark>]</strong></p>
-<p><strong>[</strong>&lt;span id="<mark title=
-"Ephemeral region marking">Note; Any normative work cited in the
-body of the text as needed to implement the work product must be
-listed in the Normative References section below. Each reference to
-a separate document or artifact in this work must be listed here
-and must be identified as either a Normative or an Informative
-Reference.</mark>" class="anchor"&gt;<strong><mark title=
-"Ephemeral region marking">Note: Any normative work cited in the
-body of the text as needed to implement the work product must be
-listed in the Normative References section below. Each reference to
-a separate document or artifact in this work must be listed here
-and must be identified as either a Normative or an Informative
-Reference.</mark>]</strong></p>
-<p><strong>[</strong>&lt;span id="<mark title=
-"Ephemeral region marking">For all References -- Normative and
-Informative;</mark>" class="anchor"&gt;<strong><mark title=
-"Ephemeral region marking">For all References -- Normative and
-Informative:</mark>]</strong></p>
-<p><strong>[</strong>&lt;span id="<mark title=
-"Ephemeral region marking">Recommended approach; Set up
-<strong>[Reference]</strong> label elements as "Bookmarks", then
-create hyperlinks to them within the document at locations from
-which the references are cited. Citations in the body of the text
-should be hyperlinked to the appropriate Reference entry, not
-directly to targets which are not a part of this Work
-Product.</mark>" class="anchor"&gt;<strong><mark title=
-"Ephemeral region marking">Recommended approach: Set up
-<strong>[Reference]</strong> label elements as "Bookmarks", then
-create hyperlinks to them within the document at locations from
-which the references are cited. Citations in the body of the text
-should be hyperlinked to the appropriate Reference entry, not
-directly to targets which are not a part of this Work
-Product.</mark>]</strong></p>
-<p><strong>[</strong>&lt;span id="<mark title=
-"Ephemeral region marking">The proper format for citation of
-technical work produced by an OASIS TC (whether Standards Track or
-Non-Standards Track) is;</mark>"
-class="anchor"&gt;<strong><mark title=
-"Ephemeral region marking">The proper format for citation of
-technical work produced by an OASIS TC (whether Standards Track or
-Non-Standards Track) is:</mark>]</strong></p>
-<p><strong>[</strong>&lt;span id="<mark title=
-"Ephemeral region marking"><strong>[Citation
-Label]</strong></mark>" class="anchor"&gt;<mark title=
-"Ephemeral region marking">[Citation
-Label]</mark><strong>]</strong></p>
-<p><strong>[</strong>&lt;span id="<mark title=
-"Ephemeral region marking">Work Product title (italicized). Edited
-by Albert Alston, Bob Ballston, and Calvin Carlson. Approval date
-(DD Month YYYY). OASIS Stage Identifier and Revision Number (e.g.,
-OASIS Committee Specification Draft 01). Principal URI
-(stage-specific URI, e.g., with stage component;
-somespec-v1.0-csd01.html). Latest stage; (static URI, without stage
-identifiers, used as a symbolic link to most recently published
-stage of this Version).</mark>"
-class="anchor"&gt;<strong><mark title=
-"Ephemeral region marking">Work Product title (italicized). Edited
-by Albert Alston, Bob Ballston, and Calvin Carlson. Approval date
-(DD Month YYYY). OASIS Stage Identifier and Revision Number (e.g.,
-OASIS Committee Specification Draft 01). Principal URI
-(stage-specific URI, e.g., with stage component:
-somespec-v1.0-csd01.html). Latest stage: (static URI, without stage
-identifiers, used as a symbolic link to most recently published
-stage of this Version).</mark>]</strong></p>
-<p><strong>[</strong>&lt;span id="<mark title=
-"Ephemeral region marking">For example;</mark>"
-class="anchor"&gt;<strong><mark title=
-"Ephemeral region marking">For example:</mark>]</strong></p>
-<p><strong>[</strong>&lt;span id="<strong><mark title=
-"Ephemeral region marking">[OpenDoc-1.2]</mark></strong>"
-class="anchor"&gt;****<mark title=
-"Ephemeral region marking">[OpenDoc-1.2]</mark><strong>]</strong></p>
-<p><strong>[</strong>&lt;span id="<mark title=
-"Ephemeral region marking">Open Document Format for Office
-Applications (OpenDocument) Version 1.2. Edited by Patrick Durusau
-and Michael Brauer. 19 January 2011. OASIS Committee Specification
-Draft 07.
-https;//docs.oasis-open.org/office/v1.2/csd07/OpenDocument-v1.2-csd07.html.
-Latest stage;
-https;//docs.oasis-open.org/office/v1.2/OpenDocument-v1.2.html.</mark>"
-class="anchor"&gt;<strong><mark title=
-"Ephemeral region marking">Open Document Format for Office
-Applications (OpenDocument) Version 1.2. Edited by Patrick Durusau
-and Michael Brauer. 19 January 2011. OASIS Committee Specification
-Draft 07. <a href=
-"https://docs.oasis-open.org/office/v1.2/csd07/OpenDocument-v1.2-csd07.html">
-https://docs.oasis-open.org/office/v1.2/csd07/OpenDocument-v1.2-csd07.html</a>.
-Latest stage: <a href=
-"https://docs.oasis-open.org/office/v1.2/OpenDocument-v1.2.html.%3C/mark%3E/">
-https://docs.oasis-open.org/office/v1.2/OpenDocument-v1.2.html.&lt;/mark&gt;\</a>]</mark></strong></p>
-<p><mark title=
-"Ephemeral region marking"><strong>[</strong>&lt;span
-id="<mark title="Ephemeral region marking">Reference
-sources;</mark>" class="anchor"&gt;</mark><strong><mark title=
-"Ephemeral region marking">Reference sources:</mark>]</strong></p>
-<p><strong>[</strong>&lt;span id="<mark title=
-"Ephemeral region marking">For references to IETF RFCs, use the
-approved citation formats at;</mark>"
-class="anchor"&gt;<strong><mark title=
-"Ephemeral region marking">For references to IETF RFCs, use the
-approved citation formats at:</mark>]</strong></p>
-<p><strong>[</strong>&lt;span id="<mark title=
-"Ephemeral region marking"><a href=
-"https;//docs.oasis-open.org/templates/ietf-rfc-list/ietf-rfc-list.html">[https;//docs.oasis-open.org/templates/ietf-rfc-list/ietf-rfc-list.html]</a>.</mark>"
-class="anchor"&gt;<strong><mark title=
-"Ephemeral region marking"><a href=
-"https://docs.oasis-open.org/templates/ietf-rfc-list/ietf-rfc-list.html">[<span>https://docs.oasis-open.org/templates/ietf-rfc-list/ietf-rfc-list.html</span>]</a>.</mark>]</strong></p>
-<p><strong>[</strong>&lt;span id="<mark title=
-"Ephemeral region marking">The most recent IETF RFC references are
-listed by the IETF at <a href=
-"https;//www.rfc-editor.org/in-notes/rfc-ref.txt">[https;//<span>www.rfc-editor.org/in-notes/rfc-ref.txt</span>]</a>.</mark>"
-class="anchor"&gt;<strong><mark title=
-"Ephemeral region marking">The most recent IETF RFC references are
-listed by the IETF at <a href=
-"https://www.rfc-editor.org/in-notes/rfc-ref.txt">[<span>https://www.rfc-editor.org/in-notes/rfc-ref.txt</span>]</a>.</mark>]</strong></p>
-<p><strong>[</strong>&lt;span id="<mark title=
-"Ephemeral region marking">For references to W3C Recommendations,
-use the approved citation formats at;</mark>"
-class="anchor"&gt;<strong><mark title=
-"Ephemeral region marking">For references to W3C Recommendations,
-use the approved citation formats at:</mark>]</strong></p>
-<p><strong>[</strong>&lt;span id="<mark title=
-"Ephemeral region marking"><a href=
-"https;//docs.oasis-open.org/templates/w3c-recommendations-list/w3c-recommendations-list.html">[https;//docs.oasis-open.org/templates/w3c-recommendations-list/w3c-recommendations-list.html]</a>.</mark>"
-class="anchor"&gt;<strong><mark title=
-"Ephemeral region marking"><a href=
-"https://docs.oasis-open.org/templates/w3c-recommendations-list/w3c-recommendations-list.html">[<span>https://docs.oasis-open.org/templates/w3c-recommendations-list/w3c-recommendations-list.html</span>]</a>.</mark>]</strong></p>
-<p><strong>[</strong>&lt;span id="<mark title=
-"Ephemeral region marking">Remove this note before submitting for
-publication.</mark>" class="anchor"&gt;<strong><mark title=
-"Ephemeral region marking">Remove this note before submitting for
-publication.</mark>]</strong></p>
-<p><strong>[</strong><span id="**\[RFC2119\]**" class=
-"anchor"></span>****[RFC2119]<strong>]</strong></p>
-<p><strong>[</strong>&lt;span id="Bradner, S., "Key words for use
-in RFCs to Indicate Requirement Levels", BCP 14, RFC 2119, DOI
-10.17487/RFC2119, March 1997," class="anchor"&gt;<strong>Bradner,
-S., "Key words for use in RFCs to Indicate Requirement Levels", BCP
-14, RFC 2119, DOI 10.17487/RFC2119, March 1997,]</strong></p>
-<p><strong>[</strong><span id=
-"[[http;//www.rfc-editor.org/info/rfc2119]](http;//www.rfc-editor.org/info/rfc2119)"
-class="anchor"></span><strong><a href=
-"http://www.rfc-editor.org/info/rfc2119">[<span>http://www.rfc-editor.org/info/rfc2119</span>]</a>]</strong></p>
-<p><strong>[</strong>&lt;span id="<mark title=
-"Ephemeral region marking">[RFC8174]</mark>"
-class="anchor"&gt;<strong><mark title=
-"Ephemeral region marking">[RFC8174]</mark>]</strong></p>
-<p><strong>[</strong>&lt;span id="<mark title=
-"Ephemeral region marking">Leiba, B., "Ambiguity of Uppercase vs
-Lowercase in RFC 2119 Key Words", BCP 14, RFC 8174, DOI
-10.17487/RFC8174, May 2017, &lt;<a href=
-"https;//www.rfc-editor.org/info/rfc8174">[https;//<span>www.rfc-editor.org/info/rfc8174</span>]</a>&gt;.</mark>"
-class="anchor"&gt;<strong><mark title=
-"Ephemeral region marking">Leiba, B., "Ambiguity of Uppercase vs
-Lowercase in RFC 2119 Key Words", BCP 14, RFC 8174, DOI
-10.17487/RFC8174, May 2017, &lt;<a href=
-"https://www.rfc-editor.org/info/rfc8174">[<span>https://www.rfc-editor.org/info/rfc8174</span>]</a>&gt;.</mark>]</strong></p>
-<p><strong>[</strong><span id="**\[RFC3629\]**" class=
-"anchor"></span>****[RFC3629]<strong>]</strong></p>
-<p><strong>[</strong>&lt;span id="Yergeau, F., "UTF-8, a
+<p><strong>[</strong><span id="RFC2119" class=
+"anchor"></span><strong>RFC2119]</strong> Bradner, S., "Key words
+for use in RFCs to Indicate Requirement Levels", BCP 14, RFC 2119,
+DOI 10.17487/RFC2119, March 1997, <a href=
+"http://www.rfc-editor.org/info/rfc2119">http://www.rfc-editor.org/info/rfc2119</a></p>
+<p><strong>[</strong><span id="RFC8174" class=
+"anchor"></span><strong>RFC8174]</strong> Leiba, B., "Ambiguity of
+Uppercase vs Lowercase in RFC 2119 Key Words", BCP 14, RFC 8174,
+DOI 10.17487/RFC8174, May 2017, <a href=
+"https://www.rfc-editor.org/info/rfc8174">https://www.rfc-editor.org/info/rfc8174</a></p>
+<p><strong>[</strong><span id="RFC3629" class=
+"anchor"></span><strong>RFC3629]</strong> Yergeau, F., "UTF-8, a
 transformation format of ISO 10646", STD 63, RFC 3629, DOI
-10.17487/RFC3629, November 2003,"
-class="anchor"&gt;<strong>Yergeau, F., "UTF-8, a transformation
-format of ISO 10646", STD 63, RFC 3629, DOI 10.17487/RFC3629,
-November 2003,]</strong></p>
-<p><strong>[</strong><span id=
-"[[http;//www.rfc-editor.org/info/rfc3629]](http;//www.rfc-editor.org/info/rfc3629)"
-class="anchor"></span><strong><a href=
-"http://www.rfc-editor.org/info/rfc3629">[<span>http://www.rfc-editor.org/info/rfc3629</span>]</a>]</strong></p>
-<p><strong>[</strong><span id="**\[RFC6455\]**" class=
-"anchor"></span>****[RFC6455]<strong>]</strong></p>
-<p><strong>[</strong>&lt;span id="Fette, I. and A. Melnikov, "The
-WebSocket Protocol", RFC 6455, DOI 10.17487/RFC6455, December
-2011," class="anchor"&gt;<strong>Fette, I. and A. Melnikov, "The
-WebSocket Protocol", RFC 6455, DOI 10.17487/RFC6455, December
-2011,]</strong></p>
-<p><strong>[</strong><span id=
-"[[http;//www.rfc-editor.org/info/rfc6455]](http;//www.rfc-editor.org/info/rfc6455)"
-class="anchor"></span><strong><a href=
-"http://www.rfc-editor.org/info/rfc6455">[<span>http://www.rfc-editor.org/info/rfc6455</span>]</a>]</strong></p>
-<p><strong>[</strong><span id="**\[Unicode\]**" class=
-"anchor"></span>****[Unicode]<strong>]</strong></p>
-<p><strong>[</strong><span id=
-"The Unicode Consortium. The Unicode Standard," class=
-"anchor"></span><strong>The Unicode Consortium. The Unicode
-Standard,]</strong></p>
-<p><strong>[</strong><span id=
-"[[http;//www.unicode.org/versions/latest/]](http;//www.unicode.org/versions/latest/)"
-class="anchor"></span><strong><a href=
-"http://www.unicode.org/versions/latest/">[<span>http://www.unicode.org/versions/latest/</span>]</a>]</strong></p>
-<h2 id="15-informative-references-">1.5 Informative References
+10.17487/RFC3629, November 2003, <a href=
+"https://www.rfc-editor.org/info/rfc3629">https://www.rfc-editor.org/info/rfc3629</a></p>
+<p><strong>[</strong><span id="RFC6455" class=
+"anchor"></span><strong>RFC6455]</strong> Fette, I. and A.
+Melnikov, "The WebSocket Protocol", RFC 6455, DOI 10.17487/RFC6455,
+December 2011, <a href=
+"http://www.rfc-editor.org/info/rfc6455">http://www.rfc-editor.org/info/rfc6455</a></p>
+<p><strong>[</strong><span id="Unicode" class=
+"anchor"></span><strong>Unicode]</strong> The Unicode Consortium.
+The Unicode Standard, <a href=
+"http://www.unicode.org/versions/latest/">http://www.unicode.org/versions/latest/</a></p>
+<h2 id="16-informative-references-">1.6 Informative References
 <a id='informative-references'></a></h2>
-<p><strong>[</strong>&lt;span id="<mark title=
-"Ephemeral region marking">[RFC3552]</mark>"
-class="anchor"&gt;<strong><mark title=
-"Ephemeral region marking">[RFC3552]</mark>]</strong></p>
-<p><strong>[</strong>&lt;span id="<mark title=
-"Ephemeral region marking">Rescorla, E. and B. Korver, "Guidelines
-for Writing RFC Text on Security Considerations", BCP 72, RFC 3552,
-DOI 10.17487/RFC3552, July 2003, &lt;https;//<a href=
-"http://www.rfc-editor.org/info/rfc3552%3E.%3C/mark%3E">www.rfc-editor.org/info/rfc3552&gt;.&lt;/mark&gt;</a>"
-class="anchor"&gt;</mark><strong><mark title=
-"Ephemeral region marking">Rescorla, E. and B. Korver, "Guidelines
-for Writing RFC Text on Security Considerations", BCP 72, RFC 3552,
-DOI 10.17487/RFC3552, July 2003, <a href=
-"https://www.rfc-editor.org/info/rfc3552">https://www.rfc-editor.org/info/rfc3552</a>.</mark>]</strong></p>
-<p><strong>[</strong>&lt;span id="<mark title=
-"Ephemeral region marking">[Reference]</mark>"
-class="anchor"&gt;<strong><mark title=
-"Ephemeral region marking">[Reference]</mark>]</strong></p>
-<p><strong>[</strong>&lt;span id="<mark title=
-"Ephemeral region marking">[Full reference citation]</mark>"
-class="anchor"&gt;<strong><mark title=
-"Ephemeral region marking">[Full reference
-citation]</mark>]</strong></p>
-<h2 id="16-mqtt-for-sensor-networks-mqtt-sn-">1.6 MQTT For Sensor
+<p><strong>[</strong><span id="RFC3552" class=
+"anchor"></span><strong>RFC3552]</strong> Rescorla, E. and B.
+Korver, "Guidelines for Writing RFC Text on Security
+Considerations", BCP 72, RFC 3552, DOI 10.17487/RFC3552, July 2003,
+<a href=
+"https://www.rfc-editor.org/info/rfc3552">https://www.rfc-editor.org/info/rfc3552</a></p>
+<h2 id="17-mqtt-for-sensor-networks-mqtt-sn-">1.7 MQTT For Sensor
 Networks (MQTT-SN) <a id=
 'mqtt-for-sensor-networks-mqtt-sn'></a></h2>
 <p>Sensor Networks are simple, low cost and easy to deploy. They
@@ -2133,7 +1733,7 @@ security.</p>
 low-cost, battery-operated devices with limited processing and
 storage resources. The capabilities are kept simple and the
 specification allows partial implementations.</p>
-<h3 id="161-differences-between-mqtt-sn-and-mqtt-">1.6.1
+<h3 id="171-differences-between-mqtt-sn-and-mqtt-">1.7.1
 Differences Between MQTT-SN and MQTT <a id=
 'differences-between-mqtt-sn-and-mqtt'></a></h3>
 <p>To facilitate interoperation MQTT-SN is similar in many ways to
@@ -2171,21 +1771,21 @@ recipient at once, Gateway Advertisement and Discovery can be
 implemented.</p>
 </li>
 </ol>
-<h2 id="17-data-representation-">1.7 Data representation <a id=
+<h2 id="18-data-representation-">1.8 Data representation <a id=
 'data-representation'></a></h2>
-<h3 id="171-bits-byte-">1.7.1 Bits (Byte) <a id=
+<h3 id="181-bits-byte-">1.8.1 Bits (Byte) <a id=
 'bits-byte'></a></h3>
 <p>Bits in a byte are labeled 7 to 0. Bit number 7 is the most
 significant bit, the least significant bit is assigned bit number
 0.</p>
-<h3 id="172-two-byte-integer-">1.7.2 Two Byte Integer <a id=
+<h3 id="182-two-byte-integer-">1.8.2 Two Byte Integer <a id=
 'two-byte-integer'></a></h3>
 <p>Two Byte Integer data values are 16-bit unsigned integers in
 big-endian order: the high order byte precedes the lower order
 byte. This means that a 16-bit word is presented on the network as
 Most Significant Byte (MSB), followed by Least Significant Byte
 (LSB).</p>
-<h3 id="173-four-byte-integer-">1.7.3 Four Byte Integer <a id=
+<h3 id="183-four-byte-integer-">1.8.3 Four Byte Integer <a id=
 'four-byte-integer'></a></h3>
 <p>Four Byte Integer data values are 32-bit unsigned integers in
 big-endian order: the high order byte precedes the successively
@@ -2193,12 +1793,12 @@ lower order bytes. This means that a 32-bit word is presented on
 the network as Most Significant Byte (MSB), followed by the next
 most Significant Byte (MSB), followed by the next most Significant
 Byte (MSB), followed by Least Significant Byte (LSB).</p>
-<h3 id="174-utf-8-encoded-string-">1.7.4 UTF-8 Encoded String
+<h3 id="184-utf-8-encoded-string-">1.8.4 UTF-8 Encoded String
 <a id='utf-8-encoded-string'></a></h3>
 <p>Text fields within the MQTT-SN Control Packets are encoded as
-fixed length UTF-8 strings. UTF-8 <a href="#RFC3629">[RFC3629]</a>
-is an efficient encoding of Unicode <a href=
-"#Unicode">[Unicode]</a> characters that optimizes the encoding of
+fixed length UTF-8 strings. UTF-8 [<a href="#RFC3629">RFC3629</a>]
+is an efficient encoding of Unicode [<a href=
+"#Unicode">Unicode</a>] characters that optimizes the encoding of
 ASCII characters in support of text-based communications.</p>
 <p>Unless stated otherwise all variable length UTF-8 encoded
 strings can have any length in the range 0 to 65,535 bytes.</p>
@@ -2211,14 +1811,14 @@ title="Structure of UTF-8 Encoded Strings" alt=
 <p>«<mark title="Requirement MQTT-SN-1.7.4-1"><a name=
 "MQTT-SN-1.7.4-1" id="MQTT-SN-1.7.4-1"></a>The character data in a
 UTF-8 Encoded String MUST be well-formed UTF-8 as defined by the
-Unicode specification <a href="#Unicode">[Unicode]</a> and restated
-in RFC 3629 <a href="#RFC3629">[RFC3629]</a>. In particular, the
+Unicode specification [<a href="#Unicode">Unicode</a>] and restated
+in RFC 3629 [<a href="#RFC3629">RFC3629</a>]. In particular, the
 character data MUST NOT include encodings of code points between
 U+D800 and U+DFFF</mark>»[MQTT‑SN‑1.7.4‑1].</p>
 <p>If the Client or Server receives an MQTT-SN Control Packet
 containing ill-formed UTF-8 it is a Malformed Packet. Refer to
-<a href="#handling-errors">4.12</a> for information about handling
-errors.</p>
+<a href="#handling-errors">4.12 "Handling errors"</a> for
+information about handling errors.</p>
 <p>«<mark title="Requirement MQTT-SN-1.7.4-2"><a name=
 "MQTT-SN-1.7.4-2" id="MQTT-SN-1.7.4-2"></a>A UTF-8 Encoded String
 MUST NOT include an encoding of the null character
@@ -2238,8 +1838,8 @@ Disallowed Unicode code points.</p>
 <p>U+007F..U+009F control characters</p>
 </li>
 <li>
-<p>Code points defined in the Unicode specification <a href=
-"#Unicode">[Unicode]</a> to be non-characters (for example
+<p>Code points defined in the Unicode specification [<a href=
+"#Unicode">Unicode</a>] to be non-characters (for example
 U+0FFFF)</p>
 </li>
 </ul>
@@ -2263,7 +1863,7 @@ informative example]</mark> <img src=
 title="Fixed Length UTF-8 Encoded String informative example" alt=
 "Fixed Length UTF-8 Encoded String informative example" />
 <!-- .width="6.5in", .height="2.5972222222222223in" --></p>
-<h2 id="18-typographical-conventions-">1.8 Typographical
+<h2 id="19-typographical-conventions-">1.9 Typographical
 Conventions <a id='typographical-conventions'></a></h2>
 <p>Keywords defined by this specification use this
 <code>monospaced</code> font.</p>
@@ -2277,7 +1877,7 @@ a reference that follows that end symbol as the pattern
 <code>[MQTT-SN-section#-local#]</code>.</p>
 <p>These normative requirements are tabulated in <a href=
 "#appendix-b.-mandatory-normative-statements-informative">Appendix
-B.</a>.</p>
+B. "Mandatory normative statements (informative)"</a>.</p>
 <p>All examples in this document are informative only.</p>
 <p>All other text is normative unless otherwise labeled e.g. like
 the following informative comment:</p>
@@ -3278,8 +2878,8 @@ requires no session negotiation.</td>
 <p>Table: Topic Types</p>
 <p>Predefined and Session Topic Aliases are assigned from different
 pools so there is no danger of collision.</p>
-<p>Refer to <a href="#topics">4.7</a> for detailed descriptions of
-Topic Names and Topic Aliases.</p>
+<p>Refer to <a href="#topics">4.7 "Topics"</a> for detailed
+descriptions of Topic Names and Topic Aliases.</p>
 <h1 id="3-mqtt-sn-control-packets-">3. MQTT-SN Control Packets
 <a id='mqtt-sn-control-packets'></a></h1>
 <h2 id="31-connect---connection-request-">3.1 CONNECT - Connection
@@ -3296,8 +2896,8 @@ request the creation of or continuation of a Session.</p>
 'connect-header'></a></h3>
 <p>The first 2 or 4 bytes of the packet are encoded according to
 the variable length packet header format.Refer to <a href=
-"#structure-of-an-mqtt-sn-control-packet">2.1</a> for a detailed
-description.</p>
+"#structure-of-an-mqtt-sn-control-packet">2.1 "Structure of an
+MQTT-SN Control Packet"</a> for a detailed description.</p>
 <h3 id="312-connect-flags-">3.1.2 Connect Flags <a id=
 'connect-flags'></a></h3>
 <p>The Connect Flags is 1 byte field which contains several
@@ -3308,16 +2908,15 @@ the Packet.</p>
 "MQTT-SN-3.1.2-1" id="MQTT-SN-3.1.2-1"></a>The Server MUST validate
 that the reserved flags in the CONNECT packet are set to
 0</mark>»[MQTT‑SN‑3.1.2‑1]. If any of the reserved flags is not 0
-it is a Malformed Packet. Refer to <a href=
-"#handling-errors">4.12</a> for information about handling
-errors.</p>
+it is a Malformed Packet. Refer to <a href="#handling-errors">4.12
+"Handling errors"</a> for information about handling errors.</p>
 <h4 id="3121-clean-start-flag-">3.1.2.1 Clean Start Flag <a id=
 'clean-start-flag'></a></h4>
 <p><strong>Position:</strong> bit 0 of the Connect Flags byte.</p>
 <p>This flag specifies whether the Virtual Connection starts a new
 Session or is a continuation of an existing Session. Refer to
-<a href="#session-state">4.1</a> for a definition of the Session
-State.</p>
+<a href="#session-state">4.1 "Session state"</a> for a definition
+of the Session State.</p>
 <p>«<mark title="Requirement MQTT-SN-3.1.2.1-1"><a name=
 "MQTT-SN-3.1.2.1-1" id="MQTT-SN-3.1.2.1-1"></a>If a CONNECT packet
 is received with Clean Start is set to 1, the Client and Server
@@ -3495,8 +3094,8 @@ parameters specifying the handling of the Will Message.</p>
 <p><strong>Position:</strong> bits 1 and 0 of the Will Flags
 byte.</p>
 <p>This is a 2-bit field which determines the format of the topic
-value. Refer to <a href="#topic-types">2.4</a> for the definition
-of the various topic types.</p>
+value. Refer to <a href="#topic-types">2.4 "Topic Types"</a> for
+the definition of the various topic types.</p>
 <h4 id="3132-will-qos-">3.1.3.2 Will QoS <a id='will-qos'></a></h4>
 <p><strong>Position:</strong> bits 3 and 2 of the Will Flags
 byte.</p>
@@ -3507,8 +3106,8 @@ Will QoS can be 0 (0x00), 1 (0x01), or 2 (0x02). A value of 3
 'will-retain'></a></h4>
 <p><strong>Position:</strong> bit 4 of the Will Flags byte.</p>
 <p>This specifies if the Will Message is to be retained when it is
-published. See <a href="#retained-messages">4.13</a> for more
-information about Retained Messages.</p>
+published. See <a href="#retained-messages">4.13 "Retained
+Messages"</a> for more information about Retained Messages.</p>
 <p>«<mark title="Requirement MQTT-SN-3.1.3.3-1"><a name=
 "MQTT-SN-3.1.3.3-1" id="MQTT-SN-3.1.3.3-1"></a>If the Will Flag is
 set to 1 and Will Retain is set to 0, the Server MUST publish the
@@ -3587,15 +3186,16 @@ determine that the network and the Server are available.</p>
 receive an MQTT-SN Control Packet from the Client within one and a
 half times the Keep Alive time period, it MUST delete the Virtual
 Connection and move the Client to the Disconnected state (see
-<a href="#client-states">4.14</a>)</mark>»[MQTT‑SN‑3.1.6‑2].</p>
+<a href="#client-states">4.14 "Client
+states"</a>)</mark>»[MQTT‑SN‑3.1.6‑2].</p>
 <p>«<mark title="Requirement MQTT-SN-3.1.6-3"><a name=
 "MQTT-SN-3.1.6-3" id="MQTT-SN-3.1.6-3"></a>If a Client does not
 receive a PINGRESP packet within a <em>[Retry Interval]</em> amount
 of time after it has sent a PINGREQ, it SHOULD retry the
-transmission according to <a href=
-"#unacknowledged-packets">4.4.2</a> up to the maximum number of
-attempts. If a PINGRESP is still not received it MUST delete the
-Virtual Connection to the Server by way of a DISCONNECT, with the
+transmission according to <a href="#unacknowledged-packets">4.4.2
+"Unacknowledged Packets"</a> up to the maximum number of attempts.
+If a PINGRESP is still not received it MUST delete the Virtual
+Connection to the Server by way of a DISCONNECT, with the
 understanding that the Server may no longer be
 reachable</mark>»[MQTT‑SN‑3.1.6‑3].</p>
 <blockquote>
@@ -3641,9 +3241,10 @@ Packet Size.</p>
 </blockquote>
 <p>The packet size is the total number of bytes in an MQTT-SN
 Control Packet, as defined in <a href=
-"#structure-of-an-mqtt-sn-control-packet">2.1</a>. The Client uses
-the Maximum Packet Size to inform the Server that it will not
-process packets exceeding this limit.</p>
+"#structure-of-an-mqtt-sn-control-packet">2.1 "Structure of an
+MQTT-SN Control Packet"</a>. The Client uses the Maximum Packet
+Size to inform the Server that it will not process packets
+exceeding this limit.</p>
 <p>«<mark title="Requirement MQTT-SN-3.1.7-1"><a name=
 "MQTT-SN-3.1.7-1" id="MQTT-SN-3.1.7-1"></a>The Maximum Packet Size
 value MUST be 10 or greater</mark>»&lt;mark title="Ephemeral region
@@ -3727,7 +3328,8 @@ Topic Name (0b11), the Will Topic Name is the next field in the
 Packet. «<mark title="Requirement MQTT-SN-3.1.11-1"><a name=
 "MQTT-SN-3.1.11-1" id="MQTT-SN-3.1.11-1"></a>The Will Topic Name
 MUST be a UTF-8 Encoded String as defined in <a href=
-"#utf-8-encoded-string">1.8.4</a></mark>»[MQTT‑SN‑3.1.11‑1].</p>
+"#utf-8-encoded-string">1.8.4 "UTF-8 Encoded
+String"</a></mark>»[MQTT‑SN‑3.1.11‑1].</p>
 <h3 id="3112-will-payload-length-">3.1.12 Will Payload Length
 <a id='will-payload-length'></a></h3>
 <p>If the Will Flag is set to 1, the Will Payload Length is the
@@ -3738,16 +3340,15 @@ Payload field.</p>
 <p>If the Will Flag is set to 1, the Will Payload is the next field
 in the Packet. The Will Payload defines the Application Message
 Payload that is to be published to the Will Topic as described in
-<a href="#will-flag">3.1.2.2</a>. This field consists of Binary
-Data.</p>
+<a href="#will-flag">3.1.2.2 "Will Flag"</a>. This field consists
+of Binary Data.</p>
 <h3 id="3114-authentication-method-length-">3.1.14 Authentication
 Method Length <a id='authentication-method-length'></a></h3>
 <p>If the Auth Flag is set to 1, the Authentication Method Length
 is the next field in the Packet. It is a single byte value (max
 0-255 bytes), representing the length of the field used to specify
-the authentication method. Refer to <a href=
-"#authentication">4.11</a> for more information about
-authentication.</p>
+the authentication method. Refer to <a href="#authentication">4.11
+"Authentication"</a> for more information about authentication.</p>
 <h3 id="3115-authentication-method-">3.1.15 Authentication Method
 <a id='authentication-method'></a></h3>
 <p>If the Auth Flag is set to 1, the Authentication Method is the
@@ -3755,16 +3356,17 @@ next field in the Packet. It is a UTF-8 Encoded String containing
 the name of the Authentication Method.</p>
 <p>To support the equivalent of the MQTT User Name and Password
 fields in the CONNECT packet, see <a href=
-"#mqtt-user-name-and-password-support">4.11.1.2</a>.</p>
-<p>Refer to <a href="#authentication">4.11</a> for more information
-about authentication.</p>
+"#mqtt-user-name-and-password-support">4.11.1.2 "MQTT User Name and
+Password Support"</a>.</p>
+<p>Refer to <a href="#authentication">4.11 "Authentication"</a> for
+more information about authentication.</p>
 <h3 id="3116-authentication-data-length-">3.1.16 Authentication
 Data Length <a id='authentication-data-length'></a></h3>
 <p>If the Auth Flag is set to 1, the Authentication Data Length is
 the next field in the Packet. It is a two byte value (max 0-65535
 bytes), representing the length of the field used to specify the
-authentication data. Refer to <a href="#authentication">4.11</a>
-for more information about authentication.</p>
+authentication data. Refer to <a href="#authentication">4.11
+"Authentication"</a> for more information about authentication.</p>
 <h3 id="3117-authentication-data-">3.1.17 Authentication Data
 <a id='authentication-data'></a></h3>
 <p>If the Auth Flag is set to 1, the Authentication Data is the
@@ -3773,9 +3375,10 @@ next field in the Packet.</p>
 data are defined by the authentication method.</p>
 <p>To support the equivalent of the MQTT User Name and Password
 CONNECT packet fields, see <a href=
-"#mqtt-user-name-and-password-support">4.11.1.2</a>.</p>
-<p>Refer to <a href="#authentication">4.11</a> for more information
-about authentication.</p>
+"#mqtt-user-name-and-password-support">4.11.1.2 "MQTT User Name and
+Password Support"</a>.</p>
+<p>Refer to <a href="#authentication">4.11 "Authentication"</a> for
+more information about authentication.</p>
 <h3 id="3118-client-identifier-">3.1.18 Client Identifier <a id=
 'client-identifier'></a></h3>
 <p>«<mark title="Requirement MQTT-SN-3.1.18-1"><a name=
@@ -3812,7 +3415,8 @@ to allow more than 23 bytes</mark>»[MQTT‑SN‑3.1.18‑4].</p>
 Client Identifier in the Server is for compatibility with MQTT. A
 longer length might be necessary to be supported if a UUID is used
 as an Assigned Client Identifier as suggested in <a href=
-"#assigned-client-identifier">3.2.11</a>.</p>
+"#assigned-client-identifier">3.2.11 "Assigned Client
+Identifier"</a>.</p>
 </blockquote>
 <h3 id="3119-connect-actions-">3.1.19 CONNECT Actions <a id=
 'connect-actions'></a></h3>
@@ -3825,11 +3429,12 @@ follows.</p>
 <p>«<mark title="Requirement MQTT-SN-3.1.19-1"><a name=
 "MQTT-SN-3.1.19-1" id="MQTT-SN-3.1.19-1"></a>The Server MUST
 validate that the CONNECT packet matches the format described in
-<a href="#connect---connection-request">3.1</a> and MUST NOT create
-a Virtual Connection for this CONNECT if it does not
-match</mark>»[MQTT‑SN‑3.1.19‑1]. The Server MAY send a CONNACK with
-a Reason Code of 0x80 or greater as described in <a href=
-"#handling-errors">4.12</a>.</p>
+<a href="#connect---connection-request">3.1 "CONNECT - Connection
+Request"</a> and MUST NOT create a Virtual Connection for this
+CONNECT if it does not match</mark>»[MQTT‑SN‑3.1.19‑1]. The Server
+MAY send a CONNACK with a Reason Code of 0x80 or greater as
+described in <a href="#handling-errors">4.12 "Handling
+errors"</a>.</p>
 </li>
 <li>
 <p>«<mark title="Requirement MQTT-SN-3.1.19-2"><a name=
@@ -3840,8 +3445,9 @@ checks. If any of these checks fail, it MUST NOT create a Virtual
 Connection for this CONNECT</mark>»[MQTT‑SN‑3.1.19‑2]. It MAY send
 an appropriate CONNACK response with a Reason Code of 0x80 or
 greater as described in <a href=
-"#connack---connect-acknowledgement">3.2</a> and <a href=
-"#handling-errors">4.12</a>.</p>
+"#connack---connect-acknowledgement">3.2 "CONNACK - Connect
+Acknowledgement"</a> and <a href="#handling-errors">4.12 "Handling
+errors"</a>.</p>
 </li>
 </ol>
 <p>If validation is successful, the Server performs the following
@@ -3853,16 +3459,18 @@ steps.</p>
 Identifier represents a Client already connected to the Server, the
 Server sends a DISCONNECT packet to the existing Client with Reason
 Code of 0x8E (Session taken over) as described in <a href=
-"#handling-errors">4.12</a> and MUST delete the Virtual Connection
-of the existing Client</mark>»[MQTT‑SN‑3.1.19‑3]. If the existing
-Client has a Will Message, that Will Message is published as
-described in <a href="#will-flags">3.1.3</a>.</p>
+"#handling-errors">4.12 "Handling errors"</a> and MUST delete the
+Virtual Connection of the existing
+Client</mark>»[MQTT‑SN‑3.1.19‑3]. If the existing Client has a Will
+Message, that Will Message is published as described in <a href=
+"#will-flags">3.1.3 "Will Flags"</a>.</p>
 </li>
 <li>
 <p>«<mark title="Requirement MQTT-SN-3.1.19-4"><a name=
 "MQTT-SN-3.1.19-4" id="MQTT-SN-3.1.19-4"></a>The Server MUST
 perform the processing of Clean Start that is described in <a href=
-"#clean-start-flag">3.1.2.1</a></mark>»[MQTT‑SN‑3.1.19‑4].</p>
+"#clean-start-flag">3.1.2.1 "Clean Start
+Flag"</a></mark>»[MQTT‑SN‑3.1.19‑4].</p>
 </li>
 <li>
 <p>«<mark title="Requirement MQTT-SN-3.1.19-5"><a name=
@@ -3910,8 +3518,8 @@ CONNECT request from a client.</p>
 'connack-header'></a></h3>
 <p>The first 2 or 4 bytes of the packet are encoded according to
 the variable length packet header format. Refer to <a href=
-"#structure-of-an-mqtt-sn-control-packet">2.1</a> for a detailed
-description.</p>
+"#structure-of-an-mqtt-sn-control-packet">2.1 "Structure of an
+MQTT-SN Control Packet"</a> for a detailed description.</p>
 <h3 id="322-connack-flags-">3.2.2 CONNACK Flags <a id=
 'connack-flags'></a></h3>
 <p>The CONNACK Flags is a 1 byte field which contains flags
@@ -4031,8 +3639,9 @@ applies.</p>
 Expiry Interval in the CONNECT Packet is used. The Server uses this
 field to inform the Client that it is using a value other than that
 sent by the Client in the CONNECT.</p>
-<p>Refer to <a href="#session-expiry-interval">3.1.9</a> for a
-description of the use of Session Expiry Interval.</p>
+<p>Refer to <a href="#session-expiry-interval">3.1.9 "Session
+Expiry Interval"</a> for a description of the use of Session Expiry
+Interval.</p>
 <h3 id="326-server-keep-alive-">3.2.6 Server Keep Alive <a id=
 'server-keep-alive'></a></h3>
 <p>The Server uses this field to inform the Client that it is using
@@ -4046,8 +3655,8 @@ CONNECT</mark>»[MQTT‑SN‑3.2.6‑1].</p>
 "MQTT-SN-3.2.6-2" id="MQTT-SN-3.2.6-2"></a>If the Server does not
 send the Server Keep Alive, the Server MUST use the Keep Alive
 value set by the Client on CONNECT</mark>»[MQTT‑SN‑3.2.6‑2].</p>
-<p>Refer to <a href="#keep-alive">3.1.6</a> for a description of
-the use of Keep Alive Interval.</p>
+<p>Refer to <a href="#keep-alive">3.1.6 "Keep Alive"</a> for a
+description of the use of Keep Alive Interval.</p>
 <blockquote>
 <p><strong>Informative comment</strong></p>
 <p>The primary use of the Server Keep Alive is for the Server to
@@ -4058,26 +3667,26 @@ sooner than the Keep Alive specified by the Client.</p>
 Method Length <a id='cca---authentication-method-length'></a></h3>
 <p>Single byte value (max 0-255 bytes), representing the length of
 field used to specify the authentication method. Refer to <a href=
-"#authentication">4.11</a> for more information about
-authentication.</p>
+"#authentication">4.11 "Authentication"</a> for more information
+about authentication.</p>
 <h3 id="328-authentication-method-">3.2.8 Authentication Method
 <a id='cca---authentication-method'></a></h3>
 <p>A UTF-8 Encoded String containing the name of the authentication
-method. Refer to <a href="#authentication">4.11</a> for more
-information about authentication.</p>
+method. Refer to <a href="#authentication">4.11
+"Authentication"</a> for more information about authentication.</p>
 <h3 id="329-authentication-data-length-">3.2.9 Authentication Data
 Length <a id='cca---authentication-data-length'></a></h3>
 <p>Two byte value (max 0-65535 bytes), representing the length of
 field used to specify the authentication data. Refer to <a href=
-"#authentication">4.11</a> for more information about
-authentication.</p>
+"#authentication">4.11 "Authentication"</a> for more information
+about authentication.</p>
 <h3 id="3210-authentication-data-">3.2.10 Authentication Data
 <a id='cca---authentication-data'></a></h3>
 <p>Binary Data containing authentication data. The contents of this
 data are defined by the authentication method and the state of
 already exchanged authentication data. Refer to <a href=
-"#authentication">4.11</a> for more information about
-authentication.</p>
+"#authentication">4.11 "Authentication"</a> for more information
+about authentication.</p>
 <h3 id="3211-assigned-client-identifier-">3.2.11 Assigned Client
 Identifier <a id='assigned-client-identifier'></a></h3>
 <p>«<mark title="Requirement MQTT-SN-3.2.11-1"><a name=
@@ -4133,8 +3742,8 @@ server then responds with a CONNACK message.</mark></p>
 'auth-header'></a></h3>
 <p>The first 2 or 4 bytes of the packet are encoded according to
 the variable length packet header format. Refer to <a href=
-"#structure-of-an-mqtt-sn-control-packet">2.1</a> for a detailed
-description.</p>
+"#structure-of-an-mqtt-sn-control-packet">2.1 "Structure of an
+MQTT-SN Control Packet"</a> for a detailed description.</p>
 <h3 id="332-packet-identifier-">3.3.2 Packet Identifier <a id=
 'aae---packet-identifier'></a></h3>
 <p>Used to identify the corresponding CONNECT or AUTH packet. It
@@ -4149,9 +3758,9 @@ responded to</mark>»[MQTT‑SN‑3.3.2‑1].</p>
 <p>«<mark title="Requirement MQTT-SN-3.3.3-1"><a name=
 "MQTT-SN-3.3.3-1" id="MQTT-SN-3.3.3-1"></a>The values for the
 Authentication Reason Code field are shown in]{.mark} <a href=
-"#reason-code">2.3</a>. [The sender of the AUTH Packet MUST use one
-of the Reason Codes shown as applicable to the AUTH
-packet</mark>»[MQTT‑SN‑3.3.3‑1].</p>
+"#reason-code">2.3 "Reason Code"</a>. [The sender of the AUTH
+Packet MUST use one of the Reason Codes shown as applicable to the
+AUTH packet</mark>»[MQTT‑SN‑3.3.3‑1].</p>
 <h3 id="334-authentication-method-length-">3.3.4 Authentication
 Method Length <a id='aae---authentication-method-length'></a></h3>
 <p>The length of the Authentication Method string.</p>
@@ -4166,8 +3775,8 @@ authentication data. The contents of this data are defined by the
 authentication method.</mark></p>
 <h3 id="337-auth-actions-">3.3.7 AUTH Actions <a id=
 'auth-actions'></a></h3>
-<p>Refer to <a href="#authentication">4.11</a> for more information
-about authentication.</p>
+<p>Refer to <a href="#authentication">4.11 "Authentication"</a> for
+more information about authentication.</p>
 <h2 id="34-register---register-topic-alias-request-">3.4 REGISTER -
 Register Topic Alias Request <a id=
 'register---register-topic-alias-request'></a></h2>
@@ -4184,8 +3793,8 @@ Session Topic Alias for the included Topic Name.</p>
 <p>It is sent by a Server to inform a Client about the Session
 Topic Alias it has assigned to the included Topic Name.</p>
 <p>Topic Aliases are always assigned and managed by the Server, not
-the Client. For more information see <a href=
-"#topic-aliases">4.7.2</a>.</p>
+the Client. For more information see <a href="#topic-aliases">4.7.2
+"Topic Aliases"</a>.</p>
 <p>A REGISTER packet may be sent by the Server when the Client is
 in the Awake state if the Retain Topic Aliases flag on the SLEEPREQ
 was set to 0, to reinform the Client of a Session Topic Alias.</p>
@@ -4199,8 +3808,8 @@ it MUST contain a Topic Alias</mark>»[MQTT‑SN‑3.4‑2].</p>
 'register-header'></a></h3>
 <p>The first 2 or 4 bytes of the packet are encoded according to
 the variable length packet header format. Refer to <a href=
-"#structure-of-an-mqtt-sn-control-packet">2.1</a> for a detailed
-description.</p>
+"#structure-of-an-mqtt-sn-control-packet">2.1 "Structure of an
+MQTT-SN Control Packet"</a> for a detailed description.</p>
 <h3 id="342-register-flags-">3.4.2 REGISTER Flags <a id=
 'register-flags'></a></h3>
 <p>The REGISTER Flags is a 1 byte field which contains flags
@@ -4239,7 +3848,8 @@ included in the Topic Name field.</p>
 topic name.</p>
 <h3 id="346-register-actions-">3.4.6 REGISTER Actions <a id=
 'register-actions'></a></h3>
-<p>As described in <a href="#topic-aliases">4.7.2</a>.</p>
+<p>As described in <a href="#topic-aliases">4.7.2 "Topic
+Aliases"</a>.</p>
 <h2 id="35-regack---register-topic-alias-acknowledgement-">3.5
 REGACK - Register Topic Alias Acknowledgement <a id=
 'regack---register-topic-alias-acknowledgement'></a></h2>
@@ -4255,8 +3865,8 @@ packet.</p>
 'regack-header'></a></h3>
 <p>The first 2 or 4 bytes of the packet are encoded according to
 the variable length packet header format. Refer to <a href=
-"#structure-of-an-mqtt-sn-control-packet">2.1</a> for a detailed
-description.</p>
+"#structure-of-an-mqtt-sn-control-packet">2.1 "Structure of an
+MQTT-SN Control Packet"</a> for a detailed description.</p>
 <h3 id="352-regack-flags-">3.5.2 REGACK Flags <a id=
 'regack-flags'></a></h3>
 <p>The REGACK Flags is a 1 byte field which contains flags
@@ -4273,8 +3883,8 @@ Packet</mark>»[MQTT‑SN‑3.5.2‑2].</p>
 'rrtaa---topic-type'></a></h4>
 <p><strong>Position</strong>: bits 0 and 1 of the REGACK Flags.</p>
 <p>Determines the format of the topic value. Refer to <a href=
-"#topic-types">2.4</a> for the definition of the various topic
-types.</p>
+"#topic-types">2.4 "Topic Types"</a> for the definition of the
+various topic types.</p>
 <p>«<mark title="Requirement MQTT-SN-3.5.2.1-1"><a name=
 "MQTT-SN-3.5.2.1-1" id="MQTT-SN-3.5.2.1-1"></a>The Topic Type in
 the REGACK packet MUST be Predefined Topic Alias or Session Topic
@@ -4285,7 +3895,8 @@ Error.</p>
 <p>A Predefined Topic Alias can be returned in the REGACK Packet if
 a Client tries to register a Session Topic Alias for a Topic Name
 which the Server already knows is a Predefined Topic Alias. See
-<a href="#session-topic-aliases">4.7.2.2</a> for details.</p>
+<a href="#session-topic-aliases">4.7.2.2 "Session Topic
+Aliases"</a> for details.</p>
 </blockquote>
 <h4 id="3522-topic-alias-flag-">3.5.2.2 Topic Alias Flag <a id=
 'rrtaa---topic-alias-flag'></a></h4>
@@ -4403,8 +4014,8 @@ destination.</p>
 'pubwos-header'></a></h4>
 <p>The first 2 or 4 bytes of the packet are encoded according to
 the variable length packet header format. Refer to <a href=
-"#structure-of-an-mqtt-sn-control-packet">2.1</a> for a detailed
-description.</p>
+"#structure-of-an-mqtt-sn-control-packet">2.1 "Structure of an
+MQTT-SN Control Packet"</a> for a detailed description.</p>
 <h4 id="3612-pubwos-flags-">3.6.1.2 PUBWOS Flags <a id=
 'pubwos-flags'></a></h4>
 <p>The PUBWOS Flags is a 1 byte field which contains flags
@@ -4432,7 +4043,8 @@ Topic Name</mark>»[MQTT‑SN‑3.6.1.2.1‑1].</p>
 <p><strong>Position</strong>: bit 4 of the PUBWOS Flags.</p>
 <p>This field signifies whether the existing Retained Message for
 this topic is replaced or kept. For a detailed description of
-Retained Messages see <a href="#retained-messages">4.13</a>.</p>
+Retained Messages see <a href="#retained-messages">4.13 "Retained
+Messages"</a>.</p>
 <h4 id="3613-topic-alias-or-topic-name-length-">3.6.1.3 Topic Alias
 or Topic Name Length <a id=
 'ppws--topic-alias-or-topic-name-length'></a></h4>
@@ -4468,7 +4080,7 @@ another Client.</p>
 "MQTT-SN-3.6.1.6-1" id="MQTT-SN-3.6.1.6-1"></a>If received by a
 Client or Server, the PUBWOS packet MUST be treated as if its QoS
 were 0</mark>»[MQTT‑SN‑3.6.1.6‑1] as described in <a href=
-"#publish-actions">3.6.3.7</a>.</p>
+"#publish-actions">3.6.3.7 "PUBLISH Actions"</a>.</p>
 <h3 id="362-publish-with-qos-0-">3.6.2 PUBLISH with QoS 0 <a id=
 'publish-with-qos-0'></a></h3>
 <p><em>Figure 3-9 -- PUBLISH Packet for QoS 0</em></p>
@@ -4486,8 +4098,8 @@ with a Session</mark>»[MQTT‑SN‑3.6.1.2‑1].</p>
 'publish-header'></a></h4>
 <p>The first 2 or 4 bytes of the packet are encoded according to
 the variable length packet header format. Refer to <a href=
-"#structure-of-an-mqtt-sn-control-packet">2.1</a> for a detailed
-description.</p>
+"#structure-of-an-mqtt-sn-control-packet">2.1 "Structure of an
+MQTT-SN Control Packet"</a> for a detailed description.</p>
 <h4 id="3622-publish-flags-">3.6.2.2 PUBLISH Flags <a id=
 'publish-flags'></a></h4>
 <p>The PUBLISH Flags is a 1 byte field which contains flags
@@ -4506,8 +4118,8 @@ Packet</mark>»[MQTT‑SN‑3.6.2.2‑2].</p>
 <p><strong>Position</strong>: bits 0 and 1 of the PUBLISH
 Flags.</p>
 <p>This determines the content of the Topic Alias and Topic Name
-fields. Refer to <a href="#topic-types">2.4</a> for the definition
-of the various topic types.</p>
+fields. Refer to <a href="#topic-types">2.4 "Topic Types"</a> for
+the definition of the various topic types.</p>
 <p>The Topic Type may be Topic Name, Predefined Topic Alias or
 Session Topic Alias.</p>
 <h5 id="36222-qos-">3.6.2.2.2 QoS <a id='pwq0---qos'></a></h5>
@@ -4515,14 +4127,15 @@ Session Topic Alias.</p>
 Flags.</p>
 <p>This field is set to "0b00" for QoS 0. For a detailed
 description of the various Quality Of Service levels refer to
-<a href=
-"#quality-of-service-levels-and-protocol-flows">4.3</a>.</p>
+<a href="#quality-of-service-levels-and-protocol-flows">4.3
+"Quality of Service levels and protocol flows"</a>.</p>
 <h5 id="36223-retain-">3.6.2.2.3 Retain <a id=
 'pwq0---retain'></a></h5>
 <p><strong>Position</strong>: bit 4 of the PUBLISH Flags.</p>
 <p>This flag signifies whether the message is published as a
-retained message or not. See <a href="#retained-messages">4.13</a>
-for more information about Retained Messages.</p>
+retained message or not. See <a href="#retained-messages">4.13
+"Retained Messages"</a> for more information about Retained
+Messages.</p>
 <h4 id="3623-topic-alias-or-topic-name-length-">3.6.2.3 Topic Alias
 or Topic Name Length <a id=
 'ppwq0---topic-alias-or-topic-name-length'></a></h4>
@@ -4549,7 +4162,8 @@ content and format of the data is application specific. It is valid
 for a PUBLISH packet to contain a zero length Payload.</p>
 <h4 id="3626-publish---qos-0-actions-">3.6.2.6 PUBLISH - QoS 0
 Actions <a id='publish---qos-0-actions'></a></h4>
-<p>As described in <a href="#publish-actions">3.6.3.7</a>.</p>
+<p>As described in <a href="#publish-actions">3.6.3.7 "PUBLISH
+Actions"</a>.</p>
 <h3 id="363-publish-with-qos-1-and-2-">3.6.3 PUBLISH with QoS 1 and
 2 <a id='publish-with-qos-1-and-2'></a></h3>
 <p><em>Figure 3-10 -- PUBLISH Packet for QoS 1 and 2</em></p>
@@ -4568,8 +4182,8 @@ with a Session</mark>»[MQTT‑SN‑3.6.3‑1].</p>
 'pwq1a2---publish-header'></a></h4>
 <p>The first 2 or 4 bytes of the packet are encoded according to
 the variable length packet header format. Refer to <a href=
-"#structure-of-an-mqtt-sn-control-packet">2.1</a> for a detailed
-description.</p>
+"#structure-of-an-mqtt-sn-control-packet">2.1 "Structure of an
+MQTT-SN Control Packet"</a> for a detailed description.</p>
 <h4 id="3632-publish-flags-">3.6.3.2 PUBLISH Flags <a id=
 'pwq1a2---publish-flags'></a></h4>
 <p>The PUBLISH Flags is a 1 byte field which contains flags
@@ -4588,8 +4202,8 @@ Packet</mark>»[MQTT‑SN‑3.6.3.2‑2].</p>
 <p><strong>Position</strong>: bits 0 and 1 of the PUBLISH
 Flags.</p>
 <p>This determines the format of the Topic Data field. Refer to
-<a href="#topic-types">2.4</a> for the definition of Topic
-Types.</p>
+<a href="#topic-types">2.4 "Topic Types"</a> for the definition of
+Topic Types.</p>
 <p>The Topic Type may be Topic Name, Predefined Topic Alias or
 Session Topic Alias.</p>
 <h5 id="36322-qos-">3.6.3.2.2 QoS <a id='pwq1a2---qos'></a></h5>
@@ -4636,7 +4250,8 @@ Flags.</p>
 <p>Table: QoS Definitions</p>
 <p>For a detailed description of the various Quality Of Service
 levels refer to <a href=
-"#quality-of-service-levels-and-protocol-flows">4.3</a>.</p>
+"#quality-of-service-levels-and-protocol-flows">4.3 "Quality of
+Service levels and protocol flows"</a>.</p>
 <h5 id="36323-dup-">3.6.3.2.3 DUP <a id='dup'></a></h5>
 <p><strong>Position</strong>: bit 7 of the PUBLISH Flags.</p>
 <p>The DUP flag indicates the duplicate delivery of QoS 2 PUBLISH
@@ -4647,8 +4262,9 @@ signifies that the packet is retransmitted.</p>
 'pwq1a2---retain'></a></h5>
 <p><strong>Position</strong>: bit 4 of the PUBLISH Flags.</p>
 <p>This flag signifies whether the message is published as a
-retained message or not. See <a href="#retained-messages">4.13</a>
-for more information about Retained Messages.</p>
+retained message or not. See <a href="#retained-messages">4.13
+"Retained Messages"</a> for more information about Retained
+Messages.</p>
 <h4 id="3633-packet-identifier-">3.6.3.3 Packet Identifier <a id=
 'pwq1a2---packet-identifier'></a></h4>
 <p>Used to identify the corresponding PUBACK packet in the case of
@@ -4727,7 +4343,8 @@ additional matching subscription and respecting the subscription's
 QoS in each case.</p>
 <p>The action of the recipient when it receives a PUBLISH packet
 depends on the QoS level as described in <a href=
-"#quality-of-service-levels-and-protocol-flows">4.3</a>.</p>
+"#quality-of-service-levels-and-protocol-flows">4.3 "Quality of
+Service levels and protocol flows"</a>.</p>
 <p><strong>Informative Comment</strong></p>
 <blockquote>
 <p>If the Server distributes Application Messages to Clients to
@@ -4738,8 +4355,8 @@ depend on this information might not work correctly.</p>
 </blockquote>
 <p>No more than one QoS 1 or 2 PUBLISH requests MUST be outstanding
 for a Sender at any one time. Other packets are included in this
-constraint - refer to <a href="#flow-control">4.9</a> for more
-information about Flow Control.</p>
+constraint - refer to <a href="#flow-control">4.9 "Flow
+Control"</a> for more information about Flow Control.</p>
 <blockquote>
 <p><strong>Informative comment</strong></p>
 <p>The Sender might choose to suspend the sending of QoS 0 PUBLISH
@@ -4760,8 +4377,8 @@ title="PUBACK Packet" alt="PUBACK Packet" />
 'puback-header'></a></h4>
 <p>The first 2 or 4 bytes of the packet are encoded according to
 the variable length packet header format. Refer to <a href=
-"#structure-of-an-mqtt-sn-control-packet">2.1</a> for a detailed
-description.</p>
+"#structure-of-an-mqtt-sn-control-packet">2.1 "Structure of an
+MQTT-SN Control Packet"</a> for a detailed description.</p>
 <h4 id="3642-packet-identifier-">3.6.4.2 Packet Identifier <a id=
 'ppaq1d---packet-identifier'></a></h4>
 <p>The same value as the Packet Identifier in the PUBLISH Packet
@@ -4778,8 +4395,8 @@ sender of the PUBACK Packet MUST use one of the Reason Codes
 applicable to PUBACK</mark>»[MQTT‑SN‑3.6.4.3‑1].</p>
 <h4 id="3644-puback-actions-">3.6.4.4 PUBACK Actions <a id=
 'puback-actions'></a></h4>
-<p>As described in <a href=
-"#qos-1-at-least-once-delivery">4.3.3</a>.</p>
+<p>As described in <a href="#qos-1-at-least-once-delivery">4.3.3
+"QoS 1: At least once delivery"</a>.</p>
 <h3 id="365-pubrec---publish-received-qos-2-delivery-part-1-">3.6.5
 PUBREC - Publish Received (QoS 2 delivery part 1) <a id=
 'pubrec-publish-received-qos-2-delivery-part-1'></a></h3>
@@ -4794,8 +4411,8 @@ It is the second packet of the QoS 2 protocol exchange.</p>
 'pubrec-header'></a></h4>
 <p>The first 2 or 4 bytes of the packet are encoded according to
 the variable length packet header format. Refer to <a href=
-"#structure-of-an-mqtt-sn-control-packet">2.1</a> for a detailed
-description.</p>
+"#structure-of-an-mqtt-sn-control-packet">2.1 "Structure of an
+MQTT-SN Control Packet"</a> for a detailed description.</p>
 <h4 id="3652-packet-identifier-">3.6.5.2 Packet Identifier <a id=
 'pprq2dp1---packet-identifier'></a></h4>
 <p>The same value as the Packet Identifier in the PUBLISH Packet
@@ -4812,8 +4429,8 @@ sender of the PUBREC Packet MUST use one of the Reason Codes
 applicable to PUBREC</mark>»[MQTT‑SN‑3.6.5.3‑1].</p>
 <h4 id="3654-pubrec-actions-">3.6.5.4 PUBREC Actions <a id=
 'pubrec-actions'></a></h4>
-<p>As described in <a href=
-"#qos-2-exactly-once-delivery">4.3.4</a>.</p>
+<p>As described in <a href="#qos-2-exactly-once-delivery">4.3.4
+"QoS 2: Exactly once delivery"</a>.</p>
 <h3 id="366-pubrel---publish-release-qos-2-delivery-part-2-">3.6.6
 PUBREL - Publish Release (QoS 2 delivery part 2) <a id=
 'pubrel---publish-release-qos-2-delivery-part-2'></a></h3>
@@ -4828,8 +4445,8 @@ third packet of the QoS 2 protocol exchange.</p>
 'pubrel-header'></a></h4>
 <p>The first 2 or 4 bytes of the packet are encoded according to
 the variable length packet header format. Refer to <a href=
-"#structure-of-an-mqtt-sn-control-packet">2.1</a> for a detailed
-description.</p>
+"#structure-of-an-mqtt-sn-control-packet">2.1 "Structure of an
+MQTT-SN Control Packet"</a> for a detailed description.</p>
 <h4 id="3662-packet-identifier-">3.6.6.2 Packet Identifier <a id=
 'pprq2dp2---packet-identifier'></a></h4>
 <p>The same value as the Packet Identifier in the PUBLISH Packet
@@ -4846,8 +4463,8 @@ sender of the PUBREL Packet MUST use one of the Reason Codes
 applicable to PUBREL</mark>»[MQTT‑SN‑3.6.6.3‑1].</p>
 <h4 id="3664-pubrel-actions-">3.6.6.4 PUBREL Actions <a id=
 'pubrel-actions'></a></h4>
-<p>As described in <a href=
-"#qos-2-exactly-once-delivery">4.3.4</a>.</p>
+<p>As described in <a href="#qos-2-exactly-once-delivery">4.3.4
+"QoS 2: Exactly once delivery"</a>.</p>
 <h3 id="367-pubcomp---publish-complete-qos-2-delivery-part-3-">
 3.6.7 PUBCOMP - Publish Complete (QoS 2 delivery part 3) <a id=
 'pubcomp---publish-complete-qos-2-delivery-part-3'></a></h3>
@@ -4862,8 +4479,8 @@ fourth and final packet of the QoS 2 protocol exchange.</p>
 'pubcomp-header'></a></h4>
 <p>The first 2 or 4 bytes of the packet are encoded according to
 the variable length packet header format. Refer to <a href=
-"#structure-of-an-mqtt-sn-control-packet">2.1</a> for a detailed
-description.</p>
+"#structure-of-an-mqtt-sn-control-packet">2.1 "Structure of an
+MQTT-SN Control Packet"</a> for a detailed description.</p>
 <h4 id="3672-packet-identifier-">3.6.7.2 Packet Identifier <a id=
 'ppcq2dp3---packet-identifier'></a></h4>
 <p>The same value as the Packet Identifier in the PUBLISH Packet
@@ -4880,8 +4497,8 @@ sender of the PUBCOMP Packet MUST use one of the Reason Codes
 applicable to PUBCOMP</mark>»[MQTT‑SN‑3.6.7.3‑1].</p>
 <h4 id="3674-pubcomp-actions-">3.6.7.4 PUBCOMP Actions <a id=
 'pubcomp-actions'></a></h4>
-<p>As described in <a href=
-"#qos-2-exactly-once-delivery">4.3.4</a>.</p>
+<p>As described in <a href="#qos-2-exactly-once-delivery">4.3.4
+"QoS 2: Exactly once delivery"</a>.</p>
 <h2 id="37-subscribe---subscribe-request-">3.7 SUBSCRIBE -
 Subscribe Request <a id='subscribe---subscribe-request'></a></h2>
 <p><em>Figure 3-17 -- SUBSCRIBE Packet</em></p>
@@ -4900,8 +4517,8 @@ send Application Messages to the Client.</p>
 'subscribe-header'></a></h3>
 <p>The first 2 or 4 bytes of the packet are encoded according to
 the variable length packet header format. Refer to <a href=
-"#structure-of-an-mqtt-sn-control-packet">2.1</a> for a detailed
-description.</p>
+"#structure-of-an-mqtt-sn-control-packet">2.1 "Structure of an
+MQTT-SN Control Packet"</a> for a detailed description.</p>
 <h3 id="372-subscribe-flags-">3.7.2 SUBSCRIBE Flags <a id=
 'subscribe-flags'></a></h3>
 <p>The SUBSCRIBE Flags field is 1 byte and governs the behavior of
@@ -4911,8 +4528,8 @@ subscriptions.</p>
 <p><strong>Position</strong>: bits 0 and 1 of the SUBSCRIBE
 Flags.</p>
 <p>This field determines the content of the Topic Alias and Topic
-Filter fields. Refer to <a href="#topic-types">2.4</a> for the
-definition of the various topic types.</p>
+Filter fields. Refer to <a href="#topic-types">2.4 "Topic
+Types"</a> for the definition of the various topic types.</p>
 <p>The Topic Type may be Topic Filter, Predefined Topic Alias or
 Session Topic Alias.</p>
 <h4 id="3722-retain-handling-">3.7.2.2 Retain handling <a id=
@@ -4932,8 +4549,8 @@ does not currently exist</p>
 subscribe</p>
 </blockquote>
 <p>It is a Protocol Error to send a Retain Handling value of 3. See
-<a href="#retained-messages">4.13</a> for more information about
-the operation of the Retain Handling field.</p>
+<a href="#retained-messages">4.13 "Retained Messages"</a> for more
+information about the operation of the Retain Handling field.</p>
 <h4 id="3723-retain-as-published-">3.7.2.3 Retain as Published
 <a id='retain-as-published'></a></h4>
 <p><strong>Position</strong>: bit 4 of the SUBSCRIBE Flags.
@@ -4943,8 +4560,9 @@ keep the RETAIN flag they were published with.</p>
 <p>If 0, Application Messages forwarded using this subscription
 have the RETAIN flag set to 0. Retained messages sent when the
 subscription is established have the RETAIN flag set to 1.</p>
-<p>See <a href="#retained-messages">4.13</a> for more information
-about the operation of the Retain as Published flag.</p>
+<p>See <a href="#retained-messages">4.13 "Retained Messages"</a>
+for more information about the operation of the Retain as Published
+flag.</p>
 <h4 id="3724-qos-">3.7.2.4 QoS <a id='ssr---qos'></a></h4>
 <p><strong>Position</strong>: bits 5 and 6 of the SUBSCRIBE
 Flags.</p>
@@ -4997,8 +4615,8 @@ Filter field MUST NOT be present in the SUBSCRIBE
 packet</mark>»[MQTT‑SN‑3.7.5‑2].</p>
 <p>The Topic Filter is a UTF-8 encoded string, which may contain
 wildcards. A SUBSCRIBE packet with a zero length Topic Filter is a
-Protocol Error. Refer to <a href="#handling-errors">4.12</a> for
-information about handling errors.</p>
+Protocol Error. Refer to <a href="#handling-errors">4.12 "Handling
+errors"</a> for information about handling errors.</p>
 <p>This existence or absence of this field is inferred from the
 Packet length.</p>
 <h3 id="376-subscribe-actions-">3.7.6 SUBSCRIBE Actions <a id=
@@ -5079,8 +4697,8 @@ packet.</p>
 'suback-header'></a></h3>
 <p>The first 2 or 4 bytes of the packet are encoded according to
 the variable length packet header format. Refer to <a href=
-"#structure-of-an-mqtt-sn-control-packet">2.1</a> for a detailed
-description.</p>
+"#structure-of-an-mqtt-sn-control-packet">2.1 "Structure of an
+MQTT-SN Control Packet"</a> for a detailed description.</p>
 <h3 id="382-suback-flags-">3.8.2 SUBACK Flags <a id=
 'suback-flags'></a></h3>
 <p>The SUBACK Flags is a 1 byte field which contains flags
@@ -5097,8 +4715,8 @@ Packet</mark>»[MQTT‑SN‑3.8.2‑2].</p>
 'ssa---topic-type'></a></h4>
 <p><strong>Position</strong>: bits 0 and 1 of the SUBACK Flags.</p>
 <p>Determines the format of the topic value. Refer to <a href=
-"#topic-types">2.4</a> for the definition of the various topic
-types.</p>
+"#topic-types">2.4 "Topic Types"</a> for the definition of the
+various topic types.</p>
 <p>«<mark title="Requirement MQTT-SN-3.8.2.1-1"><a name=
 "MQTT-SN-3.8.2.1-1" id="MQTT-SN-3.8.2.1-1"></a>The Topic Type in
 the SUBACK packet MUST be either Predefined Topic Alias or Session
@@ -5162,8 +4780,8 @@ remove subscriptions to topics.</p>
 'unsubscribe-header'></a></h3>
 <p>The first 2 or 4 bytes of the packet are encoded according to
 the variable length packet header format. Refer to <a href=
-"#structure-of-an-mqtt-sn-control-packet">2.1</a> for a detailed
-description.</p>
+"#structure-of-an-mqtt-sn-control-packet">2.1 "Structure of an
+MQTT-SN Control Packet"</a> for a detailed description.</p>
 <h3 id="392-unsubscribe-flags-">3.9.2 UNSUBSCRIBE Flags <a id=
 'unsubscribe-flags'></a></h3>
 <p>The UNSUBSCRIBE Flags is a 1 byte field which contains flags
@@ -5181,8 +4799,8 @@ Packet</mark>»[MQTT‑SN‑3.9.2‑2].</p>
 <p><strong>Position</strong>: bits 0 and 1 of the UNSUBSCRIBE
 Flags.</p>
 <p>Determines the existence of the Topic Alias or Topic Filter.
-Refer to <a href="#topic-types">2.4</a> for the definition of the
-various topic types.</p>
+Refer to <a href="#topic-types">2.4 "Topic Types"</a> for the
+definition of the various topic types.</p>
 <h3 id="393-packet-identifier-">3.9.3 Packet Identifier <a id=
 'uur---packet-identifier'></a></h3>
 <p>Used to identify the corresponding UNSUBACK packet. It should
@@ -5271,8 +4889,8 @@ receipt and processing of an UNSUBSCRIBE packet.</p>
 'unsuback-header'></a></h3>
 <p>The first 2 or 4 bytes of the packet are encoded according to
 the variable length packet header format. Refer to <a href=
-"#structure-of-an-mqtt-sn-control-packet">2.1</a> for a detailed
-description.</p>
+"#structure-of-an-mqtt-sn-control-packet">2.1 "Structure of an
+MQTT-SN Control Packet"</a> for a detailed description.</p>
 <h3 id="3102-packet-identifier-">3.10.2 Packet Identifier <a id=
 'uua---packet-identifier'></a></h3>
 <p>The same value as the Packet Identifier in the UNSUBSCRIBE
@@ -5284,9 +4902,9 @@ existence is inferred from the Packet length. If not provided, 0x00
 (Success) is assumed.</p>
 <p>The UNSUBACK Reason Codes are shown in «<mark title=
 "Requirement MQTT-SN-3.10.3-1"><a name="MQTT-SN-3.10.3-1" id=
-"MQTT-SN-3.10.3-1"></a><a href="#reason-code">2.3</a>. The Server
-sending the UNSUBACK Packet MUST use one of the UNSUBACK Reason
-Codes</mark>»[MQTT‑SN‑3.10.3‑1].</p>
+"MQTT-SN-3.10.3-1"></a><a href="#reason-code">2.3 "Reason
+Code"</a>. The Server sending the UNSUBACK Packet MUST use one of
+the UNSUBACK Reason Codes</mark>»[MQTT‑SN‑3.10.3‑1].</p>
 <h2 id="311-pingreq---ping-request-">3.11 PINGREQ - Ping Request
 <a id='pingreq---ping-request'></a></h2>
 <p><em>Figure 3-21 -- PINGREQ Packet</em></p>
@@ -5301,7 +4919,7 @@ be used to:</p>
 <p>Indicate to the Server that the Client is alive in the absence
 of any other MQTT-SN Control Packets being sent from the Client to
 the Server. For more information refer to <a href=
-"#keep-alive">3.1.6</a>.</p>
+"#keep-alive">3.1.6 "Keep Alive"</a>.</p>
 </li>
 <li>
 <p>Request that the Server responds to confirm that it is alive and
@@ -5315,15 +4933,15 @@ working.</p>
 <p>Inform the Server that the Client has awoken from being Asleep
 and is now waiting for any queued up Application Messages at the
 Server to be sent to it. For more information refer to <a href=
-"#sleeping-clients">4.14.2</a>.</p>
+"#sleeping-clients">4.14.2 "Sleeping Clients"</a>.</p>
 </li>
 </ul>
 <h3 id="3111-pingreq-header-">3.11.1 PINGREQ Header <a id=
 'pingreq-header'></a></h3>
 <p>The first 2 or 4 bytes of the packet are encoded according to
 the variable length packet header format. Refer to <a href=
-"#structure-of-an-mqtt-sn-control-packet">2.1</a> for a detailed
-description.</p>
+"#structure-of-an-mqtt-sn-control-packet">2.1 "Structure of an
+MQTT-SN Control Packet"</a> for a detailed description.</p>
 <h3 id="3112-packet-identifier-">3.11.2 Packet Identifier <a id=
 'ppreq---packet-identifier'></a></h3>
 <p>Used to identify the corresponding PINGRESP packet. It should
@@ -5362,17 +4980,17 @@ title="PINGRESP Packet" alt="PINGRESP Packet" />
 response to a PINGREQ packet. It indicates that the Server is
 alive.</p>
 <p>This Packet is used in Keep Alive processing. Refer to <a href=
-"#keep-alive">3.1.6</a> for more details.</p>
+"#keep-alive">3.1.6 "Keep Alive"</a> for more details.</p>
 <p>A PINGRESP packet is also sent by the Server to inform a Client
 in the Awake state that it has no more buffered packets for that
-Client. See <a href="#sleeping-clients">4.14.2</a> for more
-information about sleeping Clients.</p>
+Client. See <a href="#sleeping-clients">4.14.2 "Sleeping
+Clients"</a> for more information about sleeping Clients.</p>
 <h3 id="3121-pingresp-header-">3.12.1 PINGRESP Header <a id=
 'pingresp-header'></a></h3>
 <p>The first 2 or 4 bytes of the packet are encoded according to
 the variable length packet header format. Refer to <a href=
-"#structure-of-an-mqtt-sn-control-packet">2.1</a> for a detailed
-description.</p>
+"#structure-of-an-mqtt-sn-control-packet">2.1 "Structure of an
+MQTT-SN Control Packet"</a> for a detailed description.</p>
 <h3 id="3122-packet-identifier-">3.12.2 Packet Identifier <a id=
 'ppres-packet-identifier'></a></h3>
 <p>The same value as the Packet Identifier in the PINGREQ Packet
@@ -5440,8 +5058,8 @@ Virtual Connection exists.</p>
 'disconnect-header'></a></h3>
 <p>The first 2 or 4 bytes of the packet are encoded according to
 the variable length packet header format. Refer to <a href=
-"#structure-of-an-mqtt-sn-control-packet">2.1</a> for a detailed
-description.</p>
+"#structure-of-an-mqtt-sn-control-packet">2.1 "Structure of an
+MQTT-SN Control Packet"</a> for a detailed description.</p>
 <h3 id="3132-disconnect-flags-">3.13.2 DISCONNECT Flags <a id=
 'disconnect-flags'></a></h3>
 <p>The DISCONNECT Flags is a 1 byte field which contains flags
@@ -5505,9 +5123,10 @@ packet, to help with problem diagnosis.</p>
 provided, 0x00 (Normal disconnection) is assumed.</p>
 <p>The values for Reason Codes are shown in «<mark title=
 "Requirement MQTT-SN-3.13.4-1"><a name="MQTT-SN-3.13.4-1" id=
-"MQTT-SN-3.13.4-1"></a><a href="#reason-code">2.3</a>. [The sender
-of the DISCONNECT packet MUST use one of the Reason Code values
-applicable to DISCONNECT</mark>»[MQTT‑SN‑3.13.4‑1].</p>
+"MQTT-SN-3.13.4-1"></a><a href="#reason-code">2.3 "Reason
+Code"</a>. [The sender of the DISCONNECT packet MUST use one of the
+Reason Code values applicable to
+DISCONNECT</mark>»[MQTT‑SN‑3.13.4‑1].</p>
 <h3 id="3135-session-expiry-interval-">3.13.5 Session Expiry
 Interval <a id='ddn---session-expiry-interval'></a></h3>
 <p>The Session Expiry Interval is a four-byte integer time interval
@@ -5523,7 +5142,7 @@ Interval in the DISCONNECT packet sent by the Client. If such a
 non-zero Session Expiry Interval is received by the Server, it does
 not treat it as a valid DISCONNECT packet. The Server uses
 DISCONNECT with Reason Code 0x82 (Protocol Error) as described in
-<a href="#handling-errors">4.12</a>.</p>
+<a href="#handling-errors">4.12 "Handling errors"</a>.</p>
 <h3 id="3136-reason-string-">3.13.6 Reason String <a id=
 'reason-string'></a></h3>
 <p>Fixed Length UTF-8 Encoded String representing a clear text
@@ -5554,7 +5173,7 @@ with a Reason Code of 0x00 (Success) the Server</mark>:</p>
 "MQTT-SN-3.13.7-3" id="MQTT-SN-3.13.7-3"></a>MUST discard any Will
 Message associated with the current Connection without publishing
 it</mark>»[MQTT‑SN‑3.13.7‑3], as described in <a href=
-"#will-flags">3.1.3</a>.</li>
+"#will-flags">3.1.3 "Will Flags"</a>.</li>
 </ul>
 <p><mark title="Ephemeral region marking">On receipt of DISCONNECT,
 the receiver:</mark></p>
@@ -5583,14 +5202,14 @@ It is an indication from the Server that the client should wake up.
 The client is not obliged to honor this request, nor may it even
 receive the packet. It can choose to ignore the request, or
 undertake one of the sequences outlined in <a href=
-"#sleeping-clients">4.14.2</a>. The client need not respond to this
-packet.</p>
+"#sleeping-clients">4.14.2 "Sleeping Clients"</a>. The client need
+not respond to this packet.</p>
 <h3 id="3141-wakeup-header-">3.14.1 WAKEUP Header <a id=
 'wakeup-header'></a></h3>
 <p>The first 2 or 4 bytes of the packet are encoded according to
 the variable length packet header format. Refer to <a href=
-"#structure-of-an-mqtt-sn-control-packet">2.1</a> for a detailed
-description.</p>
+"#structure-of-an-mqtt-sn-control-packet">2.1 "Structure of an
+MQTT-SN Control Packet"</a> for a detailed description.</p>
 <h3 id="3142-wakeup-actions-">3.14.2 WAKEUP Actions <a id=
 'wakeup-actions'></a></h3>
 <p>«<mark title="Requirement MQTT-SN-3.14.2-1"><a name=
@@ -5611,8 +5230,8 @@ state).</p>
 'sleepreq-header'></a></h3>
 <p>The first 2 or 4 bytes of the packet are encoded according to
 the variable length packet header format. Refer to <a href=
-"#structure-of-an-mqtt-sn-control-packet">2.1</a> for a detailed
-description.</p>
+"#structure-of-an-mqtt-sn-control-packet">2.1 "Structure of an
+MQTT-SN Control Packet"</a> for a detailed description.</p>
 <h3 id="3152-sleepreq-flags-">3.15.2 SLEEPREQ Flags <a id=
 'sleepreq-flags'></a></h3>
 <p>The SLEEPREQ Flags is a 1 byte field which contains flags
@@ -5649,7 +5268,7 @@ ideally be set to a random Two Byte Integer value.</p>
 in seconds. It is the maximum amount of time that a client may stay
 asleep without being disconnected by the Server. For more
 information on sleeping clients, and the purpose of Sleep Duration,
-see <a href="#sleeping-clients">4.14.2</a>.</p>
+see <a href="#sleeping-clients">4.14.2 "Sleeping Clients"</a>.</p>
 <p>«<mark title="Requirement MQTT-SN-3.15.4-1"><a name=
 "MQTT-SN-3.15.4-1" id="MQTT-SN-3.15.4-1"></a>The Sleep Duration
 MUST be greater than 0</mark>»[MQTT‑SN‑3.15.4‑1].</p>
@@ -5722,8 +5341,8 @@ title="SLEEPRESP Packet" alt="SLEEPRESP Packet" />
 'sleepresp-header'></a></h3>
 <p>The first 2 or 4 bytes of the packet are encoded according to
 the variable length packet header format. Refer to <a href=
-"#structure-of-an-mqtt-sn-control-packet">2.1</a> for a detailed
-description.</p>
+"#structure-of-an-mqtt-sn-control-packet">2.1 "Structure of an
+MQTT-SN Control Packet"</a> for a detailed description.</p>
 <h3 id="3162-sleepresp-flags-">3.16.2 SLEEPRESP Flags <a id=
 'sleepresp-flags'></a></h3>
 <p>The SLEEPRESP Flags is a 1 byte field which contains flags
@@ -5772,8 +5391,8 @@ SLEEPREQ packet</mark>»[MQTT‑SN‑3.16.3‑1].</p>
 send the Sleep Duration, the Server MUST use the Sleep Duration
 value set by the Client in the SLEEPREQ
 packet</mark>»[MQTT‑SN‑3.16.3‑2].</p>
-<p>Refer to <a href="#sleeping-clients">4.14.2</a> for more
-information on Sleeping Clients.</p>
+<p>Refer to <a href="#sleeping-clients">4.14.2 "Sleeping
+Clients"</a> for more information on Sleeping Clients.</p>
 <h3 id="3165-reason-code-">3.16.5 Reason Code <a id=
 'ssres---reason-code'></a></h3>
 <p>The Reason Code for the SLEEPRESP packet is optional - its
@@ -5861,8 +5480,8 @@ Encapsulation Header <a id=
 'protection-encapsulation-header'></a></h3>
 <p>The first 2 or 4 bytes of the packet are encoded according to
 the variable length packet header format. Refer to section <a href=
-"#structure-of-an-mqtt-sn-control-packet">2.1</a> for a detailed
-description.</p>
+"#structure-of-an-mqtt-sn-control-packet">2.1 "Structure of an
+MQTT-SN Control Packet"</a> for a detailed description.</p>
 <h3 id="3172-protection-flags-">3.17.2 Protection Flags <a id=
 'protection-flags'></a></h3>
 <p>The Protection Flags is a one byte field specifying the
@@ -6407,8 +6026,8 @@ Encapsulation Header <a id=
 'connection-encapsulation-header'></a></h3>
 <p>The first 2 or 4 bytes of the packet are encoded according to
 the variable length packet header format. Refer to <a href=
-"#structure-of-an-mqtt-sn-control-packet">2.1</a> for a detailed
-description.</p>
+"#structure-of-an-mqtt-sn-control-packet">2.1 "Structure of an
+MQTT-SN Control Packet"</a> for a detailed description.</p>
 <p>The Length field specifies the number of bytes up to the end of
 the Client Identifier field, including the Length field itself.</p>
 <h3 id="3182-client-identifier-">3.18.2 Client Identifier <a id=
@@ -6437,15 +6056,15 @@ receives from the Server and sends them unchanged to the
 Clients.</p>
 <p>The Forwarder Encapsulation contains the addressing information
 needed by the Forwarder to allow MQTT-SN Packets reach their
-intended destination(s). Refer to <a href=
-"#c.1.3-forwarder">C.1.3</a> for examples.</p>
+intended destination(s). Refer to <a href="#c.1.3-forwarder">C.1.3
+"Forwarder"</a> for examples.</p>
 <h3 id="3191-forwarder-encapsulation-header-">3.19.1 Forwarder
 Encapsulation Header <a id=
 'forwarder-encapsulation-header'></a></h3>
 <p>The first 2 or 4 bytes of the packet are encoded according to
 the variable length packet header format. Refer to <a href=
-"#structure-of-an-mqtt-sn-control-packet">2.1</a> for a detailed
-description.</p>
+"#structure-of-an-mqtt-sn-control-packet">2.1 "Structure of an
+MQTT-SN Control Packet"</a> for a detailed description.</p>
 <p>The Length field specifies the number of bytes up to the end of
 the Client Addressing Information field, including the Length field
 itself.</p>
@@ -6474,7 +6093,8 @@ radius for use in ZigBee networks.</p>
 Packets <a id='gateway-discovery-packets'></a></h2>
 <p>The Packets in this section are optional. A description of how
 this functionality works can be found in <a href=
-"#c.7-gateway-advertisement-and-discovery">C.7</a>.</p>
+"#c.7-gateway-advertisement-and-discovery">C.7 "Gateway
+Advertisement and Discovery"</a>.</p>
 <h3 id="3201-advertise---gateway-advertisement-">3.20.1 ADVERTISE -
 Gateway Advertisement <a id=
 'advertise---gateway-advertisement'></a></h3>
@@ -6496,8 +6116,8 @@ destination.</p>
 'advertise-header'></a></h4>
 <p>The first 2 or 4 bytes of the packet are encoded according to
 the variable length packet header format. Refer to <a href=
-"#structure-of-an-mqtt-sn-control-packet">2.1</a> for a detailed
-description.</p>
+"#structure-of-an-mqtt-sn-control-packet">2.1 "Structure of an
+MQTT-SN Control Packet"</a> for a detailed description.</p>
 <h4 id="32012-gateway-identifier-">3.20.1.2 Gateway Identifier
 <a id='gateway-identifier'></a></h4>
 <p>The <em>Gateway Identifier</em> field is 1 byte and uniquely
@@ -6536,8 +6156,8 @@ supports the concept.</p>
 'searchgw-header'></a></h4>
 <p>The first 2 or 4 bytes of the packet are encoded according to
 the variable length packet header format. Refer to <a href=
-"#structure-of-an-mqtt-sn-control-packet">2.1</a> for a detailed
-description.</p>
+"#structure-of-an-mqtt-sn-control-packet">2.1 "Structure of an
+MQTT-SN Control Packet"</a> for a detailed description.</p>
 <h4 id="32022-additional-network-information-">3.20.2.2 Additional
 Network Information <a id=
 'additional-network-information'></a></h4>
@@ -6574,8 +6194,8 @@ destination.</p>
 'gwinfo-header'></a></h4>
 <p>The first 2 or 4 bytes of the packet are encoded according to
 the variable length packet header format. Refer to <a href=
-"#structure-of-an-mqtt-sn-control-packet">2.1</a> for a detailed
-description.</p>
+"#structure-of-an-mqtt-sn-control-packet">2.1 "Structure of an
+MQTT-SN Control Packet"</a> for a detailed description.</p>
 <h4 id="32032-gateway-identifier-">3.20.3.2 Gateway Identifier
 <a id='gwinfo---gateway-identifier'></a></h4>
 <p>The <em>Gateway Identifier</em> field is 1-byte long and
@@ -7367,9 +6987,11 @@ govern its resending of unacknowledged packets:</p>
 </ol>
 <p>on the basis of the expected characteristics of the Underlying
 Network. Example values for these are suggested in <a href=
-"#c.3-example-timer-and-counter-values">C.3</a>. See also <a href=
-"#c.4-exponential-backoff">C.4</a> for guidance on varying the
-<em>Retry Interval</em> to reduce potential network congestion.</p>
+"#c.3-example-timer-and-counter-values">C.3 "Example Timer and
+Counter Values"</a>. See also <a href=
+"#c.4-exponential-backoff">C.4 "Exponential Backoff"</a> for
+guidance on varying the <em>Retry Interval</em> to reduce potential
+network congestion.</p>
 <p>When no response to one of the above packets is received in the
 <em>Retry Interval</em>, the Sender may resend the packet, at
 <em>Retry Interval</em> intervals, until the <em>Maximum Retry
@@ -7382,8 +7004,9 @@ response to a packet which expects one, the Sender MUST delete the
 Virtual Connection</mark>»&lt;mark title="Ephemeral region
 marking"&gt;MQTT-SN-4.4.2-3]. [If the Sender is a Server and a Will
 Message is defined for the Virtual Connection, the Will Message is
-be published as described in <a href="#will-flag">3.1.2.2</a>. A
-new connection will have to be established to continue.</p>
+be published as described in <a href="#will-flag">3.1.2.2 "Will
+Flag"</a>. A new connection will have to be established to
+continue.</p>
 <p>«<mark title="Requirement MQTT-SN-4.4.2-4"><a name=
 "MQTT-SN-4.4.2-4" id="MQTT-SN-4.4.2-4"></a>If a Packet is
 retransmitted, it MUST have Protection Encapsulation if the
@@ -7417,7 +7040,8 @@ id="MQTT-SN-4.5-1"></a>When a Server takes ownership of an incoming
 Application Message it MUST add it to the Session State for those
 Clients that have matching Subscriptions</mark>»[MQTT‑SN‑4.5‑1].
 Matching rules are defined in <a href=
-"#topic-names-and-topic-filters">4.7.1</a>.</p>
+"#topic-names-and-topic-filters">4.7.1 "Topic Names and Topic
+Filters"</a>.</p>
 <p>Under normal circumstances Clients receive Application Messages
 in response to Subscriptions they have created. A Client could also
 receive Application Messages that do not match any of its explicit
@@ -7657,7 +7281,8 @@ Topic Filters MUST NOT include the null character (Unicode U+0000)
 "MQTT-SN-4.7.1.3-3" id="MQTT-SN-4.7.1.3-3"></a>Topic Names and
 Topic Filters are UTF-8 Encoded Strings; they MUST NOT encode to
 more than 65,535 bytes</mark>»[MQTT‑SN‑4.7.1.3‑3]. Refer to
-<a href="#utf-8-encoded-string">1.8.4</a>.</p>
+<a href="#utf-8-encoded-string">1.8.4 "UTF-8 Encoded
+String"</a>.</p>
 </li>
 </ul>
 <p>There is no limit to the number of levels in a Topic Name or
@@ -7861,8 +7486,8 @@ acknowledgement outstanding for another Packet for which it has not
 received an acknowledgement</mark>»[MQTT‑SN‑4.9‑2].</p>
 <p>A sender MAY retry a request (send the same Packet) when it is
 expecting an acknowledgement and none has been received. See
-<a href="#packet-delivery-retry">4.4</a> for more information on
-Packet retries.</p>
+<a href="#packet-delivery-retry">4.4 "Packet delivery retry"</a>
+for more information on Packet retries.</p>
 <blockquote>
 <p><strong>Informative comment</strong></p>
 <p>The sender might choose to suspend the sending of QoS 0 PUBLISH
@@ -7872,15 +7497,15 @@ packets because a request is outstanding.</p>
 <p>It is possible to publish PUBWOS packets in the middle of a QoS
 1 or QoS 2 exchange.</p>
 </blockquote>
-<p>Refer to <a href="#publish-actions">3.6.3.7</a> for a
-description of how Clients and Servers react if they are sent more
-than one unacknowledged packet.</p>
+<p>Refer to <a href="#publish-actions">3.6.3.7 "PUBLISH
+Actions"</a> for a description of how Clients and Servers react if
+they are sent more than one unacknowledged packet.</p>
 <h2 id="410-server-redirection-">4.10 Server redirection <a id=
 'server-redirection'></a></h2>
 <p>A Server can request that the Client uses another Server by
 sending a CONNACK or DISCONNECT packet with Reason Codes 0x9C (Use
 another server), or 0x9D (Server moved) as described in <a href=
-"#handling-errors">4.12</a>.</p>
+"#handling-errors">4.12 "Handling errors"</a>.</p>
 <p>The Reason Code 0x9C (Use another server) specifies that the
 Client SHOULD temporarily switch to using another Server. The other
 Server is already known to the Client.</p>
@@ -7895,7 +7520,8 @@ Method and Data fields for use in authentication.</p>
 Authentication in MQTT 5.0. For an implementation of MQTT 3.1.1
 Authentication or MQTT 5.0 Basic Authentication (User Name and
 Password), refer to <a href=
-"#mqtt-user-name-and-password-support">4.11.1.2</a>.</p>
+"#mqtt-user-name-and-password-support">4.11.1.2 "MQTT User Name and
+Password Support"</a>.</p>
 <p>Alternatively, the Underlying Network may support authentication
 technology, such as DTLS in the case that the Underlying Network is
 UDP.</p>
@@ -7915,7 +7541,7 @@ parameters. «<mark title="Requirement MQTT-SN-4.11.1-1"><a name=
 support the Authentication Method supplied by the Client, it MAY
 send a CONNACK with a Reason Code of 0x8C (Bad authentication
 method) or 0x87 (Not Authorized) as described in <a href=
-"#reason-code">2.3</a> and MUST delete the Virtual
+"#reason-code">2.3 "Reason Code"</a> and MUST delete the Virtual
 Connection</mark>»[MQTT‑SN‑4.11.1‑1].</p>
 <p>The Authentication Method is an agreement between the Client and
 Server about the meaning of the data sent in the Authentication
@@ -7961,7 +7587,8 @@ this process by sending a DISCONNECT packet. «<mark title=
 "MQTT-SN-4.11.1-4"></a>The Server can reject the authentication at
 any point in this process. It MUST send a CONNACK with a Reason
 Code of 0x80 or above as described in <a href=
-"#handling-errors">4.12</a></mark>»[MQTT‑SN‑4.11.1‑4].</p>
+"#handling-errors">4.12 "Handling
+errors"</a></mark>»[MQTT‑SN‑4.11.1‑4].</p>
 <p>«<mark title="Requirement MQTT-SN-4.11.1-5"><a name=
 "MQTT-SN-4.11.1-5" id="MQTT-SN-4.11.1-5"></a>If the initial CONNECT
 packet included an Authentication Method then all AUTH packets, and
@@ -8058,8 +7685,8 @@ complete or the re-authentication fails.</p>
 "MQTT-SN-4.11.1.1-2" id="MQTT-SN-4.11.1.1-2"></a>If the
 re-authentication fails, the Client or Server MUST send DISCONNECT
 with an appropriate Reason Code as described in <a href=
-"#handling-errors">4.12</a>, and MUST delete the Virtual
-Connection</mark>»[MQTT‑SN‑4.11.1.1‑2].</p>
+"#handling-errors">4.12 "Handling errors"</a>, and MUST delete the
+Virtual Connection</mark>»[MQTT‑SN‑4.11.1.1‑2].</p>
 <p>During this re-authentication sequence, the flow of other
 packets between the Client and Server is paused, pending the new
 authentication outcome.</p>
@@ -8078,19 +7705,19 @@ User Name and Password Support <a id=
 fields in the CONNECT packet, do the following:</p>
 <ul>
 <li>
-<p>Set the <a href="#authentication-method">3.1.15</a> field to
-MQTT-BASIC.</p>
+<p>Set the <a href="#authentication-method">3.1.15 "Authentication
+Method"</a> field to MQTT-BASIC.</p>
 </li>
 <li>
-<p>Set the <a href="#authentication-data">3.1.17</a> field to
-to:</p>
+<p>Set the <a href="#authentication-data">3.1.17 "Authentication
+Data"</a> field to to:</p>
 </li>
 </ul>
 <ol type="1">
 <li>
 <p>MQTT User Name: a Two Byte Integer length followed by a UTF-8
-Encoded String as defined in <a href=
-"#utf-8-encoded-string">1.8.4</a>.</p>
+Encoded String as defined in <a href="#utf-8-encoded-string">1.8.4
+"UTF-8 Encoded String"</a>.</p>
 </li>
 <li>
 <p>MQTT Password: a Two Byte Integer length followed by binary
@@ -8121,19 +7748,20 @@ together with MQTT Enhanced Authentication, in the CONNECT packet
 do the following:</p>
 <ul>
 <li>
-<p>Set the <a href="#authentication-method">3.1.15</a> field to
-MQTT-ENHANCED.</p>
+<p>Set the <a href="#authentication-method">3.1.15 "Authentication
+Method"</a> field to MQTT-ENHANCED.</p>
 </li>
 <li>
-<p>Set the <a href="#authentication-data">3.1.17</a> field to:</p>
+<p>Set the <a href="#authentication-data">3.1.17 "Authentication
+Data"</a> field to:</p>
 <p>a. MQTT User Name: a Two Byte Integer length followed by a UTF-8
-Encoded String as defined in <a href=
-"#utf-8-encoded-string">1.8.4</a>.</p>
+Encoded String as defined in <a href="#utf-8-encoded-string">1.8.4
+"UTF-8 Encoded String"</a>.</p>
 <p>b. MQTT Password: a Two Byte Integer length followed by binary
 data.</p>
 <p>c. MQTT Authentication Method: a Two Byte Integer length
 followed by a UTF-8 Encoded String as defined in <a href=
-"#utf-8-encoded-string">1.8.4</a> .</p>
+"#utf-8-encoded-string">1.8.4 "UTF-8 Encoded String"</a> .</p>
 <p>d. MQTT Authentication Data: a Two Byte Integer length followed
 by binary data.</p>
 </li>
@@ -8156,10 +7784,11 @@ throughout.</p>
 Malformed Packet and Protocol Errors <a id=
 'malformed-packet-and-protocol-errors'></a></h3>
 <p>Definitions of Malformed Packet and Protocol Errors are
-contained in <a href="#terminology">1.4</a>, some but not all of
-these error cases are noted throughout the specification. The rigor
-with which a Client or Server checks an MQTT-SN Control Packet it
-has received will be a compromise between:</p>
+contained in <a href="#terminology">1.4 "Terminology"</a>, some but
+not all of these error cases are noted throughout the
+specification. The rigor with which a Client or Server checks an
+MQTT-SN Control Packet it has received will be a compromise
+between:</p>
 <ul>
 <li>
 <p>The size of the Client or Server implementation.</p>
@@ -8204,7 +7833,8 @@ Connection it SHOULD send a DISCONNECT packet containing an
 appropriate Reason Code and MUST delete the associated Virtual
 Connection</mark>»[MQTT-SN-4.12.1-1]. Use Reason Code 0x81
 (Malformed Packet) or 0x82 (Protocol Error) unless a more specific
-Reason Code has been defined in <a href="#reason-code">2.3</a>.</p>
+Reason Code has been defined in <a href="#reason-code">2.3 "Reason
+Code"</a>.</p>
 <p>«<mark title="Requirement MQTT-SN-4.12.1-2"><a name=
 "MQTT-SN-4.12.1-2" id="MQTT-SN-4.12.1-2"></a>When a Server detects
 a Malformed Packet or Protocol Error for any packet except
@@ -8215,8 +7845,8 @@ exists</mark>»[MQTT-SN-4.12.1-2]. In the case of an error in a
 CONNECT packet it MAY send a CONNACK packet containing the Reason
 Code. Use Reason Code 0x81 (Malformed Packet) or 0x82 (Protocol
 Error) unless a more specific Reason Code has been defined in
-<a href="#reason-code">2.3</a>. There are no consequences for other
-Sessions.</p>
+<a href="#reason-code">2.3 "Reason Code"</a>. There are no
+consequences for other Sessions.</p>
 <p>If either the Server or Client omits to check some feature of a
 Control Packet, it might fail to detect an error, consequently it
 might allow data to be damaged.</p>
@@ -8245,8 +7875,9 @@ has no consequences for any other Session.</p>
 the Packet can validate the Packet in any order and take the
 appropriate action for any of the errors found.</p>
 <p>Refer to <a href=
-"#handling-of-disallowed-unicode-code-points">5.4.9</a> for
-information about handling Disallowed Unicode code points.</p>
+"#handling-of-disallowed-unicode-code-points">5.4.9 "Handling of
+Disallowed Unicode code points"</a> for information about handling
+Disallowed Unicode code points.</p>
 <h2 id="413-retained-messages-">4.13 Retained Messages <a id=
 'retained-messages'></a></h2>
 <p>«<mark title="Requirement MQTT-SN-4.13-3"><a name=
@@ -8297,8 +7928,8 @@ to 2, the Server MUST NOT send the retained
 messages</mark>»[MQTT‑SN‑4.13‑7].</p>
 </li>
 </ul>
-<p>Refer to <a href="#subscribe-flags">3.7.2</a> for a definition
-of the Subscription Flags.</p>
+<p>Refer to <a href="#subscribe-flags">3.7.2 "SUBSCRIBE Flags"</a>
+for a definition of the Subscription Flags.</p>
 <p>If the Server receives a PUBLISH packet with the RETAIN flag set
 to 1, and QoS 0 it SHOULD store the new QoS 0 message as the new
 retained message for that topic, but MAY choose to discard it at
@@ -8307,8 +7938,8 @@ that topic.</p>
 <p>The setting of the RETAIN flag in an Application Message
 forwarded by the Server from an established Virtual Connection is
 controlled by the Retain As Published subscription option. Refer to
-<a href="#subscribe-flags">3.7.2</a> for a definition of the
-Subscription Flags.</p>
+<a href="#subscribe-flags">3.7.2 "SUBSCRIBE Flags"</a> for a
+definition of the Subscription Flags.</p>
 <ul>
 <li>
 <p>«<mark title="Requirement MQTT-SN-4.13-8"><a name=
@@ -8460,18 +8091,19 @@ packets between Client and Server and mediated by <a href=
 "#session-timers">[timers]</a> resident on the Server. A Client is
 in the Active state when the Server receives a CONNECT packet from
 that Client. This state is supervised by the Server with the
-<a href="#keep-alive">3.1.6</a> timer. If the Server does not
-receive any packet from the Client in a defined period, the Server
-will consider that client as Disconnected and delete the Virtual
-Connection. The Disconnected state is governed by the Session
-Expiry timer - on expiry the Server is free to remove the Client
-session. A Client moves into the Asleep state by issuing a SLEEPREQ
-packet. To be certain that the Server has also recorded the Client
-as being asleep, the Client needs to wait for a positive SLEEPRESP
-response. For more information on the Asleep state, refer to
-<a href="#sleeping-clients">4.14.2</a>.</p>
-<p>See <a href="#c.5-client-state-diagrams">C.5</a> for informative
-state diagrams to help illustrate these transitions.</p>
+<a href="#keep-alive">3.1.6 "Keep Alive"</a> timer. If the Server
+does not receive any packet from the Client in a defined period,
+the Server will consider that client as Disconnected and delete the
+Virtual Connection. The Disconnected state is governed by the
+Session Expiry timer - on expiry the Server is free to remove the
+Client session. A Client moves into the Asleep state by issuing a
+SLEEPREQ packet. To be certain that the Server has also recorded
+the Client as being asleep, the Client needs to wait for a positive
+SLEEPRESP response. For more information on the Asleep state, refer
+to <a href="#sleeping-clients">4.14.2 "Sleeping Clients"</a>.</p>
+<p>See <a href="#c.5-client-state-diagrams">C.5 "Client State
+Diagrams"</a> for informative state diagrams to help illustrate
+these transitions.</p>
 <blockquote>
 <p><strong>Informative Comment</strong></p>
 <p>In MQTT-SN 1.2 there existed a Lost state, which was identical
@@ -8505,15 +8137,16 @@ by observing the Server's response.</p>
 <td style="text-align: left;">Active</td>
 <td style="text-align: left;">Disconnected</td>
 <td style="text-align: left;">CONNECT</td>
-<td style="text-align: left;"><a href="#keep-alive">3.1.6</a></td>
+<td style="text-align: left;"><a href="#keep-alive">3.1.6 "Keep
+Alive"</a></td>
 </tr>
 <tr>
 <td style="text-align: left;">Sleep Duration</td>
 <td style="text-align: left;">Asleep</td>
 <td style="text-align: left;">Disconnected</td>
 <td style="text-align: left;">SLEEPREQ</td>
-<td style="text-align: left;"><a href=
-"#sleeping-clients">4.14.2</a></td>
+<td style="text-align: left;"><a href="#sleeping-clients">4.14.2
+"Sleeping Clients"</a></td>
 </tr>
 <tr>
 <td style="text-align: left;">Session Expiry</td>
@@ -8521,21 +8154,22 @@ by observing the Server's response.</p>
 <td style="text-align: left;">None</td>
 <td style="text-align: left;">CONNECT, DISCONNECT</td>
 <td style="text-align: left;"><a href=
-"#storing-session-state">4.1.1</a></td>
+"#storing-session-state">4.1.1 "Storing Session State"</a></td>
 </tr>
 <tr>
 <td style="text-align: left;">Retry</td>
 <td style="text-align: left;">Active, Awake, Asleep</td>
 <td style="text-align: left;">Disconnected</td>
 <td style="text-align: left;">Sender configuration</td>
-<td style="text-align: left;"><a href=
-"#packet-delivery-retry">4.4</a></td>
+<td style="text-align: left;"><a href="#packet-delivery-retry">4.4
+"Packet delivery retry"</a></td>
 </tr>
 </tbody>
 </table>
 <p>Table: Session Timers</p>
 <p>For example values of these timers, see <a href=
-"#c.3-example-timer-and-counter-values">C.3</a>.</p>
+"#c.3-example-timer-and-counter-values">C.3 "Example Timer and
+Counter Values"</a>.</p>
 <h3 id="4142-sleeping-clients-">4.14.2 Sleeping Clients <a id=
 'sleeping-clients'></a></h3>
 <p>The Asleep state is intended to allow Clients, which may be
@@ -8606,12 +8240,12 @@ PINGRESP packet</mark>»[MQTT‑SN‑4.14.2‑7], returning the Client
 back to the Asleep state, and restarting the Sleep Duration timer
 for that Client.</p>
 <p>After having sent the PINGREQ to the Server, the Client uses the
-retransmission procedure of <a href=
-"#packet-delivery-retry">4.4</a> to supervise the arrival of
-packets sent by the Server. To avoid draining its battery due to
-excessive retransmission of the PINGREQ packet, the Client should
-limit the retransmission with a Maximum Retry Count, and go back to
-sleep when the limit is reached.</p>
+retransmission procedure of <a href="#packet-delivery-retry">4.4
+"Packet delivery retry"</a> to supervise the arrival of packets
+sent by the Server. To avoid draining its battery due to excessive
+retransmission of the PINGREQ packet, the Client should limit the
+retransmission with a Maximum Retry Count, and go back to sleep
+when the limit is reached.</p>
 <p>At some point after several Awake periods without any response
 from the Server, a Client might decide that it needs to try to
 connect to a different Server. The Client might send a DISCONNECT
@@ -9201,21 +8835,23 @@ Server.</p>
 <h3 id="611-mqtt-sn-server-conformance-clause-">6.1.1 MQTT-SN
 Server conformance clause <a id=
 'mqtt-sn-server-conformance-clause'></a></h3>
-<p>Refer to <a href="#terminology">1.4</a> for a definition of
-Server.</p>
+<p>Refer to <a href="#terminology">1.4 "Terminology"</a> for a
+definition of Server.</p>
 <p>An MQTT-SN Server conforms to this specification only if it
 satisfies all the statements below:</p>
 <ol type="1">
 <li>
 <p>The format of all MQTT-SN Control Packets that the Server sends
 matches the format described in <a href=
-"#mqtt-sn-control-packet-format">2</a> and <a href=
-"#mqtt-sn-control-packets">3</a>.</p>
+"#mqtt-sn-control-packet-format">2 "MQTT-SN Control Packet
+format"</a> and <a href="#mqtt-sn-control-packets">3 "MQTT-SN
+Control Packets"</a>.</p>
 </li>
 <li>
 <p>It follows the Topic matching rules described in <a href=
-"#topic-names-and-topic-filters">4.7.1</a> and the Subscription
-rules in <a href="#subscriptions">4.8</a>.</p>
+"#topic-names-and-topic-filters">4.7.1 "Topic Names and Topic
+Filters"</a> and the Subscription rules in <a href=
+"#subscriptions">4.8 "Subscriptions"</a>.</p>
 </li>
 <li>
 <p>It satisfies the MUST level requirements in the following
@@ -9223,16 +8859,18 @@ chapters that are identified except for those that only apply to
 the Client:</p>
 <ul>
 <li>
-<p><a href="#introduction">1</a></p>
+<p><a href="#introduction">1 "Introduction"</a></p>
 </li>
 <li>
-<p><a href="#mqtt-sn-control-packet-format">2</a></p>
+<p><a href="#mqtt-sn-control-packet-format">2 "MQTT-SN Control
+Packet format"</a></p>
 </li>
 <li>
-<p><a href="#mqtt-sn-control-packets">3</a></p>
+<p><a href="#mqtt-sn-control-packets">3 "MQTT-SN Control
+Packets"</a></p>
 </li>
 <li>
-<p><a href="#operational-behavior">4</a></p>
+<p><a href="#operational-behavior">4 "Operational behavior"</a></p>
 </li>
 </ul>
 </li>
@@ -9245,21 +8883,23 @@ conformant implementation.</p>
 <h3 id="612-mqtt-sn-client-conformance-clause-">6.1.2 MQTT-SN
 Client conformance clause <a id=
 'mqtt-sn-client-conformance-clause'></a></h3>
-<p>Refer to <a href="#terminology">1.4</a> for a definition of
-Client.</p>
+<p>Refer to <a href="#terminology">1.4 "Terminology"</a> for a
+definition of Client.</p>
 <p>An MQTT-SN Client conforms to this specification only if it
 satisfies all the statements below:</p>
 <ol type="1">
 <li>
 <p>The format of all MQTT-SN Control Packets that the Client sends
 matches the format described in <a href=
-"#mqtt-sn-control-packet-format">2</a> and <a href=
-"#mqtt-sn-control-packets">3</a>.</p>
+"#mqtt-sn-control-packet-format">2 "MQTT-SN Control Packet
+format"</a> and <a href="#mqtt-sn-control-packets">3 "MQTT-SN
+Control Packets"</a>.</p>
 </li>
 <li>
 <p>It follows the Topic matching rules described in <a href=
-"#topic-names-and-topic-filters">4.7.1</a> and the Subscription
-rules in <a href="#subscriptions">4.8</a>.</p>
+"#topic-names-and-topic-filters">4.7.1 "Topic Names and Topic
+Filters"</a> and the Subscription rules in <a href=
+"#subscriptions">4.8 "Subscriptions"</a>.</p>
 </li>
 <li>
 <p>It satisfies the MUST level requirements in the following
@@ -9267,16 +8907,18 @@ chapters that are identified except for those that only apply to
 the Server:</p>
 <ul>
 <li>
-<p><a href="#introduction">1</a></p>
+<p><a href="#introduction">1 "Introduction"</a></p>
 </li>
 <li>
-<p><a href="#mqtt-sn-control-packet-format">2</a></p>
+<p><a href="#mqtt-sn-control-packet-format">2 "MQTT-SN Control
+Packet format"</a></p>
 </li>
 <li>
-<p><a href="#mqtt-sn-control-packets">3</a></p>
+<p><a href="#mqtt-sn-control-packets">3 "MQTT-SN Control
+Packets"</a></p>
 </li>
 <li>
-<p><a href="#operational-behavior">4</a></p>
+<p><a href="#operational-behavior">4 "Operational behavior"</a></p>
 </li>
 </ul>
 </li>
@@ -9324,8 +8966,9 @@ Appendix B. Mandatory normative statements (informative) <a id=
 'appendix-b.-mandatory-normative-statements-informative'></a></h1>
 <p>This Appendix is non-normative and is provided as a convenient
 summary of the numbered conformance statements found in the main
-body of this document. Refer to <a href="#conformance">6</a> for a
-definitive list of conformance requirements.</p>
+body of this document. Refer to <a href="#conformance">6
+"Conformance"</a> for a definitive list of conformance
+requirements.</p>
 <table>
 <thead>
 <tr>
@@ -11561,11 +11204,11 @@ MQTT-SN.</p>
 <p>If the Gateway is not directly attached to the Clients' network,
 MQTT-SN Clients can communicate with a Gateway through an MQTT-SN
 Forwarder. The forwarder encapsulates (see <a href=
-"#forwarder-encapsulation">3.19</a>) the MQTT-SN frames it receives
-on the Client side and forwards them unchanged to the Gateway; in
-the opposite direction, it removes the encapsulation from the
-frames it receives from the Gateway and sends them unchanged to the
-Clients.</p>
+"#forwarder-encapsulation">3.19 "Forwarder Encapsulation"</a>) the
+MQTT-SN frames it receives on the Client side and forwards them
+unchanged to the Gateway; in the opposite direction, it removes the
+encapsulation from the frames it receives from the Gateway and
+sends them unchanged to the Clients.</p>
 <h3 id="c11-transparent-gateway-">C.1.1. Transparent Gateway <a id=
 'c.1.1-transparent-gateway'></a></h3>
 <p>For each connected MQTT-SN Client a Transparent Gateway will set
@@ -11665,8 +11308,8 @@ Server may return the Reason Code <em>Congestion</em>, meaning
 Server. What constitutes <em>a reasonable amount of time</em>
 depends on the implementation characteristics - it should be
 configured in the client application based on those. See <a href=
-"#c.3-example-timer-and-counter-values">C.3</a> for an example
-value.</p>
+"#c.3-example-timer-and-counter-values">C.3 "Example Timer and
+Counter Values"</a> for an example value.</p>
 <h2 id="c3-example-timer-and-counter-values-">C.3. Example Timer
 and Counter Values <a id=
 'c.3-example-timer-and-counter-values'></a></h2>
@@ -11765,8 +11408,8 @@ Session.</p>
 'c.6.1-publish-header'></a></h3>
 <p>The first 2 or 4 bytes of the packet are encoded according to
 the variable length packet header format. Refer to <a href=
-"#structure-of-an-mqtt-sn-control-packet">2.1</a> for a detailed
-description.</p>
+"#structure-of-an-mqtt-sn-control-packet">2.1 "Structure of an
+MQTT-SN Control Packet"</a> for a detailed description.</p>
 <h3 id="c62-publish-flags-">C.6.2. PUBLISH Flags <a id=
 'c.6.2-publish-flags'></a></h3>
 <p>The PUBLISH Flags is a 1 byte field which contains flags
@@ -11807,8 +11450,8 @@ Flags.</p>
 'c.6.2.4-retain'></a></h4>
 <p><strong>Position</strong>: bit 4 of the PUBLISH Flags.</p>
 <p>This flag signifies whether the message is published as a
-retained message or not. See <a href="#retained-messages">4.13</a>
-for more information.</p>
+retained message or not. See <a href="#retained-messages">4.13
+"Retained Messages"</a> for more information.</p>
 <h3 id="c63-topic-alias-">C.6.3. Topic Alias <a id=
 'c.6.3-topic-alias'></a></h3>
 <p>Only present if the Topic Type is Predefined Topic Alias.
@@ -11843,7 +11486,7 @@ Application Message to a Network Address, for possible receipt by a
 Server or another Client.</p>
 <p>If received by a Client or Server, the PUBLISH QoS -1 packet is
 treated as if its QoS were 0 as described in <a href=
-"#publish-actions">3.6.3.7</a>.</p>
+"#publish-actions">3.6.3.7 "PUBLISH Actions"</a>.</p>
 <h2 id="c7-gateway-advertisement-and-discovery-">C.7. Gateway
 Advertisement and Discovery <a id=
 'c.7-gateway-advertisement-and-discovery'></a></h2>
@@ -11870,8 +11513,9 @@ or a Client on the Gateway's behalf, is a GWINFO packet.</p>
 <p>A Gateway should only advertise its presence, or respond to
 SEARCHGW requests, if it is able to accept subscriptions and
 forward messages. For instance, a <a href=
-"#c.1.1-transparent-gateway">C.1.1</a> which is not currently
-connected to an MQTT Server, should not advertise.</p>
+"#c.1.1-transparent-gateway">C.1.1 "Transparent Gateway"</a> which
+is not currently connected to an MQTT Server, should not
+advertise.</p>
 <p>Multiple Gateways may be active at the same time in the same
 network, in which case they will have different identifiers. It is
 up to the Client to decide to which Gateway it wants to
@@ -11918,7 +11562,7 @@ sending of its own GWINFO packet.</p>
 retransmitted. In this case the time intervals between consecutive
 SEARCHGW packets should be increased by an exponential backoff
 algorithm such as that described in <a href=
-"#c.4-exponential-backoff">C.4</a>.</p>
+"#c.4-exponential-backoff">C.4 "Exponential Backoff"</a>.</p>
 <h1 id="appendix-d-revision-history-informative-">Appendix D.
 Revision History (informative) <a id=
 'revision-history-informative'></a></h1>

@@ -31,27 +31,27 @@ RS = chr(30)
 SEMI = ';'
 SPACE = ' '
 TM = '™'
+GREMLINS = ' .,;?!_()[]{}<>\\/$:"\'`´'
 
-DEBUG = bool(os.getenv('ASSEMBLE_DEBUG', ''))
-TARGETS = (
-    TARGET_HTML := 'html',
-    TARGET_PDF := 'pdf',
+PathLike = Union[str, pathlib.Path]
+
+DEFAULT_CONFIG_PATH = pathlib.Path('etc') / 'assembly-config.yaml'
+
+KNOWN_CHANNELS = (
+    GFM_PLUS := 'gfm-plus',
+    HTML := 'html',
+    PDF := 'pdf',
 )
 
+KNOWN_SEC_REF_STYLES = (
+    NUMBER := 'number',
+    NUMBER_TITLE := 'number-title',
+    SECTION_SIGN_NUMBER := 'section-sign-number',
+)
+
+DEBUG = bool(os.getenv('ASSEMBLE_DEBUG', ''))
 # Optionally dump look-up tables back to etc/ as a cross-check against sections.py output:
 DUMP_LUT = bool(os.getenv('DUMP_LUT', ''))
-
-# Paths:
-GREMLINS = ' .,;?!_()[]{}<>\\/$:"\'`´'
-BINDER_AT = pathlib.Path('etc') / 'bind.txt'
-SOURCE_AT = pathlib.Path('src')
-BUILD_AT = pathlib.Path('build')
-CONFIG_AT = pathlib.Path('etc') / 'sections-config.yaml'
-SECTION_DISPLAY_TO_LABEL_AT = pathlib.Path('etc') / 'section-display-to-label.json'
-SECTION_LABEL_TO_DISPLAY_AT = pathlib.Path('etc') / 'section-label-to-display.json'
-SECTION_DISPLAY_TO_TEXT_AT = pathlib.Path('etc') / 'section-display-to-text.json'
-EG_GLOBAL_TO_LABEL_AT = pathlib.Path('etc') / 'example-global-to-local.json'
-EG_LABEL_TO_GLOBAL_AT = pathlib.Path('etc') / 'example-local-to-global.json'
 
 # Parsers:
 IS_CITE_REF = 'cite'
@@ -65,6 +65,9 @@ MD_REF_DETECT = re.compile(r'\[(?P<text>[^]]+)\]\(#(?P<target>[^)]+)\)')
 # Code block label reference patterns (label values inside inline comments):
 SEC_LABEL_BRACKET_CB_DETECT = re.compile(r'\ +#\ +[^(]+\((?P<label>\(#(?P<value>[0-9a-z-]+)\))\)\.')
 SEC_LABEL_FREE_CB_DETECT = re.compile(r'\ +#\ +[^(]+(?P<label>\(#(?P<value>[0-9a-z-]+)\))\.')
+# Documentary reverse-detection (§ display style, used for authoring checks):
+SEC_DISP_BRACKET_CB_DETECT = re.compile(r'\ +#\ +[^(]+\((?P<disp>§[0-9.]+)\)\.')
+SEC_DISP_FREE_CB_DETECT = re.compile(r'\ +#\ +[^(]+(?P<disp>§[0-9.]+)\.')
 
 SEC_OVER = '[sec]('
 CIT_OVER = '[cite]('
@@ -82,7 +85,6 @@ TOC_HEADER = f"""{YAML_X_SEP}
 
 # Table of Contents
 """
-CLEAN_MD_START = '# Introduction'
 FENCED_BLOCK_FLIP_FLOP = '```'
 
 # Matches inner appendix sub-headings like "C.1 File Size" or "F.2 Something"
@@ -92,9 +94,6 @@ LOGO_LOCAL_PATH = 'images/OASISLogo-v3.0.png'
 TOP_LOGO_LINE = f'![OASIS Logo]({LOGO_URL})'
 
 SEC_NO_TOC_POSTFIX = '{.unnumbered .unlisted}'
-
-SECTION_DISPLAY_TO_LABEL: dict[str, str] = {}
-SEC_LABEL_TEXT: dict[str, str] = {}
 
 TOC_TEMPLATE = {
     1: '$sec_cnt_disp$ [$text$](#$label$)  ',
@@ -113,11 +112,136 @@ CITE_COSMETICS_TEMPLATE = '**\\[**<span id="$label$" class="anchor"></span>**$co
 META_TOC_TYPE = dict[str, dict[str, Union[bool, str, list[dict[str, str]]]]]
 
 
-def load_binder(binder_at: Union[str, pathlib.Path], ignores: Union[list[str], None] = None) -> list[pathlib.Path]:
-    """Load the linear binder text file into a list of file paths."""
-    with open(binder_at, 'rt', encoding=ENCODING, errors=ENC_ERRS) as resource:
-        collation = [pathlib.Path(entry.strip()) for entry in resource.readlines() if entry.strip()]
-    return [path for path in collation if str(path) not in ignores] if ignores else collation
+class Config:
+    """Plain YAML to python class device."""
+    def __init__(self, config_source: str):
+        self.config_source = config_source
+        self.active = False
+
+        self.annex_starts_with = 'Annex '
+        self.appendix_starts_with = 'Appendix '
+
+        self.binder = 'bind.txt'  # binder text file (assumed in etc-path)
+
+        self.binder_ignores: dict[str, list[str]] = {
+            GFM_PLUS: [],
+            HTML: [],
+            PDF: ['frontmatter.md'],
+        }
+
+        self.build_path: str = 'build'  # Relative path from execution dir to build folder
+
+        self.citation_skip_prefixes: list[str] = [HASH]
+        self.citation_sources: list[str] = []  # File names, not full paths
+
+        self.delete_when: list[dict[str, str | list[str]]] = [
+            {
+                'contains': '<mark title="Ephemeral region marking">',
+                'delete': [
+                    '<mark title="Ephemeral region marking">',
+                    '</mark>',
+                ],
+            },
+        ]
+
+        self.etc_path: str = 'etc'  # Relative path from execution dir to etc folder
+        self.example_local_to_global_db: str = 'example-local-to-global.json'  # (assumed in etc-path)
+        self.example_global_to_local_db: str = 'example-global-to-local.json'  # (assumed in etc-path)
+        self.first_authored_section = '# Scope'  # Section title of the first authored section
+        self.glossary_sources: list[str] = []  # file names, not full paths
+        self.html_title: str = 'No Title Given'  # The title of the document as it appears on the frontmatter
+        self.meta_example_global_number: int = 4321  # integer either > count of examples or == zero
+        self.section_display_to_label_db: str = 'section-display-to-label.json'  # (assumed in etc-path)
+        self.section_display_to_text_db: str = 'section-display-to-text.json'  # (assumed in etc-path)
+        self.section_label_to_display_db: str = 'section-label-to-display.json'  # (assumed in etc-path)
+        self.section_reference_style: str = KNOWN_SEC_REF_STYLES[0]  # Enumeration: member of KNOWN_SEC_REF_STYLES
+        self.source_path: str = 'src'  # relative path from execution dir to source dir
+        self.track_examples: bool = False  # Set to true if examples should be discovered
+
+        self.active = self.load()
+
+    def __repr__(self):
+        return json.dumps(self.__dict__, indent=2)
+
+    def load(self) -> bool:
+        """Load from YAML file at config source with minimal validation only."""
+        with open(self.config_source, 'rt', encoding=ENCODING, errors=ENC_ERRS) as handle:
+            _data = yaml.safe_load(handle) or {}
+        if _data:
+            self.annex_starts_with = str(_data.get('annex-starts-with', self.annex_starts_with))
+            self.appendix_starts_with = str(_data.get('appendix-starts-with:', self.appendix_starts_with))
+            self.binder = str(_data.get('binder', self.binder))
+
+            if a_map := _data.get('binder-ignores', {}):
+                _binder_ignores: dict[str, list[str]] = {}
+                if all(channel in a_map for channel in KNOWN_CHANNELS):
+                    for channel in KNOWN_CHANNELS:
+                        _binder_ignores[channel] = [str(ignore) for ignore in a_map.get(channel, [])]
+                self.binder_ignores = _binder_ignores
+
+            self.build_path = str(_data.get('build-path', self.build_path))
+
+            if a_seq := _data.get('citation-skip-prefixes', []):
+                self.citation_skip_prefixes = [str(entry) for entry in a_seq]
+
+            if a_seq := _data.get('citation-sources', []):
+                self.citation_sources = [str(entry) for entry in a_seq]
+
+            if a_seq := _data.get('delete-when', []):
+                _delete_when: list[dict[str, str | list[str]]] = []
+                for rule in a_seq:
+                    if 'contains' in rule and 'delete' in rule:
+                        contains = str(rule['contains'])
+                        deletions = [str(entry) for  entry in rule['delete']]
+                        _delete_when.append({'contains': contains, 'delete': deletions})
+                self.delete_when = _delete_when
+
+            self.etc_path = str(_data.get('etc-path', self.etc_path))
+            self.example_local_to_global_db = str(_data.get('example-local-to-global-db', self.example_local_to_global_db))
+            self.example_global_to_local_db = str(_data.get('example-global-to-local-db', self.example_global_to_local_db))
+            self.first_authored_section = str(_data.get('first-authored-section', self.first_authored_section))
+
+            if a_seq := _data.get('glossary-sources', []):
+                self.glossary_sources = [str(entry) for entry in a_seq]
+
+            self.html_title = str(_data.get('html-title', self.html_title))
+            self.meta_example_global_number = int(_data.get('meta-example-global-number', self.meta_example_global_number))
+            self.section_display_to_label_db = str(_data.get('section-display-to-label-db', self.section_display_to_label_db))
+            self.section_display_to_text_db = str(_data.get('section-display-to-text-db', self.section_display_to_text_db))
+            self.section_label_to_display_db = str(_data.get('section-label-to-display-db', self.section_label_to_display_db))
+
+            self.section_reference_style = str(_data.get('section-reference-style', self.section_reference_style))
+            if self.section_reference_style not in KNOWN_SEC_REF_STYLES:
+                raise ValueError(
+                    f"value '{self.section_reference_style}' of section-reference-style config member"
+                    f' is not in {KNOWN_SEC_REF_STYLES}'
+                )
+
+            self.source_path = str(_data.get('source-path', self.source_path))
+            self.track_examples = bool(_data.get('track-examples', self.track_examples))
+        return True
+
+
+def highlight_in_context(text_lines: list[str], pos: int, span: int = 15) -> None:
+    """Show error line in context to help authors find the root cause of a problem."""
+    for n in range(max(0, pos - span), min(pos + span, len(text_lines))):
+        if n != pos:
+            print(f'        {n:4} | {text_lines[n].rstrip(NL)}')
+        else:
+            print(f'HERE>>> {n:4} | {text_lines[n].rstrip(NL)} <<<HERE')
+    print(DASH * 69)
+
+
+def load_binder(cfg: Config, channel: str) -> list[PathLike]:
+    """Either yield the seq of files to be concat or raise value error when files are not found."""
+    ign = cfg.binder_ignores[channel]
+    with open(pathlib.Path(cfg.etc_path) / cfg.binder, 'rt', encoding=ENCODING, errors=ENC_ERRS) as handle:
+        bind_seq: list[PathLike] = [pathlib.Path(e.strip()) for e in handle if e.strip() and e.strip() not in ign]
+    for resource in bind_seq:
+        if not (pathlib.Path(cfg.source_path) / resource).is_file():
+            raise ValueError(f"source file not found: '{resource}'")
+
+    return bind_seq
 
 
 def end_of_toc_in(text: str, marker: str) -> bool:
@@ -211,40 +335,16 @@ def code_block_label_in(text: str) -> bool:
     return '(#' in text and ' # ' in text
 
 
-def load_config(path: Union[str, pathlib.Path] = CONFIG_AT) -> dict:  # type: ignore[type-arg]
-    """Load per-spec sections configuration."""
-    with pathlib.Path(path).open('rt', encoding=ENCODING, errors=ENC_ERRS) as handle:
-        return yaml.safe_load(handle) or {}
-
-
-def load_label_to_display_lut(path: Union[str, pathlib.Path] = SECTION_LABEL_TO_DISPLAY_AT) -> dict[str, str]:
-    """Load section label → display LUT."""
+def load(path: PathLike) -> dict[str, str]:
+    """Load JSON file into dictionary."""
     with pathlib.Path(path).open('rt', encoding=ENCODING, errors=ENC_ERRS) as handle:
         return json.load(handle)
 
 
-def load_display_to_label_lut(path: Union[str, pathlib.Path] = SECTION_DISPLAY_TO_LABEL_AT) -> dict[str, str]:
-    """Load section display → label LUT."""
-    with pathlib.Path(path).open('rt', encoding=ENCODING, errors=ENC_ERRS) as handle:
-        return json.load(handle)
-
-
-def load_display_to_text_lut(path: Union[str, pathlib.Path] = SECTION_DISPLAY_TO_TEXT_AT) -> dict[str, str]:
-    """Load section display → heading text LUT."""
-    with pathlib.Path(path).open('rt', encoding=ENCODING, errors=ENC_ERRS) as handle:
-        return json.load(handle)
-
-
-def load_eg_label_to_global_lut(path: Union[str, pathlib.Path] = EG_LABEL_TO_GLOBAL_AT) -> dict[str, str]:
-    """Load example label → global number LUT."""
-    with pathlib.Path(path).open('rt', encoding=ENCODING, errors=ENC_ERRS) as handle:
-        return json.load(handle)
-
-
-def load_eg_global_to_label_lut(path: Union[str, pathlib.Path] = EG_GLOBAL_TO_LABEL_AT) -> dict[str, str]:
-    """Load example global number → label LUT."""
-    with pathlib.Path(path).open('rt', encoding=ENCODING, errors=ENC_ERRS) as handle:
-        return json.load(handle)
+def dump(data: dict[str], path: PathLike) -> None:
+    """Dump dictionary into JSON file."""
+    with open(path, 'wt', encoding=ENCODING, errors=ENC_ERRS) as handle:
+        json.dump(data, handle, indent=2)
 
 
 def detect_leftovers(records: list[str], marker: str = 'Found') -> list[tuple[int, str]]:
@@ -311,7 +411,7 @@ def insert_any_section_reference(
             sem_ref = f'[sec](#{label})'
             if sec_ref_style == 'number-title':
                 heading_text = display_to_text.get(display, '')
-                link_text = f'{display} {heading_text}'.strip()
+                link_text = f'{display} "{heading_text}"'.strip()
             elif sec_ref_style == 'section-sign-number':
                 link_text = f'{PARA}{display}'
             else:  # 'number' is the default
@@ -321,16 +421,15 @@ def insert_any_section_reference(
     return record
 
 
-def main(argv: list[str]) -> int:
+def main(args: list[str]) -> int:
     """Drive the assembly."""
     debug = DEBUG
-    bind_seq_path = BINDER_AT
-    target = TARGET_HTML
-    args = list(argv)
+    config_path = DEFAULT_CONFIG_PATH
+    target = HTML
     for slot, arg in enumerate(args):
         if arg.lower() in ('-h', '--help', '/h', '-?'):
-            print('USAGE: bin/assemble.py [-d|--debug] [-b path|--binder path] [-t format|--target format]')
-            print(f'       known targets: [{", ".join(TARGETS)}], default: {TARGET_HTML}')
+            print('USAGE: bin/assemble.py [-d|--debug] [-c path|--config path] [-t format|--target format]')
+            print(f'       known targets: [{", ".join(KNOWN_CHANNELS)}], default: {HTML}')
             return 0
     for slot, arg in enumerate(args):
         if arg in ('-d', '--debug'):
@@ -338,8 +437,8 @@ def main(argv: list[str]) -> int:
             del args[slot]
             break
     for slot, arg in enumerate(args):
-        if arg in ('-b', '--binder'):
-            bind_seq_path = pathlib.Path(args[slot + 1])
+        if arg in ('-c', '--config'):
+            config_path = pathlib.Path(args[slot + 1])
             del args[slot + 1]
             del args[slot]
             break
@@ -348,38 +447,37 @@ def main(argv: list[str]) -> int:
             target = args[slot + 1].lower()
             del args[slot + 1]
             del args[slot]
-            if target not in TARGETS:
-                print(f'ERROR: unknown {target=} (not in [{", ".join(TARGETS)}])')
+            if target not in KNOWN_CHANNELS:
+                print(f'ERROR: unknown {target=} (not in [{", ".join(KNOWN_CHANNELS)}])')
                 return 2
             break
     if args:
-        print(f'WARNING: Unprocessed {args=}')
+        print(f'WARN: Unprocessed {args=}')
 
-    # PDF path skips frontmatter.md — liitos provides its own title page via etc/liitos/ templates.
-    binder_ignores = ['frontmatter.md'] if target == TARGET_PDF else None
-    binder = load_binder(bind_seq_path, binder_ignores)
-    for resource in binder:
-        if not (SOURCE_AT / resource).is_file():
-            print(f'Problem reading {resource}')
-            return 1
+    config = Config(config_path)
+    binder = load_binder(config, target)
 
-    config = load_config()
-    sec_ref_style: str = str(config.get('sec-ref-style', 'number'))
-    clean_md_start: str = str(config.get('clean-md-start', CLEAN_MD_START))
-    track_examples: bool = bool(config.get('track-examples', False))
-    citation_sources: tuple[str, ...] = tuple(config.get('citation-sources', []))
-    glossary_sources: tuple[str, ...] = tuple(config.get('glossary-sources', []))
-    citation_skip_prefixes: tuple[str, ...] = tuple(config.get('citation-skip-prefixes', ['#']))
+    etc_path = pathlib.Path(config.etc_path)
+    sec_ref_style: str = config.section_reference_style
+    clean_md_start: str = config.first_authored_section
+    track_examples: bool = bool(config.track_examples)
+    citation_sources: tuple[str, ...] = tuple(config.citation_sources)
+    glossary_sources: tuple[str, ...] = tuple(config.glossary_sources)
+    citation_skip_prefixes: tuple[str, ...] = tuple(config.citation_skip_prefixes)
 
-    display_from = load_label_to_display_lut()
-    display_to_text = load_display_to_text_lut()
-    eg_global_from = load_eg_label_to_global_lut() if track_examples else {}
+    display_from: dict[str, str] = load(etc_path / config.section_label_to_display_db)
+    display_to_text: dict[str, str] = load(etc_path / config.section_display_to_text_db)
+    # label_from: dict[str, str] = load(etc_path / config.section_display_to_label_db)
+    eg_global_from: dict[str, str] = load(etc_path / config.example_local_to_global_db) if track_examples else {}
+
+    sec_label_text: dict[str, str] = {}
+    section_display_to_label: dict[str, str] = {}
 
     # Assemble source files into flat line list, expanding citations and glossary.
     lines: list[str] = []
     meta_hooks: dict[int, META_TOC_TYPE] = {}
     for resource in binder:
-        meta, part_lines = load_document(SOURCE_AT / resource)
+        meta, part_lines = load_document(pathlib.Path(config.source_path) / resource)
         if part_lines[-1] != NL:
             part_lines.append(NL)
         if meta:
@@ -387,7 +485,7 @@ def main(argv: list[str]) -> int:
             meta_hooks[len(lines) + len(part_lines) - 1] = {}
 
         # PDF: strip HTML comments from yaml fenced block openers (liitos/pdflatex can't handle them)
-        if target == TARGET_PDF:
+        if target == PDF:
             simplified = []
             for line in part_lines:
                 if line.startswith(f'{FENCED_BLOCK_FLIP_FLOP}yaml <!--'):
@@ -435,7 +533,7 @@ def main(argv: list[str]) -> int:
             part_lines = list(patched)
 
         # Glossary <dl> expansion: HTML needs raw HTML for rendering; PDF uses LaTeX definition lists.
-        if target != TARGET_PDF and resource.name in glossary_sources:  # TODO: glossary management → class
+        if target != PDF and resource.name in glossary_sources:  # TODO: glossary management → class
             patched = ['<dl>' + NL]
             in_definition = False
             for line in part_lines:
@@ -504,14 +602,14 @@ def main(argv: list[str]) -> int:
 
     for slot, line in enumerate(lines):
         # HTML: wrap \columns= LaTeX commands in HTML comments (unsupported in HTML/GFM rendering)
-        if target == TARGET_HTML and line.strip() and line.startswith(r'\columns='):
+        if target == HTML and line.strip() and line.startswith(r'\columns='):
             line = HC_BEG + line.rstrip() + HC_END + NL
             lines[slot] = line
             print(f'INFO: Wrapped columns command for HTML target in {slot=}:')
             print(f'INFO: - {line.rstrip()}')
 
         # PDF: replace remote logo URL with local copy for offline rendering
-        if target == TARGET_PDF and line.rstrip() == TOP_LOGO_LINE:
+        if target == PDF and line.rstrip() == TOP_LOGO_LINE:
             lines[slot] = line.replace(LOGO_URL, LOGO_LOCAL_PATH, 1)
             line = lines[slot]
 
@@ -588,17 +686,17 @@ def main(argv: list[str]) -> int:
                     text = text_plus.rstrip(SPACE)
                     label = slugify(text)
                 clean_sec_cnt_disp = sec_cnt_disp.rstrip(FULL_STOP)
-                SEC_LABEL_TEXT[label] = clean_sec_cnt_disp
-                SECTION_DISPLAY_TO_LABEL[clean_sec_cnt_disp] = label
+                sec_label_text[label] = clean_sec_cnt_disp
+                section_display_to_label[clean_sec_cnt_disp] = label
                 # Build heading line per target:
                 # HTML: inject <a id> anchor + section number prefix on every heading.
                 # PDF:  appendix headings get section number + {.unnumbered #label} pandoc attrs;
                 #       top-level appendix headings additionally get \newpage before them;
                 #       normal headings are emitted as-is (LaTeX auto-numbers them).
-                if target == TARGET_HTML:
+                if target == HTML:
                     line = tag + text + ' ' + TOK_SEC.replace('$thing$', label)
                     line = line.replace(tag, f'{tag}{sec_cnt_disp} ', 1) + NL
-                else:  # TARGET_PDF
+                elif target == PDF:
                     if is_appendix:
                         if level == 1:
                             # inject LaTeX page break before each top-level appendix heading
@@ -606,6 +704,9 @@ def main(argv: list[str]) -> int:
                         line = f'{tag}{sec_cnt_disp} {text} {{.unnumbered #{label}}}\n'
                     else:
                         line = tag + text + NL
+                else:
+                    print(f'WARN: heading builder for target / channel {target} not yet implemented.')
+
                 lines[slot] = line
                 if not is_appendix:
                     cur_lvl = nxt_lvl
@@ -632,7 +733,7 @@ def main(argv: list[str]) -> int:
 
             # MAYBE_SEC_NO_TOC_BEFORE_INTRODUCTION
             # Only meaningful for PDF/LaTeX; HTML TOC is built by toccata.py independently.
-            if line.startswith(tag) and not clean_headings and target == TARGET_PDF:
+            if line.startswith(tag) and not clean_headings and target == PDF:
                 lines[slot] = line.rstrip() + SEC_NO_TOC_POSTFIX + NL
 
     # Process citation refs
@@ -698,6 +799,8 @@ def main(argv: list[str]) -> int:
                     else:
                         debug and print(f'detected remote reference for {label} in ({line.rstrip(NL)})')
                         sec_disp = display_from[section]
+                        if sec_ref_style == 'section-sign-number':
+                            sec_disp = PARA + sec_disp
                         evil_ref = f'\\[[{number} (of section {sec_disp})](#{label})\\]'
                     line = line.replace(sem_ref, evil_ref)
                     debug and print(line.rstrip(NL))
@@ -720,6 +823,8 @@ def main(argv: list[str]) -> int:
                         continue
                     label = found['label']
                     display = display_from[value]
+                    if sec_ref_style == 'section-sign-number':
+                        display = PARA + display
                     line = line.replace(label, display)
                     lines[slot] = line
             for ref in SEC_LABEL_FREE_CB_DETECT.finditer(line):
@@ -730,17 +835,19 @@ def main(argv: list[str]) -> int:
                         continue
                     label = found['label']
                     display = display_from[value]
+                    if sec_ref_style == 'section-sign-number':
+                        display = PARA + display
                     line = line.replace(label, display)
                     lines[slot] = line
 
     # HTML only: wrap \scale LaTeX commands in HTML comments
-    if target == TARGET_HTML:
+    if target == HTML:
         for slot, line in enumerate(lines):
             if line.startswith(r'\scale'):
                 lines[slot] = f'{HC_BEG}{line.rstrip(NL)}{HC_END}{NL}'
 
     # HTML only: inject table of contents before the Introduction heading
-    if target == TARGET_HTML:
+    if target == HTML:
         tic_toc.append(YAML_X_SEP)
         tic_toc.append(NL)
         for slot, line in enumerate(lines):
@@ -771,21 +878,22 @@ def main(argv: list[str]) -> int:
         if ref_defects:
             pass  # return 1
 
-    BUILD_AT.mkdir(parents=True, exist_ok=True)
-    if target == TARGET_HTML:
-        dump_assembly(lines, BUILD_AT / 'tmp.md')
-        with open(BUILD_AT / 'toc-mint.json', 'wt', encoding=ENCODING, errors=ENC_ERRS) as handle:
+    build_path = pathlib.Path(config.build_path)
+    build_path.mkdir(parents=True, exist_ok=True)
+    if target == HTML:
+        dump_assembly(lines, build_path / 'tmp.md')
+        with open(build_path / 'toc-mint.json', 'wt', encoding=ENCODING, errors=ENC_ERRS) as handle:
             json.dump(mint, handle, indent=2)
-    else:  # TARGET_PDF
-        dump_assembly(lines, BUILD_AT / 'pdf.md')
+    elif target == PDF:
+        dump_assembly(lines, build_path / 'pdf.md')
         # toc-mint.json not written: liitos/LaTeX handles the TOC natively
+    else:
+        print(f'WARN: dump assembly for target / channel {target} not yet implemented.')
 
     if DUMP_LUT:
-        with SECTION_DISPLAY_TO_LABEL_AT.open('wt', encoding=ENCODING, errors=ENC_ERRS) as handle:
-            json.dump(SECTION_DISPLAY_TO_LABEL, handle, indent=2)
-        section_label_to_display = dict(sorted((label, disp) for disp, label in SECTION_DISPLAY_TO_LABEL.items()))
-        with SECTION_LABEL_TO_DISPLAY_AT.open('wt', encoding=ENCODING, errors=ENC_ERRS) as handle:
-            json.dump(section_label_to_display, handle, indent=2)
+        dump(section_display_to_label, etc_path / config.section_display_to_label_db)
+        section_label_to_display = dict(sorted((label, disp) for disp, label in section_display_to_label.items()))
+        dump(section_label_to_display, etc_path / config.section_label_to_display_db)
 
     return 0
 

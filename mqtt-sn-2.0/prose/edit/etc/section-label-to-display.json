@@ -1,5 +1,5 @@
 {
-  "Please do not edit manually!": "Cf. sections-config.yaml and bin/sections.py",
+  "Please do not edit manually!": "Cf. assembly-config.yaml and bin/sections.py",
   "a.1-special-thanks": "A.1",
   "a.2-participants": "A.2",
   "aae---authentication-data": "3.3.6",

@@ -5,8 +5,11 @@ intro-01-ipr.md
 intro-02-chg-v12.md
 intro-03-org-of-spec.md
 intro-04-terminology.md
+intro-04-terminology-def-list.md
 intro-05-norm-refs.md
+intro-05-norm-refs-def-list.md
 intro-06-info-refs.md
+intro-06-info-refs-def-list.md
 intro-07-mqtt-for-sn.md
 intro-08-data-repr.md
 intro-09-typo-conv.md
