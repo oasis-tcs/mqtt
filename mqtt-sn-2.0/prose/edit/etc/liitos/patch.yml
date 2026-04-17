@@ -5,5 +5,3 @@
   - '\begin{blockquote}'
 - - '\end{quote}'
   - '\end{blockquote}'
-- - '\emph{Figure '
-  - '%HIDDEN-FROM-LATEX%\emph{Figure '

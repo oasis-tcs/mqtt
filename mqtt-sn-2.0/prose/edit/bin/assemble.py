@@ -494,7 +494,7 @@ def main(args: list[str]) -> int:
                 simplified.append(line)
             part_lines = list(simplified)
 
-        if resource.name in citation_sources:  # TODO: citation management → class
+        if resource.name in citation_sources:
             patched = []
             in_citation = False
             in_fenced_block = False
@@ -533,7 +533,7 @@ def main(args: list[str]) -> int:
             part_lines = list(patched)
 
         # Glossary <dl> expansion: HTML needs raw HTML for rendering; PDF uses LaTeX definition lists.
-        if target != PDF and resource.name in glossary_sources:  # TODO: glossary management → class
+        if target == HTML and resource.name in glossary_sources:
             patched = ['<dl>' + NL]
             in_definition = False
             for line in part_lines:
@@ -583,7 +583,6 @@ def main(args: list[str]) -> int:
         lines.extend(part_lines)
 
     # Heading scan: build TOC, track section context per line, rewrite heading lines.
-    # TODO: counter management → class
     lvl_min, lvl_sup = 1, 7
     sec_cnt = {f'{H * level} ': 0 for level in range(lvl_min, lvl_sup)}
     sec_lvl = {f'{H * level} ': level for level in range(lvl_min, lvl_sup)}
@@ -602,11 +601,11 @@ def main(args: list[str]) -> int:
 
     for slot, line in enumerate(lines):
         # HTML: wrap \columns= LaTeX commands in HTML comments (unsupported in HTML/GFM rendering)
-        if target == HTML and line.strip() and line.startswith(r'\columns='):
-            line = HC_BEG + line.rstrip() + HC_END + NL
-            lines[slot] = line
-            print(f'INFO: Wrapped columns command for HTML target in {slot=}:')
-            print(f'INFO: - {line.rstrip()}')
+        # if target == HTML and line.strip() and line.startswith(r'\columns='):
+        #     line = HC_BEG + line.rstrip() + HC_END + NL
+        #     lines[slot] = line
+        #     print(f'INFO: Wrapped columns command for HTML target in {slot=}:')
+        #     print(f'INFO: - {line.rstrip()}')
 
         # PDF: replace remote logo URL with local copy for offline rendering
         if target == PDF and line.rstrip() == TOP_LOGO_LINE:
@@ -742,6 +741,14 @@ def main(args: list[str]) -> int:
         if line != completed:
             lines[slot] = completed
 
+    # Monkey patch away some poor people HTML workarounds from PDF channel
+    if target == PDF:
+        for slot, line in enumerate(lines):
+            if line.startswith('*Figure '):
+                lines[slot] = '%HIDE_FROM_LATEX%' + line
+            elif line.startswith('&nbsp;&nbsp;- '):
+                lines[slot] = line.replace('&nbsp;&nbsp;- ', '  - ')
+
     # Process example refs
     for slot, line in enumerate(lines):
         if example_in(line):
@@ -840,10 +847,10 @@ def main(args: list[str]) -> int:
                     line = line.replace(label, display)
                     lines[slot] = line
 
-    # HTML only: wrap \scale LaTeX commands in HTML comments
+    # HTML only: wrap special PDF channel only commands in HTML comments
     if target == HTML:
         for slot, line in enumerate(lines):
-            if line.startswith(r'\scale'):
+            if any(line.startswith(cmd) for cmd in (r'\columns', r'\scale')):
                 lines[slot] = f'{HC_BEG}{line.rstrip(NL)}{HC_END}{NL}'
 
     # HTML only: inject table of contents before the Introduction heading

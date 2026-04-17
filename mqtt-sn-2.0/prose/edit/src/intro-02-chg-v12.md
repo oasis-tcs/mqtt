@@ -5,11 +5,8 @@ Here is a description of significant differences from previously published, diff
 ### MQTT-SN 1.2{#mqtt-sn-1.2}
 
 - Some terminology has been changed to match MQTT 5.0. For example:
-
   - Topic Id becomes Topic Alias
-
   - Message Id becomes Packet Identifier
-
   - Message Type becomes Packet Type
 
 - The concept of Virtual Connection has been introduced, corresponding to the TCP connection of MQTT.
