@@ -33,8 +33,6 @@ SPACE = ' '
 TM = '™'
 GREMLINS = ' .,;?!_()[]{}<>\\/$:"\'`´'
 
-PathLike = Union[str, pathlib.Path]
-
 DEFAULT_CONFIG_PATH = pathlib.Path('etc') / 'assembly-config.yaml'
 
 KNOWN_CHANNELS = (
@@ -109,7 +107,7 @@ TOC_VERTICAL_SPACER = ''
 CITE_COSMETICS_TEMPLATE = '**\\[**<span id="$label$" class="anchor"></span>**$code$\\]** $text$'
 
 # Type declarations:
-META_TOC_TYPE = dict[str, dict[str, Union[bool, str, list[dict[str, str]]]]]
+PathLike = str | pathlib.Path
 
 
 class Config:
@@ -255,28 +253,6 @@ def end_of_toc_in(text: str, marker: str) -> bool:
     return text.startswith(HASH) and f' {marker_text}' in text
 
 
-def detect_meta(text_lines: list[str]) -> tuple[META_TOC_TYPE, list[str]]:
-    """Extract YAML data from top of file, remove those lines, return (meta, remaining)."""
-    meta_lines = []
-    if text_lines[0].startswith(HC_BEG) and text_lines[1].startswith(YAML_SEP):
-        for line in text_lines[2:]:
-            if line.startswith(YAML_SEP):
-                break
-            meta_lines.append(line)
-
-    from_here = len(meta_lines) + 4
-    if from_here > 4:
-        text_lines = text_lines[from_here:]
-
-    return yaml.safe_load(''.join(meta_lines)) if meta_lines else {}, text_lines
-
-
-def load_document(path: Union[str, pathlib.Path]) -> tuple[META_TOC_TYPE, list[str]]:
-    """Load text file into list of strings, harvesting any YAML meta."""
-    with open(path, 'rt', encoding=ENCODING, errors=ENC_ERRS) as resource:
-        return detect_meta(resource.readlines())
-
-
 def dump_assembly(text_lines: list[str], to_path: Union[str, pathlib.Path]) -> None:
     """Write lines of text to file at path."""
     with open(to_path, 'wt', encoding=ENCODING, errors=ENC_ERRS) as resource:
@@ -341,7 +317,7 @@ def load(path: PathLike) -> dict[str, str]:
         return json.load(handle)
 
 
-def dump(data: dict[str], path: PathLike) -> None:
+def dump(data: dict[str, str], path: PathLike) -> None:
     """Dump dictionary into JSON file."""
     with open(path, 'wt', encoding=ENCODING, errors=ENC_ERRS) as handle:
         json.dump(data, handle, indent=2)
@@ -421,49 +397,175 @@ def insert_any_section_reference(
     return record
 
 
-def main(args: list[str]) -> int:
-    """Drive the assembly."""
-    debug = DEBUG
-    config_path = DEFAULT_CONFIG_PATH
-    target = HTML
+def html_glossary(text_lines: list[str]) -> list[str]:
+    """Glossary <dl> expansion: HTML needs raw HTML for rendering; PDF uses LaTeX definition lists."""
+    patched = ['<dl>' + NL]
+    in_definition = False
+    for line in text_lines:
+        if not in_definition and line.strip() and not line.startswith(COLON):
+            in_definition = True
+            term = line.strip()
+            label = 'def:' + slugify(term)
+            definition = ''
+            continue
+        if in_definition:
+            if line.startswith(COLON):
+                definition += line.lstrip(COLON).strip()
+                definition = (
+                    definition.replace('_Examples_', '<em>Examples</em>')
+                    .replace('_Example_', '<em>Example</em>')
+                    .replace('**Notes**', '<strong>Notes</strong>')
+                    .replace('**Note**', '<strong>Note</strong>')
+                )
+                continue
+            if line.strip():
+                definition += NL + ' ' * 6 + line.strip()
+                definition = (
+                    definition.replace('_Examples_', '<em>Examples</em>')
+                    .replace('_Example_', '<em>Example</em>')
+                    .replace('**Notes**', '<strong>Notes</strong>')
+                    .replace('**Note**', '<strong>Note</strong>')
+                )
+                continue
+            if not line.strip():
+                for ref in MD_REF_DETECT.finditer(definition):
+                    if ref:
+                        found = ref.groupdict()
+                        ref_text = found['text']
+                        ref_anchor = found['target']
+                        md_ref = f'[{ref_text}](#{ref_anchor})'
+                        html_ref = f'<a href="#{ref_anchor}">{ref_text}</a>'
+                        definition = definition.replace(md_ref, html_ref)
+                item = f'{" " * 2}<dt id="{label}">{term}</dt>\n{" " * 2}<dd>{definition}</dd>\n'
+                in_definition = False
+                patched.append(item)
+                continue
+        else:
+            patched.append(line)
+    patched.append('</dl>' + NL + NL)
+
+    return list(patched)
+
+
+def citations(text_lines: list[str], cfg: Config) -> list[str]:
+    """Process citation data file lines."""
+    patched = []
+    in_citation = False
+    in_fenced_block = False
+    for line in text_lines:
+        if line.startswith(FENCED_BLOCK_FLIP_FLOP):
+            in_fenced_block = not in_fenced_block
+        if any(line.startswith(e) for e in cfg.citation_skip_prefixes) and not in_fenced_block:
+            patched.append(line)
+            continue
+        if line.strip() and not line.startswith(COLON):
+            in_citation = True
+            code = line.strip()
+            label = code.replace(COLON, SEMI).rstrip(TM)
+            text = ''
+            continue
+        if in_citation:
+            if line.startswith(COLON):
+                text += line.lstrip(COLON).strip()
+                continue
+            if line.strip():
+                text += SPACE + line.strip()
+                continue
+            if not line.strip():
+                citation = (
+                    CITE_COSMETICS_TEMPLATE.replace('$label$', label)
+                    .replace('$code$', code)
+                    .replace('$text$', text)
+                    + NL
+                )
+                in_citation = False
+                patched.append(citation)
+                patched.append(line)
+                continue
+        else:
+            patched.append(line)
+    return list(patched)
+
+
+
+def splice_sources(bind_seq: list[PathLike], chn: str, cfg: Config) -> tuple[list[str], list[str]]:
+    """Channel specific splice yielding two list: (1) lines of all sources and (2) source of same-index line."""
+    documents: list[tuple[list[str], str]] = []
+    for resource in bind_seq:
+        with open(pathlib.Path(cfg.source_path) / resource, 'rt', encoding=ENCODING, errors=ENC_ERRS) as handle:
+            raw = handle.readlines()
+        if raw and raw[-1] != NL:
+            raw.append(NL)
+        documents.append((raw, str(resource)))
+
+    for slot, (body, source) in enumerate(documents):
+        if source in cfg.citation_sources:
+            documents[slot] = (citations(body, cfg), source)
+        elif chn == HTML and source in cfg.glossary_sources:
+            documents[slot] = (html_glossary(body), source)
+
+    # Flatten to a single line sequence with per-line source tracking
+    the_lines: list[str] = []
+    sources_of_lines: list[str] = []
+    for body, source in documents:
+        for line in body:
+            the_lines.append(line)
+            sources_of_lines.append(source)
+
+    print(f'INFO: Loaded {len(bind_seq)} source files → {len(the_lines)} lines total')
+    return the_lines, sources_of_lines
+
+
+def parse(args: list[str]) -> tuple[bool, bool, PathLike, str]:
+    """Parse the command line arguments received."""
+    work_left = True
+    dbg = DEBUG
+    cfg_path = DEFAULT_CONFIG_PATH
+    chn = HTML
     for slot, arg in enumerate(args):
         if arg.lower() in ('-h', '--help', '/h', '-?'):
             print('USAGE: bin/assemble.py [-d|--debug] [-c path|--config path] [-t format|--target format]')
             print(f'       known targets: [{", ".join(KNOWN_CHANNELS)}], default: {HTML}')
-            return 0
-    for slot, arg in enumerate(args):
-        if arg in ('-d', '--debug'):
-            debug = True
-            del args[slot]
-            break
-    for slot, arg in enumerate(args):
-        if arg in ('-c', '--config'):
-            config_path = pathlib.Path(args[slot + 1])
-            del args[slot + 1]
-            del args[slot]
-            break
-    for slot, arg in enumerate(args):
-        if arg in ('-t', '--target'):
-            target = args[slot + 1].lower()
-            del args[slot + 1]
-            del args[slot]
-            if target not in KNOWN_CHANNELS:
-                print(f'ERROR: unknown {target=} (not in [{", ".join(KNOWN_CHANNELS)}])')
-                return 2
-            break
-    if args:
-        print(f'WARN: Unprocessed {args=}')
+            work_left = False
+    if work_left:
+        for slot, arg in enumerate(args):
+            if arg in ('-d', '--debug'):
+                dbg = True
+                del args[slot]
+                break
+        for slot, arg in enumerate(args):
+            if arg in ('-c', '--config'):
+                cfg_path = pathlib.Path(args[slot + 1])
+                del args[slot + 1]
+                del args[slot]
+                break
+        for slot, arg in enumerate(args):
+            if arg in ('-t', '--target'):
+                chn = args[slot + 1].lower()
+                del args[slot + 1]
+                del args[slot]
+                if chn not in KNOWN_CHANNELS:
+                    raise ValueError(f'unknown target / channel {chn=} (not in [{", ".join(KNOWN_CHANNELS)}])')
+                break
+        if args:
+            print(f'WARN: Unprocessed {args=}')
 
-    config = Config(config_path)
-    binder = load_binder(config, target)
+    return work_left, dbg, cfg_path, chn
+
+
+def main(args: list[str]) -> int:
+    """Drive the assembly."""
+    need_processing, debug, config_path, channel = parse(args)
+    if not need_processing:
+        return 0
+
+    config = Config(str(config_path))
+    binder = load_binder(config, channel)
 
     etc_path = pathlib.Path(config.etc_path)
     sec_ref_style: str = config.section_reference_style
     clean_md_start: str = config.first_authored_section
     track_examples: bool = bool(config.track_examples)
-    citation_sources: tuple[str, ...] = tuple(config.citation_sources)
-    glossary_sources: tuple[str, ...] = tuple(config.glossary_sources)
-    citation_skip_prefixes: tuple[str, ...] = tuple(config.citation_skip_prefixes)
 
     display_from: dict[str, str] = load(etc_path / config.section_label_to_display_db)
     display_to_text: dict[str, str] = load(etc_path / config.section_display_to_text_db)
@@ -474,113 +576,7 @@ def main(args: list[str]) -> int:
     section_display_to_label: dict[str, str] = {}
 
     # Assemble source files into flat line list, expanding citations and glossary.
-    lines: list[str] = []
-    meta_hooks: dict[int, META_TOC_TYPE] = {}
-    for resource in binder:
-        meta, part_lines = load_document(pathlib.Path(config.source_path) / resource)
-        if part_lines[-1] != NL:
-            part_lines.append(NL)
-        if meta:
-            meta_hooks[len(lines)] = meta
-            meta_hooks[len(lines) + len(part_lines) - 1] = {}
-
-        # PDF: strip HTML comments from yaml fenced block openers (liitos/pdflatex can't handle them)
-        if target == PDF:
-            simplified = []
-            for line in part_lines:
-                if line.startswith(f'{FENCED_BLOCK_FLIP_FLOP}yaml <!--'):
-                    simplified.append(f'{FENCED_BLOCK_FLIP_FLOP}yaml\n')
-                    continue
-                simplified.append(line)
-            part_lines = list(simplified)
-
-        if resource.name in citation_sources:
-            patched = []
-            in_citation = False
-            in_fenced_block = False
-            for line in part_lines:
-                if line.startswith(FENCED_BLOCK_FLIP_FLOP):
-                    in_fenced_block = not in_fenced_block
-                if line.startswith(citation_skip_prefixes) and not in_fenced_block:
-                    patched.append(line)
-                    continue
-                if line.strip() and not line.startswith(COLON):
-                    in_citation = True
-                    code = line.strip()
-                    label = code.replace(COLON, SEMI).rstrip(TM)
-                    text = ''
-                    continue
-                if in_citation:
-                    if line.startswith(COLON):
-                        text += line.lstrip(COLON).strip()
-                        continue
-                    if line.strip():
-                        text += SPACE + line.strip()
-                        continue
-                    if not line.strip():
-                        citation = (
-                            CITE_COSMETICS_TEMPLATE.replace('$label$', label)
-                            .replace('$code$', code)
-                            .replace('$text$', text)
-                            + NL
-                        )
-                        in_citation = False
-                        patched.append(citation)
-                        patched.append(line)
-                        continue
-                else:
-                    patched.append(line)
-            part_lines = list(patched)
-
-        # Glossary <dl> expansion: HTML needs raw HTML for rendering; PDF uses LaTeX definition lists.
-        if target == HTML and resource.name in glossary_sources:
-            patched = ['<dl>' + NL]
-            in_definition = False
-            for line in part_lines:
-                if not in_definition and line.strip() and not line.startswith(COLON):
-                    in_definition = True
-                    term = line.strip()
-                    label = 'def;' + slugify(term)
-                    definition = ''
-                    continue
-                if in_definition:
-                    if line.startswith(COLON):
-                        definition += line.lstrip(COLON).strip()
-                        definition = (
-                            definition.replace('_Examples_', '<em>Examples</em>')
-                            .replace('_Example_', '<em>Example</em>')
-                            .replace('**Notes**', '<strong>Notes</strong>')
-                            .replace('**Note**', '<strong>Note</strong>')
-                        )
-                        continue
-                    if line.strip():
-                        definition += NL + ' ' * 6 + line.strip()
-                        definition = (
-                            definition.replace('_Examples_', '<em>Examples</em>')
-                            .replace('_Example_', '<em>Example</em>')
-                            .replace('**Notes**', '<strong>Notes</strong>')
-                            .replace('**Note**', '<strong>Note</strong>')
-                        )
-                        continue
-                    if not line.strip():
-                        for ref in MD_REF_DETECT.finditer(definition):
-                            if ref:
-                                found = ref.groupdict()
-                                ref_text = found['text']
-                                ref_anchor = found['target']
-                                md_ref = f'[{ref_text}](#{ref_anchor})'
-                                html_ref = f'<a href="#{ref_anchor}">{ref_text}</a>'
-                                definition = definition.replace(md_ref, html_ref)
-                        item = f'{" " * 2}<dt id="{label}">{term}</dt>\n{" " * 2}<dd>{definition}</dd>\n'
-                        in_definition = False
-                        patched.append(item)
-                        continue
-                else:
-                    patched.append(line)
-            patched.append('</dl>' + NL + NL)
-            part_lines = list(patched)
-
-        lines.extend(part_lines)
+    lines, line_source = splice_sources(binder, channel, config)
 
     # Heading scan: build TOC, track section context per line, rewrite heading lines.
     lvl_min, lvl_sup = 1, 7
@@ -588,8 +584,6 @@ def main(args: list[str]) -> int:
     sec_lvl = {f'{H * level} ': level for level in range(lvl_min, lvl_sup)}
     lvl_sec = {level: f'{H * level} ' for level in range(lvl_min, lvl_sup)}
     cur_lvl = sec_lvl[f'{H} ']
-    meta_hook: META_TOC_TYPE = {}
-    # TODO: ToC builder → class
     tic_toc = [TOC_HEADER]
     mint = []
     did_appendix_sep = False
@@ -600,30 +594,18 @@ def main(args: list[str]) -> int:
     in_fenced_block = False
 
     for slot, line in enumerate(lines):
-        # HTML: wrap \columns= LaTeX commands in HTML comments (unsupported in HTML/GFM rendering)
-        # if target == HTML and line.strip() and line.startswith(r'\columns='):
-        #     line = HC_BEG + line.rstrip() + HC_END + NL
-        #     lines[slot] = line
-        #     print(f'INFO: Wrapped columns command for HTML target in {slot=}:')
-        #     print(f'INFO: - {line.rstrip()}')
-
         # PDF: replace remote logo URL with local copy for offline rendering
-        if target == PDF and line.rstrip() == TOP_LOGO_LINE:
+        if channel == PDF and line.rstrip() == TOP_LOGO_LINE:
             lines[slot] = line.replace(LOGO_URL, LOGO_LOCAL_PATH, 1)
             line = lines[slot]
 
         if line.startswith(FENCED_BLOCK_FLIP_FLOP):
             in_fenced_block = not in_fenced_block
-        if meta_hooks.get(slot) is not None:
-            meta_hook = meta_hooks[slot]
         if line.startswith(clean_md_start):
             clean_headings = True
         cs_of_slot[slot] = current_cs
         for tag in sec_cnt:
             if line.startswith(tag) and clean_headings and not in_fenced_block:
-                if meta_hook:
-                    print('WARNING: deprecated out-of-band appendix handling - remove YAML frontmatter from source')
-                    return 1
                 text_plus = line.split(tag, 1)[1].rstrip()
                 nxt_lvl = sec_lvl[tag]
                 level = nxt_lvl
@@ -652,6 +634,7 @@ def main(args: list[str]) -> int:
                             if cnt == 0:
                                 raise RuntimeError(
                                     f'counting is hard: {sec_cnt} at {tag} for {slot}:{line.rstrip(NL)}'
+                                    f' fron source {line_source[slot]}'
                                 )
                             sec_cnt_disp_vec.append(str(cnt))
                             if s_tag == tag:
@@ -687,15 +670,15 @@ def main(args: list[str]) -> int:
                 clean_sec_cnt_disp = sec_cnt_disp.rstrip(FULL_STOP)
                 sec_label_text[label] = clean_sec_cnt_disp
                 section_display_to_label[clean_sec_cnt_disp] = label
-                # Build heading line per target:
+                # Build heading line per channel:
                 # HTML: inject <a id> anchor + section number prefix on every heading.
                 # PDF:  appendix headings get section number + {.unnumbered #label} pandoc attrs;
                 #       top-level appendix headings additionally get \newpage before them;
                 #       normal headings are emitted as-is (LaTeX auto-numbers them).
-                if target == HTML:
+                if channel == HTML:
                     line = tag + text + ' ' + TOK_SEC.replace('$thing$', label)
                     line = line.replace(tag, f'{tag}{sec_cnt_disp} ', 1) + NL
-                elif target == PDF:
+                elif channel == PDF:
                     if is_appendix:
                         if level == 1:
                             # inject LaTeX page break before each top-level appendix heading
@@ -704,7 +687,7 @@ def main(args: list[str]) -> int:
                     else:
                         line = tag + text + NL
                 else:
-                    print(f'WARN: heading builder for target / channel {target} not yet implemented.')
+                    print(f'WARN: heading builder for target / channel {channel} not yet implemented.')
 
                 lines[slot] = line
                 if not is_appendix:
@@ -732,7 +715,7 @@ def main(args: list[str]) -> int:
 
             # MAYBE_SEC_NO_TOC_BEFORE_INTRODUCTION
             # Only meaningful for PDF/LaTeX; HTML TOC is built by toccata.py independently.
-            if line.startswith(tag) and not clean_headings and target == PDF:
+            if line.startswith(tag) and not clean_headings and channel == PDF:
                 lines[slot] = line.rstrip() + SEC_NO_TOC_POSTFIX + NL
 
     # Process citation refs
@@ -742,12 +725,14 @@ def main(args: list[str]) -> int:
             lines[slot] = completed
 
     # Monkey patch away some poor people HTML workarounds from PDF channel
-    if target == PDF:
+    if channel == PDF:
         for slot, line in enumerate(lines):
             if line.startswith('*Figure '):
                 lines[slot] = '%HIDE_FROM_LATEX%' + line
             elif line.startswith('&nbsp;&nbsp;- '):
                 lines[slot] = line.replace('&nbsp;&nbsp;- ', '  - ')
+            elif line.startswith(f'{FENCED_BLOCK_FLIP_FLOP}yaml <!--'):
+                lines[slot] = f'{FENCED_BLOCK_FLIP_FLOP}yaml'
 
     # Process example refs
     for slot, line in enumerate(lines):
@@ -848,13 +833,13 @@ def main(args: list[str]) -> int:
                     lines[slot] = line
 
     # HTML only: wrap special PDF channel only commands in HTML comments
-    if target == HTML:
+    if channel == HTML:
         for slot, line in enumerate(lines):
             if any(line.startswith(cmd) for cmd in (r'\columns', r'\scale')):
                 lines[slot] = f'{HC_BEG}{line.rstrip(NL)}{HC_END}{NL}'
 
     # HTML only: inject table of contents before the Introduction heading
-    if target == HTML:
+    if channel == HTML:
         tic_toc.append(YAML_X_SEP)
         tic_toc.append(NL)
         for slot, line in enumerate(lines):
@@ -887,15 +872,15 @@ def main(args: list[str]) -> int:
 
     build_path = pathlib.Path(config.build_path)
     build_path.mkdir(parents=True, exist_ok=True)
-    if target == HTML:
+    if channel == HTML:
         dump_assembly(lines, build_path / 'tmp.md')
         with open(build_path / 'toc-mint.json', 'wt', encoding=ENCODING, errors=ENC_ERRS) as handle:
             json.dump(mint, handle, indent=2)
-    elif target == PDF:
+    elif channel == PDF:
         dump_assembly(lines, build_path / 'pdf.md')
         # toc-mint.json not written: liitos/LaTeX handles the TOC natively
     else:
-        print(f'WARN: dump assembly for target / channel {target} not yet implemented.')
+        print(f'WARN: dump assembly for target / channel {channel} not yet implemented.')
 
     if DUMP_LUT:
         dump(section_display_to_label, etc_path / config.section_display_to_label_db)

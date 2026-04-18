@@ -1467,33 +1467,33 @@ in this specification are to be interpreted as described in IETF
 RFC 2119 [<a href="#RFC2119">RFC2119</a>], except where they appear
 in text that is marked as non-normative.</p>
 <dl>
-<dt id="def;datagram">Datagram</dt>
+<dt id="def:datagram">Datagram</dt>
 <dd>An independent, self-contained sequence of bytes. If received,
 the contents of a datagram must be correct.</dd>
-<dt id="def;underlying-network">Underlying Network</dt>
+<dt id="def:underlying-network">Underlying Network</dt>
 <dd>The underlying network which provides the means to send
 datagrams from one network endpoint to another.</dd>
-<dt id="def;network-address">Network Address</dt>
+<dt id="def:network-address">Network Address</dt>
 <dd>A unique label provided by the Underlying Network to identify a
 network endpoint. To receive datagrams, an MQTT-SN Client or Server
 listens to the network for packets addressed to a specific Network
 Address.</dd>
-<dt id="def;network-identity">Network Identity</dt>
+<dt id="def:network-identity">Network Identity</dt>
 <dd>The identity used to establish that a sequence of datagrams
 originates from the same sender. This could be, for example:<br />
 - A Network Address<br />
 - A DTLS connection ID<br />
 - An MQTT-SN Protection Packet Sender Identifier</dd>
-<dt id="def;virtual-connection">Virtual Connection</dt>
+<dt id="def:virtual-connection">Virtual Connection</dt>
 <dd>An MQTT-SN construct corresponding to the network connection in
 MQTT. It associates a Network Identity with a Session, by means of
 the Client Identifier.</dd>
-<dt id="def;application-message">Application Message</dt>
+<dt id="def:application-message">Application Message</dt>
 <dd>The data carried by the MQTT-SN (or MQTT) protocols across the
 network for the application. When an Application Message is
 transported by MQTT-SN (or MQTT) it contains payload data, a
 Quality of Service (QoS), and a Topic Name.</dd>
-<dt id="def;client">Client</dt>
+<dt id="def:client">Client</dt>
 <dd>A program or device that uses MQTT-SN. An MQTT-SN Client does
 one or more of the following:<br />
 - creates a Virtual Connection to a Server, then:<br />
@@ -1507,7 +1507,7 @@ Messages.<br />
 - without using a Virtual Connection<br />
 &nbsp;&nbsp;- publishes Application Messages to one or more
 recipients.</dd>
-<dt id="def;server">Server</dt>
+<dt id="def:server">Server</dt>
 <dd>A program or device that acts as an intermediary between
 Clients which publish Application Messages and Clients which have
 made Subscriptions. A Server does one or more of the
@@ -1538,10 +1538,10 @@ Client for each MQTT packet received<br />
 Virtual Connection is deleted<br />
 - accepts Application Messages from MQTT-SN Clients and forwards
 some or all to the MQTT Server.</dd>
-<dt id="def;gateway">Gateway</dt>
+<dt id="def:gateway">Gateway</dt>
 <dd>An MQTT-SN Server that uses one or more TCP connections to
 communicate with an MQTT Server.</dd>
-<dt id="def;mqtt-client">MQTT Client</dt>
+<dt id="def:mqtt-client">MQTT Client</dt>
 <dd>A program or device that uses MQTT. An MQTT Client:<br />
 - opens the Network Connection to the MQTT Server.<br />
 - publishes Application Messages that other MQTT (or MQTT-SN)
@@ -1550,7 +1550,7 @@ Clients might be interested in.<br />
 in receiving.<br />
 - unsubscribes to remove a request for Application Messages.<br />
 - closes the Network Connection to the Server.</dd>
-<dt id="def;mqtt-server">MQTT Server</dt>
+<dt id="def:mqtt-server">MQTT Server</dt>
 <dd>A program or device that acts as an intermediary between MQTT
 Clients which publish Application Messages and MQTT Clients which
 have made Subscriptions. Also known informally as an MQTT
@@ -1563,60 +1563,60 @@ Clients.<br />
 - forwards Application Messages that match MQTT Client
 Subscriptions.<br />
 - closes the Network Connection from the MQTT Client.</dd>
-<dt id="def;client-identifier">Client Identifier</dt>
+<dt id="def:client-identifier">Client Identifier</dt>
 <dd>A UTF-8 encoded character string which uniquely identifies
 every Client connecting to a Server.</dd>
-<dt id="def;session">Session</dt>
+<dt id="def:session">Session</dt>
 <dd>A stateful interaction between a Client and a Server which is
 associated with a Client Identifier. Some Sessions last only as
 long as the Virtual Connection, others can span multiple
 consecutive Virtual Connections between a Client and a Server.</dd>
-<dt id="def;session-state">Session State</dt>
+<dt id="def:session-state">Session State</dt>
 <dd>The set of data that describes a Session. The Session State
 held by a Client is different to that held by a Server. See
 <a href="#session-state">sec</a> for details.</dd>
-<dt id="def;subscription">Subscription</dt>
+<dt id="def:subscription">Subscription</dt>
 <dd>A Subscription comprises a Topic Filter and a maximum QoS. A
 Subscription is associated with a single Session. A Session can
 contain more than one Subscription. Each Subscription within a
 Session has a different Topic Filter.</dd>
-<dt id="def;wildcard-subscription">Wildcard Subscription</dt>
+<dt id="def:wildcard-subscription">Wildcard Subscription</dt>
 <dd>A Wildcard Subscription is a Subscription with a Topic Filter
 containing one or more wildcard characters. This allows the
 subscription to match more than one Topic Name. Refer to <a href=
 "#topic-wildcards">sec</a> for a description of wildcard characters
 in a Topic Filter.</dd>
-<dt id="def;topic-name">Topic Name</dt>
+<dt id="def:topic-name">Topic Name</dt>
 <dd>A label attached to an Application Message which is matched
 against the Subscriptions known to the Server.</dd>
-<dt id="def;topic-alias">Topic Alias</dt>
+<dt id="def:topic-alias">Topic Alias</dt>
 <dd>A Topic Alias is a Two Byte Integer value that is used to
 identify the Topic instead of using the Topic Name. This reduces
 Packet sizes, and is useful when the Topic Names are long and the
 same Topic Names are used repetitively within a Virtual
 Connection.</dd>
-<dt id="def;topic-filter">Topic Filter</dt>
+<dt id="def:topic-filter">Topic Filter</dt>
 <dd>An expression contained in a Subscription to indicate an
 interest in one or more topics. A Topic Filter can include wildcard
 characters and can match more than one Topic Name.</dd>
-<dt id="def;mqtt-sn-control-packet">MQTT-SN Control Packet</dt>
+<dt id="def:mqtt-sn-control-packet">MQTT-SN Control Packet</dt>
 <dd>A packet of information that is sent to a Network Address.</dd>
-<dt id="def;malformed-packet">Malformed Packet</dt>
+<dt id="def:malformed-packet">Malformed Packet</dt>
 <dd>A Control Packet that cannot be parsed according to this
 specification. Refer to <a href="#handling-errors">sec</a> for
 information about error handling.</dd>
-<dt id="def;protocol-error">Protocol Error</dt>
+<dt id="def:protocol-error">Protocol Error</dt>
 <dd>An error that is detected after the packet has been parsed and
 found to contain data that is not allowed by the protocol or is
 inconsistent with the state of the Client or Server. Refer to
 <a href="#handling-errors">sec</a> for information about error
 handling.</dd>
-<dt id="def;will-message">Will Message</dt>
+<dt id="def:will-message">Will Message</dt>
 <dd>An Application Message which is published by the Server after
 the Virtual Connection is deleted in cases where the Virtual
 Connection is not deleted normally. Refer to <a href=
 "#will-flags">sec</a> for information about Will Messages.</dd>
-<dt id="def;retained-message">Retained Message</dt>
+<dt id="def:retained-message">Retained Message</dt>
 <dd>An Application Message which is stored by the Server for a
 Topic Name. When a Client subscribes to a topic which has a
 Retained Message set, the Server sends the Retained Message to the
@@ -1624,7 +1624,7 @@ Client, depending on the setting of the Retain Handling Subscribe
 Flags. Refer to <a href="#subscribe-flags">sec</a> and <a href=
 "#retained-messages">sec</a> for more information about Retained
 Messages.</dd>
-<dt id="def;disallowed-unicode-code-point">Disallowed Unicode code
+<dt id="def:disallowed-unicode-code-point">Disallowed Unicode code
 point</dt>
 <dd>The set of Unicode Control Codes and Unicode Noncharacters
 which should not be included in a UTF-8 Encoded String. Refer to
