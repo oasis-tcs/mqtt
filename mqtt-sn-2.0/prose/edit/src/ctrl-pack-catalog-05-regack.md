@@ -12,7 +12,8 @@ The first 2 or 4 bytes of the packet are encoded according to the variable lengt
 
 ### REGACK Flags{#regack-flags}
 
-The REGACK Flags is a 1 byte field which contains flags specifying the contents of the REGACK packet. «<mark title="Requirement MQTT-SN-3.5.2-1"><a name="MQTT-SN-3.5.2-1"></a>Bits 7-3 of the REGACK Flags are reserved and MUST be set to 0</mark>»\[MQTT‑SN‑3.5.2‑1].
+The REGACK Flags is a 1 byte field which contains flags specifying the contents of the REGACK packet.
+«<mark title="Requirement MQTT-SN-3.5.2-1"><a name="MQTT-SN-3.5.2-1"></a>Bits 7-3 of the REGACK Flags are reserved and MUST be set to 0</mark>»\[MQTT‑SN‑3.5.2‑1].
 
 «<mark title="Requirement MQTT-SN-3.5.2-2"><a name="MQTT-SN-3.5.2-2"></a>The Client MUST validate that the reserved flags in the REGACK packet are set to 0. If any of the reserved flags is not 0 it is a Malformed Packet</mark>»\[MQTT‑SN‑3.5.2‑2].
 
@@ -48,10 +49,11 @@ A Topic Alias is a Two Byte Integer value that is used to identify the Topic ins
 
 If the REGACK is sent by a Server in response to a REGISTER request from a Client, the Topic Alias is that which has been assigned by the Server, and which the Client should use during the rest of the Session to refer to the Topic Name identified in the REGISTER packet.
 
-If the REGACK is sent by a Client, it is in response to a REGISTER packet from a Server informing the Client which Topic Alias it should use. «<mark title="Requirement MQTT-SN-3.5.4-1"><a name="MQTT-SN-3.5.4-1"></a>When sent by a Client the REGACK MUST NOT contain a Topic Alias</mark>»\[MQTT‑SN‑3.5.4‑1].
+If the REGACK is sent by a Client, it is in response to a REGISTER packet from a Server informing the Client which Topic Alias it should use.
+«<mark title="Requirement MQTT-SN-3.5.4-1"><a name="MQTT-SN-3.5.4-1"></a>When sent by a Client the REGACK MUST NOT contain a Topic Alias</mark>»\[MQTT‑SN‑3.5.4‑1].
 
 ### Reason Code{#rrtaa---reason-code}
 
 The Reason Code for the REGACK packet is optional - its existence is inferred from the Packet length. If not provided, 0x00 (Success) is assumed.
 
-The values for Reason Codes are shown in «<mark title="Requirement MQTT-SN-3.5.5-1"><a name="MQTT-SN-3.5.5-1"></a>[2.3 Reason Code]](#reason-code). [The sender of the REGACK Packet MUST use one of the Reason Codes applicable to REGACK</mark>»\[MQTT‑SN‑3.5.5‑1].
+The values for Reason Codes are shown in [sec](#reason-code). «<mark title="Requirement MQTT-SN-3.5.5-1"><a name="MQTT-SN-3.5.5-1"></a>The sender of the REGACK Packet MUST use one of the Reason Codes applicable to REGACK</mark>»\[MQTT‑SN‑3.5.5‑1].

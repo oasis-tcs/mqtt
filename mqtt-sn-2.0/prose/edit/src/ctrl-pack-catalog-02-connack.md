@@ -8,11 +8,13 @@ The CONNACK packet is sent by the Server in response to a CONNECT request from a
 
 ### CONNACK Header{#connack-header}
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [sec](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format.
+Refer to [sec](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 ### CONNACK Flags{#connack-flags}
 
-The CONNACK Flags is a 1 byte field which contains flags specifying the behavior of the MQTT-SN Virtual Connection on the Server. «<mark title="Requirement MQTT-SN-3.2.2-1"><a name="MQTT-SN-3.2.2-1"></a>Bits 7-2 of the CONNACK Flags are reserved and MUST be set to 0</mark>»\[MQTT‑SN‑3.2.2‑1].
+The CONNACK Flags is a 1 byte field which contains flags specifying the behavior of the MQTT-SN Virtual Connection on the Server.
+«<mark title="Requirement MQTT-SN-3.2.2-1"><a name="MQTT-SN-3.2.2-1"></a>Bits 7-2 of the CONNACK Flags are reserved and MUST be set to 0</mark>»\[MQTT‑SN‑3.2.2‑1].
 
 «<mark title="Requirement MQTT-SN-3.2.2-2"><a name="MQTT-SN-3.2.2-2"></a>The Client MUST validate that the reserved flags in the CONNACK packet are set to 0. If any of the reserved flags is not 0 it is a Malformed Packet</mark>»\[MQTT‑SN‑3.2.2‑2].
 
@@ -68,7 +70,8 @@ The same value as the Packet Identifier in the CONNECT or AUTH Packet being ackn
 
 ### Reason Code{#cca---reason-code}
 
-The values for Reason Codes are shown in «<mark title="Requirement MQTT-SN-3.2.4-1"><a name="MQTT-SN-3.2.4-1"></a>[2.3 Reason Code]](#reason-code). [The Server sending the CONNACK Packet MUST use one of the Reason Codes applicable to CONNACK</mark>»\[MQTT‑SN‑3.2.4‑1].
+The values for Reason Codes are shown in [sec](#reason-code).
+«<mark title="Requirement MQTT-SN-3.2.4-1"><a name="MQTT-SN-3.2.4-1"></a>The Server sending the CONNACK Packet MUST use one of the Reason Codes applicable to CONNACK</mark>»\[MQTT‑SN‑3.2.4‑1].
 
 «<mark title="Requirement MQTT-SN-3.2.4-2"><a name="MQTT-SN-3.2.4-2"></a>If a Server sends a CONNACK packet containing a Reason code of 0x80 or greater it MUST then delete the Virtual Connection</mark>»\[MQTT‑SN‑3.2.4‑2].
 

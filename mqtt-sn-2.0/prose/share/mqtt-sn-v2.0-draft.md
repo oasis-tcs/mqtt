@@ -697,6 +697,7 @@ UTF-8 Encoded Strings SHOULD NOT include the Unicode \[Unicode\] code points lis
 *Figure 1-2 -- Fixed Length UTF-8 Encoded String informative example*
 
 <mark title="Ephemeral region marking">\[figure below is part of informative example\]</mark>
+
 ![Fixed Length UTF-8 Encoded String informative example](images/image31.png "Fixed Length UTF-8 Encoded String informative example")
 
 ## 1.9 Typographical Conventions <a id='typographical-conventions'></a>
@@ -1298,11 +1299,13 @@ The CONNACK packet is sent by the Server in response to a CONNECT request from a
 
 ### 3.2.1 CONNACK Header <a id='connack-header'></a>
 
-The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [2.1 "Structure of an MQTT-SN Control Packet"](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
+The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format.
+Refer to [2.1 "Structure of an MQTT-SN Control Packet"](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
 ### 3.2.2 CONNACK Flags <a id='connack-flags'></a>
 
-The CONNACK Flags is a 1 byte field which contains flags specifying the behavior of the MQTT-SN Virtual Connection on the Server. «<mark title="Requirement MQTT-SN-3.2.2-1"><a name="MQTT-SN-3.2.2-1"></a>Bits 7-2 of the CONNACK Flags are reserved and MUST be set to 0</mark>»\[MQTT‑SN‑3.2.2‑1].
+The CONNACK Flags is a 1 byte field which contains flags specifying the behavior of the MQTT-SN Virtual Connection on the Server.
+«<mark title="Requirement MQTT-SN-3.2.2-1"><a name="MQTT-SN-3.2.2-1"></a>Bits 7-2 of the CONNACK Flags are reserved and MUST be set to 0</mark>»\[MQTT‑SN‑3.2.2‑1].
 
 «<mark title="Requirement MQTT-SN-3.2.2-2"><a name="MQTT-SN-3.2.2-2"></a>The Client MUST validate that the reserved flags in the CONNACK packet are set to 0. If any of the reserved flags is not 0 it is a Malformed Packet</mark>»\[MQTT‑SN‑3.2.2‑2].
 
@@ -1358,7 +1361,8 @@ The same value as the Packet Identifier in the CONNECT or AUTH Packet being ackn
 
 ### 3.2.4 Reason Code <a id='cca---reason-code'></a>
 
-The values for Reason Codes are shown in «<mark title="Requirement MQTT-SN-3.2.4-1"><a name="MQTT-SN-3.2.4-1"></a>[2.3 Reason Code]](#reason-code). [The Server sending the CONNACK Packet MUST use one of the Reason Codes applicable to CONNACK</mark>»\[MQTT‑SN‑3.2.4‑1].
+The values for Reason Codes are shown in [2.3 "Reason Code"](#reason-code).
+«<mark title="Requirement MQTT-SN-3.2.4-1"><a name="MQTT-SN-3.2.4-1"></a>The Server sending the CONNACK Packet MUST use one of the Reason Codes applicable to CONNACK</mark>»\[MQTT‑SN‑3.2.4‑1].
 
 «<mark title="Requirement MQTT-SN-3.2.4-2"><a name="MQTT-SN-3.2.4-2"></a>If a Server sends a CONNACK packet containing a Reason code of 0x80 or greater it MUST then delete the Virtual Connection</mark>»\[MQTT‑SN‑3.2.4‑2].
 
@@ -1526,7 +1530,8 @@ The first 2 or 4 bytes of the packet are encoded according to the variable lengt
 
 ### 3.5.2 REGACK Flags <a id='regack-flags'></a>
 
-The REGACK Flags is a 1 byte field which contains flags specifying the contents of the REGACK packet. «<mark title="Requirement MQTT-SN-3.5.2-1"><a name="MQTT-SN-3.5.2-1"></a>Bits 7-3 of the REGACK Flags are reserved and MUST be set to 0</mark>»\[MQTT‑SN‑3.5.2‑1].
+The REGACK Flags is a 1 byte field which contains flags specifying the contents of the REGACK packet.
+«<mark title="Requirement MQTT-SN-3.5.2-1"><a name="MQTT-SN-3.5.2-1"></a>Bits 7-3 of the REGACK Flags are reserved and MUST be set to 0</mark>»\[MQTT‑SN‑3.5.2‑1].
 
 «<mark title="Requirement MQTT-SN-3.5.2-2"><a name="MQTT-SN-3.5.2-2"></a>The Client MUST validate that the reserved flags in the REGACK packet are set to 0. If any of the reserved flags is not 0 it is a Malformed Packet</mark>»\[MQTT‑SN‑3.5.2‑2].
 
@@ -1562,13 +1567,14 @@ A Topic Alias is a Two Byte Integer value that is used to identify the Topic ins
 
 If the REGACK is sent by a Server in response to a REGISTER request from a Client, the Topic Alias is that which has been assigned by the Server, and which the Client should use during the rest of the Session to refer to the Topic Name identified in the REGISTER packet.
 
-If the REGACK is sent by a Client, it is in response to a REGISTER packet from a Server informing the Client which Topic Alias it should use. «<mark title="Requirement MQTT-SN-3.5.4-1"><a name="MQTT-SN-3.5.4-1"></a>When sent by a Client the REGACK MUST NOT contain a Topic Alias</mark>»\[MQTT‑SN‑3.5.4‑1].
+If the REGACK is sent by a Client, it is in response to a REGISTER packet from a Server informing the Client which Topic Alias it should use.
+«<mark title="Requirement MQTT-SN-3.5.4-1"><a name="MQTT-SN-3.5.4-1"></a>When sent by a Client the REGACK MUST NOT contain a Topic Alias</mark>»\[MQTT‑SN‑3.5.4‑1].
 
 ### 3.5.5 Reason Code <a id='rrtaa---reason-code'></a>
 
 The Reason Code for the REGACK packet is optional - its existence is inferred from the Packet length. If not provided, 0x00 (Success) is assumed.
 
-The values for Reason Codes are shown in «<mark title="Requirement MQTT-SN-3.5.5-1"><a name="MQTT-SN-3.5.5-1"></a>[2.3 Reason Code]](#reason-code). [The sender of the REGACK Packet MUST use one of the Reason Codes applicable to REGACK</mark>»\[MQTT‑SN‑3.5.5‑1].
+The values for Reason Codes are shown in [2.3 "Reason Code"](#reason-code). «<mark title="Requirement MQTT-SN-3.5.5-1"><a name="MQTT-SN-3.5.5-1"></a>The sender of the REGACK Packet MUST use one of the Reason Codes applicable to REGACK</mark>»\[MQTT‑SN‑3.5.5‑1].
 
 ## 3.6 Publish Requests and Responses <a id='publish-requests-and-responses'></a>
 
@@ -1623,7 +1629,8 @@ The PUBWOS Flags is a 1 byte field which contains flags specifying the content o
 
 **Position**: bits 0 and 1 of the PUBWOS Flags.
 
-This determines the format of the topic data field. Refer to «<mark title="Requirement MQTT-SN-3.6.1.2.1-1"><a name="MQTT-SN-3.6.1.2.1-1"></a>[2.4 Topic Types]](#topic-types) for the definition of the topic types. [The Topic Type in the PUBWOS packet MUST be Predefined Topic Alias or Topic Name</mark>»\[MQTT‑SN‑3.6.1.2.1‑1].
+This determines the format of the topic data field. Refer to [2.4 "Topic Types"](#topic-types) for the definition of the topic types.
+«<mark title="Requirement MQTT-SN-3.6.1.2.1-1"><a name="MQTT-SN-3.6.1.2.1-1"></a>The Topic Type in the PUBWOS packet MUST be Predefined Topic Alias or Topic Name</mark>»\[MQTT‑SN‑3.6.1.2.1‑1].
 
 ##### 3.6.1.2.2 Retain <a id='ppws---retain'></a>
 
@@ -1844,7 +1851,8 @@ The same value as the Packet Identifier in the PUBLISH Packet being acknowledged
 
 The Reason Code for the PUBACK packet is optional - its existence is inferred from the Packet length. If not provided, 0x00 (Success) is assumed.
 
-The values for Reason Codes are shown in «<mark title="Requirement MQTT-SN-3.6.4.3-1"><a name="MQTT-SN-3.6.4.3-1"></a>[2.3 Reason Code]](#reason-code). [The sender of the PUBACK Packet MUST use one of the Reason Codes applicable to PUBACK</mark>»\[MQTT‑SN‑3.6.4.3‑1].
+The values for Reason Codes are shown in [2.3 "Reason Code"](#reason-code).
+«<mark title="Requirement MQTT-SN-3.6.4.3-1"><a name="MQTT-SN-3.6.4.3-1"></a>The sender of the PUBACK Packet MUST use one of the Reason Codes applicable to PUBACK</mark>»\[MQTT‑SN‑3.6.4.3‑1].
 
 #### 3.6.4.4 PUBACK Actions <a id='puback-actions'></a>
 
@@ -1870,7 +1878,8 @@ The same value as the Packet Identifier in the PUBLISH Packet being acknowledged
 
 The Reason Code for the PUBREC packet is optional - its existence is inferred from the Packet length. If not provided, 0x00 (Success) is assumed.
 
-The values for Reason Codes are shown in «<mark title="Requirement MQTT-SN-3.6.5.3-1"><a name="MQTT-SN-3.6.5.3-1"></a>[2.3 Reason Code]](#reason-code). [The sender of the PUBREC Packet MUST use one of the Reason Codes applicable to PUBREC</mark>»\[MQTT‑SN‑3.6.5.3‑1].
+The values for Reason Codes are shown in [2.3 "Reason Code"](#reason-code).
+«<mark title="Requirement MQTT-SN-3.6.5.3-1"><a name="MQTT-SN-3.6.5.3-1"></a>The sender of the PUBREC Packet MUST use one of the Reason Codes applicable to PUBREC</mark>»\[MQTT‑SN‑3.6.5.3‑1].
 
 #### 3.6.5.4 PUBREC Actions <a id='pubrec-actions'></a>
 
@@ -1896,7 +1905,8 @@ The same value as the Packet Identifier in the PUBLISH Packet being acknowledged
 
 The Reason Code for the PUBREL packet is optional - its existence is inferred from the Packet length. If not provided, 0x00 (Success) is assumed.
 
-The values for Reason Codes are shown in «<mark title="Requirement MQTT-SN-3.6.6.3-1"><a name="MQTT-SN-3.6.6.3-1"></a>[2.3 Reason Code]](#reason-code). [The sender of the PUBREL Packet MUST use one of the Reason Codes applicable to PUBREL</mark>»\[MQTT‑SN‑3.6.6.3‑1].
+The values for Reason Codes are shown in [2.3 "Reason Code"](#reason-code).
+«<mark title="Requirement MQTT-SN-3.6.6.3-1"><a name="MQTT-SN-3.6.6.3-1"></a>The sender of the PUBREL Packet MUST use one of the Reason Codes applicable to PUBREL</mark>»\[MQTT‑SN‑3.6.6.3‑1].
 
 #### 3.6.6.4 PUBREL Actions <a id='pubrel-actions'></a>
 
@@ -1922,7 +1932,8 @@ The same value as the Packet Identifier in the PUBLISH Packet being acknowledged
 
 The Reason Code for the PUBCOMP packet is optional - its existence is inferred from the Packet length. If not provided, 0x00 (Success) is assumed.
 
-The values for Reason Codes are shown in «<mark title="Requirement MQTT-SN-3.6.7.3-1"><a name="MQTT-SN-3.6.7.3-1"></a>[2.3 Reason Code]](#reason-code). [The sender of the PUBCOMP Packet MUST use one of the Reason Codes applicable to PUBCOMP</mark>»\[MQTT‑SN‑3.6.7.3‑1].
+The values for Reason Codes are shown in [2.3 "Reason Code"](#reason-code).
+«<mark title="Requirement MQTT-SN-3.6.7.3-1"><a name="MQTT-SN-3.6.7.3-1"></a>The sender of the PUBCOMP Packet MUST use one of the Reason Codes applicable to PUBCOMP</mark>»\[MQTT‑SN‑3.6.7.3‑1].
 
 #### 3.6.7.4 PUBCOMP Actions <a id='pubcomp-actions'></a>
 
@@ -2088,7 +2099,8 @@ The same value as the Packet Identifier in the SUBSCRIBE Packet being acknowledg
 
 The Reason Code for the SUBACK packet is optional - its existence is inferred from the Packet length. If not provided, 0x00 (Success) is assumed.
 
-The values of Reason Codes are shown in «<mark title="Requirement MQTT-SN-3.8.5-1"><a name="MQTT-SN-3.8.5-1"></a>[2.3 Reason Code]](#reason-code). [The sender of the SUBACK Packet MUST use one of the Reason Codes applicable to SUBACK</mark>»\[MQTT‑SN‑3.8.5‑1].
+The values of Reason Codes are shown in [2.3 "Reason Code"](#reason-code).
+«<mark title="Requirement MQTT-SN-3.8.5-1"><a name="MQTT-SN-3.8.5-1"></a>The sender of the SUBACK Packet MUST use one of the Reason Codes applicable to SUBACK</mark>»\[MQTT‑SN‑3.8.5‑1].
 
 ## 3.9 UNSUBSCRIBE - Unsubscribe Request <a id='unsubscribe---unsubscribe-request'></a>
 
@@ -2462,7 +2474,8 @@ Refer to [4.14.2 "Sleeping Clients"](#sleeping-clients) for more information on 
 
 The Reason Code for the SLEEPRESP packet is optional - its existence is inferred from the Packet length. If not provided, 0x00 (Success) is assumed.
 
-The values for Reason Codes are shown in «<mark title="Requirement MQTT-SN-3.16.4-1"><a name="MQTT-SN-3.16.4-1"></a>[2.3 Reason Code]](#reason-code). [The sender of the SLEEPRESP packet MUST use one of the Reason Code values applicable to SLEEPRESP</mark>»\[MQTT‑SN‑3.16.4‑1].
+The values for Reason Codes are shown in [2.3 "Reason Code"](#reason-code).
+«<mark title="Requirement MQTT-SN-3.16.4-1"><a name="MQTT-SN-3.16.4-1"></a>The sender of the SLEEPRESP packet MUST use one of the Reason Code values applicable to SLEEPRESP</mark>»\[MQTT‑SN‑3.16.4‑1].
 
 ## 3.17 Protection Encapsulation <a id='protection-encapsulation'></a>
 
@@ -3643,7 +3656,7 @@ Table: Client States
 
 «<mark title="Requirement MQTT-SN-4.14-5"><a name="MQTT-SN-4.14-5"></a>Whenever a CONNECT is received by a Server, any existing Virtual Connection for that Client MUST be deleted and a new one created with all CONNECT Packet processing, regardless of the state of the Client</mark>»\[MQTT‑SN‑4.14‑5].
 
-Transition through these states is governed by a sequence of packets between Client and Server and mediated by [[timers]](#session-timers) resident on the Server. A Client is in the Active state when the Server receives a CONNECT packet from that Client. This state is supervised by the Server with the [3.1.6 "Keep Alive"](#keep-alive) timer. If the Server does not receive any packet from the Client in a defined period, the Server will consider that client as Disconnected and delete the Virtual Connection. The Disconnected state is governed by the Session Expiry timer - on expiry the Server is free to remove the Client session. A Client moves into the Asleep state by issuing a SLEEPREQ packet. To be certain that the Server has also recorded the Client as being asleep, the Client needs to wait for a positive SLEEPRESP response. For more information on the Asleep state, refer to [4.14.2 "Sleeping Clients"](#sleeping-clients).
+Transition through these states is governed by a sequence of packets between Client and Server and mediated by [4.14.1 "Session Timers"](#session-timers) resident on the Server. A Client is in the Active state when the Server receives a CONNECT packet from that Client. This state is supervised by the Server with the [3.1.6 "Keep Alive"](#keep-alive) timer. If the Server does not receive any packet from the Client in a defined period, the Server will consider that client as Disconnected and delete the Virtual Connection. The Disconnected state is governed by the Session Expiry timer - on expiry the Server is free to remove the Client session. A Client moves into the Asleep state by issuing a SLEEPREQ packet. To be certain that the Server has also recorded the Client as being asleep, the Client needs to wait for a positive SLEEPRESP response. For more information on the Asleep state, refer to [4.14.2 "Sleeping Clients"](#sleeping-clients).
 
 See [C.5 "Client State Diagrams"](#c.5-client-state-diagrams) for informative state diagrams to help illustrate these transitions.
 
@@ -3688,7 +3701,7 @@ The Client wakes by sending a PINGREQ. If the Server has buffered packets for th
 
 «<mark title="Requirement MQTT-SN-4.14.2-5"><a name="MQTT-SN-4.14.2-5"></a>During the Awake state, for each Application Message the Server sends to the Client, the application messages' quality of service MUST be honored - a full packet interaction MUST take place including all normative phases of acknowledgement, including any associated retransmission logic</mark>»\[MQTT‑SN‑4.14.2‑5].
 
-«<mark title="Requirement MQTT-SN-4.14.2-6"><a name="MQTT-SN-4.14.2-6"></a>If, during the delivery of Application Messages from the Server to the Client, and applying the <mark title="Ephemeral region marking">[retry logic]](#unacknowledged-packets), the Server gets no response, it MUST consider the Client disconnected and delete the Virtual Connection</mark>»\[MQTT‑SN‑4.14.2‑6]. [I</mark>t may send a DISCONNECT packet with an appropriate Reason Code.
+«<mark title="Requirement MQTT-SN-4.14.2-6"><a name="MQTT-SN-4.14.2-6"></a>If, during the delivery of Application Messages from the Server to the Client, and applying the <mark title="Ephemeral region marking">retry logic of [4.4.2 "Unacknowledged Packets"](#unacknowledged-packets), the Server gets no response, it MUST consider the Client disconnected and delete the Virtual Connection</mark></mark>»\[MQTT‑SN‑4.14.2‑6]. It may send a DISCONNECT packet with an appropriate Reason Code.
 
 The transfer of packets to the Client is closed by the Server by means of a PINGRESP packet. That is, the Server will consider the Client as Asleep and restart the Sleep Duration timer after having sent the PINGRESP packet. «<mark title="Requirement MQTT-SN-4.14.2-7"><a name="MQTT-SN-4.14.2-7"></a>If the Server does not have any packets buffered for the client, it MUST respond immediately with a PINGRESP packet</mark>»\[MQTT‑SN‑4.14.2‑7], returning the Client back to the Asleep state, and restarting the Sleep Duration timer for that Client.
 
@@ -3754,9 +3767,12 @@ An implementation might want to provide conformance with specific industry secur
 
 ## 5.3 Lightweight cryptography and constrained devices <a id='lightweight-cryptography-and-constrained-devices'></a>
 
-MQTT-SN is targeted at the most power saving and constrained devices. In contrast to MQTT where there is principally one underlying network technology - TCP/IP - MQTT-SN is intended to be agnostic to the underlying network as long as it conforms to the requirements outlined in [[4.2 Networks and Virtual Connections]](#networks-and-virtual-connections).
+MQTT-SN is targeted at the most power saving and constrained devices.
+In contrast to MQTT where there is principally one underlying network technology - TCP/IP - MQTT-SN is intended to be agnostic to the underlying network as long as it conforms to the requirements outlined in [4.2 "Networks and Virtual Connections"](#networks-and-virtual-connections).
 
-Previous versions of MQTT-SN did not include specific security and integrity features, preferring to leave that to the underlying network. That approach is still supported, but to aid interoperability the Protection Encapsulation is introduced, in [[3.17 Protection Encapsulation]](#protection-encapsulation). In order to disassociate the security model from the rest of the MQTT-SN specification, the Protection Encapsulation allows all the packet types, including CONNECT, to be wrapped in a security envelope. Furthermore the security material is self-contained in each Protection Encapsulation envelope, so it is completely decoupled from the Virtual Connection.
+Previous versions of MQTT-SN did not include specific security and integrity features, preferring to leave that to the underlying network. That approach is still supported, but to aid interoperability the Protection Encapsulation is introduced, in [3.17 "Protection Encapsulation"](#protection-encapsulation).
+In order to disassociate the security model from the rest of the MQTT-SN specification, the Protection Encapsulation allows all the packet types, including CONNECT, to be wrapped in a security envelope.
+Furthermore the security material is self-contained in each Protection Encapsulation envelope, so it is completely decoupled from the Virtual Connection.
 
 The schemes defined by the Protection Encapsulation are especially suited for implementation by constrained devices:
 
@@ -3766,15 +3782,17 @@ The schemes defined by the Protection Encapsulation are especially suited for im
 
 - The encryption algorithm ChaCha20 \[[[CHACHA20]](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#CHACHA20)\] encrypts and decrypts much faster in software, but is not as widely available as AES.
 
-The Protection Encapsulation approach is informed by the OSCORE \[RFC 8613\] standard and CBOR Initial Algorithms \[RFC 9053\] informational document. The ISO 29192 [[\[ISO29192\]]](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#ISO29192) standard makes recommendations for cryptographic primitives specifically tuned to perform on constrained, low end, devices.
+The Protection Encapsulation approach is informed by the OSCORE \[RFC 8613\] standard and CBOR Initial Algorithms \[RFC 9053\] informational document.
+The ISO 29192 [[\[ISO29192\]]](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#ISO29192) standard makes recommendations for cryptographic primitives specifically tuned to perform on constrained, low end, devices.
 
 The MQTT-SN Protection Encapsulation also allows for user defined protection schemes, although these will of necessity have lower interoperability compared to the built-in schemes, as implementations of both Client and Server will have to be aware of them.
 
 ## 5.4 Implementation notes <a id='implementation-notes'></a>
 
-When the underlying network layer for MQTT-SN is UDP, DTLS \[RFC9147\] can be used to secure MQTT-SN communications instead of or in conjunction with the Protection Encapsulation. It is recommended that Server implementations that offer DTLS use UDP port 8883 (IANA service name: secure-mqtt).
+When the underlying network layer for MQTT-SN is UDP, DTLS \[RFC9147\] can be used to secure MQTT-SN communications instead of or in conjunction with the Protection Encapsulation.
+It is recommended that Server implementations that offer DTLS use UDP port 8883 (IANA service name: secure-mqtt).
 
-For other underlying network technologies, a security solution particular to that technology must be found, which could involve using the MQTT-SN [[Protection Encapsulation]](#protection-encapsulation) and/or [[Authentication]](#authentication).
+For other underlying network technologies, a security solution particular to that technology must be found, which could involve using the MQTT-SN [3.17 "Protection Encapsulation"](#protection-encapsulation) and/or [4.11 "Authentication"](#authentication).
 
 There are many security concerns to consider when implementing or using MQTT-SN. The following section should not be considered a comprehensive checklist.
 
@@ -3782,11 +3800,13 @@ An implementation might want to achieve some, or all, of the following:
 
 ### 5.4.1 Authentication of Clients by the Server <a id='authentication-of-clients-by-the-server'></a>
 
-The CONNECT packet contains an Authentication Data field which can contain a user name and password if the Authentication Method is SASL PLAIN (see [[4.11.1.2 MQTT User Name and Password Support]](#mqtt-user-name-and-password-support)). Implementations can choose how to make use of the content of these fields. They may provide their own authentication mechanism, use an external authentication system such as LDAP [[\[RFC4511\]]](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#RFC4511) or OAuth [[\[RFC6749\]]](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#RFC6749) tokens, or leverage operating system authentication mechanisms.
+The CONNECT packet contains an Authentication Data field which can contain a user name and password if the Authentication Method is SASL PLAIN (see [4.11.1.2 "MQTT User Name and Password Support"](#mqtt-user-name-and-password-support)). Implementations can choose how to make use of the content of these fields.
+They may provide their own authentication mechanism, use an external authentication system such as LDAP [[\[RFC4511\]]](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#RFC4511) or OAuth [[\[RFC6749\]]](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#RFC6749) tokens,
+or leverage operating system authentication mechanisms.
 
-MQTT-SN provides an Authentication mechanism as described in [[4.11 Authentication]](#authentication). Using this requires support for it in both the Client and Server.
+MQTT-SN provides an Authentication mechanism as described in [4.11 "Authentication"](#authentication). Using this requires support for it in both the Client and Server.
 
-Implementations passing authentication data in clear text, obfuscating such data elements or requiring no authentication data should be aware this can give rise to Man-in-the-Middle and replay attacks. [[5.4.5 Privacy of Application Messages and MQTT-SN Control Packets]](#privacy-of-application-messages-and-mqtt-sn-control-packets) introduces approaches to ensure data privacy.
+Implementations passing authentication data in clear text, obfuscating such data elements or requiring no authentication data should be aware this can give rise to Man-in-the-Middle and replay attacks. [5.4.5 "Privacy of Application Messages and MQTT-SN Control Packets"](#privacy-of-application-messages-and-mqtt-sn-control-packets) introduces approaches to ensure data privacy.
 
 A Virtual Private Network (VPN) between the Clients and Servers can provide confidence that data is only being received from authorized Clients.
 
@@ -3798,7 +3818,7 @@ If a Client has been successfully authenticated, a Server implementation should 
 
 Authorization may be based on information provided by the Client such as User Name, the hostname/network address of the Client, or the outcome of authentication mechanisms.
 
-In particular, the implementation should check that the Client is authorized to use the Client Identifier as this gives access to the MQTT-SN Session State (described in [[4.1 Session state]](#session-state)). This authorization check is to protect against the case where one Client, accidentally or maliciously, provides a Client Identifier that is already being used by some other Client.
+In particular, the implementation should check that the Client is authorized to use the Client Identifier as this gives access to the MQTT-SN Session State (described in [4.1 "Session state"](#session-state)). This authorization check is to protect against the case where one Client, accidentally or maliciously, provides a Client Identifier that is already being used by some other Client.
 
 An implementation should provide access controls that take place after CONNECT to restrict the Client\'s ability to publish to particular Topics or to subscribe using particular Topic Filters. An implementation should consider limiting access to Topic Filters that have broad scope, such as the \# Topic Filter.
 
@@ -3808,7 +3828,7 @@ The MQTT-SN protocol is not trust symmetrical. When using basic Username and Pas
 
 Where DTLS is used, X.509 Certificates sent from the Server can be used by the Client to authenticate the Server.
 
-MQTT-SN provides an Authentication mechanism as described in [[4.11 Authentication]](#authentication), which can be used to authenticate the Server to the Client. Using this requires support for it in both the Client and Server.
+MQTT-SN provides an Authentication mechanism as described in [4.11 "Authentication"](#authentication), which can be used to authenticate the Server to the Client. Using this requires support for it in both the Client and Server.
 
 A VPN between Clients and Servers can provide confidence that Clients are connecting to the intended Server.
 
@@ -3840,7 +3860,8 @@ Client and Server implementations using DTLS should provide capabilities to ensu
 
 Client and Server implementations using DTLS can choose to provide capabilities to check Certificate Revocation Lists (CRLs [[\[RFC5280\]]](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#RFC5280)) and Online Certificate Status Protocol (OSCP) [[\[RFC6960\]]](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#RFC6960) to prevent revoked certificates from being used.
 
-Physical deployments might combine tamper-proof hardware with the transmission of specific data in Application Messages. For example, a meter might have an embedded GPS to ensure it is not used in an unauthorized location. [[\[IEEE8021AR\]]](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#IEEE8021AR) is a standard for implementing mechanisms to authenticate a device's identity using a cryptographically bound identifier.
+Physical deployments might combine tamper-proof hardware with the transmission of specific data in Application Messages.
+For example, a meter might have an embedded GPS to ensure it is not used in an unauthorized location. [[\[IEEE8021AR\]]](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#IEEE8021AR) is a standard for implementing mechanisms to authenticate a device's identity using a cryptographically bound identifier.
 
 ### 5.4.8 Detecting abnormal behaviors <a id='detecting-abnormal-behaviors'></a>
 
@@ -3866,9 +3887,10 @@ Deployments might use network-level controls (where available) to implement rate
 
 ### 5.4.9 Handling of Disallowed Unicode code points <a id='handling-of-disallowed-unicode-code-points'></a>
 
-[[1.7.4 UTF-8 Encoded String]](#utf-8-encoded-string) describes the Disallowed Unicode code points, which should not be included in a UTF-8 Encoded String. A Client or Server implementation can choose whether to validate that these code points are not used in UTF-8 Encoded Strings such as the Topic Name or Properties.
+[1.8.4 "UTF-8 Encoded String"](#utf-8-encoded-string) describes the Disallowed Unicode code points, which should not be included in a UTF-8 Encoded String. A Client or Server implementation can choose whether to validate that these code points are not used in UTF-8 Encoded Strings such as the Topic Name or Properties.
 
-If the Server does not validate the code points in a UTF-8 Encoded String but a subscribing Client does, then a second Client might be able to cause the subscribing Client to delete the Virtual Connection by publishing on a Topic Name or using Properties that contain a Disallowed Unicode code point. This section recommends some steps that can be taken to prevent this problem.
+If the Server does not validate the code points in a UTF-8 Encoded String but a subscribing Client does, then a second Client might be able to cause the subscribing Client to delete the Virtual Connection by publishing on a Topic Name or using Properties that contain a Disallowed Unicode code point.
+This section recommends some steps that can be taken to prevent this problem.
 
 A similar problem can occur when the Client validates that the payload matches the Payload Format Indicator and the Server does not. The considerations and remedies for this are similar to those for handling Disallowed Unicode code points.
 
@@ -3876,7 +3898,8 @@ A similar problem can occur when the Client validates that the payload matches t
 
 An implementation would normally choose to validate UTF-8 Encoded strings, checking that the Disallowed Unicode code points are not used. This avoids implementation difficulties such as the use of libraries that are sensitive to these code points, it also protects applications from having to process them.
 
-Validating that these code points are not used removes some security exposures. There are possible security exploits which use control characters in log files to mask entries in the logs or confuse the tools which process log files. The Unicode Noncharacters are commonly used as special markers and allowing them into UTF-8 Encoded Strings could permit such exploits.
+Validating that these code points are not used removes some security exposures. There are possible security exploits which use control characters in log files to mask entries in the logs or confuse the tools which process log files.
+The Unicode Noncharacters are commonly used as special markers and allowing them into UTF-8 Encoded Strings could permit such exploits.
 
 #### 5.4.9.2 Interactions between Publishers and Subscribers <a id='interactions-between-publishers-and-subscribers'></a>
 
@@ -3926,13 +3949,15 @@ In the case of long lasting connections:
 
 - Servers may close the Virtual Connection of Clients and require them to re-authenticate with new credentials.
 
-- Servers may require their Client to reauthenticate periodically using the mechanism described in [[4.11.1.1 Re-authentication]](#re-authentication).
+- Servers may require their Client to reauthenticate periodically using the mechanism described in [4.11.1.1 "Re-authentication"](#re-authentication).
 
 Clients connected to a Server have a transitive trust relationship with other Clients connected to the same Server and who have authority to publish data on the same topics.
 
 ### 5.4.11 Use of SOCKS <a id='use-of-socks'></a>
 
-Implementations of Clients should be aware that some environments will require the use of SOCKSv5 [[\[RFC1928\]]](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#RFC1928) proxies to transmit data. Some MQTT-SN implementations could make use of alternative secured tunnels through the use of SOCKS. Where implementations choose to use SOCKS, they should support both anonymous and User Name, Password authenticating SOCKS proxies. In the latter case, implementations should be aware that SOCKS authentication might occur in plain-text and so should avoid using the same credentials for connection to an MQTT-SN Server.
+Implementations of Clients should be aware that some environments will require the use of SOCKSv5 [[\[RFC1928\]]](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#RFC1928) proxies to transmit data.
+Some MQTT-SN implementations could make use of alternative secured tunnels through the use of SOCKS.
+Where implementations choose to use SOCKS, they should support both anonymous and User Name, Password authenticating SOCKS proxies. In the latter case, implementations should be aware that SOCKS authentication might occur in plain-text and so should avoid using the same credentials for connection to an MQTT-SN Server.
 
 ### 5.4.12 Security profiles <a id='security-profiles'></a>
 
@@ -3954,15 +3979,15 @@ DTLS Client authentication can be used in addition to -- or in place of -- MQTT-
 
 #### 5.4.12.4 Industry specific security profiles <a id='industry-specific-security-profiles'></a>
 
-It is anticipated that the MQTT-SN (and MQTT) protocols will be designed into industry specific application profiles, each defining a threat model and the specific security mechanisms to be used to address these threats. Recommendations for specific security mechanisms will often be taken from existing works including:
+It is anticipated that the MQTT-SN (and MQTT) protocols will be designed into industry specific application profiles, each defining a threat model and the specific security mechanisms to be used to address these threats.
+Recommendations for specific security mechanisms will often be taken from existing works including:
 
-[[\[NISTCSF\] NIST Cyber Security Framework\
-\[NIST7628\] NISTIR 7628 Guidelines for Smart Grid Cyber Security\
-\[FIPS1403\] Security Requirements for Cryptographic Modules (FIPS PUB 140-3)\
-\[PCIDSS\] PCI-DSS Payment Card Industry Data Security Standard\
-](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#NSAB)[\[CNSA20\]](https://media.defense.gov/2022/Sep/07/2003071834/-1/-1/0/CSA_CNSA_2.0_ALGORITHMS_.PDF)] Commercial National Security Algorithm Suite (CNSA) 2.0
-
-[\[NSAB\]](#bookmark=id.is565v) NSA Suite B Cryptography
+- \[NISTCSF\] NIST Cyber Security Framework
+- \[NIST7628\] NISTIR 7628 Guidelines for Smart Grid Cyber Security
+- \[FIPS1403\] Security Requirements for Cryptographic Modules (FIPS PUB 140-3)
+- \[PCIDSS\] PCI-DSS Payment Card Industry Data Security Standard
+- [CNSA20](https://media.defense.gov/2022/Sep/07/2003071834/-1/-1/0/CSA_CNSA_2.0_ALGORITHMS_.PDF) Commercial National Security Algorithm Suite (CNSA) 2.0 
+- [NSAB](https://docs.oasis-open.org/mqtt/mqtt/v5.0/cos02/mqtt-v5.0-cos02.html#NSAB) NSA Suite B Cryptography
 
 # 6. Conformance <a id='conformance'></a>
 
@@ -4043,9 +4068,11 @@ The following individuals were members of this Technical Committee during the cr
 This Appendix is non-normative and is provided as a convenient summary of the numbered conformance statements found in the main body of this document.
 Refer to [6 "Conformance"](#conformance) for a definitive list of conformance requirements.
 
-| Normative Statement Number                     | Normative Statement                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+<!--\columns=18%,-->
+
+| Reference Identifier                     | Normative Statement                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 |:-----------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| \[[MQTT‑SN‑1.7.4‑1](#MQTT-SN-1.7.4-1)]         | The character data in a UTF-8 Encoded String MUST be well-formed UTF-8 as defined by the Unicode specification [\[Unicode\]](#Unicode) and restated in RFC 3629 [\[RFC3629\]](#RFC3629). In particular, the character data MUST NOT include encodings of code points between U+D800 and U+DFFF.                                                                                                                                                         |
+| \[[MQTT‑SN‑1.7.4‑1](#MQTT-SN-1.7.4-1)]         | The character data in a UTF-8 Encoded String MUST be well-formed UTF-8 as defined by the Unicode specification \[[Unicode](#Unicode)\] and restated in RFC 3629 \[[RFC3629](#RFC3629)\]. In particular, the character data MUST NOT include encodings of code points between U+D800 and U+DFFF.                                                                                                                                                         |
 | \[[MQTT‑SN‑1.7.4‑2](#MQTT-SN-1.7.4-2)]         | A UTF-8 Encoded String MUST NOT include an encoding of the null character U+0000.                                                                                                                                                                                                                                                                                                                                                                       |
 | \[[MQTT‑SN‑1.7.4‑3](#MQTT-SN-1.7.4-3)]         | A UTF-8 encoded sequence 0xEF 0xBB 0xBF is always interpreted as U+FEFF (\"ZERO WIDTH NO-BREAK SPACE\") wherever it appears in a string and MUST NOT be skipped over or stripped off by a packet receiver.                                                                                                                                                                                                                                              |
 | \[[MQTT‑SN‑2.1.2‑1](#MQTT-SN-2.1.2-1)]         | A Client or Server receiving MQTT-SN control packets MUST be able to process both 1-byte and 3-byte length formats.                                                                                                                                                                                                                                                                                                                                     |
@@ -4078,22 +4105,22 @@ Refer to [6 "Conformance"](#conformance) for a definitive list of conformance re
 | \[[MQTT‑SN‑3.1.5‑1](#MQTT-SN-3.1.5-1)]         | The value of the Protocol Version field for MQTT-SN version 2.0 MUST be 2 (0x02).                                                                                                                                                                                                                                                                                                                                                                       |
 | \[[MQTT‑SN‑3.1.5‑2](#MQTT-SN-3.1.5-2)]         | If the Protocol Version is not 2 and the Server does not want to accept the CONNECT packet, the Server MAY send a CONNACK packet with Reason Code 0x84 (Unsupported Protocol Version).                                                                                                                                                                                                                                                                  |
 | \[[MQTT‑SN‑3.1.6‑1](#MQTT-SN-3.1.6-1)]         | In the absence of sending any other MQTT-SN Control Packets, the Client MUST send a PINGREQ packet.                                                                                                                                                                                                                                                                                                                                                     |
-| \[[MQTT‑SN‑3.1.6‑2](#MQTT-SN-3.1.6-2)]         | If the Server does not receive an MQTT-SN Control Packet from the Client within one and a half times the Keep Alive time period, it MUST delete the Virtual Connection and move the Client to the Disconnected state (see [[4.14 Client states]](#client-states)).                                                                                                                                                                                      |
-| \[[MQTT‑SN‑3.1.6‑3](#MQTT-SN-3.1.6-3)]         | If a Client does not receive a PINGRESP packet within a *[Retry Interval]* amount of time after it has sent a PINGREQ, it SHOULD retry the transmission according to [[4.4.2 Unacknowledged Packets]](#unacknowledged-packets) up to the maximum number of attempts. If a PINGRESP is still not received it MUST delete the Virtual Connection to the Server by way of a DISCONNECT, with the understanding that the Server may no longer be reachable. |
+| \[[MQTT‑SN‑3.1.6‑2](#MQTT-SN-3.1.6-2)]         | If the Server does not receive an MQTT-SN Control Packet from the Client within one and a half times the Keep Alive time period, it MUST delete the Virtual Connection and move the Client to the Disconnected state (see [4.14 "Client states"](#client-states)).                                                                                                                                                                                      |
+| \[[MQTT‑SN‑3.1.6‑3](#MQTT-SN-3.1.6-3)]         | If a Client does not receive a PINGRESP packet within a *\[Retry Interval\]* amount of time after it has sent a PINGREQ, it SHOULD retry the transmission according to [4.4.2 "Unacknowledged Packets"](#unacknowledged-packets) up to the maximum number of attempts. If a PINGRESP is still not received it MUST delete the Virtual Connection to the Server by way of a DISCONNECT, with the understanding that the Server may no longer be reachable. |
 | \[[MQTT‑SN‑3.1.6‑4](#MQTT-SN-3.1.6-4)]         | The Keep Alive must have a value greater than 0. It is a protocol error if a Keep Alive value of 0 or below is set.                                                                                                                                                                                                                                                                                                                                     |
 | \[[MQTT‑SN‑3.1.7‑1](#MQTT-SN-3.1.7-1)]         | The Maximum Packet Size value MUST be 10 or greater.                                                                                                                                                                                                                                                                                                                                                                                                    |
 | \[[MQTT‑SN‑3.1.7‑2](#MQTT-SN-3.1.7-2)]         | The Server MUST NOT send packets exceeding Maximum Packet Size to the Client. If a Client receives a packet whose size exceeds this limit, this is a Protocol Error, the Client uses DISCONNECT with Reason Code 0x95 (Packet too large).                                                                                                                                                                                                               |
 | \[[MQTT‑SN‑3.1.7‑3](#MQTT-SN-3.1.7-3)]         | Where a Packet is too large to send, the Server MUST discard it without sending it and then behave as if it had completed sending that Application Message.                                                                                                                                                                                                                                                                                             |
 | \[[MQTT‑SN‑3.1.9‑1](#MQTT-SN-3.1.9-1)]         | The Client and Server MUST sore the Session State after the Virtual Connection is deleted if the Session Expiry Interval is greater than 0.                                                                                                                                                                                                                                                                                                             |
-| \[[MQTT‑SN‑3.1.11‑1](#MQTT-SN-3.1.11-1)]       | The Will Topic Name MUST be a UTF-8 Encoded String as defined in [[1.7.4 UTF-8 Encoded String]](#utf-8-encoded-string).                                                                                                                                                                                                                                                                                                                                 |
+| \[[MQTT‑SN‑3.1.11‑1](#MQTT-SN-3.1.11-1)]       | The Will Topic Name MUST be a UTF-8 Encoded String as defined in [1.8.4 "UTF-8 Encoded String"](#utf-8-encoded-string).                                                                                                                                                                                                                                                                                                                                 |
 | \[[MQTT‑SN‑3.1.18‑1](#MQTT-SN-3.1.18-1)]       | The Client Identifier MUST be a UTF-8 Encoded String.                                                                                                                                                                                                                                                                                                                                                                                                   |
 | \[[MQTT‑SN‑3.1.18‑2](#MQTT-SN-3.1.18-2)]       | The Client Identifier MUST be used by Clients and by Server to identify the state that they hold relating to this MQTT-SN Session between the Client and the Server.                                                                                                                                                                                                                                                                                    |
 | \[[MQTT‑SN‑3.1.18‑3](#MQTT-SN-3.1.18-3)]       | When the Client Identifier is present (greater than 0 bytes), the Server MUST allow values which are between 1 and 23 UTF-8 encoded bytes in length, and that contain only the characters \"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".                                                                                                                                                                                            |
 | \[[MQTT‑SN‑3.1.18‑4](#MQTT-SN-3.1.18-4)]       | The Server MAY choose to allow more than 23 bytes.                                                                                                                                                                                                                                                                                                                                                                                                      |
-| \[[MQTT‑SN‑3.1.19‑1](#MQTT-SN-3.1.19-1)]       | The Server MUST validate that the CONNECT packet matches the format described in [[3.1 CONNECT - Connection Request]](#connect---connection-request) and MUST NOT create a Virtual Connection for this CONNECT if it does not match.                                                                                                                                                                                                                    |
+| \[[MQTT‑SN‑3.1.19‑1](#MQTT-SN-3.1.19-1)]       | The Server MUST validate that the CONNECT packet matches the format described in [3.1 "CONNECT - Connection Request"](#connect---connection-request) and MUST NOT create a Virtual Connection for this CONNECT if it does not match.                                                                                                                                                                                                                    |
 | \[[MQTT‑SN‑3.1.19‑2](#MQTT-SN-3.1.19-2)]       | The Server MAY check that the contents of the CONNECT packet meet any further restrictions and SHOULD perform authentication and authorization checks. If any of these checks fail, it MUST NOT create a Virtual Connection for this CONNECT.                                                                                                                                                                                                           |
-| \[[MQTT‑SN‑3.1.19‑3](#MQTT-SN-3.1.19-3)]       | If the Client Identifier represents a Client already connected to the Server, the Server sends a DISCONNECT packet to the existing Client with Reason Code of 0x8E (Session taken over) as described in [[4.12 Handling errors]](#handling-errors) and MUST delete the Virtual Connection of the existing Client.                                                                                                                                       |
-| \[[MQTT‑SN‑3.1.19‑4](#MQTT-SN-3.1.19-4)]       | The Server MUST perform the processing of Clean Start that is described in [[3.1.2.1 Clean Start Flag]](#clean-start-flag).                                                                                                                                                                                                                                                                                                                             |
+| \[[MQTT‑SN‑3.1.19‑3](#MQTT-SN-3.1.19-3)]       | If the Client Identifier represents a Client already connected to the Server, the Server sends a DISCONNECT packet to the existing Client with Reason Code of 0x8E (Session taken over) as described in [4.12 "Handling errors"](#handling-errors) and MUST delete the Virtual Connection of the existing Client.                                                                                                                                       |
+| \[[MQTT‑SN‑3.1.19‑4](#MQTT-SN-3.1.19-4)]       | The Server MUST perform the processing of Clean Start that is described in [3.1.2.1 "Clean Start Flag"](#clean-start-flag).                                                                                                                                                                                                                                                                                                                             |
 | \[[MQTT‑SN‑3.1.19‑5](#MQTT-SN-3.1.19-5)]       | The Server MUST acknowledge the CONNECT packet with a CONNACK packet containing a 0x00 (Success) Reason Code.                                                                                                                                                                                                                                                                                                                                           |
 | \[[MQTT‑SN‑3.1.19‑6](#MQTT-SN-3.1.19-6)]       | A Client MUST wait for a CONNACK packet with a 0x00 (Success) Reason Code before sending any packet that needs a Virtual Connection.                                                                                                                                                                                                                                                                                                                    |
 | \[[MQTT‑SN‑3.1.19‑7](#MQTT-SN-3.1.19-7)]       | The Server MUST NOT process any data sent by the Client after the CONNECT packet and before the CONNACK response is sent, except AUTH packets.                                                                                                                                                                                                                                                                                                          |
@@ -4121,7 +4148,7 @@ Refer to [6 "Conformance"](#conformance) for a definitive list of conformance re
 | \[[MQTT‑SN‑3.3.3‑1](#MQTT-SN-3.3.3-1)]         | The sender of the AUTH Packet MUST use one of the Reason Codes shown as applicable to the AUTH packet.                                                                                                                                                                                                                                                                                                                                                  |
 | \[[MQTT‑SN‑3.4‑1](#MQTT-SN-3.4-1)]             | If the REGISTER packet is sent by a Client, it MUST NOT contain a Topic Alias.                                                                                                                                                                                                                                                                                                                                                                          |
 | \[[MQTT‑SN‑3.4‑2](#MQTT-SN-3.4-2)]             | If the REGISTER packet is sent by a Server, it MUST contain a Topic Alias.                                                                                                                                                                                                                                                                                                                                                                              |
-| \[[MQTT‑SN‑3.4.2‑1](#MQTT-SN-3.4.2-1)]         | Bits 7-1 of the REGISTER Flags are reserved and MUST be set to 0 \[[MQTT‑SN‑3.4.2‑1](#MQTT-SN-3.4.2-1)].                                                                                                                                                                                                                                                                                                                                                |
+| \[[MQTT‑SN‑3.4.2‑1](#MQTT-SN-3.4.2-1)]         | Bits 7-1 of the REGISTER Flags are reserved and MUST be set to 0.                                                                                                                                                                                                                                                                                                                                                |
 | \[[MQTT‑SN‑3.4.2‑2](#MQTT-SN-3.4.2-2)]         | The receiver MUST validate that the reserved flags in the REGISTER packet are set to 0. If any of the reserved flags is not 0 it is a Malformed Packet.                                                                                                                                                                                                                                                                                                 |
 | \[[MQTT‑SN‑3.4.2.1‑1](#MQTT-SN-3.4.2.1-1)]     | If the Topic Alias Flag is set to 0, a Topic Alias MUST NOT be present in the Packet.                                                                                                                                                                                                                                                                                                                                                                   |
 | \[[MQTT‑SN‑3.4.2.1‑2](#MQTT-SN-3.4.2.1-2)]     | If the Topic Alias Flag is set to 1, a Topic Alias MUST be present in the Packet.                                                                                                                                                                                                                                                                                                                                                                       |
@@ -4319,15 +4346,15 @@ Refer to [6 "Conformance"](#conformance) for a definitive list of conformance re
 | \[[MQTT‑SN‑4.7.2.2‑6](#MQTT-SN-4.7.2.2-6)]     | A Session Topic alias and a Predefined Topic Alias with the same numerical value MUST map to different Topic Names.                                                                                                                                                                                                                                                                                                                                     |
 | \[[MQTT‑SN‑4.9‑1](#MQTT-SN-4.9-1)]             | If a Client or Server receives an MQTT-SN request (from the above list) and there is already a request outstanding from the other party within the same Virtual Connection and a different Packet Identifier, then it MUST issue a DISCONNECT with Reason Code 147 (Receive Maximum Exceeded) and delete the Virtual Connection.                                                                                                                        |
 | \[[MQTT‑SN‑4.9‑2](#MQTT-SN-4.9-2)]             | A Server or Client MUST NOT send a new Packet of a type from the above list, when it has an acknowledgement outstanding for another Packet for which it has not received an acknowledgement.                                                                                                                                                                                                                                                            |
-| \[[MQTT‑SN‑4.11.1‑1](#MQTT-SN-4.11.1-1)]       | If the Server does not support the Authentication Method supplied by the Client, it MAY send a CONNACK with a Reason Code of 0x8C (Bad authentication method) or 0x87 (Not Authorized) as described in [[2.3 Reason Code]](#reason-code) and MUST delete the Virtual Connection.                                                                                                                                                                        |
+| \[[MQTT‑SN‑4.11.1‑1](#MQTT-SN-4.11.1-1)]       | If the Server does not support the Authentication Method supplied by the Client, it MAY send a CONNACK with a Reason Code of 0x8C (Bad authentication method) or 0x87 (Not Authorized) as described in [2.3 "Reason Code"](#reason-code) and MUST delete the Virtual Connection.                                                                                                                                                                        |
 | \[[MQTT‑SN‑4.11.1‑2](#MQTT-SN-4.11.1-2)]       | If the Server requires additional information to complete the authentication, it can send an AUTH packet to the Client. This packet MUST contain a Reason Code of 0x18 (Continue authentication).                                                                                                                                                                                                                                                       |
 | \[[MQTT‑SN‑4.11.1‑3](#MQTT-SN-4.11.1-3)]       | The Client responds to an AUTH packet from the Server by sending a further AUTH packet. This packet MUST contain a Reason Code of 0x18 (Continue authentication).                                                                                                                                                                                                                                                                                       |
-| \[[MQTT‑SN‑4.11.1‑4](#MQTT-SN-4.11.1-4)]       | The Server can reject the authentication at any point in this process. It MUST send a CONNACK with a Reason Code of 0x80 or above as described in [[4.12 Handling errors]](#handling-errors).                                                                                                                                                                                                                                                           |
+| \[[MQTT‑SN‑4.11.1‑4](#MQTT-SN-4.11.1-4)]       | The Server can reject the authentication at any point in this process. It MUST send a CONNACK with a Reason Code of 0x80 or above as described in [4.12 "Handling errors"](#handling-errors).                                                                                                                                                                                                                                                           |
 | \[[MQTT‑SN‑4.11.1‑5](#MQTT-SN-4.11.1-5)]       | If the initial CONNECT packet included an Authentication Method then all AUTH packets, and any successful CONNACK packet MUST include an Authentication Method with the same value as in the CONNECT packet.                                                                                                                                                                                                                                            |
 | \[[MQTT‑SN‑4.11.1‑6](#MQTT-SN-4.11.1-6)]       | If the Client does not include an Authentication Method in the CONNECT, the Server MUST NOT send an AUTH packet, and it MUST NOT send an Authentication Method in the CONNACK packet.                                                                                                                                                                                                                                                                   |
 | \[[MQTT‑SN‑4.11.1‑7](#MQTT-SN-4.11.1-7)]       | f the Client does not include an Authentication Method in the CONNECT, the Client MUST NOT send an AUTH packet to the Server.                                                                                                                                                                                                                                                                                                                           |
 | \[[MQTT‑SN‑4.11.1.1‑1](#MQTT-SN-4.11.1.1-1)]   | If the Client supplied an Authentication Method in the CONNECT packet, it can initiate a re-authentication at any time after receiving a CONNACK. It does this by sending an AUTH packet with a Reason Code of 0x19 (Re-authentication). The Client MUST set the Authentication Method to the same value as the Authentication Method originally used to authenticate the Virtual Connection.                                                           |
-| \[[MQTT‑SN‑4.11.1.1‑2](#MQTT-SN-4.11.1.1-2)]   | If the re-authentication fails, the Client or Server MUST send DISCONNECT with an appropriate Reason Code as described in [[4.12 Handling errors]](#handling-errors), and MUST delete the Virtual Connection.                                                                                                                                                                                                                                           |
+| \[[MQTT‑SN‑4.11.1.1‑2](#MQTT-SN-4.11.1.1-2)]   | If the re-authentication fails, the Client or Server MUST send DISCONNECT with an appropriate Reason Code as described in [4.12 "Handling errors"](#handling-errors), and MUST delete the Virtual Connection.                                                                                                                                                                                                                                           |
 | \[[MQTT-4.12.1-1](#MQTT-SN-4.12.1-1)]          | When a Client detects a Malformed Packet or Protocol Error associated with a Virtual Connection it SHOULD send a DISCONNECT packet containing an appropriate Reason Code and MUST delete the associated Virtual Connection.                                                                                                                                                                                                                             |
 | \[[MQTT-4.12.1-2](#MQTT-SN-4.121-2)]           | When a Server detects a Malformed Packet or Protocol Error for any packet except ADVERTISE, SEARCHGW, GWINFO, PUBWOS and CONNECT, the Server MAY send a DISCONNECT packet with an appropriate Reason Code and MUST delete the associated Virtual Connection if one exists.                                                                                                                                                                              |
 | \[[MQTT-4.12.2-1](#MQTT-SN-4.12.2-1)]          | The CONNACK and DISCONNECT packets allow a Reason Code of 0x80 or greater to indicate that the Virtual Connection will be deleted. If a Reason Code of 0x80 or greater is specified, then the Virtual Connection MUST be deleted whether or not the CONNACK or DISCONNECT is sent.                                                                                                                                                                      |
@@ -4350,7 +4377,7 @@ Refer to [6 "Conformance"](#conformance) for a definitive list of conformance re
 | \[[MQTT‑SN‑4.14.2‑3](#MQTT-SN-4.14.2-3)]       | If the number of messages buffered on the Server waiting to be sent exceeds the value specified by the client in the Default Awake Messages field, the Server MUST send only the Default Awake Messages value number of messages.                                                                                                                                                                                                                       |
 | \[[MQTT‑SN‑4.14.2‑4](#MQTT-SN-4.14.2-4)]       | It cuts short the AWAKE cycle, and MUST respond with a PINGRESP with a messages-left value of either the number of messages remaining in the Server buffer or 0xFFFF (meaning undetermined number of messages greater than 0 remaining).                                                                                                                                                                                                                |
 | \[[MQTT‑SN‑4.14.2‑5](#MQTT-SN-4.14.2-5)]       | During the Awake state, for each Application Message the Server sends to the Client, the application messages' quality of service MUST be honored - a full packet interaction MUST take place including all normative phases of acknowledgement, including any associated retransmission logic.                                                                                                                                                         |
-| \[[MQTT‑SN‑4.14.2‑6](#MQTT-SN-4.14.2-6)]       | If, during the delivery of Application Messages from the Server to the Client, and applying the [[retry logic]](#unacknowledged-packets), the Server gets no response, it MUST consider the Client disconnected and delete the Virtual Connection.                                                                                                                                                                                                      |
+| \[[MQTT‑SN‑4.14.2‑6](#MQTT-SN-4.14.2-6)]       | If, during the delivery of Application Messages from the Server to the Client, and applying the [retry logic](#unacknowledged-packets), the Server gets no response, it MUST consider the Client disconnected and delete the Virtual Connection.                                                                                                                                                                                                      |
 | \[[MQTT‑SN‑4.14.2‑7](#MQTT-SN-4.14.2-7)]       | If the Server does not have any packets buffered for the client, it MUST respond immediately with a PINGRESP packet.                                                                                                                                                                                                                                                                                                                                    |
 
 Table: Numbered conformance statements

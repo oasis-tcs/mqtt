@@ -51,7 +51,8 @@ The PUBWOS Flags is a 1 byte field which contains flags specifying the content o
 
 **Position**: bits 0 and 1 of the PUBWOS Flags.
 
-This determines the format of the topic data field. Refer to «<mark title="Requirement MQTT-SN-3.6.1.2.1-1"><a name="MQTT-SN-3.6.1.2.1-1"></a>[2.4 Topic Types]](#topic-types) for the definition of the topic types. [The Topic Type in the PUBWOS packet MUST be Predefined Topic Alias or Topic Name</mark>»\[MQTT‑SN‑3.6.1.2.1‑1].
+This determines the format of the topic data field. Refer to [sec](#topic-types) for the definition of the topic types.
+«<mark title="Requirement MQTT-SN-3.6.1.2.1-1"><a name="MQTT-SN-3.6.1.2.1-1"></a>The Topic Type in the PUBWOS packet MUST be Predefined Topic Alias or Topic Name</mark>»\[MQTT‑SN‑3.6.1.2.1‑1].
 
 ##### Retain{#ppws---retain}
 
@@ -272,7 +273,8 @@ The same value as the Packet Identifier in the PUBLISH Packet being acknowledged
 
 The Reason Code for the PUBACK packet is optional - its existence is inferred from the Packet length. If not provided, 0x00 (Success) is assumed.
 
-The values for Reason Codes are shown in «<mark title="Requirement MQTT-SN-3.6.4.3-1"><a name="MQTT-SN-3.6.4.3-1"></a>[2.3 Reason Code]](#reason-code). [The sender of the PUBACK Packet MUST use one of the Reason Codes applicable to PUBACK</mark>»\[MQTT‑SN‑3.6.4.3‑1].
+The values for Reason Codes are shown in [sec](#reason-code).
+«<mark title="Requirement MQTT-SN-3.6.4.3-1"><a name="MQTT-SN-3.6.4.3-1"></a>The sender of the PUBACK Packet MUST use one of the Reason Codes applicable to PUBACK</mark>»\[MQTT‑SN‑3.6.4.3‑1].
 
 #### PUBACK Actions{#puback-actions}
 
@@ -298,7 +300,8 @@ The same value as the Packet Identifier in the PUBLISH Packet being acknowledged
 
 The Reason Code for the PUBREC packet is optional - its existence is inferred from the Packet length. If not provided, 0x00 (Success) is assumed.
 
-The values for Reason Codes are shown in «<mark title="Requirement MQTT-SN-3.6.5.3-1"><a name="MQTT-SN-3.6.5.3-1"></a>[2.3 Reason Code]](#reason-code). [The sender of the PUBREC Packet MUST use one of the Reason Codes applicable to PUBREC</mark>»\[MQTT‑SN‑3.6.5.3‑1].
+The values for Reason Codes are shown in [sec](#reason-code).
+«<mark title="Requirement MQTT-SN-3.6.5.3-1"><a name="MQTT-SN-3.6.5.3-1"></a>The sender of the PUBREC Packet MUST use one of the Reason Codes applicable to PUBREC</mark>»\[MQTT‑SN‑3.6.5.3‑1].
 
 #### PUBREC Actions{#pubrec-actions}
 
@@ -324,7 +327,8 @@ The same value as the Packet Identifier in the PUBLISH Packet being acknowledged
 
 The Reason Code for the PUBREL packet is optional - its existence is inferred from the Packet length. If not provided, 0x00 (Success) is assumed.
 
-The values for Reason Codes are shown in «<mark title="Requirement MQTT-SN-3.6.6.3-1"><a name="MQTT-SN-3.6.6.3-1"></a>[2.3 Reason Code]](#reason-code). [The sender of the PUBREL Packet MUST use one of the Reason Codes applicable to PUBREL</mark>»\[MQTT‑SN‑3.6.6.3‑1].
+The values for Reason Codes are shown in [sec](#reason-code).
+«<mark title="Requirement MQTT-SN-3.6.6.3-1"><a name="MQTT-SN-3.6.6.3-1"></a>The sender of the PUBREL Packet MUST use one of the Reason Codes applicable to PUBREL</mark>»\[MQTT‑SN‑3.6.6.3‑1].
 
 #### PUBREL Actions{#pubrel-actions}
 
@@ -350,7 +354,8 @@ The same value as the Packet Identifier in the PUBLISH Packet being acknowledged
 
 The Reason Code for the PUBCOMP packet is optional - its existence is inferred from the Packet length. If not provided, 0x00 (Success) is assumed.
 
-The values for Reason Codes are shown in «<mark title="Requirement MQTT-SN-3.6.7.3-1"><a name="MQTT-SN-3.6.7.3-1"></a>[2.3 Reason Code]](#reason-code). [The sender of the PUBCOMP Packet MUST use one of the Reason Codes applicable to PUBCOMP</mark>»\[MQTT‑SN‑3.6.7.3‑1].
+The values for Reason Codes are shown in [sec](#reason-code).
+«<mark title="Requirement MQTT-SN-3.6.7.3-1"><a name="MQTT-SN-3.6.7.3-1"></a>The sender of the PUBCOMP Packet MUST use one of the Reason Codes applicable to PUBCOMP</mark>»\[MQTT‑SN‑3.6.7.3‑1].
 
 #### PUBCOMP Actions{#pubcomp-actions}
 
