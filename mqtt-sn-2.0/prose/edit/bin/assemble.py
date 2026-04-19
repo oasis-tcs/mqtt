@@ -728,7 +728,7 @@ def main(args: list[str]) -> int:
     if channel == PDF:
         for slot, line in enumerate(lines):
             if line.startswith('*Figure '):
-                lines[slot] = '%HIDE_FROM_LATEX%' + line
+                lines[slot] = f'{HC_BEG}{line.rstrip(NL)}{HC_END}{NL}'
             elif line.startswith('&nbsp;&nbsp;- '):
                 lines[slot] = line.replace('&nbsp;&nbsp;- ', '  - ')
             elif line.startswith(f'{FENCED_BLOCK_FLIP_FLOP}yaml <!--'):
