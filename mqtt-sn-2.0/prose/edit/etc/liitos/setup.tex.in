@@ -154,7 +154,7 @@
 
 \setstretch{\theStretch}%%%%%%%%---------------------------?????
 
-\setcounter{table}{-2}%% give some leeway (invisibly) to signature and change history table
+\setcounter{table}{0}%% no need for leeway (invisibly) neither signature nor change history table
 \renewcommand{\thetable}{\arabic{table}}
 \setcounter{figure}{0}
 \renewcommand{\thefigure}{\arabic{figure}}
