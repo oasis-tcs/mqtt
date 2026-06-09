@@ -195,6 +195,8 @@ For a detailed description of the various Quality Of Service levels refer to [se
 
 The DUP flag indicates the duplicate delivery of QoS 2 PUBLISH packets. If the DUP flag is set to 0, it signifies that the packet is sent for the first time. If the DUP flag is set to 1, it signifies that the packet is retransmitted.
 
+«<mark title="Requirement MQTT-SN-3.6.3.2.3-1"><a name="MQTT-SN-3.6.3.2.3-1"></a>If the QoS field is set to 0 or 1, the DUP flag MUST be set to 0.</mark>»\[MQTT‑SN‑3.6.3.2.3‑1].
+
 ##### Retain{#pwq1a2---retain}
 
 **Position**: bit 4 of the PUBLISH Flags.
