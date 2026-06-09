@@ -90,7 +90,7 @@ The Client or Server uses a PUBWOS packet to send an Application Message to a Ne
 
 A PUBLISH packet is sent from a Client to a Server or from a Server to a Client to transport an Application Message.
 
-«<mark title="Requirement MQTT-SN-3.6.1.2-1"><a name="MQTT-SN-3.6.1.2-1"></a>PUBLISH packets with QoS equal to 0 received by a Client or Server MUST be associated with a Session</mark>»\[MQTT‑SN‑3.6.1.2‑1].
+«<mark title="Requirement MQTT-SN-3.6.2-1"><a name="MQTT-SN-3.6.2-1"></a>PUBLISH packets with QoS equal to 0 received by a Client or Server MUST be associated with a Session</mark>»\[MQTT‑SN‑3.6.2‑1].
 
 #### PUBLISH Header{#publish-header}
 
