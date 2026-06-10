@@ -23,7 +23,7 @@ Table: Publish Packet Types
 
 *Figure 3-8 -- PUBWOS Packet*
 
-![PUBWOS Packet](images/image3.png "PUBWOS Packet")<!-- .width="6.5in", .height="3.4583333333333335in" -->
+![PUBWOS Packet](images/pubwos-packet-diagram.png "PUBWOS Packet")<!-- .width="6.5in", .height="3.4583333333333335in" -->
 
 This packet is used by both clients and Servers to publish data for a certain topic.
 
@@ -86,7 +86,7 @@ The Client or Server uses a PUBWOS packet to send an Application Message to a Ne
 
 *Figure 3-9 -- PUBLISH Packet for QoS 0*
 
-![PUBLISH Packet for QoS 0](images/image19.png "PUBLISH Packet for QoS 0")<!-- .width="6.5in", .height="3.4583333333333335in" -->
+![PUBLISH Packet for QoS 0](images/publish-qos-zero-packet-diagram.png "PUBLISH Packet for QoS 0")<!-- .width="6.5in", .height="3.4583333333333335in" -->
 
 A PUBLISH packet is sent from a Client to a Server or from a Server to a Client to transport an Application Message.
 
@@ -146,7 +146,7 @@ As described in [sec](#publish-actions).
 
 *Figure 3-10 -- PUBLISH Packet for QoS 1 and 2*
 
-![PUBLISH Packet for QoS 1 and 2](images/image11.png "PUBLISH Packet for QoS 1 and 2")<!-- .width="6.5in", .height="3.9305555555555554in" -->
+![PUBLISH Packet for QoS 1 and 2](images/publish-qos-1-and-2-packet-diagram.png "PUBLISH Packet for QoS 1 and 2")<!-- .width="6.5in", .height="3.9305555555555554in" -->
 
 A PUBLISH packet is sent from a Client to a Server or from a Server to a Client to transport an Application Message.
 
@@ -259,7 +259,7 @@ No more than one QoS 1 or 2 PUBLISH requests MUST be outstanding for a Sender at
 
 *Figure 3-13 -- PUBACK Packet*
 
-![PUBACK Packet](images/image9.png "PUBACK Packet")<!-- .width="6.5in", .height="1.2777777777777777in" -->
+![PUBACK Packet](images/puback-packet-diagram.png "PUBACK Packet")<!-- .width="6.5in", .height="1.2777777777777777in" -->
 
 A PUBACK packet is the response to a PUBLISH packet with QoS 1.
 
@@ -286,7 +286,7 @@ As described in [sec](#qos-1-at-least-once-delivery).
 
 *Figure 3-14 -- PUBREC Packet*
 
-![PUBREC Packet](images/image9.png "PUBREC Packet")<!-- .width="6.5in", .height="1.2777777777777777in" -->
+![PUBREC Packet](images/pubrec-packet-diagram.png "PUBREC Packet")<!-- .width="6.5in", .height="1.2777777777777777in" -->
 
 A PUBREC packet is the response to a PUBLISH packet with QoS 2. It is the second packet of the QoS 2 protocol exchange.
 
@@ -313,7 +313,7 @@ As described in [sec](#qos-2-exactly-once-delivery).
 
 *Figure 3-15 -- PUBREL Packet*
 
-![PUBREL Packet](images/image9.png "PUBREL Packet")<!-- .width="6.5in", .height="1.2777777777777777in" -->
+![PUBREL Packet](images/pubrel-packet-diagram.png "PUBREL Packet")<!-- .width="6.5in", .height="1.2777777777777777in" -->
 
 A PUBREL packet is the response to a PUBREC packet. It is the third packet of the QoS 2 protocol exchange.
 
@@ -340,7 +340,7 @@ As described in [sec](#qos-2-exactly-once-delivery).
 
 *Figure 3-16 -- PUBCOMP Packet*
 
-![PUBCOMP Packet](images/image9.png "PUBCOMP Packet")<!-- .width="6.5in", .height="1.2777777777777777in" -->
+![PUBCOMP Packet](images/pubcomp-packet-diagram.png "PUBCOMP Packet")<!-- .width="6.5in", .height="1.2777777777777777in" -->
 
 The PUBCOMP packet is the response to a PUBREL packet. It is the fourth and final packet of the QoS 2 protocol exchange.
 

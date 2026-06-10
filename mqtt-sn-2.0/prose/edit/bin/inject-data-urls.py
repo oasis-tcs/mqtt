@@ -24,7 +24,7 @@ with open(html_path, 'rt', encoding=ENCODING, errors=ENC_ERRS) as source:
     lines = [line.rstrip(NL) for line in source.readlines()]
 
 for slot, line in enumerate(lines):
-    if 'src="images/image' in line:
+    if 'src="images/' in line:
         cand = line.split('src="images/')[1].split('"')[0]
         data_url_path = pathlib.Path('build/data-url/' + cand + '.txt')
         if data_url_path.is_file() and data_url_path.stat().st_size:

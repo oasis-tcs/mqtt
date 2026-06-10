@@ -2,7 +2,7 @@
 
 *Figure 3-27 -- SLEEPRESP Packet*
 
-![SLEEPRESP Packet](images/image21.png "SLEEPRESP Packet")<!-- .width="6.5in", .height="2.9722222222222223in" -->
+![SLEEPRESP Packet](images/sleepresp-packet-diagram.png "SLEEPRESP Packet")<!-- .width="6.5in", .height="2.9722222222222223in" -->
 
 ### SLEEPRESP Header{#sleepresp-header}
 
