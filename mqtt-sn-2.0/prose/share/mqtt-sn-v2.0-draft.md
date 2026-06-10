@@ -923,7 +923,7 @@ The Reason Codes share a common set of values as shown below.
 | 157        | 0x9D         | Server moved                               | CONNACK, DISCONNECT (server only)                                                                 | The Server is moved and the Client should permanently change its server location.                                                                                                               |
 | 158        | 0x9E         | Shared subscription not supported          | SUBACK, DISCONNECT (server only)                                                                  | The MQTT Server does not support Shared Subscriptions. (Transparent gateway only)                                                                                                               |
 | 159        | 0x9F         | Connection rate exceeded                   | CONNACK, DISCONNECT (server only)                                                                 | This Virtual Connection is deleted because the connection rate is too high.                                                                                                                     |
-| 160        | 0xAD         | Maximum connect time                       | DISCONNECT (server only)                                                                          | The maximum connection time authorized for this Virtual Connection has been exceeded.                                                                                                           |
+| 160        | 0xA0         | Maximum connect time                       | DISCONNECT (server only)                                                                          | The maximum connection time authorized for this Virtual Connection has been exceeded.                                                                                                           |
 | 161        | 0xA1         | Subscription identifiers not supported     | SUBACK, DISCONNECT (server only)                                                                  | The MQTT Server does not support Subscription Identifiers; the subscription is not accepted. (Transparent gateway only)                                                                         |
 | 162        | 0xA2         | Wildcard subscription not supported        | SUBACK, DISCONNECT (server only)                                                                  | The MQTT Server does not support Wildcard Subscriptions; the subscription is not accepted. (Transparent Gateway only)                                                                           |
 | 230        | 0xE6         | Only PROTECTION packet supported (Note 1\) | Any packet except PROTECTION and Forwarder Encapsulation                                          | The Receiver was expecting a packet to be Protection Encapsulated.  (MQTT-SN only)                                                                                                              |
@@ -970,7 +970,7 @@ Refer to [4.7 "Topics"](#topics) for detailed descriptions of Topic Names and To
 *Figure 3-1 -- CONNECT Packet*
 
 <!--\scale=0.9-->
-![CONNECT Packet](images/image26.png "CONNECT Packet")<!-- .width="5.2in", .height="8.075757874015748in" -->
+![CONNECT Packet](images/connect-packet-diagram.png "CONNECT Packet")<!-- .width="5.2in", .height="8.075757874015748in" -->
 
 The CONNECT packet is sent from the Client to the Server to request the creation of or continuation of a Session.
 
@@ -1293,7 +1293,7 @@ If validation is successful, the Server performs the following steps.
 
 *Figure 3-3 -- CONNACK Packet*
 
-![CONNACK Packet](images/image6.png "CONNACK Packet")<!-- .width="6.5in", .height="7.291666666666667in" -->
+![CONNACK Packet](images/connack-packet-diagram.png "CONNACK Packet")<!-- .width="6.5in", .height="7.291666666666667in" -->
 
 The CONNACK packet is sent by the Server in response to a CONNECT request from a client.
 
@@ -1428,7 +1428,7 @@ It is suggested that the 36 character Universally Unique IDentifier (UUID) forma
 
 *Figure 3-4 -- AUTH Packet*
 
-![AUTH Packet](images/image8.png "AUTH Packet")<!-- .width="6.5in", .height="3.2222222222222223in" -->
+![AUTH Packet](images/auth-packet-diagram.png "AUTH Packet")<!-- .width="6.5in", .height="3.2222222222222223in" -->
 
 <mark title="Ephemeral region marking">The authentication method and data is first sent by the Client as part of a CONNECT exchange. If the Server requires additional information to complete the authentication, it responds with an AUTH packet to signal that the Client generates and sends another AUTH packet with the required information and so on until the authentication is complete. The server then responds with a CONNACK message.</mark>
 
@@ -1464,7 +1464,7 @@ Refer to [4.11 "Authentication"](#authentication) for more information about aut
 
 *Figure 3-5 -- REGISTER Packet*
 
-![REGISTER Packet](images/image39.png "REGISTER Packet")<!-- .width="6.5in", .height="3.375in" -->
+![REGISTER Packet](images/register-packet-diagram.png "REGISTER Packet")<!-- .width="6.5in", .height="3.375in" -->
 
 A REGISTER packet is sent by a Client or Server to create a Session Topic Alias, before sending a PUBLISH with that Session Topic Alias.
 
@@ -1520,7 +1520,7 @@ As described in [4.7.2 "Topic Aliases"](#topic-aliases).
 
 *Figure 3-6 -- REGACK Packet*
 
-![REGACK Packet](images/image1.png "REGACK Packet")<!-- .width="6.5in", .height="2.5555555555555554in" -->
+![REGACK Packet](images/regack-packet-diagram.png "REGACK Packet")<!-- .width="6.5in", .height="2.5555555555555554in" -->
 
 The REGACK packet is sent by a Client or by a Server as an acknowledgment to the receipt and processing of a REGISTER packet.
 
@@ -1601,7 +1601,7 @@ Table: Publish Packet Types
 
 *Figure 3-8 -- PUBWOS Packet*
 
-![PUBWOS Packet](images/image3.png "PUBWOS Packet")<!-- .width="6.5in", .height="3.4583333333333335in" -->
+![PUBWOS Packet](images/pubwos-packet-diagram.png "PUBWOS Packet")<!-- .width="6.5in", .height="3.4583333333333335in" -->
 
 This packet is used by both clients and Servers to publish data for a certain topic.
 
@@ -1664,11 +1664,11 @@ The Client or Server uses a PUBWOS packet to send an Application Message to a Ne
 
 *Figure 3-9 -- PUBLISH Packet for QoS 0*
 
-![PUBLISH Packet for QoS 0](images/image19.png "PUBLISH Packet for QoS 0")<!-- .width="6.5in", .height="3.4583333333333335in" -->
+![PUBLISH Packet for QoS 0](images/publish-qos-zero-packet-diagram.png "PUBLISH Packet for QoS 0")<!-- .width="6.5in", .height="3.4583333333333335in" -->
 
 A PUBLISH packet is sent from a Client to a Server or from a Server to a Client to transport an Application Message.
 
-«<mark title="Requirement MQTT-SN-3.6.1.2-1"><a name="MQTT-SN-3.6.1.2-1"></a>PUBLISH packets with QoS equal to 0 received by a Client or Server MUST be associated with a Session</mark>»\[MQTT‑SN‑3.6.1.2‑1].
+«<mark title="Requirement MQTT-SN-3.6.2-1"><a name="MQTT-SN-3.6.2-1"></a>PUBLISH packets with QoS equal to 0 received by a Client or Server MUST be associated with a Session</mark>»\[MQTT‑SN‑3.6.2‑1].
 
 #### 3.6.2.1 PUBLISH Header <a id='publish-header'></a>
 
@@ -1724,7 +1724,7 @@ As described in [3.6.3.7 "PUBLISH Actions"](#publish-actions).
 
 *Figure 3-10 -- PUBLISH Packet for QoS 1 and 2*
 
-![PUBLISH Packet for QoS 1 and 2](images/image11.png "PUBLISH Packet for QoS 1 and 2")<!-- .width="6.5in", .height="3.9305555555555554in" -->
+![PUBLISH Packet for QoS 1 and 2](images/publish-qos-1-and-2-packet-diagram.png "PUBLISH Packet for QoS 1 and 2")<!-- .width="6.5in", .height="3.9305555555555554in" -->
 
 A PUBLISH packet is sent from a Client to a Server or from a Server to a Client to transport an Application Message.
 
@@ -1835,7 +1835,7 @@ No more than one QoS 1 or 2 PUBLISH requests MUST be outstanding for a Sender at
 
 *Figure 3-13 -- PUBACK Packet*
 
-![PUBACK Packet](images/image9.png "PUBACK Packet")<!-- .width="6.5in", .height="1.2777777777777777in" -->
+![PUBACK Packet](images/puback-packet-diagram.png "PUBACK Packet")<!-- .width="6.5in", .height="1.2777777777777777in" -->
 
 A PUBACK packet is the response to a PUBLISH packet with QoS 1.
 
@@ -1862,7 +1862,7 @@ As described in [4.3.3 "QoS 1: At least once delivery"](#qos-1-at-least-once-del
 
 *Figure 3-14 -- PUBREC Packet*
 
-![PUBREC Packet](images/image9.png "PUBREC Packet")<!-- .width="6.5in", .height="1.2777777777777777in" -->
+![PUBREC Packet](images/pubrec-packet-diagram.png "PUBREC Packet")<!-- .width="6.5in", .height="1.2777777777777777in" -->
 
 A PUBREC packet is the response to a PUBLISH packet with QoS 2. It is the second packet of the QoS 2 protocol exchange.
 
@@ -1889,7 +1889,7 @@ As described in [4.3.4 "QoS 2: Exactly once delivery"](#qos-2-exactly-once-deliv
 
 *Figure 3-15 -- PUBREL Packet*
 
-![PUBREL Packet](images/image9.png "PUBREL Packet")<!-- .width="6.5in", .height="1.2777777777777777in" -->
+![PUBREL Packet](images/pubrel-packet-diagram.png "PUBREL Packet")<!-- .width="6.5in", .height="1.2777777777777777in" -->
 
 A PUBREL packet is the response to a PUBREC packet. It is the third packet of the QoS 2 protocol exchange.
 
@@ -1916,7 +1916,7 @@ As described in [4.3.4 "QoS 2: Exactly once delivery"](#qos-2-exactly-once-deliv
 
 *Figure 3-16 -- PUBCOMP Packet*
 
-![PUBCOMP Packet](images/image9.png "PUBCOMP Packet")<!-- .width="6.5in", .height="1.2777777777777777in" -->
+![PUBCOMP Packet](images/pubcomp-packet-diagram.png "PUBCOMP Packet")<!-- .width="6.5in", .height="1.2777777777777777in" -->
 
 The PUBCOMP packet is the response to a PUBREL packet. It is the fourth and final packet of the QoS 2 protocol exchange.
 
@@ -1943,7 +1943,7 @@ As described in [4.3.4 "QoS 2: Exactly once delivery"](#qos-2-exactly-once-deliv
 
 *Figure 3-17 -- SUBSCRIBE Packet*
 
-![SUBSCRIBE Packet](images/image7.png "SUBSCRIBE Packet")<!-- .width="6.5in", .height="3.375in" -->
+![SUBSCRIBE Packet](images/subscribe-packet-diagram.png "SUBSCRIBE Packet")<!-- .width="6.5in", .height="3.375in" -->
 
 The SUBSCRIBE packet is sent from the Client to the Server to create one or more Subscriptions. A Subscription registers a Client's interest in one or more Topics. The Server sends PUBLISH packets to the Client to forward Application Messages that were published to Topics that match the Subscription. The SUBSCRIBE packet also specifies the maximum QoS with which the Server can send Application Messages to the Client.
 
@@ -2051,7 +2051,7 @@ If a Server receives a Topic Filter that is not identical to any Topic Filter fo
 
 *Figure 3-18 -- SUBACK Packet*
 
-![SUBACK Packet](images/image4.png "SUBACK Packet")<!-- .width="6.5in", .height="2.5555555555555554in" -->
+![SUBACK Packet](images/suback-packet-diagram.png "SUBACK Packet")<!-- .width="6.5in", .height="2.5555555555555554in" -->
 
 The SUBACK packet is sent by a Server to a client as an acknowledgment to the receipt and processing of a SUBSCRIBE packet.
 
@@ -2079,9 +2079,9 @@ Determines the format of the topic value. Refer to [2.4 "Topic Types"](#topic-ty
 
 **Position**: bit 2 of the SUBACK Flags.
 
-«<mark title="Requirement MQTT-SN-3.8.2.1-1"><a name="MQTT-SN-3.8.2.1-1"></a>If the Topic Alias Flag is set to 0, a Topic Alias MUST NOT be present in the Packet</mark>»\[MQTT‑SN‑3.8.2.1‑1].
+«<mark title="Requirement MQTT-SN-3.8.2.2-1"><a name="MQTT-SN-3.8.2.2-1"></a>If the Topic Alias Flag is set to 1, a Topic Alias MUST NOT be present in the Packet</mark>»\[MQTT‑SN‑3.8.2.2‑1].
 
-«<mark title="Requirement MQTT-SN-3.8.2.1-2"><a name="MQTT-SN-3.8.2.1-2"></a>If the Topic Alias Flag is set to 1, a Topic Alias MUST be present in the Packet</mark>»\[MQTT‑SN‑3.8.2.1‑2].
+«<mark title="Requirement MQTT-SN-3.8.2.2-2"><a name="MQTT-SN-3.8.2.2-2"></a>If the Topic Alias Flag is set to 1, a Topic Alias MUST be present in the Packet</mark>»\[MQTT‑SN‑3.8.2.2‑2].
 
 ### 3.8.3 Packet Identifier <a id='ssa---packet-identifier'></a>
 
@@ -2106,7 +2106,7 @@ The values of Reason Codes are shown in [2.3 "Reason Code"](#reason-code).
 
 *Figure 3-19 -- UNSUBSCRIBE Packet*
 
-![UNSUBSCRIBE Packet](images/image25.png "UNSUBSCRIBE Packet")<!-- .width="6.5in", .height="3.375in" -->
+![UNSUBSCRIBE Packet](images/unsubscribe-packet-diagram.png "UNSUBSCRIBE Packet")<!-- .width="6.5in", .height="3.375in" -->
 
 An UNSUBSCRIBE packet is sent by the Client to the Server to remove subscriptions to topics.
 
@@ -2166,7 +2166,7 @@ The Topic Filter is an UTF-8 Encoded String. The existence or absence of this fi
 
 *Figure 3-20 -- UNSUBACK Packet*
 
-![UNSUBACK Packet](images/image9.png "UNSUBACK Packet")<!-- .width="6.5in", .height="1.2777777777777777in" -->
+![UNSUBACK Packet](images/unsuback-packet-diagram.png "UNSUBACK Packet")<!-- .width="6.5in", .height="1.2777777777777777in" -->
 
 An UNSUBACK packet is sent by a Server to acknowledge the receipt and processing of an UNSUBSCRIBE packet.
 
@@ -2188,7 +2188,7 @@ The UNSUBACK Reason Codes are shown in «<mark title="Requirement MQTT-SN-3.10.3
 
 *Figure 3-21 -- PINGREQ Packet*
 
-![PINGREQ Packet](images/image36.png "PINGREQ Packet")<!-- .width="6.5in", .height="1.1944444444444444in" -->
+![PINGREQ Packet](images/pingreq-packet-diagram.png "PINGREQ Packet")<!-- .width="6.5in", .height="1.1944444444444444in" -->
 
 The PINGREQ packet is sent from a Client to the Server. It can be used to:
 
@@ -2222,7 +2222,7 @@ Used to identify the corresponding PINGRESP packet. It should ideally be set to 
 
 *Figure 3-22 -- PINGRESP Packet*
 
-![PINGRESP Packet](images/image17.png "PINGRESP Packet")<!-- .width="6.5in", .height="1.4166666666666667in" -->
+![PINGRESP Packet](images/pingresp-packet-diagram.png "PINGRESP Packet")<!-- .width="6.5in", .height="1.4166666666666667in" -->
 
 A PINGRESP Packet is sent by the Server to the Client in response to a PINGREQ packet. It indicates that the Server is alive.
 
@@ -2260,7 +2260,7 @@ Table: PINGRESP continuation values
 
 *Figure 3-24 -- DISCONNECT Packet*
 
-![DISCONNECT Packet](images/image34.png "DISCONNECT Packet")<!-- .width="6.5in", .height="4.555555555555555in" -->
+![DISCONNECT Packet](images/disconnect-packet-diagram.png "DISCONNECT Packet")<!-- .width="6.5in", .height="4.555555555555555in" -->
 
 The DISCONNECT packet is sent by a Client to indicate that it is going to delete the Virtual connection and go to the Disconnected state.
 
@@ -2352,7 +2352,7 @@ After receiving a DISCONNECT, a Client can make a new Virtual Connection by send
 
 *Figure 3-25 -- WAKEUP Packet*
 
-![WAKEUP Packet](images/image18.png "WAKEUP Packet")<!-- .width="6.5in", .height="0.7222222222222222in" -->
+![WAKEUP Packet](images/wakeup-packet-diagram.png "WAKEUP Packet")<!-- .width="6.5in", .height="0.7222222222222222in" -->
 
 The wakeup packet is a signal sent from the Server to a client. It is an indication from the Server that the client should wake up. The client is not obliged to honor this request, nor may it even receive the packet. It can choose to ignore the request, or undertake one of the sequences outlined in [4.14.2 "Sleeping Clients"](#sleeping-clients). The client need not respond to this packet.
 
@@ -2368,7 +2368,7 @@ The first 2 or 4 bytes of the packet are encoded according to the variable lengt
 
 *Figure 3-26 -- SLEEPREQ Packet*
 
-![SLEEPREQ Packet](images/image28.png "SLEEPREQ Packet")<!-- .width="6.5in", .height="2.8333333333333335in" -->
+![SLEEPREQ Packet](images/sleepreq-packet-diagram.png "SLEEPREQ Packet")<!-- .width="6.5in", .height="2.8333333333333335in" -->
 
 The SLEEPREQ packet is sent from the Client to the Server to indicate that it is going to sleep (moving to the Asleep state).
 
@@ -2434,7 +2434,7 @@ A Client might not wait, or might stop waiting, if it is concerned that it will 
 
 *Figure 3-27 -- SLEEPRESP Packet*
 
-![SLEEPRESP Packet](images/image21.png "SLEEPRESP Packet")<!-- .width="6.5in", .height="2.9722222222222223in" -->
+![SLEEPRESP Packet](images/sleepresp-packet-diagram.png "SLEEPRESP Packet")<!-- .width="6.5in", .height="2.9722222222222223in" -->
 
 ### 3.16.1 SLEEPRESP Header <a id='sleepresp-header'></a>
 
@@ -2481,7 +2481,7 @@ The values for Reason Codes are shown in [2.3 "Reason Code"](#reason-code).
 
 *Figure 3-28 -- Format of an Protection Encapsulated MQTT-SN Packet*
 
-![Format of an Protection Encapsulated MQTT-SN Packet](images/image24.png "Format of an Protection Encapsulated MQTT-SN Packet")<!-- .width="6.5in", .height="6.347222222222222in" -->
+![Format of an Protection Encapsulated MQTT-SN Packet](images/protection-encapsulation-packet-diagram.png "Format of an Protection Encapsulated MQTT-SN Packet")<!-- .width="6.5in", .height="6.347222222222222in" -->
 
 Protection encapsulation provides a secure envelope for any MQTT-SN packet (with the exception of the Forward Encapsulation packet). The fields provided by the Protection Encapsulation provide a means by which the sender is identified and the packet is protected, using a number of prescribed protection schemes. Where the phrase "protected Packet" is used in this document, it means an MQTT-SN Packet surrounded by the Protection Encapsulation.
 
@@ -2681,7 +2681,7 @@ The Authentication Tag field has a length that depends on the Authentication Tag
 
 *Figure 3-30 -- Format of a Connection Encapsulated MQTT-SN Packet*
 
-![Format of a Connection Encapsulated MQTT-SN Packet](images/image35.png "Format of a Connection Encapsulated MQTT-SN Packet")<!-- .width="6.5in", .height="2.2777777777777777in" -->
+![Format of a Connection Encapsulated MQTT-SN Packet](images/connection-encapsulation-packet-diagram.png "Format of a Connection Encapsulated MQTT-SN Packet")<!-- .width="6.5in", .height="2.2777777777777777in" -->
 
 This envelope wraps an MQTT-SN Packet to allow it to be associated with an existing Virtual Connection where other methods are not sufficient. Only Clients can use the Connection Encapsulation because it is assumed that the Network Address for the Server is static for the duration of the Virtual Connection. If the Server Network Address is not static, then another method of identifying the Packet sender must be used, such as the Protection Encapsulation or DTLS.
 
@@ -2753,7 +2753,7 @@ The Packets in this section are optional. A description of how this functionalit
 
 *Figure 3-32 -- ADVERTISE Packet*
 
-![ADVERTISE Packet](images/image23.png "ADVERTISE Packet")<!-- .width="6.5in", .height="1.4166666666666667in" -->
+![ADVERTISE Packet](images/advertise-packet-diagram.png "ADVERTISE Packet")<!-- .width="6.5in", .height="1.4166666666666667in" -->
 
 The ADVERTISE packet is sent periodically by a Gateway to advertise its presence. The time interval until the next transmission is indicated by the *Duration* field.
 
@@ -2781,7 +2781,7 @@ The maximum value that can be encoded is approximately 18 hours.
 
 *Figure 3-33 -- SEARCHGW Packet*
 
-![SEARCHGW Packet](images/image30.png "SEARCHGW Packet")<!-- .width="6.5in", .height="1.5in" -->
+![SEARCHGW Packet](images/searchgw-packet-diagram.png "SEARCHGW Packet")<!-- .width="6.5in", .height="1.5in" -->
 
 The SEARCHGW packet is sent by a Client to find a Gateway to send Application Messages to, and receive Application Messages from.
 
@@ -2809,7 +2809,7 @@ This field is optional - its existence or absence is inferred from the Packet le
 
 *Figure 3-34 -- GWINFO Packet*
 
-![GWINFO Packet](images/image32.png "GWINFO Packet")<!-- .width="6.5in", .height="1.7361111111111112in" -->
+![GWINFO Packet](images/gwinfo-packet-diagram.png "GWINFO Packet")<!-- .width="6.5in", .height="1.7361111111111112in" -->
 
 The GWINFO packet is sent as response to a SEARCHGW packet. If sent by a Gateway, it contains only the identifier of the sending Gateway; otherwise, if sent by a client, it also includes the Network Address of the Gateway.
 
@@ -4166,7 +4166,7 @@ Refer to [6 "Conformance"](#conformance) for a definitive list of conformance re
 | \[[MQTT‑SN‑3.6.1.4‑1](#MQTT-SN-3.6.1.4-1)]     | If the Topic Type is Toic Name, the Topic Name field MUST be present in the PUBWOS packet.                                                                                                                                                                                                                                                                                                                                                              |
 | \[[MQTT‑SN‑3.6.1.4‑2](#MQTT-SN-3.6.1.4-2)]     | If the Topic Type is Predefined Topic Alias, the Topic Name field MUST NOT be present in the PUBWOS packet.                                                                                                                                                                                                                                                                                                                                             |
 | \[[MQTT‑SN‑3.6.1.6‑1](#MQTT-SN-3.6.1.6-1)]     | If received by a Client or Server, the PUBWOS packet MUST be treated as if its QoS were 0                                                                                                                                                                                                                                                                                                                                                               |
-| \[[MQTT‑SN‑3.6.1.2‑1](#MQTT-SN-3.6.1.2-1)]     | PUBLISH packets with QoS equal to 0 received by a Client or Server MUST be associated with a Session.                                                                                                                                                                                                                                                                                                                                                   |
+| \[[MQTT‑SN‑3.6.2‑1](#MQTT-SN-3.6.2-1)]     | PUBLISH packets with QoS equal to 0 received by a Client or Server MUST be associated with a Session.                                                                                                                                                                                                                                                                                                                                                   |
 | \[[MQTT‑SN‑3.6.2.2‑1](#MQTT-SN-3.6.2.2-1)]     | Bits 7 and 3-2 of the PUBLISH Flags are reserved and MUST be set to 0.                                                                                                                                                                                                                                                                                                                                                                                  |
 | \[[MQTT‑SN‑3.6.2.2‑2](#MQTT-SN-3.6.2.2-2)]     | The Client MUST validate that the reserved flags in the PUBLISH packet are set to 0. If any of the reserved flags is not 0 it is a Malformed Packet.                                                                                                                                                                                                                                                                                                    |
 | \[[MQTT‑SN‑3.6.2.4‑1](#MQTT-SN-3.6.2.4-1)]     | If the Topic Type is Topic Name (0b11), the Topic Name field MUST be present in the PUBLISH packet.                                                                                                                                                                                                                                                                                                                                                     |
@@ -4198,8 +4198,8 @@ Refer to [6 "Conformance"](#conformance) for a definitive list of conformance re
 | \[[MQTT‑SN‑3.8.2‑2](#MQTT-SN-3.8.2-2)]         | The Client MUST validate that the reserved flags in the SUBACK packet are set to 0. If any of the reserved flags is not 0 it is a Malformed Packet.                                                                                                                                                                                                                                                                                                     |
 | \[[MQTT‑SN‑3.8.2.1‑1](#MQTT-SN-3.8.2.1-1)]     | The Topic Type in the SUBACK packet MUST be either Predefined Topic Alias or Session Topic Alias.                                                                                                                                                                                                                                                                                                                                                       |
 | \[[MQTT‑SN‑3.8.2.1‑2](#MQTT-SN-3.8.2.1-2)]     | If there is no Topic Alias returned the Topic Type MUST be Predefined Topic Alias.                                                                                                                                                                                                                                                                                                                                                                      |
-| \[[MQTT‑SN‑3.8.2.1‑1](#MQTT-SN-3.8.2.1-1)]     | If the Topic Alias Flag is set to 0, a Topic Alias MUST NOT be present in the Packet.                                                                                                                                                                                                                                                                                                                                                                   |
-| \[[MQTT‑SN‑3.8.2.1‑2](#MQTT-SN-3.8.2.1-2)]     | If the Topic Alias Flag is set to 1, a Topic Alias MUST be present in the Packet.                                                                                                                                                                                                                                                                                                                                                                       |
+| \[[MQTT‑SN‑3.8.2.2‑1](#MQTT-SN-3.8.2.2-1)]     | If the Topic Alias Flag is set to 0, a Topic Alias MUST NOT be present in the Packet.                                                                                                                                                                                                                                                                                                                                                                   |
+| \[[MQTT‑SN‑3.8.2.2‑2](#MQTT-SN-3.8.2.2-2)]     | If the Topic Alias Flag is set to 1, a Topic Alias MUST be present in the Packet.                                                                                                                                                                                                                                                                                                                                                                       |
 | \[[MQTT‑SN‑3.8.4‑1](#MQTT-SN-3.8.4-1)]         | If a Topic Alias is returned, it MUST be used instead of the Topic Name by the Server when sending PUBLISH packets to the client.                                                                                                                                                                                                                                                                                                                       |
 | \[[MQTT‑SN‑3.8.4‑2](#MQTT-SN-3.8.4-2)]         | If no Topic Alias is returned, the Topic Alias Flag MUST be 0.                                                                                                                                                                                                                                                                                                                                                                                          |
 | \[[MQTT‑SN‑3.8.4‑3](#MQTT-SN-3.8.4-3)]         | If a Predefined Topic Alias was subscribed to, a Topic Alias MUST NOT be present in the SUBACK.                                                                                                                                                                                                                                                                                                                                                         |
@@ -4501,17 +4501,20 @@ The following diagrams are illustrative, graphical views of the states and trans
 
 *Figure C-7 -- Server View of Client States - informative*
 
-![Server View of Client States - informative](images/image27.jpg "Server View of Client States - informative")<!-- .width="6.5in", .height="6.958333333333333in" -->
+![Server View of Client States - informative](images/ClientState.png "Server View of Client States - informative")<!-- .width="6.5in", .height="6.958333333333333in" -->
 
 *Figure C-8 -- Server View of Client States - informative*
 
-![Server View of Client States - informative](images/image27.jpg "Server View of Client States - informative")<!-- .width="6.5in", .height="6.958333333333333in" -->
+![Server View of Client States - informative](images/ServerState.png "Server View of Client States - informative")<!-- .width="6.5in", .height="6.958333333333333in" -->
+
+<!-- These two figures both contained image27.jpg which was identical with ServerState.jpg -->
+<!-- TODO: Is this a doubled figure and we did not want to show the ClientState.jpg or ...? -->
 
 ## C.6. PUBLISH with QoS -1 <a id='c.6-publish-with-qos--1'></a>
 
 *Figure C-9 -- PUBLISH Packet for QoS -1*
 
-![PUBLISH Packet for QoS -1](images/image5.png "PUBLISH Packet for QoS -1")<!-- .width="6.5in", .height="5.569444444444445in" -->
+![PUBLISH Packet for QoS -1](images/publish-qos-minus-1-packet-diagram.png "PUBLISH Packet for QoS -1")<!-- .width="6.5in", .height="5.569444444444445in" -->
 
 This packet is the MQTT-SN 1.2 equivalent of PUBWOS. It could be supported by a Server if there are existing MQTT-SN 1.2 transmitters that the Server wants to listen to, or receivers it wants to send to. Implementation of this packet is optional.
 
@@ -4621,59 +4624,7 @@ If there is no response, the SEARCHGW packet may be retransmitted. In this case 
 
 # Appendix D. Revision History (informative) <a id='revision-history-informative'></a>
 
-<mark title="Ephemeral region marking">\[Optional section.\]</mark>
+Revision tracking is publicly available in the version control system at
+<https://github.com/oasis-tcs/mqtt/commits/main>.
 
-<mark title="Ephemeral region marking">Revisions made since the initial stage of this numbered Version of this document may be tracked here.</mark>
-
-<mark title="Ephemeral region marking">Note: If revision tracking is handled in another system like github, provide a link to it instead of using this table, if desired. Remove this note before submitting for publication.</mark>
-
-<!--\columns=7%,8%,14%,-->
-
-| Revision | Date       | Editor                                      | Changes Made                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-|:---------|:-----------|:--------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| WD-01    | 2020/02 | Andrew Banks                                | Merge Initial Document and Input Specification                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| WD-02    | 2020/04 | Andrew Banks, Rahul Gupta                   | Terminology, DataTypes, CONNECT packet  Specification Diagrams                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| WD-05    | 2021/02 | Simon Johnson                               | Packet Diagrams, Bit Tables, Field Definitions                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| WD-06    | 2021/03 | Simon Johnson                               | Sleeping client operational behavior, Terminology changes, 13 JIRA resolutions added to specification, Section numbering changes                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| WD-07    | 2021/03 | Simon Johnson                               | Added 4 byte (32 bit) integer description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| WD-08    | 2021/03 | Simon Johnson                               | Added max packet size to CONNECT, Added Session Expiry Interval to CONNACK, Removed ZigBee references, Removed capabilities flag from CONNECT, AUTH packet added along with Authentication operational behavior. Standardized page margins                                                                                                                                                                                                                                                                                                       |
-| WD-09    | 2021/05 | Simon Johnson                               | Added long topic type to topicIdTypes, updated PUBLISH to accommodate new topic type, added topic type matrix                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| WD-10    | 2021/10    | Simon Johnson                               | Document format aligned with core specification, removal of introduction, addition of packet ID table, adding error code                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| WD-11    | 2021/10    | Simon Johnson                               | MQTT-SN Architecture moved into operational behavior, removal of variable integer definition, addition of session state section, normative comments added to sleeping client operational behaviour                                                                                                                                                                                                                                                                                                                                               |
-| WD-12    | 2021/11    | Andrew Banks                                | Rework 1.5 Background                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| WD-13    | 2021/11    | Simon Johnson                               | Move Authentication and Retained messages into operational behavior, rationalized tables and figures, separated packet definitions of similar structures into distinct sections.                                                                                                                                                                                                                                                                                                                                                                 |
-| WD-14    | 2021/12    | Simon Johnson                               | First implementation attempt, Fixed table references, Fixed PingResp packet                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| WD-15    | 2021/12    | Simon Johnson                               | Tara added as editor, return code additions                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| WD-15    | 2022/02    | Tara Walker                                 | Changed Return Code nomenclature to be more consistent w/5.0. Added Reason Codes to each control packet type                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| WD-16    | 2022/03    | Tara Walker                                 | Updated WILL\*Types to correct Packet Type. Added Global Flags Table to Section 2. Updated each Control Packet Flags in Section 3 adding missing Flag Sections. Formatting: Auto update of Table numbering, Auto update of WD Revision numbering for footer.                                                                                                                                                                                                                                                                                     |
-| WD-17    | 2022/04    | Simon Johnson                               | Updated use of topic name and topic filter to be aligned with MQTT 5. Topic alias becomes topic alias type. Added quality of service protocol flow as it differed to MQTT 5 (inflight). Conformance references removed as these will need to be wholly owned OR externally referenced.                                                                                                                                                                                                                                                           |
-| WD-18    | 2022/06    | Tara E. Walker                              | Updated items based upon the feedback from Alex Kritikos.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| WD-19    | 2022/08    | Simon Johnson                               | Remove change tracking as document was becoming unworkable.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| WD-20    | 2022/09    | Simon Johnson                               | Integrate feedback from committee meeting relating to the work by Miroslav Prymek. Added resolution of CONNACK session present per MQTT 585                                                                                                                                                                                                                                                                                                                                                                                                      |
-| WD-21    | 2022/10    | Simon Johnson                               | Client States section added to describe the 5 states. Updated the state transition diagram to accommodate new disconnect field and new transitions between Awake -\> Lost and Asleep -\> Disconnected. Security section added. Figure 2 -- MQTT-SN Architecture diagram updated. Font updated to Arial from bespoke font. QoS -1 -- Section added to the QoS chapter (NOTE: updated text to allow for bi-directional -1 PUBLISHING). Introduction of Exponential backoff algorithm. Applied issue issue 587 (max messages set in CONNECT flags). |
-| WD-22    | 2022/11    | Simon Johnson                               | Integrate MQTT 591 (sleep behavior) Replace instances of "return code" to "reason code" PINGREQ timeout aligned with Tretry (15 seconds) from the ill defined "reasonable amount of time" Exponential Algo fix (using the factor n assuming it was the product!) Client Identifier size clarification. Publish variants added; distinguish variant based on QoS field to save 2 bytes for single flight PUBLISH packets. Incorporated B4. Into retry timer.                                                                                      |
-| WD-23    | 2022/12    | Simon Johnson                               | CONNECT Client Identifier Informative and Normative définition update. CONNACK Client Identifier Informative and Normative définition update. CONNACK reason codes updated. KeepAlive boundary specified removing 0 as an option per the committee call. Added Session Expiry "reasonable" setting statement. Added sequence diagrams for CONNECT, CONNECT with WILL, CONNECT with AUTH. Network Connection Section (IANA Omitted but we need to add this to agenda)                                                                             |
-| WD-24    | 2022/12    | Simon Johnson, Davide Lenzarini, Ian Craggs | Removal of Network Connection references. Modified PUBLISH -1 & 0 tables to remove topic length field Modified PUBLISH 1 & 2 tables to remove topic length field Changed Data field description on the above Updated sleeping device section Ensured the references to the Packet Length and type section was consistent in all packet types.                                                                                                                                                                                                    |
-| WD-25    | 2023/01    | Simon Johnson                               | Broken out PUBLISH -1 into its own packet type Disconnect flags field moved and added existence flags for optional fields Introduction titles changed to better sign post where the information resides in the document                                                                                                                                                                                                                                                                                                                          |
-| WD-26    | 2023/05    | Simon Johnson, Davide Lenzarini             | Backwards compatible PUBLISH -1, new OOS Publish message to repace it. Removal of security section to allow to rewrite.                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| WD-27    | 2023/11    | Simon Johnson, Davide Lenzarini             | Network Transport Layer chapter updated to define the impact of lower layers features on the MQTT-SN protocol. Replaced the term MQTT-SN "connection" with the term "Virtual Connection".                                                                                                                                                                                                                                                                                                                                                        |
-| WD-28    | 2023/12    | Davide Lenzarini, Stefan Hagen              | Ensured document structure is intact and replaced table footnotes with simple text tags and a subsequent notes listing.                                                                                                                                                                                                                                                                                                                                                                                                                          |
-|          | 2024/02    | Ian Craggs, Simon Johnson                   | Issue 560 resolution - full reason code table and add reason code fields to PUBREC, PUBREL and PUBCOMP. Duplicate reason code tables removed from packet descriptions. Will Data Sent in CONNECT Auth Data Sent in CONNECT & CONNACK Suback granted QoS 0,1,2 now reason codes not flags. Moved PUBLISH -1 to new Backward compatibility appendix                                                                                                                                                                                                |
-| WD-29    | 2024/03    | Ian Craggs, Davide Lenzarini, Simon Johnson | Update Terminology section. Add Operational Behavior sections from MQTT 5.0. Workshop revisions to Operational Behavior responding to Davide's review.                                                                                                                                                                                                                                                                                                                                                                                           |
-|          | 2024/06    | Ian Craggs                                  | Change CorrelId to Packet id. Move Virtual Connection semantics to Operational Behavior. Clarify MQTT-SN does not deduplicate. Do not preclude Unicast for PUBWOS.                                                                                                                                                                                                                                                                                                                                                                               |
-|          | 2024/07    | Ian Craggs                                  | Add Actions sections for all packets. Add a retained messages section. Add a flow control section.                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-|          | 2024/08    | Ian Craggs, Simon Johnson                   | Add WAKEUP packet. Update will firing conditions. Update retained messages terminology.                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-|          | 2024/09    | Ian Craggs                                  | Remove one index level from the packet chapter. Disallow other packets before CONNACK.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-|          | 2024/10    | Ian Craggs                                  | Add SLEEPREQ and SLEEPRESP packets - disconnect now has no response. Rename Enhanced Authentication to Authentication. Add Gateway timer table. Add Security Chapter.                                                                                                                                                                                                                                                                                                                                                                            |
-|          | 2024/11    | Ian Craggs                                  | Add MQTT-BASIC authentication method. Move Appendices to main doc, except those that exist in MQTT.                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-|          | 2025/02    | Ian Craggs                                  | Make session expiry in CONNACK optional.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-|          | 2025/03    | Ian Craggs                                  | Reformat all packet diagrams. Remove Topic Short Name. Simplify UN/SUBSCRIBE packet diagrams. Make session expiry in CONNECT optional.                                                                                                                                                                                                                                                                                                                                                                                                           |
-|          | 2025/04    | Ian Craggs                                  | Make Topic Alias in SUBACK optional. Move Retain Registrations from DISCONNECT to SLEEPREQ. Move informative Operational Behavior sections to Appendices.                                                                                                                                                                                                                                                                                                                                                                                        |
-|          | 2025/05    | Ian Craggs                                  | Move Advertise, GWINFO and SEARCHGW to the end of Chapter 3. Move C.2 Advertisement and Discovery Appendix to end of Appendix C. Redraft Client States section. Add Server Keepalive to CONNACK.                                                                                                                                                                                                                                                                                                                                                 |
-|          | 2025/06    | Ian Craggs                                  | Changed link format from section n.n to n.n xxxx. Updated PINGREQ actions. Reordered Control Packet Type to align with MQTT. Clarify definition and use of Server and Gateway terms. Removed radius fields from SEARCHGW and Forwarder Encapsulation. Limited sleep duration to less than session expiry.                                                                                                                                                                                                                                        |
-|          | 2025/07    | Ian Craggs                                  | In the CONNACK packet: moved Default Awake Messages Flags to a byte field; added flags to allow Network ID update and Sleep Duration on SLEEPRESP. Added Sleep Duration and Reason Code to SLEEPRESP. Added Connection Encapsulation.                                                                                                                                                                                                                                                                                                            |
-|          | 2025/08    | Ian Craggs, Davide Lenzarini                | Removed Client ID from PINGREQ. Changed Allow Sleep Duration changes flag to apply to Keep Alive and Session Expiry too. Updated Sender Identifier description in Protection Encapsulation. Made Reason Codes optional on all ACKs.                                                                                                                                                                                                                                                                                                              |
-|          | 2025/09    | Ian Craggs                                  | Added conformance statements to the Protection Encapsulation section.                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-|          | 2025/10    | Ian Craggs, Davide Lenzarini                | Added Chapter 6 - Conformance. Updated Protection Encapsulation with corrections and conformance. Added conformance statement table to Appendix B.                                                                                                                                                                                                                                                                                                                                                                                               |
-
-Table: Revisions made
+---

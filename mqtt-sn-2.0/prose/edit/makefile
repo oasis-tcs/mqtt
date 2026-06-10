@@ -75,11 +75,12 @@ render-markdown: sections
 
 .PHONY: render-html
 render-html: render-markdown
-	mkdir -p build/data-url/ && cd src/images && for source in image*.png; do printf "%s" "data:image/png;base64,$$(cat "$${source}" | base64 | tr -d '\r\n')" > "../../build/data-url/$${source}.txt"; done && cd -
+	mkdir -p build/data-url/ && cd src/images && for source in *.png; do printf "%s" "data:image/png;base64,$$(cat "$${source}" | base64 | tr -d '\r\n')" > "../../build/data-url/$${source}.txt"; done && cd -
 	command -v pandoc >/dev/null 2>&1 || { echo >&2 "make render-html requires pandoc but it's not installed - you can get help on installing at https://pandoc.org.  Aborting."; exit 1; }
 	command -v tidy >/dev/null 2>&1 || { echo >&2 "make render-html requires tidy but it's not installed - you can get help on installing by searching for it on the wild internets.  Aborting."; exit 1; }
 	pandoc -f gfm+definition_lists -t html build/tmp.md --columns=345  \
 		--css style/base.css --css style/skin.css --standalone -o build/tmp.html && \
+	  sed "s/>tmp<\\/title>/>MQTT for Sensor Networks Version 2.0<\\/title>/g;" build/tmp.html > sorry.html && mv sorry.html build/tmp.html && \
 	  bin/toccata.py && \
 	  bin/inject-data-urls.py build/injected.html && \
 	  timeout 2 tidy -config etc/tidy-config.txt build/injected.html -ashtml 2>/dev/null | \
