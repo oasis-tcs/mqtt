@@ -790,6 +790,15 @@ This prevents the QUIC connection from abruptly shutting down due to perceived i
 
 # 7 Security Considerations
 
+**Server-side authentication only.** Single Stream mode requires server-side
+authentication only: the client MUST authenticate the broker's identity by
+validating the broker's TLS certificate against its expected hostname.
+Mutual TLS (mTLS) — where the broker requires a client certificate — is
+**not required** by this specification and is OPTIONAL. Implementations that
+wish to use client certificates for additional access control MAY enable mTLS
+at the TLS layer, but such a requirement must not be treated as a mandatory
+part of Single Stream mode conformance.
+
 **Mandatory encryption.** QUIC mandates TLS 1.3 for all connections [RFC9000].
 There is no unencrypted QUIC option. All MQTT traffic in Single Stream mode is
 therefore encrypted in transit. Implementations MUST NOT downgrade to plain-text
