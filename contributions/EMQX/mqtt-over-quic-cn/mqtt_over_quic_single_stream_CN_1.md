@@ -95,8 +95,8 @@ License, Document Status and Notices.
   - [5.4 Feature Summary](#54-feature-summary)
   - [5.5 ALPN Negotiation](#55-alpn-negotiation)
     - [5.5.1 Client ALPN Offer](#551-client-alpn-offer)
-    - [5.5.2 Server ALPN Handling](#552-server-alpn-handling)
-    - [5.5.3 Server Offered ALPN Identifiers](#553-server-offered-alpn-identifiers)
+    - [5.5.2 Server ALPN Selection](#552-server-alpn-selection)
+    - [5.5.3 Negotiating Among Multiple Operating Modes](#553-negotiating-among-multiple-operating-modes)
 - [6 Connection Management](#6-connection-management)
   - [6.1 Establishing a Connection](#61-establishing-a-connection)
   - [6.2 Connection Keepalive](#62-connection-keepalive)
@@ -341,50 +341,48 @@ application-layer protocol before any application data is exchanged.
 
 ### 5.5.1 Client ALPN Offer
 
-The client MUST offer the ALPN identifier `mqtt` when establishing a QUIC
-connection to an MQTT broker implementing Single Stream mode. If the client
-offers a different ALPN identifier or omits the `mqtt` identifier entirely,
-the server is not required to recognize the connection as a Single Stream
-connection.
+The client MUST include the ALPN identifier `mqtt` in the ALPN protocol list
+it offers during the QUIC handshake when it intends to use Single Stream
+mode. A client that supports multiple operating modes from the MQTT over QUIC
+family of documents MAY offer several identifiers in a single handshake (e.g.,
+`mqtt-next` and `mqtt`), listed in descending order of preference [RFC7301].
 
-Offering only `mqtt` ensures that the client's QUIC connection is dedicated
-to MQTT and does not compete with other application protocols on the same
-transport.
+If the client does not include `mqtt` in its offer, the server cannot select
+Single Stream mode for the connection.
 
-### 5.5.2 Server ALPN Handling
+### 5.5.2 Server ALPN Selection
 
-The server MUST support the ALPN identifier `mqtt` for Single Stream mode.
-When a client offers `mqtt` during the QUIC handshake, the server MUST
-respond as follows:
+In ALPN, the server selects exactly one protocol from the list offered by the
+client, or fails the handshake; the server cannot select an identifier that
+the client did not offer [RFC7301]. When a client's offer includes `mqtt`,
+the server MUST respond as follows:
 
-1. If the server supports Single Stream mode, the server MUST accept the
-   `mqtt` ALPN identifier and MUST treat the connection as a Single Stream
-   mode connection.
-2. If the server does not support Single Stream mode, the server MUST reject
-   the `mqtt` ALPN identifier. The server MAY offer an alternative ALPN
-   identifier (e.g., one for another protocol family such as HTTP/3), in which
-   case the client MAY accept the alternative or abort the connection.
-3. If the server neither accepts `mqtt` nor offers an alternative ALPN
-   identifier, the QUIC handshake MUST fail with a `no_application_protocol`
-   alert [RFC9001] §8.1.
+1. If the server supports Single Stream mode, the server SHOULD select the
+   `mqtt` identifier, unless the client's offer contains another mutually
+   supported MQTT over QUIC identifier that is preferred as described in
+   Section 5.5.3. When the server selects `mqtt`, it MUST treat the
+   connection as a Single Stream mode connection.
+2. If the server supports none of the identifiers offered by the client, the
+   server MUST terminate the QUIC handshake with a `no_application_protocol`
+   TLS alert (QUIC error code 0x0178) [RFC9001] §8.1.
 
-When the server accepts `mqtt`, the client MUST open a bidirectional QUIC
+When the server selects `mqtt`, the client MUST open a bidirectional QUIC
 stream as defined in Section 5.2 and proceed with the MQTT handshake.
 
-### 5.5.3 Server Offered ALPN Identifiers
+### 5.5.3 Negotiating Among Multiple Operating Modes
 
-A server MAY offer multiple ALPN identifiers during the QUIC handshake to
-indicate support for multiple operating modes defined in the MQTT over QUIC
-family of documents. For example, a server MAY offer `mqtt` (Single Stream)
-and `mqtt-next` (Advanced Multistream) simultaneously.
+A server MAY support multiple operating modes defined in the MQTT over QUIC
+family of documents (e.g., `mqtt` for Single Stream and `mqtt-next` for
+Advanced Multistream). When the client's offer contains more than one of
+these identifiers, the server SHOULD select the identifier that appears
+earliest in the client's preference order among those the server supports.
 
-When a server offers multiple ALPN identifiers, the client MUST select the
-first identifier it recognizes and supports. If the client does not recognize
-any of the offered identifiers, the client MUST abort the QUIC connection with
-an `no_application_protocol` alert [RFC9001] §8.1.
+If the server selects an identifier that the client did not offer, the client
+MUST treat this as a connection error of type 0x0178
+(`no_application_protocol`) and close the connection [RFC9001] §8.1.
 
-The ALPN negotiation MUST occur before any MQTT packets are exchanged. A server
-that has not successfully negotiated the `mqtt` ALPN identifier MUST NOT accept
+The ALPN negotiation MUST be completed before any MQTT packets are exchanged.
+A server that has not negotiated the `mqtt` ALPN identifier MUST NOT accept
 MQTT packets over the connection.
 
 ---
@@ -511,14 +509,18 @@ The client SHOULD attempt a QUIC connection to the same host and port obtained
 via DNS resolution, offering `mqtt` as the ALPN identifier. The outcome of this
 probe determines QUIC support:
 
-1. **ALPN accepted (`mqtt`):** The broker supports Single Stream mode. The
+1. **`mqtt` selected:** The broker supports Single Stream mode. The
    client MAY proceed with the QUIC connection as a primary transport or as an
    upgrade from TCP/TLS as described in Section 6.5.
-2. **ALPN rejected (alternative ALPN offered):** The broker supports QUIC but
-   not Single Stream mode for this endpoint. The client SHOULD fall back to
-   TCP/TLS or accept the alternative ALPN if it is an MQTT-compatible protocol.
-3. **ALPN rejected (no alternative offered):** The QUIC handshake fails with an
-   `alpn_failure` alert. The client MUST fall back to TCP/TLS.
+2. **Another offered identifier selected:** This outcome is only possible if
+   the client offered more than one identifier (Section 5.5.1). The broker
+   supports QUIC but selected a different operating mode. The client SHOULD
+   proceed with the selected mode if it is an MQTT-compatible protocol, or
+   fall back to TCP/TLS otherwise.
+3. **ALPN negotiation fails:** The QUIC handshake fails with a
+   `no_application_protocol` alert (QUIC error code 0x0178) [RFC9001] §8.1,
+   indicating the broker supports none of the offered identifiers. The client
+   MUST fall back to TCP/TLS.
 4. **QUIC connection fails (network error):** The client cannot establish a QUIC
    connection due to a network-level failure. See Section 6.6 for downgrade
    rules.
@@ -632,10 +634,13 @@ TCP/TLS. The RECOMMENDED backoff values are: 1 second, 2 seconds, 4 seconds.
 The maximum cumulative retry timeout SHOULD NOT exceed 10 seconds. If any retry
 succeeds, the client uses QUIC and does not fall back.
 
-**ALPN mismatch** — The QUIC connection is established, but the negotiated ALPN
-identifier is not `mqtt`. This indicates that the endpoint does not support
-Single Stream mode. The endpoint may support other protocols (e.g., HTTP/3),
-so the client MUST NOT assume that the endpoint is unavailable for MQTT.
+**ALPN mismatch** — The QUIC endpoint is reachable, but ALPN negotiation does
+not yield `mqtt`: either the handshake fails with a `no_application_protocol`
+alert (QUIC error code 0x0178) [RFC9001] §8.1, or the server selects another
+client-offered identifier that is not an MQTT-compatible protocol. This
+indicates that the endpoint does not support Single Stream mode. The endpoint
+may support other protocols (e.g., HTTP/3), so the client MUST NOT assume that
+the endpoint is unavailable for MQTT.
 
 On ALPN mismatch, the client MUST downgrade to TCP/TLS and attempt to
 establish a connection. The client MUST NOT apply backoff for ALPN mismatch, as
