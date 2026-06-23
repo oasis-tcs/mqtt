@@ -165,8 +165,8 @@ This document uses the following terms as defined in external standards:
 - **stream:** A QUIC stream as defined in [RFC9000]. QUIC streams provide
   reliable, in-order delivery of bytes. Streams can be unidirectional or
   bidirectional, and can be initiated by either endpoint.
-- **session:** An MQTT session as defined in [MQTT5].
-- **MQTT packet:** An MQTT control packet as defined in [MQTT5].
+- **session:** An MQTT session as defined in [MQTT5] §4.1. For MQTT 3.1.1, the equivalent concept is the session defined in [MQTT311] §1.2 (Session), where session persistence is controlled by the Clean Session flag rather than a Session Expiry Interval.
+- **MQTT packet:** An MQTT control packet as defined in [MQTT5] §2. For MQTT 3.1.1, the equivalent is an MQTT Control Packet as defined in [MQTT311] §3.
 
 ### 2.1.2 Terms Defined in This Document
 
@@ -434,8 +434,10 @@ time. MQTT defines graceful shutdown with the stream shutdown reason code
 
 **Client-initiated graceful shutdown:**
 
-1. The client MUST send `MQTT.DISCONNECT` over the stream, with the Disconnect
-   Reason Code explicitly set.
+1. For MQTT 5.0, the client MUST send `MQTT.DISCONNECT` over the stream, with
+   the Disconnect Reason Code explicitly set. For MQTT 3.1.1, the client MUST
+   send `MQTT.DISCONNECT` without a reason code or properties (the 3.1.1
+   DISCONNECT packet has no variable header [MQTT311] §3.14.1).
 2. The client MUST then wait for the stream's graceful shutdown to complete.
 3. Any MQTT packets received from the broker before the stream is closed SHOULD
    be properly handled.
@@ -453,8 +455,16 @@ time. MQTT defines graceful shutdown with the stream shutdown reason code
 
 **Server-initiated graceful shutdown:**
 
-1. The server MUST send `MQTT.DISCONNECT` over the stream, with the Disconnect
-   Reason Code explicitly set.
+For MQTT 5.0, the server MAY send `MQTT.DISCONNECT` with a Reason Code to
+gracefully terminate the session before closing the QUIC connection. For
+MQTT 3.1.1, the broker MUST NOT send `MQTT.DISCONNECT` — the 3.1.1
+specification defines DISCONNECT as a client-to-server-only packet
+[MQTT311] §3.14. In this case the broker MUST close the QUIC connection
+immediately (With application error code in `QUIC.CONNECTION_CLOSE` frame, [RFC9000] §20.2).
+
+For MQTT 5.0, 
+1. the server MUST send `MQTT.DISCONNECT` over the stream, with
+   the Disconnect Reason Code explicitly set.
 2. The server MUST then wait for the stream's graceful shutdown to complete.
 3. The server MUST NOT send any further MQTT packets after initiating shutdown.
 4. After the stream is closed, the server MAY initiate an immediate QUIC
@@ -562,8 +572,10 @@ handshake, only one transport may carry the session.
 ### 6.5.2 Broker Session Handling
 
 When multiple transports are active for the same client (e.g., both TCP/TLS and
-QUIC connections exist), the broker MUST apply the standard MQTT 5.0 session
-takeover rules [MQTT5] §3.1.4:
+QUIC connections exist), the broker MUST apply the standard session takeover
+rules for the negotiated MQTT version.
+
+For MQTT 5.0, the broker MUST follow [MQTT5] §3.1.4:
 
 1. The broker MUST accept the **last** `MQTT.CONNECT` received and establish
    the MQTT session on that transport. If the Client Identifier in the new
@@ -575,15 +587,37 @@ takeover rules [MQTT5] §3.1.4:
    any remaining session state cleanly.
 3. The broker MUST send `MQTT.CONNACK` to the **winning** transport. The
    `Session Present` flag [MQTT5] §3.2.2.1 MUST reflect the result of
-   Clean Start processing [MQTT5] §3.1.2.4: if Clean Start is 0 and a session
+   Clean Start processing [MQTT5] §3.2.2.1.1: if Clean Start is 0 and a session
    exists, the flag MUST be set to 1; if Clean Start is 1, the flag MUST be
    set to 0.
+
+For MQTT 3.1.1, the broker MUST follow [MQTT311] §3.1.4:
+
+1. The broker MUST accept the **last** `MQTT.CONNECT` received and establish
+   the MQTT session on that transport. If the Client Identifier in the new
+   `MQTT.CONNECT` matches a client already connected on another transport, the
+   broker MUST disconnect the existing client [MQTT-3.1.4-2].
+2. The broker MUST close the **losing** transport immediately (without sending
+   `MQTT.DISCONNECT`, which is not a server-to-client packet in MQTT 3.1.1).
+   The 3.1.1 specification requires only that the existing client be
+   disconnected — the mechanism is closing the network connection.
+3. The broker MUST send `MQTT.CONNACK` with the `Session Present` flag set
+   to 0 to the **winning** transport. In MQTT 3.1.1 the CONNACK does not
+   carry a `Session Present` flag; the client determines session state from
+   the `Clean Session` flag it sent in CONNECT [MQTT311] §3.1.2.4. The broker
+   MUST set `Clean Session` according to the value received in the CONNECT.
+   If `Clean Session` is 1, the broker discards any existing session state
+   for this Client Identifier; if `Clean Session` is 0, the broker retains
+   the session but has no flag to communicate its existence in CONNACK.
+
 4. The broker MUST NOT accept any further `MQTT.CONNECT` packets from the closed
    transport. If a CONNECT is received on a transport that has been closed for
    this session, the broker MUST reject it with Reason Code `0x82` (Protocol
-   Error) and close the transport immediately. The MQTT packet itself may be
-   syntactically valid; the rejection arises from the session state, not from
-   packet format.
+   Error) and close the transport immediately (MQTT 5.0). For MQTT 3.1.1, the
+   broker MUST close the transport immediately without sending any MQTT packet,
+   as DISCONNECT is not a server-to-client packet [MQTT311] §3.14. The MQTT
+   packet itself may be syntactically valid; the rejection arises from the
+   session state, not from packet format.
 
 The "last CONNECT wins" rule means the session outcome depends on connection
 timing and which CONNECT packet reaches the broker first. The broker MUST NOT
@@ -601,9 +635,13 @@ NOT attempt to re-establish the session on the other transport:
 2. If the TCP/TLS session wins and the QUIC transport is closed, the client MUST
    fall back to TCP/TLS and MUST NOT re-attempt QUIC for this session unless
    explicitly reconfigured by the application or user.
-3. If the `MQTT.CONACK` indicates a session takeover on the other transport, the
-   client MUST close its local connection on the losing transport and MUST NOT
-   send a new CONNECT on that transport for this session.
+3. If the client receives `MQTT.DISCONNECT` with Reason Code `0x8E` on a
+   transport (MQTT 5.0 only), the client MUST close its local connection on
+   that transport and MUST NOT send a new CONNECT on it for this session.
+   For MQTT 3.1.1, the client learns of takeover when the broker closes the
+   connection on the losing transport without sending `MQTT.DISCONNECT`; the
+   client MUST then close its local connection on that transport and MUST NOT
+   send a new CONNECT on it for this session.
 
 These rules prevent livelock scenarios where the client and broker continuously
 toggle the session between transports.
@@ -667,21 +705,28 @@ reconnection fails repeatedly (per the backoff rules in Section 6.6.1), the
 client MAY downgrade to TCP/TLS as a last resort.
 
 If the client previously received a CONNACK with Session Expiry Interval greater
-than zero, indicating that the broker retains the session, the client SHOULD
-prefer reconnecting on QUIC before attempting TCP/TLS. This helps avoid
+than zero (MQTT 5.0), indicating that the broker retains the session, the client
+SHOULD prefer reconnecting on QUIC before attempting TCP/TLS. This helps avoid
 unintended session takeovers where the client's TCP/TLS reconnection could
 displace an existing QUIC session that the broker is still maintaining.
+
+For MQTT 3.1.1, the CONNACK has no Session Expiry Interval. The client MUST
+infer session persistence from the `Clean Session` flag it sent in CONNECT:
+if `Clean Session` was 0, the broker retains the session across network
+failures [MQTT311] §3.1.1; the client SHOULD prefer reconnecting on QUIC
+before attempting TCP/TLS to avoid unintended session takeovers.
 
 ### 6.6.4 Preventing Reconnection Livelock
 
 To prevent infinite reconnection loops when both transports are available, the
 broker MUST enforce the following:
 
+For MQTT 5.0:
+
 1. Once the broker has closed a transport for a given session (Section 6.5.2),
    the broker MUST reject any subsequent `MQTT.CONNECT` on that transport.
-2. The rejection MUST be sent as an `MQTT.DISCONNECT` with an appropriate Reason
-   Code (e.g., `0x82` Protocol Error for Single Stream mode, or a mode-specific
-   code if defined in a future revision).
+2. The rejection MUST be sent as an `MQTT.DISCONNECT` with Reason Code `0x82`
+   (Protocol Error) or `0x8E` (Session taken over).
 3. The `MQTT.DISCONNECT` SHOULD include a `Server Keep Alive` value [MQTT5]
    §3.2.2.3.14 indicating the minimum interval (in seconds) the client MUST wait
    before attempting another connection on this transport. The RECOMMENDED
@@ -689,10 +734,26 @@ broker MUST enforce the following:
 4. The broker MAY ignore `MQTT.CONNECT` packets received on the closed transport
    without sending a response, treating them as arriving on a closed connection.
 
+For MQTT 3.1.1, the broker MUST NOT send `MQTT.DISCONNECT` (it is a
+client-to-server-only packet [MQTT311] §3.14). Instead:
+
+1. Once the broker has closed a transport for a given session (Section 6.5.2),
+   the broker MUST close any subsequent connection attempt on that transport
+   immediately without sending `MQTT.DISCONNECT`.
+2. The broker SHOULD NOT include any in-band backoff indication, as MQTT 3.1.1
+   has no properties in the CONNECT/CONNACK or DISCONNECT packets. The client
+   SHOULD use a fixed backoff interval (RECOMMENDED: 5 seconds) before attempting
+   another connection on the rejected transport for the same session.
+3. The broker MAY ignore `MQTT.CONNECT` packets received on the closed transport
+   without sending a response, treating them as arriving on a closed connection.
+
 The client MUST comply with the `Server Keep Alive` backoff value when rejected
-by the broker. If the client receives a rejection on the closed transport, the
-client MUST wait at least the indicated interval before attempting any further
-connection on that transport for the same session.
+by the broker (MQTT 5.0). If the client receives a rejection on the closed
+transport, the client MUST wait at least the indicated interval before
+attempting any further connection on that transport for the same session.
+For MQTT 3.1.1, the client MUST apply a fixed backoff (RECOMMENDED: 5 seconds)
+after any connection attempt on a transport that was previously closed for
+this session.
 
 ---
 
@@ -716,7 +777,7 @@ An “Abnormal Shutdown” (as defined in Section 6.3.2) occurs when the QUIC co
 
 Mapping Logic:
 
-- Session Persistence: When a QUIC-level error triggers an abnormal shutdown, the MQTT session MUST NOT be immediately terminated. The session state remains active on the broker according to the established Session Expiry Interval.
+- Session Persistence: When a QUIC-level error triggers an abnormal shutdown, the MQTT session MUST NOT be immediately terminated. The session state remains active on the broker according to the established Session Expiry Interval (MQTT 5.0) or until the client sends a CONNECT with `Clean Session` set to 1 (MQTT 3.1.1 [MQTT311] §3.1.3).
 
 - State Synchronization: The application layer distinguishes a network-level QUIC failure from a protocol violation by the absence of an MQTT.DISCONNECT packet. 
   If the QUIC connection is lost, the client may attempt to reconnect and resume the session using the same Client Identifier.
@@ -725,15 +786,23 @@ Mapping Logic:
 
 Errors detected at the MQTT application layer may require the immediate termination of the underlying QUIC transport to prevent the processing of malformed or unauthorized data.
 
-3.1 Protocol Violations and Malformed Packets
-In accordance with MQTT v5.0 specifications, if the Server detects a Malformed Packet or Protocol Error:
+#### 6.7.2.1 Protocol Violations and Malformed Packets (MQTT 5.0)
 
-Notification: The server SHOULD send an MQTT.DISCONNECT packet containing the appropriate Reason Code (e.g., 0x81 for Malformed Packet or 0x82 for Protocol Error).
-Transport Action: Immediately following the transmission of the MQTT.DISCONNECT (or if the error occurs during the CONNECT phase), the server MUST initiate a QUIC connection closure.
+In accordance with MQTT 5.0 specifications, if the Server detects a Malformed Packet or Protocol Error:
+
+Notification: The server SHOULD send an `MQTT.DISCONNECT` packet containing the appropriate Reason Code (e.g., `0x81` for Malformed Packet or `0x82` for Protocol Error).
+Transport Action: Immediately following the transmission of the `MQTT.DISCONNECT` (or if the error occurs during the CONNECT phase), the server MUST initiate a QUIC connection closure.
+
+#### 6.7.2.2 Protocol Violations and Malformed Packets (MQTT 3.1.1)
+
+For MQTT 3.1.1, the broker MUST NOT send `MQTT.DISCONNECT` (it is a client-to-server-only packet [MQTT311] §3.14). Upon detecting a Malformed Packet or Protocol Error:
+
+Notification: The broker MUST NOT send any MQTT packet to the client.
+Transport Action: The broker MUST immediately close the QUIC connection.
 
 ### 6.7.3 Error Mapping Matrix
 
-The following table summarizes the mapping between the layers:
+The following table summarizes the mapping between the layers. The "MQTT Session Impact" column shows the behavior for MQTT 5.0; MQTT 3.1.1 behavior is noted below the table.
 
 | EVENT SOURCE |       ERROR TYPE        |  ACTION/MAPPING   |        MQTT SESSION IMPACT        | QUIC CONNECTION IMPACT |
 |:-------------|:-----------------------:|:-----------------:|:---------------------------------:|------------------------|
@@ -742,6 +811,11 @@ The following table summarizes the mapping between the layers:
 | MQTT Layer   | Malformed Packet (0x81) |  Protocol Error   |        Session Terminated         | Connection Closed      |
 | MQTT Layer   |  Protocol Error (0x82)  |  Protocol Error   |        Session Terminated         | Connection Closed      |
 | Application  |    Graceful Shutdown    |  MQTT.DISCONNECT  | Session Closed/Persisted per flag | Graceful Shutdown      |
+
+**MQTT 3.1.1 notes:** For MQTT 3.1.1, the session lifetime is controlled by the `Clean Session` flag in CONNECT [MQTT311] §3.1.2.4 rather than a Session Expiry Interval. 
+When `Clean Session` is 0, the session persists indefinitely until the client sends a CONNECT with `Clean Session` set to 1 or the broker closes the connection. 
+Therefore, the "Session persists (until Expiry)" rows above should be read as "Session persists until `Clean Session`=1 or broker closes connection" for MQTT 3.1.1. 
+The Malformed Packet and Protocol Error rows close the connection but the 3.1.1 session state is NOT terminated — it persists indefinitely if `Clean Session` was 0.
 
 ### 6.7.4 State Synchronization Summary
 To prevent “zombie” sessions or inconsistent states, the following rules apply:
@@ -873,8 +947,11 @@ A conformant MQTT broker implementing Single Stream mode:
    the client.
 4. MUST process all MQTT packets received over the stream in the order they
    arrive.
-5. MUST follow the server-initiated graceful shutdown procedure defined in
-   Section 6.3.1 when disconnecting cleanly.
+5. For MQTT 5.0, MUST follow the server-initiated graceful shutdown procedure
+   defined in Section 6.3.1 when disconnecting cleanly. For MQTT 3.1.1, the
+   broker MUST NOT send `MQTT.DISCONNECT` (it is a client-to-server-only
+   packet [MQTT311] §3.14); when disconnecting cleanly the broker MUST close
+   the QUIC connection directly.
 
 ---
 
