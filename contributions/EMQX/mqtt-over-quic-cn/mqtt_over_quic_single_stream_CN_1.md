@@ -569,6 +569,15 @@ Maintaining both connections open without sending CONNECT on either is permitted
 during the probe phase (Section 6.4.2), but once the client begins the MQTT
 handshake, only one transport may carry the session.
 
+**Scope of this section.** The rules in this section apply only to the initial
+connection attempt — the one-shot decision of which transport to use for the
+first `MQTT.CONNECT`. They do not constrain reconnection attempts triggered
+by the application or by the client library after the session is established.
+For example, if a QUIC connection drops after the session is established, the
+application MAY choose to reconnect on TCP/TLS; this is a normal reconnection
+following standard MQTT session takeover rules [MQTT5] §3.1.4 or
+[MQTT311] §3.1.4, not an "upgrade," and the rules in this section do not apply.
+
 ### 6.5.2 Broker Session Handling
 
 When multiple transports are active for the same client (e.g., both TCP/TLS and
@@ -610,14 +619,12 @@ For MQTT 3.1.1, the broker MUST follow [MQTT311] §3.1.4:
    for this Client Identifier; if `Clean Session` is 0, the broker retains
    the session but has no flag to communicate its existence in CONNACK.
 
-4. The broker MUST NOT accept any further `MQTT.CONNECT` packets from the closed
-   transport. If a CONNECT is received on a transport that has been closed for
-   this session, the broker MUST reject it with Reason Code `0x82` (Protocol
-   Error) and close the transport immediately (MQTT 5.0). For MQTT 3.1.1, the
-   broker MUST close the transport immediately without sending any MQTT packet,
-   as DISCONNECT is not a server-to-client packet [MQTT311] §3.14. The MQTT
-   packet itself may be syntactically valid; the rejection arises from the
-   session state, not from packet format.
+4. The broker MUST NOT distinguish between a CONNECT from an upgrade attempt
+   and a CONNECT from a normal reconnection. For both MQTT 5.0 and MQTT 3.1.1,
+   the broker always applies standard session takeover rules: the **last**
+   `MQTT.CONNECT` received wins, regardless of which transport it arrived on.
+   The "upgrade race window" is a client-side concept — the broker has no
+   awareness of it and does not enforce any special rules.
 
 The "last CONNECT wins" rule means the session outcome depends on connection
 timing and which CONNECT packet reaches the broker first. The broker MUST NOT
@@ -718,42 +725,48 @@ before attempting TCP/TLS to avoid unintended session takeovers.
 
 ### 6.6.4 Preventing Reconnection Livelock
 
-To prevent infinite reconnection loops when both transports are available, the
-broker MUST enforce the following:
+The livelock concern arises during the **upgrade race window** — the brief
+period when both transports carry active connections for the same session
+(Section 6.5.2). The broker does not enforce any special rules during this
+window; it always applies standard MQTT session takeover (last CONNECT wins).
+Livelock prevention is entirely the **client's** responsibility.
 
-For MQTT 5.0:
+**How the livelock occurs.** Suppose the client sends `MQTT.CONNECT` on both
+TCP/TLS and QUIC. If the TCP/TLS CONNECT arrives first, the broker accepts it
+and closes QUIC. The client on the QUIC side detects the close, opens a new
+QUIC connection, and sends another `MQTT.CONNECT`. If that new CONNECT arrives
+before the TCP/TLS side has finished processing the first one, the broker
+accepts the QUIC CONNECT and closes TCP/TLS. The TCP/TLS side then reconnects,
+and the cycle repeats. The broker is not the problem — it always follows the
+standard "last CONNECT wins" rule. The livelock is caused by the client
+retrying before it has definitively determined which transport won.
 
-1. Once the broker has closed a transport for a given session (Section 6.5.2),
-   the broker MUST reject any subsequent `MQTT.CONNECT` on that transport.
-2. The rejection MUST be sent as an `MQTT.DISCONNECT` with Reason Code `0x82`
-   (Protocol Error) or `0x8E` (Session taken over).
-3. The `MQTT.DISCONNECT` SHOULD include a `Server Keep Alive` value [MQTT5]
-   §3.2.2.3.14 indicating the minimum interval (in seconds) the client MUST wait
-   before attempting another connection on this transport. The RECOMMENDED
-   minimum value is 5 seconds.
-4. The broker MAY ignore `MQTT.CONNECT` packets received on the closed transport
-   without sending a response, treating them as arriving on a closed connection.
+**Client-side livelock prevention.** When the client detects that its
+connection lost the upgrade race (via `MQTT.DISCONNECT` 0x8E, connection
+close, or CONNACK timeout), the client MUST apply a backoff before attempting
+to reconnect on the other transport. The RECOMMENDED backoff interval is
+5 seconds.
 
-For MQTT 3.1.1, the broker MUST NOT send `MQTT.DISCONNECT` (it is a
-client-to-server-only packet [MQTT311] §3.14). Instead:
+For MQTT 5.0, the losing side receives `MQTT.DISCONNECT` with Reason Code
+`0x8E` (Session taken over) [MQTT5] §3.1.4 or learns of the loss when the
+broker closes the connection. For MQTT 3.1.1, the losing side learns of the
+loss when the broker closes the connection (without sending `MQTT.DISCONNECT`,
+which is client-to-server-only [MQTT311] §3.14).
 
-1. Once the broker has closed a transport for a given session (Section 6.5.2),
-   the broker MUST close any subsequent connection attempt on that transport
-   immediately without sending `MQTT.DISCONNECT`.
-2. The broker SHOULD NOT include any in-band backoff indication, as MQTT 3.1.1
-   has no properties in the CONNECT/CONNACK or DISCONNECT packets. The client
-   SHOULD use a fixed backoff interval (RECOMMENDED: 5 seconds) before attempting
-   another connection on the rejected transport for the same session.
-3. The broker MAY ignore `MQTT.CONNECT` packets received on the closed transport
-   without sending a response, treating them as arriving on a closed connection.
+The client MUST apply a fixed backoff (RECOMMENDED: 5 seconds) in both cases.
+This backoff serves two purposes:
 
-The client MUST comply with the `Server Keep Alive` backoff value when rejected
-by the broker (MQTT 5.0). If the client receives a rejection on the closed
-transport, the client MUST wait at least the indicated interval before
-attempting any further connection on that transport for the same session.
-For MQTT 3.1.1, the client MUST apply a fixed backoff (RECOMMENDED: 5 seconds)
-after any connection attempt on a transport that was previously closed for
-this session.
+1. It gives the winning side time to complete the MQTT handshake (send
+   CONNACK) before the losing side retries.
+2. It prevents rapid flip-flopping if the client library automatically
+   retries after a connection failure.
+
+**After the race window ends.** Once the winning connection is established
+and the losing connection is closed, the race window ends. The client MAY
+reconnect on the other transport as normal. The broker applies standard
+MQTT session takeover rules [MQTT5] §3.1.4 or [MQTT311] §3.1.4 to such
+reconnections — it does not enforce any special livelock prevention beyond
+the normal "last CONNECT wins" behavior.
 
 ---
 
