@@ -4,9 +4,9 @@
 
 # MQTT Over QUIC — Single Stream Mode Version 1.0
 
-## Committee Note Draft 01
+## Committee Note Draft 02
 
-## 7 April 2026
+## 23 June 2026
 
 ### This Version
 
@@ -15,7 +15,8 @@
 
 	### Previous Version
 
-N/A — this is the initial version.
+- [MQTT-QUIC-SS] "MQTT Over QUIC — Single Stream Mode Version 1.0", OASIS
+  Committee Note Draft 01, 7 April 2026. [link to Draft 01]
 
 ### Latest Version
 
@@ -55,7 +56,7 @@ handshakes, built-in TLS security, and network address migration.
 When referencing this document the following citation format should be used:
 
 - [MQTT-QUIC-SS] "MQTT Over QUIC — Single Stream Mode Version 1.0", OASIS
-  Committee Note Draft 01, [DD Month YYYY]. [link to latest version].
+  Committee Note Draft 02, [23 June 2026]. [link to latest version].
 
 ### Related Work
 
@@ -1095,11 +1096,17 @@ development of this document and are gratefully acknowledged:
 (This appendix does not form an integral part of this document and is
 informational.)
 
-This is the initial version of this document. There is no previous version.
+This is the second version of this document.
+
+## Changes From Draft 01
+
+- mTLS is optional
+- Distinguishes MQTT v3.1.1 and v5 handling in error scenarios.
 
 ## Revision History
 
-- 2026-[MM-DD], Draft 01
+- 2026-06-23, Draft 02
+- 2026-05-20, Draft 01
 
 ---
 
