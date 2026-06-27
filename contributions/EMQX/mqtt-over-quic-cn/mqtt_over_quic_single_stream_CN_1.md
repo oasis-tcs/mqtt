@@ -419,13 +419,18 @@ alongside QUIC keepalive. However, if a QUIC connection is configured with an id
 timeout, that timeout SHOULD be set to a value greater than the MQTT keepalive
 value to avoid conflict.
 
-## 6.3 Connection Termination
+## 6.3 Stream and Connection Termination
 
 ### 6.3.1 Graceful Shutdown
 
+In Single Stream mode, graceful shutdown closes the **stream** (not the entire
+QUIC connection). The stream is the transport channel for MQTT — closing it
+signals that the MQTT session is complete on that channel. The QUIC connection
+itself remains open so the client can reconnect on the same transport.
+
 QUIC does not define a protocol-level graceful shutdown mechanism. In Single
 Stream mode, graceful disconnection is handled at the MQTT layer before the
-QUIC connection is closed.
+stream is half-closed.
 
 Graceful shutdown MAY be used by a broker to redirect the client to another
 server or to prevent transmission of the client's Will message. A client MAY
@@ -445,8 +450,9 @@ QUIC, this corresponds to a normal stream half-close (no error).
    directions are half-closed.
 3. Any MQTT packets received from the broker before the stream is fully closed
    SHOULD be properly handled.
-4. The client MUST discard all MQTT packets received from the broker after
-   sending `MQTT.DISCONNECT`.
+4. The client MUST NOT send any further MQTT packets after sending
+   `MQTT.DISCONNECT` [MQTT5] §3.14.2.4, but it MAY continue to process
+   inbound packets received before the stream is fully closed.
 5. After the stream is fully closed, the client MAY initiate an immediate QUIC
    connection shutdown, informing the peer, or terminate the connection locally
    without notifying the peer.
@@ -461,7 +467,7 @@ QUIC, this corresponds to a normal stream half-close (no error).
 **Server-initiated graceful shutdown:**
 
 For MQTT 5.0, the server MAY send `MQTT.DISCONNECT` with a Reason Code to
-gracefully terminate the session. The server then half-closes its send direction
+gracefully close the stream. The server then half-closes its send direction
 on the stream. The QUIC stream is fully closed when both directions are
 half-closed. For MQTT 3.1.1, the broker MUST NOT send `MQTT.DISCONNECT` — the
 3.1.1 specification defines DISCONNECT as a client-to-server-only packet
@@ -517,8 +523,9 @@ substitute for the missing server-to-client `MQTT.DISCONNECT` packet.
 
 ### 6.3.3 QUIC Error Code Semantics
 
-In Single Stream mode, the stream IS the transport for MQTT. When the broker
-terminates the session via an abortive mechanism, it includes an application
+In Single Stream mode, the single QUIC stream carries the entire MQTT session.
+When the broker terminates the MQTT session via an abortive mechanism, it
+includes an application
 error code in the `RESET_STREAM` or `STOP_SENDING` frame to indicate the reason
 for termination. Error codes use the scheme `0x300 + MQTT reason code`, where
 `0x300` is the base offset and the MQTT reason code is added to produce a
@@ -648,7 +655,7 @@ When upgrading, the client MUST follow a single-stream upgrade strategy:
 The client MUST NOT send `MQTT.CONNECT` on both transports simultaneously.
 Maintaining both connections open without sending CONNECT on either is permitted
 during the probe phase (Section 6.4.2), but once the client begins the MQTT
-handshake, only one transport may carry the session.
+handshake, only one transport may carry the MQTT session.
 
 **Scope of this section.** The rules in this section apply only to the initial
 connection attempt — the one-shot decision of which transport to use for the
@@ -717,15 +724,15 @@ arrival order.
 
 ### 6.5.3 Client Reconnection After Session Determination
 
-Once the client determines which transport carries the session, the client MUST
-NOT attempt to re-establish the session on the other transport:
+Once the client determines which transport carries the MQTT session, the client
+MUST NOT attempt to re-establish the MQTT session on the other transport:
 
-1. If the QUIC session wins and the TCP/TLS transport is closed, the client MUST
-   NOT re-open the TCP/TLS transport for this session. The client MUST use the QUIC
-   transport exclusively.
-2. If the TCP/TLS session wins and the QUIC transport is closed, the client MUST
-   fall back to TCP/TLS and MUST NOT re-attempt QUIC for this session unless
-   explicitly reconfigured by the application or user.
+1. If the MQTT session over QUIC wins and the TCP/TLS transport is closed, the
+   client MUST NOT re-open the TCP/TLS transport for this session. The client
+   MUST use the QUIC transport exclusively.
+2. If the MQTT session over TCP/TLS wins and the QUIC transport is closed, the
+   client MUST fall back to TCP/TLS and MUST NOT re-attempt QUIC for this
+   session unless explicitly reconfigured by the application or user.
 3. If the client receives `MQTT.DISCONNECT` with Reason Code `0x8E` on a
    transport (MQTT 5.0 only), the client MUST close its local stream on
    that transport and MUST NOT send a new CONNECT on it for this session.
@@ -799,7 +806,7 @@ If the client previously received a CONNACK with Session Expiry Interval greater
 than zero (MQTT 5.0), indicating that the broker retains the session, the client
 SHOULD prefer reconnecting on QUIC before attempting TCP/TLS. This helps avoid
 unintended session takeovers where the client's TCP/TLS reconnection could
-displace an existing QUIC session that the broker is still maintaining.
+displace an existing MQTT session over QUIC that the broker is still maintaining.
 
 For MQTT 3.1.1, the CONNACK has no Session Expiry Interval. The client MUST
 infer session persistence from the `Clean Session` flag it sent in CONNECT:
@@ -900,9 +907,7 @@ Transport Action: The broker MUST send a `STOP_SENDING` frame with error code `0
 
 ### 6.7.3 Error Mapping Matrix
 
-The following table summarizes the mapping between the layers. The "MQTT Session Impact" column shows the behavior for MQTT 5.0; 
-MQTT 3.1.1 behavior is noted below the table. In Single Stream mode, the broker uses normal stream half-close for graceful shutdown, 
-`STOP_SENDING` QUIC frame for peer's error, or `RESET_STREAM` QUIC frame for local error — it does not close the entire QUIC connection.
+The following table summarizes the mapping between the layers. The "MQTT Session Impact" column shows the behavior for MQTT 5.0; MQTT 3.1.1 behavior is noted below the table. In Single Stream mode, the broker uses normal stream half-close for graceful shutdown, `STOP_SENDING` for peer's error, or `RESET_STREAM` for local error — it does not close the entire QUIC connection.
 
 | EVENT SOURCE |       ERROR TYPE        |  ACTION/MAPPING   |        MQTT SESSION IMPACT        |  QUIC STREAM IMPACT   |
 |:-------------|:-----------------------:|:-----------------:|:---------------------------------:|:---------------------:|
