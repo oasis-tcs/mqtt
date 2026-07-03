@@ -108,7 +108,7 @@ License, Document Status and Notices.
     - [6.4.1 DNS-Based Endpoint Resolution](#641-dns-based-endpoint-resolution)
     - [6.4.2 QUIC Capability Probe](#642-quic-capability-probe)
   - [6.5 Upgrade](#65-upgrade)
-    - [6.5.1 Client Upgrade Strategy](#651-client-upgrade-strategy)
+    - [6.5.1 Initial Transport Selection](#651-initial-transport-selection)
     - [6.5.2 Broker Session Handling](#652-broker-session-handling)
     - [6.5.3 Client Reconnection After Session Determination](#653-client-reconnection-after-session-determination)
   - [6.6 Downgrade](#66-downgrade)
@@ -118,6 +118,7 @@ License, Document Status and Notices.
     - [6.6.4 Preventing Reconnection Livelock](#664-preventing-reconnection-livelock)
   - [6.7 Error Mapping and State Synchronization](#67-error-mapping-and-state-synchronization)
   - [6.8 Keepalive Strategy](#68-keepalive-strategy)
+    - [6.8.1 Connection Migration](#681-connection-migration)
 - [7 Security Considerations](#7-security-considerations)
 - [8 Conformance](#8-conformance)
   - [8.1 Conformance Targets](#81-conformance-targets)
@@ -298,6 +299,13 @@ MUST reassemble MQTT packets from the QUIC byte stream according to the MQTT
 remaining length field [MQTT5] §2.1.4, exactly as they would when receiving
 data over TCP.
 
+QUIC provides both stream-level flow control (`MAX_STREAM_DATA` frames) and
+connection-level flow control (`MAX_DATA` frames) [RFC9000] §4.2. In Single
+Stream mode, the connection-level credit (advertised via `MAX_DATA` frames)
+provides the effective upper bound on total buffered data. Connection-level
+flow control is handled transparently by the QUIC library and does not require
+application-layer intervention.
+
 Because there is only one stream, MQTT traffic in this mode retains the same
 head-of-line blocking characteristics as TCP-based transport: a large PUBLISH
 payload will delay all subsequent packets — including `MQTT.PINGREQ` keepalive
@@ -400,19 +408,43 @@ Support for 0-RTT connection resumption is OPTIONAL. Implementations that
 support 0-RTT SHOULD be aware of replay risks when sending early data; see
 Section 7 for security considerations.
 
+If the client does not receive a `MQTT.CONNACK` packet from the server within
+a reasonable amount of time, the client SHOULD close the Network Connection
+[MQTT5] §3.2.2.5, [MQTT311] §3.2.2.2. A "reasonable" amount of time depends on
+the type of application and the communications infrastructure.
+
+### 6.1.1 CONNACK Processing
+
+After the client sends `MQTT.CONNECT`, it MUST process the `MQTT.CONNACK`
+packet according to the negotiated MQTT version. The `Session Present` flag
+in the CONNACK (byte 2, bit 0) combined with the Reason Code determines
+whether the client has an existing session to resume or must start fresh.
+
+The following table summarizes the client-side processing rules:
+
+| Session Present | Reason Code | MQTT 5.0 Action | MQTT 3.1.1 Action |
+|:---:|:---:|---|---|
+| 1 | 0x00 (Success) | Session accepted/resumed. Client **MUST NOT discard session state** [MQTT-3.2.2-5]. | Session accepted/resumed. Client **MUST NOT discard session state** [MQTT-3.2.2-2]. |
+| 0 | 0x00 | New/clean session started (Clean Start=1 or no prior state found). | New/clean session started (CleanSession=1 or no prior state found). |
+| 0 | ≥ 0x80 (error) | Connection refused. Server **MUST close Network Connection** [MQTT-3.2.2-7]. Client **MUST discard session state** [MQTT-3.2.2-4]. | Connection refused. Server **MUST close Network Connection** [MQTT-3.2.2-5]. Client **MUST discard session state** [MQTT-3.2.2-4]. |
+| 0 | non-zero < 0x80 | Not used for CONNACK (exists in other packet types like SUBACK). | Not used for CONNACK. |
+| 1 | non-zero | **Invalid.** Server **MUST** set Session Present to 0 when Reason Code is non-zero [MQTT-3.2.2-6]. | **Invalid.** Same rule [MQTT-3.2.2-4]. |
+
 ## 6.2 Connection Keepalive
 
 Connection keepalive in Single Stream mode is performed at the QUIC transport
-layer. QUIC does not define a dedicated keepalive frame; instead, implementations
-MUST maintain the QUIC connection by setting the `max_idle_timeout` transport
-parameter [RFC9000] §18.2. The effective idle timeout is the minimum of the
-values advertised by both endpoints, with a minimum floor of 3× PTO per
-[RFC9000] §10.1. During idle periods, implementations MAY send PADDING frames
-or ACK frames to prevent the connection from timing out due to inactivity.
+layer. QUIC defines the PING frame [RFC9000] §19.2 for connection keepalive,
+which can be used to keep a connection alive and detect unacked endpoints
+without sending application data. During idle periods, implementations SHOULD
+send ack-eliciting PING frames to prevent the connection from timing out due
+to inactivity.
 
-QUIC connection keepalive is end-to-end: the idle timeout is negotiated between the
-two endpoints directly and cannot be intercepted or terminated by intermediaries
-such as proxies, NAT gateways, or load balancers.
+The effective idle timeout is the minimum of the `max_idle_timeout` values
+advertised by both endpoints [RFC9000] §18.2, with a minimum floor of 3× PTO
+per [RFC9000] §10.1. Middleboxes (proxies, NAT gateways, load balancers) may
+time out UDP state earlier than the negotiated idle timeout. RFC 9000 §10.1.2
+recommends sending packets at least every 30 seconds to prevent middleboxes from
+losing state for UDP flows.
 
 MQTT-level keepalive via `MQTT.PINGREQ` and `MQTT.PINGRESP` MAY still be used
 alongside QUIC keepalive. However, if a QUIC connection is configured with an idle
@@ -639,18 +671,19 @@ connection when the broker supports both transports. The upgrade process is
 controlled entirely by the client, which determines which transport to use
 without broker coordination during the initial connection phase.
 
-### 6.5.1 Client Upgrade Strategy
+### 6.5.1 Initial Transport Selection
 
-When upgrading, the client MUST follow a single-stream upgrade strategy:
+When selecting an initial transport, the client MUST follow this strategy:
 
 1. The client opens a QUIC connection to the broker offering `mqtt` as the ALPN
    identifier and opens a bidirectional stream.
 2. The client MUST NOT send `MQTT.CONNECT` on the TCP/TLS transport until the
    QUIC stream is established and the ALPN has been confirmed as `mqtt`.
 3. The client sends `MQTT.CONNECT` only over the QUIC stream.
-4. If the QUIC stream is not established within a configurable timeout
+4. If the QUIC handshake does not complete within a configurable timeout
    (RECOMMENDED: 5 seconds), the client MUST fall back to the TCP/TLS transport
-   and send `MQTT.CONNECT` over TCP/TLS.
+   and send `MQTT.CONNECT` over TCP/TLS. The stream open operation is typically
+   in-memory state and does not require a separate timeout.
 
 The client MUST NOT send `MQTT.CONNECT` on both transports simultaneously.
 Maintaining both connections open without sending CONNECT on either is permitted
@@ -680,8 +713,9 @@ For MQTT 5.0, the broker MUST follow [MQTT5] §3.1.4:
    broker MUST perform session takeover as defined in [MQTT5] §3.1.4.
 2. The broker MUST send `MQTT.DISCONNECT` with Reason Code `0x8E` (Session
    taken over) to the **losing** transport. The broker then half-closes its
-   send direction on the stream. The session persists on the winning transport;
-   takeover moves the session, it does not terminate it.
+   send direction on the stream. The session **transfers** to the winning
+   transport. The losing transport's connection is closed, and the session no
+   longer exists on that transport.
 3. The broker MUST send `MQTT.CONNACK` to the **winning** transport. The
    `Session Present` flag [MQTT5] §3.2.2.1 MUST reflect the result of
    Clean Start processing [MQTT5] §3.2.2.1.1: if Clean Start is 0 and a session
@@ -700,7 +734,8 @@ For MQTT 3.1.1, the broker MUST follow [MQTT311] §3.1.4:
    3.1.1). The 3.1.1 specification requires only that the existing client be
    disconnected — the mechanism is closing the network connection. In Single
    Stream mode, the mechanism is `RESET_STREAM` with error code `0x38E`. The
-   session persists on the winning transport.
+   session **transfers** to the winning transport. The losing transport's
+   connection is closed, and the session no longer exists on that transport.
 3. The broker MUST send `MQTT.CONNACK` with the `Session Present` flag set
    to 0 to the **winning** transport. In MQTT 3.1.1 the CONNACK does not
    carry a `Session Present` flag; the client determines session state from
@@ -808,6 +843,10 @@ SHOULD prefer reconnecting on QUIC before attempting TCP/TLS. This helps avoid
 unintended session takeovers where the client's TCP/TLS reconnection could
 displace an existing MQTT session over QUIC that the broker is still maintaining.
 
+For Session Expiry Interval = 0 (MQTT 5.0) or Clean Session = 1 (MQTT 3.1.1),
+the session is discarded when the Network Connection closes [MQTT5] §4.1.0-2,
+[MQTT311] §4.1.0-1. There is no session state to resume on reconnect.
+
 For MQTT 3.1.1, the CONNACK has no Session Expiry Interval. The client MUST
 infer session persistence from the `Clean Session` flag it sent in CONNECT:
 if `Clean Session` was 0, the broker retains the session across network
@@ -868,7 +907,8 @@ To ensure robust communication and consistent state management, it is critical t
 
 ### 6.7.1 Mapping QUIC Transport Errors to MQTT Session State
 
-In an MQTT over QUIC implementation, the MQTT session is decoupled from the underlying transport. Therefore, a failure at the QUIC layer does not automatically necessitate the immediate termination of the MQTT session.
+The MQTT Session persists across a sequence of Network Connections [MQTT5] §4.1. A failure at the QUIC layer breaks the Network Connection but does not automatically terminate the MQTT Session. 
+The Session continues until the Session Expiry Interval elapses (MQTT 5.0) or the client sends a CONNECT with Clean Session=1 (MQTT 3.1.1).
 
 ### 6.7.1.1 Abnormal Transport Shutdown
 
@@ -946,9 +986,13 @@ The strategy is defined as follows:
 
 Connection keepalive SHOULD be handled natively by the underlying QUIC transport layer, with both the client and server maintaining their own keepalive traffic.
 
-- End-to-End Delivery: 
+- End-to-End Delivery:
 
-Because QUIC keepalive is end-to-end, the keepalive packets are delivered directly between the endpoints without the risk of being intercepted or terminated by intermediaries like proxies, NAT gateways, or load balancers.
+QUIC PING frames are encrypted and opaque to intermediaries — proxies, NAT
+gateways, and load balancers cannot inspect or modify their content. However,
+the UDP packets carrying these frames may still timeout in middleboxes.
+RFC 9000 §10.1.2 notes that middleboxes may expire UDP state earlier than the
+negotiated idle timeout, which is why periodic keepalive traffic is necessary.
 
 - Simplified Implementation: 
 
@@ -958,15 +1002,23 @@ Relying on QUIC for this traffic simplifies the timing implementation for both t
 
 - MQTT PINGREQ/PINGRESP:
 
-The traditional MQTT keepalive mechanism using PINGREQ and PINGRESP control packets SHOULD still be supported for application-level liveness detection but not encouraged.
+The traditional MQTT keepalive mechanism using PINGREQ and PINGRESP control packets MAY still be supported for application-level liveness detection. 
+However, it MUST NOT be used as a substitute for QUIC-level keepalive. The MQTT Keep Alive interval (under which PINGREQ is sent) is typically much slower 
+than the frequency of UDP packets needed to keep middlebox state alive. Moreover, MQTT PINGREQ is sent on the MQTT bidirectional stream and can be head-of-line 
+blocked if the stream stalls. QUIC PING frames are connection-level and operate out-of-band from any specific stream, so they are not subject to stream-level 
+flow control or head-of-line blocking. QUIC PING frames provide the transport-layer keepalive that keeps the connection and middlebox state alive.
 
 - Timeout Coordination: 
 
 If QUIC connection keepalive is enabled, the QUIC connection's idle timeout SHOULD be configured to be strictly greater than the MQTT keepalive interval. 
 This prevents the QUIC connection from abruptly shutting down due to perceived idleness while the application is waiting to send an MQTT.PINGREQ packet.
 
+### 6.8.1 Connection Migration
 
----
+QUIC supports connection migration [RFC9000] §8: when a client changes its IP address or port (e.g., Wi-Fi to cellular), the QUIC connection remains intact. 
+During migration, in-flight MQTT packets already buffered on the stream are not lost. Connection migration is NOT an abnormal shutdown — the underlying QUIC 
+connection and the MQTT session continue without disruption. The `preferred_address` transport parameter [RFC9000] §4.6 is handled entirely by the QUIC 
+layer and does not affect the MQTT session.
 
 # 7 Security Considerations
 
@@ -1038,8 +1090,8 @@ A conformant MQTT client implementing Single Stream mode:
 5. MUST follow the client-initiated graceful shutdown procedure defined in
    Section 6.3.1 when disconnecting cleanly.
 6. MUST NOT open additional streams in Single Stream mode.
-7. MUST downgrade to a TCP/TLS connection if the QUIC handshake fails or times
-   out.
+7. If the client supports TCP/TLS fallback, it MUST follow the downgrade
+   procedure in Section 6.6 when the QUIC handshake fails or times out.
 8. MUST NOT downgrade to a plain-text TCP connection under any circumstances.
 
 ## 8.3 MQTT Broker Conformance
