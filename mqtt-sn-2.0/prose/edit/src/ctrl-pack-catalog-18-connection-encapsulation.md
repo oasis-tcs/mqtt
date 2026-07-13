@@ -6,13 +6,13 @@
 
 This envelope wraps an MQTT-SN Packet to allow it to be associated with an existing Virtual Connection where other methods are not sufficient. Only Clients can use the Connection Encapsulation because it is assumed that the Network Address for the Server is static for the duration of the Virtual Connection. If the Server Network Address is not static, then another method of identifying the Packet sender must be used, such as the Protection Encapsulation or DTLS.
 
-«<mark title="Requirement MQTT-SN-3.18-1"><a name="MQTT-SN-3.18-1"></a>If the Allow Network Identifier Changes flag in the CONNECT for the Virtual Connection is 0, it is a protocol error to use the Connection Encapsulation</mark>»\[MQTT‑SN‑3.18‑1].
+«<mark title="Requirement MQTT-SN-3.18-1"><a name="MQTT-SN-3.18-1"></a>If the Allow Network Identifier Changes flag in the CONNECT for the Virtual Connection is 0, it is a protocol error to use the Connection Encapsulation</mark>»[MQTT‑SN‑3.18‑1](#tab-MQTT-SN-3.18-1).
 
-«<mark title="Requirement MQTT-SN-3.18-2"><a name="MQTT-SN-3.18-2"></a>It is a protocol error to use the Connection Encapsulation on Packets sent by a Server</mark>»\[MQTT-SN-3.18-2\].
+«<mark title="Requirement MQTT-SN-3.18-2"><a name="MQTT-SN-3.18-2"></a>It is a protocol error to use the Connection Encapsulation on Packets sent by a Server</mark>»[MQTT-SN-3.18-2](#tab-MQTT-SN-3.18-2).
 
-«<mark title="Requirement MQTT-SN-3.18-3"><a name="MQTT-SN-3.18-3"></a>It is a protocol error to use the Connection Encapsulation on Packets other than PUBLISH, SUBSCRIBE, UNSUBSCRIBE, REGISTER, DISCONNECT, SLEEPREQ and PINGREQ sent by a Client</mark>»\[MQTT-SN-3.18-3\].
+«<mark title="Requirement MQTT-SN-3.18-3"><a name="MQTT-SN-3.18-3"></a>It is a protocol error to use the Connection Encapsulation on Packets other than PUBLISH, SUBSCRIBE, UNSUBSCRIBE, REGISTER, DISCONNECT, SLEEPREQ and PINGREQ sent by a Client</mark>»[MQTT-SN-3.18-3](#tab-MQTT-SN-3.18-3).
 
-«<mark title="Requirement MQTT-SN-3.18-4"><a name="MQTT-SN-3.18-4"></a>The encapsulated MQTT-SN packet MUST be treated by the receiver in exactly the same fashion as the same Packet unencapsulated, once the associated Virtual Connection is identified</mark>»\[MQTT-SN-3.18-4\].
+«<mark title="Requirement MQTT-SN-3.18-4"><a name="MQTT-SN-3.18-4"></a>The encapsulated MQTT-SN packet MUST be treated by the receiver in exactly the same fashion as the same Packet unencapsulated, once the associated Virtual Connection is identified</mark>»[MQTT-SN-3.18-4](#tab-MQTT-SN-3.18-4).
 
 > **Informative Comment**
 >

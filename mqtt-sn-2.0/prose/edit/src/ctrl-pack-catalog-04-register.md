@@ -14,9 +14,9 @@ Topic Aliases are always assigned and managed by the Server, not the Client. For
 
 A REGISTER packet may be sent by the Server when the Client is in the Awake state if the Retain Topic Aliases flag on the SLEEPREQ was set to 0, to reinform the Client of a Session Topic Alias.
 
-«<mark title="Requirement MQTT-SN-3.4-1"><a name="MQTT-SN-3.4-1"></a>If the REGISTER packet is sent by a Client, it MUST NOT contain a Topic Alias</mark>»\[MQTT‑SN‑3.4‑1].
+«<mark title="Requirement MQTT-SN-3.4-1"><a name="MQTT-SN-3.4-1"></a>If the REGISTER packet is sent by a Client, it MUST NOT contain a Topic Alias</mark>»[MQTT‑SN‑3.4‑1](#tab-MQTT-SN-3.4-1).
 
-«<mark title="Requirement MQTT-SN-3.4-2"><a name="MQTT-SN-3.4-2"></a>If the REGISTER packet is sent by a Server, it MUST contain a Topic Alias</mark>»\[MQTT‑SN‑3.4‑2].
+«<mark title="Requirement MQTT-SN-3.4-2"><a name="MQTT-SN-3.4-2"></a>If the REGISTER packet is sent by a Server, it MUST contain a Topic Alias</mark>»[MQTT‑SN‑3.4‑2](#tab-MQTT-SN-3.4-2).
 
 ### REGISTER Header{#register-header}
 
@@ -24,9 +24,9 @@ The first 2 or 4 bytes of the packet are encoded according to the variable lengt
 
 ### REGISTER Flags{#register-flags}
 
-The REGISTER Flags is a 1 byte field which contains flags specifying the contents of the REGISTER packet. «<mark title="Requirement MQTT-SN-3.4.2-1"><a name="MQTT-SN-3.4.2-1"></a>Bits 7-1 of the REGISTER Flags are reserved and MUST be set to 0</mark>»\[MQTT‑SN‑3.4.2‑1].
+The REGISTER Flags is a 1 byte field which contains flags specifying the contents of the REGISTER packet. «<mark title="Requirement MQTT-SN-3.4.2-1"><a name="MQTT-SN-3.4.2-1"></a>Bits 7-1 of the REGISTER Flags are reserved and MUST be set to 0</mark>»[MQTT‑SN‑3.4.2‑1](#tab-MQTT-SN-3.4.2-1).
 
-«<mark title="Requirement MQTT-SN-3.4.2-2"><a name="MQTT-SN-3.4.2-2"></a>The receiver MUST validate that the reserved flags in the REGISTER packet are set to 0. If any of the reserved flags is not 0 it is a Malformed Packet</mark>»\[MQTT‑SN‑3.4.2‑2].
+«<mark title="Requirement MQTT-SN-3.4.2-2"><a name="MQTT-SN-3.4.2-2"></a>The receiver MUST validate that the reserved flags in the REGISTER packet are set to 0. If any of the reserved flags is not 0 it is a Malformed Packet</mark>»[MQTT‑SN‑3.4.2‑2](#tab-MQTT-SN-3.4.2-2).
 
 #### Topic Alias Flag{#rrtar-topic-alias-flag}
 
@@ -34,9 +34,9 @@ The REGISTER Flags is a 1 byte field which contains flags specifying the content
 
 Determines the presence of the Topic Alias field.
 
-«<mark title="Requirement MQTT-SN-3.4.2.1-1"><a name="MQTT-SN-3.4.2.1-1"></a>If the Topic Alias Flag is set to 0, a Topic Alias MUST NOT be present in the Packet</mark>»\[MQTT‑SN‑3.4.2.1‑1].
+«<mark title="Requirement MQTT-SN-3.4.2.1-1"><a name="MQTT-SN-3.4.2.1-1"></a>If the Topic Alias Flag is set to 0, a Topic Alias MUST NOT be present in the Packet</mark>»[MQTT‑SN‑3.4.2.1‑1](#tab-MQTT-SN-3.4.2.1-1).
 
-«<mark title="Requirement MQTT-SN-3.4.2.1-2"><a name="MQTT-SN-3.4.2.1-2"></a>If the Topic Alias Flag is set to 1, a Topic Alias MUST be present in the Packet</mark>»\[MQTT‑SN‑3.4.2.1‑2].
+«<mark title="Requirement MQTT-SN-3.4.2.1-2"><a name="MQTT-SN-3.4.2.1-2"></a>If the Topic Alias Flag is set to 1, a Topic Alias MUST be present in the Packet</mark>»[MQTT‑SN‑3.4.2.1‑2](#tab-MQTT-SN-3.4.2.1-2).
 
 ### Packet Identifier{#rrtar---packet-identifier}
 

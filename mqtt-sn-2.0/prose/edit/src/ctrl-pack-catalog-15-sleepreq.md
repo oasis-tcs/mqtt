@@ -12,9 +12,9 @@ The first 2 or 4 bytes of the packet are encoded according to the variable lengt
 
 ### SLEEPREQ Flags{#sleepreq-flags}
 
-The SLEEPREQ Flags is a 1 byte field which contains flags specifying the contents of the SLEEPREQ packet. «<mark title="Requirement MQTT-SN-3.15.2-1"><a name="MQTT-SN-3.15.2-1"></a>Bits 7-1 of the SLEEPREQ Flags are reserved and MUST be set to 0</mark>»\[MQTT‑SN‑3.15.2‑1].
+The SLEEPREQ Flags is a 1 byte field which contains flags specifying the contents of the SLEEPREQ packet. «<mark title="Requirement MQTT-SN-3.15.2-1"><a name="MQTT-SN-3.15.2-1"></a>Bits 7-1 of the SLEEPREQ Flags are reserved and MUST be set to 0</mark>»[MQTT‑SN‑3.15.2‑1](#tab-MQTT-SN-3.15.2-1).
 
-«<mark title="Requirement MQTT-SN-3.15.2-2"><a name="MQTT-SN-3.15.2-2"></a>The receiver MUST validate that the reserved flags in the SLEEPREQ packet are set to 0. If any of the reserved flags is not 0 it is a Malformed Packet</mark>»\[MQTT‑SN‑3.15.2‑2].
+«<mark title="Requirement MQTT-SN-3.15.2-2"><a name="MQTT-SN-3.15.2-2"></a>The receiver MUST validate that the reserved flags in the SLEEPREQ packet are set to 0. If any of the reserved flags is not 0 it is a Malformed Packet</mark>»[MQTT‑SN‑3.15.2‑2](#tab-MQTT-SN-3.15.2-2).
 
 #### Retain Topic Aliases{#retain-topic-aliases}
 
@@ -22,7 +22,7 @@ The SLEEPREQ Flags is a 1 byte field which contains flags specifying the content
 
 Specifies whether Session Topic Aliases should be retained by the Server during the Asleep state. "0" indicates Topic Aliases should be removed during the sleeping period and renegotiated when Awake or Active. "1" indicates Topic Aliases should be retained during the Asleep period, and therefore not negotiated when Awake or Active.
 
-«<mark title="Requirement MQTT-SN-3.15.2.1-1"><a name="MQTT-SN-3.15.2.1-1"></a>Predefined Topic aliases MUST NOT be removed by the setting of the Retain Topic Aliases flag to 1</mark>»\[MQTT‑SN‑3.15.2.1‑1].
+«<mark title="Requirement MQTT-SN-3.15.2.1-1"><a name="MQTT-SN-3.15.2.1-1"></a>Predefined Topic aliases MUST NOT be removed by the setting of the Retain Topic Aliases flag to 1</mark>»[MQTT‑SN‑3.15.2.1‑1](#tab-MQTT-SN-3.15.2.1-1).
 
 ### Packet Identifier{#ssreq---packet-identifier}
 
@@ -32,7 +32,7 @@ Used to identify the corresponding SLEEPRESP packet. It should ideally be set to
 
 The Sleep Duration is a four-byte integer time interval measured in seconds. It is the maximum amount of time that a client may stay asleep without being disconnected by the Server. For more information on sleeping clients, and the purpose of Sleep Duration, see [sec](#sleeping-clients).
 
-«<mark title="Requirement MQTT-SN-3.15.4-1"><a name="MQTT-SN-3.15.4-1"></a>The Sleep Duration MUST be greater than 0</mark>»\[MQTT‑SN‑3.15.4‑1].
+«<mark title="Requirement MQTT-SN-3.15.4-1"><a name="MQTT-SN-3.15.4-1"></a>The Sleep Duration MUST be greater than 0</mark>»[MQTT‑SN‑3.15.4‑1](#tab-MQTT-SN-3.15.4-1).
 
 > **Informative Comment**
 >
@@ -44,19 +44,19 @@ The Sleep Duration is a four-byte integer time interval measured in seconds. It 
 
 ### SLEEPREQ Actions{#sleepreq-actions}
 
-«<mark title="Requirement MQTT-SN-3.15.5-1"><a name="MQTT-SN-3.15.5-1"></a>A SLEEPREQ packet sent by a Server is a Protocol Error</mark>»\[MQTT‑SN‑3.15.5‑1].
+«<mark title="Requirement MQTT-SN-3.15.5-1"><a name="MQTT-SN-3.15.5-1"></a>A SLEEPREQ packet sent by a Server is a Protocol Error</mark>»[MQTT‑SN‑3.15.5‑1](#tab-MQTT-SN-3.15.5-1).
 
-«<mark title="Requirement MQTT-SN-3.15.5-2"><a name="MQTT-SN-3.15.5-2"></a>If there is a Virtual Connection for the Client, the Server MUST send a SLEEPRESP packet in response to a SLEEPREQ packet</mark>»\[MQTT‑SN‑3.15.5‑2].
+«<mark title="Requirement MQTT-SN-3.15.5-2"><a name="MQTT-SN-3.15.5-2"></a>If there is a Virtual Connection for the Client, the Server MUST send a SLEEPRESP packet in response to a SLEEPREQ packet</mark>»[MQTT‑SN‑3.15.5‑2](#tab-MQTT-SN-3.15.5-2).
 
-«<mark title="Requirement MQTT-SN-3.15.5-3"><a name="MQTT-SN-3.15.5-3"></a>If there is no Virtual Connection associated with the SLEEPREQ, the Server MAY send a DISCONNECT with Reason Code xxx in response</mark>»\[MQTT‑SN‑3.15.5‑3].
+«<mark title="Requirement MQTT-SN-3.15.5-3"><a name="MQTT-SN-3.15.5-3"></a>If there is no Virtual Connection associated with the SLEEPREQ, the Server MAY send a DISCONNECT with Reason Code xxx in response</mark>»[MQTT‑SN‑3.15.5‑3](#tab-MQTT-SN-3.15.5-3).
 
-«<mark title="Requirement MQTT-SN-3.15.5-4"><a name="MQTT-SN-3.15.5-4"></a>If the SLEEPREQ request is granted, the Server MUST suspend Keep Alive processing for the Virtual Connection</mark>»\[MQTT‑SN‑3.15.5‑4].
+«<mark title="Requirement MQTT-SN-3.15.5-4"><a name="MQTT-SN-3.15.5-4"></a>If the SLEEPREQ request is granted, the Server MUST suspend Keep Alive processing for the Virtual Connection</mark>»[MQTT‑SN‑3.15.5‑4](#tab-MQTT-SN-3.15.5-4).
 
-«<mark title="Requirement MQTT-SN-3.15.5-5"><a name="MQTT-SN-3.15.5-5"></a>If the SLEEPREQ request is granted, the Server MUST start Sleep Duration processing for the Virtual Connection</mark>»\[MQTT‑SN‑3.15.5‑5].
+«<mark title="Requirement MQTT-SN-3.15.5-5"><a name="MQTT-SN-3.15.5-5"></a>If the SLEEPREQ request is granted, the Server MUST start Sleep Duration processing for the Virtual Connection</mark>»[MQTT‑SN‑3.15.5‑5](#tab-MQTT-SN-3.15.5-5).
 
-«<mark title="Requirement MQTT-SN-3.15.5-6"><a name="MQTT-SN-3.15.5-6"></a>If the SLEEPREQ request is successful, the Virtual Connection MUST NOT be deleted</mark>»\[MQTT‑SN‑3.15.5‑6].
+«<mark title="Requirement MQTT-SN-3.15.5-6"><a name="MQTT-SN-3.15.5-6"></a>If the SLEEPREQ request is successful, the Virtual Connection MUST NOT be deleted</mark>»[MQTT‑SN‑3.15.5‑6](#tab-MQTT-SN-3.15.5-6).
 
-«<mark title="Requirement MQTT-SN-3.15.5-7"><a name="MQTT-SN-3.15.5-7"></a>If the Client is already in the Asleep state when a SLEEPREQ is received by the Server, the Server MUST stop the Sleep Duration Timer, and start a new sleep cycle using the updated Sleep Duration</mark>»\[MQTT‑SN‑3.15.5‑7].
+«<mark title="Requirement MQTT-SN-3.15.5-7"><a name="MQTT-SN-3.15.5-7"></a>If the Client is already in the Asleep state when a SLEEPREQ is received by the Server, the Server MUST stop the Sleep Duration Timer, and start a new sleep cycle using the updated Sleep Duration</mark>»[MQTT‑SN‑3.15.5‑7](#tab-MQTT-SN-3.15.5-7).
 
 After sending a SLEEPREQ packet the Client MAY wait for a SLEEPRESP packet in response from the Server.
 

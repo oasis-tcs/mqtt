@@ -15,7 +15,7 @@ The first 2 or 4 bytes of the packet are encoded according to the variable lengt
 
 The Connect Flags is 1 byte field which contains several parameters specifying the behavior of the MQTT-SN Virtual Connection. It also indicates the presence or absence of fields in the Packet.
 
-«<mark title="Requirement MQTT-SN-3.1.2-1"><a name="MQTT-SN-3.1.2-1"></a>The Server MUST validate that the reserved flags in the CONNECT packet are set to 0</mark>»\[MQTT‑SN‑3.1.2‑1]. If any of the reserved flags is not 0 it is a Malformed Packet. Refer to [sec](#handling-errors) for information about handling errors.
+«<mark title="Requirement MQTT-SN-3.1.2-1"><a name="MQTT-SN-3.1.2-1"></a>The Server MUST validate that the reserved flags in the CONNECT packet are set to 0</mark>»[MQTT‑SN‑3.1.2‑1](#tab-MQTT-SN-3.1.2-1). If any of the reserved flags is not 0 it is a Malformed Packet. Refer to [sec](#handling-errors) for information about handling errors.
 
 #### Clean Start Flag{#clean-start-flag}
 
@@ -23,17 +23,21 @@ The Connect Flags is 1 byte field which contains several parameters specifying t
 
 This flag specifies whether the Virtual Connection starts a new Session or is a continuation of an existing Session. Refer to [sec](#session-state) for a definition of the Session State.
 
-«<mark title="Requirement MQTT-SN-3.1.2.1-1"><a name="MQTT-SN-3.1.2.1-1"></a>If a CONNECT packet is received with Clean Start is set to 1, the Client and Server MUST discard any existing Session and start a new Session</mark>»\[MQTT‑SN‑3.1.2.1‑1]. Consequently, the Session Present flag in CONNACK is always set to 0 if Clean Start is set to 1.
+«<mark title="Requirement MQTT-SN-3.1.2.1-1"><a name="MQTT-SN-3.1.2.1-1"></a>If a CONNECT packet is received with Clean Start is set to 1, the Client and Server MUST discard any existing Session and start a new Session</mark>»[MQTT‑SN‑3.1.2.1‑1](#tab-MQTT-SN-3.1.2.1-1). Consequently, the Session Present flag in CONNACK is always set to 0 if Clean Start is set to 1.
 
-«<mark title="Requirement MQTT-SN-3.1.2.1-2"><a name="MQTT-SN-3.1.2.1-2"></a>If a CONNECT packet is received with Clean Start set to 0 and there is a Session associated with the Client Identifier, the Server MUST resume communications with the Client based on state from the existing Session</mark>»\<mark title="Ephemeral region marking">MQTT-SN-3.1.2.1-2]. [If a CONNECT packet is received with Clean Start set to 0 and there is no Session associated with the Client Identifier, the Server MUST create a new Session</mark> \[MQTT-3.1.2.1-3\].
+«<mark title="Requirement MQTT-SN-3.1.2.1-2"><a name="MQTT-SN-3.1.2.1-2"></a>If a CONNECT packet is received with Clean Start set to 0 and there is a Session associated with the Client Identifier, the Server MUST resume communications with the Client based on state from the existing Session</mark>»[MQTT‑SN‑3.1.2.1‑2](#tab-MQTT-SN-3.1.2.1-2).
+
+«<mark title="Requirement MQTT-SN-3.1.2.1-3"><a name="MQTT-SN-3.1.2.1-3"></a>If a CONNECT packet is received with Clean Start set to 0 and there is no Session associated with the Client Identifier, the Server MUST create a new Session</mark>»[MQTT‑SN‑3.1.2.1‑3](#tab-MQTT-SN-3.1.2.1-3).
 
 #### Will Flag{#will-flag}
 
 **Position:** bit 1 of the Connect Flags byte.
 
-«<mark title="Requirement MQTT-SN-3.1.2.2-1"><a name="MQTT-SN-3.1.2.2-1"></a>If the Will Flag is set to 1, the Will Flags, Will Topic, and Will Payload fields MUST be present in the Packet</mark>»\[MQTT‑SN‑3.1.2.2‑1].
+«<mark title="Requirement MQTT-SN-3.1.2.2-1"><a name="MQTT-SN-3.1.2.2-1"></a>If the Will Flag is set to 1, the Will Flags, Will Topic, and Will Payload fields MUST be present in the Packet</mark>»[MQTT‑SN‑3.1.2.2‑1](#tab-MQTT-SN-3.1.2.2-1).
 
-«<mark title="Requirement MQTT-SN-3.1.2.2-3"><a name="MQTT-SN-3.1.2.2-3"></a>If the Will Flag is set to 1 this indicates that a Will Message MUST be stored on the Server and associated with the Session]{.mark} \[MQTT-SN-3.1.2.2-2\]. The Will Message consists of the Will Topic, and Will Payload fields in the CONNECT Packet. [The Will Message MUST be published after the Virtual Connection is deleted or the Session ends, unless the Will Message has been deleted by the Server on receipt of a DISCONNECT packet with Reason Code 0x00 (Normal disconnection)</mark>»\[MQTT‑SN‑3.1.2.2‑3].
+«<mark title="Requirement MQTT-SN-3.1.2.2-2"><a name="MQTT-SN-3.1.2.2-2"></a>If the Will Flag is set to 1 this indicates that a Will Message MUST be stored on the Server and associated with the Session</mark>»[MQTT‑SN‑3.1.2.2‑2](#tab-MQTT-SN-3.1.2.2-2). The Will Message consists of the Will Topic, and Will Payload fields in the CONNECT Packet.
+
+«<mark title="Requirement MQTT-SN-3.1.2.2-3"><a name="MQTT-SN-3.1.2.2-3"></a>The Will Message MUST be published after the Virtual Connection is deleted or the Session ends, unless the Will Message has been deleted by the Server on receipt of a DISCONNECT packet with Reason Code 0x00 (Normal disconnection)</mark>»[MQTT‑SN‑3.1.2.2‑3](#tab-MQTT-SN-3.1.2.2-3).
 
 Situations in which the Will Message is published include, but are not limited to:
 
@@ -45,7 +49,7 @@ Situations in which the Will Message is published include, but are not limited t
 
 - The Server deletes the Virtual Connection because of a Retry timeout.
 
-«<mark title="Requirement MQTT-SN-3.1.2.2-4"><a name="MQTT-SN-3.1.2.2-4"></a>The Will Message MUST be removed from the stored Session State in the Server once it has been published or the Server has received a DISCONNECT packet with a Reason Code of 0x00 (Normal disconnection) from the Client</mark>»\[MQTT‑SN‑3.1.2.2‑4].
+«<mark title="Requirement MQTT-SN-3.1.2.2-4"><a name="MQTT-SN-3.1.2.2-4"></a>The Will Message MUST be removed from the stored Session State in the Server once it has been published or the Server has received a DISCONNECT packet with a Reason Code of 0x00 (Normal disconnection) from the Client</mark>»[MQTT‑SN‑3.1.2.2‑4](#tab-MQTT-SN-3.1.2.2-4).
 
 The Server SHOULD publish Will Messages promptly after the Virtual Connection is deleted or the Session ends, whichever occurs first. In the case of a Server shutdown or failure, the Server MAY defer publication of Will Messages until a subsequent restart. If this happens, there might be a delay between the time the Server experienced failure and when the Will Message is published.
 
@@ -53,25 +57,25 @@ The Server SHOULD publish Will Messages promptly after the Virtual Connection is
 
 **Position:** bit 2 of the Connect Flags byte. Labelled *Auth* in Figure 3-1.
 
-«<mark title="Requirement MQTT-SN-3.1.2.3-1"><a name="MQTT-SN-3.1.2.3-1"></a>If the Authentication Flag is set to 1, the Authentication Method and Authentication Data fields MUST be present in the Packet</mark>»\[MQTT‑SN‑3.1.2.3‑1].
+«<mark title="Requirement MQTT-SN-3.1.2.3-1"><a name="MQTT-SN-3.1.2.3-1"></a>If the Authentication Flag is set to 1, the Authentication Method and Authentication Data fields MUST be present in the Packet</mark>»[MQTT‑SN‑3.1.2.3‑1](#tab-MQTT-SN-3.1.2.3-1).
 
-«<mark title="Requirement MQTT-SN-3.1.2.3-2"><a name="MQTT-SN-3.1.2.3-2"></a>If the Authentication Flag is set to 0, the Authentication Method and Authentication Data fields MUST NOT be present in the Packet</mark>»\[MQTT‑SN‑3.1.2.3‑2].
+«<mark title="Requirement MQTT-SN-3.1.2.3-2"><a name="MQTT-SN-3.1.2.3-2"></a>If the Authentication Flag is set to 0, the Authentication Method and Authentication Data fields MUST NOT be present in the Packet</mark>»[MQTT‑SN‑3.1.2.3‑2](#tab-MQTT-SN-3.1.2.3-2).
 
 #### Session Expiry Flag{#session-expiry-flag}
 
 **Position:** bit 3 of the Connect Flags byte. Labelled *Sess Exp* in Figure 3-1.
 
-«<mark title="Requirement MQTT-SN-3.1.2.4-1"><a name="MQTT-SN-3.1.2.4-1"></a>If the Session Expiry Flag is set to 1, the Session Expiry Interval field MUST be present in the Packet</mark>»\[MQTT‑SN‑3.1.2.4‑1].
+«<mark title="Requirement MQTT-SN-3.1.2.4-1"><a name="MQTT-SN-3.1.2.4-1"></a>If the Session Expiry Flag is set to 1, the Session Expiry Interval field MUST be present in the Packet</mark>»[MQTT‑SN‑3.1.2.4‑1](#tab-MQTT-SN-3.1.2.4-1).
 
-«<mark title="Requirement MQTT-SN-3.1.2.4-2"><a name="MQTT-SN-3.1.2.4-2"></a>If the Session Expiry Flag is set to 0, the Session Expiry Interval field MUST NOT be present in the Packet</mark>»\[MQTT‑SN‑3.1.2.4‑2].
+«<mark title="Requirement MQTT-SN-3.1.2.4-2"><a name="MQTT-SN-3.1.2.4-2"></a>If the Session Expiry Flag is set to 0, the Session Expiry Interval field MUST NOT be present in the Packet</mark>»[MQTT‑SN‑3.1.2.4‑2](#tab-MQTT-SN-3.1.2.4-2).
 
 #### Default Number of Awake Messages Flag{#default-number-of-awake-messages-flag}
 
 **Position:** bit 4 of the Connect Flags byte. Labelled *DAM* in Figure 3-1.
 
-«<mark title="Requirement MQTT-SN-3.1.2.5-1"><a name="MQTT-SN-3.1.2.5-1"></a>If the Default Number of Awake Messages Flag is set to 1, the Default Awake Messages field MUST be present in the Packet</mark>»\[MQTT‑SN‑3.1.2.5‑1].
+«<mark title="Requirement MQTT-SN-3.1.2.5-1"><a name="MQTT-SN-3.1.2.5-1"></a>If the Default Number of Awake Messages Flag is set to 1, the Default Awake Messages field MUST be present in the Packet</mark>»[MQTT‑SN‑3.1.2.5‑1](#tab-MQTT-SN-3.1.2.5-1).
 
-«<mark title="Requirement MQTT-SN-3.1.2.5-2"><a name="MQTT-SN-3.1.2.5-2"></a>If the Default Number of Awake Messages Flag is set to 0, the Default Awake Messages field MUST NOT be present in the Packet</mark>»\[MQTT‑SN‑3.1.2.5‑2].
+«<mark title="Requirement MQTT-SN-3.1.2.5-2"><a name="MQTT-SN-3.1.2.5-2"></a>If the Default Number of Awake Messages Flag is set to 0, the Default Awake Messages field MUST NOT be present in the Packet</mark>»[MQTT‑SN‑3.1.2.5‑2](#tab-MQTT-SN-3.1.2.5-2).
 
 #### Allow Network Address Changes Flag{#allow-network-address-changes-flag}
 
@@ -81,7 +85,7 @@ This flag only has an effect In implementations which use a Network Address to a
 
 Setting this flag to 1 means that the Client authorizes the server to update the Network Address associated with a Virtual Connection. The Client does this by sending a Connection Encapsulated Packet with the Client Identifier. If its Network Address has changed, the Server can update the Virtual Connection.
 
-«<mark title="Requirement MQTT-SN-3.1.2.6-1"><a name="MQTT-SN-3.1.2.6-1"></a>If this flag is set to 0 and a Packet is wrapped by the Connection Encapsulation, it is a protocol error. The Server must send a DISCONNECT and delete the Virtual Connection</mark>»\[MQTT‑SN‑3.1.2.6‑1].
+«<mark title="Requirement MQTT-SN-3.1.2.6-1"><a name="MQTT-SN-3.1.2.6-1"></a>If this flag is set to 0 and a Packet is wrapped by the Connection Encapsulation, it is a protocol error. The Server must send a DISCONNECT and delete the Virtual Connection</mark>»[MQTT‑SN‑3.1.2.6‑1](#tab-MQTT-SN-3.1.2.6-1).
 
 This flag affects the use of the Connection Encapsulation only, it does not affect other methods of identifying the sender such as the Protection Encapsulation.
 
@@ -99,17 +103,17 @@ If this flag is set to 1, the Client allows the Server to return modified values
 
 for the Virtual Connection.
 
-«<mark title="Requirement MQTT-SN-3.1.2.7-1"><a name="MQTT-SN-3.1.2.7-1"></a>If this flag is set to 0, the Server MUST NOT include a Server Keep Alive field in the CONNACK Packet response</mark>»\[MQTT‑SN‑3.1.2.7‑1].
+«<mark title="Requirement MQTT-SN-3.1.2.7-1"><a name="MQTT-SN-3.1.2.7-1"></a>If this flag is set to 0, the Server MUST NOT include a Server Keep Alive field in the CONNACK Packet response</mark>»[MQTT‑SN‑3.1.2.7‑1](#tab-MQTT-SN-3.1.2.7-1).
 
-«<mark title="Requirement MQTT-SN-3.1.2.7-2"><a name="MQTT-SN-3.1.2.7-2"></a>If this flag is set to 0, the Server MUST NOT include a Session Expiry field in the CONNACK Packet response</mark>»\[MQTT‑SN‑3.1.2.7‑2].
+«<mark title="Requirement MQTT-SN-3.1.2.7-2"><a name="MQTT-SN-3.1.2.7-2"></a>If this flag is set to 0, the Server MUST NOT include a Session Expiry field in the CONNACK Packet response</mark>»[MQTT‑SN‑3.1.2.7‑2](#tab-MQTT-SN-3.1.2.7-2).
 
-«<mark title="Requirement MQTT-SN-3.1.2.7-3"><a name="MQTT-SN-3.1.2.7-3"></a>If this flag is set to 0 for the current Virtual Connection, the Server MUST NOT include a Sleep Duration in the SLEEPRESP Packet</mark>»\[MQTT‑SN‑3.1.2.7‑3].
+«<mark title="Requirement MQTT-SN-3.1.2.7-3"><a name="MQTT-SN-3.1.2.7-3"></a>If this flag is set to 0 for the current Virtual Connection, the Server MUST NOT include a Sleep Duration in the SLEEPRESP Packet</mark>»[MQTT‑SN‑3.1.2.7‑3](#tab-MQTT-SN-3.1.2.7-3).
 
 ### Will Flags{#will-flags}
 
-«<mark title="Requirement MQTT-SN-3.1.3-1"><a name="MQTT-SN-3.1.3-1"></a>If the Will Flag is set to 0, the Will Flags MUST NOT be present in the Packet</mark>»\[MQTT‑SN‑3.1.3‑1].
+«<mark title="Requirement MQTT-SN-3.1.3-1"><a name="MQTT-SN-3.1.3-1"></a>If the Will Flag is set to 0, the Will Flags MUST NOT be present in the Packet</mark>»[MQTT‑SN‑3.1.3‑1](#tab-MQTT-SN-3.1.3-1).
 
-«<mark title="Requirement MQTT-SN-3.1.3-2"><a name="MQTT-SN-3.1.3-2"></a>If the Will Flag is set to 1, the Will Flags MUST be present in the Packet</mark>»\[MQTT‑SN‑3.1.3‑2].
+«<mark title="Requirement MQTT-SN-3.1.3-2"><a name="MQTT-SN-3.1.3-2"></a>If the Will Flag is set to 1, the Will Flags MUST be present in the Packet</mark>»[MQTT‑SN‑3.1.3‑2](#tab-MQTT-SN-3.1.3-2).
 
 The *Will Flags* is 1 byte field which contains several parameters specifying the handling of the Will Message.
 
@@ -131,9 +135,9 @@ These two bits specify the QoS level to be used. The value of Will QoS can be 0 
 
 This specifies if the Will Message is to be retained when it is published. See [sec](#retained-messages) for more information about Retained Messages.
 
-«<mark title="Requirement MQTT-SN-3.1.3.3-1"><a name="MQTT-SN-3.1.3.3-1"></a>If the Will Flag is set to 1 and Will Retain is set to 0, the Server MUST publish the Will Message as a non-retained message</mark>»\[MQTT‑SN‑3.1.3.3‑1].
+«<mark title="Requirement MQTT-SN-3.1.3.3-1"><a name="MQTT-SN-3.1.3.3-1"></a>If the Will Flag is set to 1 and Will Retain is set to 0, the Server MUST publish the Will Message as a non-retained message</mark>»[MQTT‑SN‑3.1.3.3‑1](#tab-MQTT-SN-3.1.3.3-1).
 
-«<mark title="Requirement MQTT-SN-3.1.3.3-2"><a name="MQTT-SN-3.1.3.3-2"></a>If the Will Flag is set to 1 and Will Retain is set to 1, the Server MUST publish the Will Message as a retained message</mark>»\[MQTT‑SN‑3.1.3.3‑2].
+«<mark title="Requirement MQTT-SN-3.1.3.3-2"><a name="MQTT-SN-3.1.3.3-2"></a>If the Will Flag is set to 1 and Will Retain is set to 1, the Server MUST publish the Will Message as a retained message</mark>»[MQTT‑SN‑3.1.3.3‑2](#tab-MQTT-SN-3.1.3.3-2).
 
 ### Packet Identifier{#cp---packet-identifier}
 
@@ -153,27 +157,27 @@ The one-byte unsigned value that represents the revision level of the protocol u
 
 Table: Protocol Versions
 
-«<mark title="Requirement MQTT-SN-3.1.5-1"><a name="MQTT-SN-3.1.5-1"></a>The value of the Protocol Version field for MQTT-SN version 2.0 MUST be 2 (0x02)</mark>»\[MQTT‑SN‑3.1.5‑1].
+«<mark title="Requirement MQTT-SN-3.1.5-1"><a name="MQTT-SN-3.1.5-1"></a>The value of the Protocol Version field for MQTT-SN version 2.0 MUST be 2 (0x02)</mark>»[MQTT‑SN‑3.1.5‑1](#tab-MQTT-SN-3.1.5-1).
 
-A Server which supports multiple versions of the MQTT-SN protocol uses the Protocol Version to determine which version of MQTT-SN the Client is using. «<mark title="Requirement MQTT-SN-3.1.5-2"><a name="MQTT-SN-3.1.5-2"></a>If the Protocol Version is not 2 and the Server does not want to accept the CONNECT packet, the Server MAY send a CONNACK packet with Reason Code 0x84 (Unsupported Protocol Version)</mark>»\[MQTT‑SN‑3.1.5‑2].
+A Server which supports multiple versions of the MQTT-SN protocol uses the Protocol Version to determine which version of MQTT-SN the Client is using. «<mark title="Requirement MQTT-SN-3.1.5-2"><a name="MQTT-SN-3.1.5-2"></a>If the Protocol Version is not 2 and the Server does not want to accept the CONNECT packet, the Server MAY send a CONNACK packet with Reason Code 0x84 (Unsupported Protocol Version)</mark>»[MQTT‑SN‑3.1.5‑2](#tab-MQTT-SN-3.1.5-2).
 
 ### Keep Alive{#keep-alive}
 
-The Keep Alive is a Two Byte Integer greater than 0 (1 - 65,535), which is a time interval measured in seconds. It is the maximum time interval that is permitted to elapse between the point at which the Client finishes transmitting one MQTT-SN Control Packet and the point it starts sending the next. It is the responsibility of the Client to ensure that the interval between MQTT-SN Control Packets being sent does not exceed the Keep Alive value. «<mark title="Requirement MQTT-SN-3.1.6-1"><a name="MQTT-SN-3.1.6-1"></a>In the absence of sending any other MQTT-SN Control Packets, the Client MUST send a PINGREQ packet</mark>»\[MQTT‑SN‑3.1.6‑1].
+The Keep Alive is a Two Byte Integer greater than 0 (1 - 65,535), which is a time interval measured in seconds. It is the maximum time interval that is permitted to elapse between the point at which the Client finishes transmitting one MQTT-SN Control Packet and the point it starts sending the next. It is the responsibility of the Client to ensure that the interval between MQTT-SN Control Packets being sent does not exceed the Keep Alive value. «<mark title="Requirement MQTT-SN-3.1.6-1"><a name="MQTT-SN-3.1.6-1"></a>In the absence of sending any other MQTT-SN Control Packets, the Client MUST send a PINGREQ packet</mark>»[MQTT‑SN‑3.1.6‑1](#tab-MQTT-SN-3.1.6-1).
 
 > **Informative comment**
 >
 > The Client can send PINGREQ at any time, irrespective of the Keep Alive value, and check for a corresponding PINGRESP to determine that the network and the Server are available.
 
-«<mark title="Requirement MQTT-SN-3.1.6-2"><a name="MQTT-SN-3.1.6-2"></a>If the Server does not receive an MQTT-SN Control Packet from the Client within one and a half times the Keep Alive time period, it MUST delete the Virtual Connection and move the Client to the Disconnected state (see [sec](#client-states))</mark>»\[MQTT‑SN‑3.1.6‑2].
+«<mark title="Requirement MQTT-SN-3.1.6-2"><a name="MQTT-SN-3.1.6-2"></a>If the Server does not receive an MQTT-SN Control Packet from the Client within one and a half times the Keep Alive time period, it MUST delete the Virtual Connection and move the Client to the Disconnected state (see [sec](#client-states))</mark>»[MQTT‑SN‑3.1.6‑2](#tab-MQTT-SN-3.1.6-2).
 
-«<mark title="Requirement MQTT-SN-3.1.6-3"><a name="MQTT-SN-3.1.6-3"></a>If a Client does not receive a PINGRESP packet within a *[Retry Interval]* amount of time after it has sent a PINGREQ, it SHOULD retry the transmission according to [sec](#unacknowledged-packets) up to the maximum number of attempts. If a PINGRESP is still not received it MUST delete the Virtual Connection to the Server by way of a DISCONNECT, with the understanding that the Server may no longer be reachable</mark>»\[MQTT‑SN‑3.1.6‑3].
+«<mark title="Requirement MQTT-SN-3.1.6-3"><a name="MQTT-SN-3.1.6-3"></a>If a Client does not receive a PINGRESP packet within a *[Retry Interval]* amount of time after it has sent a PINGREQ, it SHOULD retry the transmission according to [sec](#unacknowledged-packets) up to the maximum number of attempts. If a PINGRESP is still not received it MUST delete the Virtual Connection to the Server by way of a DISCONNECT, with the understanding that the Server may no longer be reachable</mark>»[MQTT‑SN‑3.1.6‑3](#tab-MQTT-SN-3.1.6-3).
 
 > **Informative Comment**
 >
 > Unlike MQTT, the MQTT-SN Keep Alive timeout can not be turned off (by setting a value of 0). This is because there is no other indication in MQTT-SN of a connection failure, as there is in MQTT with the underlying TCP/IP connection.
 
-«<mark title="Requirement MQTT-SN-3.1.6-4"><a name="MQTT-SN-3.1.6-4"></a>The Keep Alive must have a value greater than 0. It is a protocol error if a Keep Alive value of 0 or below is set</mark>»\[MQTT‑SN‑3.1.6‑4].
+«<mark title="Requirement MQTT-SN-3.1.6-4"><a name="MQTT-SN-3.1.6-4"></a>The Keep Alive must have a value greater than 0. It is a protocol error if a Keep Alive value of 0 or below is set</mark>»[MQTT‑SN‑3.1.6‑4](#tab-MQTT-SN-3.1.6-4).
 
 > **Informative comment**\
 > The Server may have other reasons to disconnect the Client, for instance because it is shutting down. Setting Keep Alive does not guarantee that the Client will remain connected.
@@ -198,9 +202,9 @@ The packet size is the total number of bytes in an MQTT-SN Control Packet, as de
 
 «<mark title="Requirement MQTT-SN-3.1.7-1"><a name="MQTT-SN-3.1.7-1"></a>The Maximum Packet Size value MUST be 10 or greater</mark>»\<mark title="Ephemeral region marking">MQTT-SN-3.1.7-1][,</mark> as this is the minimum size that the CONNECT Packet can be.
 
-«<mark title="Requirement MQTT-SN-3.1.7-2"><a name="MQTT-SN-3.1.7-2"></a>The Server MUST NOT send packets exceeding Maximum Packet Size to the Client. If a Client receives a packet whose size exceeds this limit, this is a Protocol Error, the Client uses DISCONNECT with Reason Code 0x95 (Packet too large)</mark>»\[MQTT‑SN‑3.1.7‑2].
+«<mark title="Requirement MQTT-SN-3.1.7-2"><a name="MQTT-SN-3.1.7-2"></a>The Server MUST NOT send packets exceeding Maximum Packet Size to the Client. If a Client receives a packet whose size exceeds this limit, this is a Protocol Error, the Client uses DISCONNECT with Reason Code 0x95 (Packet too large)</mark>»[MQTT‑SN‑3.1.7‑2](#tab-MQTT-SN-3.1.7-2).
 
-«<mark title="Requirement MQTT-SN-3.1.7-3"><a name="MQTT-SN-3.1.7-3"></a>Where a Packet is too large to send, the Server MUST discard it without sending it and then behave as if it had completed sending that Application Message</mark>»\[MQTT‑SN‑3.1.7‑3].
+«<mark title="Requirement MQTT-SN-3.1.7-3"><a name="MQTT-SN-3.1.7-3"></a>Where a Packet is too large to send, the Server MUST discard it without sending it and then behave as if it had completed sending that Application Message</mark>»[MQTT‑SN‑3.1.7‑3](#tab-MQTT-SN-3.1.7-3).
 
 > **Informative comment**
 >
@@ -216,7 +220,7 @@ The Session Expiry Interval is a four-byte integer time interval measured in sec
 
 If the Session Expiry Interval is 0xFFFFFFFF (UINT_MAX), the Session does not expire.
 
-«<mark title="Requirement MQTT-SN-3.1.9-1"><a name="MQTT-SN-3.1.9-1"></a>The Client and Server MUST store the Session State after the Virtual Connection is deleted if the Session Expiry Interval is greater than 0</mark>»\[MQTT‑SN‑3.1.9‑1].
+«<mark title="Requirement MQTT-SN-3.1.9-1"><a name="MQTT-SN-3.1.9-1"></a>The Client and Server MUST store the Session State after the Virtual Connection is deleted if the Session Expiry Interval is greater than 0</mark>»[MQTT‑SN‑3.1.9‑1](#tab-MQTT-SN-3.1.9-1).
 
 > **Informative comment**
 >
@@ -242,7 +246,7 @@ In the case of Will Topic Type being Topic Name, this field will refer to the le
 
 ### Will Topic Name{#will-topic-name}
 
-If the Will Flag is set to 1 and the Will Topic Type is set to Topic Name (0b11), the Will Topic Name is the next field in the Packet. «<mark title="Requirement MQTT-SN-3.1.11-1"><a name="MQTT-SN-3.1.11-1"></a>The Will Topic Name MUST be a UTF-8 Encoded String as defined in [sec](#utf-8-encoded-string)</mark>»\[MQTT‑SN‑3.1.11‑1].
+If the Will Flag is set to 1 and the Will Topic Type is set to Topic Name (0b11), the Will Topic Name is the next field in the Packet. «<mark title="Requirement MQTT-SN-3.1.11-1"><a name="MQTT-SN-3.1.11-1"></a>The Will Topic Name MUST be a UTF-8 Encoded String as defined in [sec](#utf-8-encoded-string)</mark>»[MQTT‑SN‑3.1.11‑1](#tab-MQTT-SN-3.1.11-1).
 
 ### Will Payload Length{#will-payload-length}
 
@@ -280,17 +284,17 @@ Refer to [sec](#authentication) for more information about authentication.
 
 ### Client Identifier{#client-identifier}
 
-«<mark title="Requirement MQTT-SN-3.1.18-1"><a name="MQTT-SN-3.1.18-1"></a>The Client Identifier MUST be a UTF-8 Encoded String</mark>»\[MQTT‑SN‑3.1.18‑1]. This field is optional - its existence or absence is inferred from the Packet length.
+«<mark title="Requirement MQTT-SN-3.1.18-1"><a name="MQTT-SN-3.1.18-1"></a>The Client Identifier MUST be a UTF-8 Encoded String</mark>»[MQTT‑SN‑3.1.18‑1](#tab-MQTT-SN-3.1.18-1). This field is optional - its existence or absence is inferred from the Packet length.
 
-The Client Identifier identifies the Client to the Server. Each Client connecting to the Server has a unique Client Identifier. «<mark title="Requirement MQTT-SN-3.1.18-2"><a name="MQTT-SN-3.1.18-2"></a>The Client Identifier MUST be used by Clients and by Server to identify the state that they hold relating to this MQTT-SN Session between the Client and the Server</mark>»\[MQTT‑SN‑3.1.18‑2].
+The Client Identifier identifies the Client to the Server. Each Client connecting to the Server has a unique Client Identifier. «<mark title="Requirement MQTT-SN-3.1.18-2"><a name="MQTT-SN-3.1.18-2"></a>The Client Identifier MUST be used by Clients and by Server to identify the state that they hold relating to this MQTT-SN Session between the Client and the Server</mark>»[MQTT‑SN‑3.1.18‑2](#tab-MQTT-SN-3.1.18-2).
 
 > **Informative comment**
 >
 > A Client Identifier can be between 0 - 65,521 bytes. It is recommended for practicality, Client Identifiers are restricted to a reasonable size (less than 243 bytes to fit within a small CONNECT packet).
 
-«<mark title="Requirement MQTT-SN-3.1.18-3"><a name="MQTT-SN-3.1.18-3"></a>When the Client Identifier is present (greater than 0 bytes), the Server MUST allow values which are between 1 and 23 UTF-8 encoded bytes in length, and that contain only the characters \"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"</mark>»\[MQTT‑SN‑3.1.18‑3].
+«<mark title="Requirement MQTT-SN-3.1.18-3"><a name="MQTT-SN-3.1.18-3"></a>When the Client Identifier is present (greater than 0 bytes), the Server MUST allow values which are between 1 and 23 UTF-8 encoded bytes in length, and that contain only the characters \"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"</mark>»[MQTT‑SN‑3.1.18‑3](#tab-MQTT-SN-3.1.18-3).
 
-«<mark title="Requirement MQTT-SN-3.1.18-4"><a name="MQTT-SN-3.1.18-4"></a>The Server MAY choose to allow more than 23 bytes</mark>»\[MQTT‑SN‑3.1.18‑4].
+«<mark title="Requirement MQTT-SN-3.1.18-4"><a name="MQTT-SN-3.1.18-4"></a>The Server MAY choose to allow more than 23 bytes</mark>»[MQTT‑SN‑3.1.18‑4](#tab-MQTT-SN-3.1.18-4).
 
 > **Informative comment**
 >
@@ -300,17 +304,17 @@ The Client Identifier identifies the Client to the Server. Each Client connectin
 
 Note that a Server MAY support multiple protocols on the same network endpoint. If the Server determines that the protocol is MQTT-SN 2.0 then it validates the connection attempt as follows.
 
-1.  «<mark title="Requirement MQTT-SN-3.1.19-1"><a name="MQTT-SN-3.1.19-1"></a>The Server MUST validate that the CONNECT packet matches the format described in [sec](#connect---connection-request) and MUST NOT create a Virtual Connection for this CONNECT if it does not match</mark>»\[MQTT‑SN‑3.1.19‑1]. The Server MAY send a CONNACK with a Reason Code of 0x80 or greater as described in [sec](#handling-errors).
+1.  «<mark title="Requirement MQTT-SN-3.1.19-1"><a name="MQTT-SN-3.1.19-1"></a>The Server MUST validate that the CONNECT packet matches the format described in [sec](#connect---connection-request) and MUST NOT create a Virtual Connection for this CONNECT if it does not match</mark>»[MQTT‑SN‑3.1.19‑1](#tab-MQTT-SN-3.1.19-1). The Server MAY send a CONNACK with a Reason Code of 0x80 or greater as described in [sec](#handling-errors).
 
-2.  «<mark title="Requirement MQTT-SN-3.1.19-2"><a name="MQTT-SN-3.1.19-2"></a>The Server MAY check that the contents of the CONNECT packet meet any further restrictions and SHOULD perform authentication and authorization checks. If any of these checks fail, it MUST NOT create a Virtual Connection for this CONNECT</mark>»\[MQTT‑SN‑3.1.19‑2]. It MAY send an appropriate CONNACK response with a Reason Code of 0x80 or greater as described in [sec](#connack---connect-acknowledgement) and [sec](#handling-errors).
+2.  «<mark title="Requirement MQTT-SN-3.1.19-2"><a name="MQTT-SN-3.1.19-2"></a>The Server MAY check that the contents of the CONNECT packet meet any further restrictions and SHOULD perform authentication and authorization checks. If any of these checks fail, it MUST NOT create a Virtual Connection for this CONNECT</mark>»[MQTT‑SN‑3.1.19‑2](#tab-MQTT-SN-3.1.19-2). It MAY send an appropriate CONNACK response with a Reason Code of 0x80 or greater as described in [sec](#connack---connect-acknowledgement) and [sec](#handling-errors).
 
 If validation is successful, the Server performs the following steps.
 
-1.  «<mark title="Requirement MQTT-SN-3.1.19-3"><a name="MQTT-SN-3.1.19-3"></a>If the Client Identifier represents a Client already connected to the Server, the Server sends a DISCONNECT packet to the existing Client with Reason Code of 0x8E (Session taken over) as described in [sec](#handling-errors) and MUST delete the Virtual Connection of the existing Client</mark>»\[MQTT‑SN‑3.1.19‑3]. If the existing Client has a Will Message, that Will Message is published as described in [sec](#will-flags).
+1.  «<mark title="Requirement MQTT-SN-3.1.19-3"><a name="MQTT-SN-3.1.19-3"></a>If the Client Identifier represents a Client already connected to the Server, the Server sends a DISCONNECT packet to the existing Client with Reason Code of 0x8E (Session taken over) as described in [sec](#handling-errors) and MUST delete the Virtual Connection of the existing Client</mark>»[MQTT‑SN‑3.1.19‑3](#tab-MQTT-SN-3.1.19-3). If the existing Client has a Will Message, that Will Message is published as described in [sec](#will-flags).
 
-2.  «<mark title="Requirement MQTT-SN-3.1.19-4"><a name="MQTT-SN-3.1.19-4"></a>The Server MUST perform the processing of Clean Start that is described in [sec](#clean-start-flag)</mark>»\[MQTT‑SN‑3.1.19‑4].
+2.  «<mark title="Requirement MQTT-SN-3.1.19-4"><a name="MQTT-SN-3.1.19-4"></a>The Server MUST perform the processing of Clean Start that is described in [sec](#clean-start-flag)</mark>»[MQTT‑SN‑3.1.19‑4](#tab-MQTT-SN-3.1.19-4).
 
-3.  «<mark title="Requirement MQTT-SN-3.1.19-5"><a name="MQTT-SN-3.1.19-5"></a>The Server MUST acknowledge the CONNECT packet with a CONNACK packet containing a 0x00 (Success) Reason Code</mark>»\[MQTT‑SN‑3.1.19‑5].
+3.  «<mark title="Requirement MQTT-SN-3.1.19-5"><a name="MQTT-SN-3.1.19-5"></a>The Server MUST acknowledge the CONNECT packet with a CONNACK packet containing a 0x00 (Success) Reason Code</mark>»[MQTT‑SN‑3.1.19‑5](#tab-MQTT-SN-3.1.19-5).
 
 4.  Start Application Message delivery and Keep Alive monitoring.
 
@@ -318,6 +322,6 @@ If validation is successful, the Server performs the following steps.
 >
 > It is recommended that authentication and authorization checks be performed if the Server is being used to process any form of business critical data. If these checks succeed, the Server responds by sending CONNACK with a 0x00 (Success) Reason Code. If they fail, it is suggested that the Server does not send a CONNACK at all, as this could alert a potential attacker to the presence of the MQTT-SN Server and encourage such an attacker to launch a denial of service or password-guessing attack.
 
-«<mark title="Requirement MQTT-SN-3.1.19-6"><a name="MQTT-SN-3.1.19-6"></a>A Client MUST wait for a CONNACK packet with a 0x00 (Success) Reason Code before sending any packet that needs a Virtual Connection</mark>»\[MQTT‑SN‑3.1.19‑6].
+«<mark title="Requirement MQTT-SN-3.1.19-6"><a name="MQTT-SN-3.1.19-6"></a>A Client MUST wait for a CONNACK packet with a 0x00 (Success) Reason Code before sending any packet that needs a Virtual Connection</mark>»[MQTT‑SN‑3.1.19‑6](#tab-MQTT-SN-3.1.19-6).
 
-«<mark title="Requirement MQTT-SN-3.1.19-7"><a name="MQTT-SN-3.1.19-7"></a>The Server MUST NOT process any data sent by the Client after the CONNECT packet and before the CONNACK response is sent, except AUTH packets</mark>»\[MQTT‑SN‑3.1.19‑7].
+«<mark title="Requirement MQTT-SN-3.1.19-7"><a name="MQTT-SN-3.1.19-7"></a>The Server MUST NOT process any data sent by the Client after the CONNECT packet and before the CONNACK response is sent, except AUTH packets</mark>»[MQTT‑SN‑3.1.19‑7](#tab-MQTT-SN-3.1.19-7).

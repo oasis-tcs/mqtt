@@ -6,6 +6,8 @@ The Reason Codes share a common set of values as shown below.
 
 *Figure 2-7 -- Reason Codes*
 
+\columns=iiiiiiii,hhhhhhhh,nnnnnnnnnn,pppppppppppppppppppppp,ddddddddddddddddddddddddddddddddddddddddddd
+
 | ID(Dec)    | ID(Hex)      | Name                                       | Packets                                                                                           | Description                                                                                                                                                                                     |
 |:-----------|:-------------|:-------------------------------------------|:--------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 0          | 0x00         | Success                                    | CONNACK, SUBACK, UNSUBACK, REGACK, PUBACK, PUBREC, PUBREL, PUBCOMP, SLEEPRESP, AUTH (server only) | The operation was successful.                                                                                                                                                                   |

@@ -27,7 +27,7 @@ Table: Publish Packet Types
 
 This packet is used by both clients and Servers to publish data for a certain topic.
 
-The PUBWOS packet does not have a corresponding feature in MQTT. «<mark title="Requirement MQTT-SN-3.6-1"><a name="MQTT-SN-3.6-1"></a>If forwarded to an MQTT connection, PUBWOS packets MUST have their MQTT Quality of Service level set to 0</mark>»\[MQTT‑SN‑3.6‑1].
+The PUBWOS packet does not have a corresponding feature in MQTT. «<mark title="Requirement MQTT-SN-3.6-1"><a name="MQTT-SN-3.6-1"></a>If forwarded to an MQTT connection, PUBWOS packets MUST have their MQTT Quality of Service level set to 0</mark>»[MQTT‑SN‑3.6‑1](#tab-MQTT-SN-3.6-1).
 
 > **Informative comment**
 >
@@ -43,16 +43,16 @@ The first 2 or 4 bytes of the packet are encoded according to the variable lengt
 
 #### PUBWOS Flags{#pubwos-flags}
 
-The PUBWOS Flags is a 1 byte field which contains flags specifying the content of the packet and the Server behavior on receipt. «<mark title="Requirement MQTT-SN-3.6.1.2-1"><a name="MQTT-SN-3.6.1.2-1"></a>Bits 7-5 and 3-2 of the PUBWOS FLAGS are reserved and MUST be set to 0</mark>»\[MQTT‑SN‑3.6.1.2‑1].
+The PUBWOS Flags is a 1 byte field which contains flags specifying the content of the packet and the Server behavior on receipt. «<mark title="Requirement MQTT-SN-3.6.1.2-1"><a name="MQTT-SN-3.6.1.2-1"></a>Bits 7-5 and 3-2 of the PUBWOS FLAGS are reserved and MUST be set to 0</mark>»[MQTT‑SN‑3.6.1.2‑1](#tab-MQTT-SN-3.6.1.2-1).
 
-«<mark title="Requirement MQTT-SN-3.6.1.2-2"><a name="MQTT-SN-3.6.1.2-2"></a>The Client MUST validate that the reserved flags in the PUBWOS packet are set to 0. If any of the reserved flags is not 0 it is a Malformed Packet</mark>»\[MQTT‑SN‑3.6.1.2‑2].
+«<mark title="Requirement MQTT-SN-3.6.1.2-2"><a name="MQTT-SN-3.6.1.2-2"></a>The Client MUST validate that the reserved flags in the PUBWOS packet are set to 0. If any of the reserved flags is not 0 it is a Malformed Packet</mark>»[MQTT‑SN‑3.6.1.2‑2](#tab-MQTT-SN-3.6.1.2-2).
 
 ##### Topic Type{#ppws---topic-type}
 
 **Position**: bits 0 and 1 of the PUBWOS Flags.
 
 This determines the format of the topic data field. Refer to [sec](#topic-types) for the definition of the topic types.
-«<mark title="Requirement MQTT-SN-3.6.1.2.1-1"><a name="MQTT-SN-3.6.1.2.1-1"></a>The Topic Type in the PUBWOS packet MUST be Predefined Topic Alias or Topic Name</mark>»\[MQTT‑SN‑3.6.1.2.1‑1].
+«<mark title="Requirement MQTT-SN-3.6.1.2.1-1"><a name="MQTT-SN-3.6.1.2.1-1"></a>The Topic Type in the PUBWOS packet MUST be Predefined Topic Alias or Topic Name</mark>»[MQTT‑SN‑3.6.1.2.1‑1](#tab-MQTT-SN-3.6.1.2.1-1).
 
 ##### Retain{#ppws---retain}
 
@@ -66,9 +66,9 @@ This field is 2 bytes. It contains the Topic Name length if the Topic Type is To
 
 #### Topic Name{#ppws---topic-name}
 
-«<mark title="Requirement MQTT-SN-3.6.1.4-1"><a name="MQTT-SN-3.6.1.4-1"></a>If the Topic Type is Topic Name, the Topic Name field MUST be present in the PUBWOS packet</mark>»\[MQTT‑SN‑3.6.1.4‑1].
+«<mark title="Requirement MQTT-SN-3.6.1.4-1"><a name="MQTT-SN-3.6.1.4-1"></a>If the Topic Type is Topic Name, the Topic Name field MUST be present in the PUBWOS packet</mark>»[MQTT‑SN‑3.6.1.4‑1](#tab-MQTT-SN-3.6.1.4-1).
 
-«<mark title="Requirement MQTT-SN-3.6.1.4-2"><a name="MQTT-SN-3.6.1.4-2"></a>If the Topic Type is Predefined Topic Alias, the Topic Name field MUST NOT be present in the PUBWOS packet</mark>»\[MQTT‑SN‑3.6.1.4‑2].
+«<mark title="Requirement MQTT-SN-3.6.1.4-2"><a name="MQTT-SN-3.6.1.4-2"></a>If the Topic Type is Predefined Topic Alias, the Topic Name field MUST NOT be present in the PUBWOS packet</mark>»[MQTT‑SN‑3.6.1.4‑2](#tab-MQTT-SN-3.6.1.4-2).
 
 If the Topic Type is Topic Name this field will be a UTF-8 encoded string value of length determined by the Topic Name Length field.
 
@@ -80,7 +80,7 @@ The Payload contains the payload data of the Application Message that is being p
 
 The Client or Server uses a PUBWOS packet to send an Application Message to a Network Address, for possible receipt by a Server or another Client.
 
-«<mark title="Requirement MQTT-SN-3.6.1.6-1"><a name="MQTT-SN-3.6.1.6-1"></a>If received by a Client or Server, the PUBWOS packet MUST be treated as if its QoS were 0</mark>»\[MQTT‑SN‑3.6.1.6‑1] as described in [sec](#publish-actions).
+«<mark title="Requirement MQTT-SN-3.6.1.6-1"><a name="MQTT-SN-3.6.1.6-1"></a>If received by a Client or Server, the PUBWOS packet MUST be treated as if its QoS were 0</mark>»[MQTT‑SN‑3.6.1.6‑1](#tab-MQTT-SN-3.6.1.6-1) as described in [sec](#publish-actions).
 
 ### PUBLISH with QoS 0{#publish-with-qos-0}
 
@@ -90,7 +90,7 @@ The Client or Server uses a PUBWOS packet to send an Application Message to a Ne
 
 A PUBLISH packet is sent from a Client to a Server or from a Server to a Client to transport an Application Message.
 
-«<mark title="Requirement MQTT-SN-3.6.2-1"><a name="MQTT-SN-3.6.2-1"></a>PUBLISH packets with QoS equal to 0 received by a Client or Server MUST be associated with a Session</mark>»\[MQTT‑SN‑3.6.2‑1].
+«<mark title="Requirement MQTT-SN-3.6.2-1"><a name="MQTT-SN-3.6.2-1"></a>PUBLISH packets with QoS equal to 0 received by a Client or Server MUST be associated with a Session</mark>»[MQTT‑SN‑3.6.2‑1](#tab-MQTT-SN-3.6.2-1).
 
 #### PUBLISH Header{#publish-header}
 
@@ -98,9 +98,9 @@ The first 2 or 4 bytes of the packet are encoded according to the variable lengt
 
 #### PUBLISH Flags{#publish-flags}
 
-The PUBLISH Flags is a 1 byte field which contains flags specifying the content of the packet and the Server behavior. «<mark title="Requirement MQTT-SN-3.6.2.2-1"><a name="MQTT-SN-3.6.2.2-1"></a>Bits 7 and 3-2 of the PUBLISH Flags are reserved and MUST be set to 0</mark>»\[MQTT‑SN‑3.6.2.2‑1].
+The PUBLISH Flags is a 1 byte field which contains flags specifying the content of the packet and the Server behavior. «<mark title="Requirement MQTT-SN-3.6.2.2-1"><a name="MQTT-SN-3.6.2.2-1"></a>Bits 7 and 3-2 of the PUBLISH Flags are reserved and MUST be set to 0</mark>»[MQTT‑SN‑3.6.2.2‑1](#tab-MQTT-SN-3.6.2.2-1).
 
-«<mark title="Requirement MQTT-SN-3.6.2.2-2"><a name="MQTT-SN-3.6.2.2-2"></a>The Client MUST validate that the reserved flags in the PUBLISH packet are set to 0. If any of the reserved flags is not 0 it is a Malformed Packet</mark>»\[MQTT‑SN‑3.6.2.2‑2].
+«<mark title="Requirement MQTT-SN-3.6.2.2-2"><a name="MQTT-SN-3.6.2.2-2"></a>The Client MUST validate that the reserved flags in the PUBLISH packet are set to 0. If any of the reserved flags is not 0 it is a Malformed Packet</mark>»[MQTT‑SN‑3.6.2.2‑2](#tab-MQTT-SN-3.6.2.2-2).
 
 ##### Topic Type{#pwq0---topic-type}
 
@@ -128,9 +128,9 @@ Contains 2 bytes of Topic Name Length if the Topic Type is Topic Name, or the Pr
 
 #### Topic Name{#pwq0---topic-name}
 
-«<mark title="Requirement MQTT-SN-3.6.2.4-1"><a name="MQTT-SN-3.6.2.4-1"></a>If the Topic Type is Topic Name (0b11), the Topic Name field MUST be present in the PUBLISH packet</mark>»\[MQTT‑SN‑3.6.2.4‑1].
+«<mark title="Requirement MQTT-SN-3.6.2.4-1"><a name="MQTT-SN-3.6.2.4-1"></a>If the Topic Type is Topic Name (0b11), the Topic Name field MUST be present in the PUBLISH packet</mark>»[MQTT‑SN‑3.6.2.4‑1](#tab-MQTT-SN-3.6.2.4-1).
 
-«<mark title="Requirement MQTT-SN-3.6.2.4-2"><a name="MQTT-SN-3.6.2.4-2"></a>If the Topic Type is Predefined Topic Alias or Session Topic Alias, then the Topic Name field MUST NOT be present in the PUBLISH packet</mark>»\[MQTT‑SN‑3.6.2.4‑2].
+«<mark title="Requirement MQTT-SN-3.6.2.4-2"><a name="MQTT-SN-3.6.2.4-2"></a>If the Topic Type is Predefined Topic Alias or Session Topic Alias, then the Topic Name field MUST NOT be present in the PUBLISH packet</mark>»[MQTT‑SN‑3.6.2.4‑2](#tab-MQTT-SN-3.6.2.4-2).
 
 Topic Name is a UTF-8 encoded string of length Topic Length.
 
@@ -150,7 +150,7 @@ As described in [sec](#publish-actions).
 
 A PUBLISH packet is sent from a Client to a Server or from a Server to a Client to transport an Application Message.
 
-«<mark title="Requirement MQTT-SN-3.6.3-1"><a name="MQTT-SN-3.6.3-1"></a>PUBLISH packets with QoS equals to 1 or 2 received by a Client or Server MUST be associated with a Session</mark>»\[MQTT‑SN‑3.6.3‑1].
+«<mark title="Requirement MQTT-SN-3.6.3-1"><a name="MQTT-SN-3.6.3-1"></a>PUBLISH packets with QoS equals to 1 or 2 received by a Client or Server MUST be associated with a Session</mark>»[MQTT‑SN‑3.6.3‑1](#tab-MQTT-SN-3.6.3-1).
 
 #### PUBLISH Header{#pwq1a2---publish-header}
 
@@ -158,9 +158,9 @@ The first 2 or 4 bytes of the packet are encoded according to the variable lengt
 
 #### PUBLISH Flags{#pwq1a2---publish-flags}
 
-The PUBLISH Flags is a 1 byte field which contains flags specifying the content of the packet and the Server behavior. «<mark title="Requirement MQTT-SN-3.6.3.2-1"><a name="MQTT-SN-3.6.3.2-1"></a>Bits 3-2 of the PUBLISH Flags are reserved and MUST be set to 0</mark>»\[MQTT‑SN‑3.6.3.2‑1].
+The PUBLISH Flags is a 1 byte field which contains flags specifying the content of the packet and the Server behavior. «<mark title="Requirement MQTT-SN-3.6.3.2-1"><a name="MQTT-SN-3.6.3.2-1"></a>Bits 3-2 of the PUBLISH Flags are reserved and MUST be set to 0</mark>»[MQTT‑SN‑3.6.3.2‑1](#tab-MQTT-SN-3.6.3.2-1).
 
-«<mark title="Requirement MQTT-SN-3.6.3.2-2"><a name="MQTT-SN-3.6.3.2-2"></a>The Client MUST validate that the reserved flags in the PUBLISH packet are set to 0. If any of the reserved flags is not 0 it is a Malformed Packet</mark>»\[MQTT‑SN‑3.6.3.2‑2].
+«<mark title="Requirement MQTT-SN-3.6.3.2-2"><a name="MQTT-SN-3.6.3.2-2"></a>The Client MUST validate that the reserved flags in the PUBLISH packet are set to 0. If any of the reserved flags is not 0 it is a Malformed Packet</mark>»[MQTT‑SN‑3.6.3.2‑2](#tab-MQTT-SN-3.6.3.2-2).
 
 ##### Topic Type{#pwq1a2---topic-type}
 
@@ -195,7 +195,7 @@ For a detailed description of the various Quality Of Service levels refer to [se
 
 The DUP flag indicates the duplicate delivery of QoS 2 PUBLISH packets. If the DUP flag is set to 0, it signifies that the packet is sent for the first time. If the DUP flag is set to 1, it signifies that the packet is retransmitted.
 
-«<mark title="Requirement MQTT-SN-3.6.3.2.3-1"><a name="MQTT-SN-3.6.3.2.3-1"></a>If the QoS field is set to 0 or 1, the DUP flag MUST be set to 0.</mark>»\[MQTT‑SN‑3.6.3.2.3‑1].
+«<mark title="Requirement MQTT-SN-3.6.3.2.3-1"><a name="MQTT-SN-3.6.3.2.3-1"></a>If the QoS field is set to 0 or 1, the DUP flag MUST be set to 0.</mark>»[MQTT‑SN‑3.6.3.2.3‑1](#tab-MQTT-SN-3.6.3.2.3-1).
 
 ##### Retain{#pwq1a2---retain}
 
@@ -213,9 +213,9 @@ Contains 2 bytes of Topic Name Length if the Topic Type is Topic Name, or the Pr
 
 #### Topic Name{#pwq1a2---topic-name}
 
-«<mark title="Requirement MQTT-SN-3.6.3.5-1"><a name="MQTT-SN-3.6.3.5-1"></a>If the Topic Type is Topic Name (0b11), the Topic Name field MUST be present in the PUBLISH packet</mark>»\[MQTT‑SN‑3.6.3.5‑1].
+«<mark title="Requirement MQTT-SN-3.6.3.5-1"><a name="MQTT-SN-3.6.3.5-1"></a>If the Topic Type is Topic Name (0b11), the Topic Name field MUST be present in the PUBLISH packet</mark>»[MQTT‑SN‑3.6.3.5‑1](#tab-MQTT-SN-3.6.3.5-1).
 
-«<mark title="Requirement MQTT-SN-3.6.3.5-2"><a name="MQTT-SN-3.6.3.5-2"></a>If the Topic Type is Predefined Topic Alias or Session Topic Alias, then the Topic Name field MUST NOT be present in the PUBLISH packet</mark>»\[MQTT‑SN‑3.6.3.5‑2].
+«<mark title="Requirement MQTT-SN-3.6.3.5-2"><a name="MQTT-SN-3.6.3.5-2"></a>If the Topic Type is Predefined Topic Alias or Session Topic Alias, then the Topic Name field MUST NOT be present in the PUBLISH packet</mark>»[MQTT‑SN‑3.6.3.5‑2](#tab-MQTT-SN-3.6.3.5-2).
 
 Topic Name is a UTF-8 encoded string of length Topic Length.
 
@@ -225,7 +225,7 @@ The Payload contains the payload data of the Application Message that is being p
 
 #### PUBLISH Actions{#publish-actions}
 
-«<mark title="Requirement MQTT-SN-3.6.3.7-1"><a name="MQTT-SN-3.6.3.7-1"></a>The receiver of a PUBLISH packet MUST respond with the packet as determined by the QoS in the PUBLISH Packet.</mark>»\[MQTT‑SN‑3.6.3.7‑1].
+«<mark title="Requirement MQTT-SN-3.6.3.7-1"><a name="MQTT-SN-3.6.3.7-1"></a>The receiver of a PUBLISH packet MUST respond with the packet as determined by the QoS in the PUBLISH Packet.</mark>»[MQTT‑SN‑3.6.3.7‑1](#tab-MQTT-SN-3.6.3.7-1).
 
 *Figure 3-12 -- Expected PUBLISH packet responses*
 
@@ -241,7 +241,7 @@ The Client uses a PUBLISH packet to send an Application Message to the Server, f
 
 The Server uses a PUBLISH packet to send an Application Message to each Client which has a matching subscription.
 
-When Clients make subscriptions with Topic Filters that include wildcards, it is possible for a Client's subscriptions to overlap so that a published Application Message might match multiple filters. «<mark title="Requirement MQTT-SN-3.6.3.7-2"><a name="MQTT-SN-3.6.3.7-2"></a>In this case the Server MUST deliver the Application Message to the Client respecting the maximum QoS of all the matching subscriptions</mark>»\[MQTT‑SN‑3.6.3.7‑2]. In addition, the Server MAY deliver further copies of the Application Message, one for each additional matching subscription and respecting the subscription's QoS in each case.
+When Clients make subscriptions with Topic Filters that include wildcards, it is possible for a Client's subscriptions to overlap so that a published Application Message might match multiple filters. «<mark title="Requirement MQTT-SN-3.6.3.7-2"><a name="MQTT-SN-3.6.3.7-2"></a>In this case the Server MUST deliver the Application Message to the Client respecting the maximum QoS of all the matching subscriptions</mark>»[MQTT‑SN‑3.6.3.7‑2](#tab-MQTT-SN-3.6.3.7-2). In addition, the Server MAY deliver further copies of the Application Message, one for each additional matching subscription and respecting the subscription's QoS in each case.
 
 The action of the recipient when it receives a PUBLISH packet depends on the QoS level as described in [sec](#quality-of-service-levels-and-protocol-flows).
 
@@ -276,7 +276,7 @@ The same value as the Packet Identifier in the PUBLISH Packet being acknowledged
 The Reason Code for the PUBACK packet is optional - its existence is inferred from the Packet length. If not provided, 0x00 (Success) is assumed.
 
 The values for Reason Codes are shown in [sec](#reason-code).
-«<mark title="Requirement MQTT-SN-3.6.4.3-1"><a name="MQTT-SN-3.6.4.3-1"></a>The sender of the PUBACK Packet MUST use one of the Reason Codes applicable to PUBACK</mark>»\[MQTT‑SN‑3.6.4.3‑1].
+«<mark title="Requirement MQTT-SN-3.6.4.3-1"><a name="MQTT-SN-3.6.4.3-1"></a>The sender of the PUBACK Packet MUST use one of the Reason Codes applicable to PUBACK</mark>»[MQTT‑SN‑3.6.4.3‑1](#tab-MQTT-SN-3.6.4.3-1).
 
 #### PUBACK Actions{#puback-actions}
 
@@ -303,7 +303,7 @@ The same value as the Packet Identifier in the PUBLISH Packet being acknowledged
 The Reason Code for the PUBREC packet is optional - its existence is inferred from the Packet length. If not provided, 0x00 (Success) is assumed.
 
 The values for Reason Codes are shown in [sec](#reason-code).
-«<mark title="Requirement MQTT-SN-3.6.5.3-1"><a name="MQTT-SN-3.6.5.3-1"></a>The sender of the PUBREC Packet MUST use one of the Reason Codes applicable to PUBREC</mark>»\[MQTT‑SN‑3.6.5.3‑1].
+«<mark title="Requirement MQTT-SN-3.6.5.3-1"><a name="MQTT-SN-3.6.5.3-1"></a>The sender of the PUBREC Packet MUST use one of the Reason Codes applicable to PUBREC</mark>»[MQTT‑SN‑3.6.5.3‑1](#tab-MQTT-SN-3.6.5.3-1).
 
 #### PUBREC Actions{#pubrec-actions}
 
@@ -330,7 +330,7 @@ The same value as the Packet Identifier in the PUBLISH Packet being acknowledged
 The Reason Code for the PUBREL packet is optional - its existence is inferred from the Packet length. If not provided, 0x00 (Success) is assumed.
 
 The values for Reason Codes are shown in [sec](#reason-code).
-«<mark title="Requirement MQTT-SN-3.6.6.3-1"><a name="MQTT-SN-3.6.6.3-1"></a>The sender of the PUBREL Packet MUST use one of the Reason Codes applicable to PUBREL</mark>»\[MQTT‑SN‑3.6.6.3‑1].
+«<mark title="Requirement MQTT-SN-3.6.6.3-1"><a name="MQTT-SN-3.6.6.3-1"></a>The sender of the PUBREL Packet MUST use one of the Reason Codes applicable to PUBREL</mark>»[MQTT‑SN‑3.6.6.3‑1](#tab-MQTT-SN-3.6.6.3-1).
 
 #### PUBREL Actions{#pubrel-actions}
 
@@ -357,7 +357,7 @@ The same value as the Packet Identifier in the PUBLISH Packet being acknowledged
 The Reason Code for the PUBCOMP packet is optional - its existence is inferred from the Packet length. If not provided, 0x00 (Success) is assumed.
 
 The values for Reason Codes are shown in [sec](#reason-code).
-«<mark title="Requirement MQTT-SN-3.6.7.3-1"><a name="MQTT-SN-3.6.7.3-1"></a>The sender of the PUBCOMP Packet MUST use one of the Reason Codes applicable to PUBCOMP</mark>»\[MQTT‑SN‑3.6.7.3‑1].
+«<mark title="Requirement MQTT-SN-3.6.7.3-1"><a name="MQTT-SN-3.6.7.3-1"></a>The sender of the PUBCOMP Packet MUST use one of the Reason Codes applicable to PUBCOMP</mark>»[MQTT‑SN‑3.6.7.3‑1](#tab-MQTT-SN-3.6.7.3-1).
 
 #### PUBCOMP Actions{#pubcomp-actions}
 

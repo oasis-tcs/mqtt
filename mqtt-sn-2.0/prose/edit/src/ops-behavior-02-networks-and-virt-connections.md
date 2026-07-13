@@ -69,7 +69,7 @@ A Virtual Connection is:
 
   - ADVERTISE, SEARCHGW, GWINFO
 
-«<mark title="Requirement MQTT-SN-4.2.1-1"><a name="MQTT-SN-4.2.1-1"></a>All incoming Packets except CONNECT, PUBWOS and Gateway search (ADVERTISE, SEARCHGW and GWINFO) MUST be associated with an existing Virtual Connection</mark>»\[MQTT‑SN‑4.2.1‑1].
+«<mark title="Requirement MQTT-SN-4.2.1-1"><a name="MQTT-SN-4.2.1-1"></a>All incoming Packets except CONNECT, PUBWOS and Gateway search (ADVERTISE, SEARCHGW and GWINFO) MUST be associated with an existing Virtual Connection</mark>»[MQTT‑SN‑4.2.1‑1](#tab-MQTT-SN-4.2.1-1).
 
 Virtual Connections link a Network Identity with a Session. For those Packets other than CONNECT, PUBWOS and Gateway search, the receiver needs to be able to identify the sender to associate the Packet with a Virtual Connection. The Sender may be identified in various ways, for example:
 

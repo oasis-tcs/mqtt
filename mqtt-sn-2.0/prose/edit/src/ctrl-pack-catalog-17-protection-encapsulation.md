@@ -6,7 +6,7 @@
 
 Protection encapsulation provides a secure envelope for any MQTT-SN packet (with the exception of the Forward Encapsulation packet). The fields provided by the Protection Encapsulation provide a means by which the sender is identified and the packet is protected, using a number of prescribed protection schemes. Where the phrase "protected Packet" is used in this document, it means an MQTT-SN Packet surrounded by the Protection Encapsulation.
 
-«<mark title="Requirement MQTT-SN-3.17-1"><a name="MQTT-SN-3.17-1"></a>The sender identified by Sender Identifier is the originator of the protected MQTT-SN Packet and responsible for its protection. This responsibility MUST NOT be delegated to a third party like a Forwarder</mark>»\[MQTT‑SN‑3.17‑1].
+«<mark title="Requirement MQTT-SN-3.17-1"><a name="MQTT-SN-3.17-1"></a>The sender identified by Sender Identifier is the originator of the protected MQTT-SN Packet and responsible for its protection. This responsibility MUST NOT be delegated to a third party like a Forwarder</mark>»[MQTT‑SN‑3.17‑1](#tab-MQTT-SN-3.17-1).
 
 The sender identification is required as the sender and the receiver of the protected packet must have access to the same shared key to be used directly or after derivation. The Sender Identifier may not be related to the Network Address of the sender. The authentication of the sender and the receiver, their authorizations and the provisioning of the shared keys used to protect integrity and optionally confidentiality of the protected packet content are out of scope.
 
@@ -14,13 +14,13 @@ A protected packet, like any other one, can be the payload of a Forwarder Encaps
 
 A Session that is created using a Protected CONNECT Packet is known as a protected Session. A Session that is created using a CONNECT Packet without Protection Encapsulation is known as an unprotected Session.
 
-«<mark title="Requirement MQTT-SN-3.17-2"><a name="MQTT-SN-3.17-2"></a>All Packets in all Virtual Connections associated with a protected Session MUST use the Protection Encapsulation</mark>»\[MQTT‑SN‑3.17‑2].
+«<mark title="Requirement MQTT-SN-3.17-2"><a name="MQTT-SN-3.17-2"></a>All Packets in all Virtual Connections associated with a protected Session MUST use the Protection Encapsulation</mark>»[MQTT‑SN‑3.17‑2](#tab-MQTT-SN-3.17-2).
 
-«<mark title="Requirement MQTT-SN-3.17-3"><a name="MQTT-SN-3.17-3"></a>A protected Packet that has the same Client Identifier but a different Sender Identifier as an existing protected Session MUST refer to a different Session</mark>»\[MQTT‑SN‑3.17‑3].
+«<mark title="Requirement MQTT-SN-3.17-3"><a name="MQTT-SN-3.17-3"></a>A protected Packet that has the same Client Identifier but a different Sender Identifier as an existing protected Session MUST refer to a different Session</mark>»[MQTT‑SN‑3.17‑3](#tab-MQTT-SN-3.17-3).
 
-«<mark title="Requirement MQTT-SN-3.17-4"><a name="MQTT-SN-3.17-4"></a>A protected Packet that has the same Sender Identifier but a different Client Identifier as an existing protected Session MUST refer to a different Session</mark>»\[MQTT‑SN‑3.17‑4].
+«<mark title="Requirement MQTT-SN-3.17-4"><a name="MQTT-SN-3.17-4"></a>A protected Packet that has the same Sender Identifier but a different Client Identifier as an existing protected Session MUST refer to a different Session</mark>»[MQTT‑SN‑3.17‑4](#tab-MQTT-SN-3.17-4).
 
-«<mark title="Requirement MQTT-SN-3.17-5"><a name="MQTT-SN-3.17-5"></a>An unprotected Packet that has the same Client Identifier as an existing protected Session MUST refer to a different Session</mark>»\[MQTT‑SN‑3.17‑5].
+«<mark title="Requirement MQTT-SN-3.17-5"><a name="MQTT-SN-3.17-5"></a>An unprotected Packet that has the same Client Identifier as an existing protected Session MUST refer to a different Session</mark>»[MQTT‑SN‑3.17‑5](#tab-MQTT-SN-3.17-5).
 
 > **Informative Comment**
 >
@@ -48,13 +48,13 @@ The Protection Flags is a one byte field specifying the properties of the Protec
 
 Specifies the number of bytes forming the monotonic counter in big-endian order. Only three of the four possible values are allowed.
 
-- «<mark title="Requirement MQTT-SN-3.17.2.1-1"><a name="MQTT-SN-3.17.2.1-1"></a>The Monotonic Counter Length MUST NOT be set to 0x3 - the value is reserved</mark>»\[MQTT‑SN‑3.17.2.1‑1].
+- «<mark title="Requirement MQTT-SN-3.17.2.1-1"><a name="MQTT-SN-3.17.2.1-1"></a>The Monotonic Counter Length MUST NOT be set to 0x3 - the value is reserved</mark>»[MQTT‑SN‑3.17.2.1‑1](#tab-MQTT-SN-3.17.2.1-1).
 
-- «<mark title="Requirement MQTT-SN-3.17.2.1-2"><a name="MQTT-SN-3.17.2.1-2"></a>If the Monotonic Counter Length is set to 0x2, a Monotonic Counter of 32 bits (4 bytes) in length MUST be present in the Protection Encapsulation</mark>»\[MQTT‑SN‑3.17.2.1‑2].
+- «<mark title="Requirement MQTT-SN-3.17.2.1-2"><a name="MQTT-SN-3.17.2.1-2"></a>If the Monotonic Counter Length is set to 0x2, a Monotonic Counter of 32 bits (4 bytes) in length MUST be present in the Protection Encapsulation</mark>»[MQTT‑SN‑3.17.2.1‑2](#tab-MQTT-SN-3.17.2.1-2).
 
-- «<mark title="Requirement MQTT-SN-3.17.2.1-3"><a name="MQTT-SN-3.17.2.1-3"></a>If the Monotonic Counter Length is set to 0x1, a Monotonic Counter of 16 bits (2 bytes) in length MUST be present in the Protection Encapsulation</mark>»\[MQTT‑SN‑3.17.2.1‑3].
+- «<mark title="Requirement MQTT-SN-3.17.2.1-3"><a name="MQTT-SN-3.17.2.1-3"></a>If the Monotonic Counter Length is set to 0x1, a Monotonic Counter of 16 bits (2 bytes) in length MUST be present in the Protection Encapsulation</mark>»[MQTT‑SN‑3.17.2.1‑3](#tab-MQTT-SN-3.17.2.1-3).
 
-- «<mark title="Requirement MQTT-SN-3.17.2.1-4"><a name="MQTT-SN-3.17.2.1-4"></a>If the Monotonic Counter Length is set to 0x0, a Monotonic Counter MUST NOT be present in the Protection Encapsulation</mark>»\[MQTT‑SN‑3.17.2.1‑4].
+- «<mark title="Requirement MQTT-SN-3.17.2.1-4"><a name="MQTT-SN-3.17.2.1-4"></a>If the Monotonic Counter Length is set to 0x0, a Monotonic Counter MUST NOT be present in the Protection Encapsulation</mark>»[MQTT‑SN‑3.17.2.1‑4](#tab-MQTT-SN-3.17.2.1-4).
 
 #### Cryptographic Material Length{#cryptographic-material-length}
 
@@ -62,13 +62,13 @@ Specifies the number of bytes forming the monotonic counter in big-endian order.
 
 Specifies the number of sixteen bit groups forming the cryptographic material in big-endian order. The meaning of each possible value is defined as follows.
 
-- «<mark title="Requirement MQTT-SN-3.17.2.2-1"><a name="MQTT-SN-3.17.2.2-1"></a>If the Cryptographic Material Length is set to 0x3, a Cryptographic Material field of 96 bits (12 bytes) in length MUST be present in the Protection Encapsulation</mark>»\[MQTT‑SN‑3.17.2.2‑1].
+- «<mark title="Requirement MQTT-SN-3.17.2.2-1"><a name="MQTT-SN-3.17.2.2-1"></a>If the Cryptographic Material Length is set to 0x3, a Cryptographic Material field of 96 bits (12 bytes) in length MUST be present in the Protection Encapsulation</mark>»[MQTT‑SN‑3.17.2.2‑1](#tab-MQTT-SN-3.17.2.2-1).
 
-- «<mark title="Requirement MQTT-SN-3.17.2.2-2"><a name="MQTT-SN-3.17.2.2-2"></a>If the Cryptographic Material Length is set to 0x2, a Cryptographic Material field of 32 bits (4 bytes) in length MUST be present in the Protection Encapsulation</mark>»\[MQTT‑SN‑3.17.2.2‑2].
+- «<mark title="Requirement MQTT-SN-3.17.2.2-2"><a name="MQTT-SN-3.17.2.2-2"></a>If the Cryptographic Material Length is set to 0x2, a Cryptographic Material field of 32 bits (4 bytes) in length MUST be present in the Protection Encapsulation</mark>»[MQTT‑SN‑3.17.2.2‑2](#tab-MQTT-SN-3.17.2.2-2).
 
-- «<mark title="Requirement MQTT-SN-3.17.2.2-3"><a name="MQTT-SN-3.17.2.2-3"></a>If the Cryptographic Material Length is set to 0x1, a Cryptographic Material field of 16 bits (2 bytes) in length MUST be present in the Protection Encapsulation</mark>»\[MQTT‑SN‑3.17.2.2‑3].
+- «<mark title="Requirement MQTT-SN-3.17.2.2-3"><a name="MQTT-SN-3.17.2.2-3"></a>If the Cryptographic Material Length is set to 0x1, a Cryptographic Material field of 16 bits (2 bytes) in length MUST be present in the Protection Encapsulation</mark>»[MQTT‑SN‑3.17.2.2‑3](#tab-MQTT-SN-3.17.2.2-3).
 
-- «<mark title="Requirement MQTT-SN-3.17.2.2-4"><a name="MQTT-SN-3.17.2.2-4"></a>If the Cryptographic Material Length is set to 0x0, a Cryptographic Material field MUST NOT be present in the Protection Encapsulation</mark>»\[MQTT‑SN‑3.17.2.2‑4].
+- «<mark title="Requirement MQTT-SN-3.17.2.2-4"><a name="MQTT-SN-3.17.2.2-4"></a>If the Cryptographic Material Length is set to 0x0, a Cryptographic Material field MUST NOT be present in the Protection Encapsulation</mark>»[MQTT‑SN‑3.17.2.2‑4](#tab-MQTT-SN-3.17.2.2-4).
 
 #### Authentication Tag Length{#authentication-tag-length}
 
@@ -84,35 +84,37 @@ The Authentication Tag Length defines the size of the Authentication Tag.
 >
 > For instance a provider can decide that the length of the Authentication Tag field is 40 bits whenever the Authentication Tag Length field is 0x0. This will work only for devices running code which implements the same provider scheme as the Gateway.
 
-- «<mark title="Requirement MQTT-SN-3.17.2.3-1"><a name="MQTT-SN-3.17.2.3-1"></a>If the Protection Scheme is not "Authentication Only" the Authentication Tag Length MUST be set to 0x1</mark>»\[MQTT‑SN‑3.17.2.3‑1].
+- «<mark title="Requirement MQTT-SN-3.17.2.3-1"><a name="MQTT-SN-3.17.2.3-1"></a>If the Protection Scheme is not "Authentication Only" the Authentication Tag Length MUST be set to 0x1</mark>»[MQTT‑SN‑3.17.2.3‑1](#tab-MQTT-SN-3.17.2.3-1).
 
-- «<mark title="Requirement MQTT-SN-3.17.2.3-2"><a name="MQTT-SN-3.17.2.3-2"></a>If the Authentication Tag Length is set to 0x1, the length of the Authentication Tag MUST be equal to the Protection Scheme nominal tag size</mark>»\[MQTT‑SN‑3.17.2.3‑2].
+- «<mark title="Requirement MQTT-SN-3.17.2.3-2"><a name="MQTT-SN-3.17.2.3-2"></a>If the Authentication Tag Length is set to 0x1, the length of the Authentication Tag MUST be equal to the Protection Scheme nominal tag size</mark>»[MQTT‑SN‑3.17.2.3‑2](#tab-MQTT-SN-3.17.2.3-2).
 
-- «<mark title="Requirement MQTT-SN-3.17.2.3-3"><a name="MQTT-SN-3.17.2.3-3"></a>The Authentication Tag Length MUST NOT be set to 0x2 or 0x3 - these values are reserved</mark>»\[MQTT‑SN‑3.17.2.3‑3].
+- «<mark title="Requirement MQTT-SN-3.17.2.3-3"><a name="MQTT-SN-3.17.2.3-3"></a>The Authentication Tag Length MUST NOT be set to 0x2 or 0x3 - these values are reserved</mark>»[MQTT‑SN‑3.17.2.3‑3](#tab-MQTT-SN-3.17.2.3-3).
 
-- «<mark title="Requirement MQTT-SN-3.17.2.3-4"><a name="MQTT-SN-3.17.2.3-4"></a>If the Authentication Tag Length is set to any value between 0x4 and 0xF inclusive, the Protection Scheme MUST be "Authentication Only"</mark>»\[MQTT‑SN‑3.17.2.3‑4].
+- «<mark title="Requirement MQTT-SN-3.17.2.3-4"><a name="MQTT-SN-3.17.2.3-4"></a>If the Authentication Tag Length is set to any value between 0x4 and 0xF inclusive, the Protection Scheme MUST be "Authentication Only"</mark>»[MQTT‑SN‑3.17.2.3‑4](#tab-MQTT-SN-3.17.2.3-4).
 
-- «<mark title="Requirement MQTT-SN-3.17.2.3-6"><a name="MQTT-SN-3.17.2.3-6"></a>Authentication Tag Length values between 0x4 and 0xF inclusive MUST only be used for the truncation of "Authentication Only" protection schemes]{.mark} \[MQTT-SN-3.17.2.3-5\]. [In these cases the length of the Authentication Tag MUST be sixteen times the Authentication Tag Length</mark>»\[MQTT‑SN‑3.17.2.3‑6]. For example:
+- «<mark title="Requirement MQTT-SN-3.17.2.3-5"><a name="MQTT-SN-3.17.2.3-5"></a>Authentication Tag Length values between 0x4 and 0xF inclusive MUST only be used for the truncation of "Authentication Only" protection schemes</mark>»[MQTT‑SN‑3.17.2.3‑5](#tab-MQTT-SN-3.17.2.3-5).
+
+- «<mark title="Requirement MQTT-SN-3.17.2.3-6"><a name="MQTT-SN-3.17.2.3-6"></a>In these cases the length of the Authentication Tag MUST be sixteen times the Authentication Tag Length</mark>»[MQTT‑SN‑3.17.2.3‑6](#tab-MQTT-SN-3.17.2.3-6). For example:
 
   - if the value is 0xF, the length of the Authentication Tag will be (0xF)\*16=240 bits;
 
   - if the value is 0x4, the length of the Authentication Tag will be (0x4)\*16=64 bits.
 
-- «<mark title="Requirement MQTT-SN-3.17.2.3-7"><a name="MQTT-SN-3.17.2.3-7"></a>If truncation of the output of the authentication algorithm is required, it MUST be taken in most significant bits first order (leftmost bits)</mark>»\[MQTT‑SN‑3.17.2.3‑7].
+- «<mark title="Requirement MQTT-SN-3.17.2.3-7"><a name="MQTT-SN-3.17.2.3-7"></a>If truncation of the output of the authentication algorithm is required, it MUST be taken in most significant bits first order (leftmost bits)</mark>»[MQTT‑SN‑3.17.2.3‑7](#tab-MQTT-SN-3.17.2.3-7).
 
 - «<mark title="Requirement MQTT-SN-3.17.2.3-8"><a name="MQTT-SN-3.17.2.3-8"></a>Authentication Tag Length values for some Authentication Only protection schemes MUST NOT be used if they define a tag size bigger than the nominal tag size</mark>»\<mark title="Ephemeral region marking">MQTT-SN-3.17.2.3-8][.</mark> For example, values from 0x09 (144 bits) to 0x0F (240 bits) are not allowed for "Authentication Only" protection schemes with a nominal tag size less than 144 bits, such as CMAC-128, CMAC-192, CMAC-256.
 
 ### Protection Scheme{#protection-scheme}
 
-«<mark title="Requirement MQTT-SN-3.17.3-1"><a name="MQTT-SN-3.17.3-1"></a>The Protection Scheme is a one byte field which MUST contain one of the indexes in table 3-39 which is not reserved</mark>»\[MQTT‑SN‑3.17.3‑1].
+«<mark title="Requirement MQTT-SN-3.17.3-1"><a name="MQTT-SN-3.17.3-1"></a>The Protection Scheme is a one byte field which MUST contain one of the indexes in table 3-39 which is not reserved</mark>»[MQTT‑SN‑3.17.3‑1](#tab-MQTT-SN-3.17.3-1).
 
 In general two types of protection scheme are considered: **Authentication only** (such as HMAC or CMAC) and **AEAD** (Authenticated Encryption with Associated Data, such as GCM, CCM or ChaCha20/Poly1305).
 
-«<mark title="Requirement MQTT-SN-3.17.3-2"><a name="MQTT-SN-3.17.3-2"></a>The thirteen byte nonce recommended for AES CCM must be obtained by performing SHA256, truncated to the leftmost 104 bits, of the sequence Byte 1 to Byte 17+C+M (all packet fields up to the Protected MQTT-SN Packet)</mark>»\[MQTT‑SN‑3.17.3‑2].
+«<mark title="Requirement MQTT-SN-3.17.3-2"><a name="MQTT-SN-3.17.3-2"></a>The thirteen byte nonce recommended for AES CCM must be obtained by performing SHA256, truncated to the leftmost 104 bits, of the sequence Byte 1 to Byte 17+C+M (all packet fields up to the Protected MQTT-SN Packet)</mark>»[MQTT‑SN‑3.17.3‑2](#tab-MQTT-SN-3.17.3-2).
 
-«<mark title="Requirement MQTT-SN-3.17.3-3"><a name="MQTT-SN-3.17.3-3"></a>The twelve byte initialization vector (IV) recommended for AES GCM must be obtained by performing SHA256, truncated to the leftmost 96 bits, of the sequence Byte 1 to Byte 17+C+M (all packet fields up to the Protected MQTT-SN Packet)</mark>»\[MQTT‑SN‑3.17.3‑3].
+«<mark title="Requirement MQTT-SN-3.17.3-3"><a name="MQTT-SN-3.17.3-3"></a>The twelve byte initialization vector (IV) recommended for AES GCM must be obtained by performing SHA256, truncated to the leftmost 96 bits, of the sequence Byte 1 to Byte 17+C+M (all packet fields up to the Protected MQTT-SN Packet)</mark>»[MQTT‑SN‑3.17.3‑3](#tab-MQTT-SN-3.17.3-3).
 
-«<mark title="Requirement MQTT-SN-3.17.3-4"><a name="MQTT-SN-3.17.3-4"></a>The twelve byte nonce recommended for ChaCha20/Poly1305 must be obtained by performing SHA256 truncated to 96 bit of the sequence Byte 1 to Byte 17+C+M (all packet fields up to the Protected MQTT-SN Packet)</mark>»\[MQTT‑SN‑3.17.3‑4].
+«<mark title="Requirement MQTT-SN-3.17.3-4"><a name="MQTT-SN-3.17.3-4"></a>The twelve byte nonce recommended for ChaCha20/Poly1305 must be obtained by performing SHA256 truncated to 96 bit of the sequence Byte 1 to Byte 17+C+M (all packet fields up to the Protected MQTT-SN Packet)</mark>»[MQTT‑SN‑3.17.3‑4](#tab-MQTT-SN-3.17.3-4).
 
 *Figure 3-29 -- Protection Schemes*
 
@@ -162,7 +164,7 @@ Table: Protection Schemes
 
 ### Sender Identifier{#sender-identifier}
 
-«<mark title="Requirement MQTT-SN-3.17.4-1"><a name="MQTT-SN-3.17.4-1"></a>The eight byte Sender Identifier field MUST contain a unique value per sender over 8 bytes (such as a MAC address, or other identifying characteristics)</mark>»\[MQTT‑SN‑3.17.4‑1]. The methods to guarantee the uniqueness of the Sender Identifier are out of scope.
+«<mark title="Requirement MQTT-SN-3.17.4-1"><a name="MQTT-SN-3.17.4-1"></a>The eight byte Sender Identifier field MUST contain a unique value per sender over 8 bytes (such as a MAC address, or other identifying characteristics)</mark>»[MQTT‑SN‑3.17.4‑1](#tab-MQTT-SN-3.17.4-1). The methods to guarantee the uniqueness of the Sender Identifier are out of scope.
 
 > **Informative comment**
 >
@@ -186,7 +188,7 @@ The optional Cryptographic Material field contains two<mark title="Ephemeral reg
 
 ### Monotonic Counter{#monotonic-counter}
 
-The optional Monotonic Counter field contains a two «<mark title="Requirement MQTT-SN-3.17.7-1"><a name="MQTT-SN-3.17.7-1"></a>or 4 four number that when defined, is increased by the Client or]{.mark} Server <mark title="Ephemeral region marking">for every packet sent. The counters must be considered independent of session or destination</mark>»\[MQTT‑SN‑3.17.7‑1]. For example, t[he]{.mark} Client [will keep a counter independently from the]{.mark} Server[.</mark>
+The optional Monotonic Counter field contains a two «<mark title="Requirement MQTT-SN-3.17.7-1"><a name="MQTT-SN-3.17.7-1"></a>or 4 four number that when defined, is increased by the Client or]{.mark} Server <mark title="Ephemeral region marking">for every packet sent. The counters must be considered independent of session or destination</mark>»[MQTT‑SN‑3.17.7‑1](#tab-MQTT-SN-3.17.7-1). For example, t[he]{.mark} Client [will keep a counter independently from the]{.mark} Server[.</mark>
 
 ### Protected MQTT-SN Packet{#protected-mqtt-sn-packet}
 

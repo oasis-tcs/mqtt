@@ -34,11 +34,11 @@ Retained messages do not form part of the Session State in the Server, they are 
 
 ### Storing Session State{#storing-session-state}
 
-«<mark title="Requirement MQTT-SN-4.1.1-1"><a name="MQTT-SN-4.1.1-1"></a>The Server MUST NOT discard the Session State while the Virtual Connection exists</mark>»\[MQTT‑SN‑4.1.1‑1].
+«<mark title="Requirement MQTT-SN-4.1.1-1"><a name="MQTT-SN-4.1.1-1"></a>The Server MUST NOT discard the Session State while the Virtual Connection exists</mark>»[MQTT‑SN‑4.1.1‑1](#tab-MQTT-SN-4.1.1-1).
 
-«<mark title="Requirement MQTT-SN-4.1.1-2"><a name="MQTT-SN-4.1.1-2"></a>The Client MUST NOT discard the Session State while the Virtual Connection exists</mark>»\[MQTT‑SN‑4.1.1‑2].
+«<mark title="Requirement MQTT-SN-4.1.1-2"><a name="MQTT-SN-4.1.1-2"></a>The Client MUST NOT discard the Session State while the Virtual Connection exists</mark>»[MQTT‑SN‑4.1.1‑2](#tab-MQTT-SN-4.1.1-2).
 
-«<mark title="Requirement MQTT-SN-4.1.1-3"><a name="MQTT-SN-4.1.1-3"></a>The Server MUST discard the Session State when the Virtual Connection is deleted and the Session Expiry Interval has passed</mark>»\[MQTT‑SN‑4.1.1‑3]. A Session Expiry Interval of 0xFFFFFFFF is an infinite amount of time, so never passes.
+«<mark title="Requirement MQTT-SN-4.1.1-3"><a name="MQTT-SN-4.1.1-3"></a>The Server MUST discard the Session State when the Virtual Connection is deleted and the Session Expiry Interval has passed</mark>»[MQTT‑SN‑4.1.1‑3](#tab-MQTT-SN-4.1.1-3). A Session Expiry Interval of 0xFFFFFFFF is an infinite amount of time, so never passes.
 
 **Informative comment**
 
@@ -60,6 +60,6 @@ The CONNECT packet contains flags to communicate to the Server that authenticati
 
 If the Server can not accept the CONNECT request the Server returns a CONNACK packet with the rejection Reason Code.
 
-«<mark title="Requirement MQTT-SN-4.1.2-1"><a name="MQTT-SN-4.1.2-1"></a>If the Client provides no client identifier, the Server MUST respond with a CONNACK containing an Assigned Client Identifier</mark>»\[MQTT‑SN‑4.1.2‑1].
+«<mark title="Requirement MQTT-SN-4.1.2-1"><a name="MQTT-SN-4.1.2-1"></a>If the Client provides no client identifier, the Server MUST respond with a CONNACK containing an Assigned Client Identifier</mark>»[MQTT‑SN‑4.1.2‑1](#tab-MQTT-SN-4.1.2-1).
 
-«<mark title="Requirement MQTT-SN-4.1.2-2"><a name="MQTT-SN-4.1.2-2"></a>An Assigned Client Identifier MUST be a new Client Identifier not used by any other Session currently in the Server</mark>»\[MQTT‑SN‑4.1.2‑2].
+«<mark title="Requirement MQTT-SN-4.1.2-2"><a name="MQTT-SN-4.1.2-2"></a>An Assigned Client Identifier MUST be a new Client Identifier not used by any other Session currently in the Server</mark>»[MQTT‑SN‑4.1.2‑2](#tab-MQTT-SN-4.1.2-2).
