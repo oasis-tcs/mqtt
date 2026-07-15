@@ -18,7 +18,7 @@ jobs:
           make pdf
           make release
       - name: Upload PDF render
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: mqtt-sn-typst.pdf
           path: /home/runner/work/mqtt/mqtt/mqtt-sn-2.0/prose/edit/build/mqtt-sn-typst.pdf
