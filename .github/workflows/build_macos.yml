@@ -15,7 +15,6 @@ jobs:
       - name: Build
         run: |
           cd mqtt-sn-2.0/prose/edit
-          make pdf
           make release
       - name: Upload PDF render
         uses: actions/upload-artifact@v4
