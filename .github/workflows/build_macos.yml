@@ -17,7 +17,7 @@ jobs:
           cd mqtt-sn-2.0/prose/edit
           make pdf
       - name: Upload PDF render
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: mqtt-sn-typst.pdf
-          path: /home/runner/work/mqtt/mqtt/mqtt-sn-2.0/prose/edit/build/mqtt-sn-typst.pdf
+          path: mqtt-sn-2.0/prose/edit/build/mqtt-sn-typst.pdf
