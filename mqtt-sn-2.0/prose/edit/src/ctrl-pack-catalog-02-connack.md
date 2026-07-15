@@ -14,9 +14,9 @@ Refer to [sec](#structure-of-an-mqtt-sn-control-packet) for a detailed descripti
 ### CONNACK Flags{#connack-flags}
 
 The CONNACK Flags is a 1 byte field which contains flags specifying the behavior of the MQTT-SN Virtual Connection on the Server.
-«<mark title="Requirement MQTT-SN-3.2.2-1"><a name="MQTT-SN-3.2.2-1"></a>Bits 7-2 of the CONNACK Flags are reserved and MUST be set to 0</mark>»\[MQTT‑SN‑3.2.2‑1].
+«<mark title="Requirement MQTT-SN-3.2.2-1"><a name="MQTT-SN-3.2.2-1"></a>Bits 7-2 of the CONNACK Flags are reserved and MUST be set to 0</mark>»[MQTT‑SN‑3.2.2‑1](#tab-MQTT-SN-3.2.2-1).
 
-«<mark title="Requirement MQTT-SN-3.2.2-2"><a name="MQTT-SN-3.2.2-2"></a>The Client MUST validate that the reserved flags in the CONNACK packet are set to 0. If any of the reserved flags is not 0 it is a Malformed Packet</mark>»\[MQTT‑SN‑3.2.2‑2].
+«<mark title="Requirement MQTT-SN-3.2.2-2"><a name="MQTT-SN-3.2.2-2"></a>The Client MUST validate that the reserved flags in the CONNACK packet are set to 0. If any of the reserved flags is not 0 it is a Malformed Packet</mark>»[MQTT‑SN‑3.2.2‑2](#tab-MQTT-SN-3.2.2-2).
 
 #### Session Present
 
@@ -24,25 +24,25 @@ The CONNACK Flags is a 1 byte field which contains flags specifying the behavior
 
 Specifies whether an existing session was present on the Server for the given client identifier. A value of 1 indicates a session was present, a value 0 indicates no session was present.
 
-«<mark title="Requirement MQTT-SN-3.2.2.1-1"><a name="MQTT-SN-3.2.2.1-1"></a>If the Server accepts a CONNECT with Clean Start set to 1, the Server MUST set Session Present to 0 in the CONNACK Packet in addition to setting a 0x00 (Success) Reason Code in the CONNACK packet</mark>»\[MQTT‑SN‑3.2.2.1‑1].
+«<mark title="Requirement MQTT-SN-3.2.2.1-1"><a name="MQTT-SN-3.2.2.1-1"></a>If the Server accepts a CONNECT with Clean Start set to 1, the Server MUST set Session Present to 0 in the CONNACK Packet in addition to setting a 0x00 (Success) Reason Code in the CONNACK packet</mark>»[MQTT‑SN‑3.2.2.1‑1](#tab-MQTT-SN-3.2.2.1-1).
 
-«<mark title="Requirement MQTT-SN-3.2.2.1-2"><a name="MQTT-SN-3.2.2.1-2"></a>If the Server accepts a CONNECT with Clean Start set to 0 and the Server has Session State for the client identifier it MUST set Session Present to 1 in the CONNACK packet, otherwise it MUST set Session Present to 0 in the CONNACK packet. In both cases it MUST set a 0x00 (Success) Reason Code in the CONNACK packet</mark>»\[MQTT‑SN‑3.2.2.1‑2].
+«<mark title="Requirement MQTT-SN-3.2.2.1-2"><a name="MQTT-SN-3.2.2.1-2"></a>If the Server accepts a CONNECT with Clean Start set to 0 and the Server has Session State for the client identifier it MUST set Session Present to 1 in the CONNACK packet, otherwise it MUST set Session Present to 0 in the CONNACK packet. In both cases it MUST set a 0x00 (Success) Reason Code in the CONNACK packet</mark>»[MQTT‑SN‑3.2.2.1‑2](#tab-MQTT-SN-3.2.2.1-2).
 
 If the value of Session Present received by the Client from the Server is not as expected, the Client proceeds as follows:
 
-«<mark title="Requirement MQTT-SN-3.2.2.1-3"><a name="MQTT-SN-3.2.2.1-3"></a>If the Client does not have Session State and receives Session Present set to 1 it MUST delete the Virtual Connection.]{.mark} [If it wishes to restart with a new Session the Client can reconnect using Clean Start set to 1</mark>»\[MQTT‑SN‑3.2.2.1‑3].
+«<mark title="Requirement MQTT-SN-3.2.2.1-3"><a name="MQTT-SN-3.2.2.1-3"></a>If the Client does not have Session State and receives Session Present set to 1 it MUST delete the Virtual Connection.]{.mark} [If it wishes to restart with a new Session the Client can reconnect using Clean Start set to 1</mark>»[MQTT‑SN‑3.2.2.1‑3](#tab-MQTT-SN-3.2.2.1-3).
 
-«<mark title="Requirement MQTT-SN-3.2.2.1-4"><a name="MQTT-SN-3.2.2.1-4"></a>If the Client does have Session State and receives Session Present set to 0 it MUST discard its Session State if it continues with the Virtual Connection</mark>»\[MQTT‑SN‑3.2.2.1‑4].
+«<mark title="Requirement MQTT-SN-3.2.2.1-4"><a name="MQTT-SN-3.2.2.1-4"></a>If the Client does have Session State and receives Session Present set to 0 it MUST discard its Session State if it continues with the Virtual Connection</mark>»[MQTT‑SN‑3.2.2.1‑4](#tab-MQTT-SN-3.2.2.1-4).
 
-«<mark title="Requirement MQTT-SN-3.2.2.1-5"><a name="MQTT-SN-3.2.2.1-5"></a>If a Server sends a CONNACK packet containing a non-zero Reason Code it MUST set Session Present to 0</mark>»\[MQTT‑SN‑3.2.2.1‑5].
+«<mark title="Requirement MQTT-SN-3.2.2.1-5"><a name="MQTT-SN-3.2.2.1-5"></a>If a Server sends a CONNACK packet containing a non-zero Reason Code it MUST set Session Present to 0</mark>»[MQTT‑SN‑3.2.2.1‑5](#tab-MQTT-SN-3.2.2.1-5).
 
 #### Session Expiry Interval Flag{#session-expiry-interval-flag}
 
 **Position**: bit 1 of the CONNACK Flags. Labelled *Sess Exp* in Figure 3-6.
 
-​​«<mark title="Requirement MQTT-SN-3.2.2.2-1"><a name="MQTT-SN-3.2.2.2-1"></a>If the Session Expiry Interval Flag is set to 0, a Session Expiry Interval MUST NOT be present in the Packet</mark>»\[MQTT‑SN‑3.2.2.2‑1].
+​​«<mark title="Requirement MQTT-SN-3.2.2.2-1"><a name="MQTT-SN-3.2.2.2-1"></a>If the Session Expiry Interval Flag is set to 0, a Session Expiry Interval MUST NOT be present in the Packet</mark>»[MQTT‑SN‑3.2.2.2‑1](#tab-MQTT-SN-3.2.2.2-1).
 
-«<mark title="Requirement MQTT-SN-3.2.2.2-2"><a name="MQTT-SN-3.2.2.2-2"></a>If the Session Expiry Interval Flag is set to 1, a Session Expiry Interval MUST be present in the Packet</mark>»\[MQTT‑SN‑3.2.2.2‑2].
+«<mark title="Requirement MQTT-SN-3.2.2.2-2"><a name="MQTT-SN-3.2.2.2-2"></a>If the Session Expiry Interval Flag is set to 1, a Session Expiry Interval MUST be present in the Packet</mark>»[MQTT‑SN‑3.2.2.2‑2](#tab-MQTT-SN-3.2.2.2-2).
 
 #### Server Keep Alive Flag{#server-keep-alive-flag}
 
@@ -50,9 +50,9 @@ If the value of Session Present received by the Client from the Server is not as
 
 Indicates whether the packet includes a Server Keep Alive or not.
 
-​​«<mark title="Requirement MQTT-SN-3.2.2.3-1"><a name="MQTT-SN-3.2.2.3-1"></a>If the Server Keep Alive Flag is set to 0, a Server Keep Alive field MUST NOT be present in the Packet</mark>»\[MQTT‑SN‑3.2.2.3‑1].
+​​«<mark title="Requirement MQTT-SN-3.2.2.3-1"><a name="MQTT-SN-3.2.2.3-1"></a>If the Server Keep Alive Flag is set to 0, a Server Keep Alive field MUST NOT be present in the Packet</mark>»[MQTT‑SN‑3.2.2.3‑1](#tab-MQTT-SN-3.2.2.3-1).
 
-«<mark title="Requirement MQTT-SN-3.2.2.3-2"><a name="MQTT-SN-3.2.2.3-2"></a>If the Server Keep Alive Flag is set to 1, a Server Keep Alive field MUST be present in the Packet</mark>»\[MQTT‑SN‑3.2.2.3‑2].
+«<mark title="Requirement MQTT-SN-3.2.2.3-2"><a name="MQTT-SN-3.2.2.3-2"></a>If the Server Keep Alive Flag is set to 1, a Server Keep Alive field MUST be present in the Packet</mark>»[MQTT‑SN‑3.2.2.3‑2](#tab-MQTT-SN-3.2.2.3-2).
 
 #### Authentication Flag{#cca---authentication-flag}
 
@@ -60,9 +60,9 @@ Indicates whether the packet includes a Server Keep Alive or not.
 
 Specifies whether the packet contains authentication material to be considered.
 
-«<mark title="Requirement MQTT-SN-3.2.2.4-1"><a name="MQTT-SN-3.2.2.4-1"></a>If the Authentication Flag is set to 0, Authentication Method and Data MUST NOT be present in the Packet</mark>»\[MQTT‑SN‑3.2.2.4‑1].
+«<mark title="Requirement MQTT-SN-3.2.2.4-1"><a name="MQTT-SN-3.2.2.4-1"></a>If the Authentication Flag is set to 0, Authentication Method and Data MUST NOT be present in the Packet</mark>»[MQTT‑SN‑3.2.2.4‑1](#tab-MQTT-SN-3.2.2.4-1).
 
-«<mark title="Requirement MQTT-SN-3.2.2.4-2"><a name="MQTT-SN-3.2.2.4-2"></a>If the Authentication Flag is set to 1, Authentication Method and Data MUST be present in the Packet</mark>»\[MQTT-SN-3.2.2.4-2\].
+«<mark title="Requirement MQTT-SN-3.2.2.4-2"><a name="MQTT-SN-3.2.2.4-2"></a>If the Authentication Flag is set to 1, Authentication Method and Data MUST be present in the Packet</mark>»[MQTT-SN-3.2.2.4-2](#tab-MQTT-SN-3.2.2.4-2).
 
 ### Packet Identifier{#cca---packet-identifier}
 
@@ -71,9 +71,9 @@ The same value as the Packet Identifier in the CONNECT or AUTH Packet being ackn
 ### Reason Code{#cca---reason-code}
 
 The values for Reason Codes are shown in [sec](#reason-code).
-«<mark title="Requirement MQTT-SN-3.2.4-1"><a name="MQTT-SN-3.2.4-1"></a>The Server sending the CONNACK Packet MUST use one of the Reason Codes applicable to CONNACK</mark>»\[MQTT‑SN‑3.2.4‑1].
+«<mark title="Requirement MQTT-SN-3.2.4-1"><a name="MQTT-SN-3.2.4-1"></a>The Server sending the CONNACK Packet MUST use one of the Reason Codes applicable to CONNACK</mark>»[MQTT‑SN‑3.2.4‑1](#tab-MQTT-SN-3.2.4-1).
 
-«<mark title="Requirement MQTT-SN-3.2.4-2"><a name="MQTT-SN-3.2.4-2"></a>If a Server sends a CONNACK packet containing a Reason code of 0x80 or greater it MUST then delete the Virtual Connection</mark>»\[MQTT‑SN‑3.2.4‑2].
+«<mark title="Requirement MQTT-SN-3.2.4-2"><a name="MQTT-SN-3.2.4-2"></a>If a Server sends a CONNACK packet containing a Reason code of 0x80 or greater it MUST then delete the Virtual Connection</mark>»[MQTT‑SN‑3.2.4‑2](#tab-MQTT-SN-3.2.4-2).
 
 > **Informative comment**
 >
@@ -89,9 +89,9 @@ Refer to [sec](#session-expiry-interval) for a description of the use of Session
 
 The Server uses this field to inform the Client that it is using a value other than that sent by the Client in the CONNECT.
 
-«<mark title="Requirement MQTT-SN-3.2.6-1"><a name="MQTT-SN-3.2.6-1"></a>If the Server sends a Server Keep Alive on the CONNACK packet, the Client MUST use this value instead of the Keep Alive value the Client sent on CONNECT</mark>»\[MQTT‑SN‑3.2.6‑1].
+«<mark title="Requirement MQTT-SN-3.2.6-1"><a name="MQTT-SN-3.2.6-1"></a>If the Server sends a Server Keep Alive on the CONNACK packet, the Client MUST use this value instead of the Keep Alive value the Client sent on CONNECT</mark>»[MQTT‑SN‑3.2.6‑1](#tab-MQTT-SN-3.2.6-1).
 
-«<mark title="Requirement MQTT-SN-3.2.6-2"><a name="MQTT-SN-3.2.6-2"></a>If the Server does not send the Server Keep Alive, the Server MUST use the Keep Alive value set by the Client on CONNECT</mark>»\[MQTT‑SN‑3.2.6‑2].
+«<mark title="Requirement MQTT-SN-3.2.6-2"><a name="MQTT-SN-3.2.6-2"></a>If the Server does not send the Server Keep Alive, the Server MUST use the Keep Alive value set by the Client on CONNECT</mark>»[MQTT‑SN‑3.2.6‑2](#tab-MQTT-SN-3.2.6-2).
 
 Refer to [sec](#keep-alive) for a description of the use of Keep Alive Interval.
 
@@ -117,9 +117,11 @@ Binary Data containing authentication data. The contents of this data are define
 
 ### Assigned Client Identifier{#assigned-client-identifier}
 
-«<mark title="Requirement MQTT-SN-3.2.11-1"><a name="MQTT-SN-3.2.11-1"></a>The Assigned Client Identifier MUST be a UTF-8 Encoded String</mark>»\[MQTT‑SN‑3.2.11‑1]. This field is optional - its existence or absence is inferred from the Packet length.
+«<mark title="Requirement MQTT-SN-3.2.11-1"><a name="MQTT-SN-3.2.11-1"></a>The Assigned Client Identifier MUST be a UTF-8 Encoded String</mark>»[MQTT‑SN‑3.2.11‑1](#tab-MQTT-SN-3.2.11-1). This field is optional - its existence or absence is inferred from the Packet length.
 
-The Assigned Client Identifier is the Client Identifier assigned by the Server when the associated CONNECT packet contained no Client Identifier. «<mark title="Requirement MQTT-SN-3.2.11-3"><a name="MQTT-SN-3.2.11-3"></a>If the Client connects using a zero length Client Identifier, the Server MUST respond with a CONNACK containing an Assigned Client Identifier]{.mark} \[MQTT-SN-3.2.11-2\].[The Assigned Client Identifier MUST be a new Client Identifier not used by any other Session currently in the Server</mark>»\[MQTT‑SN‑3.2.11‑3].
+The Assigned Client Identifier is the Client Identifier assigned by the Server when the associated CONNECT packet contained no Client Identifier. «<mark title="Requirement MQTT-SN-3.2.11-2"><a name="MQTT-SN-3.2.11-2"></a>If the Client connects using a zero length Client Identifier, the Server MUST respond with a CONNACK containing an Assigned Client Identifier</mark>»[MQTT‑SN‑3.2.11‑2](#tab-MQTT-SN-3.2.11-2).
+
+«<mark title="Requirement MQTT-SN-3.2.11-3"><a name="MQTT-SN-3.2.11-3"></a>The Assigned Client Identifier MUST be a new Client Identifier not used by any other Session currently in the Server</mark>»[MQTT‑SN‑3.2.11‑3](#tab-MQTT-SN-3.2.11-3).
 
 It is suggested that the 36 character Universally Unique IDentifier (UUID) format described in RFC9562 is used for MQTT-SN Assigned Client Identifiers. In any case they should be no longer than 36 characters.
 

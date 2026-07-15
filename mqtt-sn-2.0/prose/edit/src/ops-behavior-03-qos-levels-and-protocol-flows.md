@@ -8,13 +8,13 @@ No Session or Virtual Connection is required to send a message. The message is d
 
 <mark title="Ephemeral region marking">In the PUBWOS delivery protocol, the sender</mark>
 
-- «<mark title="Requirement MQTT-SN-4.3.1-1"><a name="MQTT-SN-4.3.1-1"></a>MUST send a PUBWOS packet</mark>»\[MQTT‑SN‑4.3.1‑1].
+- «<mark title="Requirement MQTT-SN-4.3.1-1"><a name="MQTT-SN-4.3.1-1"></a>MUST send a PUBWOS packet</mark>»[MQTT‑SN‑4.3.1‑1](#tab-MQTT-SN-4.3.1-1).
 
 <mark title="Ephemeral region marking">The receiver:</mark>
 
 - MAY decide to accept ownership of the message when it receives a PUBWOS packet.
 
-- «<mark title="Requirement MQTT-SN-4.3.1-2"><a name="MQTT-SN-4.3.1-2"></a>MUST treat any accepted messages as QoS 0</mark>»\[MQTT‑SN‑4.3.1‑2].
+- «<mark title="Requirement MQTT-SN-4.3.1-2"><a name="MQTT-SN-4.3.1-2"></a>MUST treat any accepted messages as QoS 0</mark>»[MQTT‑SN‑4.3.1‑2](#tab-MQTT-SN-4.3.1-2).
 
 **Informative Comment:**
 
@@ -26,7 +26,7 @@ The message is delivered according to the capabilities of the underlying network
 
 <mark title="Ephemeral region marking">In the QoS 0 delivery protocol, the sender</mark>
 
-- «<mark title="Requirement MQTT-SN-4.3.2-1"><a name="MQTT-SN-4.3.2-1"></a>MUST send a PUBLISH packet with QoS 0</mark>»\[MQTT‑SN‑4.3.2‑1].
+- «<mark title="Requirement MQTT-SN-4.3.2-1"><a name="MQTT-SN-4.3.2-1"></a>MUST send a PUBLISH packet with QoS 0</mark>»[MQTT‑SN‑4.3.2‑1](#tab-MQTT-SN-4.3.2-1).
 
 In the QoS 0 delivery protocol, the receiver
 
@@ -48,21 +48,21 @@ This Quality of Service level ensures that the message arrives at the receiver a
 
 <mark title="Ephemeral region marking">In the QoS 1 delivery protocol, the sender</mark>
 
-- «<mark title="Requirement MQTT-SN-4.3.3-1"><a name="MQTT-SN-4.3.3-1"></a>MUST assign an unused Packet Identifier each time it has a new Application Message to publish</mark>»\[MQTT‑SN‑4.3.3‑1].
+- «<mark title="Requirement MQTT-SN-4.3.3-1"><a name="MQTT-SN-4.3.3-1"></a>MUST assign an unused Packet Identifier each time it has a new Application Message to publish</mark>»[MQTT‑SN‑4.3.3‑1](#tab-MQTT-SN-4.3.3-1).
 
-- «<mark title="Requirement MQTT-SN-4.3.3-2"><a name="MQTT-SN-4.3.3-2"></a>MUST send a PUBLISH packet containing this Packet Identifier with QoS 1 and DUP flag set to 0</mark>»\[MQTT‑SN‑4.3.3‑2].
+- «<mark title="Requirement MQTT-SN-4.3.3-2"><a name="MQTT-SN-4.3.3-2"></a>MUST send a PUBLISH packet containing this Packet Identifier with QoS 1 and DUP flag set to 0</mark>»[MQTT‑SN‑4.3.3‑2](#tab-MQTT-SN-4.3.3-2).
 
-- «<mark title="Requirement MQTT-SN-4.3.3-3"><a name="MQTT-SN-4.3.3-3"></a>MUST treat the PUBLISH packet as "unacknowledged" until it has received the corresponding PUBACK packet from the receiver</mark>»\[MQTT‑SN‑4.3.3‑3].
+- «<mark title="Requirement MQTT-SN-4.3.3-3"><a name="MQTT-SN-4.3.3-3"></a>MUST treat the PUBLISH packet as "unacknowledged" until it has received the corresponding PUBACK packet from the receiver</mark>»[MQTT‑SN‑4.3.3‑3](#tab-MQTT-SN-4.3.3-3).
 
 The Packet Identifier becomes available for reuse once the sender has received the PUBACK packet.
 
-The sender is NOT permitted to send further packets with different Packet Identifiers while it is waiting to receive acknowledgements. «<mark title="Requirement MQTT-SN-4.3.3-4"><a name="MQTT-SN-4.3.3-4"></a>At all times a Sender MUST have a maximum of one unacknowledged packet</mark>»\[MQTT‑SN‑4.3.3‑4].
+The sender is NOT permitted to send further packets with different Packet Identifiers while it is waiting to receive acknowledgements. «<mark title="Requirement MQTT-SN-4.3.3-4"><a name="MQTT-SN-4.3.3-4"></a>At all times a Sender MUST have a maximum of one unacknowledged packet</mark>»[MQTT‑SN‑4.3.3‑4](#tab-MQTT-SN-4.3.3-4).
 
 <mark title="Ephemeral region marking">In the QoS 1 delivery protocol, the receiver</mark>
 
-- «<mark title="Requirement MQTT-SN-4.3.3-5"><a name="MQTT-SN-4.3.3-5"></a>MUST respond with a PUBACK packet containing the Packet Identifier from the incoming PUBLISH packet, having accepted ownership of the Application Message</mark>»\[MQTT‑SN‑4.3.3‑5].
+- «<mark title="Requirement MQTT-SN-4.3.3-5"><a name="MQTT-SN-4.3.3-5"></a>MUST respond with a PUBACK packet containing the Packet Identifier from the incoming PUBLISH packet, having accepted ownership of the Application Message</mark>»[MQTT‑SN‑4.3.3‑5](#tab-MQTT-SN-4.3.3-5).
 
-- «<mark title="Requirement MQTT-SN-4.3.3-6"><a name="MQTT-SN-4.3.3-6"></a>after it has sent a PUBACK packet, MUST treat any incoming PUBLISH packet that contains the same Packet Identifier as being a new Application Message</mark>»\[MQTT‑SN‑4.3.3‑6].
+- «<mark title="Requirement MQTT-SN-4.3.3-6"><a name="MQTT-SN-4.3.3-6"></a>after it has sent a PUBACK packet, MUST treat any incoming PUBLISH packet that contains the same Packet Identifier as being a new Application Message</mark>»[MQTT‑SN‑4.3.3‑6](#tab-MQTT-SN-4.3.3-6).
 
 *Figure 4-4 -- QoS 1 protocol flow, informative example*
 
@@ -84,35 +84,35 @@ This is the highest Quality of Service level, for use when neither loss nor dupl
 
 <mark title="Ephemeral region marking">In the QoS 2 delivery protocol, the sender</mark>:
 
-- «<mark title="Requirement MQTT-SN-4.3.4-1"><a name="MQTT-SN-4.3.4-1"></a>MUST assign an unused Packet Identifier when it has a new Application Message to publish</mark>»\[MQTT‑SN‑4.3.4‑1]
+- «<mark title="Requirement MQTT-SN-4.3.4-1"><a name="MQTT-SN-4.3.4-1"></a>MUST assign an unused Packet Identifier when it has a new Application Message to publish</mark>»[MQTT‑SN‑4.3.4‑1](#tab-MQTT-SN-4.3.4-1)
 
-- «<mark title="Requirement MQTT-SN-4.3.4-2"><a name="MQTT-SN-4.3.4-2"></a>MUST send a PUBLISH packet containing this Packet Identifier with QoS equal to 2</mark>»\[MQTT‑SN‑4.3.4‑2]
+- «<mark title="Requirement MQTT-SN-4.3.4-2"><a name="MQTT-SN-4.3.4-2"></a>MUST send a PUBLISH packet containing this Packet Identifier with QoS equal to 2</mark>»[MQTT‑SN‑4.3.4‑2](#tab-MQTT-SN-4.3.4-2)
 
-- «<mark title="Requirement MQTT-SN-4.3.4-3"><a name="MQTT-SN-4.3.4-3"></a>MUST set the DUP flag to 0 when it attempts to send a PUBLISH packet for the first time</mark>»\[MQTT‑SN‑4.3.4‑3]
+- «<mark title="Requirement MQTT-SN-4.3.4-3"><a name="MQTT-SN-4.3.4-3"></a>MUST set the DUP flag to 0 when it attempts to send a PUBLISH packet for the first time</mark>»[MQTT‑SN‑4.3.4‑3](#tab-MQTT-SN-4.3.4-3)
 
-- «<mark title="Requirement MQTT-SN-4.3.4-4"><a name="MQTT-SN-4.3.4-4"></a>MUST set the DUP flag to 1 when it attempts to resend a PUBLISH packet</mark>»\[MQTT‑SN‑4.3.4‑4]
+- «<mark title="Requirement MQTT-SN-4.3.4-4"><a name="MQTT-SN-4.3.4-4"></a>MUST set the DUP flag to 1 when it attempts to resend a PUBLISH packet</mark>»[MQTT‑SN‑4.3.4‑4](#tab-MQTT-SN-4.3.4-4)
 
-- «<mark title="Requirement MQTT-SN-4.3.4-5"><a name="MQTT-SN-4.3.4-5"></a>MUST treat the PUBLISH packet as "unacknowledged" until it has received the corresponding PUBREC packet from the receiver</mark>»\[MQTT‑SN‑4.3.4‑5]
+- «<mark title="Requirement MQTT-SN-4.3.4-5"><a name="MQTT-SN-4.3.4-5"></a>MUST treat the PUBLISH packet as "unacknowledged" until it has received the corresponding PUBREC packet from the receiver</mark>»[MQTT‑SN‑4.3.4‑5](#tab-MQTT-SN-4.3.4-5)
 
-- «<mark title="Requirement MQTT-SN-4.3.4-6"><a name="MQTT-SN-4.3.4-6"></a>MUST send a PUBREL packet when it receives a PUBREC packet from the receiver with a Reason Code value less than 0x80. This PUBREL packet MUST contain the same Packet Identifier as the original PUBLISH packet</mark>»\[MQTT‑SN‑4.3.4‑6]
+- «<mark title="Requirement MQTT-SN-4.3.4-6"><a name="MQTT-SN-4.3.4-6"></a>MUST send a PUBREL packet when it receives a PUBREC packet from the receiver with a Reason Code value less than 0x80. This PUBREL packet MUST contain the same Packet Identifier as the original PUBLISH packet</mark>»[MQTT‑SN‑4.3.4‑6](#tab-MQTT-SN-4.3.4-6)
 
-- «<mark title="Requirement MQTT-SN-4.3.4-7"><a name="MQTT-SN-4.3.4-7"></a>MUST treat the PUBREL packet as "unacknowledged" until it has received the corresponding PUBCOMP packet from the receiver</mark>»\[MQTT‑SN‑4.3.4‑7]
+- «<mark title="Requirement MQTT-SN-4.3.4-7"><a name="MQTT-SN-4.3.4-7"></a>MUST treat the PUBREL packet as "unacknowledged" until it has received the corresponding PUBCOMP packet from the receiver</mark>»[MQTT‑SN‑4.3.4‑7](#tab-MQTT-SN-4.3.4-7)
 
-- «<mark title="Requirement MQTT-SN-4.3.4-8"><a name="MQTT-SN-4.3.4-8"></a>MUST NOT resend the PUBLISH once it has sent the corresponding PUBREL packet</mark>»\[MQTT-SN-4.3.4-8\]
+- «<mark title="Requirement MQTT-SN-4.3.4-8"><a name="MQTT-SN-4.3.4-8"></a>MUST NOT resend the PUBLISH once it has sent the corresponding PUBREL packet</mark>»[MQTT-SN-4.3.4-8](#tab-MQTT-SN-4.3.4-8)
 
 The Packet Identifier becomes available for reuse once the sender has received the PUBCOMP packet or a PUBREC with a Reason Code of 0x80 or greater.
 
 <mark title="Ephemeral region marking">In the QoS 2 delivery protocol, the receiver</mark>:
 
-- «<mark title="Requirement MQTT-SN-4.3.4-9"><a name="MQTT-SN-4.3.4-9"></a>MUST respond with a PUBREC containing the Packet Identifier from the incoming PUBLISH packet, having accepted ownership of the Application Message</mark>»\[MQTT‑SN‑4.3.4‑9]
+- «<mark title="Requirement MQTT-SN-4.3.4-9"><a name="MQTT-SN-4.3.4-9"></a>MUST respond with a PUBREC containing the Packet Identifier from the incoming PUBLISH packet, having accepted ownership of the Application Message</mark>»[MQTT‑SN‑4.3.4‑9](#tab-MQTT-SN-4.3.4-9)
 
-- «<mark title="Requirement MQTT-SN-4.3.4-10"><a name="MQTT-SN-4.3.4-10"></a>If it has sent a PUBREC with a Reason Code of 0x80 or greater, the receiver MUST treat any subsequent PUBLISH packet that contains that Packet Identifier as being a new Application Message</mark>»\[MQTT‑SN‑4.3.4‑10]
+- «<mark title="Requirement MQTT-SN-4.3.4-10"><a name="MQTT-SN-4.3.4-10"></a>If it has sent a PUBREC with a Reason Code of 0x80 or greater, the receiver MUST treat any subsequent PUBLISH packet that contains that Packet Identifier as being a new Application Message</mark>»[MQTT‑SN‑4.3.4‑10](#tab-MQTT-SN-4.3.4-10)
 
-- «<mark title="Requirement MQTT-SN-4.3.4-11"><a name="MQTT-SN-4.3.4-11"></a>Until it has received the corresponding PUBREL packet, the receiver MUST acknowledge any subsequent PUBLISH packet with the same Packet Identifier by sending a PUBREC. It MUST NOT cause duplicate messages to be delivered to any onward recipients in this case</mark>»\[MQTT‑SN‑4.3.4‑11]
+- «<mark title="Requirement MQTT-SN-4.3.4-11"><a name="MQTT-SN-4.3.4-11"></a>Until it has received the corresponding PUBREL packet, the receiver MUST acknowledge any subsequent PUBLISH packet with the same Packet Identifier by sending a PUBREC. It MUST NOT cause duplicate messages to be delivered to any onward recipients in this case</mark>»[MQTT‑SN‑4.3.4‑11](#tab-MQTT-SN-4.3.4-11)
 
-- «<mark title="Requirement MQTT-SN-4.3.4-12"><a name="MQTT-SN-4.3.4-12"></a>MUST respond to a PUBREL packet by sending a PUBCOMP packet containing the same Packet Identifier as the PUBREL</mark>»\[MQTT‑SN‑4.3.4‑12]
+- «<mark title="Requirement MQTT-SN-4.3.4-12"><a name="MQTT-SN-4.3.4-12"></a>MUST respond to a PUBREL packet by sending a PUBCOMP packet containing the same Packet Identifier as the PUBREL</mark>»[MQTT‑SN‑4.3.4‑12](#tab-MQTT-SN-4.3.4-12)
 
-- «<mark title="Requirement MQTT-SN-4.3.4-13"><a name="MQTT-SN-4.3.4-13"></a>After it has sent a PUBCOMP, the receiver MUST treat any subsequent PUBLISH packet that contains that Packet Identifier as being a new Application Message, irrespective of the setting of its DUP flag</mark>»\[MQTT‑SN‑4.3.4‑13]
+- «<mark title="Requirement MQTT-SN-4.3.4-13"><a name="MQTT-SN-4.3.4-13"></a>After it has sent a PUBCOMP, the receiver MUST treat any subsequent PUBLISH packet that contains that Packet Identifier as being a new Application Message, irrespective of the setting of its DUP flag</mark>»[MQTT‑SN‑4.3.4‑13](#tab-MQTT-SN-4.3.4-13)
 
 *Figure 4-5 -- QoS 2 protocol flow, informative example*
 

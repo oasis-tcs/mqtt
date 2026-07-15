@@ -12,7 +12,7 @@ The topic level separator is used to introduce structure into the Topic Name. If
 
 A subscription's Topic Filter can contain special wildcard characters, which allow a Client to subscribe to multiple topics at once.
 
-«<mark title="Requirement MQTT-SN-4.7.1.1-1"><a name="MQTT-SN-4.7.1.1-1"></a>A Topic Name, the target of PUBWOS and PUBLISH packets, MUST NOT contain special wildcard characters.</mark>»\[MQTT‑SN‑4.7.1.1‑1].
+«<mark title="Requirement MQTT-SN-4.7.1.1-1"><a name="MQTT-SN-4.7.1.1-1"></a>A Topic Name, the target of PUBWOS and PUBLISH packets, MUST NOT contain special wildcard characters.</mark>»[MQTT‑SN‑4.7.1.1‑1](#tab-MQTT-SN-4.7.1.1-1).
 
 ##### Topic level separator{#topic-level-separator}
 
@@ -20,7 +20,7 @@ The forward slash ('/' U+002F) is used to separate each level within a topic tre
 
 ##### Multi-level wildcard{#multi-level-wildcard}
 
-The number sign ('#' U+0023) is a wildcard character that matches any number of levels within a topic. The multi-level wildcard represents the parent and any number of child levels. «<mark title="Requirement MQTT-SN-4.7.1.1.2-1"><a name="MQTT-SN-4.7.1.1.2-1"></a>The multi-level wildcard character MUST be specified either on its own or following a topic level separator. In either case it MUST be the last character specified in the Topic Filter</mark>»\[MQTT‑SN‑4.7.1.1.2‑1].
+The number sign ('#' U+0023) is a wildcard character that matches any number of levels within a topic. The multi-level wildcard represents the parent and any number of child levels. «<mark title="Requirement MQTT-SN-4.7.1.1.2-1"><a name="MQTT-SN-4.7.1.1.2-1"></a>The multi-level wildcard character MUST be specified either on its own or following a topic level separator. In either case it MUST be the last character specified in the Topic Filter</mark>»[MQTT‑SN‑4.7.1.1.2‑1](#tab-MQTT-SN-4.7.1.1.2-1).
 
 > **Informative comment**
 >
@@ -48,7 +48,7 @@ The number sign ('#' U+0023) is a wildcard character that matches any number of 
 
 The plus sign ('+' U+002B) is a wildcard character that matches only one topic level.
 
-«<mark title="Requirement MQTT-SN-4.7.1.1.3-1"><a name="MQTT-SN-4.7.1.1.3-1"></a>The single-level wildcard can be used at any level in the Topic Filter, including first and last levels. Where it is used, it MUST occupy an entire level of the filter</mark>»\[MQTT‑SN‑4.7.1.1.3‑1]. It can be used at more than one level in the Topic Filter and can be used in conjunction with the multi-level wildcard.
+«<mark title="Requirement MQTT-SN-4.7.1.1.3-1"><a name="MQTT-SN-4.7.1.1.3-1"></a>The single-level wildcard can be used at any level in the Topic Filter, including first and last levels. Where it is used, it MUST occupy an entire level of the filter</mark>»[MQTT‑SN‑4.7.1.1.3‑1](#tab-MQTT-SN-4.7.1.1.3-1). It can be used at more than one level in the Topic Filter and can be used in conjunction with the multi-level wildcard.
 
 > **Informative comment**
 >
@@ -66,7 +66,7 @@ The plus sign ('+' U+002B) is a wildcard character that matches only one topic l
 
 #### Topics beginning with \${#topics-beginning-with-dollar}
 
-«<mark title="Requirement MQTT-SN-4.7.1.2-1"><a name="MQTT-SN-4.7.1.2-1"></a>The Server MUST NOT match Topic Filters starting with a wildcard character (# or +) with Topic Names beginning with a \$ character</mark>»\[MQTT‑SN‑4.7.1.2‑1]. The Server SHOULD prevent Clients from using such Topic Names to exchange messages with other Clients. Server implementations MAY use Topic Names that start with a leading \$ character for other purposes.
+«<mark title="Requirement MQTT-SN-4.7.1.2-1"><a name="MQTT-SN-4.7.1.2-1"></a>The Server MUST NOT match Topic Filters starting with a wildcard character (# or +) with Topic Names beginning with a \$ character</mark>»[MQTT‑SN‑4.7.1.2‑1](#tab-MQTT-SN-4.7.1.2-1). The Server SHOULD prevent Clients from using such Topic Names to exchange messages with other Clients. Server implementations MAY use Topic Names that start with a leading \$ character for other purposes.
 
 > **Informative comment**
 
@@ -90,7 +90,7 @@ The plus sign ('+' U+002B) is a wildcard character that matches only one topic l
 
 The following rules apply to Topic Names and Topic Filters:
 
-- «<mark title="Requirement MQTT-SN-4.7.1.3-1"><a name="MQTT-SN-4.7.1.3-1"></a>All Topic Names and Topic Filters MUST be at least one character long</mark>»\[MQTT‑SN‑4.7.1.3‑1]
+- «<mark title="Requirement MQTT-SN-4.7.1.3-1"><a name="MQTT-SN-4.7.1.3-1"></a>All Topic Names and Topic Filters MUST be at least one character long</mark>»[MQTT‑SN‑4.7.1.3‑1](#tab-MQTT-SN-4.7.1.3-1)
 
 - Topic Names and Topic Filters are case sensitive
 
@@ -100,13 +100,13 @@ The following rules apply to Topic Names and Topic Filters:
 
 - A Topic Name or Topic Filter consisting only of the '/' character is valid
 
-- «<mark title="Requirement MQTT-SN-4.7.1.3-2"><a name="MQTT-SN-4.7.1.3-2"></a>Topic Names and Topic Filters MUST NOT include the null character (Unicode U+0000) [\[Unicode\]](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#Unicode)</mark>»\[MQTT-SN-4.7.1.3-2\]
+- «<mark title="Requirement MQTT-SN-4.7.1.3-2"><a name="MQTT-SN-4.7.1.3-2"></a>Topic Names and Topic Filters MUST NOT include the null character (Unicode U+0000) [\[Unicode\]](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#Unicode)</mark>»[MQTT-SN-4.7.1.3-2](#tab-MQTT-SN-4.7.1.3-2)
 
-- «<mark title="Requirement MQTT-SN-4.7.1.3-3"><a name="MQTT-SN-4.7.1.3-3"></a>Topic Names and Topic Filters are UTF-8 Encoded Strings; they MUST NOT encode to more than 65,535 bytes</mark>»\[MQTT‑SN‑4.7.1.3‑3]. Refer to [sec](#utf-8-encoded-string).
+- «<mark title="Requirement MQTT-SN-4.7.1.3-3"><a name="MQTT-SN-4.7.1.3-3"></a>Topic Names and Topic Filters are UTF-8 Encoded Strings; they MUST NOT encode to more than 65,535 bytes</mark>»[MQTT‑SN‑4.7.1.3‑3](#tab-MQTT-SN-4.7.1.3-3). Refer to [sec](#utf-8-encoded-string).
 
 There is no limit to the number of levels in a Topic Name or Topic Filter, other than that imposed by the overall length of a UTF-8 Encoded String.
 
-«<mark title="Requirement MQTT-SN-4.7.1.3-4"><a name="MQTT-SN-4.7.1.3-4"></a>When it performs subscription matching the Server MUST NOT perform any normalization of Topic Names or Topic Filters, or any modification or substitution of unrecognized characters</mark>»\[MQTT‑SN‑4.7.1.3‑4]. Each non-wildcarded level in the Topic Filter has to match the corresponding level in the Topic Name character for character for the match to succeed.
+«<mark title="Requirement MQTT-SN-4.7.1.3-4"><a name="MQTT-SN-4.7.1.3-4"></a>When it performs subscription matching the Server MUST NOT perform any normalization of Topic Names or Topic Filters, or any modification or substitution of unrecognized characters</mark>»[MQTT‑SN‑4.7.1.3‑4](#tab-MQTT-SN-4.7.1.3-4). Each non-wildcarded level in the Topic Filter has to match the corresponding level in the Topic Name character for character for the match to succeed.
 
 **Informative comment**
 
@@ -132,7 +132,7 @@ The only reason for the existence of Topic Aliases is to reduce packet size. The
 
 A Subscription contains a Topic Filter, which is a Topic Name that is allowed to include wildcards - it does not contain any Topic Aliases.
 
-«<mark title="Requirement MQTT-SN-4.7.2-1"><a name="MQTT-SN-4.7.2-1"></a>If a Topic Alias exists for a Topic Name, a Sender (Client or Server) MUST use that Topic Alias and not the Topic Name in any PUBLISH packet</mark>»\[MQTT‑SN‑4.7.2‑1].
+«<mark title="Requirement MQTT-SN-4.7.2-1"><a name="MQTT-SN-4.7.2-1"></a>If a Topic Alias exists for a Topic Name, a Sender (Client or Server) MUST use that Topic Alias and not the Topic Name in any PUBLISH packet</mark>»[MQTT‑SN‑4.7.2‑1](#tab-MQTT-SN-4.7.2-1).
 
 #### Predefined Topic Aliases{#predefined-topic-aliases}
 
@@ -140,15 +140,15 @@ Predefined Topic Aliases are known to both sender and receivers before any commu
 
 The definitions of Predefined Topic Aliases are not affected by the sending or receiving of any MQTT-SN Packets - their creation and upkeep is an administrative procedure outside the scope of this specification.
 
-«<mark title="Requirement MQTT-SN-4.7.2.1-1"><a name="MQTT-SN-4.7.2.1-1"></a>Predefined Topic Aliases MUST NOT change for the duration of any MQTT-SN Session</mark>»\[MQTT‑SN‑4.7.2.1‑1].
+«<mark title="Requirement MQTT-SN-4.7.2.1-1"><a name="MQTT-SN-4.7.2.1-1"></a>Predefined Topic Aliases MUST NOT change for the duration of any MQTT-SN Session</mark>»[MQTT‑SN‑4.7.2.1‑1](#tab-MQTT-SN-4.7.2.1-1).
 
-«<mark title="Requirement MQTT-SN-4.7.2.1-2"><a name="MQTT-SN-4.7.2.1-2"></a>If a PUBLISH is sent to a Predefined Topic Alias which is not defined on the receiver it is a Protocol Error</mark>»\[MQTT‑SN‑4.7.2.1‑2].
+«<mark title="Requirement MQTT-SN-4.7.2.1-2"><a name="MQTT-SN-4.7.2.1-2"></a>If a PUBLISH is sent to a Predefined Topic Alias which is not defined on the receiver it is a Protocol Error</mark>»[MQTT‑SN‑4.7.2.1‑2](#tab-MQTT-SN-4.7.2.1-2).
 
 #### Session Topic Aliases{#session-topic-aliases}
 
 Session Topic Aliases are allocated and controlled by the Server, not the Client.
 
-«<mark title="Requirement MQTT-SN-4.7.2.2-1"><a name="MQTT-SN-4.7.2.2-1"></a>Session Topic Aliases MUST be allocated on a per Session basis - they are not shared between Sessions either with the same Client or different Clients</mark>»\[MQTT‑SN‑4.7.2.2‑1].
+«<mark title="Requirement MQTT-SN-4.7.2.2-1"><a name="MQTT-SN-4.7.2.2-1"></a>Session Topic Aliases MUST be allocated on a per Session basis - they are not shared between Sessions either with the same Client or different Clients</mark>»[MQTT‑SN‑4.7.2.2‑1](#tab-MQTT-SN-4.7.2.2-1).
 
 Session Topic Aliases last for the duration of the Session, except after a SLEEPREQ with Retain Topic Aliases equal to 0.
 
@@ -162,12 +162,12 @@ There are several ways that a Session Topic Alias can be created:
 
 - The Server may need to re-register Topic Aliases in the Awake state, as a result of the Client using the Retain Topic Aliases flag set to 0 on the SLEEPREQ packet when going to sleep.
 
-I«<mark title="Requirement MQTT-SN-4.7.2.2-2"><a name="MQTT-SN-4.7.2.2-2"></a>f a Client subscribes to a Topic Filter which does not include wildcard characters, a Predefined or Session Topic Alias MUST be returned in the SUBACK packet</mark>»\[MQTT‑SN‑4.7.2.2‑2].
+I«<mark title="Requirement MQTT-SN-4.7.2.2-2"><a name="MQTT-SN-4.7.2.2-2"></a>f a Client subscribes to a Topic Filter which does not include wildcard characters, a Predefined or Session Topic Alias MUST be returned in the SUBACK packet</mark>»[MQTT‑SN‑4.7.2.2‑2](#tab-MQTT-SN-4.7.2.2-2).
 
-I«<mark title="Requirement MQTT-SN-4.7.2.2-3"><a name="MQTT-SN-4.7.2.2-3"></a>f a Client subscribes to a Topic Filter which includes wildcard characters, a Topic Alias (Predefined or Session) MUST NOT be returned in the SUBACK packet</mark>»\[MQTT‑SN‑4.7.2.2‑3].
+I«<mark title="Requirement MQTT-SN-4.7.2.2-3"><a name="MQTT-SN-4.7.2.2-3"></a>f a Client subscribes to a Topic Filter which includes wildcard characters, a Topic Alias (Predefined or Session) MUST NOT be returned in the SUBACK packet</mark>»[MQTT‑SN‑4.7.2.2‑3](#tab-MQTT-SN-4.7.2.2-3).
 
-«<mark title="Requirement MQTT-SN-4.7.2.2-4"><a name="MQTT-SN-4.7.2.2-4"></a>A Session Topic Alias MUST NOT be allowed to map to the same Topic Name as a Predefined Topic Alias</mark>»\[MQTT‑SN‑4.7.2.2‑4].
+«<mark title="Requirement MQTT-SN-4.7.2.2-4"><a name="MQTT-SN-4.7.2.2-4"></a>A Session Topic Alias MUST NOT be allowed to map to the same Topic Name as a Predefined Topic Alias</mark>»[MQTT‑SN‑4.7.2.2‑4](#tab-MQTT-SN-4.7.2.2-4).
 
-«<mark title="Requirement MQTT-SN-4.7.2.2-5"><a name="MQTT-SN-4.7.2.2-5"></a>If a Client requests a Session Topic Alias for a Topic Name which already has a Predefined Topic Alias, the Server MUST return a REGACK with the Topic Type "Predefined Topic Alias", the Predefined Topic Alias, and the Reason Code "Topic Alias Exists"</mark>»\[MQTT‑SN‑4.7.2.2‑5].
+«<mark title="Requirement MQTT-SN-4.7.2.2-5"><a name="MQTT-SN-4.7.2.2-5"></a>If a Client requests a Session Topic Alias for a Topic Name which already has a Predefined Topic Alias, the Server MUST return a REGACK with the Topic Type "Predefined Topic Alias", the Predefined Topic Alias, and the Reason Code "Topic Alias Exists"</mark>»[MQTT‑SN‑4.7.2.2‑5](#tab-MQTT-SN-4.7.2.2-5).
 
-«<mark title="Requirement MQTT-SN-4.7.2.2-6"><a name="MQTT-SN-4.7.2.2-6"></a>A Session Topic alias and a Predefined Topic Alias with the same numerical value MUST map to different Topic Names</mark>»\[MQTT‑SN‑4.7.2.2‑6].
+«<mark title="Requirement MQTT-SN-4.7.2.2-6"><a name="MQTT-SN-4.7.2.2-6"></a>A Session Topic alias and a Predefined Topic Alias with the same numerical value MUST map to different Topic Names</mark>»[MQTT‑SN‑4.7.2.2‑6](#tab-MQTT-SN-4.7.2.2-6).

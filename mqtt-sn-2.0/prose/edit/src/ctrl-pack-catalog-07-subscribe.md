@@ -56,7 +56,7 @@ The maximum QoS. This gives the maximum QoS level at which the Server can send A
 
 **Position**: bit 7 of the SUBSCRIBE Flags.
 
-«<mark title="Requirement MQTT-SN-3.7.2.5-1"><a name="MQTT-SN-3.7.2.5-1"></a>if the value is 1, Application Messages MUST NOT be forwarded to a Virtual Connection with a Client Identifier equal to the Client Identifier of the publishing Virtual Connection</mark>»\[MQTT‑SN‑3.7.2.5‑1].
+«<mark title="Requirement MQTT-SN-3.7.2.5-1"><a name="MQTT-SN-3.7.2.5-1"></a>if the value is 1, Application Messages MUST NOT be forwarded to a Virtual Connection with a Client Identifier equal to the Client Identifier of the publishing Virtual Connection</mark>»[MQTT‑SN‑3.7.2.5‑1](#tab-MQTT-SN-3.7.2.5-1).
 
 **Informative Comment**
 
@@ -68,17 +68,17 @@ Used to identify the corresponding SUBACK packet. It should ideally be populated
 
 ### Topic Alias{#ssr---topic-alias}
 
-«<mark title="Requirement MQTT-SN-3.7.4-1"><a name="MQTT-SN-3.7.4-1"></a>If the Topic Type is Predefined Topic Alias or Session Topic Alias, then the Topic Alias field MUST be present in the SUBSCRIBE packet</mark>»\[MQTT‑SN‑3.7.4‑1].
+«<mark title="Requirement MQTT-SN-3.7.4-1"><a name="MQTT-SN-3.7.4-1"></a>If the Topic Type is Predefined Topic Alias or Session Topic Alias, then the Topic Alias field MUST be present in the SUBSCRIBE packet</mark>»[MQTT‑SN‑3.7.4‑1](#tab-MQTT-SN-3.7.4-1).
 
-«<mark title="Requirement MQTT-SN-3.7.4-2"><a name="MQTT-SN-3.7.4-2"></a>If the Topic Type is Topic Filter the Topic Alias field MUST NOT be present in the SUBSCRIBE packet</mark>»\[MQTT‑SN‑3.7.4‑2].
+«<mark title="Requirement MQTT-SN-3.7.4-2"><a name="MQTT-SN-3.7.4-2"></a>If the Topic Type is Topic Filter the Topic Alias field MUST NOT be present in the SUBSCRIBE packet</mark>»[MQTT‑SN‑3.7.4‑2](#tab-MQTT-SN-3.7.4-2).
 
 Contains Fixed Length UTF-8 Encoded String topic filter or Topic Alias (Predefined or Session) as indicated in the *Topic Type* field in flags. Determines the topic names which this subscription is interested in.
 
 ### Topic Filter{#ssr---topic-filter}
 
-«<mark title="Requirement MQTT-SN-3.7.5-1"><a name="MQTT-SN-3.7.5-1"></a>If the Topic Type is Topic Filter the Topic Filter field MUST be present in the SUBSCRIBE packet</mark>»\[MQTT‑SN‑3.7.5‑1].
+«<mark title="Requirement MQTT-SN-3.7.5-1"><a name="MQTT-SN-3.7.5-1"></a>If the Topic Type is Topic Filter the Topic Filter field MUST be present in the SUBSCRIBE packet</mark>»[MQTT‑SN‑3.7.5‑1](#tab-MQTT-SN-3.7.5-1).
 
-«<mark title="Requirement MQTT-SN-3.7.5-2"><a name="MQTT-SN-3.7.5-2"></a>If the Topic Type is Predefined Topic Alias or Session Topic Alias, then the Topic Filter field MUST NOT be present in the SUBSCRIBE packet</mark>»\[MQTT‑SN‑3.7.5‑2].
+«<mark title="Requirement MQTT-SN-3.7.5-2"><a name="MQTT-SN-3.7.5-2"></a>If the Topic Type is Predefined Topic Alias or Session Topic Alias, then the Topic Filter field MUST NOT be present in the SUBSCRIBE packet</mark>»[MQTT‑SN‑3.7.5‑2](#tab-MQTT-SN-3.7.5-2).
 
 The Topic Filter is a UTF-8 encoded string, which may contain wildcards. A SUBSCRIBE packet with a zero length Topic Filter is a Protocol Error. Refer to [sec](#handling-errors) for information about handling errors.
 
@@ -86,13 +86,21 @@ This existence or absence of this field is inferred from the Packet length.
 
 ### SUBSCRIBE Actions{#subscribe-actions}
 
-«<mark title="Requirement MQTT-SN-3.7.6-2"><a name="MQTT-SN-3.7.6-2"></a>When the Server receives a SUBSCRIBE packet from a Client, the Server MUST respond with a SUBACK packet]{.mark} \[MQTT-SN-3.7.6-1\]. [The SUBACK packet MUST have the same Packet Identifier as the SUBSCRIBE packet that it is acknowledging</mark>»\[MQTT‑SN‑3.7.6‑2].
+«<mark title="Requirement MQTT-SN-3.7.6-1"><a name="MQTT-SN-3.7.6-1"></a>When the Server receives a SUBSCRIBE packet from a Client, the Server MUST respond with a SUBACK packet</mark>»[MQTT‑SN‑3.7.6‑1](#tab-MQTT-SN-3.7.6-1).
 
-«<mark title="Requirement MQTT-SN-3.7.6-4"><a name="MQTT-SN-3.7.6-4"></a>If a Server receives a SUBSCRIBE packet containing a Topic Filter that is identical to a Subscription's Topic Filter for the current Session, then it MUST replace that existing Subscription with a new Subscription]{.mark} \[MQTT-SN-3.7.6-3\]. The Topic Filter in the new Subscription will be identical to that in the previous Subscription, although its Subscription Options could be different. [If the Retain Handling option is 0, any existing retained messages matching the Topic Filter MUST be re-sent, but Application Messages MUST NOT be lost due to replacing the Subscription</mark>»\[MQTT‑SN‑3.7.6‑4].
+«<mark title="Requirement MQTT-SN-3.7.6-2"><a name="MQTT-SN-3.7.6-2"></a>The SUBACK packet MUST have the same Packet Identifier as the SUBSCRIBE packet that it is acknowledging</mark>»[MQTT‑SN‑3.7.6‑2](#tab-MQTT-SN-3.7.6-2).
+
+«<mark title="Requirement MQTT-SN-3.7.6-3"><a name="MQTT-SN-3.7.6-3"></a>If a Server receives a SUBSCRIBE packet containing a Topic Filter that is identical to a Subscription's Topic Filter for the current Session, then it MUST replace that existing Subscription with a new Subscription</mark>»[MQTT‑SN‑3.7.6‑3](#tab-MQTT-SN-3.7.6-3). The Topic Filter in the new Subscription will be identical to that in the previous Subscription, although its Subscription Options could be different.
+
+«<mark title="Requirement MQTT-SN-3.7.6-4"><a name="MQTT-SN-3.7.6-4"></a>If the Retain Handling option is 0, any existing retained messages matching the Topic Filter MUST be re-sent, but Application Messages MUST NOT be lost due to replacing the Subscription</mark>»[MQTT‑SN‑3.7.6‑4](#tab-MQTT-SN-3.7.6-4).
 
 If a Server receives a Topic Filter that is not identical to any Topic Filter for the current Session, a new Subscription is created. If the Retain Handling option is not 2, all matching retained messages are sent to the Client.
 
-«<mark title="Requirement MQTT-SN-3.7.6-7"><a name="MQTT-SN-3.7.6-7"></a>The SUBACK packet sent by the Server to the Client MUST contain a Reason Code]{.mark} \<mark title="Ephemeral region marking">MQTT-SN-3.7.6-5\]. [This Reason Code MUST either show the maximum QoS that was granted for that Subscription or indicate that the subscription failed</mark> \[MQTT-SN-3.7.6-6\]. The Server might grant a lower Maximum QoS than the subscriber requested. [The QoS of Application Messages sent in response to a Subscription MUST be the minimum of the QoS of the originally published Application message and the Maximum QoS granted by the Server</mark>»\[MQTT‑SN‑3.7.6‑7]. The server is permitted to send duplicate copies of an Application message to a subscriber in the case where the original Application message was published with QoS 1 and the maximum QoS granted was QoS 0.
+«<mark title="Requirement MQTT-SN-3.7.6-5"><a name="MQTT-SN-3.7.6-5"></a>The SUBACK packet sent by the Server to the Client MUST contain a Reason Code</mark>»[MQTT‑SN‑3.7.6‑5](#tab-MQTT-SN-3.7.6-5).
+
+«<mark title="Requirement MQTT-SN-3.7.6-6"><a name="MQTT-SN-3.7.6-6"></a>This Reason Code MUST either show the maximum QoS that was granted for that Subscription or indicate that the subscription failed</mark>»[MQTT‑SN‑3.7.6‑6](#tab-MQTT-SN-3.7.6-6). The Server might grant a lower Maximum QoS than the subscriber requested.
+
+«<mark title="Requirement MQTT-SN-3.7.6-7"><a name="MQTT-SN-3.7.6-7"></a>The QoS of Application Messages sent in response to a Subscription MUST be the minimum of the QoS of the originally published Application message and the Maximum QoS granted by the Server</mark>»[MQTT‑SN‑3.7.6‑7](#tab-MQTT-SN-3.7.6-7). The server is permitted to send duplicate copies of an Application message to a subscriber in the case where the original Application message was published with QoS 1 and the maximum QoS granted was QoS 0.
 
 > **Informative comment**
 >

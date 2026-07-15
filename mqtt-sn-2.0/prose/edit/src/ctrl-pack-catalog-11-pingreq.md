@@ -24,10 +24,10 @@ Used to identify the corresponding PINGRESP packet. It should ideally be set to 
 
 ### PINGREQ Actions{#pingreq-actions}
 
-«<mark title="Requirement MQTT-SN-3.11.3-1"><a name="MQTT-SN-3.11.3-1"></a>The Server MUST send a PINGRESP packet in response to a PINGREQ packet if it has a Virtual Connection for the sending Client</mark>»\[MQTT‑SN‑3.11.3‑1].
+«<mark title="Requirement MQTT-SN-3.11.3-1"><a name="MQTT-SN-3.11.3-1"></a>The Server MUST send a PINGRESP packet in response to a PINGREQ packet if it has a Virtual Connection for the sending Client</mark>»[MQTT‑SN‑3.11.3‑1](#tab-MQTT-SN-3.11.3-1).
 
-«<mark title="Requirement MQTT-SN-3.11.3-2"><a name="MQTT-SN-3.11.3-2"></a>The Server MAY send a DISCONNECT packet in response to a PINGREQ packet if it does not have a Virtual Connection for the sending Client</mark>»\[MQTT‑SN‑3.11.3‑2].
+«<mark title="Requirement MQTT-SN-3.11.3-2"><a name="MQTT-SN-3.11.3-2"></a>The Server MAY send a DISCONNECT packet in response to a PINGREQ packet if it does not have a Virtual Connection for the sending Client</mark>»[MQTT‑SN‑3.11.3‑2](#tab-MQTT-SN-3.11.3-2).
 
-«<mark title="Requirement MQTT-SN-3.11.3-3"><a name="MQTT-SN-3.11.3-3"></a>If the Server sends a DISCONNECT packet in response to a PINGREQ packet because it does not have a Virtual Connection for the sending Client, it MUST use Reason Code 244 - No Virtual Connection Exists</mark>»\[MQTT‑SN‑3.11.3‑3].
+«<mark title="Requirement MQTT-SN-3.11.3-3"><a name="MQTT-SN-3.11.3-3"></a>If the Server sends a DISCONNECT packet in response to a PINGREQ packet because it does not have a Virtual Connection for the sending Client, it MUST use Reason Code 244 - No Virtual Connection Exists</mark>»[MQTT‑SN‑3.11.3‑3](#tab-MQTT-SN-3.11.3-3).
 
-«<mark title="Requirement MQTT-SN-3.11.3-4"><a name="MQTT-SN-3.11.3-4"></a>If the state of the Client associated with the Virtual Connection is Asleep on receipt of the PINGREQ, the Server MUST move the Client to the Awake state, stop the Sleep Duration processing, and start the Retry Timer processing</mark>»\[MQTT‑SN‑3.11.3‑4].
+«<mark title="Requirement MQTT-SN-3.11.3-4"><a name="MQTT-SN-3.11.3-4"></a>If the state of the Client associated with the Virtual Connection is Asleep on receipt of the PINGREQ, the Server MUST move the Client to the Awake state, stop the Sleep Duration processing, and start the Retry Timer processing</mark>»[MQTT‑SN‑3.11.3‑4](#tab-MQTT-SN-3.11.3-4).

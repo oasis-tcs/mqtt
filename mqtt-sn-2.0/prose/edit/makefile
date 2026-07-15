@@ -12,7 +12,7 @@ build_pdf = $(build_root)render/pdf/
 liitos_templates = etc/liitos/
 optimize_pdf = qpdf --linearize --replace-input
 
-target_gfm_plus = gfm+vendor_hacks
+target_gfm_plus = gfm-plus
 target_pdf = pdf
 
 out_html = ../share/mqtt-sn-v2.0-draft.html
@@ -41,63 +41,47 @@ types:
 	command -v mypy >/dev/null 2>&1 || { echo >&2 "make types requires mypy but it's not installed - you can install with: 'pip install mypy'.  Aborting."; exit 1; }
 	$(types)
 
-.PHONY: inversions
-inversions: invert-sections invert-examples
-
-.PHONY: invert-examples
-invert-examples:
-	command -v inverso >/dev/null 2>&1 || { echo >&2 "make invert-examples requires inverso but it's not installed - you can install with: 'pip install inverso'.  Aborting."; exit 1; }
-	inverso -agm 4321 etc/example-global-to-local.json etc/example-local-to-global.json
-
-.PHONY: invert-sections
-invert-sections:
-	bin/sections.py
-	echo "Called sections mapper."
-	git status | grep etc/section || true
-	command -v inverso >/dev/null 2>&1 || { echo >&2 "make invert-sections requires inverso but it's not installed - you can install with: 'pip install inverso'.  Aborting."; exit 1; }
-	inverso -g etc/section-display-to-label.json etc/section-label-to-display.json
-	echo "Called inverso."
-	git status | grep etc/section || true
-
 .PHONY: sections
 sections:
-	bin/sections.py
+	command -v nide >/dev/null 2>&1 || { echo >&2 "make sections requires nide but it's not installed - you can install with: 'pip install nide'.  Aborting."; exit 1; }
+	python -m nide harvest
 
 .PHONY: render
-render: render-html
+render: html
 
-.PHONY: render-markdown
-render-markdown: sections
-	bin/assemble.py && \
-	  cp -a build/tmp.md $(out_gfm_plus) && \
-	  printf "Rendered user facing delivery item in markdown format:\n" && \
-	  ls -l $(out_gfm_plus)
+.PHONY: gfm-plus
+gfm-plus: sections
+	python -m nide assemble -t $(target_gfm_plus) && \
+		cp -a build/tmp.md $(out_gfm_plus) && \
+		printf "Rendered user facing delivery item in markdown format:\n" && \
+		ls -l $(out_gfm_plus)
 
-.PHONY: render-html
-render-html: render-markdown
-	mkdir -p build/data-url/ && cd src/images && for source in *.png; do printf "%s" "data:image/png;base64,$$(cat "$${source}" | base64 | tr -d '\r\n')" > "../../build/data-url/$${source}.txt"; done && cd -
+.PHONY: html
+html: gfm-plus
+	mkdir -p build/data-url/ && cd src/images && for source in *.png *.jpg; do \
+		[ -f "$${source}" ] && printf "%s" "data:image/png;base64,$$(cat "$${source}" | base64 | tr -d '\r\n')" \
+			> "../../build/data-url/$${source}.txt"; done && cd -
 	command -v pandoc >/dev/null 2>&1 || { echo >&2 "make render-html requires pandoc but it's not installed - you can get help on installing at https://pandoc.org.  Aborting."; exit 1; }
 	command -v tidy >/dev/null 2>&1 || { echo >&2 "make render-html requires tidy but it's not installed - you can get help on installing by searching for it on the wild internets.  Aborting."; exit 1; }
-	pandoc -f gfm+definition_lists -t html build/tmp.md --columns=345  \
-		--css style/base.css --css style/skin.css --standalone -o build/tmp.html && \
-	  sed "s/>tmp<\\/title>/>MQTT for Sensor Networks Version 2.0<\\/title>/g;" build/tmp.html > sorry.html && mv sorry.html build/tmp.html && \
-	  bin/toccata.py && \
-	  bin/inject-data-urls.py build/injected.html && \
-	  timeout 2 tidy -config etc/tidy-config.txt build/injected.html -ashtml 2>/dev/null | \
-		sed 's/<!\[CDATA\[//g; s/\]\]>//g;' > $(out_html) && \
-	  printf "Rendered user facing delivery item in html format:\n" && \
-	  ls -l $(out_html)
+	python -m nide assemble -t html && \
+		pandoc -f gfm+definition_lists -t html build/tmp.md --columns=345 \
+			--css style/base.css --css style/skin.css --standalone -o build/tmp.html && \
+		python -m nide inject && \
+		tidy -ashtml -quiet --force-output yes build/injected.html 2>/dev/null | \
+			sed 's/<!\[CDATA\[//g; s/\]\]>//g;' > $(out_html) && \
+		printf "Rendered user facing delivery item in html format:\n" && \
+		ls -l $(out_html)
 
-.PHONY: render-pdf
-render-pdf:
+.PHONY: deprecated-pdf
+deprecated-pdf:
 	command -v liitos >/dev/null 2>&1 || { echo >&2 "make render-pdf requires liitos but it's not installed - you can install per pip install liitos.  Aborting."; exit 1; }
 	command -v etiketti >/dev/null 2>&1 || { echo >&2 "make render-pdf requires etiketti but it's not installed - you can install per pip install etiketti.  Aborting."; exit 1; }
 	command -v qpdf >/dev/null 2>&1 || { echo >&2 "make render-pdf requires qpdf but it's not installed - you can search the internets on how to install qpdf.  Aborting."; exit 1; }
-	bin/assemble.py -t $(target_pdf) && \
+	python -m nide assemble -t $(target_pdf) && \
 		mkdir -p $(build_root)images/ $(build_pdf)images/ && \
 		printf "pdf.md\n" > $(build_root)bind.txt && \
 		cp -a ../media/OASISLogo-v3.0.png $(build_root)images/ && \
-		cp -a src/images/*.{png,jpg} $(build_root)images/ && \
+		cp -a src/images/*.png src/images/*.jpg $(build_root)images/ && \
 		cp -a ../media/OASISLogo-v3.0.png $(build_pdf)images/ && \
 		cp -a $(liitos_templates)approvals.yml $(build_root) && \
 		cp -a $(liitos_templates)bookmatter.tex.in $(build_root) && \
@@ -109,12 +93,33 @@ render-pdf:
 		cp -a $(liitos_templates)publisher.tex.in $(build_root) && \
 		cp -a $(liitos_templates)setup.tex.in $(build_pdf) && \
 		cp -a $(liitos_templates)structure.yml $(build_root) && \
+		cp -a $(liitos_templates)structure.yml $(build_pdf) && \
 		cp -a etc/etiketti/etiketti.yml $(build_pdf) && \
 		cd $(build_pdf) && \
-		max_print_line=10000 liitos render ../../ --target mqtt-sn --facet pdf --patch-tables --filters ' ' --label "etiketti --config etiketti.yml --enforce"  && \
+		max_print_line=10000 liitos render ../../ --target mqtt-sn --facet pdf --patch-tables --filters ' ' --label "etiketti --config etiketti.yml --enforce" && \
 		$(optimize_pdf) -- this.pdf && \
 		cp -a this.pdf ../../../$(out_pdf) && \
-		open ../../../$(out_pdf); cd -
+		open ../../../$(out_pdf)
+
+.PHONY: typst
+typst:
+	# Pass 1+2: assemble IR and render typst channel
+	nide assemble
+	nide render -t typst
+	# Prepare images (pandoc/typst resolves image paths relative to the .typ file)
+	mkdir -p build/images
+	cp ../media/OASISLogo-v3.0.png build/images/
+	cp -a src/images/*.png src/images/*.jpg build/images/
+	# Convert to typst source
+	pandoc -f markdown+definition_lists -t typst --standalone --template etc/mqtt.typ --lua-filter build/nide-columns.lua build/typst.md -o build/typst.typ
+	# Compile to PDF
+	typst compile --root . build/typst.typ build/mqtt-sn-typst.pdf && open build/mqtt-sn-typst.pdf
+
+.PHONY: pdf
+pdf: typst
+
+.PHONY: release
+release: distclean gfm-plus html pdf
 
 .PHONY: build
 build: render status
@@ -145,14 +150,26 @@ clean:
 distclean: clean
 	rm -fr $(build_root)
 
-.PHONY: clone-info
-clone-info:
-	printf "Clone-info:\n"
+.PHONY: context
+context:
+	printf "Context:\n"
 	printf "%s name.is(): '%s'\n" "-" "$$(basename `git rev-parse --show-toplevel`)"
 	printf "%s branch.is(): '%s'\n" "-" "$$(git branch --show-current)"
 	printf "%s revision.is(): sha1:%s\n" "-" "$$(git rev-parse HEAD)"
 	printf "%s location.is(): %s\n" "-" "$$(python -c "(lambda _Y: (lambda _mod: (lambda Path: (lambda g: [(lambda x: [(lambda c, p: (lambda _loop1: _loop1(c, p))(_Y(lambda _loop1: (lambda c, p: ([_loop1(c, p) for (p, c) in [x(p, c, g)]][0]) if (c != p) and (str(c) != '/') else print((f\"(orga/repo='{c.parent.name}/{c.name}', rel-path='{o.relative_to(c)}')\" if (c == p) else \"(orga/repo='?/?', rel-path='?')\"))))))(c if 'c' in dir() else None, p if 'p' in dir() else None) for (_, c) in [x(p, c, g)]][0])(lambda p, c, g: (c, c.parent if not (c / g).is_dir() else c)) for o, p, c in [[Path().resolve()] * 3]][0])('.git'))(_mod.Path))(__import__('pathlib', {}, {}, ['Path'])))((lambda f: (lambda x: x(x))(lambda y: f(lambda *args: y(y)(*args)))))")"
 	printf "%s node.id(): '%s'\n" "-" "$$(python -c 'import platform; import uuid; print(str(uuid.uuid3(uuid.NAMESPACE_DNS, platform.node())))')"
 
-.PHONY: name
-name: clone-info
+.PHONY: name  # Deprecated - backwards compatibility target
+name: context
+
+.PHONY: whoami # Deprecated - backwards compatibility target
+whoami: context
+
+.PHONY: render-html # Deprecated - backwards compatibility target
+render-html: html
+
+.PHONY: render-markdown # Deprecated - backwards compatibility target
+render-markdown: gfm-plus
+
+.PHONY: render-pdf # Deprecated - backwards compatibility target
+render-pdf: pdf
