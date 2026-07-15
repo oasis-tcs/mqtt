@@ -1,0 +1,24 @@
+name: "Builds for MacOS"
+on: [push, pull_request] 
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v7
+      - name: Install dependencies
+        run: |
+          pip install nide
+          brew update
+          brew install pandoc typst
+      - name: Build
+        run: |
+          cd mqtt-sn-2.0/prose/edit
+          make pdf
+          make release
+      - name: Upload PDF render
+        uses: actions/upload-artifact@v3
+        with:
+          name: mqtt-sn-typst.pdf
+          path: /home/runner/work/mqtt/mqtt/mqtt-sn-2.0/prose/edit/build/mqtt-sn-typst.pdf
