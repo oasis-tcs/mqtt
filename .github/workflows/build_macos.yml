@@ -15,9 +15,14 @@ jobs:
       - name: Build
         run: |
           cd mqtt-sn-2.0/prose/edit
-          make pdf
+          make release
       - name: Upload PDF render
         uses: actions/upload-artifact@v7
         with:
           name: mqtt-sn-typst.pdf
           path: mqtt-sn-2.0/prose/edit/build/mqtt-sn-typst.pdf
+      - name: Upload HTML render
+        uses: actions/upload-artifact@v7
+        with:
+          name: mqtt-sn-v2.0-draft.html
+          path: mqtt-sn-2.0/prose/share/mqtt-sn-v2.0-draft.html
