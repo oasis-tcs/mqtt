@@ -67,8 +67,7 @@ html: gfm-plus
 		pandoc -f gfm+definition_lists -t html build/tmp.md --columns=345 \
 			--css style/base.css --css style/skin.css --standalone -o build/tmp.html && \
 		python -m nide inject && \
-		tidy -ashtml -quiet --force-output yes build/injected.html 2>/dev/null | \
-			sed 's/<!\[CDATA\[//g; s/\]\]>//g;' > $(out_html) && \
+		cp -a build/injected.html 2>/dev/null $(out_html) && \
 		printf "Rendered user facing delivery item in html format:\n" && \
 		ls -l $(out_html)
 
