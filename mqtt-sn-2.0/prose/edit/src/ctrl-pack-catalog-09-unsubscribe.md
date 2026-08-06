@@ -30,7 +30,7 @@ Used to identify the corresponding UNSUBACK packet. It should ideally be populat
 
 «<mark title="Requirement MQTT-SN-3.9.4-1"><a name="MQTT-SN-3.9.4-1"></a>A Topic Alias MUST be present in the UNSUBSCRIBE packet if the Topic Type is Predefined or Session Topic Alias</mark>»[MQTT‑SN‑3.9.4‑1](#tab-MQTT-SN-3.9.4-1).
 
-«<mark title="Requirement MQTT-SN-3.9.4-2"><a name="MQTT-SN-3.9.4-2"></a>A Topic Alias MUST NOT be present in the UNSUBSCRIBE packet if the Topic Type is Topic Name</mark>»[MQTT‑SN‑3.9.4‑2](#tab-MQTT-SN-3.9.4-2).
+«<mark title="Requirement MQTT-SN-3.9.4-2"><a name="MQTT-SN-3.9.4-2"></a>A Topic Alias MUST NOT be present in the UNSUBSCRIBE packet if the Topic Type is Topic Filter</mark>»[MQTT‑SN‑3.9.4‑2](#tab-MQTT-SN-3.9.4-2).
 
 Predefined or Session Topic Alias as indicated by the *Topic Type*. Determines the topic names which this subscription is interested in.
 
