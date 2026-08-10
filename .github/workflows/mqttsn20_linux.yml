@@ -1,0 +1,17 @@
+name: "Build MQTT-SN 2.0 draft on MacOS"
+on: [push, pull_request] 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v7
+      - name: Install dependencies
+        run: |
+          pip install nide
+          sudo snap install typst
+      - name: Build
+        run: |
+          cd mqtt-sn-2.0/prose/edit
+          make 
