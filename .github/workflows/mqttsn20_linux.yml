@@ -1,4 +1,4 @@
-name: "Build MQTT-SN 2.0 draft on MacOS"
+name: "Build MQTT-SN 2.0 draft on Linux"
 on: [push, pull_request] 
 
 jobs:
@@ -11,6 +11,7 @@ jobs:
         run: |
           pip install nide
           sudo snap install typst
+          sudo apt-get install texlive
       - name: Build
         run: |
           cd mqtt-sn-2.0/prose/edit
