@@ -1,6 +1,6 @@
 ## SUBACK - Subscribe Acknowledgement{#suback---subscribe-acknowledgement}
 
-*Figure 3-18 -- SUBACK Packet*
+*Figure 3-17 -- SUBACK Packet*
 
 ![SUBACK Packet](images/suback-packet-diagram.png "SUBACK Packet")<!-- .width="6.5in", .height="2.5555555555555554in" -->
 

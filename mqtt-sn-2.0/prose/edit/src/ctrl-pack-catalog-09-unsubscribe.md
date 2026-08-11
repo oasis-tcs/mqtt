@@ -1,6 +1,6 @@
 ## UNSUBSCRIBE - Unsubscribe Request{#unsubscribe---unsubscribe-request}
 
-*Figure 3-19 -- UNSUBSCRIBE Packet*
+*Figure 3-18 -- UNSUBSCRIBE Packet*
 
 ![UNSUBSCRIBE Packet](images/unsubscribe-packet-diagram.png "UNSUBSCRIBE Packet")<!-- .width="6.5in", .height="3.375in" -->
 

@@ -1,6 +1,6 @@
 ## SUBSCRIBE - Subscribe Request{#subscribe---subscribe-request}
 
-*Figure 3-17 -- SUBSCRIBE Packet*
+*Figure 3-16 -- SUBSCRIBE Packet*
 
 ![SUBSCRIBE Packet](images/subscribe-packet-diagram.png "SUBSCRIBE Packet")<!-- .width="6.5in", .height="3.375in" -->
 
@@ -38,7 +38,7 @@ It is a Protocol Error to send a Retain Handling value of 3. See [sec](#retained
 
 #### Retain as Published{#retain-as-published}
 
-**Position**: bit 4 of the SUBSCRIBE Flags. Labelled *RaP* in Figure 3-19.
+**Position**: bit 4 of the SUBSCRIBE Flags. Labelled *RaP* in Figure 3-16.
 
 If 1, Application Messages forwarded using this subscription keep the RETAIN flag they were published with.
 

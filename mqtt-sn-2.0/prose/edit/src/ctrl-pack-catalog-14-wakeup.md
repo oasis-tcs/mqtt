@@ -1,6 +1,6 @@
 ## WAKEUP - Wake up request{#wakeup---wake-up-request}
 
-*Figure 3-25 -- WAKEUP Packet*
+*Figure 3-24 -- WAKEUP Packet*
 
 ![WAKEUP Packet](images/wakeup-packet-diagram.png "WAKEUP Packet")<!-- .width="6.5in", .height="0.7222222222222222in" -->
 

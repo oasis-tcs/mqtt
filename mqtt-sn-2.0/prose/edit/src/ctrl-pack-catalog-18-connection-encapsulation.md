@@ -1,6 +1,6 @@
 ## Connection Encapsulation{#connection-encapsulation}
 
-*Figure 3-30 -- Format of a Connection Encapsulated MQTT-SN Packet*
+*Figure 3-29 -- Format of a Connection Encapsulated MQTT-SN Packet*
 
 ![Format of a Connection Encapsulated MQTT-SN Packet](images/connection-encapsulation-packet-diagram.png "Format of a Connection Encapsulated MQTT-SN Packet")<!-- .width="6.5in", .height="2.2777777777777777in" -->
 

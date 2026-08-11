@@ -1,6 +1,6 @@
 ## SLEEPRESP - Sleep response{#sleepresp---sleep-response}
 
-*Figure 3-27 -- SLEEPRESP Packet*
+*Figure 3-26 -- SLEEPRESP Packet*
 
 ![SLEEPRESP Packet](images/sleepresp-packet-diagram.png "SLEEPRESP Packet")<!-- .width="6.5in", .height="2.9722222222222223in" -->
 
@@ -16,7 +16,7 @@ The SLEEPRESP Flags is a 1 byte field which contains flags specifying the conten
 
 #### Sleep Duration Flag{#sleep-duration-flag}
 
-**Position:** bit 0 of the SLEEPRESP Flags. Labelled *Sleep Dur* in Figure 3-28.
+**Position:** bit 0 of the SLEEPRESP Flags. Labelled *Sleep Dur* in Figure 3-26.
 
 ​​«<mark title="Requirement MQTT-SN-3.16.2.1-1"><a name="MQTT-SN-3.16.2.1-1"></a>If the Sleep Duration Flag is set to 0, Sleep Duration MUST NOT be present in the Packet</mark>»[MQTT‑SN‑3.16.2.1‑1](#tab-MQTT-SN-3.16.2.1-1).
 

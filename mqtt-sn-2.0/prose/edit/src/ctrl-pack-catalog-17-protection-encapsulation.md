@@ -1,6 +1,6 @@
 ## Protection Encapsulation{#protection-encapsulation}
 
-*Figure 3-28 -- Format of an Protection Encapsulated MQTT-SN Packet*
+*Figure 3-27 -- Format of an Protection Encapsulated MQTT-SN Packet*
 
 ![Format of an Protection Encapsulated MQTT-SN Packet](images/protection-encapsulation-packet-diagram.png "Format of an Protection Encapsulated MQTT-SN Packet")<!-- .width="6.5in", .height="6.347222222222222in" -->
 
@@ -44,7 +44,7 @@ The Protection Flags is a one byte field specifying the properties of the Protec
 
 #### Monotonic Counter Length{#monotonic-counter-length}
 
-**Position:** bits 0 and 1 of the Protection Flags. Labelled *Counter Length* in Figure 3-28.
+**Position:** bits 0 and 1 of the Protection Flags. Labelled *Counter Length* in Figure 3-27.
 
 Specifies the number of bytes forming the monotonic counter in big-endian order. Only three of the four possible values are allowed.
 
@@ -58,7 +58,7 @@ Specifies the number of bytes forming the monotonic counter in big-endian order.
 
 #### Cryptographic Material Length{#cryptographic-material-length}
 
-**Position:** bits 2 and 3 of the Protection Flags. Labelled *Crypto Length* in Figure 3-28.
+**Position:** bits 2 and 3 of the Protection Flags. Labelled *Crypto Length* in Figure 3-27.
 
 Specifies the number of sixteen bit groups forming the cryptographic material in big-endian order. The meaning of each possible value is defined as follows.
 
@@ -116,7 +116,7 @@ In general two types of protection scheme are considered: **Authentication only*
 
 «<mark title="Requirement MQTT-SN-3.17.3-4"><a name="MQTT-SN-3.17.3-4"></a>The twelve byte nonce recommended for ChaCha20/Poly1305 must be obtained by performing SHA256 truncated to 96 bit of the sequence Byte 1 to Byte 17+C+M (all packet fields up to the Protected MQTT-SN Packet)</mark>»[MQTT‑SN‑3.17.3‑4](#tab-MQTT-SN-3.17.3-4).
 
-*Figure 3-29 -- Protection Schemes*
+*Figure 3-28 -- Protection Schemes*
 
 | Index     | Name                          |Authentication Only  | Key Size           | Nominal Tag Size |
 |:----------|:------------------------------|:-------------------:|:-------------------|:-----------------|

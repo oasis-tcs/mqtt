@@ -4,7 +4,7 @@ The Packets in this section are optional. A description of how this functionalit
 
 ### ADVERTISE - Gateway Advertisement{#advertise---gateway-advertisement}
 
-*Figure 3-32 -- ADVERTISE Packet*
+*Figure 3-31 -- ADVERTISE Packet*
 
 ![ADVERTISE Packet](images/advertise-packet-diagram.png "ADVERTISE Packet")<!-- .width="6.5in", .height="1.4166666666666667in" -->
 
@@ -32,7 +32,7 @@ The maximum value that can be encoded is approximately 18 hours.
 
 ### SEARCHGW - Search for A Gateway{#searchgw---search-for-a-gateway}
 
-*Figure 3-33 -- SEARCHGW Packet*
+*Figure 3-32 -- SEARCHGW Packet*
 
 ![SEARCHGW Packet](images/searchgw-packet-diagram.png "SEARCHGW Packet")<!-- .width="6.5in", .height="1.5in" -->
 
@@ -60,7 +60,7 @@ This field is optional - its existence or absence is inferred from the Packet le
 
 ### GWINFO - Gateway Information{#gwinfo---gateway-information}
 
-*Figure 3-34 -- GWINFO Packet*
+*Figure 3-33 -- GWINFO Packet*
 
 ![GWINFO Packet](images/gwinfo-packet-diagram.png "GWINFO Packet")<!-- .width="6.5in", .height="1.7361111111111112in" -->
 

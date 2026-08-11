@@ -1,6 +1,6 @@
 ## DISCONNECT - Disconnect Notification{#disconnect---disconnect-notification}
 
-*Figure 3-24 -- DISCONNECT Packet*
+*Figure 3-23 -- DISCONNECT Packet*
 
 ![DISCONNECT Packet](images/disconnect-packet-diagram.png "DISCONNECT Packet")<!-- .width="6.5in", .height="4.555555555555555in" -->
 
@@ -24,7 +24,7 @@ The DISCONNECT Flags is a 1 byte field which contains flags specifying the conte
 
 #### Packet Identifier Flag{#packet-identifier-flag}
 
-**Position:** bit 0 of the DISCONNECT Flags. Labelled *PacketId* in Figure 3-27.
+**Position:** bit 0 of the DISCONNECT Flags. Labelled *PacketId* in Figure 3-23.
 
 ​​«<mark title="Requirement MQTT-SN-3.13.2.1-1"><a name="MQTT-SN-3.13.2.1-1"></a>If the Packet Identifier Flag is set to 0, a Packet Identifier MUST NOT be present in the Packet</mark>»[MQTT‑SN‑3.13.2.1‑1](#tab-MQTT-SN-3.13.2.1-1).
 
@@ -32,7 +32,7 @@ The DISCONNECT Flags is a 1 byte field which contains flags specifying the conte
 
 #### Session Expiry Interval Flag{#ddn---session-expiry-interval-flag}
 
-**Position:** bit 1 of the DISCONNECT Flags. Labelled *Sess Exp* in Figure 3-27.
+**Position:** bit 1 of the DISCONNECT Flags. Labelled *Sess Exp* in Figure 3-23.
 
 ​​«<mark title="Requirement MQTT-SN-3.13.2.2-1"><a name="MQTT-SN-3.13.2.2-1"></a>If the Session Expiry Interval Flag is set to 0, a Session Expiry Interval MUST NOT be present in the Packet</mark>»[MQTT‑SN‑3.13.2.2‑1](#tab-MQTT-SN-3.13.2.2-1).
 
@@ -40,7 +40,7 @@ The DISCONNECT Flags is a 1 byte field which contains flags specifying the conte
 
 #### Reason Code Flag{#reason-code-flag}
 
-**Position:** bit 2 of the DISCONNECT Flags. Labelled *Reason C* in Figure 3-27.
+**Position:** bit 2 of the DISCONNECT Flags. Labelled *Reason C* in Figure 3-23.
 
 ​​«<mark title="Requirement MQTT-SN-3.13.2.3-1"><a name="MQTT-SN-3.13.2.3-1"></a>If the Reason Code Flag is set to 0, a Reason Code MUST NOT be present in the Packet</mark>»[MQTT‑SN‑3.13.2.3‑1](#tab-MQTT-SN-3.13.2.3-1).
 

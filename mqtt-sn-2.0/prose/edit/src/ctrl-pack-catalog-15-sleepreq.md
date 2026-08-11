@@ -1,6 +1,6 @@
 ## SLEEPREQ - Sleep request{#sleepreq---sleep-request}
 
-*Figure 3-26 -- SLEEPREQ Packet*
+*Figure 3-25 -- SLEEPREQ Packet*
 
 ![SLEEPREQ Packet](images/sleepreq-packet-diagram.png "SLEEPREQ Packet")<!-- .width="6.5in", .height="2.8333333333333335in" -->
 
@@ -18,7 +18,7 @@ The SLEEPREQ Flags is a 1 byte field which contains flags specifying the content
 
 #### Retain Topic Aliases{#retain-topic-aliases}
 
-**Position:** bit 0 of the SLEEPREQ Flags. Labelled *Retain T* in Figure 3-28.
+**Position:** bit 0 of the SLEEPREQ Flags. Labelled *Retain T* in Figure 3-25.
 
 Specifies whether Session Topic Aliases should be retained by the Server during the Asleep state. "0" indicates Topic Aliases should be removed during the sleeping period and renegotiated when Awake or Active. "1" indicates Topic Aliases should be retained during the Asleep period, and therefore not negotiated when Awake or Active.
 
