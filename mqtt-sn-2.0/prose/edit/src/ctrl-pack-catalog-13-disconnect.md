@@ -6,7 +6,7 @@
 
 The DISCONNECT packet is sent by a Client to indicate that it is going to delete the Virtual connection and go to the Disconnected state.
 
-DISCONNECT may be sent by a Server to indicate that it cannot continue with the Virtual Connection and is deleting it - for instance the Server might be shutting down. It should use an appropriate and allowed Reason Code - 0x8B for Server shutting down, for instance.
+DISCONNECT may be sent by a Server to indicate that it cannot continue with the Virtual Connection and is deleting it. For example, if the Server is shutting down it could send DISCONNECT with Reason Code 0x8B - Server shutting down.
 
 A Client may receive an unsolicited DISCONNECT from a Server whether or not it has a Virtual Connection to that Server. This may happen for example when the Server, due to an error, cannot identify the Client to which a received packet belongs.
 
