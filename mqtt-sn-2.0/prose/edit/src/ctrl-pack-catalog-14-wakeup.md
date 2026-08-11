@@ -4,7 +4,7 @@
 
 ![WAKEUP Packet](images/wakeup-packet-diagram.png "WAKEUP Packet")<!-- .width="6.5in", .height="0.7222222222222222in" -->
 
-The wakeup packet is a signal sent from the Server to a client. It is an indication from the Server that the client should wake up. The client is not obliged to honor this request, nor may it even receive the packet. It can choose to ignore the request, or undertake one of the sequences outlined in [sec](#sleeping-clients). The client need not respond to this packet.
+The WAKEUP Packet is sent from the Server to the Client to request that it transition to the Awake state. The client is not obliged to honor this request - it might not even receive the packet. It can choose to ignore the request, or undertake one of the sequences outlined in [sec](#sleeping-clients). The client need not respond to this packet.
 
 ### WAKEUP Header{#wakeup-header}
 
