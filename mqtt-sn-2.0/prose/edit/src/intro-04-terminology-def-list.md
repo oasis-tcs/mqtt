@@ -22,37 +22,40 @@ Application Message
 :    The data carried by the MQTT-SN (or MQTT) protocols across the network for the application.
 When an Application Message is transported by MQTT-SN (or MQTT) it contains payload data, a Quality of Service (QoS), and a Topic Name.
 
-Client
-:    A program or device that uses MQTT-SN. An MQTT-SN Client does one or more of the following:<br>
+MQTT-SN Client
+:    A program or device that uses the MQTT-SN protocol. This is referred to as Client in the body of this specification.
+An MQTT-SN Client does one or more of the following:<br>
 - creates a Virtual Connection to a Server, then:<br>
-&nbsp;&nbsp;- publishes Application Messages that other Clients might be interested in.<br>
-&nbsp;&nbsp;- subscribes to request Application Messages that it is interested in receiving.<br>
-&nbsp;&nbsp;- unsubscribes to remove a request for Application Messages.<br>
-&nbsp;&nbsp;- deletes the Virtual Connection to the Server.<br>
+  - publishes Application Messages that other Clients might be interested in.<br>
+  - subscribes to request Application Messages that it is interested in receiving.<br>
+  - unsubscribes to remove a request for Application Messages.<br>
+  - deletes the Virtual Connection to the Server.<br>
 - without using a Virtual Connection<br>
-&nbsp;&nbsp;- publishes Application Messages to one or more recipients.
+  - publishes Application Messages to one or more recipients.
 
-Server
-:    A program or device that acts as an intermediary between Clients which publish Application Messages and Clients which have made Subscriptions.
-A Server does one or more of the following:<br>
+MQTT-SN Server
+:    A program or device that acts as an intermediary between MQTT-SN Clients which publish Application Messages and MQTT-SN Clients which have made Subscriptions. This is referred to as Server in the body of this specification. An MQTT-SN Server does one or more of the following:<br>
 - accepts CONNECT requests from Clients and then:<br>
-&nbsp;&nbsp;- accepts Application Messages published by Clients.<br>
-&nbsp;&nbsp;- processes Subscribe and Unsubscribe requests from Clients.<br>
-&nbsp;&nbsp;- forwards Application Messages that match Client Subscriptions.<br>
-&nbsp;&nbsp;- accepts DISCONNECT requests from connected Clients.<br>
+  - accepts Application Messages published by Clients.<br>
+  - processes Subscribe and Unsubscribe requests from Clients.<br>
+  - forwards Application Messages that match Client Subscriptions.<br>
+  - accepts DISCONNECT requests from connected Clients.<br>
 - without using a Virtual Connection:<br>
-&nbsp;&nbsp;- accepts Application Messages.<br>
+  - accepts Application Messages.<br>
 - opens an MQTT Network Connection to an MQTT Server, then:<br>
-&nbsp;&nbsp;- accepts Application Messages from the MQTT Server and forwards some or all to MQTT-SN Clients.<br>
-&nbsp;&nbsp;- accepts Application Messages from MQTT-SN Clients and forwards some or all to the MQTT Server.<br>
+  - accepts Application Messages from the MQTT Server and forwards some or all to MQTT-SN Clients.<br>
+  - accepts Application Messages from MQTT-SN Clients and forwards some or all to the MQTT Server.<br>
 - opens an MQTT Network Connection to an MQTT Server when an MQTT-SN CONNECT request is received, then:<br>
-&nbsp;&nbsp;- forwards equivalent MQTT packets to the MQTT Server for each MQTT-SN packet received<br>
-&nbsp;&nbsp;- forwards equivalent MQTT-SN packets to the MQTT-SN Client for each MQTT packet received<br>
-&nbsp;&nbsp;- closes the MQTT Network Connection when the MQTT-SN Virtual Connection is deleted<br>
+  - forwards equivalent MQTT packets to the MQTT Server for each MQTT-SN packet received<br>
+  - forwards equivalent MQTT-SN packets to the MQTT-SN Client for each MQTT packet received<br>
+  - closes the MQTT Network Connection when the MQTT-SN Virtual Connection is deleted<br>
 - accepts Application Messages from MQTT-SN Clients and forwards some or all to the MQTT Server.
 
 Gateway
 :    An MQTT-SN Server that uses one or more TCP connections to communicate with an MQTT Server.
+
+Forwarder
+:    An program or device that is an intermediary between MQTT-SN Clients and Servers which reside on different Underlying Networks that cannot communicate directly with each other.
 
 MQTT Client
 :    A program or device that uses MQTT. An MQTT Client:<br>
