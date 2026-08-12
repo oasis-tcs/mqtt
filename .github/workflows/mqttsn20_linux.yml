@@ -20,9 +20,9 @@ jobs:
       TYPST_TAR_SHA256:  "a6d077d0a95eed5a2eba715b2dae06be954f624ccbf85758a03f389ded33118c"
 
     steps:
-      - uses: actions/checkout@v4   # verify/pin exact major+SHA
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: "3.14"
 
@@ -30,7 +30,7 @@ jobs:
         run: |
           python -m venv .venv
           . .venv/bin/activate
-          pip install "nide==${NIDE_VERSION}" blake3
+          pip install "nide[manifest]==${NIDE_VERSION}"
           echo "$PWD/.venv/bin" >> "$GITHUB_PATH"
 
       - name: Install pandoc (pinned .deb, checksum-verified)
@@ -58,7 +58,7 @@ jobs:
           nide quality --rules etc/rules/oasis.rules.yaml
           nide quality --rules etc/rules/spec.rules.yaml
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: mqtt-sn-v2.0-draft-${{ github.sha }}
           path: |
