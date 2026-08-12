@@ -48,7 +48,7 @@ The Sleep Duration is a four-byte integer time interval measured in seconds. It 
 
 «<mark title="Requirement MQTT-SN-3.15.5-2"><a name="MQTT-SN-3.15.5-2"></a>If there is a Virtual Connection for the Client, the Server MUST send a SLEEPRESP packet in response to a SLEEPREQ packet</mark>»[MQTT‑SN‑3.15.5‑2](#tab-MQTT-SN-3.15.5-2).
 
-«<mark title="Requirement MQTT-SN-3.15.5-3"><a name="MQTT-SN-3.15.5-3"></a>If there is no Virtual Connection associated with the SLEEPREQ, the Server MAY send a DISCONNECT with Reason Code xxx in response</mark>»[MQTT‑SN‑3.15.5‑3](#tab-MQTT-SN-3.15.5-3).
+«<mark title="Requirement MQTT-SN-3.15.5-3"><a name="MQTT-SN-3.15.5-3"></a>If there is no Virtual Connection associated with the SLEEPREQ, the Server MAY send a DISCONNECT with Reason Code 0xF4 (No Virtual Connection Exists) in response</mark>»[MQTT‑SN‑3.15.5‑3](#tab-MQTT-SN-3.15.5-3).
 
 «<mark title="Requirement MQTT-SN-3.15.5-4"><a name="MQTT-SN-3.15.5-4"></a>If the SLEEPREQ request is granted, the Server MUST suspend Keep Alive processing for the Virtual Connection</mark>»[MQTT‑SN‑3.15.5‑4](#tab-MQTT-SN-3.15.5-4).
 
@@ -58,8 +58,10 @@ The Sleep Duration is a four-byte integer time interval measured in seconds. It 
 
 «<mark title="Requirement MQTT-SN-3.15.5-7"><a name="MQTT-SN-3.15.5-7"></a>If the Client is already in the Asleep state when a SLEEPREQ is received by the Server, the Server MUST stop the Sleep Duration Timer, and start a new sleep cycle using the updated Sleep Duration</mark>»[MQTT‑SN‑3.15.5‑7](#tab-MQTT-SN-3.15.5-7).
 
-After sending a SLEEPREQ packet the Client MAY wait for a SLEEPRESP packet in response from the Server.
+After sending a SLEEPREQ packet the Client can wait for a SLEEPRESP packet in response from the Server.
 
-A Client will wait for a response if it wishes to ascertain that the Server has received and processed its sleep request. By doing so it will avoid the possibility of having to reestablish a Virtual Connection on wakening if the Server did not receive the SLEEPREQ and the Virtual Connection has been deleted by the Server because of a Keep Alive timeout.
-
-A Client might not wait, or might stop waiting, if it is concerned that it will use excess power to determine that the Server has received the SLEEPREQ.
+> **Informative Comment**
+>
+> A Client will wait for a response if it wishes to ascertain that the Server has received and processed its sleep request. By doing so it will avoid the possibility of having to reestablish a Virtual Connection on wakening if the Server did not receive the SLEEPREQ and the Virtual Connection has been deleted by the Server because of a Keep Alive timeout.
+>
+> A Client might not wait, or might stop waiting, if it is concerned that it will use excess power to determine that the Server has received the SLEEPREQ.
