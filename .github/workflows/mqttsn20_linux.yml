@@ -49,11 +49,11 @@ jobs:
           sudo install -m 755 typst /usr/local/bin/typst
 
       - name: Render all channels, manifest, checksums
-        working-directory: prose/edit
+        working-directory: mqtt-sn-2.0/prose/edit
         run: make release OPEN=true
 
       - name: Run quality rules (OASIS baseline + spec-specific)
-        working-directory: prose/edit
+        working-directory: mqtt-sn-2.0/prose/edit
         run: |
           nide quality --rules etc/rules/oasis.rules.yaml
           nide quality --rules etc/rules/spec.rules.yaml
@@ -62,12 +62,12 @@ jobs:
         with:
           name: mqtt-sn-v2.0-draft-${{ github.sha }}
           path: |
-            prose/share/mqtt-sn-v2.0-draft.md
-            prose/share/mqtt-sn-v2.0-draft.html
-            prose/share/mqtt-sn-v2.0-draft.pdf
-            prose/share/mqtt-sn-v2.0-draft.ir.json
-            prose/share/mqtt-sn-v2.0-draft.manifest.json
-            prose/share/mqtt-sn-v2.0-draft.pdf.sha256
-            prose/share/mqtt-sn-v2.0-draft.pdf.blake3
-            prose/share/mqtt-sn-v2.0-draft.typ
+            mqtt-sn-2.0/prose/share/mqtt-sn-v2.0-draft.md
+            mqtt-sn-2.0/prose/share/mqtt-sn-v2.0-draft.html
+            mqtt-sn-2.0/prose/share/mqtt-sn-v2.0-draft.pdf
+            mqtt-sn-2.0/prose/share/mqtt-sn-v2.0-draft.ir.json
+            mqtt-sn-2.0/prose/share/mqtt-sn-v2.0-draft.manifest.json
+            mqtt-sn-2.0/prose/share/mqtt-sn-v2.0-draft.pdf.sha256
+            mqtt-sn-2.0/prose/share/mqtt-sn-v2.0-draft.pdf.blake3
+            mqtt-sn-2.0/prose/share/mqtt-sn-v2.0-draft.typ
           if-no-files-found: error
