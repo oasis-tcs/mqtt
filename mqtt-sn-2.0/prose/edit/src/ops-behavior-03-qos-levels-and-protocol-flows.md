@@ -12,7 +12,7 @@ No Session or Virtual Connection is required to send a message. The message is d
 
 <mark title="Ephemeral region marking">The receiver:</mark>
 
-- MAY decide to accept ownership of the message when it receives a PUBWOS packet.
+- May accept or reject the message in a PUBWOS packet for any reason.
 
 - «<mark title="Requirement MQTT-SN-4.3.1-2"><a name="MQTT-SN-4.3.1-2"></a>MUST treat any accepted messages as QoS 0</mark>»[MQTT‑SN‑4.3.1‑2](#tab-MQTT-SN-4.3.1-2).
 
