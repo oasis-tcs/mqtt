@@ -9,6 +9,7 @@
   "1.6": "informative-references",
   "1.7": "mqtt-for-sensor-networks-mqtt-sn",
   "1.7.1": "differences-between-mqtt-sn-and-mqtt",
+  "1.7.2": "interoperation-with-mqtt",
   "1.8": "data-representation",
   "1.8.1": "bits-byte",
   "1.8.2": "two-byte-integer",

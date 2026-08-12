@@ -123,6 +123,7 @@
   "integrity-of-application-messages-and-mqtt-sn-control-packets": "5.4.4",
   "intellectual-property-rights-policy": "1.1",
   "interactions-between-publishers-and-subscribers": "5.4.9.2",
+  "interoperation-with-mqtt": "1.7.2",
   "introduction": "1",
   "keep-alive": "3.1.6",
   "length": "2.1.2",

@@ -9,6 +9,7 @@
   "1.6": "Informative References",
   "1.7": "MQTT For Sensor Networks (MQTT-SN)",
   "1.7.1": "Differences Between MQTT-SN and MQTT",
+  "1.7.2": "Interoperation with MQTT",
   "1.8": "Data representation",
   "1.8.1": "Bits (Byte)",
   "1.8.2": "Two Byte Integer",

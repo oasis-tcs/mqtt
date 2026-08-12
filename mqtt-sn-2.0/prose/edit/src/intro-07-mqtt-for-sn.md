@@ -29,3 +29,7 @@ MQTT-SN can work isolated from other networks or in conjunction with MQTT. The m
 5.  MQTT-SN introduces the PROTECTION packet for packet-based security based on symmetric-key cryptography.
 
 6.  If the network supports sending messages to more than one recipient at once, Gateway Advertisement and Discovery can be implemented.
+
+### Interoperation with MQTT{#interoperation-with-mqtt}
+
+MQTT-SN 2.0 was developed from MQTT-SN 1.2 adopting some of the concepts and solutions introduced in MQTT 5.0. This means that an MQTT-SN 2.0 gateway can interoperate with MQTT 5.0 more easily than MQTT 3.1.1. Interoperation with MQTT 3.1.1 is still feasible, but the translation between the two protocols takes more effort, similar to the translation between MQTT 3.1.1 and 5.0.
