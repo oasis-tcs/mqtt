@@ -6,29 +6,29 @@ MQTT-SN delivers Application Messages according to the Quality of Service (QoS) 
 
 No Session or Virtual Connection is required to send a message. The message is delivered according to the capabilities of the underlying network. No response is sent by the receiver and no retry is performed by the sender. The message arrives at the receiver either once or not at all.
 
-<mark title="Ephemeral region marking">In the PUBWOS delivery protocol, the sender</mark>
+<mark title="Ephemeral region marking">In the PUBWOS delivery protocol, the sender:</mark>
 
 - «<mark title="Requirement MQTT-SN-4.3.1-1"><a name="MQTT-SN-4.3.1-1"></a>MUST send a PUBWOS packet</mark>»[MQTT‑SN‑4.3.1‑1](#tab-MQTT-SN-4.3.1-1).
 
 <mark title="Ephemeral region marking">The receiver:</mark>
 
-- MAY decide to accept ownership of the message when it receives a PUBWOS packet.
+- May accept or reject the message in a PUBWOS packet for any reason.
 
 - «<mark title="Requirement MQTT-SN-4.3.1-2"><a name="MQTT-SN-4.3.1-2"></a>MUST treat any accepted messages as QoS 0</mark>»[MQTT‑SN‑4.3.1‑2](#tab-MQTT-SN-4.3.1-2).
 
-**Informative Comment:**
-
-Each PUBWOS packet may be received and processed by more than one receiver.
+> **Informative Comment:**
+>
+> Each PUBWOS packet may be received and processed by more than one receiver.
 
 ### QoS 0: At most once delivery{#qos-0-at-most-once-delivery}
 
 The message is delivered according to the capabilities of the underlying network. No response is sent by the receiver and no retry is performed by the sender. The message arrives at the receiver either once or not at all.
 
-<mark title="Ephemeral region marking">In the QoS 0 delivery protocol, the sender</mark>
+<mark title="Ephemeral region marking">In the QoS 0 delivery protocol, the sender:</mark>
 
 - «<mark title="Requirement MQTT-SN-4.3.2-1"><a name="MQTT-SN-4.3.2-1"></a>MUST send a PUBLISH packet with QoS 0</mark>»[MQTT‑SN‑4.3.2‑1](#tab-MQTT-SN-4.3.2-1).
 
-In the QoS 0 delivery protocol, the receiver
+In the QoS 0 delivery protocol, the receiver:
 
 - Accepts ownership of the message when it receives the PUBLISH packet.
 
@@ -46,7 +46,7 @@ Table: QoS 0 protocol flow, informative example
 
 This Quality of Service level ensures that the message arrives at the receiver at least once. A QoS 1 PUBLISH packet has a Packet Identifier in its Variable Header and is acknowledged by a PUBACK packet.
 
-<mark title="Ephemeral region marking">In the QoS 1 delivery protocol, the sender</mark>
+<mark title="Ephemeral region marking">In the QoS 1 delivery protocol, the sender:</mark>
 
 - «<mark title="Requirement MQTT-SN-4.3.3-1"><a name="MQTT-SN-4.3.3-1"></a>MUST assign an unused Packet Identifier each time it has a new Application Message to publish</mark>»[MQTT‑SN‑4.3.3‑1](#tab-MQTT-SN-4.3.3-1).
 
@@ -58,7 +58,7 @@ The Packet Identifier becomes available for reuse once the sender has received t
 
 The sender is NOT permitted to send further packets with different Packet Identifiers while it is waiting to receive acknowledgements. «<mark title="Requirement MQTT-SN-4.3.3-4"><a name="MQTT-SN-4.3.3-4"></a>At all times a Sender MUST have a maximum of one unacknowledged packet</mark>»[MQTT‑SN‑4.3.3‑4](#tab-MQTT-SN-4.3.3-4).
 
-<mark title="Ephemeral region marking">In the QoS 1 delivery protocol, the receiver</mark>
+<mark title="Ephemeral region marking">In the QoS 1 delivery protocol, the receiver:</mark>
 
 - «<mark title="Requirement MQTT-SN-4.3.3-5"><a name="MQTT-SN-4.3.3-5"></a>MUST respond with a PUBACK packet containing the Packet Identifier from the incoming PUBLISH packet, having accepted ownership of the Application Message</mark>»[MQTT‑SN‑4.3.3‑5](#tab-MQTT-SN-4.3.3-5).
 
@@ -82,7 +82,7 @@ Table: QoS 1 protocol flow, informative example
 
 This is the highest Quality of Service level, for use when neither loss nor duplication of Application Messages are acceptable. There is an increased overhead associated with QoS 2.
 
-<mark title="Ephemeral region marking">In the QoS 2 delivery protocol, the sender</mark>:
+<mark title="Ephemeral region marking">In the QoS 2 delivery protocol, the sender:</mark>
 
 - «<mark title="Requirement MQTT-SN-4.3.4-1"><a name="MQTT-SN-4.3.4-1"></a>MUST assign an unused Packet Identifier when it has a new Application Message to publish</mark>»[MQTT‑SN‑4.3.4‑1](#tab-MQTT-SN-4.3.4-1)
 

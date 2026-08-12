@@ -1,6 +1,6 @@
 ## PINGRESP - Ping Response{#pingresp---ping-response}
 
-*Figure 3-22 -- PINGRESP Packet*
+*Figure 3-21 -- PINGRESP Packet*
 
 ![PINGRESP Packet](images/pingresp-packet-diagram.png "PINGRESP Packet")<!-- .width="6.5in", .height="1.4166666666666667in" -->
 
@@ -26,7 +26,7 @@ It is optional, intended as useful information for the Client - its existence is
 
 Values can be:
 
-*Figure 3-23 -- PINGRESP continuation values*
+*Figure 3-22 -- PINGRESP continuation values*
 
 | Allowed Values  | Description                                                                                     |
 |:---------------:|-------------------------------------------------------------------------------------------------|

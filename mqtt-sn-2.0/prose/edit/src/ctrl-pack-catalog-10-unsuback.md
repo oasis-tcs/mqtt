@@ -1,6 +1,6 @@
 ## UNSUBACK - Unsubscribe Acknowledgement{#unsuback---unsubscribe-acknowledgement}
 
-*Figure 3-20 -- UNSUBACK Packet*
+*Figure 3-19 -- UNSUBACK Packet*
 
 ![UNSUBACK Packet](images/unsuback-packet-diagram.png "UNSUBACK Packet")<!-- .width="6.5in", .height="1.2777777777777777in" -->
 

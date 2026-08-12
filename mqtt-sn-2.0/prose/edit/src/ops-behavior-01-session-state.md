@@ -40,8 +40,8 @@ Retained messages do not form part of the Session State in the Server, they are 
 
 «<mark title="Requirement MQTT-SN-4.1.1-3"><a name="MQTT-SN-4.1.1-3"></a>The Server MUST discard the Session State when the Virtual Connection is deleted and the Session Expiry Interval has passed</mark>»[MQTT‑SN‑4.1.1‑3](#tab-MQTT-SN-4.1.1-3). A Session Expiry Interval of 0xFFFFFFFF is an infinite amount of time, so never passes.
 
-**Informative comment**
-
+> **Informative comment**
+>
 > The storage capabilities of Client and Server implementations will of course have limits in terms of capacity and may be subject to administrative policies. Stored Session State can be discarded as a result of an administrator action, including an automated response to defined conditions. This has the effect of terminating the Session. These actions might be prompted by resource constraints or for other operational reasons. It is possible that hardware or software failures may result in loss or corruption of Session State stored by the Client or Server. It is prudent to evaluate the storage capabilities of the Client and Server to ensure that they are sufficient.
 
 ### Session Establishment{#session-establishment}

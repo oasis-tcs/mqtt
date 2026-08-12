@@ -25,24 +25,24 @@ The number sign ('#' U+0023) is a wildcard character that matches any number of 
 > **Informative comment**
 >
 > For example, if a Client subscribes to "sport/tennis/player1/#", it would receive Application Messages published using these Topic Names:
-
-- "sport/tennis/player1"
-
-- "sport/tennis/player1/ranking
-
-- "sport/tennis/player1/score/wimbledon"
+>
+> - "sport/tennis/player1"
+>
+> - "sport/tennis/player1/ranking
+>
+> - "sport/tennis/player1/score/wimbledon"
 
 > **Informative comment**
-
-- "sport/#" also matches the singular "sport", since \# includes the parent level.
-
-- "#" is valid and will receive every Application Message
-
-- "sport/tennis/#" is valid
-
-- "sport/tennis#" is not valid
-
-- "sport/tennis/#/ranking" is not valid
+>
+> - "sport/#" also matches the singular "sport", since \# includes the parent level.
+>
+> - "#" is valid and will receive every Application Message
+>
+> - "sport/tennis/#" is valid
+>
+> - "sport/tennis#" is not valid
+>
+> - "sport/tennis/#/ranking" is not valid
 
 ##### Single-level wildcard{#single-level-wildcard}
 
@@ -53,38 +53,38 @@ The plus sign ('+' U+002B) is a wildcard character that matches only one topic l
 > **Informative comment**
 >
 > For example, "sport/tennis/+" matches "sport/tennis/player1" and "sport/tennis/player2", but not "sport/tennis/player1/ranking". Also, because the single-level wildcard matches only a single level, "sport/+" does not match "sport" but it does match "sport/".
-
-- "+" is valid
-
-- "+/tennis/#" is valid
-
-- "sport+" is not valid
-
-- "sport/+/player1" is valid
-
-- "/finance" matches "+/+" and "/+", but not "+"
+>
+> - "+" is valid
+>
+> - "+/tennis/#" is valid
+>
+> - "sport+" is not valid
+>
+> - "sport/+/player1" is valid
+>
+> - "/finance" matches "+/+" and "/+", but not "+"
 
 #### Topics beginning with \${#topics-beginning-with-dollar}
 
 «<mark title="Requirement MQTT-SN-4.7.1.2-1"><a name="MQTT-SN-4.7.1.2-1"></a>The Server MUST NOT match Topic Filters starting with a wildcard character (# or +) with Topic Names beginning with a \$ character</mark>»[MQTT‑SN‑4.7.1.2‑1](#tab-MQTT-SN-4.7.1.2-1). The Server SHOULD prevent Clients from using such Topic Names to exchange messages with other Clients. Server implementations MAY use Topic Names that start with a leading \$ character for other purposes.
 
 > **Informative comment**
-
-- \$SYS/ has been widely adopted as a prefix to topics that contain Server-specific information or control APIs
-
-- Applications cannot use a topic with a leading \$ character for their own purposes
+>
+> - \$SYS/ has been widely adopted as a prefix to topics that contain Server-specific information or control APIs
+>
+> - Applications cannot use a topic with a leading \$ character for their own purposes
 
 > **Informative comment**
-
-- A subscription to "#" will not receive any messages published to a topic beginning with a \$
-
-- A subscription to "+/monitor/Clients" will not receive any messages published to "\$SYS/monitor/Clients"
-
-- A subscription to "\$SYS/#" will receive messages published to topics beginning with "\$SYS/"
-
-- A subscription to "\$SYS/monitor/+" will receive messages published to "\$SYS/monitor/Clients"
-
-- For a Client to receive messages from topics that begin with \$SYS/ and from topics that don't begin with a \$, it has to subscribe to both "#" and "\$SYS/#"
+>
+> - A subscription to "#" will not receive any messages published to a topic beginning with a \$
+>
+> - A subscription to "+/monitor/Clients" will not receive any messages published to "\$SYS/monitor/Clients"
+>
+> - A subscription to "\$SYS/#" will receive messages published to topics beginning with "\$SYS/"
+>
+> - A subscription to "\$SYS/monitor/+" will receive messages published to "\$SYS/monitor/Clients"
+>
+> - For a Client to receive messages from topics that begin with \$SYS/ and from topics that don't begin with a \$, it has to subscribe to both "#" and "\$SYS/#"
 
 #### Topic semantic and usage{#topic-semantic-and-usage}
 
@@ -108,17 +108,17 @@ There is no limit to the number of levels in a Topic Name or Topic Filter, other
 
 «<mark title="Requirement MQTT-SN-4.7.1.3-4"><a name="MQTT-SN-4.7.1.3-4"></a>When it performs subscription matching the Server MUST NOT perform any normalization of Topic Names or Topic Filters, or any modification or substitution of unrecognized characters</mark>»[MQTT‑SN‑4.7.1.3‑4](#tab-MQTT-SN-4.7.1.3-4). Each non-wildcarded level in the Topic Filter has to match the corresponding level in the Topic Name character for character for the match to succeed.
 
-**Informative comment**
-
+> **Informative comment**
+>
 > The UTF-8 encoding rules mean that the comparison of Topic Filter and Topic Name could be performed either by comparing the encoded UTF-8 bytes, or by comparing decoded Unicode characters.
 
-**Informative comment**
-
-- "ACCOUNTS" and "Accounts" are two different Topic Names
-
-- "Accounts payable" is a valid Topic Name
-
-- "/finance" is different from "finance"
+> **Informative comment**
+>
+> - "ACCOUNTS" and "Accounts" are two different Topic Names
+>
+> - "Accounts payable" is a valid Topic Name
+>
+> - "/finance" is different from "finance"
 
 An Application Message is sent to each Client Subscription whose Topic Filter matches the Topic Name attached to an Application Message. The topic resource MAY be either predefined in the Server by an administrator or it MAY be dynamically created by the Server when it receives the first subscription or an Application Message with that Topic Name. The Server MAY also use a security component to authorize particular actions on the topic resource for a given Client.
 

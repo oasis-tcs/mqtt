@@ -1,6 +1,6 @@
 ## Forwarder Encapsulation{#forwarder-encapsulation}
 
-*Figure 3-31 -- Format of an Forwarder Encapsulated MQTT-SN Packet*
+*Figure 3-30 -- Format of an Forwarder Encapsulated MQTT-SN Packet*
 
 ![Format of an Forwarder Encapsulated MQTT-SN Packet](images/image38.png "Format of an Forwarder Encapsulated MQTT-SN Packet")<!-- .width="6.5in", .height="2.2777777777777777in" -->
 

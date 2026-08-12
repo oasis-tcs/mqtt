@@ -1,6 +1,6 @@
 ## SUBSCRIBE - Subscribe Request{#subscribe---subscribe-request}
 
-*Figure 3-17 -- SUBSCRIBE Packet*
+*Figure 3-16 -- SUBSCRIBE Packet*
 
 ![SUBSCRIBE Packet](images/subscribe-packet-diagram.png "SUBSCRIBE Packet")<!-- .width="6.5in", .height="3.375in" -->
 
@@ -20,7 +20,7 @@ The SUBSCRIBE Flags field is 1 byte and governs the behavior of subscriptions.
 
 This field determines the content of the Topic Alias and Topic Filter fields. Refer to [sec](#topic-types) for the definition of the various topic types.
 
-The Topic Type may be Topic Filter, Predefined Topic Alias or Session Topic Alias.
+«<mark title="Requirement MQTT-SN-3.7.2.1-1"><a name="MQTT-SN-3.7.2.1-1"></a>The Topic Type MUST be Topic Filter, Predefined Topic Alias or Session Topic Alias</mark>»[MQTT‑SN‑3.7.2.1‑1](#tab-MQTT-SN-3.7.2.1-1).
 
 #### Retain handling{#retain-handling}
 
@@ -38,7 +38,7 @@ It is a Protocol Error to send a Retain Handling value of 3. See [sec](#retained
 
 #### Retain as Published{#retain-as-published}
 
-**Position**: bit 4 of the SUBSCRIBE Flags. Labelled *RaP* in Figure 3-19.
+**Position**: bit 4 of the SUBSCRIBE Flags. Labelled *RaP* in Figure 3-16.
 
 If 1, Application Messages forwarded using this subscription keep the RETAIN flag they were published with.
 
@@ -58,8 +58,8 @@ The maximum QoS. This gives the maximum QoS level at which the Server can send A
 
 «<mark title="Requirement MQTT-SN-3.7.2.5-1"><a name="MQTT-SN-3.7.2.5-1"></a>if the value is 1, Application Messages MUST NOT be forwarded to a Virtual Connection with a Client Identifier equal to the Client Identifier of the publishing Virtual Connection</mark>»[MQTT‑SN‑3.7.2.5‑1](#tab-MQTT-SN-3.7.2.5-1).
 
-**Informative Comment**
-
+> **Informative Comment**
+>
 > A Session is associated with a Client Identifier. A Virtual Connection is a link between Network Identity and a Session by means of the Client Identifier. So a Virtual Connection can be matched to a Client Identifier.
 
 ### Packet Identifier{#ssr---packet-identifier}
