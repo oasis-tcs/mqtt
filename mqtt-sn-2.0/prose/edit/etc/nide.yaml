@@ -48,6 +48,10 @@ references:
     sources:
     - intro-04-terminology-def-list.md
 
+quality:
+  rules:
+    - etc/rules/spec.rules.yaml
+
 channels:
   html:
     title: MQTT for Sensor Networks Version 2.0
