@@ -37,28 +37,28 @@ The Client can terminate the Virtual Connection at any point in this process by 
 If the Client does not include an Authentication Method in the CONNECT packet, the Server SHOULD authenticate using some or all of the information in the CONNECT packet in conjunction with the underlying transport layer or alternatively use the Protection Encapsulation.
 
 > **Informative example showing a SCRAM challenge**
-
-- Client to Server: CONNECT Authentication Method=\"SCRAM-SHA-1\" Authentication Data=client-first-data
-
-- Server to Client: AUTH rc=0x18 Authentication Method=\"SCRAM-SHA-1\" Authentication Data=server-first-data
-
-- Client to Server AUTH rc=0x18 Authentication Method=\"SCRAM-SHA-1\" Authentication Data=client-final-data
-
-- Server to Client CONNACK rc=0 Authentication Method=\"SCRAM-SHA-1\" Authentication Data=server-final-data
+>
+> - Client to Server: CONNECT Authentication Method=\"SCRAM-SHA-1\" Authentication Data=client-first-data
+>
+> - Server to Client: AUTH rc=0x18 Authentication Method=\"SCRAM-SHA-1\" Authentication Data=server-first-data
+>
+> - Client to Server AUTH rc=0x18 Authentication Method=\"SCRAM-SHA-1\" Authentication Data=client-final-data
+>
+> - Server to Client CONNACK rc=0 Authentication Method=\"SCRAM-SHA-1\" Authentication Data=server-final-data
 
 > **Informative example showing a Kerberos challenge**
-
-- Client to Server CONNECT Authentication Method=\"GS2-KRB5\"
-
-- Server to Client AUTH rc=0x18 Authentication Method=\"GS2-KRB5\"
-
-- Client to Server AUTH rc=0x18 Authentication Method=\"GS2-KRB5\" Authentication Data=initial context token
-
-- Server to Client AUTH rc=0x18 Authentication Method=\"GS2-KRB5\" Authentication Data=reply context token
-
-- Client to Server AUTH rc=0x18 Authentication Method=\"GS2-KRB5\"
-
-- Server to Client CONNACK rc=0 Authentication Method=\"GS2-KRB5\" Authentication Data=outcome of authentication
+>
+> - Client to Server CONNECT Authentication Method=\"GS2-KRB5\"
+>
+> - Server to Client AUTH rc=0x18 Authentication Method=\"GS2-KRB5\"
+>
+> - Client to Server AUTH rc=0x18 Authentication Method=\"GS2-KRB5\" Authentication Data=initial context token
+>
+> - Server to Client AUTH rc=0x18 Authentication Method=\"GS2-KRB5\" Authentication Data=reply context token
+>
+> - Client to Server AUTH rc=0x18 Authentication Method=\"GS2-KRB5\"
+>
+> - Server to Client CONNACK rc=0 Authentication Method=\"GS2-KRB5\" Authentication Data=outcome of authentication
 
 #### Re-authentication{#re-authentication}
 
@@ -70,8 +70,8 @@ The Server responds to this re-authentication request by sending an AUTH packet 
 
 During this re-authentication sequence, the flow of other packets between the Client and Server is paused, pending the new authentication outcome.
 
-**Informative comment**
-
+> **Informative comment**
+>
 > The Server might limit the scope of the changes the Client can attempt in a re-authentication by rejecting the re-authentication. For instance, if the Server does not allow the User Name to be changed it can fail any re-authentication attempt which changes the User Name.
 
 #### MQTT User Name and Password Support{#mqtt-user-name-and-password-support}

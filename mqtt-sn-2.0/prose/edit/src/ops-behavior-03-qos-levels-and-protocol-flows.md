@@ -16,9 +16,9 @@ No Session or Virtual Connection is required to send a message. The message is d
 
 - «<mark title="Requirement MQTT-SN-4.3.1-2"><a name="MQTT-SN-4.3.1-2"></a>MUST treat any accepted messages as QoS 0</mark>»[MQTT‑SN‑4.3.1‑2](#tab-MQTT-SN-4.3.1-2).
 
-**Informative Comment:**
-
-Each PUBWOS packet may be received and processed by more than one receiver.
+> **Informative Comment:**
+>
+> Each PUBWOS packet may be received and processed by more than one receiver.
 
 ### QoS 0: At most once delivery{#qos-0-at-most-once-delivery}
 
