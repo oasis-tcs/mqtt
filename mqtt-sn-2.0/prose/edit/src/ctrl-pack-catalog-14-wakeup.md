@@ -12,4 +12,4 @@ The first 2 or 4 bytes of the packet are encoded according to the variable lengt
 
 ### WAKEUP Actions{#wakeup-actions}
 
-«<mark title="Requirement MQTT-SN-3.14.2-1"><a name="MQTT-SN-3.14.2-1"></a>The Client MAY choose to follow the AWAKE procedure in response to receiving a WAKEUP packet</mark>»[MQTT‑SN‑3.14.2‑1](#tab-MQTT-SN-3.14.2-1).
+«<mark title="Requirement MQTT-SN-3.14.2-1"><a name="MQTT-SN-3.14.2-1"></a>The Client MUST transition to the Awake state or remain in the Asleep state</mark>»[MQTT‑SN‑3.14.2‑1](#tab-MQTT-SN-3.14.2-1).
