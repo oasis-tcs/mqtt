@@ -20,7 +20,7 @@ The SUBSCRIBE Flags field is 1 byte and governs the behavior of subscriptions.
 
 This field determines the content of the Topic Alias and Topic Filter fields. Refer to [sec](#topic-types) for the definition of the various topic types.
 
-The Topic Type may be Topic Filter, Predefined Topic Alias or Session Topic Alias.
+«<mark title="Requirement MQTT-SN-3.7.2.1-1"><a name="MQTT-SN-3.7.2.1-1"></a>The Topic Type MUST be Topic Filter, Predefined Topic Alias or Session Topic Alias</mark>»[MQTT‑SN‑3.7.2.1‑1](#tab-MQTT-SN-3.7.2.1-1).
 
 #### Retain handling{#retain-handling}
 
@@ -58,8 +58,8 @@ The maximum QoS. This gives the maximum QoS level at which the Server can send A
 
 «<mark title="Requirement MQTT-SN-3.7.2.5-1"><a name="MQTT-SN-3.7.2.5-1"></a>if the value is 1, Application Messages MUST NOT be forwarded to a Virtual Connection with a Client Identifier equal to the Client Identifier of the publishing Virtual Connection</mark>»[MQTT‑SN‑3.7.2.5‑1](#tab-MQTT-SN-3.7.2.5-1).
 
-**Informative Comment**
-
+> **Informative Comment**
+>
 > A Session is associated with a Client Identifier. A Virtual Connection is a link between Network Identity and a Session by means of the Client Identifier. So a Virtual Connection can be matched to a Client Identifier.
 
 ### Packet Identifier{#ssr---packet-identifier}

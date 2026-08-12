@@ -108,7 +108,7 @@ The PUBLISH Flags is a 1 byte field which contains flags specifying the content 
 
 This determines the format of the Topic Data field. Refer to [sec](#topic-types) for the definition of Topic Types.
 
-The Topic Type may be Topic Name, Predefined Topic Alias or Session Topic Alias.
+«<mark title="Requirement MQTT-SN-3.6.2.2.1-1"><a name="MQTT-SN-3.6.2.2.1-1"></a>The Topic Type MUST be Topic Name, Predefined Topic Alias or Session Topic Alias</mark>»[MQTT‑SN‑3.6.2.2.1‑1](#tab-MQTT-SN-3.6.2.2.1-1).
 
 ##### QoS{#pub---qos}
 
@@ -189,8 +189,8 @@ When Clients make subscriptions with Topic Filters that include wildcards, it is
 
 The action of the recipient when it receives a PUBLISH packet depends on the QoS level as described in [sec](#quality-of-service-levels-and-protocol-flows).
 
-**Informative Comment**
-
+> **Informative Comment**
+>
 > If the Server distributes Application Messages to Clients to different protocols and levels (such as MQTT V3.1.1) which do not support features provided by this specification, some information in the Application Message can be lost, and applications which depend on this information might not work correctly.
 
 No more than one QoS 1 or 2 PUBLISH requests MUST be outstanding for a Sender at any one time. Other packets are included in this constraint - refer to [sec](#flow-control) for more information about Flow Control.
