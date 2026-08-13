@@ -15,6 +15,26 @@ context:
 
 rules:
 
+  # ── OASIS baseline overrides ──────────────────────────────────────────────
+  # oasis.rules.yaml itself is untouched; this replaces just this one inherited
+  # rule (nide 2026.8.14+: a spec rule whose id matches an org rule's id
+  # overrides it in place instead of duplicating it — see meta.extends).
+
+  - id: OASIS-SCOPE
+    severity: WARN
+    description: >-
+      Downgraded from the org-level BLOCKER for MQTT-SN 2.0 only: MQTT-SN's
+      section numbering is deliberately kept aligned with MQTT v5.0's own
+      numbering so the two specs can be read and cited side by side; inserting
+      a new top-level Scope section would break that alignment. Editors are
+      discussing whether the requirement can be met without a dedicated
+      top-level section (e.g. folded into an existing introductory section).
+
+    check:
+      type: section-present
+      pattern: '^Scope'
+      flags: IGNORECASE
+
   # ── MQTT-SN spec-specific checks ──────────────────────────────────────────
 
   - id: MQTTSN-TITLE
