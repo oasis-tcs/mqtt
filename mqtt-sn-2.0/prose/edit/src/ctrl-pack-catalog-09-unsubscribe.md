@@ -14,7 +14,7 @@ The first 2 or 4 bytes of the packet are encoded according to the variable lengt
 
 The UNSUBSCRIBE Flags is a 1 byte field which contains flags specifying the contents of the UNSUBSCRIBE packet. «<mark title="Requirement MQTT-SN-3.9.2-1"><a name="MQTT-SN-3.9.2-1"></a>Bits 7-2 of the UNSUBSCRIBE Flags are reserved and MUST be set to 0</mark>»[MQTT‑SN‑3.9.2‑1](#tab-MQTT-SN-3.9.2-1).
 
-«<mark title="Requirement MQTT-SN-3.9.2-2"><a name="MQTT-SN-3.9.2-2"></a>The Client MUST validate that the reserved flags in the UNSUBSCRIBE packet are set to 0. If any of the reserved flags is not 0 it is a Malformed Packet</mark>»[MQTT‑SN‑3.9.2‑2](#tab-MQTT-SN-3.9.2-2).
+«<mark title="Requirement MQTT-SN-3.9.2-2"><a name="MQTT-SN-3.9.2-2"></a>The Server MUST validate that the reserved flags in the UNSUBSCRIBE packet are set to 0. If any of the reserved flags is not 0 it is a Malformed Packet</mark>»[MQTT‑SN‑3.9.2‑2](#tab-MQTT-SN-3.9.2-2).
 
 #### Topic Type{#uur---topic-type}
 

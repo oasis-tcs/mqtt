@@ -4,6 +4,8 @@
 
 ![SLEEPRESP Packet](images/sleepresp-packet-diagram.png "SLEEPRESP Packet")<!-- .width="6.5in", .height="2.9722222222222223in" -->
 
+The SLEEPRESP Packet is sent from the Server to the Client in response to a SLEEPREQ from the Client.
+
 ### SLEEPRESP Header{#sleepresp-header}
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [sec](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
@@ -12,7 +14,7 @@ The first 2 or 4 bytes of the packet are encoded according to the variable lengt
 
 The SLEEPRESP Flags is a 1 byte field which contains flags specifying the contents of the SLEEPRESP packet. «<mark title="Requirement MQTT-SN-3.16.2-1"><a name="MQTT-SN-3.16.2-1"></a>Bits 7-1 of the SLEEPRESP Flags are reserved and MUST be set to 0</mark>»[MQTT‑SN‑3.16.2‑1](#tab-MQTT-SN-3.16.2-1).
 
-«<mark title="Requirement MQTT-SN-3.16.2-2"><a name="MQTT-SN-3.16.2-2"></a>The receiver MUST validate that the reserved flags in the SLEEPRESP packet are set to 0. If any of the reserved flags is not 0 it is a Malformed Packet</mark>»[MQTT‑SN‑3.16.2‑2](#tab-MQTT-SN-3.16.2-2).
+«<mark title="Requirement MQTT-SN-3.16.2-2"><a name="MQTT-SN-3.16.2-2"></a>The Client MUST validate that the reserved flags in the SLEEPRESP packet are set to 0. If any of the reserved flags is not 0 it is a Malformed Packet</mark>»[MQTT‑SN‑3.16.2‑2](#tab-MQTT-SN-3.16.2-2).
 
 #### Sleep Duration Flag{#sleep-duration-flag}
 

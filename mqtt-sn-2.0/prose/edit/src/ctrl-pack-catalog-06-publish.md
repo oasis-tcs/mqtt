@@ -45,7 +45,7 @@ The first 2 or 4 bytes of the packet are encoded according to the variable lengt
 
 The PUBWOS Flags is a 1 byte field which contains flags specifying the content of the packet and the Server behavior on receipt. «<mark title="Requirement MQTT-SN-3.6.1.2-1"><a name="MQTT-SN-3.6.1.2-1"></a>Bits 7-5 and 3-2 of the PUBWOS FLAGS are reserved and MUST be set to 0</mark>»[MQTT‑SN‑3.6.1.2‑1](#tab-MQTT-SN-3.6.1.2-1).
 
-«<mark title="Requirement MQTT-SN-3.6.1.2-2"><a name="MQTT-SN-3.6.1.2-2"></a>The Client MUST validate that the reserved flags in the PUBWOS packet are set to 0. If any of the reserved flags is not 0 it is a Malformed Packet</mark>»[MQTT‑SN‑3.6.1.2‑2](#tab-MQTT-SN-3.6.1.2-2).
+«<mark title="Requirement MQTT-SN-3.6.1.2-2"><a name="MQTT-SN-3.6.1.2-2"></a>The receiver MUST validate that the reserved flags in the PUBWOS packet are set to 0. If any of the reserved flags is not 0 it is a Malformed Packet</mark>»[MQTT‑SN‑3.6.1.2‑2](#tab-MQTT-SN-3.6.1.2-2).
 
 ##### Topic Type{#ppws---topic-type}
 
@@ -100,7 +100,7 @@ The first 2 or 4 bytes of the packet are encoded according to the variable lengt
 
 The PUBLISH Flags is a 1 byte field which contains flags specifying the content of the packet and the Server behavior. «<mark title="Requirement MQTT-SN-3.6.2.2-1"><a name="MQTT-SN-3.6.2.2-1"></a>Bits 3-2 of the PUBLISH Flags are reserved and MUST be set to 0</mark>»[MQTT‑SN‑3.6.2.2‑1](#tab-MQTT-SN-3.6.2.2-1).
 
-«<mark title="Requirement MQTT-SN-3.6.2.2-2"><a name="MQTT-SN-3.6.2.2-2"></a>The Client MUST validate that the reserved flags in the PUBLISH packet are set to 0. If any of the reserved flags is not 0 it is a Malformed Packet</mark>»[MQTT‑SN‑3.6.2.2‑2](#tab-MQTT-SN-3.6.2.2-2).
+«<mark title="Requirement MQTT-SN-3.6.2.2-2"><a name="MQTT-SN-3.6.2.2-2"></a>The receiver MUST validate that the reserved flags in the PUBLISH packet are set to 0. If any of the reserved flags is not 0 it is a Malformed Packet</mark>»[MQTT‑SN‑3.6.2.2‑2](#tab-MQTT-SN-3.6.2.2-2).
 
 ##### Topic Type{#pub---topic-type}
 
