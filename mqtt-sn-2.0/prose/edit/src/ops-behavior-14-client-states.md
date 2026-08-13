@@ -14,15 +14,17 @@ At any time, a Client will be in one of the following states from the perspectiv
 
 Table: Client States
 
-«<mark title="Requirement MQTT-SN-4.14-1"><a name="MQTT-SN-4.14-1"></a>A Server **MUST NOT** attempt to send packets to a Disconnected Client</mark>»[MQTT‑SN‑4.14‑1](#tab-MQTT-SN-4.14-1).
+> **Informative Comment**
+>
+> A Server cannot send any Packet other than PUBWOS to a Client in None or Disconnected states because it will not have a Virtual Connection.
 
-«<mark title="Requirement MQTT-SN-4.14-2"><a name="MQTT-SN-4.14-2"></a>Any packet except CONNECT received from a Disconnected Client MUST NOT be processed</mark>»[MQTT‑SN‑4.14‑2](#tab-MQTT-SN-4.14-2). A DISCONNECT with error should be sent in response, unless the packet received is PUBWOS.
+«<mark title="Requirement MQTT-SN-4.14-1"><a name="MQTT-SN-4.14-1"></a>A Server MUST treat any Packet other than PUBWOS or CONNECT that it receives from a Client in None or Disconnected states as a protocol error</mark>»[MQTT‑SN‑4.14‑1](#tab-MQTT-SN-4.14-1).
 
-«<mark title="Requirement MQTT-SN-4.14-3"><a name="MQTT-SN-4.14-3"></a>In the Asleep state, a Client MUST only send PINGREQ, CONNECT or DISCONNECT packets to the Server</mark>»[MQTT‑SN‑4.14‑3](#tab-MQTT-SN-4.14-3).
+«<mark title="Requirement MQTT-SN-4.14-2"><a name="MQTT-SN-4.14-2"></a>In the Asleep state, a Client MUST only send PINGREQ, CONNECT or DISCONNECT packets to the Server</mark>»[MQTT‑SN‑4.14‑2](#tab-MQTT-SN-4.14-2).
 
-«<mark title="Requirement MQTT-SN-4.14-4"><a name="MQTT-SN-4.14-4"></a>In the Awake state, a Client MUST not send ANY packets other than those involved in the receipt of PUBLISH packets (PUBACK, PUBREC, PUBCOMP, REGACK) or CONNECT or DISCONNECT</mark>»[MQTT‑SN‑4.14‑4](#tab-MQTT-SN-4.14-4).
+«<mark title="Requirement MQTT-SN-4.14-3"><a name="MQTT-SN-4.14-3"></a>In the Awake state, a Client MUST not send ANY packets other than those involved in the receipt of PUBLISH packets (PUBACK, PUBREC, PUBCOMP, REGACK) or CONNECT or DISCONNECT</mark>»[MQTT‑SN‑4.14‑3](#tab-MQTT-SN-4.14-3).
 
-«<mark title="Requirement MQTT-SN-4.14-5"><a name="MQTT-SN-4.14-5"></a>Whenever a CONNECT is received by a Server, any existing Virtual Connection for that Client MUST be deleted and a new one created with all CONNECT Packet processing, regardless of the state of the Client</mark>»[MQTT‑SN‑4.14‑5](#tab-MQTT-SN-4.14-5).
+«<mark title="Requirement MQTT-SN-4.14-4"><a name="MQTT-SN-4.14-4"></a>Whenever a CONNECT is received by a Server, any existing Virtual Connection for that Client MUST be deleted and a new one created with all CONNECT Packet processing, regardless of the state of the Client</mark>»[MQTT‑SN‑4.14‑4](#tab-MQTT-SN-4.14-4).
 
 Transition through these states is governed by a sequence of packets between Client and Server and mediated by [sec](#session-timers) resident on the Server. A Client is in the Active state when the Server receives a CONNECT packet from that Client. This state is supervised by the Server with the [sec](#keep-alive) timer. If the Server does not receive any packet from the Client in a defined period, the Server will consider that client as Disconnected and delete the Virtual Connection. The Disconnected state is governed by the Session Expiry timer - on expiry the Server is free to remove the Client session. A Client moves into the Asleep state by issuing a SLEEPREQ packet. To be certain that the Server has also recorded the Client as being asleep, the Client needs to wait for a positive SLEEPRESP response. For more information on the Asleep state, refer to [sec](#sleeping-clients).
 
