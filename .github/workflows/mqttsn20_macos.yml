@@ -62,11 +62,9 @@ jobs:
         working-directory: mqtt-sn-2.0/prose/edit
         run: make release OPEN=true
 
-      - name: Run quality rules (OASIS baseline + spec-specific)
+      - name: Run quality rules (spec-specific; pulls in OASIS baseline via meta.extends)
         working-directory: mqtt-sn-2.0/prose/edit
-        run: |
-          nide quality --rules etc/rules/oasis.rules.yaml
-          nide quality --rules etc/rules/spec.rules.yaml
+        run: nide quality --rules etc/rules/spec.rules.yaml
 
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
