@@ -20,7 +20,7 @@ These situations are described in the following sections.
 
 In MQTT-SN, any packet may not be delivered by the underlying Network. If a packet is lost, the response to a request will not arrive. In addition to the Keep Alive timer, MQTT-SN Clients and Servers may also resend any packets for which a response is expected, but not received.
 
-The packets that expect a response and may be retried are:
+The Control Packets that expect a response and must be retried if there is none, are:
 
 - Sent by both Clients and Servers:
 
@@ -40,9 +40,16 @@ The packets that expect a response and may be retried are:
 
   - PINGREQ
 
-«<mark title="Requirement MQTT-SN-4.4.2-1"><a name="MQTT-SN-4.4.2-1"></a>CONNECT and AUTH packets expect a response but MUST NOT be retried</mark>»[MQTT‑SN‑4.4.2‑1](#tab-MQTT-SN-4.4.2-1).
+The Control Packets in the above list, along with CONNECT and AUTH, are referred to as request Packets.
+
+«<mark title="Requirement MQTT-SN-4.4.2-1"><a name="MQTT-SN-4.4.2-1"></a>CONNECT and AUTH Packets expect a response but MUST NOT be retried</mark>»[MQTT‑SN‑4.4.2‑1](#tab-MQTT-SN-4.4.2-1).
 
 «<mark title="Requirement MQTT-SN-4.4.2-2"><a name="MQTT-SN-4.4.2-2"></a>The connection sequence CONNECT, zero or more AUTH Packets then CONNACK MUST be completed without retries</mark>»[MQTT‑SN‑4.4.2‑2](#tab-MQTT-SN-4.4.2-2).
+
+«<mark title="Requirement MQTT-SN-4.4.2-3"><a name="MQTT-SN-4.4.2-3"></a>A Server MUST respond promptly to a valid
+request Packet</mark>»[MQTT‑SN‑4.4.2‑3](#tab-MQTT-SN-4.4.2-3).
+
+«<mark title="Requirement MQTT-SN-4.4.2-4"><a name="MQTT-SN-4.4.2-4"></a>A Client in the Awake and Active states MUST respond promptly to a valid request Packet</mark>»[MQTT‑SN‑4.4.2‑4](#tab-MQTT-SN-4.4.2-4).
 
 An MQTT-SN Sender may be configured with two parameters to govern its resending of unacknowledged packets:
 
@@ -52,13 +59,13 @@ An MQTT-SN Sender may be configured with two parameters to govern its resending 
 
 on the basis of the expected characteristics of the Underlying Network. Example values for these are suggested in [sec](#c.3-example-timer-and-counter-values). See also [sec](#c.4-exponential-backoff) for guidance on varying the *Retry Interval* to reduce potential network congestion.
 
-When no response to one of the above packets is received in the *Retry Interval*, the Sender may resend the packet, at *Retry Interval* intervals, until the *Maximum Retry Count* is reached. After the *Maximum Retry Count* is reached and a further *Retry Interval* has passed without a response, it is deemed that there is no response.
+If a response to one of the above request Packets is not received in the *Retry Interval*, the Sender resends the request Packet. The request is repeated at *Retry Interval* intervals, until a response is received or the *Maximum Retry Count* is reached. After the *Maximum Retry Count* is reached and a further *Retry Interval* has passed without a response, the Virtual Connection is deleted.
 
-«<mark title="Requirement MQTT-SN-4.4.2-3"><a name="MQTT-SN-4.4.2-3"></a>In the absence of a response to a packet which expects one, the Sender MUST delete the Virtual Connection</mark>»[MQTT-SN-4.4.2-3](#tab-MQTT-SN-4.4.2-3). If the Sender is a Server and a Will Message is defined for the Virtual Connection, the Will Message is be published as described in [sec](#will-flag). A new connection will have to be established to continue.
+«<mark title="Requirement MQTT-SN-4.4.2-5"><a name="MQTT-SN-4.4.2-5"></a>In the absence of a response to a Packet which expects one, the Sender MUST delete the Virtual Connection</mark>»[MQTT-SN-4.4.2-5](#tab-MQTT-SN-4.4.2-5). If the Sender is a Server and a Will Message is defined for the Virtual Connection, the Will Message is be published as described in [sec](#will-flag). A new Virtual Connection will have to be established to continue.
 
-«<mark title="Requirement MQTT-SN-4.4.2-4"><a name="MQTT-SN-4.4.2-4"></a>If a Packet is retransmitted, it MUST have Protection Encapsulation if the previously transmitted Packet had Protection Encapsulation</mark>»[MQTT‑SN‑4.4.2‑4](#tab-MQTT-SN-4.4.2-4).
+«<mark title="Requirement MQTT-SN-4.4.2-6"><a name="MQTT-SN-4.4.2-6"></a>If a Packet is retransmitted, it MUST have Protection Encapsulation if the previously transmitted Packet had Protection Encapsulation</mark>»[MQTT‑SN‑4.4.2‑6](#tab-MQTT-SN-4.4.2-6).
 
-«<mark title="Requirement MQTT-SN-4.4.2-5"><a name="MQTT-SN-4.4.2-5"></a>If a Packet is retransmitted it MUST be identical to the previously transmitted Packet. The Protection Encapsulation need not be identical</mark>»[MQTT‑SN‑4.4.2‑5](#tab-MQTT-SN-4.4.2-5).
+«<mark title="Requirement MQTT-SN-4.4.2-7"><a name="MQTT-SN-4.4.2-7"></a>If a Packet is retransmitted it MUST be identical to the previously transmitted Packet. The Protection Encapsulation need not be identical</mark>»[MQTT‑SN‑4.4.2‑7](#tab-MQTT-SN-4.4.2-7).
 
 > **Informative comment**
 >
