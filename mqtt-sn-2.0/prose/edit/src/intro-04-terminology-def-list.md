@@ -105,14 +105,14 @@ Topic Filter
 A Topic Filter can include wildcard characters and can match more than one Topic Name.
 
 MQTT-SN Control Packet
-:    A packet of information that is sent to a Network Address.
+:    A well-formed, self-contained, sequence of fields as defined in this specification, that is sent over an Underlying Network. Sometimes shortened to Packet.
 
 Malformed Packet
 :    A Control Packet that cannot be parsed according to this specification.
 Refer to [sec](#handling-errors) for information about error handling.
 
 Protocol Error
-:    An error that is detected after the packet has been parsed and found to contain data that is not allowed by the protocol or is inconsistent with the state of the Client or Server.
+:    An error that is detected after a Packet has been parsed and found to contain data that is not allowed by the protocol or is inconsistent with the state of the Client or Server.
 Refer to [sec](#handling-errors) for information about error handling.
 
 Will Message
