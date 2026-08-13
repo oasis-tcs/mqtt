@@ -74,9 +74,10 @@ The MQTT-SN Control Packet Type field is a 1-byte unsigned value, the values are
 |        **ADVERTISE**         |   0x16    |             Server to Clients              | Advertise the Server presence                                                                                             |
 |         **SEARCHGW**         |   0x17    |             Client to Servers              | Client GWINFO request                                                                                                     |
 |          **GWINFO**          |   0x18    |              Server to Client              | Response to a SEARCHGW                                                                                                    |
-|         **Reserved**         | 0x19-0xFC |                 Forbidden                  | Reserved                                                                                                                  |
-| **Forwarder Encapsulation**  |   0xFD    | Forwarder to Client or Forwarder to Server | MQTT-SN packet envelope to add addressing information for Forwarders                                                      |
+|         **Reserved**         | 0x19 -0xFB |                 Forbidden                 | Reserved                                                                                                                  |
+| **Forwarder Encapsulation**  |   0xFC    | Forwarder to Client or Forwarder to Server | MQTT-SN packet envelope to add addressing information for Forwarders                                                      |
+|        **Reserved**          |   0xFD    |                  Forbidden                 | Reserved to avoid clash with MQTT-SN 1.2 Encapsulation                                        |
 | **Connection Encapsulation** |   0xFE    |              Client to Server              | MQTT-SN packet envelope to add Connection identification                                                                     |
-| **Protection Encapsulation** |   0xFF    |    Client to Server or Server to Client    | A protection envelope that can encapsulate any MQTT-SN packet with the exception of Forwarder-Encapsulation packet (0xFE) |
+| **Protection Encapsulation** |   0xFF    |    Client to Server or Server to Client    | A protection envelope that can encapsulate any MQTT-SN packet other than the Forwarder Encapsulation (0xFC) |
 
 Table: MQTT-SN Control Packet Types

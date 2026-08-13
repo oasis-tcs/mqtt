@@ -26,7 +26,11 @@ This envelope wraps an MQTT-SN Packet to allow it to be associated with an exist
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [sec](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
-The Length field specifies the number of bytes up to the end of the Client Identifier field, including the Length field itself.
+The Length field specifies the number of bytes in the whole packet, including the encapsulated MQTT-SN Packet.
+
+### Client Identifier Length{#ce---client-identifier-length}
+
+The two byte integer length of the Client Identifier field.
 
 ### Client Identifier{#ce---client-identifier}
 
