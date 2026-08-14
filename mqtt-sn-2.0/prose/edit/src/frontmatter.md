@@ -6,7 +6,7 @@
 
 ## Committee Specification Draft 01
 
-## 05 February 2026
+## 14 August 2026
 
 #### This stage:
 https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/csd01/mqtt-sn-v2.0-csd01.md (Authoritative) \
@@ -25,17 +25,17 @@ https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/mqtt-sn-v2.0.pdf
 [OASIS Message Queuing Telemetry Transport (MQTT) TC](https://www.oasis-open.org/committees/mqtt/)
 
 #### Chairs:
-Ian Craggs (icraggs@gmail.com), Individual \
+Richard Coppen (coppen@uk.ibm.com), [IBM](https://www.ibm.com) \
 Simon Johnson (simon.johnson@hivemq.com), [HiveMQ GmbH](https://www.hivemq.com)
 
 #### Editors:
 Andrew Banks (andrewdjbanks@gmail.com), Individual \
-Andy Stanford-Clark (andysc@uk.ibm.com), [IBM](https://www.ibm.com) \
-Davide Lenzarini (<davide.lenzarini@u-blox.com>), [u-blox AG](https://www.u-blox.com/) \
 Ian Craggs (icraggs@gmail.com), Individual \
 Rahul Gupta (rahul.gupta@us.ibm.com), [IBM](https://www.ibm.com) \
-Simon Johnson (simon.johnson@hivemq.com), [HiveMQ GmbH](https://www.hivemq.com) \
 Stefan Hagen (stefan@hagen.link), [Individual](https://stefan-hagen.website/) \
+Simon Johnson (simon.johnson@hivemq.com), [HiveMQ GmbH](https://www.hivemq.com) \
+Davide Lenzarini (<davide.lenzarini@u-blox.com>), [u-blox AG](https://www.u-blox.com/) \
+Andy Stanford-Clark (andysc@uk.ibm.com), [IBM](https://www.ibm.com) \
 Tara E. Walker (tara.walker@microsoft.com), [Microsoft Corporation](https://www.microsoft.com/)
 
 #### Related work:
