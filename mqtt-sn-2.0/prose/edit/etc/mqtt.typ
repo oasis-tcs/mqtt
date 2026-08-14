@@ -39,7 +39,7 @@ $endfor$
     align: (left + horizon, center + horizon, right + horizon),
     text(size: 8pt)[mqtt-sn-v2.0-csd01],
     text(size: 8pt)[Copyright © OASIS Open 2026. All Rights Reserved.],
-    text(size: 8pt)[05 February 2026 — Page #counter(page).display()
+    text(size: 8pt)[14 August 2026 — Page #counter(page).display()
       of #counter(page).final().first()],
   ),
 )
