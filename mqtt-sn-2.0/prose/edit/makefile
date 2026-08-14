@@ -7,17 +7,21 @@ linelength = 120
 black = black -S -l $(linelength) --target-version $(pyversion) --quiet bin
 lint = ruff check bin
 types = mypy bin
-build_root = build/
-build_pdf = $(build_root)render/pdf/
-liitos_templates = etc/liitos/
-optimize_pdf = qpdf --linearize --replace-input
+OPEN ?= open
+
+shared = ../share/
+artifact_stem = mqtt-sn-v2.0-draft
 
 target_gfm_plus = gfm-plus
-target_pdf = pdf
 
-out_html = ../share/mqtt-sn-v2.0-draft.html
-out_gfm_plus = ../share/mqtt-sn-v2.0-draft.md
-out_pdf = ../share/mqtt-sn-v2.0-draft.pdf
+out_html          = $(shared)$(artifact_stem).html
+out_gfm_plus      = $(shared)$(artifact_stem).md
+out_ir            = $(shared)$(artifact_stem).ir.json
+out_manifest      = $(shared)$(artifact_stem).manifest.json
+out_pdf           = $(shared)$(artifact_stem).pdf
+out_pdf_sha256    = $(shared)$(artifact_stem).pdf.sha256
+out_pdf_blake3    = $(shared)$(artifact_stem).pdf.blake3
+out_typst         = $(shared)$(artifact_stem).typ
 
 .PHONY: all
 all: lint types build
@@ -41,84 +45,71 @@ types:
 	command -v mypy >/dev/null 2>&1 || { echo >&2 "make types requires mypy but it's not installed - you can install with: 'pip install mypy'.  Aborting."; exit 1; }
 	$(types)
 
-.PHONY: sections
-sections:
-	command -v nide >/dev/null 2>&1 || { echo >&2 "make sections requires nide but it's not installed - you can install with: 'pip install nide'.  Aborting."; exit 1; }
-	python -m nide harvest
-
 .PHONY: render
 render: html
 
+.PHONY: sections
+sections:
+	command -v nide >/dev/null 2>&1 || { echo >&2 "make sections requires nide but it's not installed - you can install with: 'pip install nide'.  Aborting."; exit 1; }
+	nide harvest
+
 .PHONY: gfm-plus
 gfm-plus: sections
-	python -m nide assemble -t $(target_gfm_plus) && \
-		cp -a build/tmp.md $(out_gfm_plus) && \
-		printf "Rendered user facing delivery item in markdown format:\n" && \
-		ls -l $(out_gfm_plus)
+	nide assemble && \
+	  cp -p build/ir.json $(out_ir) && \
+	  nide render -t $(target_gfm_plus) && \
+	  cp -p build/gfm-plus.md $(out_gfm_plus) && \
+	  printf "Rendered markdown:\n" && \
+	  ls -l $(out_gfm_plus)
 
 .PHONY: html
 html: gfm-plus
+	command -v pandoc >/dev/null 2>&1 || { echo >&2 "make html requires pandoc but it's not installed - you can get help on installing at https://pandoc.org.  Aborting."; exit 1; }
 	mkdir -p build/data-url/ && cd src/images && for source in *.png *.jpg; do \
-		[ -f "$${source}" ] && printf "%s" "data:image/png;base64,$$(cat "$${source}" | base64 | tr -d '\r\n')" \
-			> "../../build/data-url/$${source}.txt"; done && cd -
-	command -v pandoc >/dev/null 2>&1 || { echo >&2 "make render-html requires pandoc but it's not installed - you can get help on installing at https://pandoc.org.  Aborting."; exit 1; }
-	command -v tidy >/dev/null 2>&1 || { echo >&2 "make render-html requires tidy but it's not installed - you can get help on installing by searching for it on the wild internets.  Aborting."; exit 1; }
-	python -m nide assemble -t html && \
-		pandoc -f gfm+definition_lists -t html build/tmp.md --columns=345 \
-			--css style/base.css --css style/skin.css --standalone -o build/tmp.html && \
-		python -m nide inject && \
-		cp -a build/injected.html 2>/dev/null $(out_html) && \
-		printf "Rendered user facing delivery item in html format:\n" && \
-		ls -l $(out_html)
+	  [ -f "$${source}" ] && printf "%s" "data:image/png;base64,$$(cat "$${source}" | base64 | tr -d '\r\n')" \
+	    > "../../build/data-url/$${source}.txt"; done && cd -
+	nide render -t html && \
+	  pandoc -f gfm+definition_lists -t html build/html.md --columns=345 \
+	    --css style/base.css --css style/skin.css --standalone -o build/pandoc.html && \
+	  nide inject && \
+	  cp -p build/injected.html $(out_html) && \
+	  printf "Rendered html:\n" && \
+	  ls -l $(out_html)
 
-.PHONY: deprecated-pdf
-deprecated-pdf:
-	command -v liitos >/dev/null 2>&1 || { echo >&2 "make render-pdf requires liitos but it's not installed - you can install per pip install liitos.  Aborting."; exit 1; }
-	command -v etiketti >/dev/null 2>&1 || { echo >&2 "make render-pdf requires etiketti but it's not installed - you can install per pip install etiketti.  Aborting."; exit 1; }
-	command -v qpdf >/dev/null 2>&1 || { echo >&2 "make render-pdf requires qpdf but it's not installed - you can search the internets on how to install qpdf.  Aborting."; exit 1; }
-	python -m nide assemble -t $(target_pdf) && \
-		mkdir -p $(build_root)images/ $(build_pdf)images/ && \
-		printf "pdf.md\n" > $(build_root)bind.txt && \
-		cp -a ../media/OASISLogo-v3.0.png $(build_root)images/ && \
-		cp -a src/images/*.png src/images/*.jpg $(build_root)images/ && \
-		cp -a ../media/OASISLogo-v3.0.png $(build_pdf)images/ && \
-		cp -a $(liitos_templates)approvals.yml $(build_root) && \
-		cp -a $(liitos_templates)bookmatter.tex.in $(build_root) && \
-		cp -a $(liitos_templates)changes.yml $(build_root) && \
-		cp -a $(liitos_templates)driver.tex.in $(build_pdf) && \
-		cp -a $(liitos_templates)meta.yml $(build_root) && \
-		cp -a $(liitos_templates)metadata.tex.in $(build_pdf) && \
-		cp -a $(liitos_templates)patch.yml $(build_root) && \
-		cp -a $(liitos_templates)publisher.tex.in $(build_root) && \
-		cp -a $(liitos_templates)setup.tex.in $(build_pdf) && \
-		cp -a $(liitos_templates)structure.yml $(build_root) && \
-		cp -a $(liitos_templates)structure.yml $(build_pdf) && \
-		cp -a etc/etiketti/etiketti.yml $(build_pdf) && \
-		cd $(build_pdf) && \
-		max_print_line=10000 liitos render ../../ --target mqtt-sn --facet pdf --patch-tables --filters ' ' --label "etiketti --config etiketti.yml --enforce" && \
-		$(optimize_pdf) -- this.pdf && \
-		cp -a this.pdf ../../../$(out_pdf) && \
-		open ../../../$(out_pdf)
-
-.PHONY: typst
-typst:
-	# Pass 1+2: assemble IR and render typst channel
-	nide assemble
-	nide render -t typst
-	# Prepare images (pandoc/typst resolves image paths relative to the .typ file)
+.PHONY: pdf
+pdf:
+	nide assemble && nide render -t typst
 	mkdir -p build/images
 	cp ../media/OASISLogo-v3.0.png build/images/
 	cp -a src/images/*.png src/images/*.jpg build/images/
-	# Convert to typst source
-	pandoc -f markdown+definition_lists -t typst --standalone --template etc/mqtt.typ --lua-filter build/nide-columns.lua build/typst.md -o build/typst.typ
-	# Compile to PDF
-	typst compile --root . build/typst.typ build/mqtt-sn-typst.pdf && open build/mqtt-sn-typst.pdf
-
-.PHONY: pdf
-pdf: typst
+	pandoc -f markdown+definition_lists -t typst --standalone \
+	  --template etc/mqtt.typ --lua-filter build/nide-columns.lua \
+	  build/typst.md -o build/typst.typ
+	typst compile --root . build/typst.typ build/mqtt-sn-typst.pdf
+	cp -p build/mqtt-sn-typst.pdf $(out_pdf)
+	cp -p build/typst.typ $(out_typst)
+	shasum -a 256 $(out_pdf) > $(out_pdf_sha256)
+	{ command -v b3sum >/dev/null 2>&1 && b3sum $(out_pdf) > $(out_pdf_blake3); } || \
+	  printf "b3sum not found — skipping blake3 checksum\n"
+	$(OPEN) $(out_pdf)
 
 .PHONY: release
-release: distclean gfm-plus html pdf
+release: html pdf
+	nide manifest && nide validate
+	cp -p build/manifest.json $(out_manifest)
+	ls -l $(shared)$(artifact_stem).*
+
+.PHONY: quality
+quality:
+	nide quality
+
+.PHONY: diff
+diff:
+	nide diff --mode prose $(out_html) || true
+
+.PHONY: diff-repro
+diff-repro:
+	nide diff --mode repro $(out_pdf) || true
 
 .PHONY: build
 build: render status
@@ -142,12 +133,12 @@ clean:
 	rm -f `find . -type f -name '.*~' `
 	rm -rf .cache .*_cache
 	rm -f .DS_Store
-	rm -fr $(build_root)
-	mkdir -p $(build_root)
+	rm -fr build/
+	mkdir -p build/
 
 .PHONY: distclean
 distclean: clean
-	rm -fr $(build_root)
+	rm -fr build/
 
 .PHONY: context
 context:
@@ -164,11 +155,17 @@ name: context
 .PHONY: whoami # Deprecated - backwards compatibility target
 whoami: context
 
-.PHONY: render-html # Deprecated - backwards compatibility target
+.PHONY: typst  # Deprecated - use pdf
+typst: pdf
+
+.PHONY: diff-pdf  # Deprecated - use diff-repro
+diff-pdf: diff-repro
+
+.PHONY: render-html  # Deprecated - backwards compatibility target
 render-html: html
 
-.PHONY: render-markdown # Deprecated - backwards compatibility target
+.PHONY: render-markdown  # Deprecated - backwards compatibility target
 render-markdown: gfm-plus
 
-.PHONY: render-pdf # Deprecated - backwards compatibility target
+.PHONY: render-pdf  # Deprecated - backwards compatibility target
 render-pdf: pdf
