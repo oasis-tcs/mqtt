@@ -2,7 +2,7 @@
 
 *Figure 3-30 -- Format of an Forwarder Encapsulated MQTT-SN Packet*
 
-![Format of an Forwarder Encapsulated MQTT-SN Packet](images/image38.png "Format of an Forwarder Encapsulated MQTT-SN Packet")<!-- .width="6.5in", .height="2.2777777777777777in" -->
+![Format of an Forwarder Encapsulated MQTT-SN Packet](images/forwarder-encapsulation-packet-diagram.png "Format of an Forwarder Encapsulated MQTT-SN Packet")<!-- .width="6.5in", .height="2.2777777777777777in" -->
 
 An MQTT-SN Client can access a Server through a Forwarder in case the Server is not directly attached to the same Underlying Network as the Client. The Forwarder encapsulates the MQTT-SN Packets it receives from the Client and sends them unchanged to the Server. In the opposite direction, it decapsulates the Packets it receives from the Server and sends them unchanged to the Clients.
 
@@ -12,7 +12,11 @@ The Forwarder Encapsulation contains the addressing information needed by the Fo
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [sec](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
-The Length field specifies the number of bytes up to the end of the Client Addressing Information field, including the Length field itself.
+The Length field specifies the number of bytes in the whole packet, including the encapsulated MQTT-SN Packet.
+
+### Client Addressing Information Length{#client-addressing-information-length}
+
+The one-byte length of the Client Addressing Information field.
 
 ### Client Addressing Information{#client-addressing-information}
 

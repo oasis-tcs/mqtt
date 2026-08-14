@@ -10,7 +10,7 @@ The relationship between MQTT-SN and the Underlying Network is described in the 
 
 - The Underlying Network does not need to be reliable, it is expected that Packets can be lost or delivered out of order. The MQTT-SN protocol will tolerate out of order Packets and it will retransmit lost Packets in the case that an expected acknowledgement has not been received.
 
-- If the Underlying Network might deliver a Packet more than once, for connection-oriented communications (CONNECT, DISCONNECT and other packets in between) the PROTECTION ENCAPSULATION Monotonic Counter MUST be used to eliminate duplicates. (In the case that a protected packet is duplicated, the Monotonic Counter will be the same on all the duplicates of a packet).
+- «<mark title="Requirement MQTT-SN-4.2-1"><a name="MQTT-SN-4.2-1"></a>If the Underlying Network might deliver a Packet more than once, for connection-oriented communications (CONNECT, DISCONNECT and other packets in between) the PROTECTION ENCAPSULATION Monotonic Counter MUST be used to eliminate duplicates</mark>»[MQTT‑SN‑4.2‑1](#tab-MQTT-SN-4.2-1). (In the case that a protected packet is duplicated, the Monotonic Counter will be the same on all the duplicates of a packet).
 
 - The Underlying Network may be connectionless. Virtual Connections do not need to have an Underlying Network event that signals their creation or deletion.
 
@@ -18,7 +18,7 @@ The relationship between MQTT-SN and the Underlying Network is described in the 
 
 > **Informative comment**
 >
-> UDP as defined in \[RFC0768\] can be used for MQTT-SN if the Maximum Transmission Unit is configured to be more than the maximum MQTT-SN Packet size used and no Packet fragmentation occurs. Depending on the network configuration, UDP can duplicate Packets. If this can happen, the PROTECTION ENCAPSULATION monotonic counter should be used.
+> UDP as defined in \[RFC0768\] can be used for MQTT-SN if the Maximum Transmission Unit is configured to be more than the maximum MQTT-SN Packet size used and no Packet fragmentation occurs. Depending on the network configuration, UDP can duplicate Packets. If this can happen, the PROTECTION ENCAPSULATION monotonic counter must be used.
 >
 > Examples of possible consequences of allowing duplicate Packets are:\
 > -- DISCONNECT Packet applied to the wrong Virtual Connection\
@@ -26,20 +26,20 @@ The relationship between MQTT-SN and the Underlying Network is described in the 
 > -- PUBLISH QOS=2 published more than once
 >
 > The following transport protocols are also suitable but if not capable of multicast the implementation of the optional ADVERTISE, SEARCHGW, GWINFO packets may not be possible:
-
-- DTLS v1.2 \[RFC6347\]
-
-- DTLS v1.3 \[RFC9147\]
-
-- QUIC \[RFC9000\]
-
-- Non-IP protocols
-
-- TCP/IP \[RFC0793\]
-
-- TLS \[RFC5246\]
-
-- WebSocket \[RFC6455\].
+>
+> - DTLS v1.2 \[RFC6347\]
+>
+> - DTLS v1.3 \[RFC9147\]
+>
+> - QUIC \[RFC9000\]
+>
+> - Non-IP protocols
+>
+> - TCP/IP \[RFC0793\]
+>
+> - TLS \[RFC5246\]
+>
+> - WebSocket \[RFC6455\].
 
 > **Informative comment**
 >

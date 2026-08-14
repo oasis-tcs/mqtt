@@ -22,15 +22,18 @@
   (draw-box (text val) :bg-lightblue))
 
 (draw-box "1")
-(draw-box "Length (L)" :byte)
+(draw-box "Length" :byte)
 
 (draw-box "2")
 (draw-box "Packet Type" :byte)
 
 (draw-box "3")
-(draw-gap "Client Addressing Information" :byte)
+(draw-box "Client Addressing Information Length" :byte)
 
-(draw-box "L+1")
-(draw-gap "MQTT SN packet" :byte)
+(draw-box "4")
+(draw-gap "Client Addressing Information (I)" :byte)
+
+(draw-box "4+I")
+(draw-gap "MQTT-SN packet" :byte)
 
 (draw-bottom)

@@ -35,7 +35,7 @@ If the first byte of the *Length* field is coded "0x01" then the *Length* field 
 
 The 3-byte format allows the encoding of packet lengths up to 65,535 bytes. It is more efficient to use the shorter 1-byte format for packets with lengths up to and including 255 bytes.
 
-«<mark title="Requirement MQTT-SN-2.1.2-1"><a name="MQTT-SN-2.1.2-1"></a>A Client or Server receiving MQTT-SN control packets MUST be able to process both 1-byte and 3-byte length formats</mark>»[MQTT‑SN‑2.1.2‑1](#tab-MQTT-SN-2.1.2-1).
+«<mark title="Requirement MQTT-SN-2.1.2-1"><a name="MQTT-SN-2.1.2-1"></a>A Client or Server receiving MQTT-SN Control Packets MUST be able to process both 1-byte and 3-byte length formats</mark>»[MQTT‑SN‑2.1.2‑1](#tab-MQTT-SN-2.1.2-1).
 
 **Informative comment**
 
@@ -74,9 +74,10 @@ The MQTT-SN Control Packet Type field is a 1-byte unsigned value, the values are
 |        **ADVERTISE**         |   0x16    |             Server to Clients              | Advertise the Server presence                                                                                             |
 |         **SEARCHGW**         |   0x17    |             Client to Servers              | Client GWINFO request                                                                                                     |
 |          **GWINFO**          |   0x18    |              Server to Client              | Response to a SEARCHGW                                                                                                    |
-|         **Reserved**         | 0x19-0xFC |                 Forbidden                  | Reserved                                                                                                                  |
-| **Forwarder Encapsulation**  |   0xFD    | Forwarder to Client or Forwarder to Server | MQTT-SN packet envelope to add addressing information for Forwarders                                                      |
+|         **Reserved**         | 0x19 -0xFB |                 Forbidden                 | Reserved                                                                                                                  |
+| **Forwarder Encapsulation**  |   0xFC    | Forwarder to Client or Forwarder to Server | MQTT-SN packet envelope to add addressing information for Forwarders                                                      |
+|        **Reserved**          |   0xFD    |                  Forbidden                 | Reserved to avoid clash with MQTT-SN 1.2 Encapsulation                                        |
 | **Connection Encapsulation** |   0xFE    |              Client to Server              | MQTT-SN packet envelope to add Connection identification                                                                     |
-| **Protection Encapsulation** |   0xFF    |    Client to Server or Server to Client    | A protection envelope that can encapsulate any MQTT-SN packet with the exception of Forwarder-Encapsulation packet (0xFE) |
+| **Protection Encapsulation** |   0xFF    |    Client to Server or Server to Client    | A protection envelope that can encapsulate any MQTT-SN packet other than the Forwarder Encapsulation (0xFC) |
 
 Table: MQTT-SN Control Packet Types
