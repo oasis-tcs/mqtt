@@ -1,0 +1,172 @@
+meta:
+  name: mqtt-sn-spec-rules
+  description: >-
+    MQTT for Sensor Networks Version 2.0 specification-level quality rules.
+    Extends the shared OASIS baseline (oasis.rules.yaml) and adds MQTT-SN-specific checks.
+    Run with: nide quality --rules etc/rules/spec.rules.yaml
+  extends: oasis
+
+context:
+  tc-name: mqtt-sn
+  spec-name: mqtt-sn
+  spec-version: "2.0"
+  stage: csd01
+  doc-url-base: https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0
+
+rules:
+
+  # ── OASIS baseline overrides ──────────────────────────────────────────────
+  # oasis.rules.yaml itself is untouched; this replaces just this one inherited
+  # rule (nide 2026.8.14+: a spec rule whose id matches an org rule's id
+  # overrides it in place instead of duplicating it — see meta.extends).
+
+  - id: OASIS-SCOPE
+    severity: WARN
+    description: >-
+      Downgraded from the org-level BLOCKER for MQTT-SN 2.0 only: MQTT-SN's
+      section numbering is deliberately kept aligned with MQTT v5.0's own
+      numbering so the two specs can be read and cited side by side; inserting
+      a new top-level Scope section would break that alignment. Editors are
+      discussing whether the requirement can be met without a dedicated
+      top-level section (e.g. folded into an existing introductory section).
+
+    check:
+      type: section-present
+      pattern: '^Scope'
+      flags: IGNORECASE
+
+  # ── MQTT-SN spec-specific checks ──────────────────────────────────────────
+
+  - id: MQTTSN-TITLE
+    severity: BLOCKER
+    description: The document title must identify the spec by name
+    check:
+      type: section-present
+      pattern: 'MQTT for Sensor Networks|MQTT-SN'
+      flags: IGNORECASE
+
+  - id: MQTTSN-STAGE-HEADING
+    severity: WARN
+    description: >-
+      A publication-stage heading (Committee Specification Draft, Committee
+      Specification, etc.) must appear in the front matter
+    check:
+      type: section-present
+      pattern: 'Committee Specification Draft|Committee Specification|Candidate OASIS Standard|OASIS Standard'
+      flags: IGNORECASE
+
+  - id: MQTTSN-THIS-VERSION
+    severity: BLOCKER
+    description: A 'This version' heading must be present in the front matter
+    check:
+      type: section-present
+      pattern: 'This version'
+      flags: IGNORECASE
+
+  - id: MQTTSN-LATEST-VERSION
+    severity: WARN
+    description: A 'Latest version' heading must be present in the front matter
+    check:
+      type: section-present
+      pattern: 'Latest version'
+      flags: IGNORECASE
+
+  - id: MQTTSN-TC-LINK
+    severity: WARN
+    description: A link to the MQTT-SN TC community page should appear in the front matter
+    check:
+      type: any-match
+      target: prose
+      pattern: 'oasis-open\.org.*mqtt|groups\.oasis-open\.org.*communities'
+      flags: IGNORECASE
+
+  - id: MQTTSN-DOC-URL
+    severity: WARN
+    description: >-
+      At least one this-version URL under docs.oasis-open.org/mqtt/mqtt-sn
+      must appear in the front matter
+    check:
+      type: any-match
+      target: prose
+      pattern: 'docs\.oasis-open\.org/mqtt/mqtt-sn'
+      flags: IGNORECASE
+
+  - id: MQTTSN-SAFETY-SECURITY
+    severity: WARN
+    description: >-
+      A Safety, Security and Data Protection section must be present
+      (OASIS best practice for all Standards Track Work Products)
+    check:
+      type: section-present
+      pattern: 'Safety.*Security|Security.*Safety'
+      flags: IGNORECASE
+
+  - id: MQTTSN-REFERENCES
+    severity: BLOCKER
+    description: >-
+      A top-level Normative or Informative References section must be present.
+      Match the base heading text only (annex counter is not part of HeadingNode.text).
+    check:
+      type: section-present
+      pattern: 'Normative References|Informative References|^References$'
+      flags: IGNORECASE
+
+  - id: MQTTSN-NORMATIVE-REFS
+    severity: BLOCKER
+    description: A Normative References subsection must be present
+    check:
+      type: section-present
+      pattern: 'Normative References'
+      flags: IGNORECASE
+
+  - id: MQTTSN-INFORMATIVE-REFS
+    severity: WARN
+    description: An Informative References subsection should be present
+    check:
+      type: section-present
+      pattern: 'Informative References'
+      flags: IGNORECASE
+
+  - id: MQTTSN-LICENSE-ANNEX
+    severity: BLOCKER
+    description: >-
+      A License, Document Status and Notices annex must be present
+      (mandatory OASIS content)
+    check:
+      type: section-present
+      pattern: 'License.*Notices|Notices.*License|Document Status'
+      flags: IGNORECASE
+
+  - id: MQTTSN-ACKNOWLEDGMENTS
+    severity: WARN
+    description: An Acknowledgments appendix should be present
+    check:
+      type: section-present
+      pattern: '^Acknowledgments?$'
+      flags: IGNORECASE
+
+  - id: MQTTSN-CHANGES-APPENDIX
+    severity: WARN
+    description: A Changes From Previous Version appendix should be present
+    check:
+      type: section-present
+      pattern: 'Changes From Previous Version|Revision History'
+      flags: IGNORECASE
+
+  - id: MQTTSN-DEFINITIONS-SECTION
+    severity: WARN
+    description: A Terminology or Definitions section must be present
+    check:
+      type: section-present
+      pattern: 'Terminology|Definitions|Terms and Definitions'
+      flags: IGNORECASE
+
+  - id: MQTTSN-CONFORMANCE-STATEMENTS
+    severity: BLOCKER
+    description: >-
+      The numbered conformance statements table must be present
+      (MQTT-SN uses a dedicated normative statements table)
+    check:
+      type: section-present
+      pattern: 'conformance statements|normative statements'
+      flags: IGNORECASE
