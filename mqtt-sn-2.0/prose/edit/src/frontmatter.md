@@ -6,7 +6,7 @@
 
 ## Committee Specification Draft 01
 
-## 05 February 2026
+## 14 August 2026
 
 #### This stage:
 https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/csd01/mqtt-sn-v2.0-csd01.md (Authoritative) \
@@ -25,7 +25,7 @@ https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/mqtt-sn-v2.0.pdf
 [OASIS Message Queuing Telemetry Transport (MQTT) TC](https://www.oasis-open.org/committees/mqtt/)
 
 #### Chairs:
-Ian Craggs (icraggs@gmail.com), Individual \
+Richard Coppen (coppen@uk.ibm.com), [IBM](https://www.ibm.com) \
 Simon Johnson (simon.johnson@hivemq.com), [HiveMQ GmbH](https://www.hivemq.com)
 
 #### Editors:

@@ -37,8 +37,8 @@ The 3-byte format allows the encoding of packet lengths up to 65,535 bytes. It i
 
 «<mark title="Requirement MQTT-SN-2.1.2-1"><a name="MQTT-SN-2.1.2-1"></a>A Client or Server receiving MQTT-SN Control Packets MUST be able to process both 1-byte and 3-byte length formats</mark>»[MQTT‑SN‑2.1.2‑1](#tab-MQTT-SN-2.1.2-1).
 
-**Informative comment**
-
+> **Informative comment**
+>
 > MQTT-SN does not support packet fragmentation and reassembly, the maximum packet length that could be used in a network is governed by the maximum packet size that is supported by that network, and not by the maximum length that could be encoded by MQTT-SN.
 
 ### MQTT-SN Control Packet Type{#mqtt-sn-control-packet-type}

@@ -41,9 +41,7 @@ UTF-8 Encoded Strings SHOULD NOT include the Unicode \[Unicode\] code points lis
 > **Informative example**
 >
 > For example, the string A𪛔 which is LATIN CAPITAL Letter A followed by the code point U+2A6D4 (which represents a CJK IDEOGRAPH EXTENSION B character) is encoded as follows:
-
-*Figure 1-2 -- Fixed Length UTF-8 Encoded String informative example*
-
-<mark title="Ephemeral region marking">\[figure below is part of informative example\]</mark>
-
-![Fixed Length UTF-8 Encoded String informative example](images/image31.png "Fixed Length UTF-8 Encoded String informative example")
+>
+> *Figure 1-2 -- Fixed Length UTF-8 Encoded String informative example*
+>
+> ![](images/image31.png "Fixed Length UTF-8 Encoded String informative example")

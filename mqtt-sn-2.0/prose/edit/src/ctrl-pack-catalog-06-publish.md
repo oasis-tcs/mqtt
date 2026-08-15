@@ -14,8 +14,8 @@ Variants 2 and 3 above are the same as in MQTT. The table below shows the two pa
 
 | Packet Name                 | Type | Description                                                                      |
 |:----------------------------|:-----|----------------------------------------------------------------------------------|
-| **Publish**                 | 0x0C | A PUBLISH packet corresponding to Quality of Service (QoS) 0, 1 or 2             |
-| **Publish Without Session** | 0x11 | A PUBWOS Packet sent by a Client and does not need not to have an active Session |
+| **Publish**                 | 0x03 | A PUBLISH packet corresponding to Quality of Service (QoS) 0, 1 or 2             |
+| **Publish Without Session** | 0x12 | A PUBWOS Packet sent by a Client and does not need not to have an active Session |
 
 Table: Publish Packet Types
 
