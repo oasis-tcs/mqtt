@@ -4,6 +4,8 @@ Several packets refer to a Topic Type in their flags. This is a 2-bit field whic
 
 *Figure 2-8 -- Topic Types*
 
+\columns=iii,hhhhhh,nnnnnnnnnn,ddddddddddddddddddddddddddddddddddddddddddd
+
 |   | Topic Type Value | Name                   | Description                                                                                                                                                                                              |
 |:--|:-----------------|:-----------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 0 | 0b00             | Session Topic Alias    | A session Topic Alias is negotiated between the Server and Client within the scope of a session.                                                                                                         |

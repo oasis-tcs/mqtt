@@ -6,14 +6,7 @@ An MQTT-SN Control Packet consists of up to two parts, always in the following o
 
 *Figure 2-1 －Structure of an MQTT-SN Control Packet*
 
-  -----------------------------------------------------------------------------------------------------------------------------------------------------
-  Control Packet Header, present in all MQTT-SN Control Packets
-  -----------------------------------------------------------------------------------------------------------------------------------------------------
-  Control Packet Variable Part, present in some MQTT-SN Control Packets
-
-  -----------------------------------------------------------------------------------------------------------------------------------------------------
-
-Table: Structure of an MQTT-SN Control Packet
+![Packet Structure](images/structure-packet-diagram.png "Packet Structure")<!-- .width="6.5in", .height="1.1944444444444444in" -->
 
 ### Packet Header{#packet-header}
 
