@@ -30,7 +30,7 @@ Specifies whether an existing session was present on the Server for the given cl
 
 If the value of Session Present received by the Client from the Server is not as expected, the Client proceeds as follows:
 
-«<mark title="Requirement MQTT-SN-3.2.2.1-3"><a name="MQTT-SN-3.2.2.1-3"></a>If the Client does not have Session State and receives Session Present set to 1 it MUST delete the Virtual Connection.]{.mark} [If it wishes to restart with a new Session the Client can reconnect using Clean Start set to 1</mark>»[MQTT‑SN‑3.2.2.1‑3](#tab-MQTT-SN-3.2.2.1-3).
+«<mark title="Requirement MQTT-SN-3.2.2.1-3"><a name="MQTT-SN-3.2.2.1-3"></a>If the Client does not have Session State and receives Session Present set to 1 it MUST delete the Virtual Connection. If it wishes to restart with a new Session the Client can reconnect using Clean Start set to 1</mark>»[MQTT‑SN‑3.2.2.1‑3](#tab-MQTT-SN-3.2.2.1-3).
 
 «<mark title="Requirement MQTT-SN-3.2.2.1-4"><a name="MQTT-SN-3.2.2.1-4"></a>If the Client does have Session State and receives Session Present set to 0 it MUST discard its Session State if it continues with the Virtual Connection</mark>»[MQTT‑SN‑3.2.2.1‑4](#tab-MQTT-SN-3.2.2.1-4).
 
