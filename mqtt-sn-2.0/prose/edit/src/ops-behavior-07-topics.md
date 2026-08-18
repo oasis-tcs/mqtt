@@ -162,9 +162,9 @@ There are several ways that a Session Topic Alias can be created:
 
 - The Server may need to re-register Topic Aliases in the Awake state, as a result of the Client using the Retain Topic Aliases flag set to 0 on the SLEEPREQ packet when going to sleep.
 
-I«<mark title="Requirement MQTT-SN-4.7.2.2-2"><a name="MQTT-SN-4.7.2.2-2"></a>f a Client subscribes to a Topic Filter which does not include wildcard characters, a Predefined or Session Topic Alias MUST be returned in the SUBACK packet</mark>»[MQTT‑SN‑4.7.2.2‑2](#tab-MQTT-SN-4.7.2.2-2).
+«<mark title="Requirement MQTT-SN-4.7.2.2-2"><a name="MQTT-SN-4.7.2.2-2"></a>If a Client subscribes to a Topic Filter which does not include wildcard characters, a Predefined or Session Topic Alias MUST be returned in the SUBACK packet</mark>»[MQTT‑SN‑4.7.2.2‑2](#tab-MQTT-SN-4.7.2.2-2).
 
-I«<mark title="Requirement MQTT-SN-4.7.2.2-3"><a name="MQTT-SN-4.7.2.2-3"></a>f a Client subscribes to a Topic Filter which includes wildcard characters, a Topic Alias (Predefined or Session) MUST NOT be returned in the SUBACK packet</mark>»[MQTT‑SN‑4.7.2.2‑3](#tab-MQTT-SN-4.7.2.2-3).
+I«<mark title="Requirement MQTT-SN-4.7.2.2-3"><a name="MQTT-SN-4.7.2.2-3"></a>If a Client subscribes to a Topic Filter which includes wildcard characters, a Topic Alias (Predefined or Session) MUST NOT be returned in the SUBACK packet</mark>»[MQTT‑SN‑4.7.2.2‑3](#tab-MQTT-SN-4.7.2.2-3).
 
 «<mark title="Requirement MQTT-SN-4.7.2.2-4"><a name="MQTT-SN-4.7.2.2-4"></a>A Session Topic Alias MUST NOT be allowed to map to the same Topic Name as a Predefined Topic Alias</mark>»[MQTT‑SN‑4.7.2.2‑4](#tab-MQTT-SN-4.7.2.2-4).
 

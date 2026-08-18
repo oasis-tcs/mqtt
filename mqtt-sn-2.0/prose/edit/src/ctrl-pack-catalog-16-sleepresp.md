@@ -34,9 +34,9 @@ The same value as the Packet Identifier in the SLEEPREQ Packet being acknowledge
 
 The Server uses this field to inform the Client that it is using a value other than that sent by the Client in the SLEEPRESP.
 
-«<mark title="Requirement MQTT-SN-3.16.3-1"><a name="MQTT-SN-3.16.3-1"></a>If the Server sends a Sleep Duration on the SLEEPRESP packet, the Client MUST use this value instead of the Sleep Duration value the Client sent in the SLEEPREQ packet</mark>»[MQTT‑SN‑3.16.3‑1](#tab-MQTT-SN-3.16.3-1).
+«<mark title="Requirement MQTT-SN-3.16.4-1"><a name="MQTT-SN-3.16.4-1"></a>If the Server sends a Sleep Duration on the SLEEPRESP packet, the Client MUST use this value instead of the Sleep Duration value the Client sent in the SLEEPREQ packet</mark>»[MQTT‑SN‑3.16.4‑1](#tab-MQTT-SN-3.16.4-1).
 
-«<mark title="Requirement MQTT-SN-3.16.3-2"><a name="MQTT-SN-3.16.3-2"></a>If the Server does not send the Sleep Duration, the Server MUST use the Sleep Duration value set by the Client in the SLEEPREQ packet</mark>»[MQTT‑SN‑3.16.3‑2](#tab-MQTT-SN-3.16.3-2).
+«<mark title="Requirement MQTT-SN-3.16.4-2"><a name="MQTT-SN-3.16.4-2"></a>If the Server does not send the Sleep Duration, the Server MUST use the Sleep Duration value set by the Client in the SLEEPREQ packet</mark>»[MQTT‑SN‑3.16.4‑2](#tab-MQTT-SN-3.16.4-2).
 
 Refer to [sec](#sleeping-clients) for more information on Sleeping Clients.
 
@@ -45,4 +45,4 @@ Refer to [sec](#sleeping-clients) for more information on Sleeping Clients.
 The Reason Code for the SLEEPRESP packet is optional - its existence is inferred from the Packet length. If not provided, 0x00 (Success) is assumed.
 
 The values for Reason Codes are shown in [sec](#reason-code).
-«<mark title="Requirement MQTT-SN-3.16.4-1"><a name="MQTT-SN-3.16.4-1"></a>The sender of the SLEEPRESP packet MUST use one of the Reason Code values applicable to SLEEPRESP</mark>»[MQTT‑SN‑3.16.4‑1](#tab-MQTT-SN-3.16.4-1).
+«<mark title="Requirement MQTT-SN-3.16.5-1"><a name="MQTT-SN-3.16.5-1"></a>The sender of the SLEEPRESP packet MUST use one of the Reason Code values applicable to SLEEPRESP</mark>»[MQTT‑SN‑3.16.5‑1](#tab-MQTT-SN-3.16.5-1).

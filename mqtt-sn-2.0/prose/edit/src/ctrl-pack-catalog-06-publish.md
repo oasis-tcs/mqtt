@@ -185,7 +185,7 @@ The Client uses a PUBLISH packet to send an Application Message to the Server, f
 
 The Server uses a PUBLISH packet to send an Application Message to each Client which has a matching subscription.
 
-When Clients make subscriptions with Topic Filters that include wildcards, it is possible for a Client's subscriptions to overlap so that a published Application Message might match multiple filters. «<mark title="Requirement MQTT-SN-3.6.2.7-2"><a name="MQTT-SN-3.6.2.7-2"></a>In this case the Server MUST deliver the Application Message to the Client respecting the maximum QoS of all the matching subscriptions</mark>»[MQTT‑SN‑3.6.2.7‑2](#tab-MQTT-SN-3.6.2.7-2). In addition, the Server MAY deliver further copies of the Application Message, one for each additional matching subscription and respecting the subscription's QoS in each case.
+«<mark title="Requirement MQTT-SN-3.6.2.7-2"><a name="MQTT-SN-3.6.2.7-2"></a>When Clients make subscriptions with Topic Filters that include wildcards, it is possible for a Client's subscriptions to overlap so that a published Application Message might match multiple filters. In this case the Server MUST deliver the Application Message to the Client respecting the maximum QoS of all the matching subscriptions</mark>»[MQTT‑SN‑3.6.2.7‑2](#tab-MQTT-SN-3.6.2.7-2). In addition, the Server MAY deliver further copies of the Application Message, one for each additional matching subscription and respecting the subscription's QoS in each case.
 
 The action of the recipient when it receives a PUBLISH packet depends on the QoS level as described in [sec](#quality-of-service-levels-and-protocol-flows).
 

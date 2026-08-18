@@ -54,7 +54,7 @@ This field is optional. It can be used by a Server when responding to a Client p
 
 The Reason Code for the DISCONNECT packet is optional. If not provided, 0x00 (Normal disconnection) is assumed.
 
-The values for Reason Codes are shown in «<mark title="Requirement MQTT-SN-3.13.4-1"><a name="MQTT-SN-3.13.4-1"></a>[sec](#reason-code). [The sender of the DISCONNECT packet MUST use one of the Reason Code values applicable to DISCONNECT</mark>»[MQTT‑SN‑3.13.4‑1](#tab-MQTT-SN-3.13.4-1).
+The values for Reason Codes are shown in [sec](#reason-code). «<mark title="Requirement MQTT-SN-3.13.4-1"><a name="MQTT-SN-3.13.4-1"></a>The sender of the DISCONNECT packet MUST use one of the Reason Code values applicable to DISCONNECT</mark>»[MQTT‑SN‑3.13.4‑1](#tab-MQTT-SN-3.13.4-1).
 
 ### Session Expiry Interval{#ddn---session-expiry-interval}
 
