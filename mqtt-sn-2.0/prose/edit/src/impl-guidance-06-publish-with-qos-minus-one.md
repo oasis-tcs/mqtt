@@ -12,6 +12,8 @@ This packet can be used by both Clients and Servers to publish data to a topic w
 
 The first 2 or 4 bytes of the packet are encoded according to the variable length packet header format. Refer to [sec](#structure-of-an-mqtt-sn-control-packet) for a detailed description.
 
+However, the Packet Types in MQTT-SN 1.2 are different. The 1.2 Packet Type for PUBLISH is 0x0C.
+
 ### C.6.2 PUBLISH Flags{#c.6.2-publish-flags}
 
 The PUBLISH Flags is a 1 byte field which contains flags specifying the content of the packet and the Server behavior. Bits 3-2 of the PUBLISH Flags are reserved and are set to 0.
