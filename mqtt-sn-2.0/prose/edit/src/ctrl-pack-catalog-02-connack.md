@@ -14,7 +14,7 @@ Refer to [sec](#structure-of-an-mqtt-sn-control-packet) for a detailed descripti
 ### CONNACK Flags{#connack-flags}
 
 The CONNACK Flags is a 1 byte field which contains flags specifying the behavior of the MQTT-SN Virtual Connection on the Server.
-«<mark title="Requirement MQTT-SN-3.2.2-1"><a name="MQTT-SN-3.2.2-1"></a>Bits 7-2 of the CONNACK Flags are reserved and MUST be set to 0</mark>»[MQTT‑SN‑3.2.2‑1](#tab-MQTT-SN-3.2.2-1).
+«<mark title="Requirement MQTT-SN-3.2.2-1"><a name="MQTT-SN-3.2.2-1"></a>Bits 7-4 of the CONNACK Flags are reserved and MUST be set to 0</mark>»[MQTT‑SN‑3.2.2‑1](#tab-MQTT-SN-3.2.2-1).
 
 «<mark title="Requirement MQTT-SN-3.2.2-2"><a name="MQTT-SN-3.2.2-2"></a>The Client MUST validate that the reserved flags in the CONNACK packet are set to 0. If any of the reserved flags is not 0 it is a Malformed Packet</mark>»[MQTT‑SN‑3.2.2‑2](#tab-MQTT-SN-3.2.2-2).
 
