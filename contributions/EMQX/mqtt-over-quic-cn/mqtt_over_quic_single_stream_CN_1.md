@@ -4,9 +4,9 @@
 
 # MQTT Over QUIC — Single Stream Mode Version 1.0
 
-## Committee Note Draft 02
+## Committee Note Draft 03
 
-## 23 June 2026
+## 19 August 2026
 
 ### This Version
 
@@ -16,7 +16,7 @@
 	### Previous Version
 
 - [MQTT-QUIC-SS] "MQTT Over QUIC — Single Stream Mode Version 1.0", OASIS
-  Committee Note Draft 01, 7 April 2026. [link to Draft 01]
+  Committee Note Draft 02, 23 June 2026. [link to Draft 02]
 
 ### Latest Version
 
@@ -56,7 +56,7 @@ handshakes, built-in TLS security, and network address migration.
 When referencing this document the following citation format should be used:
 
 - [MQTT-QUIC-SS] "MQTT Over QUIC — Single Stream Mode Version 1.0", OASIS
-  Committee Note Draft 02, [23 June 2026]. [link to latest version].
+  Committee Note Draft 03, [19 August 2026]. [link to latest version].
 
 ### Related Work
 
@@ -111,10 +111,10 @@ License, Document Status and Notices.
     - [6.5.1 Initial Transport Selection](#651-initial-transport-selection)
     - [6.5.2 Broker Session Handling](#652-broker-session-handling)
     - [6.5.3 Client Reconnection After Session Determination](#653-client-reconnection-after-session-determination)
-  - [6.6 Downgrade](#66-downgrade)
-    - [6.6.1 Downgrade Categories](#661-downgrade-categories)
-    - [6.6.2 Downgrade Behavior](#662-downgrade-behavior)
-    - [6.6.3 Post-Session Downgrade](#663-post-session-downgrade)
+  - [6.6 Fallback](#66-fallback)
+    - [6.6.1 Fallback Categories](#661-fallback-categories)
+    - [6.6.2 Fallback Behavior](#662-fallback-behavior)
+    - [6.6.3 Post-Session Fallback](#663-post-session-fallback)
     - [6.6.4 Preventing Reconnection Livelock](#664-preventing-reconnection-livelock)
   - [6.7 Error Mapping and State Synchronization](#67-error-mapping-and-state-synchronization)
   - [6.8 Keepalive Strategy](#68-keepalive-strategy)
@@ -142,9 +142,9 @@ QUIC stream replaces the TCP connection that MQTT traditionally relies upon. All
 MQTT control packets are transported over this one stream without modification
 to the MQTT packet format.
 
-This document applies to implementations of MQTT 3.1 [MQTT311] and MQTT 5.0
+This document applies to implementations of MQTT 3.1.1 [MQTT311] and MQTT 5.0
 [MQTT5]. It covers connection establishment, keepalive, graceful and abnormal
-connection termination, and protocol upgrade and downgrade procedures specific
+connection termination, and protocol upgrade and fallback procedures specific
 to the Single Stream operating mode.
 
 This document does not define multistream operation, server-initiated streams,
@@ -324,7 +324,7 @@ Table I
 
 | Feature                           | Single Stream | Simple Multistream  | Advanced Multistream |
 | :-------------------------------- | :-----------: | :-----------------: | :------------------: |
-| MQTT 3.1 compatible               |      Yes      |         Yes         |          No          |
+| MQTT 3.1.1 compatible             |      Yes      |         Yes         |          No          |
 | MQTT 5.0 compatible               |      Yes      |    Yes (partial)    |          No          |
 | TLS ALPN identifier               |    `mqtt`     |       `mqtt`        |     `mqtt-next`      |
 | Transport keepalive               |      Yes      |         Yes         |         Yes          |
@@ -420,15 +420,19 @@ packet according to the negotiated MQTT version. The `Session Present` flag
 in the CONNACK (byte 2, bit 0) combined with the Reason Code determines
 whether the client has an existing session to resume or must start fresh.
 
-The following table summarizes the client-side processing rules:
+The following table summarizes the client-side processing rules. Note that MQTT 5.0 and MQTT 3.1.1 have different Reason Code (RC) semantics:
+
+- **MQTT 5.0**: The RC field is one byte. RC < 0x80 indicates the server accepted the connection (only 0x00 is Success; other values < 0x80 are informational). RC ≥ 0x80 indicates connection refused (error).
+- **MQTT 3.1.1**: RC = 0x00 indicates connection accepted; RC > 0x00 (0x01–0x05) indicates connection refused. There is no 0x80 threshold — all non-zero values are errors.
 
 | Session Present | Reason Code | MQTT 5.0 Action | MQTT 3.1.1 Action |
 |:---:|:---:|---|---|
 | 1 | 0x00 (Success) | Session accepted/resumed. Client **MUST NOT discard session state** [MQTT-3.2.2-5]. | Session accepted/resumed. Client **MUST NOT discard session state** [MQTT-3.2.2-2]. |
 | 0 | 0x00 | New/clean session started (Clean Start=1 or no prior state found). | New/clean session started (CleanSession=1 or no prior state found). |
-| 0 | ≥ 0x80 (error) | Connection refused. Server **MUST close Network Connection** [MQTT-3.2.2-7]. Client **MUST discard session state** [MQTT-3.2.2-4]. | Connection refused. Server **MUST close Network Connection** [MQTT-3.2.2-5]. Client **MUST discard session state** [MQTT-3.2.2-4]. |
-| 0 | non-zero < 0x80 | Not used for CONNACK (exists in other packet types like SUBACK). | Not used for CONNACK. |
-| 1 | non-zero | **Invalid.** Server **MUST** set Session Present to 0 when Reason Code is non-zero [MQTT-3.2.2-6]. | **Invalid.** Same rule [MQTT-3.2.2-4]. |
+| 0 | ≥ 0x80 | Connection refused. Server **MUST close Network Connection** [MQTT-3.2.2-7]. Client **MUST discard session state** [MQTT-3.2.2-4]. | Not applicable. MQTT 3.1.1 CONNACK RC values are limited to 0x00–0x05; values ≥ 0x80 are invalid and would be treated as a protocol violation. |
+| 0 | 0x01–0x7F (non-zero < 0x80) | Not used for CONNACK (non-zero RC < 0x80 does not appear in CONNACK; such values exist in other packet types like SUBACK). | Not applicable. MQTT 3.1.1 CONNACK RC values are limited to 0x00–0x05. |
+| 0 | 0x01–0x05 (non-zero) | Not applicable. MQTT 5.0 CONNACK only uses RC 0x00 or ≥ 0x80. | Connection refused with specific reason (e.g., 0x01 Unacceptable Protocol Version, 0x02 Identifier Rejected, etc.). Server **MUST close Network Connection** [MQTT-3.2.2-5]. Client **MUST discard session state** [MQTT-3.2.2-4]. |
+| 1 | non-zero | **Invalid.** Server **MUST** set Session Present to 0 when Reason Code is non-zero [MQTT-3.2.2-6]. | **Invalid.** Server **MUST** set Session Present to 0 when Reason Code is non-zero [MQTT-3.2.2-4]. |
 
 ## 6.2 Connection Keepalive
 
@@ -584,7 +588,7 @@ determine the reason for termination:
   The client MUST apply the backoff from Section 6.6.4 before attempting to
   reconnect.
 - Any other error code: The client SHOULD treat this as a network failure
-  and retry with standard backoff.
+  and MAY retry with standard backoff.
 
 **RESET_STREAM** (local error): For MQTT 3.1.1, these error codes serve as the
 in-band substitute for the missing server-to-client `MQTT.DISCONNECT` packet.
@@ -596,10 +600,10 @@ termination:
   client MUST apply the backoff from Section 6.6.4 before attempting to
   reconnect.
 - `0x382` (Protocol Error): The broker detected a protocol error and is
-  aborting the stream. The client MUST NOT retry on the same transport for
+  aborting the stream. The client SHOULD NOT retry on the same transport for
   this session.
 - Any other error code: The client SHOULD treat this as a network failure
-  and retry with standard backoff.
+  and MAY retry with standard backoff.
 
 For MQTT 5.0, the error codes supplement the `MQTT.DISCONNECT` packet with
 transport-layer context. The client SHOULD use the DISCONNECT reason code as
@@ -613,7 +617,7 @@ endpoint resolution via DNS and capability probing via QUIC.
 
 ### 6.4.1 DNS-Based Endpoint Resolution
 
-The client MUST use DNS to resolve the broker's hostname to an IP address and
+The client SHOULD use DNS to resolve the broker's hostname to an IP address and
 port. DNS Service Discovery (SRV records [RFC2782]) MAY be used to locate MQTT
 endpoints. For example, the client MAY look up `_mqtt._tcp.<domain>` to obtain
 the host and port of the MQTT service.
@@ -652,7 +656,7 @@ probe determines QUIC support:
    indicating the broker supports none of the offered identifiers. The client
    MUST fall back to TCP/TLS.
 4. **QUIC connection fails (network error):** The client cannot establish a QUIC
-   connection due to a network-level failure. See Section 6.6 for downgrade
+   connection due to a network-level failure. See Section 6.6 for fallback
    rules.
 
 A QUIC probe that does not result in a successful `mqtt` ALPN negotiation is
@@ -670,6 +674,15 @@ The client MAY upgrade from a TCP/TLS-based MQTT connection to a QUIC-based
 connection when the broker supports both transports. The upgrade process is
 controlled entirely by the client, which determines which transport to use
 without broker coordination during the initial connection phase.
+
+**Scope of this section.** The rules in this section apply only to the initial
+connection attempt — the one-shot decision of which transport to use for the
+first `MQTT.CONNECT`. They do not constrain reconnection attempts triggered
+by the application or by the client library after the session is established.
+For example, if a QUIC stream is aborted after the session is established, the
+application MAY choose to reconnect on TCP/TLS; this is a normal reconnection
+following standard MQTT session takeover rules [MQTT5] §3.1.4 or
+[MQTT311] §3.1.4, not an "upgrade," and the rules in this section do not apply.
 
 ### 6.5.1 Initial Transport Selection
 
@@ -690,60 +703,51 @@ Maintaining both connections open without sending CONNECT on either is permitted
 during the probe phase (Section 6.4.2), but once the client begins the MQTT
 handshake, only one transport may carry the MQTT session.
 
-**Scope of this section.** The rules in this section apply only to the initial
-connection attempt — the one-shot decision of which transport to use for the
-first `MQTT.CONNECT`. They do not constrain reconnection attempts triggered
-by the application or by the client library after the session is established.
-For example, if a QUIC stream is aborted after the session is established, the
-application MAY choose to reconnect on TCP/TLS; this is a normal reconnection
-following standard MQTT session takeover rules [MQTT5] §3.1.4 or
-[MQTT311] §3.1.4, not an "upgrade," and the rules in this section do not apply.
 
 ### 6.5.2 Broker Session Handling
 
 When multiple transports are active for the same client (e.g., both TCP/TLS and
 QUIC connections exist), the broker MUST apply the standard session takeover
-rules for the negotiated MQTT version.
-
-For MQTT 5.0, the broker MUST follow [MQTT5] §3.1.4:
-
-1. The broker MUST accept the **last** `MQTT.CONNECT` received and establish
-   the MQTT session on that transport. If the Client Identifier in the new
-   `MQTT.CONNECT` matches a client already connected on another transport, the
-   broker MUST perform session takeover as defined in [MQTT5] §3.1.4.
-2. The broker MUST send `MQTT.DISCONNECT` with Reason Code `0x8E` (Session
-   taken over) to the **losing** transport. The broker then half-closes its
-   send direction on the stream. The session **transfers** to the winning
-   transport. The losing transport's connection is closed, and the session no
-   longer exists on that transport.
-3. The broker MUST send `MQTT.CONNACK` to the **winning** transport. The
-   `Session Present` flag [MQTT5] §3.2.2.1 MUST reflect the result of
-   Clean Start processing [MQTT5] §3.2.2.1.1: if Clean Start is 0 and a session
-   exists, the flag MUST be set to 1; if Clean Start is 1, the flag MUST be
-   set to 0.
-
-For MQTT 3.1.1, the broker MUST follow [MQTT311] §3.1.4:
+rules for the negotiated MQTT version. The "last CONNECT wins" rule applies
+identically to both MQTT 5.0 and MQTT 3.1.1.
 
 1. The broker MUST accept the **last** `MQTT.CONNECT` received and establish
    the MQTT session on that transport. If the Client Identifier in the new
    `MQTT.CONNECT` matches a client already connected on another transport, the
-   broker MUST disconnect the existing client [MQTT-3.1.4-2].
-2. The broker MUST abort the stream on the **losing** transport using a QUIC
-   `RESET_STREAM` frame with error code `0x38E` (Session Taken Over) (without
-   sending `MQTT.DISCONNECT`, which is not a server-to-client packet in MQTT
-   3.1.1). The 3.1.1 specification requires only that the existing client be
-   disconnected — the mechanism is closing the network connection. In Single
-   Stream mode, the mechanism is `RESET_STREAM` with error code `0x38E`. The
-   session **transfers** to the winning transport. The losing transport's
-   connection is closed, and the session no longer exists on that transport.
-3. The broker MUST send `MQTT.CONNACK` with the `Session Present` flag set
-   to 0 to the **winning** transport. In MQTT 3.1.1 the CONNACK does not
-   carry a `Session Present` flag; the client determines session state from
-   the `Clean Session` flag it sent in CONNECT [MQTT311] §3.1.2.4. The broker
-   MUST set `Clean Session` according to the value received in the CONNECT.
-   If `Clean Session` is 1, the broker discards any existing session state
-   for this Client Identifier; if `Clean Session` is 0, the broker retains
-   the session but has no flag to communicate its existence in CONNACK.
+   broker MUST perform session takeover as defined in the negotiated protocol:
+   [MQTT5] §3.1.4 for MQTT 5.0, [MQTT311] §3.1.4 for MQTT 3.1.1.
+
+2. The broker MUST signal the **losing** transport as follows:
+
+   - **MQTT 5.0**: Send `MQTT.DISCONNECT` with Reason Code `0x8E` (Session
+     taken over) [MQTT5] §3.14.2.2, then half-close its send direction on the
+     stream.
+   - **MQTT 3.1.1**: Send a QUIC `RESET_STREAM` frame with error code `0x38E`
+     (Session Taken Over). MQTT 3.1.1 defines DISCONNECT as a client-to-server-
+     only packet [MQTT311] §3.14, so the broker cannot send it to the client.
+     The 3.1.1 specification requires only that the existing client be
+     disconnected by closing the network connection — in Single Stream mode,
+     `RESET_STREAM` fulfills this requirement.
+
+   The session outcome on the winning transport depends on the `Clean Session`
+   / `Clean Start` flag in the winning `MQTT.CONNECT`:
+
+   - **Clean Session/Clean Start = 0**: The existing session state is retained
+     and **transfers** to the winning transport. The losing transport's session
+     is discarded.
+   - **Clean Session/Clean Start = 1**: The broker **MUST discard any existing
+     session state** [MQTT5] §3.1.2.3, [MQTT311] §3.1.2.6.2 and create a new
+     session. There is no session to transfer — the winning transport starts
+     fresh.
+
+   In both cases, the losing transport's connection is closed and the session
+   no longer exists on that transport.
+
+3. The broker MUST send `MQTT.CONNACK` to the **winning** transport with the
+   `Session Present` flag set according to the negotiated protocol. The flag
+   has the same semantic meaning in both MQTT 5.0 and MQTT 3.1.1: it indicates
+   whether the server has stored Session state for the supplied Client
+   Identifier.
 
 4. The broker MUST NOT distinguish between a CONNECT from an upgrade attempt
    and a CONNECT from a normal reconnection. For both MQTT 5.0 and MQTT 3.1.1,
@@ -779,16 +783,16 @@ MUST NOT attempt to re-establish the MQTT session on the other transport:
 These rules prevent livelock scenarios where the client and broker continuously
 toggle the session between transports.
 
-## 6.6 Downgrade
+## 6.6 Fallback
 
-Protocol downgrade is the process of falling back from a QUIC-based connection
+Protocol fallback is the process of falling back from a QUIC-based connection
 to TCP/TLS when the QUIC connection cannot be established or is lost after the
 MQTT session has been established on QUIC.
 
-### 6.6.1 Downgrade Categories
+### 6.6.1 Fallback Categories
 
 The client MUST distinguish between the following categories of QUIC failure
-when determining the downgrade behavior:
+when determining the fallback behavior:
 
 **Network failure** — The QUIC connection cannot be established due to a
 network-level error. This includes:
@@ -813,29 +817,29 @@ indicates that the endpoint does not support Single Stream mode. The endpoint
 may support other protocols (e.g., HTTP/3), so the client MUST NOT assume that
 the endpoint is unavailable for MQTT.
 
-On ALPN mismatch, the client MUST downgrade to TCP/TLS and attempt to
+On ALPN mismatch, the client MUST fall back to TCP/TLS and attempt to
 establish a connection. The client MUST NOT apply backoff for ALPN mismatch, as
 the endpoint is reachable and the failure is due to protocol incompatibility,
 not a transient network condition.
 
-### 6.6.2 Downgrade Behavior
+### 6.6.2 Fallback Behavior
 
-When downgrading, the client MUST:
+When falling back, the client SHOULD:
 
 1. Close the failed QUIC connection (if still open).
 2. Resolve the broker's hostname via DNS (as described in Section 6.4.1),
    obtaining the host and port for TCP/TLS.
 3. Establish a TCP/TLS connection to the broker.
 4. Send `MQTT.CONNECT` over the TCP/TLS connection.
-5. The client MUST NOT downgrade to a plain-text TCP connection under any
+5. The client MUST NOT fall back to a plain-text TCP connection under any
    circumstances. TLS encryption is REQUIRED for the TCP/TLS fallback.
 
-### 6.6.3 Post-Session Downgrade
+### 6.6.3 Post-Session Fallback
 
 If the MQTT session is already established on QUIC and the QUIC connection is
 lost, the client MAY attempt to re-establish the session on QUIC. If QUIC
 reconnection fails repeatedly (per the backoff rules in Section 6.6.1), the
-client MAY downgrade to TCP/TLS as a last resort.
+client MAY fall back to TCP/TLS as a last resort.
 
 If the client previously received a CONNACK with Session Expiry Interval greater
 than zero (MQTT 5.0), indicating that the broker retains the session, the client
@@ -907,8 +911,8 @@ To ensure robust communication and consistent state management, it is critical t
 
 ### 6.7.1 Mapping QUIC Transport Errors to MQTT Session State
 
-The MQTT Session persists across a sequence of Network Connections [MQTT5] §4.1. A failure at the QUIC layer breaks the Network Connection but does not automatically terminate the MQTT Session. 
-The Session continues until the Session Expiry Interval elapses (MQTT 5.0) or the client sends a CONNECT with Clean Session=1 (MQTT 3.1.1).
+The MQTT Session persists across a sequence of Network Connections [MQTT5] §4.1. A failure at the QUIC layer breaks the Network Connection but does not automatically terminate the MQTT Session.
+The Session continues until any of the following occurs: the Session Expiry Interval elapses (MQTT 5.0), the client sends a CONNECT with Clean Session=1 (MQTT 3.1.1), the client or server sends an `MQTT.DISCONNECT` with Session Expiry Interval set to 0 (MQTT 5.0), or the broker explicitly terminates the session (e.g., during session takeover per Section 6.5.2).
 
 ### 6.7.1.1 Abnormal Transport Shutdown
 
@@ -922,7 +926,7 @@ An “Abnormal Shutdown” (as defined in Section 6.3.2) occurs when the QUIC co
 
 Mapping Logic:
 
-- Session Persistence: When a QUIC-level error triggers an abnormal shutdown, the MQTT session MUST NOT be immediately terminated. The session state remains active on the broker according to the established Session Expiry Interval (MQTT 5.0) or until the client sends a CONNECT with `Clean Session` set to 1 (MQTT 3.1.1 [MQTT311] §3.1.3).
+- Session Persistence: When a QUIC-level error triggers an abnormal shutdown, the MQTT session MUST NOT be immediately terminated. The session state remains active on the broker according to the established Session Expiry Interval (MQTT 5.0), until the client sends a CONNECT with `Clean Session` set to 1 (MQTT 3.1.1 [MQTT311] §3.1.3), or until the client or server sends an `MQTT.DISCONNECT` with Session Expiry Interval set to 0 (MQTT 5.0).
 
 - State Synchronization: The application layer distinguishes a network-level QUIC failure from a protocol violation by the absence of an MQTT.DISCONNECT packet. 
   If the QUIC connection is lost, the client may attempt to reconnect and resume the session using the same Client Identifier.
@@ -1034,7 +1038,7 @@ part of Single Stream mode conformance.
 **Mandatory encryption.** QUIC mandates TLS 1.3 for all connections [RFC9000].
 There is no unencrypted QUIC option. All MQTT traffic in Single Stream mode is
 therefore encrypted in transit. Implementations MUST NOT downgrade to plain-text
-TCP when falling back from a failed QUIC connection.
+TCP when the QUIC connection fails.
 
 **0-RTT replay risk.** When 0-RTT connection resumption is used, early data
 sent by the client before the server responds may be replayed by an attacker.
@@ -1056,14 +1060,13 @@ wins rule defined in Section 6.5.2.
 the broker's hostname before probing QUIC support, a malicious actor could
 forge DNS responses to redirect the client to an untrusted endpoint. Clients
 SHOULD validate DNS responses using DNSSEC [RFC4033] or an equivalent mechanism.
-When DNSSEC is not available, the client MUST validate the TLS certificate
-during the TCP/TLS fallback connection; the certificate's subject name or
-subject alternative names MUST match the intended broker hostname.
+When DNSSEC is not available, the client SHOULD validate the TLS certificate
+during the QUIC handshake or TCP/TLS fallback connection; the certificate's subject
+name or subject alternative names MUST match the intended broker hostname.
 
-**Protocol downgrade.** Downgrade from QUIC to TCP/TLS is permitted when the
-QUIC handshake fails or times out. Downgrade to plain-text TCP is prohibited.
-Implementations MUST enforce this rule to preserve the security guarantees of
-TLS in all fallback scenarios.
+**Protocol fallback.** Fallback from QUIC to TCP/TLS is permitted when the
+QUIC handshake fails or times out. Implementations MUST enforce this rule to 
+preserve the security guarantees of TLS in all fallback scenarios.
 
 ---
 
@@ -1090,7 +1093,7 @@ A conformant MQTT client implementing Single Stream mode:
 5. MUST follow the client-initiated graceful shutdown procedure defined in
    Section 6.3.1 when disconnecting cleanly.
 6. MUST NOT open additional streams in Single Stream mode.
-7. If the client supports TCP/TLS fallback, it MUST follow the downgrade
+7. If the client supports TCP/TLS fallback, it MUST follow the fallback
    procedure in Section 6.6 when the QUIC handshake fails or times out.
 8. MUST NOT downgrade to a plain-text TCP connection under any circumstances.
 
@@ -1247,8 +1250,16 @@ This is the second version of this document.
 - mTLS is optional
 - Distinguishes MQTT v3.1.1 and v5 handling in error scenarios.
 
+## Changes From Draft 02
+
+- §6.1.1 CONNACK Processing: Restructured the table to correctly distinguish
+  MQTT 5.0 and MQTT 3.1.1
+- §6.5.2 Broker Session Handling: Corrected the erroneous statements about MQTT 3.1.1
+- §6.6: Renamed "Downgrade" to "Fallback" 
+
 ## Revision History
 
+- 2026-08-19, Draft 03
 - 2026-06-23, Draft 02
 - 2026-05-20, Draft 01
 
