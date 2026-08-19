@@ -30,7 +30,7 @@ Determines the format of the topic value. Refer to [sec](#topic-types) for the d
 
 **Position**: bit 2 of the SUBACK Flags.
 
-«<mark title="Requirement MQTT-SN-3.8.2.2-1"><a name="MQTT-SN-3.8.2.2-1"></a>If the Topic Alias Flag is set to 1, a Topic Alias MUST NOT be present in the Packet</mark>»[MQTT‑SN‑3.8.2.2‑1](#tab-MQTT-SN-3.8.2.2-1).
+«<mark title="Requirement MQTT-SN-3.8.2.2-1"><a name="MQTT-SN-3.8.2.2-1"></a>If the Topic Alias Flag is set to 0, a Topic Alias MUST NOT be present in the Packet</mark>»[MQTT‑SN‑3.8.2.2‑1](#tab-MQTT-SN-3.8.2.2-1).
 
 «<mark title="Requirement MQTT-SN-3.8.2.2-2"><a name="MQTT-SN-3.8.2.2-2"></a>If the Topic Alias Flag is set to 1, a Topic Alias MUST be present in the Packet</mark>»[MQTT‑SN‑3.8.2.2‑2](#tab-MQTT-SN-3.8.2.2-2).
 

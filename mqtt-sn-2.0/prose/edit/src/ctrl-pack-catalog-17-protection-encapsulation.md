@@ -102,7 +102,7 @@ The Authentication Tag Length defines the size of the Authentication Tag.
 
 - «<mark title="Requirement MQTT-SN-3.17.2.3-7"><a name="MQTT-SN-3.17.2.3-7"></a>If truncation of the output of the authentication algorithm is required, it MUST be taken in most significant bits first order (leftmost bits)</mark>»[MQTT‑SN‑3.17.2.3‑7](#tab-MQTT-SN-3.17.2.3-7).
 
-- «<mark title="Requirement MQTT-SN-3.17.2.3-8"><a name="MQTT-SN-3.17.2.3-8"></a>Authentication Tag Length values for some Authentication Only protection schemes MUST NOT be used if they define a tag size bigger than the nominal tag size</mark>»\<mark title="Ephemeral region marking">MQTT-SN-3.17.2.3-8][.</mark> For example, values from 0x09 (144 bits) to 0x0F (240 bits) are not allowed for "Authentication Only" protection schemes with a nominal tag size less than 144 bits, such as CMAC-128, CMAC-192, CMAC-256.
+- «<mark title="Requirement MQTT-SN-3.17.2.3-8"><a name="MQTT-SN-3.17.2.3-8"></a>Authentication Tag Length values for some Authentication Only protection schemes MUST NOT be used if they define a tag size bigger than the nominal tag size</mark>»[MQTT-SN-3.17.2.3-8](#tab-MQTT-SN-3.17.2.3-8). For example, values from 0x09 (144 bits) to 0x0F (240 bits) are not allowed for "Authentication Only" protection schemes with a nominal tag size less than 144 bits, such as CMAC-128, CMAC-192, CMAC-256.
 
 ### Protection Scheme{#protection-scheme}
 
@@ -184,17 +184,17 @@ The four byte Random field should contain a random number which is not guessable
 
 ### Cryptographic Material{#cryptographic-material}
 
-The optional Cryptographic Material field contains two<mark title="Ephemeral region marking">, four or t]{.mark}welve [bytes of cryptographic material that when defined it can be used to derive, from a shared master secret, the same keys on the two endpoints and/or, when filled partially or totally with a random value, to provide enough entro]{.mark}py to [further reduce the probability of IV or nonce reuse for CCM or GCM or ChaCha20/Poly1305. For instance, when the Cryptographic Material Length is set to 0x03, the Cryptographic Material field can be partially filled with a random value of ni]{.mark}ne [bytes (the remaining th]{.mark}ree [bytes can be set to 0 if not used) in order to reach, in]{.mark} conjunction [with the]{.mark} four [bytes of the Random field, the]{.mark} thirteen [bytes of entropy recommended for the determination of the nonce used by CCM or it can be partially filled with a random value of eight bytes in order to reach the]{.mark} twelve [bytes of entro]{.mark}py [recommended for the IV or nonce used by GCM or ChaCha20/Poly1305.</mark>
+The optional Cryptographic Material field contains two, four or twelve bytes of cryptographic material that when defined it can be used to derive, from a shared master secret, the same keys on the two endpoints and/or, when filled partially or totally with a random value, to provide enough entropy to further reduce the probability of IV or nonce reuse for CCM or GCM or ChaCha20/Poly1305. For instance, when the Cryptographic Material Length is set to 0x03, the Cryptographic Material field can be partially filled with a random value of nine bytes (the remaining three bytes can be set to 0 if not used) in order to reach, in conjunction with the four bytes of the Random field, the thirteen bytes of entropy recommended for the determination of the nonce used by CCM or it can be partially filled with a random value of eight bytes in order to reach the twelve bytes of entropy ecommended for the IV or nonce used by GCM or ChaCha20/Poly1305.
 
 ### Monotonic Counter{#monotonic-counter}
 
-The optional Monotonic Counter field contains a two «<mark title="Requirement MQTT-SN-3.17.7-1"><a name="MQTT-SN-3.17.7-1"></a>or 4 four number that when defined, is increased by the Client or]{.mark} Server <mark title="Ephemeral region marking">for every packet sent. The counters must be considered independent of session or destination</mark>»[MQTT‑SN‑3.17.7‑1](#tab-MQTT-SN-3.17.7-1). For example, t[he]{.mark} Client [will keep a counter independently from the]{.mark} Server[.</mark>
+The optional Monotonic Counter field contains a two or 4 four number that when defined, is increased by the Client or Server for every packet sent. «<mark title="Requirement MQTT-SN-3.17.7-1"><a name="MQTT-SN-3.17.7-1"></a>The counters must be considered independent of session or destination</mark>»[MQTT‑SN‑3.17.7‑1](#tab-MQTT-SN-3.17.7-1). For example, the Client will keep a counter independently from the Server.
 
 ### Protected MQTT-SN Packet{#protected-mqtt-sn-packet}
 
 The field Protected MQTT-SN Packet contains the MQTT-SN packet that is being secured, encoded according to its packet type.
 
-«<mark title="Requirement MQTT-SN-3.17.8-1"><a name="MQTT-SN-3.17.8-1"></a>The Protected MQTT-SN Packet MUST NOT be a Forwarder Encapsulated Packet</mark>»\<mark title="Ephemeral region marking">MQTT-SN-3.17.8-1] [</mark>as the shared key used directly or after derivation for the protection must belong to the originator of the content and not to a Forwarder that, in general, is not able to securely identify the originator.
+«<mark title="Requirement MQTT-SN-3.17.8-1"><a name="MQTT-SN-3.17.8-1"></a>The Protected MQTT-SN Packet MUST NOT be a Forwarder Encapsulated Packet</mark>»[MQTT-SN-3.17.8-1](#tab-MQTT-SN-3.17.8-1) as the shared key used directly or after derivation for the protection must belong to the originator of the content and not to a Forwarder that, in general, is not able to securely identify the originator.
 
 ### Authentication Tag{#authentication-tag}
 
