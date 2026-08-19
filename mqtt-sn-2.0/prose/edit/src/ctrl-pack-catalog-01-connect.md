@@ -200,7 +200,7 @@ A Two Byte (16-bit) Integer representing the Maximum Packet Size the Client is w
 
 The packet size is the total number of bytes in an MQTT-SN Control Packet, as defined in [sec](#structure-of-an-mqtt-sn-control-packet). The Client uses the Maximum Packet Size to inform the Server that it will not process packets exceeding this limit.
 
-«<mark title="Requirement MQTT-SN-3.1.7-1"><a name="MQTT-SN-3.1.7-1"></a>The Maximum Packet Size value MUST be 10 or greater</mark>»[MQTT-SN-3.1.7-1](#tab-MQTT-SN-3.1.7-1), as this is the minimum size that the CONNECT Packet can be.
+«<mark title="Requirement MQTT-SN-3.1.7-1"><a name="MQTT-SN-3.1.7-1"></a>The Maximum Packet Size value MUST be 0 (unbounded), or 10 or greater</mark>»[MQTT-SN-3.1.7-1](#tab-MQTT-SN-3.1.7-1), as 10 is the minimum size that the CONNECT Packet can be.
 
 «<mark title="Requirement MQTT-SN-3.1.7-2"><a name="MQTT-SN-3.1.7-2"></a>The Server MUST NOT send packets exceeding Maximum Packet Size to the Client. If a Client receives a packet whose size exceeds this limit, this is a Protocol Error, the Client uses DISCONNECT with Reason Code 0x95 (Packet too large)</mark>»[MQTT‑SN‑3.1.7‑2](#tab-MQTT-SN-3.1.7-2).
 
