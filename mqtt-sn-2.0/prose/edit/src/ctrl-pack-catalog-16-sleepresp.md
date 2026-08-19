@@ -32,7 +32,7 @@ The same value as the Packet Identifier in the SLEEPREQ Packet being acknowledge
 
 ### Sleep Duration{#ssres---sleep-duration}
 
-The Server uses this field to inform the Client that it is using a value other than that sent by the Client in the SLEEPRESP.
+The Server uses this field to inform the Client that it is using a value other than that sent by the Client in the SLEEPREQ.
 
 «<mark title="Requirement MQTT-SN-3.16.4-1"><a name="MQTT-SN-3.16.4-1"></a>If the Server sends a Sleep Duration on the SLEEPRESP packet, the Client MUST use this value instead of the Sleep Duration value the Client sent in the SLEEPREQ packet</mark>»[MQTT‑SN‑3.16.4‑1](#tab-MQTT-SN-3.16.4-1).
 

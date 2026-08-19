@@ -55,7 +55,7 @@ Gateway
 :    An MQTT-SN Server that uses one or more TCP connections to communicate with an MQTT Server.
 
 Forwarder
-:    An program or device that is an intermediary between MQTT-SN Clients and Servers which reside on different Underlying Networks that cannot communicate directly with each other.
+:    A program or device that is an intermediary between MQTT-SN Clients and Servers which reside on different Underlying Networks that cannot communicate directly with each other.
 
 MQTT Client
 :    A program or device that uses MQTT. An MQTT Client:<br>
@@ -117,7 +117,7 @@ Refer to [sec](#handling-errors) for information about error handling.
 
 Will Message
 :    An Application Message which is published by the Server after the Virtual Connection is deleted in cases where the Virtual Connection is not deleted normally.
-Refer to [sec](#will-flags) for information about Will Messages.
+Refer to [sec](#will-flag) for information about Will Messages.
 
 Retained Message
 :    An Application Message which is stored by the Server for a Topic Name.

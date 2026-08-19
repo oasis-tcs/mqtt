@@ -310,7 +310,7 @@ Note that a Server MAY support multiple protocols on the same network endpoint. 
 
 If validation is successful, the Server performs the following steps.
 
-1.  «<mark title="Requirement MQTT-SN-3.1.19-3"><a name="MQTT-SN-3.1.19-3"></a>If the Client Identifier represents a Client already connected to the Server, the Server sends a DISCONNECT packet to the existing Client with Reason Code of 0x8E (Session taken over) as described in [sec](#handling-errors) and MUST delete the Virtual Connection of the existing Client</mark>»[MQTT‑SN‑3.1.19‑3](#tab-MQTT-SN-3.1.19-3). If the existing Client has a Will Message, that Will Message is published as described in [sec](#will-flags).
+1.  «<mark title="Requirement MQTT-SN-3.1.19-3"><a name="MQTT-SN-3.1.19-3"></a>If the Client Identifier represents a Client already connected to the Server, the Server sends a DISCONNECT packet to the existing Client with Reason Code of 0x8E (Session taken over) as described in [sec](#handling-errors) and MUST delete the Virtual Connection of the existing Client</mark>»[MQTT‑SN‑3.1.19‑3](#tab-MQTT-SN-3.1.19-3). If the existing Client has a Will Message, that Will Message is published as described in [sec](#will-flag).
 
 2.  «<mark title="Requirement MQTT-SN-3.1.19-4"><a name="MQTT-SN-3.1.19-4"></a>The Server MUST perform the processing of Clean Start that is described in [sec](#clean-start-flag)</mark>»[MQTT‑SN‑3.1.19‑4](#tab-MQTT-SN-3.1.19-4).
 
