@@ -6,7 +6,7 @@
 
 This envelope wraps an MQTT-SN Packet to allow it to be associated with an existing Virtual Connection where other methods are not sufficient. Only Clients can use the Connection Encapsulation because it is assumed that the Network Address for the Server is static for the duration of the Virtual Connection. If the Server Network Address is not static, then another method of identifying the Packet sender must be used, such as the Protection Encapsulation or DTLS.
 
-«<mark title="Requirement MQTT-SN-3.18-1"><a name="MQTT-SN-3.18-1"></a>If the Allow Network Identifier Changes flag in the CONNECT for the Virtual Connection is 0, it is a protocol error to use the Connection Encapsulation</mark>»[MQTT‑SN‑3.18‑1](#tab-MQTT-SN-3.18-1).
+«<mark title="Requirement MQTT-SN-3.18-1"><a name="MQTT-SN-3.18-1"></a>If the Allow Network Address Changes flag in the CONNECT for the Virtual Connection is 0, it is a protocol error to use the Connection Encapsulation</mark>»[MQTT‑SN‑3.18‑1](#tab-MQTT-SN-3.18-1).
 
 «<mark title="Requirement MQTT-SN-3.18-2"><a name="MQTT-SN-3.18-2"></a>It is a protocol error to use the Connection Encapsulation on Packets sent by a Server</mark>»[MQTT-SN-3.18-2](#tab-MQTT-SN-3.18-2).
 
