@@ -65,7 +65,7 @@ If a response to one of the above request Packets is not received in the *Retry 
 
 «<mark title="Requirement MQTT-SN-4.4.2-6"><a name="MQTT-SN-4.4.2-6"></a>If a Packet is retransmitted, it MUST have Protection Encapsulation if the previously transmitted Packet had Protection Encapsulation</mark>»[MQTT‑SN‑4.4.2‑6](#tab-MQTT-SN-4.4.2-6).
 
-«<mark title="Requirement MQTT-SN-4.4.2-7"><a name="MQTT-SN-4.4.2-7"></a>If a Packet is retransmitted it MUST be identical to the previously transmitted Packet. The Protection Encapsulation need not be identical</mark>»[MQTT‑SN‑4.4.2‑7](#tab-MQTT-SN-4.4.2-7).
+«<mark title="Requirement MQTT-SN-4.4.2-7"><a name="MQTT-SN-4.4.2-7"></a>If a Packet is retransmitted it MUST be identical to the previously transmitted Packet, the DUP flag excepted. The Protection Encapsulation need not be identical</mark>»[MQTT‑SN‑4.4.2‑7](#tab-MQTT-SN-4.4.2-7).
 
 > **Informative comment**
 >
