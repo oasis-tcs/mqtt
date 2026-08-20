@@ -22,7 +22,7 @@ The SLEEPREQ Flags is a 1 byte field which contains flags specifying the content
 
 Specifies whether Session Topic Aliases should be retained by the Server during the Asleep state. "0" indicates Topic Aliases should be removed during the sleeping period and renegotiated when Awake or Active. "1" indicates Topic Aliases should be retained during the Asleep period, and therefore not negotiated when Awake or Active.
 
-«<mark title="Requirement MQTT-SN-3.15.2.1-1"><a name="MQTT-SN-3.15.2.1-1"></a>Predefined Topic aliases MUST NOT be removed by the setting of the Retain Topic Aliases flag to 1</mark>»[MQTT‑SN‑3.15.2.1‑1](#tab-MQTT-SN-3.15.2.1-1).
+«<mark title="Requirement MQTT-SN-3.15.2.1-1"><a name="MQTT-SN-3.15.2.1-1"></a>Predefined Topic aliases MUST NOT be removed by the setting of the Retain Topic Aliases flag to 0</mark>»[MQTT‑SN‑3.15.2.1‑1](#tab-MQTT-SN-3.15.2.1-1).
 
 ### Packet Identifier{#ssreq---packet-identifier}
 

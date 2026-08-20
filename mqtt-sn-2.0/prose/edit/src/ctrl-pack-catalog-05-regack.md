@@ -31,7 +31,7 @@ Determines the format of the topic value. Refer to [sec](#topic-types) for the d
 
 #### Topic Alias Flag{#rrtaa---topic-alias-flag}
 
-**Position**: bit 2 of the REGISTER Flags.
+**Position**: bit 2 of the REGACK Flags.
 
 Determines the presence of the Topic Alias field.
 

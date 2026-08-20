@@ -24,7 +24,7 @@ Used to identify the corresponding PINGRESP packet. It should ideally be set to 
 
 ### PINGREQ Actions{#pingreq-actions}
 
-«<mark title="Requirement MQTT-SN-3.11.3-1"><a name="MQTT-SN-3.11.3-1"></a>The Server MUST send a PINGRESP packet in response to a PINGREQ packet if it has a Virtual Connection for the sending Client</mark>»[MQTT‑SN‑3.11.3‑1](#tab-MQTT-SN-3.11.3-1).
+«<mark title="Requirement MQTT-SN-3.11.3-1"><a name="MQTT-SN-3.11.3-1"></a>The Server MUST send a PINGRESP packet in response to a PINGREQ packet after sending any buffered Application Messages, if it has a Virtual Connection for the sending Client</mark>»[MQTT‑SN‑3.11.3‑1](#tab-MQTT-SN-3.11.3-1).
 
 «<mark title="Requirement MQTT-SN-3.11.3-2"><a name="MQTT-SN-3.11.3-2"></a>The Server MAY send a DISCONNECT packet in response to a PINGREQ packet if it does not have a Virtual Connection for the sending Client</mark>»[MQTT‑SN‑3.11.3‑2](#tab-MQTT-SN-3.11.3-2).
 
