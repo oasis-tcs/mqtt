@@ -13,9 +13,9 @@ The first 2 or 4 bytes of the packet are encoded according to the variable lengt
 
 ### Connect Flags{#connect-flags}
 
-The Connect Flags is 1 byte field which contains several parameters specifying the behavior of the MQTT-SN Virtual Connection. It also indicates the presence or absence of fields in the Packet.
+The Connect Flags is 1 byte field which contains several parameters specifying the behavior of the MQTT-SN Virtual Connection. It also indicates the presence or absence of fields in the Packet. «<mark title="Requirement MQTT-SN-3.1.2-1"><a name="MQTT-SN-3.1.2-1"></a>Bit 7 of the CONNECT Flags is reserved and MUST be set to 0</mark>»[MQTT‑SN‑3.1.2‑1](#tab-MQTT-SN-3.1.2-1).
 
-«<mark title="Requirement MQTT-SN-3.1.2-1"><a name="MQTT-SN-3.1.2-1"></a>The Server MUST validate that the reserved flags in the CONNECT packet are set to 0</mark>»[MQTT‑SN‑3.1.2‑1](#tab-MQTT-SN-3.1.2-1). If any of the reserved flags is not 0 it is a Malformed Packet. Refer to [sec](#handling-errors) for information about handling errors.
+«<mark title="Requirement MQTT-SN-3.1.2-2"><a name="MQTT-SN-3.1.2-2"></a>The Server MUST validate that the reserved flags in the CONNECT packet are set to 0</mark>»[MQTT‑SN‑3.1.2‑2](#tab-MQTT-SN-3.1.2-2). If any of the reserved flags is not 0 it is a Malformed Packet. Refer to [sec](#handling-errors) for information about handling errors.
 
 #### Clean Start Flag{#clean-start-flag}
 
@@ -115,7 +115,7 @@ for the Virtual Connection.
 
 «<mark title="Requirement MQTT-SN-3.1.3-2"><a name="MQTT-SN-3.1.3-2"></a>If the Will Flag is set to 1, the Will Flags MUST be present in the Packet</mark>»[MQTT‑SN‑3.1.3‑2](#tab-MQTT-SN-3.1.3-2).
 
-The *Will Flags* is 1 byte field which contains several parameters specifying the handling of the Will Message.
+The *Will Flags* is 1 byte field which contains several parameters specifying the handling of the Will Message. «<mark title="Requirement MQTT-SN-3.1.3-3"><a name="MQTT-SN-3.1.3-3"></a>Bits 7-5 of the Will Flags are reserved and MUST be set to 0</mark>»[MQTT‑SN‑3.1.3‑3](#tab-MQTT-SN-3.1.3-3).
 
 #### Will Topic Type{#will-topic-type}
 
