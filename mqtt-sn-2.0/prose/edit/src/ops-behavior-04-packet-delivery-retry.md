@@ -46,6 +46,8 @@ The Control Packets in the above list, along with CONNECT and AUTH, are referred
 
 «<mark title="Requirement MQTT-SN-4.4.2-2"><a name="MQTT-SN-4.4.2-2"></a>The connection sequence CONNECT, zero or more AUTH Packets then CONNACK MUST be completed without retries</mark>»[MQTT‑SN‑4.4.2‑2](#tab-MQTT-SN-4.4.2-2).
 
+If a connection attempt fails, the Client may send a new CONNECT packet to try again.
+
 «<mark title="Requirement MQTT-SN-4.4.2-3"><a name="MQTT-SN-4.4.2-3"></a>A Server MUST respond promptly to a valid
 request Packet</mark>»[MQTT‑SN‑4.4.2‑3](#tab-MQTT-SN-4.4.2-3).
 
@@ -61,7 +63,7 @@ on the basis of the expected characteristics of the Underlying Network. Example 
 
 If a response to one of the above request Packets is not received in the *Retry Interval*, the Sender resends the request Packet. The request is repeated at *Retry Interval* intervals, until a response is received or the *Maximum Retry Count* is reached. After the *Maximum Retry Count* is reached and a further *Retry Interval* has passed without a response, the Virtual Connection is deleted.
 
-«<mark title="Requirement MQTT-SN-4.4.2-5"><a name="MQTT-SN-4.4.2-5"></a>In the absence of a response to a Packet which expects one, the Sender MUST delete the Virtual Connection</mark>»[MQTT-SN-4.4.2-5](#tab-MQTT-SN-4.4.2-5). If the Sender is a Server and a Will Message is defined for the Virtual Connection, the Will Message is be published as described in [sec](#will-flag). A new Virtual Connection will have to be established to continue.
+«<mark title="Requirement MQTT-SN-4.4.2-5"><a name="MQTT-SN-4.4.2-5"></a>In the absence of a response to a Packet which expects one, the Sender MUST delete the Virtual Connection if one exists</mark>»[MQTT-SN-4.4.2-5](#tab-MQTT-SN-4.4.2-5). If the Sender is a Server and a Will Message is defined for the Virtual Connection, the Will Message is be published as described in [sec](#will-flag). A new Virtual Connection will have to be established to continue.
 
 «<mark title="Requirement MQTT-SN-4.4.2-6"><a name="MQTT-SN-4.4.2-6"></a>If a Packet is retransmitted, it MUST have Protection Encapsulation if the previously transmitted Packet had Protection Encapsulation</mark>»[MQTT‑SN‑4.4.2‑6](#tab-MQTT-SN-4.4.2-6).
 
