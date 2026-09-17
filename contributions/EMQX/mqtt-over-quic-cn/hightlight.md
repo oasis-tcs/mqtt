@@ -28,11 +28,11 @@ and [§5](mqtt_over_quic_single_stream_CN_1.md#5-single-stream-mode).
 
 ## 2. Three distinct lifetimes
 
-| Concept | Role in this design | Lifetime |
-| --- | --- | --- |
-| QUIC connection | Encrypted transport containing the MQTT stream | Can remain open across successive MQTT Network Connections. |
-| MQTT Network Connection | One client-initiated bidirectional QUIC stream/ or TCP/TLS | Ends when that stream closes or is aborted. |
-| MQTT Session | MQTT state associated with the Client Identifier | May survive multiple Network Connections, according to MQTT session-lifetime rules. |
+| Concept                 | Role in this design                                        | Lifetime                                                                            |
+|:------------------------|:-----------------------------------------------------------|:------------------------------------------------------------------------------------|
+| QUIC connection         | Encrypted transport containing the MQTT stream             | Can remain open across successive MQTT Network Connections.                         |
+| MQTT Network Connection | One client-initiated bidirectional QUIC stream/ or TCP/TLS | Ends when that stream closes or is aborted.                                         |
+| MQTT Session            | MQTT state associated with the Client Identifier           | May survive multiple Network Connections, according to MQTT session-lifetime rules. |
 
 The limit is **at most one active MQTT stream per QUIC connection**, not one
 stream for the entire lifetime of the QUIC connection. The server does not
