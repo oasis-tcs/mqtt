@@ -4,9 +4,9 @@
 
 # MQTT Over QUIC — Single Stream Mode Version 1.0
 
-## Committee Note Draft 03
+## Committee Note Draft 04
 
-## 19 August 2026
+## 24 September 2026
 
 ### This Version
 
@@ -16,7 +16,7 @@
 	### Previous Version
 
 - [MQTT-QUIC-SS] "MQTT Over QUIC — Single Stream Mode Version 1.0", OASIS
-  Committee Note Draft 02, 23 June 2026. [link to Draft 02]
+  Committee Note Draft 03, 19 August 2026. [link to Draft 03]
 
 ### Latest Version
 
@@ -56,7 +56,7 @@ handshakes, built-in TLS security, and network address migration.
 When referencing this document the following citation format should be used:
 
 - [MQTT-QUIC-SS] "MQTT Over QUIC — Single Stream Mode Version 1.0", OASIS
-  Committee Note Draft 03, [19 August 2026]. [link to latest version].
+  Committee Note Draft 04, [24 September 2026]. [link to latest version].
 
 ### Related Work
 
@@ -1342,7 +1342,7 @@ development of this document and are gratefully acknowledged:
 (This appendix does not form an integral part of this document and is
 informational.)
 
-This is the second version of this document.
+This is the fourth draft of this document.
 
 ## Changes From Draft 01
 
@@ -1356,8 +1356,19 @@ This is the second version of this document.
 - §6.5.2 Broker Session Handling: Corrected the erroneous statements about MQTT 3.1.1
 - §6.6: Renamed "Downgrade" to "Fallback" 
 
+## Changes From Draft 03
+
+- Clarified the MQTT Network Connection mapping, the one-active-stream limit,
+  and reuse of the QUIC connection for replacement MQTT streams.
+- Consolidated inherited MQTT and QUIC rules instead of repeating itself.
+- Clarified ALPN negotiation and 0-RTT acceptance, rejection, and resubmission
+- Made graceful shutdown explicit for both endpoints and distinguished it
+  from bidirectional protocol-error aborts, with bounded cleanup and guidance
+  on replacement-stream races.
+
 ## Revision History
 
+- 2026-09-24, Draft 04
 - 2026-08-19, Draft 03
 - 2026-06-23, Draft 02
 - 2026-05-20, Draft 01
