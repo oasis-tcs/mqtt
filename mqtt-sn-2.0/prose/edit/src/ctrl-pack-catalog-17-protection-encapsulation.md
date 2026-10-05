@@ -96,9 +96,9 @@ The Authentication Tag Length defines the size of the Authentication Tag. Only f
 
   - if the value is 0x4, the length of the Authentication Tag will be (0x4)\*16=64 bits.
 
-- «<mark title="Requirement MQTT-SN-3.17.2.3-7"><a name="MQTT-SN-3.17.2.3-7"></a>If truncation of the output of the authentication algorithm is required, it MUST be taken in most significant bits first order (leftmost bits)</mark>»[MQTT‑SN‑3.17.2.3‑7](#tab-MQTT-SN-3.17.2.3-7).
+«<mark title="Requirement MQTT-SN-3.17.2.3-7"><a name="MQTT-SN-3.17.2.3-7"></a>If truncation of the output of the authentication algorithm is required, it MUST be taken in most significant bits first order (leftmost bits)</mark>»[MQTT‑SN‑3.17.2.3‑7](#tab-MQTT-SN-3.17.2.3-7).
 
-- «<mark title="Requirement MQTT-SN-3.17.2.3-8"><a name="MQTT-SN-3.17.2.3-8"></a>Authentication Tag Length values for some Authentication Only protection schemes MUST NOT be used if they define a tag size bigger than the nominal tag size</mark>»[MQTT-SN-3.17.2.3-8](#tab-MQTT-SN-3.17.2.3-8). For example, values from 0x09 (144 bits) to 0x0F (240 bits) are not allowed for "Authentication Only" protection schemes with a nominal tag size less than 144 bits, such as CMAC-128, CMAC-192, CMAC-256.
+«<mark title="Requirement MQTT-SN-3.17.2.3-8"><a name="MQTT-SN-3.17.2.3-8"></a>Authentication Tag Length values for some Authentication Only protection schemes MUST NOT be used if they define a tag size bigger than the nominal tag size</mark>»[MQTT-SN-3.17.2.3-8](#tab-MQTT-SN-3.17.2.3-8). For example, values from 0x09 (144 bits) to 0x0F (240 bits) are not allowed for "Authentication Only" protection schemes with a nominal tag size less than 144 bits, such as CMAC-128, CMAC-192, CMAC-256.
 
 ### Protection Scheme{#protection-scheme}
 
