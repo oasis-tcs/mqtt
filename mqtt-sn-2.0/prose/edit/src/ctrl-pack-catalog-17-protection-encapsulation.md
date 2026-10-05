@@ -74,11 +74,9 @@ Specifies the number of sixteen bit groups forming the cryptographic material in
 
 **Position:** bits 4 through 7 of the Protection Flags.
 
-The Authentication Tag Length defines the size of the Authentication Tag.
+The Authentication Tag Length defines the size of the Authentication Tag. Only fourteen of the sixteen possible values are allowed.
 
-- Only fourteen of the sixteen possible values are allowed.
-
-  - If the Authentication Tag Length is set to 0x0, the length of the Authentication Tag is provider defined.
+- If the Authentication Tag Length is set to 0x0, the length of the Authentication Tag is provider defined.
 
 > **Informative Comment**
 >
@@ -92,9 +90,7 @@ The Authentication Tag Length defines the size of the Authentication Tag.
 
 - «<mark title="Requirement MQTT-SN-3.17.2.3-4"><a name="MQTT-SN-3.17.2.3-4"></a>If the Authentication Tag Length is set to any value between 0x4 and 0xF inclusive, the Protection Scheme MUST be "Authentication Only"</mark>»[MQTT‑SN‑3.17.2.3‑4](#tab-MQTT-SN-3.17.2.3-4).
 
-- «<mark title="Requirement MQTT-SN-3.17.2.3-5"><a name="MQTT-SN-3.17.2.3-5"></a>Authentication Tag Length values between 0x4 and 0xF inclusive MUST only be used for the truncation of "Authentication Only" protection schemes</mark>»[MQTT‑SN‑3.17.2.3‑5](#tab-MQTT-SN-3.17.2.3-5).
-
-- «<mark title="Requirement MQTT-SN-3.17.2.3-6"><a name="MQTT-SN-3.17.2.3-6"></a>In these cases the length of the Authentication Tag MUST be sixteen times the Authentication Tag Length</mark>»[MQTT‑SN‑3.17.2.3‑6](#tab-MQTT-SN-3.17.2.3-6). For example:
+- «<mark title="Requirement MQTT-SN-3.17.2.3-5"><a name="MQTT-SN-3.17.2.3-5"></a>Authentication Tag Length values between 0x4 and 0xF inclusive MUST only be used for the truncation of "Authentication Only" protection schemes</mark>»[MQTT‑SN‑3.17.2.3‑5](#tab-MQTT-SN-3.17.2.3-5). «<mark title="Requirement MQTT-SN-3.17.2.3-6"><a name="MQTT-SN-3.17.2.3-6"></a>In these cases the length of the Authentication Tag MUST be sixteen times the Authentication Tag Length</mark>»[MQTT‑SN‑3.17.2.3‑6](#tab-MQTT-SN-3.17.2.3-6). For example:
 
   - if the value is 0xF, the length of the Authentication Tag will be (0xF)\*16=240 bits;
 
