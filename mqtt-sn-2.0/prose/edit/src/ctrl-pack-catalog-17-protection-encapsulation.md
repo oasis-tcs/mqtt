@@ -102,7 +102,7 @@ The Authentication Tag Length defines the size of the Authentication Tag. Only f
 
 ### Protection Scheme{#protection-scheme}
 
-«<mark title="Requirement MQTT-SN-3.17.3-1"><a name="MQTT-SN-3.17.3-1"></a>The Protection Scheme is a one byte field which MUST contain one of the indexes in table 3-39 which is not reserved</mark>»[MQTT‑SN‑3.17.3‑1](#tab-MQTT-SN-3.17.3-1).
+«<mark title="Requirement MQTT-SN-3.17.3-1"><a name="MQTT-SN-3.17.3-1"></a>The Protection Scheme is a one byte field which MUST contain one of the indexes in table 10 which is not reserved</mark>»[MQTT‑SN‑3.17.3‑1](#tab-MQTT-SN-3.17.3-1).
 
 In general two types of protection scheme are considered: **Authentication only** (such as HMAC or CMAC) and **AEAD** (Authenticated Encryption with Associated Data, such as GCM, CCM or ChaCha20/Poly1305).
 
@@ -111,8 +111,6 @@ In general two types of protection scheme are considered: **Authentication only*
 «<mark title="Requirement MQTT-SN-3.17.3-3"><a name="MQTT-SN-3.17.3-3"></a>The twelve byte initialization vector (IV) recommended for AES GCM must be obtained by performing SHA256, truncated to the leftmost 96 bits, of the sequence Byte 1 to Byte 17+C+M (all packet fields up to the Protected MQTT-SN Packet)</mark>»[MQTT‑SN‑3.17.3‑3](#tab-MQTT-SN-3.17.3-3).
 
 «<mark title="Requirement MQTT-SN-3.17.3-4"><a name="MQTT-SN-3.17.3-4"></a>The twelve byte nonce recommended for ChaCha20/Poly1305 must be obtained by performing SHA256 truncated to 96 bit of the sequence Byte 1 to Byte 17+C+M (all packet fields up to the Protected MQTT-SN Packet)</mark>»[MQTT‑SN‑3.17.3‑4](#tab-MQTT-SN-3.17.3-4).
-
-*Figure 3-28 -- Protection Schemes*
 
 | Index     | Name                          |Authentication Only  | Key Size           | Nominal Tag Size |
 |:----------|:------------------------------|:-------------------:|:-------------------|:-----------------|
@@ -140,7 +138,7 @@ Table: Protection Schemes
 
 **Note(s):**
 
-> 1.  Reference <https://www.rfc-editor.org/rfc/rfc2104)
+1.  Reference <https://www.rfc-editor.org/rfc/rfc2104>
 
 2.  Reference <https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.198-1.pdf>
 
@@ -154,7 +152,7 @@ Table: Protection Schemes
 
 7.  AES GCM requires a 12 bytes IV as indicated in <https://www.rfc-editor.org/rfc/rfc8152#section-10.1>
 
-8.  Reference: <https://www.rfc-editor.org/rfc/rfc7539> and security considerations on <https://www.rfc-editor.org/rfc/rfc8152#section-10.3.1>
+8.  Reference <https://www.rfc-editor.org/rfc/rfc7539> and security considerations on <https://www.rfc-editor.org/rfc/rfc8152#section-10.3.1>
 
 9.  ChaCha20/Poly1305 requires a 12 bytes nonce as indicated in <https://www.rfc-editor.org/rfc/rfc8152#section-10.3>
 
