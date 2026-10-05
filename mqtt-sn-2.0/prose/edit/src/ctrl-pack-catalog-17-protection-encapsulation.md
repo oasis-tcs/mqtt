@@ -182,7 +182,7 @@ The optional Cryptographic Material field contains two, four or twelve bytes of 
 
 ### Monotonic Counter{#monotonic-counter}
 
-The optional Monotonic Counter field contains a two or 4 four number that when defined, is increased by the Client or Server for every packet sent. «<mark title="Requirement MQTT-SN-3.17.7-1"><a name="MQTT-SN-3.17.7-1"></a>The counters must be considered independent of session or destination</mark>»[MQTT‑SN‑3.17.7‑1](#tab-MQTT-SN-3.17.7-1). For example, the Client will keep a counter independently from the Server.
+The optional Monotonic Counter field contains a two or four byte number that when defined, is increased by the Client or Server for every packet sent. «<mark title="Requirement MQTT-SN-3.17.7-1"><a name="MQTT-SN-3.17.7-1"></a>The counters must be considered independent of session or destination</mark>»[MQTT‑SN‑3.17.7‑1](#tab-MQTT-SN-3.17.7-1). For example, the Client will keep a counter independently from the Server.
 
 ### Protected MQTT-SN Packet{#protected-mqtt-sn-packet}
 
