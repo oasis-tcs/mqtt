@@ -74,11 +74,9 @@ Specifies the number of sixteen bit groups forming the cryptographic material in
 
 **Position:** bits 4 through 7 of the Protection Flags.
 
-The Authentication Tag Length defines the size of the Authentication Tag.
+The Authentication Tag Length defines the size of the Authentication Tag. Only fourteen of the sixteen possible values are allowed.
 
-- Only fourteen of the sixteen possible values are allowed.
-
-  - If the Authentication Tag Length is set to 0x0, the length of the Authentication Tag is provider defined.
+- If the Authentication Tag Length is set to 0x0, the length of the Authentication Tag is provider defined.
 
 > **Informative Comment**
 >
@@ -92,21 +90,19 @@ The Authentication Tag Length defines the size of the Authentication Tag.
 
 - «<mark title="Requirement MQTT-SN-3.17.2.3-4"><a name="MQTT-SN-3.17.2.3-4"></a>If the Authentication Tag Length is set to any value between 0x4 and 0xF inclusive, the Protection Scheme MUST be "Authentication Only"</mark>»[MQTT‑SN‑3.17.2.3‑4](#tab-MQTT-SN-3.17.2.3-4).
 
-- «<mark title="Requirement MQTT-SN-3.17.2.3-5"><a name="MQTT-SN-3.17.2.3-5"></a>Authentication Tag Length values between 0x4 and 0xF inclusive MUST only be used for the truncation of "Authentication Only" protection schemes</mark>»[MQTT‑SN‑3.17.2.3‑5](#tab-MQTT-SN-3.17.2.3-5).
-
-- «<mark title="Requirement MQTT-SN-3.17.2.3-6"><a name="MQTT-SN-3.17.2.3-6"></a>In these cases the length of the Authentication Tag MUST be sixteen times the Authentication Tag Length</mark>»[MQTT‑SN‑3.17.2.3‑6](#tab-MQTT-SN-3.17.2.3-6). For example:
+- «<mark title="Requirement MQTT-SN-3.17.2.3-5"><a name="MQTT-SN-3.17.2.3-5"></a>Authentication Tag Length values between 0x4 and 0xF inclusive MUST only be used for the truncation of "Authentication Only" protection schemes</mark>»[MQTT‑SN‑3.17.2.3‑5](#tab-MQTT-SN-3.17.2.3-5). «<mark title="Requirement MQTT-SN-3.17.2.3-6"><a name="MQTT-SN-3.17.2.3-6"></a>In these cases the length of the Authentication Tag MUST be sixteen times the Authentication Tag Length</mark>»[MQTT‑SN‑3.17.2.3‑6](#tab-MQTT-SN-3.17.2.3-6). For example:
 
   - if the value is 0xF, the length of the Authentication Tag will be (0xF)\*16=240 bits;
 
   - if the value is 0x4, the length of the Authentication Tag will be (0x4)\*16=64 bits.
 
-- «<mark title="Requirement MQTT-SN-3.17.2.3-7"><a name="MQTT-SN-3.17.2.3-7"></a>If truncation of the output of the authentication algorithm is required, it MUST be taken in most significant bits first order (leftmost bits)</mark>»[MQTT‑SN‑3.17.2.3‑7](#tab-MQTT-SN-3.17.2.3-7).
+«<mark title="Requirement MQTT-SN-3.17.2.3-7"><a name="MQTT-SN-3.17.2.3-7"></a>If truncation of the output of the authentication algorithm is required, it MUST be taken in most significant bits first order (leftmost bits)</mark>»[MQTT‑SN‑3.17.2.3‑7](#tab-MQTT-SN-3.17.2.3-7).
 
-- «<mark title="Requirement MQTT-SN-3.17.2.3-8"><a name="MQTT-SN-3.17.2.3-8"></a>Authentication Tag Length values for some Authentication Only protection schemes MUST NOT be used if they define a tag size bigger than the nominal tag size</mark>»[MQTT-SN-3.17.2.3-8](#tab-MQTT-SN-3.17.2.3-8). For example, values from 0x09 (144 bits) to 0x0F (240 bits) are not allowed for "Authentication Only" protection schemes with a nominal tag size less than 144 bits, such as CMAC-128, CMAC-192, CMAC-256.
+«<mark title="Requirement MQTT-SN-3.17.2.3-8"><a name="MQTT-SN-3.17.2.3-8"></a>Authentication Tag Length values for some Authentication Only protection schemes MUST NOT be used if they define a tag size bigger than the nominal tag size</mark>»[MQTT-SN-3.17.2.3-8](#tab-MQTT-SN-3.17.2.3-8). For example, values from 0x09 (144 bits) to 0x0F (240 bits) are not allowed for "Authentication Only" protection schemes with a nominal tag size less than 144 bits, such as CMAC-128, CMAC-192, CMAC-256.
 
 ### Protection Scheme{#protection-scheme}
 
-«<mark title="Requirement MQTT-SN-3.17.3-1"><a name="MQTT-SN-3.17.3-1"></a>The Protection Scheme is a one byte field which MUST contain one of the indexes in table 3-39 which is not reserved</mark>»[MQTT‑SN‑3.17.3‑1](#tab-MQTT-SN-3.17.3-1).
+«<mark title="Requirement MQTT-SN-3.17.3-1"><a name="MQTT-SN-3.17.3-1"></a>The Protection Scheme is a one byte field which MUST contain one of the indexes in table 10 which is not reserved</mark>»[MQTT‑SN‑3.17.3‑1](#tab-MQTT-SN-3.17.3-1).
 
 In general two types of protection scheme are considered: **Authentication only** (such as HMAC or CMAC) and **AEAD** (Authenticated Encryption with Associated Data, such as GCM, CCM or ChaCha20/Poly1305).
 
@@ -115,8 +111,6 @@ In general two types of protection scheme are considered: **Authentication only*
 «<mark title="Requirement MQTT-SN-3.17.3-3"><a name="MQTT-SN-3.17.3-3"></a>The twelve byte initialization vector (IV) recommended for AES GCM must be obtained by performing SHA256, truncated to the leftmost 96 bits, of the sequence Byte 1 to Byte 17+C+M (all packet fields up to the Protected MQTT-SN Packet)</mark>»[MQTT‑SN‑3.17.3‑3](#tab-MQTT-SN-3.17.3-3).
 
 «<mark title="Requirement MQTT-SN-3.17.3-4"><a name="MQTT-SN-3.17.3-4"></a>The twelve byte nonce recommended for ChaCha20/Poly1305 must be obtained by performing SHA256 truncated to 96 bit of the sequence Byte 1 to Byte 17+C+M (all packet fields up to the Protected MQTT-SN Packet)</mark>»[MQTT‑SN‑3.17.3‑4](#tab-MQTT-SN-3.17.3-4).
-
-*Figure 3-28 -- Protection Schemes*
 
 | Index     | Name                          |Authentication Only  | Key Size           | Nominal Tag Size |
 |:----------|:------------------------------|:-------------------:|:-------------------|:-----------------|
@@ -144,7 +138,7 @@ Table: Protection Schemes
 
 **Note(s):**
 
-> 1.  Reference <https://www.rfc-editor.org/rfc/rfc2104)
+1.  Reference <https://www.rfc-editor.org/rfc/rfc2104>
 
 2.  Reference <https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.198-1.pdf>
 
@@ -158,7 +152,7 @@ Table: Protection Schemes
 
 7.  AES GCM requires a 12 bytes IV as indicated in <https://www.rfc-editor.org/rfc/rfc8152#section-10.1>
 
-8.  Reference: <https://www.rfc-editor.org/rfc/rfc7539> and security considerations on <https://www.rfc-editor.org/rfc/rfc8152#section-10.3.1>
+8.  Reference <https://www.rfc-editor.org/rfc/rfc7539> and security considerations on <https://www.rfc-editor.org/rfc/rfc8152#section-10.3.1>
 
 9.  ChaCha20/Poly1305 requires a 12 bytes nonce as indicated in <https://www.rfc-editor.org/rfc/rfc8152#section-10.3>
 
@@ -180,15 +174,15 @@ The four byte Random field should contain a random number which is not guessable
 
 > **Informative comment**
 > 
-> In the case of CCM, in the worst case scenario where the "Cryptographic Material" and the "Monotonic Counter" optional fields are not present, the recommended nonce on 13 bytes has to be calculated as SHA256 truncated to 104 bits of the sequence Byte 1 to Byte 16 (all packet fields up to the Protected MQTT-SN Packet). So considering the same Sender Identifier, the same nonce can be generated with a probability of 1/2\^32=2.33x10^-10^. With a shorter Random field of 2 bytes, the same nonce would be calculated with a probability of only 1/2\^16=1.53x10^-5^. As CCM is a derivation of CTR (see <https://en.wikipedia.org/wiki/CCM_mode>, the nonce should never be reused for the same key so the probability of generating two identical nonces should be kept as low as possible. The same applies to GCM and ChaCha20/Poly1305, the security depends on choosing a unique IV of 12 bytes for every encryption performed with the same key (<https://en.wikipedia.org/wiki/Galois/Counter_Mode]](https://en.wikipedia.org/wiki/Galois/Counter_Mode>).
+> In the case of CCM, in the worst case scenario where the "Cryptographic Material" and the "Monotonic Counter" optional fields are not present, the recommended nonce on 13 bytes has to be calculated as SHA256 truncated to 104 bits of the sequence Byte 1 to Byte 16 (all packet fields up to the Protected MQTT-SN Packet). So considering the same Sender Identifier, the same nonce can be generated with a probability of 1/2\^32=2.33x10^-10^. With a shorter Random field of 2 bytes, the same nonce would be calculated with a probability of only 1/2\^16=1.53x10^-5^. As CCM is a derivation of CTR (see <https://en.wikipedia.org/wiki/CCM_mode>), the nonce should never be reused for the same key so the probability of generating two identical nonces should be kept as low as possible. The same applies to GCM and ChaCha20/Poly1305, the security depends on choosing a unique IV of 12 bytes for every encryption performed with the same key (<https://en.wikipedia.org/wiki/Galois/Counter_Mode>).
 
 ### Cryptographic Material{#cryptographic-material}
 
-The optional Cryptographic Material field contains two, four or twelve bytes of cryptographic material that when defined it can be used to derive, from a shared master secret, the same keys on the two endpoints and/or, when filled partially or totally with a random value, to provide enough entropy to further reduce the probability of IV or nonce reuse for CCM or GCM or ChaCha20/Poly1305. For instance, when the Cryptographic Material Length is set to 0x03, the Cryptographic Material field can be partially filled with a random value of nine bytes (the remaining three bytes can be set to 0 if not used) in order to reach, in conjunction with the four bytes of the Random field, the thirteen bytes of entropy recommended for the determination of the nonce used by CCM or it can be partially filled with a random value of eight bytes in order to reach the twelve bytes of entropy ecommended for the IV or nonce used by GCM or ChaCha20/Poly1305.
+The optional Cryptographic Material field contains two, four or twelve bytes of cryptographic material that when defined it can be used to derive, from a shared master secret, the same keys on the two endpoints and/or, when filled partially or totally with a random value, to provide enough entropy to further reduce the probability of IV or nonce reuse for CCM or GCM or ChaCha20/Poly1305. For instance, when the Cryptographic Material Length is set to 0x03, the Cryptographic Material field can be partially filled with a random value of nine bytes (the remaining three bytes can be set to 0 if not used) in order to reach, in conjunction with the four bytes of the Random field, the thirteen bytes of entropy recommended for the determination of the nonce used by CCM or it can be partially filled with a random value of eight bytes in order to reach the twelve bytes of entropy recommended for the IV or nonce used by GCM or ChaCha20/Poly1305.
 
 ### Monotonic Counter{#monotonic-counter}
 
-The optional Monotonic Counter field contains a two or 4 four number that when defined, is increased by the Client or Server for every packet sent. «<mark title="Requirement MQTT-SN-3.17.7-1"><a name="MQTT-SN-3.17.7-1"></a>The counters must be considered independent of session or destination</mark>»[MQTT‑SN‑3.17.7‑1](#tab-MQTT-SN-3.17.7-1). For example, the Client will keep a counter independently from the Server.
+The optional Monotonic Counter field contains a two or four byte number that when defined, is increased by the Client or Server for every packet sent. «<mark title="Requirement MQTT-SN-3.17.7-1"><a name="MQTT-SN-3.17.7-1"></a>The counters must be considered independent of session or destination</mark>»[MQTT‑SN‑3.17.7‑1](#tab-MQTT-SN-3.17.7-1). For example, the Client will keep a counter independently from the Server.
 
 ### Protected MQTT-SN Packet{#protected-mqtt-sn-packet}
 

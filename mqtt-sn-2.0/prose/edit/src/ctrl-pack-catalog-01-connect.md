@@ -322,6 +322,8 @@ If validation is successful, the Server performs the following steps.
 >
 > It is recommended that authentication and authorization checks be performed if the Server is being used to process any form of business critical data. If these checks succeed, the Server responds by sending CONNACK with a 0x00 (Success) Reason Code. If they fail, it is suggested that the Server does not send a CONNACK at all, as this could alert a potential attacker to the presence of the MQTT-SN Server and encourage such an attacker to launch a denial of service or password-guessing attack.
 
-«<mark title="Requirement MQTT-SN-3.1.19-6"><a name="MQTT-SN-3.1.19-6"></a>A Client MUST wait for a CONNACK packet with a 0x00 (Success) Reason Code before sending any packet that needs a Virtual Connection</mark>»[MQTT‑SN‑3.1.19‑6](#tab-MQTT-SN-3.1.19-6).
+«<mark title="Requirement MQTT-SN-3.1.19-6"><a name="MQTT-SN-3.1.19-6"></a>A Client MUST wait for a CONNACK packet with a 0x00 (Success) Reason Code before sending any packet that needs a Virtual Connection, AUTH excepted</mark>»[MQTT‑SN‑3.1.19‑6](#tab-MQTT-SN-3.1.19-6).
 
-«<mark title="Requirement MQTT-SN-3.1.19-7"><a name="MQTT-SN-3.1.19-7"></a>The Server MUST NOT process any data sent by the Client after the CONNECT packet and before the CONNACK response is sent, except AUTH packets</mark>»[MQTT‑SN‑3.1.19‑7](#tab-MQTT-SN-3.1.19-7).
+The Packets that required a Virtual Connection are listed in [sec](#virtual-connections).
+
+«<mark title="Requirement MQTT-SN-3.1.19-7"><a name="MQTT-SN-3.1.19-7"></a>The Server MUST interpret any Packet received from the Client (other than AUTH) that requires a Virtual Connection, after the CONNECT packet is received and before the CONNACK response is sent, as a Protocol Error</mark>»[MQTT‑SN‑3.1.19‑7](#tab-MQTT-SN-3.1.19-7). 
