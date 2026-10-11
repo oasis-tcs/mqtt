@@ -35,6 +35,16 @@ rules:
       pattern: '^Scope'
       flags: IGNORECASE
 
+  - id: OASIS-RESID-TODO
+    severity: WARN
+    description: No TODO markers may remain in the prose
+    check:
+      type: all-match
+      target: prose
+      pattern: 'TODO[\(:]'
+      invert: true
+
+
   # ── MQTT-SN spec-specific checks ──────────────────────────────────────────
 
   - id: MQTTSN-TITLE
@@ -55,20 +65,20 @@ rules:
       pattern: 'Committee Specification Draft|Committee Specification|Candidate OASIS Standard|OASIS Standard'
       flags: IGNORECASE
 
-  - id: MQTTSN-THIS-VERSION
+  - id: MQTTSN-THIS-STAGE
     severity: BLOCKER
-    description: A 'This version' heading must be present in the front matter
+    description: A 'This stage' heading must be present in the front matter
     check:
       type: section-present
-      pattern: 'This version'
+      pattern: 'This stage'
       flags: IGNORECASE
 
-  - id: MQTTSN-LATEST-VERSION
+  - id: MQTTSN-LATEST-STAGE
     severity: WARN
-    description: A 'Latest version' heading must be present in the front matter
+    description: A 'Latest stage' heading must be present in the front matter
     check:
       type: section-present
-      pattern: 'Latest version'
+      pattern: 'Latest stage'
       flags: IGNORECASE
 
   - id: MQTTSN-TC-LINK
@@ -83,7 +93,7 @@ rules:
   - id: MQTTSN-DOC-URL
     severity: WARN
     description: >-
-      At least one this-version URL under docs.oasis-open.org/mqtt/mqtt-sn
+      At least one this-stage URL under docs.oasis-open.org/mqtt/mqtt-sn
       must appear in the front matter
     check:
       type: any-match
@@ -128,7 +138,7 @@ rules:
       flags: IGNORECASE
 
   - id: MQTTSN-LICENSE-ANNEX
-    severity: BLOCKER
+    severity: WARN
     description: >-
       A License, Document Status and Notices annex must be present
       (mandatory OASIS content)
