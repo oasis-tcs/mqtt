@@ -10,20 +10,16 @@ Publish requests have two packet types covering three variants:
 
 Variants 2 and 3 above are the same as in MQTT. The table below shows the two packet types.
 
-*Figure 3-7 -- Publish Packet Types*
-
 | Packet Name                 | Type | Description                                                                      |
 |:----------------------------|:-----|----------------------------------------------------------------------------------|
 | **Publish**                 | 0x03 | A PUBLISH packet corresponding to Quality of Service (QoS) 0, 1 or 2             |
 | **Publish Without Session** | 0x12 | A PUBWOS Packet sent by a Client and does not need not to have an active Session |
 
-Table: Publish Packet Types
+Table: Publish Packet Types{#tab-publish-packet-types}
 
 ### PUBWOS - Publish Without Session{#pubwos---publish-without-session}
 
-*Figure 3-8 -- PUBWOS Packet*
-
-![PUBWOS Packet](images/pubwos-packet-diagram.png "PUBWOS Packet")<!-- .width="6.5in", .height="3.4583333333333335in" -->
+![PUBWOS Packet](images/pubwos-packet-diagram.png "PUBWOS Packet"){#fig-pubwos-packet}
 
 This packet is used by both Clients and Servers to publish data for a certain topic.
 
@@ -84,9 +80,7 @@ The Client or Server uses a PUBWOS packet to send an Application Message to a Ne
 
 ### PUBLISH - Publish Request{#publish---publish-request}
 
-*Figure 3-9 -- PUBLISH Packet*
-
-![PUBLISH Packet](images/publish-packet-diagram.png "PUBLISH Packet")<!-- .width="6.5in", .height="3.9305555555555554in" -->
+![PUBLISH Packet](images/publish-packet-diagram.png "PUBLISH Packet"){#fig-publish-packet}
 
 A PUBLISH packet is sent from a Client to a Server or from a Server to a Client to transport an Application Message.
 
@@ -116,8 +110,6 @@ This determines the format of the Topic Data field. Refer to [sec](#topic-types)
 
 Quality of Service - as in MQTT. The QoS levels are:
 
-*Figure 3-10 -- QoS Definitions*
-
 | QoS value | Bit 6 | bit 5 | Description                 |
 |:---------:|:-----:|:-----:|-----------------------------|
 |     0     |   0   |   0   | At most once delivery       |
@@ -125,7 +117,7 @@ Quality of Service - as in MQTT. The QoS levels are:
 |     2     |   1   |   0   | Exactly once delivery       |
 |    \-     |   1   |   1   | Reserved – must not be used |
 
-Table: QoS Definitions
+Table: QoS Definitions{#tab-qos-definitions}
 
 For a detailed description of the various Quality Of Service levels refer to [sec](#quality-of-service-levels-and-protocol-flows).
 
@@ -171,15 +163,13 @@ The Payload contains the payload data of the Application Message that is being p
 
 «<mark title="Requirement MQTT-SN-3.6.2.7-1"><a name="MQTT-SN-3.6.2.7-1"></a>The receiver of a PUBLISH packet MUST respond with the packet as determined by the QoS in the PUBLISH Packet.</mark>»[MQTT‑SN‑3.6.2.7‑1](#tab-MQTT-SN-3.6.2.7-1).
 
-*Figure 3-11 -- Expected PUBLISH packet responses*
-
 | QoS Level | Expected Response |
 |:----------|:------------------|
 | QoS 0     | None              |
 | QoS 1     | PUBACK packet     |
 | QoS 2     | PUBREC packet     |
 
-Table: Expected PUBLISH packet responses
+Table: Expected PUBLISH packet responses{#tab-expected-publish-packet-responses}
 
 The Client uses a PUBLISH packet to send an Application Message to the Server, for distribution to Clients with matching subscriptions.
 
@@ -201,9 +191,7 @@ No more than one QoS 1 or 2 PUBLISH requests MUST be outstanding for a Sender at
 
 ### PUBACK -- Publish Acknowledgement (QoS 1 delivery){#puback-publish-acknowledgement-qos-1-delivery}
 
-*Figure 3-12 -- PUBACK Packet*
-
-![PUBACK Packet](images/puback-packet-diagram.png "PUBACK Packet")<!-- .width="6.5in", .height="1.2777777777777777in" -->
+![PUBACK Packet](images/puback-packet-diagram.png "PUBACK Packet"){#fig-puback-packet}
 
 A PUBACK packet is the response to a PUBLISH packet with QoS 1.
 
@@ -228,9 +216,7 @@ As described in [sec](#qos-1-at-least-once-delivery).
 
 ### PUBREC - Publish Received (QoS 2 delivery part 1){#pubrec-publish-received-qos-2-delivery-part-1}
 
-*Figure 3-13 -- PUBREC Packet*
-
-![PUBREC Packet](images/pubrec-packet-diagram.png "PUBREC Packet")<!-- .width="6.5in", .height="1.2777777777777777in" -->
+![PUBREC Packet](images/pubrec-packet-diagram.png "PUBREC Packet"){#fig-pubrec-packet}
 
 A PUBREC packet is the response to a PUBLISH packet with QoS 2. It is the second packet of the QoS 2 protocol exchange.
 
@@ -255,9 +241,7 @@ As described in [sec](#qos-2-exactly-once-delivery).
 
 ### PUBREL - Publish Release (QoS 2 delivery part 2){#pubrel---publish-release-qos-2-delivery-part-2}
 
-*Figure 3-14 -- PUBREL Packet*
-
-![PUBREL Packet](images/pubrel-packet-diagram.png "PUBREL Packet")<!-- .width="6.5in", .height="1.2777777777777777in" -->
+![PUBREL Packet](images/pubrel-packet-diagram.png "PUBREL Packet"){#fig-pubrel-packet}
 
 A PUBREL packet is the response to a PUBREC packet. It is the third packet of the QoS 2 protocol exchange.
 
@@ -282,9 +266,7 @@ As described in [sec](#qos-2-exactly-once-delivery).
 
 ### PUBCOMP - Publish Complete (QoS 2 delivery part 3){#pubcomp---publish-complete-qos-2-delivery-part-3}
 
-*Figure 3-15 -- PUBCOMP Packet*
-
-![PUBCOMP Packet](images/pubcomp-packet-diagram.png "PUBCOMP Packet")<!-- .width="6.5in", .height="1.2777777777777777in" -->
+![PUBCOMP Packet](images/pubcomp-packet-diagram.png "PUBCOMP Packet"){#fig-pubcomp-packet}
 
 The PUBCOMP packet is the response to a PUBREL packet. It is the fourth and final packet of the QoS 2 protocol exchange.
 

@@ -1,8 +1,6 @@
 ## CONNACK - Connect Acknowledgement{#connack---connect-acknowledgement}
 
-*Figure 3-3 -- CONNACK Packet*
-
-![CONNACK Packet](images/connack-packet-diagram.png "CONNACK Packet")<!-- .width="6.5in", .height="7.291666666666667in" -->
+![CONNACK Packet](images/connack-packet-diagram.png "CONNACK Packet"){#fig-connack-packet}
 
 The CONNACK packet is sent by the Server in response to a CONNECT request from a client.
 
@@ -20,7 +18,7 @@ The CONNACK Flags is a 1 byte field which contains flags specifying the behavior
 
 #### Session Present
 
-**Position**: bit 0 of the CONNACK Flags. Labelled *Sess Pres* in Figure 3-3.
+**Position**: bit 0 of the CONNACK Flags. Labelled *Sess Pres* in [fig](#fig-connack-packet).
 
 Specifies whether an existing session was present on the Server for the given client identifier. A value of 1 indicates a session was present, a value 0 indicates no session was present.
 
@@ -38,7 +36,7 @@ If the value of Session Present received by the Client from the Server is not as
 
 #### Session Expiry Interval Flag{#session-expiry-interval-flag}
 
-**Position**: bit 1 of the CONNACK Flags. Labelled *Sess Exp* in Figure 3-3.
+**Position**: bit 1 of the CONNACK Flags. Labelled *Sess Exp* in [fig](#fig-connack-packet).
 
 ​​«<mark title="Requirement MQTT-SN-3.2.2.2-1"><a name="MQTT-SN-3.2.2.2-1"></a>If the Session Expiry Interval Flag is set to 0, a Session Expiry Interval MUST NOT be present in the Packet</mark>»[MQTT‑SN‑3.2.2.2‑1](#tab-MQTT-SN-3.2.2.2-1).
 
@@ -46,7 +44,7 @@ If the value of Session Present received by the Client from the Server is not as
 
 #### Server Keep Alive Flag{#server-keep-alive-flag}
 
-**Position**: bit 2 of the CONNACK Flags. Labelled *Server KA* in Figure 3-3.
+**Position**: bit 2 of the CONNACK Flags. Labelled *Server KA* in [fig](#fig-connack-packet).
 
 Indicates whether the packet includes a Server Keep Alive or not.
 
@@ -56,7 +54,7 @@ Indicates whether the packet includes a Server Keep Alive or not.
 
 #### Authentication Flag{#cca---authentication-flag}
 
-**Position**: bit 3 of the CONNACK Flags. Labelled *Auth* in Figure 3-3.
+**Position**: bit 3 of the CONNACK Flags. Labelled *Auth* in [fig](#fig-connack-packet).
 
 Specifies whether the packet contains authentication material to be considered.
 

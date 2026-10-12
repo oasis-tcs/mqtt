@@ -1,8 +1,6 @@
 ## UNSUBACK - Unsubscribe Acknowledgement{#unsuback---unsubscribe-acknowledgement}
 
-*Figure 3-19 -- UNSUBACK Packet*
-
-![UNSUBACK Packet](images/unsuback-packet-diagram.png "UNSUBACK Packet")<!-- .width="6.5in", .height="1.2777777777777777in" -->
+![UNSUBACK Packet](images/unsuback-packet-diagram.png "UNSUBACK Packet"){#fig-unsuback-packet}
 
 An UNSUBACK packet is sent by a Server to acknowledge the receipt and processing of an UNSUBSCRIBE packet.
 

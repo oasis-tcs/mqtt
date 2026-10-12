@@ -1,8 +1,6 @@
 ## Forwarder Encapsulation{#forwarder-encapsulation}
 
-*Figure 3-30 -- Format of an Forwarder Encapsulated MQTT-SN Packet*
-
-![Format of an Forwarder Encapsulated MQTT-SN Packet](images/forwarder-encapsulation-packet-diagram.png "Format of an Forwarder Encapsulated MQTT-SN Packet")<!-- .width="6.5in", .height="2.2777777777777777in" -->
+![Format of an Forwarder Encapsulated MQTT-SN Packet](images/forwarder-encapsulation-packet-diagram.png "Format of an Forwarder Encapsulated MQTT-SN Packet"){#fig-format-of-an-forwarder-encapsulated-mqtt-sn-packet}
 
 An MQTT-SN Client can access a Server through a Forwarder in case the Server is not directly attached to the same Underlying Network as the Client. The Forwarder encapsulates the MQTT-SN Packets it receives from the Client and sends them unchanged to the Server. In the opposite direction, it decapsulates the Packets it receives from the Server and sends them unchanged to the Clients.
 
