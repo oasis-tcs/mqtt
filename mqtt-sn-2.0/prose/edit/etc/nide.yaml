@@ -59,7 +59,7 @@ channels:
       css-base: ../share/style/base.css
       css-skin: ../share/style/skin.css
       images: true
-      images-path: build/data-url
+      image-cache: build/data-url
       intro-trigger: '<h1 id="introduction'
       logo-data-url: ../media/logo-data-url.txt
       logo-remote-url: 'https://docs.oasis-open.org/templates/OASISLogo-v3.0.png'

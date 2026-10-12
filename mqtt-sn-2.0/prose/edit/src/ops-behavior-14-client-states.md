@@ -2,8 +2,6 @@
 
 At any time, a Client will be in one of the following states from the perspective of the Server:
 
-*Figure 4-7 -- Client States*
-
 | State            | State Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | Possible Transitions                                 |
 |:-----------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------|
 | **None**         | The Client is unknown to the Server. There is no Session State nor Virtual Connection.<br><br>A Client may transition from here to **Active** with a CONNECT.                                                                                                                                                                                                                                                                                                                                                                                                                                             | **Active**                                           |
@@ -12,7 +10,7 @@ At any time, a Client will be in one of the following states from the perspectiv
 | **Asleep**       | The Client has Session State, and a Virtual Connection. The Client cannot receive Packets (except possibly the WAKEUP hint); it can send Packets. The Server should not expect a response from the client in this state.<br><br> A Client may transition from here to **Awake** (by way of PINGREQ), **Active** by way of CONNECT, **Disconnected** (by way of DISCONNECT, Sleep timeout or Retry timeout).<br><br> The Server may send a WAKEUP packet to the Client, as an indication that messages are waiting - it is up to the Client to act, if it is even able to notice it. | **Awake**<br><br>**Active**<br><br>**Disconnected**  |
 | **Awake**        | The Client is partially engaged in an ongoing session and a Virtual Connection exists.<br><br> The Client transitions back to the **Asleep** state on receipt of a PINGRESP packet or **Disconnected** (by way of DISCONNECT, or on Retry timeout for the possible PINGRESP, PUBACK, PUBREL, PUBREC, PUBCOMP or REGACK packets to be received by the Client). The Client may also move to the **Active** state by way of CONNECT.                                                                                                                                                                   | **Asleep**<br><br>**Active**<br><br>**Disconnected** |
 
-Table: Client States
+Table: Client States{#tab-client-states}
 
 > **Informative Comment**
 >
@@ -38,8 +36,6 @@ See [sec](#c.5-client-state-diagrams) for informative state diagrams to help ill
 
 The following timers are used by Servers, on a per Client basis, to handle Client states, and by Clients to direct their actions. In general, Clients are able to infer the Server's view of their state by observing the Server's response.
 
-*Figure 4-8 -- Session Timers*
-
 | Timer Name     | State(s)              | Timeout State | Defined in           | Information                                              |
 |:---------------|:----------------------|:--------------|:---------------------|:---------------------------------------------------------|
 | Keep Alive     | Active                | Disconnected  | CONNECT              | [sec](#keep-alive)                       |
@@ -47,7 +43,7 @@ The following timers are used by Servers, on a per Client basis, to handle Clien
 | Session Expiry | Disconnected          | None          | CONNECT, DISCONNECT  | [sec](#storing-session-state) |
 | Retry          | Active, Awake, Asleep | Disconnected  | Sender configuration | [sec](#packet-delivery-retry)   |
 
-Table: Session Timers
+Table: Session Timers{#tab-session-timers}
 
 For example values of these timers, see [sec](#c.3-example-timer-and-counter-values).
 
@@ -91,8 +87,6 @@ Note that a sleeping Client should go to the *Awake* state only if it wants to c
 
 Session Topic Aliases last for the duration of a Session which exists throughout the sleep cycle. However, if the Client wants to save storage by removing the Session Topic Aliases while Asleep, it can set the Retain Topic Aliases flag on the SLEEPREQ packet to 0. The disadvantage being that during the Awake state, Session Topic Aliases will have to be recreated, or Topic Names used instead, increasing network data usage.
 
-*Figure 4-9 -- Awake PINGRESP Packet flush*
-
 \scale=0.7
 
-![Awake PINGRESP Packet flush](images/image2.png "Awake PINGRESP Packet flush")<!-- .width="4.615764435695538in", .height="7.453125546806649in" -->
+![Awake PINGRESP Packet flush](images/image2.png "Awake PINGRESP Packet flush"){#fig-awake-pingresp-packet-flush}

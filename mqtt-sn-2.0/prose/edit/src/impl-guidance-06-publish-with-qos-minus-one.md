@@ -1,8 +1,6 @@
 ## C.6 PUBLISH with QoS -1{#c.6-publish-with-qos--1}
 
-*Figure C-9 -- PUBLISH Packet for QoS -1*
-
-![PUBLISH Packet for QoS -1](images/publish-qos-minus-1-packet-diagram.png "PUBLISH Packet for QoS -1")<!-- .width="6.5in", .height="5.569444444444445in" -->
+![PUBLISH Packet for QoS -1](images/publish-qos-minus-1-packet-diagram.png "PUBLISH Packet for QoS -1"){#fig-publish-packet-for-qos-1}
 
 This packet is the MQTT-SN 1.2 equivalent of PUBWOS. It could be supported by a Server if there are existing MQTT-SN 1.2 transmitters that the Server wants to listen to, or receivers it wants to send to. Implementation of this packet is optional.
 

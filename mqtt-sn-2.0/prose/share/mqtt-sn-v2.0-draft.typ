@@ -656,9 +656,12 @@ communications.
 Unless stated otherwise all variable length UTF-8 encoded strings can
 have any length in the range 0 to 65,535 bytes.
 
-#emph[Figure 1-1 -- Structure of UTF-8 Encoded Strings]
-
-#box(image("images/image14.png", alt: "Structure of UTF-8 Encoded Strings"))
+#figure(image("images/image14.png", alt: "Structure of UTF-8 Encoded Strings"),
+  caption: [
+    Structure of UTF-8 Encoded Strings
+  ]
+)
+<fig-structure-of-utf-8-encoded-strings>
 
 «#box()<MQTT-SN-1.8.4-1>The character data in a UTF-8 Encoded String
 MUST be well-formed UTF-8 as defined by the Unicode specification
@@ -704,10 +707,12 @@ For example, the string A𪛔 which is LATIN CAPITAL Letter A followed by
 the code point U+2A6D4 (which represents a CJK IDEOGRAPH EXTENSION B
 character) is encoded as follows:
 
-#emph[Figure 1-2 -- Fixed Length UTF-8 Encoded String informative
-example]
-
-#box(image("images/image31.png"))
+#figure(image("images/image31.png", alt: "Fixed Length UTF-8 Encoded String informative example"),
+  caption: [
+    Fixed Length UTF-8 Encoded String informative example
+  ]
+)
+<fig-fixed-length-utf-8-encoded-string-informative-example>
 ]
 
 == Typographical Conventions
@@ -755,22 +760,31 @@ packets.
 An MQTT-SN Control Packet consists of up to two parts, always in the
 following order as shown below.
 
-#emph[Figure 2-1 －Structure of an MQTT-SN Control Packet]
-
-#box(image("images/structure-packet-diagram.png", alt: "Packet Structure"))
+#figure(image("images/structure-packet-diagram.png", alt: "Packet Structure"),
+  caption: [
+    Packet Structure
+  ]
+)
+<fig-packet-structure>
 
 === Packet Header
 <packet-header>
 Each MQTT-SN Control Packet contains a Header of format 1 or format 2 as
 shown below.
 
-#emph[Figure 2-2 -- Packet Header Format 1]
+#figure(image("images/image12.png", alt: "Packet Header Format 1"),
+  caption: [
+    Packet Header Format 1
+  ]
+)
+<fig-packet-header-format-1>
 
-#box(image("images/image12.png", alt: "Packet Header Format 1"))
-
-#emph[Figure 2-3 -- Packet Header Format 2]
-
-#box(image("images/image16.png", alt: "Packet Header Format 2"))
+#figure(image("images/image16.png", alt: "Packet Header Format 2"),
+  caption: [
+    Packet Header Format 2
+  ]
+)
+<fig-packet-header-format-2>
 
 === Length
 <length>
@@ -805,8 +819,6 @@ maximum length that could be encoded by MQTT-SN.
 <mqtt-sn-control-packet-type>
 The MQTT-SN Control Packet Type field is a 1-byte unsigned value, the
 values are shown below.
-
-#emph[Figure 2-4 -- MQTT-SN Control Packet Types]
 
 #figure(
   align(center)[#table(
@@ -874,6 +886,7 @@ values are shown below.
   , caption: [MQTT-SN Control Packet Types]
   , kind: table
   )
+<tab-mqtt-sn-control-packet-types>
 
 == Packet Identifier
 <packet-identifier>
@@ -881,9 +894,8 @@ The Variable Header component of many of the MQTT-SN Control Packet
 types includes a Two Byte Integer Packet Identifier field. MQTT-SN
 Control Packets that require a Packet Identifier, along with the
 corresponding response Packet which all also require a Packet
-Identifier, are shown in Figure 2-5.
-
-#emph[Figure 2-5 -- Packets with Packet Identifier]
+Identifier, are shown in
+#link(<tab-packets-with-packet-identifier>)[Table 2].
 
 #figure(
   align(center)[#table(
@@ -915,11 +927,13 @@ Identifier, are shown in Figure 2-5.
   , caption: [Packets with Packet Identifier]
   , kind: table
   )
+<tab-packets-with-packet-identifier>
 
 «#box()<MQTT-SN-2.2-1>Each time a Client sends a new MQTT-SN Control
-Packet which is identified in Figure 2-5 as requiring a Packet
-Identifier, it MUST assign it a non-zero Packet Identifier that is
-currently unused»#link(<tab-MQTT-SN-2.2-1>)[MQTT‑SN‑2.2‑1].
+Packet which is identified in
+#link(<tab-packets-with-packet-identifier>)[Table 2] as requiring a
+Packet Identifier, it MUST assign it a non-zero Packet Identifier that
+is currently unused»#link(<tab-MQTT-SN-2.2-1>)[MQTT‑SN‑2.2‑1].
 
 «#box()<MQTT-SN-2.2-2>A PUBLISH packet MUST NOT contain a Packet
 Identifier if its QoS value is set to
@@ -930,14 +944,16 @@ greater than 0) MQTT-SN Control Packet it MUST assign it a non zero
 Packet Identifier that is currently
 unused»#link(<tab-MQTT-SN-2.2-3>)[MQTT‑SN‑2.2‑3].
 
-Packet Identifiers in all packets which require one (as shown in Figure
-2-5), including response packets, form a single, unified set of
-identifiers separately for the Client and the Server in a Session.
+Packet Identifiers in all packets which require one (as shown in
+#link(<tab-packets-with-packet-identifier>)[Table 2]), including
+response packets, form a single, unified set of identifiers separately
+for the Client and the Server in a Session.
 
 The Packet Identifier becomes available for reuse after the sender has
-processed the corresponding response packet, as shown in Figure 2-5,
-except for the case of PUBLISH QoS 2, where it is either a PUBCOMP or a
-PUBREC with a Reason Code of 0x80 or greater.
+processed the corresponding response packet, as shown in
+#link(<tab-packets-with-packet-identifier>)[Table 2], except for the
+case of PUBLISH QoS 2, where it is either a PUBCOMP or a PUBREC with a
+Reason Code of 0x80 or greater.
 
 «#box()<MQTT-SN-2.2-4>A response packet MUST contain the same Packet
 Identifier as the Packet that it is responding
@@ -956,8 +972,12 @@ Packet Identifier 0x1234 from its Server before it receives a PUBACK for
 the PUBLISH packet that it sent.
 ]
 
-#emph[Figure 2-6 - Publishes with the same Packet Identifier]
-#box(image("images/image13.png", alt: "Publishes with the same Packet Identifier"))
+#figure(image("images/image13.png", alt: "Publishes with the same Packet Identifier"),
+  caption: [
+    Publishes with the same Packet Identifier
+  ]
+)
+<fig-publishes-with-the-same-packet-identifier>
 
 == Reason Code
 <reason-code>
@@ -967,8 +987,6 @@ of an operation. The normal Reason Code for success is 0x00. Reason Code
 values of 0x80 or greater indicate failure.
 
 The Reason Codes share a common set of values as shown below.
-
-#emph[Figure 2-7 -- Reason Codes]
 
 #figure(
   align(center)[#table(
@@ -1134,6 +1152,7 @@ The Reason Codes share a common set of values as shown below.
   , caption: [Reason Codes]
   , kind: table
   )
+<tab-reason-codes>
 
 Note(s):
 
@@ -1151,8 +1170,6 @@ Note(s):
 Several packets refer to a Topic Type in their flags. This is a 2-bit
 field which determines the format of the topic value. The allowable
 values are as follows:
-
-#emph[Figure 2-8 -- Topic Types]
 
 #figure(
   align(center)[#table(
@@ -1174,6 +1191,7 @@ values are as follows:
   , caption: [Topic Types]
   , kind: table
   )
+<tab-topic-types>
 
 Predefined and Session Topic Aliases are assigned from different pools
 so there is no danger of collision.
@@ -1186,9 +1204,12 @@ Topic Names and Topic Aliases.
 <mqtt-sn-control-packets>
 == CONNECT - Connection Request
 <connect---connection-request>
-#emph[Figure 3-1 -- CONNECT Packet]
-
-#box(image("images/connect-packet-diagram.png", alt: "CONNECT Packet"))
+#figure(image("images/connect-packet-diagram.png", alt: "CONNECT Packet"),
+  caption: [
+    CONNECT Packet
+  ]
+)
+<fig-connect-packet>
 
 The CONNECT packet is sent from the Client to the Server to request the
 creation of or continuation of a Session.
@@ -1290,7 +1311,7 @@ failure and when the Will Message is published.
 ==== Authentication Flag
 <authentication-flag>
 #strong[Position:] bit 2 of the Connect Flags byte. Labelled #emph[Auth]
-in Figure 3-1.
+in #link(<fig-connect-packet>)[Figure 6].
 
 «#box()<MQTT-SN-3.1.2.3-1>If the Authentication Flag is set to 1, the
 Authentication Method and Authentication Data fields MUST be present in
@@ -1303,7 +1324,7 @@ in the Packet»#link(<tab-MQTT-SN-3.1.2.3-2>)[MQTT‑SN‑3.1.2.3‑2].
 ==== Session Expiry Flag
 <session-expiry-flag>
 #strong[Position:] bit 3 of the Connect Flags byte. Labelled #emph[Sess
-Exp] in Figure 3-1.
+Exp] in #link(<fig-connect-packet>)[Figure 6].
 
 «#box()<MQTT-SN-3.1.2.4-1>If the Session Expiry Flag is set to 1, the
 Session Expiry Interval field MUST be present in the
@@ -1316,7 +1337,7 @@ Packet»#link(<tab-MQTT-SN-3.1.2.4-2>)[MQTT‑SN‑3.1.2.4‑2].
 ==== Maximum Number of Awake Messages Flag
 <max-awake-messages-flag>
 #strong[Position:] bit 4 of the Connect Flags byte. Labelled #emph[MAM]
-in Figure 3-1.
+in #link(<fig-connect-packet>)[Figure 6].
 
 «#box()<MQTT-SN-3.1.2.5-1>If the Maximum Number of Awake Messages Flag
 is set to 1, the Maximum Number of Awake Messages field MUST be present
@@ -1329,7 +1350,7 @@ present in the Packet»#link(<tab-MQTT-SN-3.1.2.5-2>)[MQTT‑SN‑3.1.2.5‑2].
 ==== Allow Network Address Changes Flag
 <allow-network-address-changes-flag>
 #strong[Position:] bit 5 of the Connect Flags byte. Labelled #emph[Net
-Addr] in Figure 3-1.
+Addr] in #link(<fig-connect-packet>)[Figure 6].
 
 This flag only has an effect In implementations which use a Network
 Address to associate incoming packets with a Virtual Connection,
@@ -1353,7 +1374,7 @@ Protection Encapsulation.
 ==== Allow Server Suggested Values Flag
 <allow-server-suggested-values-flag>
 #strong[Position:] bit 6 of the Connect Flags byte. Labelled #emph[Srv
-Sugg] in Figure 3-1.
+Sugg] in #link(<fig-connect-packet>)[Figure 6].
 
 If this flag is set to 1, the Client allows the Server to return
 modified values for all of:
@@ -1435,8 +1456,6 @@ ideally be populated with a random Two Byte Integer value.
 The one-byte unsigned value that represents the revision level of the
 protocol used by the Client.
 
-#emph[Figure 3-2 -- Protocol Versions]
-
 #figure(
   align(center)[#table(
     columns: 2,
@@ -1450,6 +1469,7 @@ protocol used by the Client.
   , caption: [Protocol Versions]
   , kind: table
   )
+<tab-protocol-versions>
 
 «#box()<MQTT-SN-3.1.5-1>The value of the Protocol Version field for
 MQTT-SN version 2.0 MUST be 2
@@ -1816,9 +1836,12 @@ Error»#link(<tab-MQTT-SN-3.1.19-7>)[MQTT‑SN‑3.1.19‑7].
 
 == CONNACK - Connect Acknowledgement
 <connack---connect-acknowledgement>
-#emph[Figure 3-3 -- CONNACK Packet]
-
-#box(image("images/connack-packet-diagram.png", alt: "CONNACK Packet"))
+#figure(image("images/connack-packet-diagram.png", alt: "CONNACK Packet"),
+  caption: [
+    CONNACK Packet
+  ]
+)
+<fig-connack-packet>
 
 The CONNACK packet is sent by the Server in response to a CONNECT
 request from a client.
@@ -1845,7 +1868,7 @@ Packet»#link(<tab-MQTT-SN-3.2.2-2>)[MQTT‑SN‑3.2.2‑2].
 ==== Session Present
 <session-present>
 #strong[Position]: bit 0 of the CONNACK Flags. Labelled #emph[Sess Pres]
-in Figure 3-3.
+in #link(<fig-connack-packet>)[Figure 7].
 
 Specifies whether an existing session was present on the Server for the
 given client identifier. A value of 1 indicates a session was present, a
@@ -1884,7 +1907,7 @@ a non-zero Reason Code it MUST set Session Present to
 ==== Session Expiry Interval Flag
 <session-expiry-interval-flag>
 #strong[Position]: bit 1 of the CONNACK Flags. Labelled #emph[Sess Exp]
-in Figure 3-3.
+in #link(<fig-connack-packet>)[Figure 7].
 
 ​​«#box()<MQTT-SN-3.2.2.2-1>If the Session Expiry Interval Flag is set to
 0, a Session Expiry Interval MUST NOT be present in the
@@ -1897,7 +1920,7 @@ Packet»#link(<tab-MQTT-SN-3.2.2.2-2>)[MQTT‑SN‑3.2.2.2‑2].
 ==== Server Keep Alive Flag
 <server-keep-alive-flag>
 #strong[Position]: bit 2 of the CONNACK Flags. Labelled #emph[Server KA]
-in Figure 3-3.
+in #link(<fig-connack-packet>)[Figure 7].
 
 Indicates whether the packet includes a Server Keep Alive or not.
 
@@ -1912,7 +1935,7 @@ Packet»#link(<tab-MQTT-SN-3.2.2.3-2>)[MQTT‑SN‑3.2.2.3‑2].
 ==== Authentication Flag
 <cca---authentication-flag>
 #strong[Position]: bit 3 of the CONNACK Flags. Labelled #emph[Auth] in
-Figure 3-3.
+#link(<fig-connack-packet>)[Figure 7].
 
 Specifies whether the packet contains authentication material to be
 considered.
@@ -2056,9 +2079,12 @@ returned from the MQTT Server.
 
 == AUTH - Authentication Exchange
 <auth---authentication-exchange>
-#emph[Figure 3-4 -- AUTH Packet]
-
-#box(image("images/auth-packet-diagram.png", alt: "AUTH Packet"))
+#figure(image("images/auth-packet-diagram.png", alt: "AUTH Packet"),
+  caption: [
+    AUTH Packet
+  ]
+)
+<fig-auth-packet>
 
 The authentication method and data is first sent by the Client as part
 of a CONNECT exchange. If the Server requires additional information to
@@ -2110,9 +2136,12 @@ information about authentication.
 
 == REGISTER - Register Topic Alias Request
 <register---register-topic-alias-request>
-#emph[Figure 3-5 -- REGISTER Packet]
-
-#box(image("images/register-packet-diagram.png", alt: "REGISTER Packet"))
+#figure(image("images/register-packet-diagram.png", alt: "REGISTER Packet"),
+  caption: [
+    REGISTER Packet
+  ]
+)
+<fig-register-packet>
 
 A REGISTER packet is sent by a Client or Server to create a Session
 Topic Alias, before sending a PUBLISH with that Session Topic Alias.
@@ -2192,9 +2221,12 @@ As described in #link(<topic-aliases>)[4.7.2 "Topic Aliases"].
 
 == REGACK - Register Topic Alias Acknowledgement
 <regack---register-topic-alias-acknowledgement>
-#emph[Figure 3-6 -- REGACK Packet]
-
-#box(image("images/regack-packet-diagram.png", alt: "REGACK Packet"))
+#figure(image("images/regack-packet-diagram.png", alt: "REGACK Packet"),
+  caption: [
+    REGACK Packet
+  ]
+)
+<fig-regack-packet>
 
 The REGACK packet is sent by a Client or by a Server as an
 acknowledgment to the receipt and processing of a REGISTER packet.
@@ -2301,8 +2333,6 @@ Publish requests have two packet types covering three variants:
 Variants 2 and 3 above are the same as in MQTT. The table below shows
 the two packet types.
 
-#emph[Figure 3-7 -- Publish Packet Types]
-
 #figure(
   align(center)[#table(
     columns: (24.79%, 5.13%, 70.09%),
@@ -2317,12 +2347,16 @@ the two packet types.
   , caption: [Publish Packet Types]
   , kind: table
   )
+<tab-publish-packet-types>
 
 === PUBWOS - Publish Without Session
 <pubwos---publish-without-session>
-#emph[Figure 3-8 -- PUBWOS Packet]
-
-#box(image("images/pubwos-packet-diagram.png", alt: "PUBWOS Packet"))
+#figure(image("images/pubwos-packet-diagram.png", alt: "PUBWOS Packet"),
+  caption: [
+    PUBWOS Packet
+  ]
+)
+<fig-pubwos-packet>
 
 This packet is used by both Clients and Servers to publish data for a
 certain topic.
@@ -2423,9 +2457,12 @@ packet MUST be treated as if its QoS were
 
 === PUBLISH - Publish Request
 <publish---publish-request>
-#emph[Figure 3-9 -- PUBLISH Packet]
-
-#box(image("images/publish-packet-diagram.png", alt: "PUBLISH Packet"))
+#figure(image("images/publish-packet-diagram.png", alt: "PUBLISH Packet"),
+  caption: [
+    PUBLISH Packet
+  ]
+)
+<fig-publish-packet>
 
 A PUBLISH packet is sent from a Client to a Server or from a Server to a
 Client to transport an Application Message.
@@ -2471,8 +2508,6 @@ Alias»#link(<tab-MQTT-SN-3.6.2.2.1-1>)[MQTT‑SN‑3.6.2.2.1‑1].
 
 Quality of Service - as in MQTT. The QoS levels are:
 
-#emph[Figure 3-10 -- QoS Definitions]
-
 #figure(
   align(center)[#table(
     columns: 4,
@@ -2487,6 +2522,7 @@ Quality of Service - as in MQTT. The QoS levels are:
   , caption: [QoS Definitions]
   , kind: table
   )
+<tab-qos-definitions>
 
 For a detailed description of the various Quality Of Service levels
 refer to
@@ -2559,8 +2595,6 @@ packet to contain a zero length Payload.
 with the packet as determined by the QoS in the PUBLISH
 Packet.»#link(<tab-MQTT-SN-3.6.2.7-1>)[MQTT‑SN‑3.6.2.7‑1].
 
-#emph[Figure 3-11 -- Expected PUBLISH packet responses]
-
 #figure(
   align(center)[#table(
     columns: 2,
@@ -2574,6 +2608,7 @@ Packet.»#link(<tab-MQTT-SN-3.6.2.7-1>)[MQTT‑SN‑3.6.2.7‑1].
   , caption: [Expected PUBLISH packet responses]
   , kind: table
   )
+<tab-expected-publish-packet-responses>
 
 The Client uses a PUBLISH packet to send an Application Message to the
 Server, for distribution to Clients with matching subscriptions.
@@ -2621,9 +2656,12 @@ Control reasons.
 
 === PUBACK -- Publish Acknowledgement (QoS 1 delivery)
 <puback-publish-acknowledgement-qos-1-delivery>
-#emph[Figure 3-12 -- PUBACK Packet]
-
-#box(image("images/puback-packet-diagram.png", alt: "PUBACK Packet"))
+#figure(image("images/puback-packet-diagram.png", alt: "PUBACK Packet"),
+  caption: [
+    PUBACK Packet
+  ]
+)
+<fig-puback-packet>
 
 A PUBACK packet is the response to a PUBLISH packet with QoS 1.
 
@@ -2657,9 +2695,12 @@ As described in
 
 === PUBREC - Publish Received (QoS 2 delivery part 1)
 <pubrec-publish-received-qos-2-delivery-part-1>
-#emph[Figure 3-13 -- PUBREC Packet]
-
-#box(image("images/pubrec-packet-diagram.png", alt: "PUBREC Packet"))
+#figure(image("images/pubrec-packet-diagram.png", alt: "PUBREC Packet"),
+  caption: [
+    PUBREC Packet
+  ]
+)
+<fig-pubrec-packet>
 
 A PUBREC packet is the response to a PUBLISH packet with QoS 2. It is
 the second packet of the QoS 2 protocol exchange.
@@ -2694,9 +2735,12 @@ As described in
 
 === PUBREL - Publish Release (QoS 2 delivery part 2)
 <pubrel---publish-release-qos-2-delivery-part-2>
-#emph[Figure 3-14 -- PUBREL Packet]
-
-#box(image("images/pubrel-packet-diagram.png", alt: "PUBREL Packet"))
+#figure(image("images/pubrel-packet-diagram.png", alt: "PUBREL Packet"),
+  caption: [
+    PUBREL Packet
+  ]
+)
+<fig-pubrel-packet>
 
 A PUBREL packet is the response to a PUBREC packet. It is the third
 packet of the QoS 2 protocol exchange.
@@ -2731,9 +2775,12 @@ As described in
 
 === PUBCOMP - Publish Complete (QoS 2 delivery part 3)
 <pubcomp---publish-complete-qos-2-delivery-part-3>
-#emph[Figure 3-15 -- PUBCOMP Packet]
-
-#box(image("images/pubcomp-packet-diagram.png", alt: "PUBCOMP Packet"))
+#figure(image("images/pubcomp-packet-diagram.png", alt: "PUBCOMP Packet"),
+  caption: [
+    PUBCOMP Packet
+  ]
+)
+<fig-pubcomp-packet>
 
 The PUBCOMP packet is the response to a PUBREL packet. It is the fourth
 and final packet of the QoS 2 protocol exchange.
@@ -2768,9 +2815,12 @@ As described in
 
 == SUBSCRIBE - Subscribe Request
 <subscribe---subscribe-request>
-#emph[Figure 3-16 -- SUBSCRIBE Packet]
-
-#box(image("images/subscribe-packet-diagram.png", alt: "SUBSCRIBE Packet"))
+#figure(image("images/subscribe-packet-diagram.png", alt: "SUBSCRIBE Packet"),
+  caption: [
+    SUBSCRIBE Packet
+  ]
+)
+<fig-subscribe-packet>
 
 The SUBSCRIBE packet is sent from the Client to the Server to create one
 or more Subscriptions. A Subscription registers a Client's interest in
@@ -2829,7 +2879,7 @@ information about the operation of the Retain Handling field.
 ==== Retain as Published
 <retain-as-published>
 #strong[Position]: bit 4 of the SUBSCRIBE Flags. Labelled #emph[RaP] in
-Figure 3-16.
+#link(<fig-subscribe-packet>)[Figure 17].
 
 If 1, Application Messages forwarded using this subscription keep the
 RETAIN flag they were published with.
@@ -2982,9 +3032,12 @@ QoS to one more suitable for its usage.
 
 == SUBACK - Subscribe Acknowledgement
 <suback---subscribe-acknowledgement>
-#emph[Figure 3-17 -- SUBACK Packet]
-
-#box(image("images/suback-packet-diagram.png", alt: "SUBACK Packet"))
+#figure(image("images/suback-packet-diagram.png", alt: "SUBACK Packet"),
+  caption: [
+    SUBACK Packet
+  ]
+)
+<fig-suback-packet>
 
 The SUBACK packet is sent by a Server to a client as an acknowledgment
 to the receipt and processing of a SUBSCRIBE packet.
@@ -3068,9 +3121,12 @@ to SUBACK»#link(<tab-MQTT-SN-3.8.5-1>)[MQTT‑SN‑3.8.5‑1].
 
 == UNSUBSCRIBE - Unsubscribe Request
 <unsubscribe---unsubscribe-request>
-#emph[Figure 3-18 -- UNSUBSCRIBE Packet]
-
-#box(image("images/unsubscribe-packet-diagram.png", alt: "UNSUBSCRIBE Packet"))
+#figure(image("images/unsubscribe-packet-diagram.png", alt: "UNSUBSCRIBE Packet"),
+  caption: [
+    UNSUBSCRIBE Packet
+  ]
+)
+<fig-unsubscribe-packet>
 
 An UNSUBSCRIBE packet is sent by the Client to the Server to remove
 subscriptions to topics.
@@ -3172,9 +3228,12 @@ UNSUBACK»#link(<tab-MQTT-SN-3.9.6-6>)[MQTT‑SN‑3.9.6‑6].
 
 == UNSUBACK - Unsubscribe Acknowledgement
 <unsuback---unsubscribe-acknowledgement>
-#emph[Figure 3-19 -- UNSUBACK Packet]
-
-#box(image("images/unsuback-packet-diagram.png", alt: "UNSUBACK Packet"))
+#figure(image("images/unsuback-packet-diagram.png", alt: "UNSUBACK Packet"),
+  caption: [
+    UNSUBACK Packet
+  ]
+)
+<fig-unsuback-packet>
 
 An UNSUBACK packet is sent by a Server to acknowledge the receipt and
 processing of an UNSUBSCRIBE packet.
@@ -3204,9 +3263,12 @@ Codes»#link(<tab-MQTT-SN-3.10.3-1>)[MQTT‑SN‑3.10.3‑1].
 
 == PINGREQ - Ping Request
 <pingreq---ping-request>
-#emph[Figure 3-20 -- PINGREQ Packet]
-
-#box(image("images/pingreq-packet-diagram.png", alt: "PINGREQ Packet"))
+#figure(image("images/pingreq-packet-diagram.png", alt: "PINGREQ Packet"),
+  caption: [
+    PINGREQ Packet
+  ]
+)
+<fig-pingreq-packet>
 
 The PINGREQ packet is sent from a Client to the Server. It can be used
 to:
@@ -3263,9 +3325,12 @@ processing»#link(<tab-MQTT-SN-3.11.3-4>)[MQTT‑SN‑3.11.3‑4].
 
 == PINGRESP - Ping Response
 <pingresp---ping-response>
-#emph[Figure 3-21 -- PINGRESP Packet]
-
-#box(image("images/pingresp-packet-diagram.png", alt: "PINGRESP Packet"))
+#figure(image("images/pingresp-packet-diagram.png", alt: "PINGRESP Packet"),
+  caption: [
+    PINGRESP Packet
+  ]
+)
+<fig-pingresp-packet>
 
 A PINGRESP Packet is sent by the Server to the Client in response to a
 PINGREQ packet. It indicates that the Server is alive.
@@ -3301,8 +3366,6 @@ in the Active state as well as the Awake state.
 
 Values can be:
 
-#emph[Figure 3-22 -- PINGRESP continuation values]
-
 #figure(
   align(center)[#table(
     columns: (14.91%, 85.09%),
@@ -3318,12 +3381,16 @@ Values can be:
   , caption: [PINGRESP continuation values]
   , kind: table
   )
+<tab-pingresp-continuation-values>
 
 == DISCONNECT - Disconnect Notification
 <disconnect---disconnect-notification>
-#emph[Figure 3-23 -- DISCONNECT Packet]
-
-#box(image("images/disconnect-packet-diagram.png", alt: "DISCONNECT Packet"))
+#figure(image("images/disconnect-packet-diagram.png", alt: "DISCONNECT Packet"),
+  caption: [
+    DISCONNECT Packet
+  ]
+)
+<fig-disconnect-packet>
 
 The DISCONNECT packet is sent by a Client to indicate that it is going
 to delete the Virtual connection and go to the Disconnected state.
@@ -3366,7 +3433,7 @@ Packet»#link(<tab-MQTT-SN-3.13.2-2>)[MQTT‑SN‑3.13.2‑2].
 ==== Packet Identifier Flag
 <packet-identifier-flag>
 #strong[Position:] bit 0 of the DISCONNECT Flags. Labelled
-#emph[PacketId] in Figure 3-23.
+#emph[PacketId] in #link(<fig-disconnect-packet>)[Figure 23].
 
 ​​«#box()<MQTT-SN-3.13.2.1-1>If the Packet Identifier Flag is set to 0, a
 Packet Identifier MUST NOT be present in the
@@ -3379,7 +3446,7 @@ Packet»#link(<tab-MQTT-SN-3.13.2.1-2>)[MQTT‑SN‑3.13.2.1‑2].
 ==== Session Expiry Interval Flag
 <ddn---session-expiry-interval-flag>
 #strong[Position:] bit 1 of the DISCONNECT Flags. Labelled #emph[Sess
-Exp] in Figure 3-23.
+Exp] in #link(<fig-disconnect-packet>)[Figure 23].
 
 ​​«#box()<MQTT-SN-3.13.2.2-1>If the Session Expiry Interval Flag is set to
 0, a Session Expiry Interval MUST NOT be present in the
@@ -3392,7 +3459,7 @@ Packet»#link(<tab-MQTT-SN-3.13.2.2-2>)[MQTT‑SN‑3.13.2.2‑2].
 ==== Reason Code Flag
 <reason-code-flag>
 #strong[Position:] bit 2 of the DISCONNECT Flags. Labelled #emph[Reason
-C] in Figure 3-23.
+C] in #link(<fig-disconnect-packet>)[Figure 23].
 
 ​​«#box()<MQTT-SN-3.13.2.3-1>If the Reason Code Flag is set to 0, a Reason
 Code MUST NOT be present in the
@@ -3480,9 +3547,12 @@ by sending a CONNECT Packet to the Server.
 
 == WAKEUP - Wake up request
 <wakeup---wake-up-request>
-#emph[Figure 3-24 -- WAKEUP Packet]
-
-#box(image("images/wakeup-packet-diagram.png", alt: "WAKEUP Packet"))
+#figure(image("images/wakeup-packet-diagram.png", alt: "WAKEUP Packet"),
+  caption: [
+    WAKEUP Packet
+  ]
+)
+<fig-wakeup-packet>
 
 The WAKEUP Packet is sent from the Server to the Client to request that
 it transition to the Awake state. The client is not obliged to honor
@@ -3506,9 +3576,12 @@ state»#link(<tab-MQTT-SN-3.14.2-1>)[MQTT‑SN‑3.14.2‑1].
 
 == SLEEPREQ - Sleep request
 <sleepreq---sleep-request>
-#emph[Figure 3-25 -- SLEEPREQ Packet]
-
-#box(image("images/sleepreq-packet-diagram.png", alt: "SLEEPREQ Packet"))
+#figure(image("images/sleepreq-packet-diagram.png", alt: "SLEEPREQ Packet"),
+  caption: [
+    SLEEPREQ Packet
+  ]
+)
+<fig-sleepreq-packet>
 
 The SLEEPREQ packet is sent from the Client to the Server to indicate
 that it is going to sleep (moving to the Asleep state).
@@ -3535,7 +3608,7 @@ Packet»#link(<tab-MQTT-SN-3.15.2-2>)[MQTT‑SN‑3.15.2‑2].
 ==== Retain Topic Aliases
 <retain-topic-aliases>
 #strong[Position:] bit 0 of the SLEEPREQ Flags. Labelled #emph[Retain T]
-in Figure 3-25.
+in #link(<fig-sleepreq-packet>)[Figure 25].
 
 Specifies whether Session Topic Aliases should be retained by the Server
 during the Asleep state. "0" indicates Topic Aliases should be removed
@@ -3624,9 +3697,12 @@ SLEEPREQ.
 
 == SLEEPRESP - Sleep response
 <sleepresp---sleep-response>
-#emph[Figure 3-26 -- SLEEPRESP Packet]
-
-#box(image("images/sleepresp-packet-diagram.png", alt: "SLEEPRESP Packet"))
+#figure(image("images/sleepresp-packet-diagram.png", alt: "SLEEPRESP Packet"),
+  caption: [
+    SLEEPRESP Packet
+  ]
+)
+<fig-sleepresp-packet>
 
 The SLEEPRESP Packet is sent from the Server to the Client in response
 to a SLEEPREQ from the Client.
@@ -3653,7 +3729,7 @@ Packet»#link(<tab-MQTT-SN-3.16.2-2>)[MQTT‑SN‑3.16.2‑2].
 ==== Sleep Duration Flag
 <sleep-duration-flag>
 #strong[Position:] bit 0 of the SLEEPRESP Flags. Labelled #emph[Sleep
-Dur] in Figure 3-26.
+Dur] in #link(<fig-sleepresp-packet>)[Figure 26].
 
 ​​«#box()<MQTT-SN-3.16.2.1-1>If the Sleep Duration Flag is set to 0, Sleep
 Duration MUST NOT be present in the
@@ -3703,10 +3779,12 @@ applicable to SLEEPRESP»#link(<tab-MQTT-SN-3.16.5-1>)[MQTT‑SN‑3.16.5‑1].
 
 == Protection Encapsulation
 <protection-encapsulation>
-#emph[Figure 3-27 -- Format of an Protection Encapsulated MQTT-SN
-Packet]
-
-#box(image("images/protection-encapsulation-packet-diagram.png", alt: "Format of an Protection Encapsulated MQTT-SN Packet"))
+#figure(image("images/protection-encapsulation-packet-diagram.png", alt: "Format of an Protection Encapsulated MQTT-SN Packet"),
+  caption: [
+    Format of an Protection Encapsulated MQTT-SN Packet
+  ]
+)
+<fig-format-of-an-protection-encapsulated-mqtt-sn-packet>
 
 Protection encapsulation provides a secure envelope for any MQTT-SN
 packet (with the exception of the Forward Encapsulation packet). The
@@ -3792,7 +3870,8 @@ the Protection Encapsulation.
 ==== Monotonic Counter Length
 <monotonic-counter-length>
 #strong[Position:] bits 0 and 1 of the Protection Flags. Labelled
-#emph[Counter Length] in Figure 3-27.
+#emph[Counter Length] in
+#link(<fig-format-of-an-protection-encapsulated-mqtt-sn-packet>)[Figure 27].
 
 Specifies the number of bytes forming the monotonic counter in
 big-endian order. Only three of the four possible values are allowed.
@@ -3818,7 +3897,8 @@ big-endian order. Only three of the four possible values are allowed.
 ==== Cryptographic Material Length
 <cryptographic-material-length>
 #strong[Position:] bits 2 and 3 of the Protection Flags. Labelled
-#emph[Crypto Length] in Figure 3-27.
+#emph[Crypto Length] in
+#link(<fig-format-of-an-protection-encapsulated-mqtt-sn-packet>)[Figure 27].
 
 Specifies the number of sixteen bit groups forming the cryptographic
 material in big-endian order. The meaning of each possible value is
@@ -3973,6 +4053,7 @@ Packet)»#link(<tab-MQTT-SN-3.17.3-4>)[MQTT‑SN‑3.17.3‑4].
   , caption: [Protection Schemes]
   , kind: table
   )
+<tab-protection-schemes>
 
 #strong[Note(s):]
 
@@ -4104,9 +4185,12 @@ the Protection Scheme field.
 
 == Connection Encapsulation
 <connection-encapsulation>
-#emph[Figure 3-29 -- Format of a Connection Encapsulated MQTT-SN Packet]
-
-#box(image("images/connection-encapsulation-packet-diagram.png", alt: "Format of a Connection Encapsulated MQTT-SN Packet"))
+#figure(image("images/connection-encapsulation-packet-diagram.png", alt: "Format of a Connection Encapsulated MQTT-SN Packet"),
+  caption: [
+    Format of a Connection Encapsulated MQTT-SN Packet
+  ]
+)
+<fig-format-of-a-connection-encapsulated-mqtt-sn-packet>
 
 This envelope wraps an MQTT-SN Packet to allow it to be associated with
 an existing Virtual Connection where other methods are not sufficient.
@@ -4178,9 +4262,12 @@ immediately after the Client Identifier field.
 
 == Forwarder Encapsulation
 <forwarder-encapsulation>
-#emph[Figure 3-30 -- Format of an Forwarder Encapsulated MQTT-SN Packet]
-
-#box(image("images/forwarder-encapsulation-packet-diagram.png", alt: "Format of an Forwarder Encapsulated MQTT-SN Packet"))
+#figure(image("images/forwarder-encapsulation-packet-diagram.png", alt: "Format of an Forwarder Encapsulated MQTT-SN Packet"),
+  caption: [
+    Format of an Forwarder Encapsulated MQTT-SN Packet
+  ]
+)
+<fig-format-of-an-forwarder-encapsulated-mqtt-sn-packet>
 
 An MQTT-SN Client can access a Server through a Forwarder in case the
 Server is not directly attached to the same Underlying Network as the
@@ -4241,9 +4328,12 @@ functionality works can be found in
 
 === ADVERTISE - Gateway Advertisement
 <advertise---gateway-advertisement>
-#emph[Figure 3-31 -- ADVERTISE Packet]
-
-#box(image("images/advertise-packet-diagram.png", alt: "ADVERTISE Packet"))
+#figure(image("images/advertise-packet-diagram.png", alt: "ADVERTISE Packet"),
+  caption: [
+    ADVERTISE Packet
+  ]
+)
+<fig-advertise-packet>
 
 The ADVERTISE packet is sent periodically by a Gateway to advertise its
 presence. The time interval until the next transmission is indicated by
@@ -4281,9 +4371,12 @@ The maximum value that can be encoded is approximately 18 hours.
 
 === SEARCHGW - Search for A Gateway
 <searchgw---search-for-a-gateway>
-#emph[Figure 3-32 -- SEARCHGW Packet]
-
-#box(image("images/searchgw-packet-diagram.png", alt: "SEARCHGW Packet"))
+#figure(image("images/searchgw-packet-diagram.png", alt: "SEARCHGW Packet"),
+  caption: [
+    SEARCHGW Packet
+  ]
+)
+<fig-searchgw-packet>
 
 The SEARCHGW packet is sent by a Client to find a Gateway to send
 Application Messages to, and receive Application Messages from.
@@ -4325,9 +4418,12 @@ broadcast radius, for instance.
 
 === GWINFO - Gateway Information
 <gwinfo---gateway-information>
-#emph[Figure 3-33 -- GWINFO Packet]
-
-#box(image("images/gwinfo-packet-diagram.png", alt: "GWINFO Packet"))
+#figure(image("images/gwinfo-packet-diagram.png", alt: "GWINFO Packet"),
+  caption: [
+    GWINFO Packet
+  ]
+)
+<fig-gwinfo-packet>
 
 The GWINFO packet is sent as response to a SEARCHGW packet. If sent by a
 Gateway, it contains only the identifier of the sending Gateway;
@@ -4455,15 +4551,21 @@ session with a server is illustrated in figures 4-1 and 4-2.
 The CONNECT packet contains flags to communicate to the Server that
 authentication interactions, with the AUTH packet, should take place.
 
-#emph[Figure 4-1 -- Connect Procedure (without Auth flag set, or no
-further authentication data required)]
+#figure(image("images/image15.png", alt: "Connect Procedure (without Auth flag set, or no further authentication data required)"),
+  caption: [
+    Connect Procedure (without Auth flag set, or no further
+    authentication data required)
+  ]
+)
+<fig-connect-procedure-without-auth-flag-set-or-no-further-authentication-data-required>
 
-#box(image("images/image15.png", alt: "Connect Procedure (without Auth flag set, or no further authentication data required)"))
-
-#emph[Figure 4-2 -- Connect Procedure (with Auth flag set and further
-authentication data required)]
-
-#box(image("images/image33.png", alt: "Connect Procedure (with Auth flag set and further authentication data required)"))
+#figure(image("images/image33.png", alt: "Connect Procedure (with Auth flag set and further authentication data required)"),
+  caption: [
+    Connect Procedure (with Auth flag set and further authentication
+    data required)
+  ]
+)
+<fig-connect-procedure-with-auth-flag-set-and-further-authentication-data-required>
 
 If the Server can not accept the CONNECT request the Server returns a
 CONNACK packet with the rejection Reason Code.
@@ -4659,8 +4761,6 @@ In the QoS 0 delivery protocol, the receiver:
 
 - Accepts ownership of the message when it receives the PUBLISH packet.
 
-#emph[Figure 4-3 -- QoS 0 protocol flow, informative example]
-
 #figure(
   align(center)[#table(
     columns: (14.85%, 21.78%, 63.37%),
@@ -4675,6 +4775,7 @@ In the QoS 0 delivery protocol, the receiver:
   , caption: [QoS 0 protocol flow, informative example]
   , kind: table
   )
+<tab-qos-0-protocol-flow-informative-example>
 
 === QoS 1: At least once delivery
 <qos-1-at-least-once-delivery>
@@ -4716,8 +4817,6 @@ In the QoS 1 delivery protocol, the receiver:
   as being a new Application
   Message»#link(<tab-MQTT-SN-4.3.3-6>)[MQTT‑SN‑4.3.3‑6].
 
-#emph[Figure 4-4 -- QoS 1 protocol flow, informative example]
-
 #figure(
   align(center)[#table(
     columns: (38.35%, 18.8%, 42.86%),
@@ -4735,6 +4834,7 @@ In the QoS 1 delivery protocol, the receiver:
   , caption: [QoS 1 protocol flow, informative example]
   , kind: table
   )
+<tab-qos-1-protocol-flow-informative-example>
 
 #quote(block: true)[
 #super[1]The receiver does not need to complete delivery of the
@@ -4816,8 +4916,6 @@ In the QoS 2 delivery protocol, the receiver:
   setting of its DUP
   flag»#link(<tab-MQTT-SN-4.3.4-13>)[MQTT‑SN‑4.3.4‑13]
 
-#emph[Figure 4-5 -- QoS 2 protocol flow, informative example]
-
 #figure(
   align(center)[#table(
     columns: (30.14%, 13.4%, 56.46%),
@@ -4844,6 +4942,7 @@ In the QoS 2 delivery protocol, the receiver:
   , caption: [QoS 2 protocol flow, informative example]
   , kind: table
   )
+<tab-qos-2-protocol-flow-informative-example>
 
 #quote(block: true)[
 #super[1] The receiver does not need to complete delivery of the
@@ -5644,10 +5743,12 @@ the Authentication Data field length is known, but including it makes
 the transfer to and from the MQTT Connect packet simpler.
 ]
 
-#emph[Figure 4-6 -- CONNECT with MQTT User Name and Password,
-informative example]
-
-#box(image("images/image20.png", alt: "CONNECT with MQTT User Name and Password, informative example"))
+#figure(image("images/image20.png", alt: "CONNECT with MQTT User Name and Password, informative example"),
+  caption: [
+    CONNECT with MQTT User Name and Password, informative example
+  ]
+)
+<fig-connect-with-mqtt-user-name-and-password-informative-example>
 
 To support the equivalent of the MQTT User Name and Password together
 with MQTT Enhanced Authentication, in the CONNECT packet do the
@@ -5860,8 +5961,6 @@ applications that will use the Server, at a minimum.
 At any time, a Client will be in one of the following states from the
 perspective of the Server:
 
-#emph[Figure 4-7 -- Client States]
-
 #figure(
   align(center)[#table(
     columns: (2.73%, 89.07%, 8.19%),
@@ -5906,6 +6005,7 @@ perspective of the Server:
   , caption: [Client States]
   , kind: table
   )
+<tab-client-states>
 
 #quote(block: true)[
 #strong[Informative Comment]
@@ -5969,8 +6069,6 @@ handle Client states, and by Clients to direct their actions. In
 general, Clients are able to infer the Server's view of their state by
 observing the Server's response.
 
-#emph[Figure 4-8 -- Session Timers]
-
 #figure(
   align(center)[#table(
     columns: (11.94%, 17.16%, 11.19%, 16.42%, 43.28%),
@@ -5990,6 +6088,7 @@ observing the Server's response.
   , caption: [Session Timers]
   , kind: table
   )
+<tab-session-timers>
 
 For example values of these timers, see
 #link(<c.3-example-timer-and-counter-values>)[C.3 "Example Timer and Counter Values"].
@@ -6116,9 +6215,12 @@ Retain Topic Aliases flag on the SLEEPREQ packet to 0. The disadvantage
 being that during the Awake state, Session Topic Aliases will have to be
 recreated, or Topic Names used instead, increasing network data usage.
 
-#emph[Figure 4-9 -- Awake PINGRESP Packet flush]
-
-#box(image("images/image2.png", alt: "Awake PINGRESP Packet flush"))
+#figure(image("images/image2.png", alt: "Awake PINGRESP Packet flush"),
+  caption: [
+    Awake PINGRESP Packet flush
+  ]
+)
+<fig-awake-pingresp-packet-flush>
 
 == Optional Features
 <optional-features>
@@ -6771,8 +6873,9 @@ definitive list of conformance requirements.
     process both 1-byte and 3-byte length formats.],
     [#box()<tab-MQTT-SN-2.2-1>\[#link(<MQTT-SN-2.2-1>)[MQTT‑SN‑2.2‑1]\]], [Each
     time a Client sends a new MQTT-SN Control Packet which is identified
-    in Figure 2-5 as requiring a Packet Identifier, it MUST assign it a
-    non-zero Packet Identifier that is currently unused.],
+    in #link(<tab-packets-with-packet-identifier>)[Table 2] as requiring
+    a Packet Identifier, it MUST assign it a non-zero Packet Identifier
+    that is currently unused.],
     [#box()<tab-MQTT-SN-2.2-2>\[#link(<MQTT-SN-2.2-2>)[MQTT‑SN‑2.2‑2]\]], [A
     PUBLISH packet MUST NOT contain a Packet Identifier if its QoS value
     is set to 0.],
@@ -7875,6 +7978,7 @@ definitive list of conformance requirements.
   , caption: [Numbered conformance statements]
   , kind: table
   )
+<tab-numbered-conformance-statements>
 
 #pagebreak(weak: true)
 #heading(level: 1, numbering: none)[Appendix C. Implementation Guidance
@@ -7933,8 +8037,6 @@ support a separate connection for each active Client. Some MQTT Server
 implementations might impose a limitation on the number of concurrent
 connections that they support.
 
-#emph[Figure C-1 -- Transparent Gateway]
-
 \[figure below is part of informative example\]
 #box(image("images/image40.png", alt: "Transparent Gateway"))
 
@@ -7952,9 +8054,12 @@ given further to the MQTT Server. Although its implementation may be
 more complex than a transparent Gateway, an aggregating Gateway reduces
 the number of MQTT connections between the Gateway and MQTT Server.
 
-#emph[Figure C-2 -- Aggregating Gateway]
-
-#box(image("images/image10.png", alt: "Aggregating Gateway"))
+#figure(image("images/image10.png", alt: "Aggregating Gateway"),
+  caption: [
+    Aggregating Gateway
+  ]
+)
+<fig-aggregating-gateway>
 
 To support PUBWOS packets from MQTT-SN clients without a Virtual
 Connection, an Aggregating may use any aggregating MQTT connection to
@@ -7975,13 +8080,19 @@ could be Zigbee on one side and UDP on the other, for instance.
 The following diagrams illustrate how a Forwarder may interact with an
 Aggregating or Transparent Gateway.
 
-#emph[Figure C-3 -- Forwarder with Transparent Gateway]
+#figure(image("images/image22.png", alt: "Forwarder with Transparent Gateway"),
+  caption: [
+    Forwarder with Transparent Gateway
+  ]
+)
+<fig-forwarder-with-transparent-gateway>
 
-#box(image("images/image22.png", alt: "Forwarder with Transparent Gateway"))
-
-#emph[Figure C-4 -- Forwarder with Aggregating Gateway]
-
-#box(image("images/image29.png", alt: "Forwarder with Aggregating Gateway"))
+#figure(image("images/image29.png", alt: "Forwarder with Aggregating Gateway"),
+  caption: [
+    Forwarder with Aggregating Gateway
+  ]
+)
+<fig-forwarder-with-aggregating-gateway>
 
 #heading(level: 3, numbering: none)[C.1.4 MQTT-SN Broker]
 <c.1.4-mqtt-sn-broker>
@@ -7994,9 +8105,12 @@ messages to other clients which have subscribed to the relevant topics.
 It may support the receipt and sending of PUBWOS packets - it is an
 implementation decision on how to handle them.
 
-#emph[Figure C-5 -- MQTT-SN Broker]
-
-#box(image("images/image37.png", alt: "MQTT-SN Broker"))
+#figure(image("images/image37.png", alt: "MQTT-SN Broker"),
+  caption: [
+    MQTT-SN Broker
+  ]
+)
+<fig-mqtt-sn-broker>
 
 An MQTT-SN Server may choose to incorporate elements of a Broker,
 Aggregating and Transparent Gateway together. Typically, an Aggregating
@@ -8019,10 +8133,9 @@ for an example value.
 #heading(level: 2, numbering: none)[C.3 Example Timer and Counter
 Values]
 <c.3-example-timer-and-counter-values>
-Figure C-6 gives some values for the timers and counters defined in this
+#link(<tab-best-practice-values-for-timers-and-counters>)[Table 17]
+gives some values for the timers and counters defined in this
 specification derived from implementation experience.
-
-#emph[Figure C-6 -- Best practice values for timers and counters]
 
 #figure(
   align(center)[#table(
@@ -8057,8 +8170,10 @@ specification derived from implementation experience.
     Interval], [#link(<c.4-exponential-backoff>)[C.4 "Exponential Backoff"]], [60
     seconds],
   )]
+  , caption: [Best practice values for timers and counters]
   , kind: table
   )
+<tab-best-practice-values-for-timers-and-counters>
 
 #heading(level: 2, numbering: none)[C.4 Exponential Backoff]
 <c.4-exponential-backoff>
@@ -8111,19 +8226,28 @@ should be no larger than the initial #emph[Retry Interval].
 The following diagrams are illustrative, graphical views of the states
 and transitions. They are not comprehensive but included for guidance.
 
-#emph[Figure C-7 -- Server View of Client States - informative]
+#figure(image("images/ClientState.png", alt: "Server View of Client States - informative"),
+  caption: [
+    Server View of Client States - informative
+  ]
+)
+<fig-server-view-of-client-states-informative>
 
-#box(image("images/ClientState.png", alt: "Server View of Client States - informative"))
-
-#emph[Figure C-8 -- Server View of Client States - informative]
-
-#box(image("images/ServerState.png", alt: "Server View of Client States - informative"))
+#figure(image("images/ServerState.png", alt: "Server View of Client States - informative"),
+  caption: [
+    Server View of Client States - informative
+  ]
+)
+<fig-server-view-of-client-states-informative-2>
 
 #heading(level: 2, numbering: none)[C.6 PUBLISH with QoS -1]
 <c.6-publish-with-qos--1>
-#emph[Figure C-9 -- PUBLISH Packet for QoS -1]
-
-#box(image("images/publish-qos-minus-1-packet-diagram.png", alt: "PUBLISH Packet for QoS -1"))
+#figure(image("images/publish-qos-minus-1-packet-diagram.png", alt: "PUBLISH Packet for QoS -1"),
+  caption: [
+    PUBLISH Packet for QoS -1
+  ]
+)
+<fig-publish-packet-for-qos-1>
 
 This packet is the MQTT-SN 1.2 equivalent of PUBWOS. It could be
 supported by a Server if there are existing MQTT-SN 1.2 transmitters

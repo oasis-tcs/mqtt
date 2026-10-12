@@ -18,9 +18,7 @@ Text fields within the MQTT-SN Control Packets are encoded as fixed length UTF-8
 
 Unless stated otherwise all variable length UTF-8 encoded strings can have any length in the range 0 to 65,535 bytes.
 
-*Figure 1-1 -- Structure of UTF-8 Encoded Strings*
-
-![Structure of UTF-8 Encoded Strings](images/image14.png "Structure of UTF-8 Encoded Strings")<!-- .width="6.5in", .height="1.0277777777777777in" -->
+![Structure of UTF-8 Encoded Strings](images/image14.png "Structure of UTF-8 Encoded Strings"){#fig-structure-of-utf-8-encoded-strings}
 
 «<mark title="Requirement MQTT-SN-1.8.4-1"><a name="MQTT-SN-1.8.4-1"></a>The character data in a UTF-8 Encoded String MUST be well-formed UTF-8 as defined by the Unicode specification [cite](#Unicode) and restated in RFC 3629 [cite](#RFC3629). In particular, the character data MUST NOT include encodings of code points between U+D800 and U+DFFF</mark>»[MQTT‑SN‑1.8.4‑1](#tab-MQTT-SN-1.8.4-1).
 
@@ -42,6 +40,4 @@ UTF-8 Encoded Strings SHOULD NOT include the Unicode \[Unicode\] code points lis
 >
 > For example, the string A𪛔 which is LATIN CAPITAL Letter A followed by the code point U+2A6D4 (which represents a CJK IDEOGRAPH EXTENSION B character) is encoded as follows:
 >
-> *Figure 1-2 -- Fixed Length UTF-8 Encoded String informative example*
->
-> ![](images/image31.png "Fixed Length UTF-8 Encoded String informative example")
+> ![Fixed Length UTF-8 Encoded String informative example](images/image31.png "Fixed Length UTF-8 Encoded String informative example"){#fig-fixed-length-utf-8-encoded-string-informative-example}
