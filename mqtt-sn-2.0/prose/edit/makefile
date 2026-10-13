@@ -14,14 +14,16 @@ artifact_stem = mqtt-sn-v2.0-draft
 
 target_gfm_plus = gfm-plus
 
-out_html          = $(shared)$(artifact_stem).html
-out_gfm_plus      = $(shared)$(artifact_stem).md
-out_ir            = $(shared)$(artifact_stem).ir.json
-out_manifest      = $(shared)$(artifact_stem).manifest.json
-out_pdf           = $(shared)$(artifact_stem).pdf
-out_pdf_sha256    = $(shared)$(artifact_stem).pdf.sha256
-out_pdf_blake3    = $(shared)$(artifact_stem).pdf.blake3
-out_typst         = $(shared)$(artifact_stem).typ
+out_html               = $(shared)$(artifact_stem).html
+out_gfm_plus           = $(shared)$(artifact_stem).md
+out_ir                 = $(shared)$(artifact_stem).ir.json
+out_manifest           = $(shared)$(artifact_stem).manifest.json
+out_pdf                = $(shared)$(artifact_stem).pdf
+out_pdf_sha256         = $(shared)$(artifact_stem).pdf.sha256
+out_pdf_blake3         = $(shared)$(artifact_stem).pdf.blake3
+out_typst              = $(shared)$(artifact_stem).typ
+out_packet_dict        = $(shared)$(artifact_stem)-packet-dictionary.json
+out_packet_dict_schema = $(shared)schema/packet-dictionary.schema.json
 
 .PHONY: all
 all: lint types build
@@ -98,6 +100,25 @@ release: html pdf
 	nide manifest && nide validate
 	cp -p build/manifest.json $(out_manifest)
 	ls -l $(shared)$(artifact_stem).*
+
+.PHONY: packet-dictionary
+packet-dictionary: gfm-plus
+	printf "Step 1/6 -- collecting bytefield specs in prose order:\n"
+	python3 bin/collect_packet_specs.py --no-rebuild
+	printf "Step 2/6 -- parsing .edn bytefield sources:\n"
+	mkdir -p build/packet-specs
+	python3 bin/parse_bytefield_edn.py --manifest build/packet-spec-manifest.json --out-dir build/packet-specs
+	printf "Step 3/6 -- validating parsed instances against their schema:\n"
+	python3 bin/validate_bytefield_instances.py
+	printf "Step 4/6 -- deriving byte/row structure:\n"
+	mkdir -p build/packet-rows
+	python3 bin/derive_byte_rows.py --dir build/packet-specs --out-dir build/packet-rows
+	printf "Step 5/6 -- assembling the combined dictionary:\n"
+	python3 bin/assemble_packet_dictionary.py
+	printf "Step 6/6 -- publishing dictionary + schema:\n"
+	cp -p build/mqtt-sn-v2.0-draft-packet-dictionary.json $(out_packet_dict)
+	mkdir -p $(shared)schema/ && cp -p bin/packet-dictionary.schema.json $(out_packet_dict_schema)
+	ls -l $(out_packet_dict) $(out_packet_dict_schema)
 
 .PHONY: quality
 quality:
