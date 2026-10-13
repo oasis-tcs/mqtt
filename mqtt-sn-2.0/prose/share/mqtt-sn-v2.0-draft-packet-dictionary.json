@@ -1,0 +1,3826 @@
+{
+  "$schema": "https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/schema/packet-dictionary.json",
+  "title": "MQTT-SN v2.0 (CSD01 draft) -- Packet Dictionary",
+  "description": "Machine-readable companion to the prose, generated from the bytefield (.edn) diagram sources -- not hand-maintained. See bin/README (or AGENTS.md) for the generation pipeline.",
+  "packet_count": 29,
+  "packets": [
+    {
+      "order": 2,
+      "section": {
+        "number": "2.1",
+        "title": "Structure of an MQTT-SN Control Packet",
+        "anchor": "structure-of-an-mqtt-sn-control-packet",
+        "path": [
+          {
+            "number": "2.",
+            "title": "MQTT-SN Control Packet format"
+          },
+          {
+            "number": "2.1",
+            "title": "Structure of an MQTT-SN Control Packet"
+          }
+        ]
+      },
+      "code": null,
+      "description": "Structure of an MQTT-SN Control Packet",
+      "figure": {
+        "label": "fig-packet-structure",
+        "image": "images/structure-packet-diagram.png",
+        "alt": "Packet Structure"
+      },
+      "source_edn": "images/packet/structure-packet-diagram.edn",
+      "boxes_per_row": 9,
+      "rows": []
+    },
+    {
+      "order": 6,
+      "section": {
+        "number": "3.1",
+        "title": "CONNECT - Connection Request",
+        "anchor": "connect---connection-request",
+        "path": [
+          {
+            "number": "3.",
+            "title": "MQTT-SN Control Packets"
+          },
+          {
+            "number": "3.1",
+            "title": "CONNECT - Connection Request"
+          }
+        ]
+      },
+      "code": "CONNECT",
+      "description": "Connection Request",
+      "figure": {
+        "label": "fig-connect-packet",
+        "image": "images/connect-packet-diagram.png",
+        "alt": "CONNECT Packet"
+      },
+      "source_edn": "images/packet/connect-packet-diagram.edn",
+      "boxes_per_row": 9,
+      "rows": [
+        {
+          "type": "field",
+          "address": "1",
+          "name": "Length",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "2",
+          "name": "Packet Type",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "bit_field",
+          "address": "3",
+          "group": "Connect Flags",
+          "group_annotations": [],
+          "bits": [
+            {
+              "name": "Reserved",
+              "span": 1,
+              "value": "0",
+              "optional": true
+            },
+            {
+              "name": "Srv Sugg",
+              "span": 1,
+              "value": "X",
+              "optional": true
+            },
+            {
+              "name": "Net Addr",
+              "span": 1,
+              "value": "X",
+              "optional": true
+            },
+            {
+              "name": "MAM",
+              "span": 1,
+              "value": "X",
+              "optional": true
+            },
+            {
+              "name": "Sess Exp",
+              "span": 1,
+              "value": "X",
+              "optional": true
+            },
+            {
+              "name": "Auth",
+              "span": 1,
+              "value": "X",
+              "optional": true
+            },
+            {
+              "name": "Will",
+              "span": 1,
+              "value": "X",
+              "optional": true
+            },
+            {
+              "name": "Clean Start",
+              "span": 1,
+              "value": "X",
+              "optional": true
+            }
+          ]
+        },
+        {
+          "type": "bit_field",
+          "address": "4",
+          "group": "Will Flags",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (F=1 or 0) - only present when Will flag is set"
+            }
+          ],
+          "bits": [
+            {
+              "name": "Reserved",
+              "span": 3,
+              "value": "000",
+              "optional": true
+            },
+            {
+              "name": "Wil Retain",
+              "span": 1,
+              "value": "X",
+              "optional": true
+            },
+            {
+              "name": "Will QoS",
+              "span": 2,
+              "value": "XX",
+              "optional": true
+            },
+            {
+              "name": "Will Topic Type",
+              "span": 2,
+              "value": "XX",
+              "optional": true
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "4+F",
+          "name": "Packet Identifier MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "5+F",
+          "name": "Packet Identifier LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "6+F",
+          "name": "Protocol Version",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "7+F",
+          "name": "Keep Alive MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "8+F",
+          "name": "Keep Alive LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "9+F",
+          "name": "Maximum Packet Size MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "10+F",
+          "name": "Maximum Packet Size LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "11+F",
+          "name": "Maximum Number of Awake Messages",
+          "kind": "box",
+          "annotations": [
+            {
+              "style": "cursive",
+              "text": " (AM=F+1 or F) - only present when MAM flag is set"
+            }
+          ],
+          "optional": true,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "11+AM",
+          "name": "Session Expiry Interval MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Session Expiry Interval",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (S=AM+4 or AM) - only present when Sess Exp flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "12+AM",
+          "name": "Session Expiry Interval",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Session Expiry Interval",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (S=AM+4 or AM) - only present when Sess Exp flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "13+AM",
+          "name": "Session Expiry Interval",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Session Expiry Interval",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (S=AM+4 or AM) - only present when Sess Exp flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "14+AM",
+          "name": "Session Expiry Interval LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Session Expiry Interval",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (S=AM+4 or AM) - only present when Sess Exp flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "11+S",
+          "name": "Will Topic Alias or Will Topic Name Length MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Will Fields",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (W=4+N+P+S or S) - only present when Will flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "12+S",
+          "name": "Will Topic Alias or Will Topic Name Length LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Will Fields",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (W=4+N+P+S or S) - only present when Will flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "13+S",
+          "name": "Will Topic Name",
+          "kind": "gap",
+          "annotations": [
+            {
+              "style": "cursive",
+              "text": " (N) - only present when Will Topic Type is Topic Name"
+            }
+          ],
+          "optional": true,
+          "group": "Will Fields",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (W=4+N+P+S or S) - only present when Will flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "13+S+N",
+          "name": "Will Payload Length MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Will Fields",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (W=4+N+P+S or S) - only present when Will flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "14+S+N",
+          "name": "Will Payload Length LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Will Fields",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (W=4+N+P+S or S) - only present when Will flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "15+S+N",
+          "name": "Will Payload",
+          "kind": "gap",
+          "annotations": [
+            {
+              "style": "cursive",
+              "text": " (P)"
+            }
+          ],
+          "optional": true,
+          "group": "Will Fields",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (W=4+N+P+S or S) - only present when Will flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "11+W",
+          "name": "Authentication Method Length",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Authentication Fields",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (A=3+M+D+W or W) - only present when Auth flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "12+W",
+          "name": "Authentication Method (M)",
+          "kind": "gap",
+          "annotations": [],
+          "optional": true,
+          "group": "Authentication Fields",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (A=3+M+D+W or W) - only present when Auth flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "12+W+M",
+          "name": "Authentication Data Length MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Authentication Fields",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (A=3+M+D+W or W) - only present when Auth flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "13+W+M",
+          "name": "Authentication Data Length LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Authentication Fields",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (A=3+M+D+W or W) - only present when Auth flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "14+W+M",
+          "name": "Authentication Data (D)",
+          "kind": "gap",
+          "annotations": [],
+          "optional": true,
+          "group": "Authentication Fields",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (A=3+M+D+W or W) - only present when Auth flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "11+A",
+          "name": "Client Identifier (I)",
+          "kind": "gap",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "section": {
+        "number": "3.2",
+        "title": "CONNACK - Connect Acknowledgement",
+        "anchor": "connack---connect-acknowledgement",
+        "path": [
+          {
+            "number": "3.",
+            "title": "MQTT-SN Control Packets"
+          },
+          {
+            "number": "3.2",
+            "title": "CONNACK - Connect Acknowledgement"
+          }
+        ]
+      },
+      "code": "CONNACK",
+      "description": "Connect Acknowledgement",
+      "figure": {
+        "label": "fig-connack-packet",
+        "image": "images/connack-packet-diagram.png",
+        "alt": "CONNACK Packet"
+      },
+      "source_edn": "images/packet/connack-packet-diagram.edn",
+      "boxes_per_row": 9,
+      "rows": [
+        {
+          "type": "field",
+          "address": "1",
+          "name": "Length",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "2",
+          "name": "Packet Type",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "bit_field",
+          "address": "3",
+          "group": "Connack Flags",
+          "group_annotations": [],
+          "bits": [
+            {
+              "name": "Reserved",
+              "span": 4,
+              "value": "0000",
+              "optional": true
+            },
+            {
+              "name": "Auth",
+              "span": 1,
+              "value": "X",
+              "optional": true
+            },
+            {
+              "name": "Server KA",
+              "span": 1,
+              "value": "X",
+              "optional": true
+            },
+            {
+              "name": "Sess Exp",
+              "span": 1,
+              "value": "X",
+              "optional": true
+            },
+            {
+              "name": "Sess Pres",
+              "span": 1,
+              "value": "X",
+              "optional": true
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "4",
+          "name": "Packet Identifier MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "5",
+          "name": "Packet Identifier LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "6",
+          "name": "Reason Code",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "7",
+          "name": "Session Expiry Interval MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Session Expiry Interval",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (S=4 or 0) - only present when Sess Exp flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "8",
+          "name": "Session Expiry Interval",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Session Expiry Interval",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (S=4 or 0) - only present when Sess Exp flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "9",
+          "name": "Session Expiry Interval",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Session Expiry Interval",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (S=4 or 0) - only present when Sess Exp flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "10",
+          "name": "Session Expiry Interval LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Session Expiry Interval",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (S=4 or 0) - only present when Sess Exp flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "7+S",
+          "name": "Server Keep Alive MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Server Keep Alive",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (K=2+S or S) - only present when Server KA flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "8+S",
+          "name": "Server Keep Alive LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Server Keep Alive",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (K=2+S or S) - only present when Server KA flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "7+K",
+          "name": "Authentication Method Length",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Authentication Data",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (A=3+M+D+K or K) - only present when Auth flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "8+K",
+          "name": "Authentication Method (M)",
+          "kind": "gap",
+          "annotations": [],
+          "optional": true,
+          "group": "Authentication Data",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (A=3+M+D+K or K) - only present when Auth flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "8+K+M",
+          "name": "Authentication Data Length MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Authentication Data",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (A=3+M+D+K or K) - only present when Auth flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "9+K+M",
+          "name": "Authentication Data Length LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Authentication Data",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (A=3+M+D+K or K) - only present when Auth flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "10+K+M",
+          "name": "Authentication Data (D)",
+          "kind": "gap",
+          "annotations": [],
+          "optional": true,
+          "group": "Authentication Data",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (A=3+M+D+K or K) - only present when Auth flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "7+A",
+          "name": "Assigned Client Identifier (I) - optional",
+          "kind": "gap",
+          "annotations": [],
+          "optional": true,
+          "group": "Authentication Data",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (A=3+M+D+K or K) - only present when Auth flag is set"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "order": 8,
+      "section": {
+        "number": "3.3",
+        "title": "AUTH - Authentication Exchange",
+        "anchor": "auth---authentication-exchange",
+        "path": [
+          {
+            "number": "3.",
+            "title": "MQTT-SN Control Packets"
+          },
+          {
+            "number": "3.3",
+            "title": "AUTH - Authentication Exchange"
+          }
+        ]
+      },
+      "code": "AUTH",
+      "description": "Authentication Exchange",
+      "figure": {
+        "label": "fig-auth-packet",
+        "image": "images/auth-packet-diagram.png",
+        "alt": "AUTH Packet"
+      },
+      "source_edn": "images/packet/auth-packet-diagram.edn",
+      "boxes_per_row": 9,
+      "rows": [
+        {
+          "type": "field",
+          "address": "1",
+          "name": "Length",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "2",
+          "name": "Packet Type",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "3",
+          "name": "Packet Identifier MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "4",
+          "name": "Packet Identifier LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "5",
+          "name": "Reason Code",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "6",
+          "name": "Authentication Method Length",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "7",
+          "name": "Authentication Method (M)",
+          "kind": "gap",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "7+M",
+          "name": "Authentication Data",
+          "kind": "gap",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        }
+      ]
+    },
+    {
+      "order": 9,
+      "section": {
+        "number": "3.4",
+        "title": "REGISTER - Register Topic Alias Request",
+        "anchor": "register---register-topic-alias-request",
+        "path": [
+          {
+            "number": "3.",
+            "title": "MQTT-SN Control Packets"
+          },
+          {
+            "number": "3.4",
+            "title": "REGISTER - Register Topic Alias Request"
+          }
+        ]
+      },
+      "code": "REGISTER",
+      "description": "Register Topic Alias Request",
+      "figure": {
+        "label": "fig-register-packet",
+        "image": "images/register-packet-diagram.png",
+        "alt": "REGISTER Packet"
+      },
+      "source_edn": "images/packet/register-packet-diagram.edn",
+      "boxes_per_row": 9,
+      "rows": [
+        {
+          "type": "field",
+          "address": "1",
+          "name": "Length",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "2",
+          "name": "Packet Type",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "bit_field",
+          "address": "3",
+          "group": "REGISTER Flags",
+          "group_annotations": [],
+          "bits": [
+            {
+              "name": "Reserved",
+              "span": 7,
+              "value": "0000000",
+              "optional": true
+            },
+            {
+              "name": "Topic Alias",
+              "span": 1,
+              "value": "X",
+              "optional": true
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "3",
+          "name": "Packet Identifier MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "4",
+          "name": "Packet Identifier LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "5",
+          "name": "Topic Alias MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Topic Alias (T=2 or 0)",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " - only present when Topic Alias flag is 1"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "6",
+          "name": "Topic Alias LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Topic Alias (T=2 or 0)",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " - only present when Topic Alias flag is 1"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "5+T",
+          "name": "Topic Name",
+          "kind": "gap",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        }
+      ]
+    },
+    {
+      "order": 10,
+      "section": {
+        "number": "3.5",
+        "title": "REGACK - Register Topic Alias Acknowledgement",
+        "anchor": "regack---register-topic-alias-acknowledgement",
+        "path": [
+          {
+            "number": "3.",
+            "title": "MQTT-SN Control Packets"
+          },
+          {
+            "number": "3.5",
+            "title": "REGACK - Register Topic Alias Acknowledgement"
+          }
+        ]
+      },
+      "code": "REGACK",
+      "description": "Register Topic Alias Acknowledgement",
+      "figure": {
+        "label": "fig-regack-packet",
+        "image": "images/regack-packet-diagram.png",
+        "alt": "REGACK Packet"
+      },
+      "source_edn": "images/packet/regack-packet-diagram.edn",
+      "boxes_per_row": 9,
+      "rows": [
+        {
+          "type": "field",
+          "address": "1",
+          "name": "Length",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "2",
+          "name": "Packet Type",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "bit_field",
+          "address": "3",
+          "group": "REGACK Flags",
+          "group_annotations": [],
+          "bits": [
+            {
+              "name": "Reserved",
+              "span": 5,
+              "value": "00000",
+              "optional": true
+            },
+            {
+              "name": "Topic Alias",
+              "span": 1,
+              "value": "X",
+              "optional": true
+            },
+            {
+              "name": "Topic Type",
+              "span": 2,
+              "value": "XX",
+              "optional": true
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "4",
+          "name": "Packet Identifier MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "5",
+          "name": "Packet Identifier LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "6",
+          "name": "Topic Alias MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Topic Alias (T=2 or 0)",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " - only present when Topic Alias flag is 1"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "7",
+          "name": "Topic Alias LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Topic Alias (T=2 or 0)",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " - only present when Topic Alias flag is 1"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "6+T",
+          "name": "Reason Code",
+          "kind": "box",
+          "annotations": [
+            {
+              "style": "cursive",
+              "text": " - optional"
+            }
+          ],
+          "optional": true,
+          "group": "Topic Alias (T=2 or 0)",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " - only present when Topic Alias flag is 1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "order": 11,
+      "section": {
+        "number": "3.6.1",
+        "title": "PUBWOS - Publish Without Session",
+        "anchor": "pubwos---publish-without-session",
+        "path": [
+          {
+            "number": "3.",
+            "title": "MQTT-SN Control Packets"
+          },
+          {
+            "number": "3.6",
+            "title": "Publish Requests and Responses"
+          },
+          {
+            "number": "3.6.1",
+            "title": "PUBWOS - Publish Without Session"
+          }
+        ]
+      },
+      "code": "PUBWOS",
+      "description": "Publish Without Session",
+      "figure": {
+        "label": "fig-pubwos-packet",
+        "image": "images/pubwos-packet-diagram.png",
+        "alt": "PUBWOS Packet"
+      },
+      "source_edn": "images/packet/pubwos-packet-diagram.edn",
+      "boxes_per_row": 9,
+      "rows": [
+        {
+          "type": "field",
+          "address": "1",
+          "name": "Length",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "2",
+          "name": "Packet Type",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "bit_field",
+          "address": "3",
+          "group": "PUBWOS Flags",
+          "group_annotations": [],
+          "bits": [
+            {
+              "name": "Reserved",
+              "span": 3,
+              "value": "000",
+              "optional": true
+            },
+            {
+              "name": "Retain",
+              "span": 1,
+              "value": "X",
+              "optional": true
+            },
+            {
+              "name": "Reserved",
+              "span": 2,
+              "value": "00",
+              "optional": true
+            },
+            {
+              "name": "Topic Type",
+              "span": 2,
+              "value": "XX",
+              "optional": true
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "4",
+          "name": "Topic Alias or Topic Name Length MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "5",
+          "name": "Topic Alias or Topic Name Length LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "6",
+          "name": "Topic Name",
+          "kind": "gap",
+          "annotations": [
+            {
+              "style": "cursive",
+              "text": " (N) - only present when Topic Type is Topic Name"
+            }
+          ],
+          "optional": true,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "6+N",
+          "name": "Payload",
+          "kind": "gap",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        }
+      ]
+    },
+    {
+      "order": 12,
+      "section": {
+        "number": "3.6.2",
+        "title": "PUBLISH - Publish Request",
+        "anchor": "publish---publish-request",
+        "path": [
+          {
+            "number": "3.",
+            "title": "MQTT-SN Control Packets"
+          },
+          {
+            "number": "3.6",
+            "title": "Publish Requests and Responses"
+          },
+          {
+            "number": "3.6.2",
+            "title": "PUBLISH - Publish Request"
+          }
+        ]
+      },
+      "code": "PUBLISH",
+      "description": "Publish Request",
+      "figure": {
+        "label": "fig-publish-packet",
+        "image": "images/publish-packet-diagram.png",
+        "alt": "PUBLISH Packet"
+      },
+      "source_edn": "images/packet/publish-packet-diagram.edn",
+      "boxes_per_row": 9,
+      "rows": [
+        {
+          "type": "field",
+          "address": "1",
+          "name": "Length",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "2",
+          "name": "Packet Type",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "bit_field",
+          "address": "3",
+          "group": "Publish Flags",
+          "group_annotations": [],
+          "bits": [
+            {
+              "name": "DUP",
+              "span": 1,
+              "value": "X",
+              "optional": true
+            },
+            {
+              "name": "QoS",
+              "span": 2,
+              "value": "XX",
+              "optional": true
+            },
+            {
+              "name": "Retain",
+              "span": 1,
+              "value": "X",
+              "optional": true
+            },
+            {
+              "name": "Reserved",
+              "span": 2,
+              "value": "00",
+              "optional": true
+            },
+            {
+              "name": "Topic Type",
+              "span": 2,
+              "value": "XX",
+              "optional": true
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "4",
+          "name": "Packet Identifier MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "5",
+          "name": "Packet Identifier LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "4+P",
+          "name": "Topic Alias or Topic Name Length MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "5+P",
+          "name": "Topic Alias or Topic Name Length LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "6+P",
+          "name": "Topic Name",
+          "kind": "gap",
+          "annotations": [
+            {
+              "style": "cursive",
+              "text": " (N) - only present when Topic Type is Topic Name"
+            }
+          ],
+          "optional": true,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "6+P+N",
+          "name": "Payload",
+          "kind": "gap",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        }
+      ]
+    },
+    {
+      "order": 13,
+      "section": {
+        "number": "3.6.3",
+        "title": "PUBACK -- Publish Acknowledgement (QoS 1 delivery)",
+        "anchor": "puback-publish-acknowledgement-qos-1-delivery",
+        "path": [
+          {
+            "number": "3.",
+            "title": "MQTT-SN Control Packets"
+          },
+          {
+            "number": "3.6",
+            "title": "Publish Requests and Responses"
+          },
+          {
+            "number": "3.6.3",
+            "title": "PUBACK -- Publish Acknowledgement (QoS 1 delivery)"
+          }
+        ]
+      },
+      "code": "PUBACK",
+      "description": "Publish Acknowledgement (QoS 1 delivery)",
+      "figure": {
+        "label": "fig-puback-packet",
+        "image": "images/puback-packet-diagram.png",
+        "alt": "PUBACK Packet"
+      },
+      "source_edn": "images/packet/puback-packet-diagram.edn",
+      "boxes_per_row": 9,
+      "rows": [
+        {
+          "type": "field",
+          "address": "1",
+          "name": "Length",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "2",
+          "name": "Packet Type",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "3",
+          "name": "Packet Identifier MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "4",
+          "name": "Packet Identifier LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "5",
+          "name": "Reason Code",
+          "kind": "box",
+          "annotations": [
+            {
+              "style": "cursive",
+              "text": " - optional"
+            }
+          ],
+          "optional": true,
+          "group": null,
+          "group_annotations": []
+        }
+      ]
+    },
+    {
+      "order": 14,
+      "section": {
+        "number": "3.6.4",
+        "title": "PUBREC - Publish Received (QoS 2 delivery part 1)",
+        "anchor": "pubrec-publish-received-qos-2-delivery-part-1",
+        "path": [
+          {
+            "number": "3.",
+            "title": "MQTT-SN Control Packets"
+          },
+          {
+            "number": "3.6",
+            "title": "Publish Requests and Responses"
+          },
+          {
+            "number": "3.6.4",
+            "title": "PUBREC - Publish Received (QoS 2 delivery part 1)"
+          }
+        ]
+      },
+      "code": "PUBREC",
+      "description": "Publish Received (QoS 2 delivery part 1)",
+      "figure": {
+        "label": "fig-pubrec-packet",
+        "image": "images/pubrec-packet-diagram.png",
+        "alt": "PUBREC Packet"
+      },
+      "source_edn": "images/packet/pubrec-packet-diagram.edn",
+      "boxes_per_row": 9,
+      "rows": [
+        {
+          "type": "field",
+          "address": "1",
+          "name": "Length",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "2",
+          "name": "Packet Type",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "3",
+          "name": "Packet Identifier MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "4",
+          "name": "Packet Identifier LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "5",
+          "name": "Reason Code",
+          "kind": "box",
+          "annotations": [
+            {
+              "style": "cursive",
+              "text": " - optional"
+            }
+          ],
+          "optional": true,
+          "group": null,
+          "group_annotations": []
+        }
+      ]
+    },
+    {
+      "order": 15,
+      "section": {
+        "number": "3.6.5",
+        "title": "PUBREL - Publish Release (QoS 2 delivery part 2)",
+        "anchor": "pubrel---publish-release-qos-2-delivery-part-2",
+        "path": [
+          {
+            "number": "3.",
+            "title": "MQTT-SN Control Packets"
+          },
+          {
+            "number": "3.6",
+            "title": "Publish Requests and Responses"
+          },
+          {
+            "number": "3.6.5",
+            "title": "PUBREL - Publish Release (QoS 2 delivery part 2)"
+          }
+        ]
+      },
+      "code": "PUBREL",
+      "description": "Publish Release (QoS 2 delivery part 2)",
+      "figure": {
+        "label": "fig-pubrel-packet",
+        "image": "images/pubrel-packet-diagram.png",
+        "alt": "PUBREL Packet"
+      },
+      "source_edn": "images/packet/pubrel-packet-diagram.edn",
+      "boxes_per_row": 9,
+      "rows": [
+        {
+          "type": "field",
+          "address": "1",
+          "name": "Length",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "2",
+          "name": "Packet Type",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "3",
+          "name": "Packet Identifier MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "4",
+          "name": "Packet Identifier LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "5",
+          "name": "Reason Code",
+          "kind": "box",
+          "annotations": [
+            {
+              "style": "cursive",
+              "text": " - optional"
+            }
+          ],
+          "optional": true,
+          "group": null,
+          "group_annotations": []
+        }
+      ]
+    },
+    {
+      "order": 16,
+      "section": {
+        "number": "3.6.6",
+        "title": "PUBCOMP - Publish Complete (QoS 2 delivery part 3)",
+        "anchor": "pubcomp---publish-complete-qos-2-delivery-part-3",
+        "path": [
+          {
+            "number": "3.",
+            "title": "MQTT-SN Control Packets"
+          },
+          {
+            "number": "3.6",
+            "title": "Publish Requests and Responses"
+          },
+          {
+            "number": "3.6.6",
+            "title": "PUBCOMP - Publish Complete (QoS 2 delivery part 3)"
+          }
+        ]
+      },
+      "code": "PUBCOMP",
+      "description": "Publish Complete (QoS 2 delivery part 3)",
+      "figure": {
+        "label": "fig-pubcomp-packet",
+        "image": "images/pubcomp-packet-diagram.png",
+        "alt": "PUBCOMP Packet"
+      },
+      "source_edn": "images/packet/pubcomp-packet-diagram.edn",
+      "boxes_per_row": 9,
+      "rows": [
+        {
+          "type": "field",
+          "address": "1",
+          "name": "Length",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "2",
+          "name": "Packet Type",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "3",
+          "name": "Packet Identifier MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "4",
+          "name": "Packet Identifier LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "5",
+          "name": "Reason Code",
+          "kind": "box",
+          "annotations": [
+            {
+              "style": "cursive",
+              "text": " - optional"
+            }
+          ],
+          "optional": true,
+          "group": null,
+          "group_annotations": []
+        }
+      ]
+    },
+    {
+      "order": 17,
+      "section": {
+        "number": "3.7",
+        "title": "SUBSCRIBE - Subscribe Request",
+        "anchor": "subscribe---subscribe-request",
+        "path": [
+          {
+            "number": "3.",
+            "title": "MQTT-SN Control Packets"
+          },
+          {
+            "number": "3.7",
+            "title": "SUBSCRIBE - Subscribe Request"
+          }
+        ]
+      },
+      "code": "SUBSCRIBE",
+      "description": "Subscribe Request",
+      "figure": {
+        "label": "fig-subscribe-packet",
+        "image": "images/subscribe-packet-diagram.png",
+        "alt": "SUBSCRIBE Packet"
+      },
+      "source_edn": "images/packet/subscribe-packet-diagram.edn",
+      "boxes_per_row": 9,
+      "rows": [
+        {
+          "type": "field",
+          "address": "1",
+          "name": "Length",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "2",
+          "name": "Packet Type",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "bit_field",
+          "address": "3",
+          "group": "Subscribe Flags",
+          "group_annotations": [],
+          "bits": [
+            {
+              "name": "No Local",
+              "span": 1,
+              "value": "X",
+              "optional": true
+            },
+            {
+              "name": "QoS",
+              "span": 2,
+              "value": "XX",
+              "optional": true
+            },
+            {
+              "name": "RaP",
+              "span": 1,
+              "value": "X",
+              "optional": true
+            },
+            {
+              "name": "Retain Handling",
+              "span": 2,
+              "value": "XX",
+              "optional": true
+            },
+            {
+              "name": "Topic Type",
+              "span": 2,
+              "value": "XX",
+              "optional": true
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "4",
+          "name": "Packet Identifier MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "5",
+          "name": "Packet Identifier LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "6",
+          "name": "Topic Alias MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Topic Alias",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " - only present when Topic Type is Topic Alias"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "7",
+          "name": "Topic Alias LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Topic Alias",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " - only present when Topic Type is Topic Alias"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "6",
+          "name": "Topic Filter",
+          "kind": "gap",
+          "annotations": [
+            {
+              "style": "cursive",
+              "text": " - only present when Topic Type is Topic Name"
+            }
+          ],
+          "optional": true,
+          "group": "Topic Alias",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " - only present when Topic Type is Topic Alias"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "order": 18,
+      "section": {
+        "number": "3.8",
+        "title": "SUBACK - Subscribe Acknowledgement",
+        "anchor": "suback---subscribe-acknowledgement",
+        "path": [
+          {
+            "number": "3.",
+            "title": "MQTT-SN Control Packets"
+          },
+          {
+            "number": "3.8",
+            "title": "SUBACK - Subscribe Acknowledgement"
+          }
+        ]
+      },
+      "code": "SUBACK",
+      "description": "Subscribe Acknowledgement",
+      "figure": {
+        "label": "fig-suback-packet",
+        "image": "images/suback-packet-diagram.png",
+        "alt": "SUBACK Packet"
+      },
+      "source_edn": "images/packet/suback-packet-diagram.edn",
+      "boxes_per_row": 9,
+      "rows": [
+        {
+          "type": "field",
+          "address": "1",
+          "name": "Length",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "2",
+          "name": "Packet Type",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "bit_field",
+          "address": "3",
+          "group": "SUBACK Flags",
+          "group_annotations": [],
+          "bits": [
+            {
+              "name": "Reserved",
+              "span": 5,
+              "value": "00000",
+              "optional": true
+            },
+            {
+              "name": "Topic Alias",
+              "span": 1,
+              "value": "X",
+              "optional": true
+            },
+            {
+              "name": "Topic Type",
+              "span": 2,
+              "value": "XX",
+              "optional": true
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "4",
+          "name": "Packet Identifier MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "5",
+          "name": "Packet Identifier LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "6",
+          "name": "Topic Alias MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Topic Alias",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (A=2 or 0) - only present when Topic Alias flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "7",
+          "name": "Topic Alias LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Topic Alias",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (A=2 or 0) - only present when Topic Alias flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "6+A",
+          "name": "Reason Code",
+          "kind": "box",
+          "annotations": [
+            {
+              "style": "cursive",
+              "text": " - optional"
+            }
+          ],
+          "optional": true,
+          "group": "Topic Alias",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (A=2 or 0) - only present when Topic Alias flag is set"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "order": 19,
+      "section": {
+        "number": "3.9",
+        "title": "UNSUBSCRIBE - Unsubscribe Request",
+        "anchor": "unsubscribe---unsubscribe-request",
+        "path": [
+          {
+            "number": "3.",
+            "title": "MQTT-SN Control Packets"
+          },
+          {
+            "number": "3.9",
+            "title": "UNSUBSCRIBE - Unsubscribe Request"
+          }
+        ]
+      },
+      "code": "UNSUBSCRIBE",
+      "description": "Unsubscribe Request",
+      "figure": {
+        "label": "fig-unsubscribe-packet",
+        "image": "images/unsubscribe-packet-diagram.png",
+        "alt": "UNSUBSCRIBE Packet"
+      },
+      "source_edn": "images/packet/unsubscribe-packet-diagram.edn",
+      "boxes_per_row": 9,
+      "rows": [
+        {
+          "type": "field",
+          "address": "1",
+          "name": "Length",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "2",
+          "name": "Packet Type",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "bit_field",
+          "address": "3",
+          "group": "Unsubscribe Flags",
+          "group_annotations": [],
+          "bits": [
+            {
+              "name": "Reserved",
+              "span": 6,
+              "value": "000000",
+              "optional": true
+            },
+            {
+              "name": "Topic Type",
+              "span": 2,
+              "value": "XX",
+              "optional": true
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "4",
+          "name": "Packet Identifier MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "5",
+          "name": "Packet Identifier LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "6",
+          "name": "Topic Alias MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Topic Alias",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " - only present when Topic Type is Topic Alias"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "7",
+          "name": "Topic Alias LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Topic Alias",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " - only present when Topic Type is Topic Alias"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "6",
+          "name": "Topic Filter",
+          "kind": "gap",
+          "annotations": [
+            {
+              "style": "cursive",
+              "text": " - only present when Topic Type is Topic Name"
+            }
+          ],
+          "optional": true,
+          "group": "Topic Alias",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " - only present when Topic Type is Topic Alias"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "order": 20,
+      "section": {
+        "number": "3.10",
+        "title": "UNSUBACK - Unsubscribe Acknowledgement",
+        "anchor": "unsuback---unsubscribe-acknowledgement",
+        "path": [
+          {
+            "number": "3.",
+            "title": "MQTT-SN Control Packets"
+          },
+          {
+            "number": "3.10",
+            "title": "UNSUBACK - Unsubscribe Acknowledgement"
+          }
+        ]
+      },
+      "code": "UNSUBACK",
+      "description": "Unsubscribe Acknowledgement",
+      "figure": {
+        "label": "fig-unsuback-packet",
+        "image": "images/unsuback-packet-diagram.png",
+        "alt": "UNSUBACK Packet"
+      },
+      "source_edn": "images/packet/unsuback-packet-diagram.edn",
+      "boxes_per_row": 9,
+      "rows": [
+        {
+          "type": "field",
+          "address": "1",
+          "name": "Length",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "2",
+          "name": "Packet Type",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "3",
+          "name": "Packet Identifier MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "4",
+          "name": "Packet Identifier LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "5",
+          "name": "Reason Code",
+          "kind": "box",
+          "annotations": [
+            {
+              "style": "cursive",
+              "text": " - optional"
+            }
+          ],
+          "optional": true,
+          "group": null,
+          "group_annotations": []
+        }
+      ]
+    },
+    {
+      "order": 21,
+      "section": {
+        "number": "3.11",
+        "title": "PINGREQ - Ping Request",
+        "anchor": "pingreq---ping-request",
+        "path": [
+          {
+            "number": "3.",
+            "title": "MQTT-SN Control Packets"
+          },
+          {
+            "number": "3.11",
+            "title": "PINGREQ - Ping Request"
+          }
+        ]
+      },
+      "code": "PINGREQ",
+      "description": "Ping Request",
+      "figure": {
+        "label": "fig-pingreq-packet",
+        "image": "images/pingreq-packet-diagram.png",
+        "alt": "PINGREQ Packet"
+      },
+      "source_edn": "images/packet/pingreq-packet-diagram.edn",
+      "boxes_per_row": 9,
+      "rows": [
+        {
+          "type": "field",
+          "address": "1",
+          "name": "Length",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "2",
+          "name": "Packet Type",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "3",
+          "name": "Packet Identifier MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "4",
+          "name": "Packet Identifier LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        }
+      ]
+    },
+    {
+      "order": 22,
+      "section": {
+        "number": "3.12",
+        "title": "PINGRESP - Ping Response",
+        "anchor": "pingresp---ping-response",
+        "path": [
+          {
+            "number": "3.",
+            "title": "MQTT-SN Control Packets"
+          },
+          {
+            "number": "3.12",
+            "title": "PINGRESP - Ping Response"
+          }
+        ]
+      },
+      "code": "PINGRESP",
+      "description": "Ping Response",
+      "figure": {
+        "label": "fig-pingresp-packet",
+        "image": "images/pingresp-packet-diagram.png",
+        "alt": "PINGRESP Packet"
+      },
+      "source_edn": "images/packet/pingresp-packet-diagram.edn",
+      "boxes_per_row": 9,
+      "rows": [
+        {
+          "type": "field",
+          "address": "1",
+          "name": "Length",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "2",
+          "name": "Packet Type",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "3",
+          "name": "Packet Identifier MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "4",
+          "name": "Packet Identifier LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "5",
+          "name": "Application Messages Remaining",
+          "kind": "box",
+          "annotations": [
+            {
+              "style": "cursive",
+              "text": " - optional"
+            }
+          ],
+          "optional": true,
+          "group": null,
+          "group_annotations": []
+        }
+      ]
+    },
+    {
+      "order": 23,
+      "section": {
+        "number": "3.13",
+        "title": "DISCONNECT - Disconnect Notification",
+        "anchor": "disconnect---disconnect-notification",
+        "path": [
+          {
+            "number": "3.",
+            "title": "MQTT-SN Control Packets"
+          },
+          {
+            "number": "3.13",
+            "title": "DISCONNECT - Disconnect Notification"
+          }
+        ]
+      },
+      "code": "DISCONNECT",
+      "description": "Disconnect Notification",
+      "figure": {
+        "label": "fig-disconnect-packet",
+        "image": "images/disconnect-packet-diagram.png",
+        "alt": "DISCONNECT Packet"
+      },
+      "source_edn": "images/packet/disconnect-packet-diagram.edn",
+      "boxes_per_row": 9,
+      "rows": [
+        {
+          "type": "field",
+          "address": "1",
+          "name": "Length",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "2",
+          "name": "Packet Type",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "bit_field",
+          "address": "3",
+          "group": "Disconnect Flags",
+          "group_annotations": [],
+          "bits": [
+            {
+              "name": "Reserved",
+              "span": 5,
+              "value": "00000",
+              "optional": true
+            },
+            {
+              "name": "Reason C",
+              "span": 1,
+              "value": "X",
+              "optional": true
+            },
+            {
+              "name": "Sess Exp",
+              "span": 1,
+              "value": "X",
+              "optional": true
+            },
+            {
+              "name": "PacketId",
+              "span": 1,
+              "value": "X",
+              "optional": true
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "4",
+          "name": "Packet Identifier MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Packet Identifier",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (I=2 or 0) - only present when PacketId flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "5",
+          "name": "Packet Identifier LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Packet Identifier",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (I=2 or 0) - only present when PacketId flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "4+I",
+          "name": "Session Expiry Interval MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Session Expiry Interval",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (S=4+I or I) - only present when Sess Exp flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "5+I",
+          "name": "Session Expiry Interval",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Session Expiry Interval",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (S=4+I or I) - only present when Sess Exp flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "6+I",
+          "name": "Session Expiry Interval",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Session Expiry Interval",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (S=4+I or I) - only present when Sess Exp flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "7+I",
+          "name": "Session Expiry Interval LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Session Expiry Interval",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (S=4+I or I) - only present when Sess Exp flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "4+S",
+          "name": "Reason Code",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Reason Code",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (R=1+S or S) - only present when Reason C flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "4+R",
+          "name": "Reason String - optional",
+          "kind": "gap",
+          "annotations": [],
+          "optional": true,
+          "group": "Reason Code",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (R=1+S or S) - only present when Reason C flag is set"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "order": 24,
+      "section": {
+        "number": "3.14",
+        "title": "WAKEUP - Wake up request",
+        "anchor": "wakeup---wake-up-request",
+        "path": [
+          {
+            "number": "3.",
+            "title": "MQTT-SN Control Packets"
+          },
+          {
+            "number": "3.14",
+            "title": "WAKEUP - Wake up request"
+          }
+        ]
+      },
+      "code": "WAKEUP",
+      "description": "Wake up request",
+      "figure": {
+        "label": "fig-wakeup-packet",
+        "image": "images/wakeup-packet-diagram.png",
+        "alt": "WAKEUP Packet"
+      },
+      "source_edn": "images/packet/wakeup-packet-diagram.edn",
+      "boxes_per_row": 9,
+      "rows": [
+        {
+          "type": "field",
+          "address": "1",
+          "name": "Length",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "2",
+          "name": "Packet Type",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        }
+      ]
+    },
+    {
+      "order": 25,
+      "section": {
+        "number": "3.15",
+        "title": "SLEEPREQ - Sleep request",
+        "anchor": "sleepreq---sleep-request",
+        "path": [
+          {
+            "number": "3.",
+            "title": "MQTT-SN Control Packets"
+          },
+          {
+            "number": "3.15",
+            "title": "SLEEPREQ - Sleep request"
+          }
+        ]
+      },
+      "code": "SLEEPREQ",
+      "description": "Sleep request",
+      "figure": {
+        "label": "fig-sleepreq-packet",
+        "image": "images/sleepreq-packet-diagram.png",
+        "alt": "SLEEPREQ Packet"
+      },
+      "source_edn": "images/packet/sleepreq-packet-diagram.edn",
+      "boxes_per_row": 9,
+      "rows": [
+        {
+          "type": "field",
+          "address": "1",
+          "name": "Length",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "2",
+          "name": "Packet Type",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "bit_field",
+          "address": "3",
+          "group": "SLEEPREQ Flags",
+          "group_annotations": [],
+          "bits": [
+            {
+              "name": "Reserved",
+              "span": 7,
+              "value": "0000000",
+              "optional": true
+            },
+            {
+              "name": "Retain T",
+              "span": 1,
+              "value": "X",
+              "optional": true
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "4",
+          "name": "Packet Identifier MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "5",
+          "name": "Packet Identifier LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "6",
+          "name": "Sleep Duration MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "7",
+          "name": "Sleep Duration",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "8",
+          "name": "Sleep Duration",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "9",
+          "name": "Sleep Duration LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": null,
+          "group_annotations": []
+        }
+      ]
+    },
+    {
+      "order": 26,
+      "section": {
+        "number": "3.16",
+        "title": "SLEEPRESP - Sleep response",
+        "anchor": "sleepresp---sleep-response",
+        "path": [
+          {
+            "number": "3.",
+            "title": "MQTT-SN Control Packets"
+          },
+          {
+            "number": "3.16",
+            "title": "SLEEPRESP - Sleep response"
+          }
+        ]
+      },
+      "code": "SLEEPRESP",
+      "description": "Sleep response",
+      "figure": {
+        "label": "fig-sleepresp-packet",
+        "image": "images/sleepresp-packet-diagram.png",
+        "alt": "SLEEPRESP Packet"
+      },
+      "source_edn": "images/packet/sleepresp-packet-diagram.edn",
+      "boxes_per_row": 9,
+      "rows": [
+        {
+          "type": "field",
+          "address": "1",
+          "name": "Length",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "2",
+          "name": "Packet Type",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "bit_field",
+          "address": "3",
+          "group": "SLEEPRESP Flags",
+          "group_annotations": [],
+          "bits": [
+            {
+              "name": "Reserved",
+              "span": 7,
+              "value": "0000000",
+              "optional": true
+            },
+            {
+              "name": "Sleep Dur",
+              "span": 1,
+              "value": "X",
+              "optional": true
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "3",
+          "name": "Packet Identifier MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "4",
+          "name": "Packet Identifier LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "5",
+          "name": "Sleep Duration MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Sleep Duration",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (S=4 or 0) - only present when Sleep Dur flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "6",
+          "name": "Sleep Duration",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Sleep Duration",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (S=4 or 0) - only present when Sleep Dur flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "7",
+          "name": "Sleep Duration",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Sleep Duration",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (S=4 or 0) - only present when Sleep Dur flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "8",
+          "name": "Sleep Duration LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Sleep Duration",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (S=4 or 0) - only present when Sleep Dur flag is set"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "5+S",
+          "name": "Reason Code",
+          "kind": "box",
+          "annotations": [
+            {
+              "style": "cursive",
+              "text": " - optional"
+            }
+          ],
+          "optional": true,
+          "group": "Sleep Duration",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (S=4 or 0) - only present when Sleep Dur flag is set"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "order": 27,
+      "section": {
+        "number": "3.17",
+        "title": "Protection Encapsulation",
+        "anchor": "protection-encapsulation",
+        "path": [
+          {
+            "number": "3.",
+            "title": "MQTT-SN Control Packets"
+          },
+          {
+            "number": "3.17",
+            "title": "Protection Encapsulation"
+          }
+        ]
+      },
+      "code": null,
+      "description": "Protection Encapsulation",
+      "figure": {
+        "label": "fig-format-of-an-protection-encapsulated-mqtt-sn-packet",
+        "image": "images/protection-encapsulation-packet-diagram.png",
+        "alt": "Format of an Protection Encapsulated MQTT-SN Packet"
+      },
+      "source_edn": "images/packet/protection-encapsulation-packet-diagram.edn",
+      "boxes_per_row": 9,
+      "rows": [
+        {
+          "type": "field",
+          "address": "1",
+          "name": "Length",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "2",
+          "name": "Packet Type",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "bit_field",
+          "address": "3",
+          "group": "Protection Flags",
+          "group_annotations": [],
+          "bits": [
+            {
+              "name": "Authentication Tag Length",
+              "span": 4,
+              "value": "XXXX",
+              "optional": true
+            },
+            {
+              "name": "Crypto Length (C)",
+              "span": 2,
+              "value": "XX",
+              "optional": true
+            },
+            {
+              "name": "Counter Length (M)",
+              "span": 2,
+              "value": "XX",
+              "optional": true
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "4",
+          "name": "Protection Scheme",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "5",
+          "name": "Sender Identifier (8)",
+          "kind": "gap",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "13",
+          "name": "Random (4)",
+          "kind": "gap",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "17",
+          "name": "Crypto Material (C)",
+          "kind": "gap",
+          "annotations": [
+            {
+              "style": "cursive",
+              "text": " - only present if Crypto Length > 0"
+            }
+          ],
+          "optional": true,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "17+C",
+          "name": "Monotonic Counter (M)",
+          "kind": "gap",
+          "annotations": [
+            {
+              "style": "cursive",
+              "text": " - only present if Counter Length > 0"
+            }
+          ],
+          "optional": true,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "17+C+M",
+          "name": "Protected MQTT-SN Packet (P)",
+          "kind": "gap",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "17+C+M+P",
+          "name": "Authentication Tag",
+          "kind": "gap",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        }
+      ]
+    },
+    {
+      "order": 28,
+      "section": {
+        "number": "3.18",
+        "title": "Connection Encapsulation",
+        "anchor": "connection-encapsulation",
+        "path": [
+          {
+            "number": "3.",
+            "title": "MQTT-SN Control Packets"
+          },
+          {
+            "number": "3.18",
+            "title": "Connection Encapsulation"
+          }
+        ]
+      },
+      "code": null,
+      "description": "Connection Encapsulation",
+      "figure": {
+        "label": "fig-format-of-a-connection-encapsulated-mqtt-sn-packet",
+        "image": "images/connection-encapsulation-packet-diagram.png",
+        "alt": "Format of a Connection Encapsulated MQTT-SN Packet"
+      },
+      "source_edn": "images/packet/connection-encapsulation-packet-diagram.edn",
+      "boxes_per_row": 9,
+      "rows": [
+        {
+          "type": "field",
+          "address": "1",
+          "name": "Length",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "2",
+          "name": "Packet Type",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "3",
+          "name": "Client Identifier Length MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "4",
+          "name": "Client Identifier Length LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "5",
+          "name": "Client Identifier (I)",
+          "kind": "gap",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "5+I",
+          "name": "MQTT-SN packet",
+          "kind": "gap",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        }
+      ]
+    },
+    {
+      "order": 29,
+      "section": {
+        "number": "3.19",
+        "title": "Forwarder Encapsulation",
+        "anchor": "forwarder-encapsulation",
+        "path": [
+          {
+            "number": "3.",
+            "title": "MQTT-SN Control Packets"
+          },
+          {
+            "number": "3.19",
+            "title": "Forwarder Encapsulation"
+          }
+        ]
+      },
+      "code": null,
+      "description": "Forwarder Encapsulation",
+      "figure": {
+        "label": "fig-format-of-an-forwarder-encapsulated-mqtt-sn-packet",
+        "image": "images/forwarder-encapsulation-packet-diagram.png",
+        "alt": "Format of an Forwarder Encapsulated MQTT-SN Packet"
+      },
+      "source_edn": "images/packet/forwarder-encapsulation-packet-diagram.edn",
+      "boxes_per_row": 9,
+      "rows": [
+        {
+          "type": "field",
+          "address": "1",
+          "name": "Length",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "2",
+          "name": "Packet Type",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "3",
+          "name": "Client Addressing Information Length",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "4",
+          "name": "Client Addressing Information (I)",
+          "kind": "gap",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "4+I",
+          "name": "MQTT-SN packet",
+          "kind": "gap",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        }
+      ]
+    },
+    {
+      "order": 30,
+      "section": {
+        "number": "3.20.1",
+        "title": "ADVERTISE - Gateway Advertisement",
+        "anchor": "advertise---gateway-advertisement",
+        "path": [
+          {
+            "number": "3.",
+            "title": "MQTT-SN Control Packets"
+          },
+          {
+            "number": "3.20",
+            "title": "Gateway Discovery Packets"
+          },
+          {
+            "number": "3.20.1",
+            "title": "ADVERTISE - Gateway Advertisement"
+          }
+        ]
+      },
+      "code": "ADVERTISE",
+      "description": "Gateway Advertisement",
+      "figure": {
+        "label": "fig-advertise-packet",
+        "image": "images/advertise-packet-diagram.png",
+        "alt": "ADVERTISE Packet"
+      },
+      "source_edn": "images/packet/advertise-packet-diagram.edn",
+      "boxes_per_row": 9,
+      "rows": [
+        {
+          "type": "field",
+          "address": "1",
+          "name": "Length",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "2",
+          "name": "Packet Type",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "3",
+          "name": "Gateway Identifier",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "4",
+          "name": "Duration MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "5",
+          "name": "Duration LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        }
+      ]
+    },
+    {
+      "order": 31,
+      "section": {
+        "number": "3.20.2",
+        "title": "SEARCHGW - Search for A Gateway",
+        "anchor": "searchgw---search-for-a-gateway",
+        "path": [
+          {
+            "number": "3.",
+            "title": "MQTT-SN Control Packets"
+          },
+          {
+            "number": "3.20",
+            "title": "Gateway Discovery Packets"
+          },
+          {
+            "number": "3.20.2",
+            "title": "SEARCHGW - Search for A Gateway"
+          }
+        ]
+      },
+      "code": "SEARCHGW",
+      "description": "Search for A Gateway",
+      "figure": {
+        "label": "fig-searchgw-packet",
+        "image": "images/searchgw-packet-diagram.png",
+        "alt": "SEARCHGW Packet"
+      },
+      "source_edn": "images/packet/searchgw-packet-diagram.edn",
+      "boxes_per_row": 9,
+      "rows": [
+        {
+          "type": "field",
+          "address": "1",
+          "name": "Length",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "2",
+          "name": "Packet Type",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "3",
+          "name": "Additional Network Information",
+          "kind": "gap",
+          "annotations": [
+            {
+              "style": "cursive",
+              "text": " - optional"
+            }
+          ],
+          "optional": true,
+          "group": null,
+          "group_annotations": []
+        }
+      ]
+    },
+    {
+      "order": 32,
+      "section": {
+        "number": "3.20.3",
+        "title": "GWINFO - Gateway Information",
+        "anchor": "gwinfo---gateway-information",
+        "path": [
+          {
+            "number": "3.",
+            "title": "MQTT-SN Control Packets"
+          },
+          {
+            "number": "3.20",
+            "title": "Gateway Discovery Packets"
+          },
+          {
+            "number": "3.20.3",
+            "title": "GWINFO - Gateway Information"
+          }
+        ]
+      },
+      "code": "GWINFO",
+      "description": "Gateway Information",
+      "figure": {
+        "label": "fig-gwinfo-packet",
+        "image": "images/gwinfo-packet-diagram.png",
+        "alt": "GWINFO Packet"
+      },
+      "source_edn": "images/packet/gwinfo-packet-diagram.edn",
+      "boxes_per_row": 9,
+      "rows": [
+        {
+          "type": "field",
+          "address": "1",
+          "name": "Length",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "2",
+          "name": "Packet Type",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "3",
+          "name": "Gateway Identifier",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "4",
+          "name": "Gateway Address",
+          "kind": "gap",
+          "annotations": [
+            {
+              "style": "cursive",
+              "text": " - optional"
+            }
+          ],
+          "optional": true,
+          "group": null,
+          "group_annotations": []
+        }
+      ]
+    },
+    {
+      "order": 44,
+      "section": {
+        "number": "C.6",
+        "title": "PUBLISH with QoS -1",
+        "anchor": "c.6-publish-with-qos--1",
+        "path": [
+          {
+            "number": "",
+            "title": "Appendix C. Implementation Guidance (Informative)"
+          },
+          {
+            "number": "C.6",
+            "title": "PUBLISH with QoS -1"
+          }
+        ]
+      },
+      "code": null,
+      "description": "PUBLISH with QoS -1",
+      "figure": {
+        "label": "fig-publish-packet-for-qos-1",
+        "image": "images/publish-qos-minus-1-packet-diagram.png",
+        "alt": "PUBLISH Packet for QoS -1"
+      },
+      "source_edn": "images/packet/publish-qos-minus-1-packet-diagram.edn",
+      "boxes_per_row": 9,
+      "rows": [
+        {
+          "type": "field",
+          "address": "1",
+          "name": "Length",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "2",
+          "name": "Packet Type",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "bit_field",
+          "address": "3",
+          "group": "Publish QoS -1 Flags",
+          "group_annotations": [],
+          "bits": [
+            {
+              "name": "DUP",
+              "span": 1,
+              "value": "0",
+              "optional": true
+            },
+            {
+              "name": "QoS",
+              "span": 2,
+              "value": "11",
+              "optional": true
+            },
+            {
+              "name": "Retain",
+              "span": 1,
+              "value": "X",
+              "optional": true
+            },
+            {
+              "name": "Reserved",
+              "span": 2,
+              "value": "00",
+              "optional": true
+            },
+            {
+              "name": "Topic Type",
+              "span": 2,
+              "value": "XX",
+              "optional": true
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "4",
+          "name": "Topic Alias MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Topic Alias",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " - only present when Topic Type is Predefined Topic Alias"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "5",
+          "name": "Topic Alias LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Topic Alias",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " - only present when Topic Type is Predefined Topic Alias"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "4",
+          "name": "Topic Short Name 1",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Topic Short Name",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " - only present when Topic Type is Topic Short Name"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "5",
+          "name": "Topic Short Name 2",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Topic Short Name",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " - only present when Topic Type is Topic Short Name"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "4",
+          "name": "Topic Name Length MSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Topic Name Length",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " - only present when Topic Type is Topic Name"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "5",
+          "name": "Topic Name Length LSB",
+          "kind": "box",
+          "annotations": [],
+          "optional": true,
+          "group": "Topic Name Length",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " - only present when Topic Type is Topic Name"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "address": "6",
+          "name": "0x00 - Fixed Field Value",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "7",
+          "name": "0x00 - Fixed Field Value",
+          "kind": "box",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "8",
+          "name": "Topic Name",
+          "kind": "gap",
+          "annotations": [
+            {
+              "style": "cursive",
+              "text": " (N) - only present when Topic Type is Topic Name"
+            }
+          ],
+          "optional": true,
+          "group": null,
+          "group_annotations": []
+        },
+        {
+          "type": "field",
+          "address": "8+N",
+          "name": "Payload",
+          "kind": "gap",
+          "annotations": [],
+          "optional": false,
+          "group": null,
+          "group_annotations": []
+        }
+      ]
+    }
+  ]
+}

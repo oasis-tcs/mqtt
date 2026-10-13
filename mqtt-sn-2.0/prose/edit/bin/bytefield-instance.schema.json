@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mqtt-sn.example/schema/bytefield-instance.schema.json",
+  "title": "Bytefield .edn raw parse instance",
+  "description": "The output shape of bin/parse_bytefield_edn.py for one .edn source. Written against the real output of all 29 packet diagrams in src/images/packet/ (2026-10-13), not designed up front -- see bin/validate_bytefield_instances.py for the iteration that produced this.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["source", "defs", "attrs_registry", "items", "warnings"],
+  "properties": {
+    "source": {
+      "type": "string",
+      "description": "Path to the .edn file this instance was parsed from."
+    },
+    "defs": {
+      "type": "object",
+      "description": "Top-level (def NAME VALUE) bindings -- layout constants, not packet-structure facts.",
+      "additionalProperties": { "type": "number" },
+      "properties": {
+        "boxes-per-row": { "type": "integer", "minimum": 1 },
+        "box-width": { "type": "number" },
+        "left-margin": { "type": "number" }
+      }
+    },
+    "attrs_registry": {
+      "type": "object",
+      "description": "Resolved (defattrs :name ...) definitions, keyed by name without the leading ':'.",
+      "additionalProperties": { "$ref": "#/$defs/attrs" }
+    },
+    "items": {
+      "type": "array",
+      "description": "The flat, in-source-order sequence of draw-box/draw-gap calls (the boilerplate bit-index header row and draw-bottom are not items -- see the module docstring).",
+      "items": { "$ref": "#/$defs/item" }
+    },
+    "warnings": {
+      "type": "array",
+      "description": "Non-fatal parse notes (e.g. an attrs keyword with no local defattrs -- a bytefield-svg library built-in like :bold, kept opaque rather than guessed).",
+      "items": { "type": "string" }
+    }
+  },
+  "$defs": {
+    "attrs": {
+      "type": "object",
+      "description": "A flattened, resolved attrs map. defattrs doesn't distinguish box-styling attrs (span/fill/text-anchor -- used as a draw-box/draw-gap attrs argument) from text/font-styling attrs (font-family/font-size/font-style/white-space -- used only as a (text ...) span-style selector, never directly as a box attrs argument in practice), so attrs_registry entries may be either shape; this covers both as one permissive superset rather than modeling them as two schemas for one Clojure-level concept.",
+      "additionalProperties": false,
+      "properties": {
+        "span": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Width of this box in boxes-per-row units -- the one field with real packet-structure meaning. Absent means the implicit default (1 unit)."
+        },
+        "fill": { "type": "string", "description": "Presentation only (e.g. '#eeeeee' for an optional/variable-length field, '#dddddd' for a field-group header row -- a real but not-yet-formalized structural signal, see the design-sketch memory)." },
+        "text-anchor": { "type": "string", "enum": ["start", "middle", "end"] },
+        "font-family": { "type": "string" },
+        "font-size": { "type": "number" },
+        "font-style": { "type": "string" },
+        "white-space": { "type": "string" },
+        "_keyword": {
+          "type": "string",
+          "description": "An attrs keyword with no local defattrs definition -- a bytefield-svg library built-in (e.g. 'bold'), kept as an opaque tag rather than resolved."
+        }
+      }
+    },
+    "label_annotation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["style", "text"],
+      "properties": {
+        "style": {
+          "type": "string",
+          "description": "The defattrs name the annotation span was rendered in, e.g. 'cursive' -- in practice always the conditional/arithmetic qualifier text, e.g. '(AM=F+1 or F) - only present when MAM flag is set'."
+        },
+        "text": { "type": "string" }
+      }
+    },
+    "item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "label", "label_annotations", "attrs", "attrs_keywords"],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": ["box", "gap"],
+          "description": "'gap' marks a variable-length field (e.g. Client Identifier, Will Payload) with no fixed span; 'box' is everything else, fixed- or default-width."
+        },
+        "label": {
+          "type": "string",
+          "description": "The field's plain-text name. May be empty ('') for a pure spacer/alignment box, or a bare bit value ('0'/'X') inside a bit-breakdown row."
+        },
+        "label_annotations": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/label_annotation" }
+        },
+        "attrs": { "$ref": "#/$defs/attrs" },
+        "attrs_keywords": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "The raw :keyword name(s) referenced at this call site, before flattening -- the stable signal for semantic classification (e.g. 'bg-mediumgray' means group-header, 'bg-lightgray' means optional/variable), independent of whatever CSS fill color that name happens to resolve to today."
+        }
+      }
+    }
+  }
+}
