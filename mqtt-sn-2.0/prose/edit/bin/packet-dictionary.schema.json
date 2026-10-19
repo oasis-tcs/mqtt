@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/schema/packet-dictionary.json",
+  "title": "MQTT-SN v2.0 draft packet dictionary",
+  "description": "The combined output of bin/assemble_packet_dictionary.py: one entry per bytefield-backed packet, in prose order, with its byte/row structure. Written against the real assembled output (2026-10-13), not designed up front.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "title", "description", "packet_count", "packets"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "title": { "type": "string" },
+    "description": { "type": "string" },
+    "packet_count": { "type": "integer", "minimum": 0 },
+    "packets": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/packet" }
+    }
+  },
+  "$defs": {
+    "section_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["number", "title"],
+      "properties": {
+        "number": { "type": "string", "description": "Display section number, e.g. '3.1' or 'C.6' (Appendix sections use a letter). Empty string when the heading has none." },
+        "title": { "type": "string" }
+      }
+    },
+    "packet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["order", "section", "code", "description", "figure", "source_edn", "boxes_per_row", "rows"],
+      "properties": {
+        "order": { "type": "integer", "minimum": 0, "description": "Position in the spec's own prose order (bind.txt order), not alphabetical." },
+        "section": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["number", "title", "anchor", "path"],
+          "properties": {
+            "number": { "type": "string" },
+            "title": { "type": "string" },
+            "anchor": { "type": "string", "description": "HTML/gfm-plus anchor id for this section, e.g. 'connect---connection-request'." },
+            "path": {
+              "type": "array",
+              "description": "The full heading ancestry (level 1 first) this packet's figure sits under.",
+              "items": { "$ref": "#/$defs/section_ref" }
+            }
+          }
+        },
+        "code": {
+          "type": ["string", "null"],
+          "description": "The packet type code (e.g. 'CONNECT'), split from the section title where the source uses that convention. null where it doesn't (the three Encapsulation sections, and the informative QoS -1 appendix variant) -- never invented."
+        },
+        "description": {
+          "type": "string",
+          "description": "The rest of the section title after the code, or the whole title when there was no code to split off."
+        },
+        "figure": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["label", "image", "alt"],
+          "properties": {
+            "label": { "type": "string", "description": "The {#fig-...} anchor label used for [fig](#label) cross-references in the prose." },
+            "image": { "type": "string" },
+            "alt": { "type": "string" }
+          }
+        },
+        "source_edn": { "type": "string", "description": "Path (relative to src/) to the bytefield-svg .edn this packet's rows were derived from." },
+        "boxes_per_row": { "type": "integer", "minimum": 1 },
+        "rows": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/row" }
+        }
+      }
+    },
+    "row": {
+      "oneOf": [
+        { "$ref": "#/$defs/field_row" },
+        { "$ref": "#/$defs/bit_field_row" }
+      ]
+    },
+    "annotation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["style", "text"],
+      "properties": {
+        "style": { "type": "string" },
+        "text": { "type": "string" }
+      }
+    },
+    "field_row": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "address", "name", "kind", "annotations", "optional", "group", "group_annotations"],
+      "properties": {
+        "type": { "const": "field" },
+        "address": { "type": "string", "description": "Byte offset, possibly an arithmetic expression (e.g. '4+F', '11+AM') when a preceding optional field makes it variable." },
+        "name": { "type": "string" },
+        "kind": { "type": "string", "enum": ["box", "gap"], "description": "'gap' is a variable-length field (e.g. Client Identifier) with no fixed byte width." },
+        "annotations": { "type": "array", "items": { "$ref": "#/$defs/annotation" }, "description": "The field's own conditional/arithmetic qualifier text, e.g. '(AM=F+1 or F) - only present when MAM flag is set', kept structured rather than mashed into the name." },
+        "optional": { "type": "boolean" },
+        "group": { "type": ["string", "null"], "description": "The enclosing field-group title (e.g. 'Session Expiry Interval', 'Will Fields'), or null when this field isn't part of a named optional group." },
+        "group_annotations": { "type": "array", "items": { "$ref": "#/$defs/annotation" } }
+      }
+    },
+    "bit_field_row": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "address", "group", "group_annotations", "bits"],
+      "properties": {
+        "type": { "const": "bit_field" },
+        "address": { "type": "string" },
+        "group": { "type": ["string", "null"], "description": "The bit-field's own byte-level name (e.g. 'Connect Flags', 'Will Flags') -- always present in practice, every bit-field in the corpus has exactly one header." },
+        "group_annotations": { "type": "array", "items": { "$ref": "#/$defs/annotation" } },
+        "bits": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "span", "value", "optional"],
+            "properties": {
+              "name": { "type": "string" },
+              "span": { "type": "integer", "minimum": 1, "description": "Width in bits." },
+              "value": { "type": "string", "description": "The example bit pattern shown in the diagram, e.g. '0', 'X', '000', 'XX' -- one character per bit, concatenated from the diagram's per-bit value boxes." },
+              "optional": { "type": "boolean" }
+            }
+          }
+        }
+      }
+    }
+  }
+}
