@@ -2,8 +2,6 @@
 
 Several packets refer to a Topic Type in their flags. This is a 2-bit field which determines the format of the topic value. The allowable values are as follows:
 
-*Figure 2-8 -- Topic Types*
-
 \columns=iii,hhhhhh,nnnnnnnnnn,ddddddddddddddddddddddddddddddddddddddddddd
 
 |   | Topic Type Value | Name                   | Description                                                                                                                                                                                              |
@@ -13,7 +11,7 @@ Several packets refer to a Topic Type in their flags. This is a 2-bit field whic
 | 2 | 0b10             |                        | Reserved                                                                                                                                                                                                 |
 | 3 | 0b11             | Topic Name or Filter   | A Topic Name or Topic Filter, which requires no session negotiation.                                                                                                                                     |
 
-Table: Topic Types
+Table: Topic Types{#tab-topic-types}
 
 Predefined and Session Topic Aliases are assigned from different pools so there is no danger of collision.
 

@@ -4,21 +4,15 @@ The MQTT-SN protocol operates by exchanging a series of MQTT-SN Control Packets 
 
 An MQTT-SN Control Packet consists of up to two parts, always in the following order as shown below.
 
-*Figure 2-1 －Structure of an MQTT-SN Control Packet*
-
-![Packet Structure](images/structure-packet-diagram.png "Packet Structure")<!-- .width="6.5in", .height="1.1944444444444444in" -->
+![Packet Structure](images/structure-packet-diagram.png "Packet Structure"){#fig-packet-structure}
 
 ### Packet Header{#packet-header}
 
 Each MQTT-SN Control Packet contains a Header of format 1 or format 2 as shown below.
 
-*Figure 2-2 -- Packet Header Format 1*
+![Packet Header Format 1](images/image12.png "Packet Header Format 1"){#fig-packet-header-format-1}
 
-![Packet Header Format 1](images/image12.png "Packet Header Format 1")<!-- .width="6.5in", .height="0.7222222222222222in" -->
-
-*Figure 2-3 -- Packet Header Format 2*
-
-![Packet Header Format 2](images/image16.png "Packet Header Format 2")<!-- .width="6.5in", .height="1.1944444444444444in" -->
+![Packet Header Format 2](images/image16.png "Packet Header Format 2"){#fig-packet-header-format-2}
 
 ### Length{#length}
 
@@ -37,8 +31,6 @@ The 3-byte format allows the encoding of packet lengths up to 65,535 bytes. It i
 ### MQTT-SN Control Packet Type{#mqtt-sn-control-packet-type}
 
 The MQTT-SN Control Packet Type field is a 1-byte unsigned value, the values are shown below.
-
-*Figure 2-4 -- MQTT-SN Control Packet Types*
 
 |             Name             |   Value   |             Direction of flow              | Description                                                                                                               |
 |:----------------------------:|:---------:|:------------------------------------------:|---------------------------------------------------------------------------------------------------------------------------|
@@ -73,4 +65,4 @@ The MQTT-SN Control Packet Type field is a 1-byte unsigned value, the values are
 | **Connection Encapsulation** |   0xFE    |              Client to Server              | MQTT-SN packet envelope to add Connection identification                                                                     |
 | **Protection Encapsulation** |   0xFF    |    Client to Server or Server to Client    | A protection envelope that can encapsulate any MQTT-SN packet other than the Forwarder Encapsulation (0xFC) |
 
-Table: MQTT-SN Control Packet Types
+Table: MQTT-SN Control Packet Types{#tab-mqtt-sn-control-packet-types}

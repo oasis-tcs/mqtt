@@ -4,8 +4,6 @@ A Reason Code is a one byte unsigned value that indicates the result of an opera
 
 The Reason Codes share a common set of values as shown below.
 
-*Figure 2-7 -- Reason Codes*
-
 \columns=iiiiiiii,hhhhhhhh,nnnnnnnnnn,pppppppppppppppppppppp,ddddddddddddddddddddddddddddddddddddddddddd
 
 | ID(Dec)    | ID(Hex)      | Name                                       | Packets                                                                                           | Description                                                                                                                                                                                     |
@@ -66,7 +64,7 @@ The Reason Codes share a common set of values as shown below.
 | 244        | 0xF4         | No Virtual Connection exists               | DISCONNECT                                                                                        | Specific to MQTT-SN                                                                                                                                                                             |
 | 245 \- 255 | 0xF5 \- 0xFF | Reserved for MQTT-SN                       |                                                                                                   | Specific to MQTT-SN                                                                                                                                                                             |
 
-Table: Reason Codes
+Table: Reason Codes{#tab-reason-codes}
 
 Note(s):
 
