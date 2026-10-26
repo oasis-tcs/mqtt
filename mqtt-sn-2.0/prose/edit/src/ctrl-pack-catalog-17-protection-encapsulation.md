@@ -1,8 +1,6 @@
 ## Protection Encapsulation{#protection-encapsulation}
 
-*Figure 3-27 -- Format of an Protection Encapsulated MQTT-SN Packet*
-
-![Format of an Protection Encapsulated MQTT-SN Packet](images/protection-encapsulation-packet-diagram.png "Format of an Protection Encapsulated MQTT-SN Packet")<!-- .width="6.5in", .height="6.347222222222222in" -->
+![Format of an Protection Encapsulated MQTT-SN Packet](images/protection-encapsulation-packet-diagram.png "Format of an Protection Encapsulated MQTT-SN Packet"){#fig-format-of-an-protection-encapsulated-mqtt-sn-packet}
 
 Protection encapsulation provides a secure envelope for any MQTT-SN packet (with the exception of the Forward Encapsulation packet). The fields provided by the Protection Encapsulation provide a means by which the sender is identified and the packet is protected, using a number of prescribed protection schemes. Where the phrase "protected Packet" is used in this document, it means an MQTT-SN Packet surrounded by the Protection Encapsulation.
 
@@ -44,7 +42,7 @@ The Protection Flags is a one byte field specifying the properties of the Protec
 
 #### Monotonic Counter Length{#monotonic-counter-length}
 
-**Position:** bits 0 and 1 of the Protection Flags. Labelled *Counter Length* in Figure 3-27.
+**Position:** bits 0 and 1 of the Protection Flags. Labelled *Counter Length* in [fig](#fig-format-of-an-protection-encapsulated-mqtt-sn-packet).
 
 Specifies the number of bytes forming the monotonic counter in big-endian order. Only three of the four possible values are allowed.
 
@@ -58,7 +56,7 @@ Specifies the number of bytes forming the monotonic counter in big-endian order.
 
 #### Cryptographic Material Length{#cryptographic-material-length}
 
-**Position:** bits 2 and 3 of the Protection Flags. Labelled *Crypto Length* in Figure 3-27.
+**Position:** bits 2 and 3 of the Protection Flags. Labelled *Crypto Length* in [fig](#fig-format-of-an-protection-encapsulated-mqtt-sn-packet).
 
 Specifies the number of sixteen bit groups forming the cryptographic material in big-endian order. The meaning of each possible value is defined as follows.
 
@@ -134,7 +132,7 @@ In general two types of protection scheme are considered: **Authentication only*
 | 0x4A-0xEF | RESERVED                      |                     |                    |                  |
 | 0xF0-0xFF | Provider defined              |         No          | Provider defined   | Provider defined |
 
-Table: Protection Schemes
+Table: Protection Schemes{#tab-protection-schemes}
 
 **Note(s):**
 

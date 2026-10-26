@@ -1,9 +1,7 @@
 ## CONNECT - Connection Request{#connect---connection-request}
 
-*Figure 3-1 -- CONNECT Packet*
-
 \scale=0.9
-![CONNECT Packet](images/connect-packet-diagram.png "CONNECT Packet")<!-- .width="5.2in", .height="8.075757874015748in" -->
+![CONNECT Packet](images/connect-packet-diagram.png "CONNECT Packet"){#fig-connect-packet}
 
 The CONNECT packet is sent from the Client to the Server to request the creation of or continuation of a Session.
 
@@ -55,7 +53,7 @@ The Server SHOULD publish Will Messages promptly after the Virtual Connection is
 
 #### Authentication Flag{#authentication-flag}
 
-**Position:** bit 2 of the Connect Flags byte. Labelled *Auth* in Figure 3-1.
+**Position:** bit 2 of the Connect Flags byte. Labelled *Auth* in [fig](#fig-connect-packet).
 
 «<mark title="Requirement MQTT-SN-3.1.2.3-1"><a name="MQTT-SN-3.1.2.3-1"></a>If the Authentication Flag is set to 1, the Authentication Method and Authentication Data fields MUST be present in the Packet</mark>»[MQTT‑SN‑3.1.2.3‑1](#tab-MQTT-SN-3.1.2.3-1).
 
@@ -63,7 +61,7 @@ The Server SHOULD publish Will Messages promptly after the Virtual Connection is
 
 #### Session Expiry Flag{#session-expiry-flag}
 
-**Position:** bit 3 of the Connect Flags byte. Labelled *Sess Exp* in Figure 3-1.
+**Position:** bit 3 of the Connect Flags byte. Labelled *Sess Exp* in [fig](#fig-connect-packet).
 
 «<mark title="Requirement MQTT-SN-3.1.2.4-1"><a name="MQTT-SN-3.1.2.4-1"></a>If the Session Expiry Flag is set to 1, the Session Expiry Interval field MUST be present in the Packet</mark>»[MQTT‑SN‑3.1.2.4‑1](#tab-MQTT-SN-3.1.2.4-1).
 
@@ -71,7 +69,7 @@ The Server SHOULD publish Will Messages promptly after the Virtual Connection is
 
 #### Maximum Number of Awake Messages Flag{#max-awake-messages-flag}
 
-**Position:** bit 4 of the Connect Flags byte. Labelled *MAM* in Figure 3-1.
+**Position:** bit 4 of the Connect Flags byte. Labelled *MAM* in [fig](#fig-connect-packet).
 
 «<mark title="Requirement MQTT-SN-3.1.2.5-1"><a name="MQTT-SN-3.1.2.5-1"></a>If the Maximum Number of Awake Messages Flag is set to 1, the Maximum Number of Awake Messages field MUST be present in the Packet</mark>»[MQTT‑SN‑3.1.2.5‑1](#tab-MQTT-SN-3.1.2.5-1).
 
@@ -79,7 +77,7 @@ The Server SHOULD publish Will Messages promptly after the Virtual Connection is
 
 #### Allow Network Address Changes Flag{#allow-network-address-changes-flag}
 
-**Position:** bit 5 of the Connect Flags byte. Labelled *Net Addr* in Figure 3-1.
+**Position:** bit 5 of the Connect Flags byte. Labelled *Net Addr* in [fig](#fig-connect-packet).
 
 This flag only has an effect In implementations which use a Network Address to associate incoming packets with a Virtual Connection, otherwise it should be 0.
 
@@ -91,7 +89,7 @@ This flag affects the use of the Connection Encapsulation only, it does not affe
 
 #### Allow Server Suggested Values Flag{#allow-server-suggested-values-flag}
 
-**Position:** bit 6 of the Connect Flags byte. Labelled *Srv Sugg* in Figure 3-1.
+**Position:** bit 6 of the Connect Flags byte. Labelled *Srv Sugg* in [fig](#fig-connect-packet).
 
 If this flag is set to 1, the Client allows the Server to return modified values for all of:
 
@@ -147,15 +145,13 @@ Used to identify the corresponding CONNACK or AUTH packet. It should ideally be 
 
 The one-byte unsigned value that represents the revision level of the protocol used by the Client.
 
-*Figure 3-2 -- Protocol Versions*
-
 | Protocol Version        |    Value    |
 |:------------------------|:-----------:|
 | Version 1.2             |    0x01     |
 | **Version 2.0**         |  **0x02**   |
 | Reserved for future use | 0x03 – 0xFF |
 
-Table: Protocol Versions
+Table: Protocol Versions{#tab-protocol-versions}
 
 «<mark title="Requirement MQTT-SN-3.1.5-1"><a name="MQTT-SN-3.1.5-1"></a>The value of the Protocol Version field for MQTT-SN version 2.0 MUST be 2 (0x02)</mark>»[MQTT‑SN‑3.1.5‑1](#tab-MQTT-SN-3.1.5-1).
 

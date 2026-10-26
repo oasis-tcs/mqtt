@@ -94,9 +94,7 @@ This is a one-way transfer of information - the response MUST be a CONNACK, not 
 >
 > The length field in front of the password is not strictly necessary as the Authentication Data field length is known, but including it makes the transfer to and from the MQTT Connect packet simpler.
 
-*Figure 4-6 -- CONNECT with MQTT User Name and Password, informative example*
-
-![CONNECT with MQTT User Name and Password, informative example](images/image20.png "CONNECT with MQTT User Name and Password, informative example")<!-- .width="6.5in", .height="7.430555555555555in" -->
+![CONNECT with MQTT User Name and Password, informative example](images/image20.png "CONNECT with MQTT User Name and Password, informative example"){#fig-connect-with-mqtt-user-name-and-password-informative-example}
 
 To support the equivalent of the MQTT User Name and Password together with MQTT Enhanced Authentication, in the CONNECT packet do the following:
 

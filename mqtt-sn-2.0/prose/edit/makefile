@@ -69,7 +69,7 @@ html: gfm-plus
 	  [ -f "$${source}" ] && printf "%s" "data:image/png;base64,$$(cat "$${source}" | base64 | tr -d '\r\n')" \
 	    > "../../build/data-url/$${source}.txt"; done && cd -
 	nide render -t html && \
-	  pandoc -f gfm+definition_lists -t html build/html.md --columns=345 \
+	  pandoc -f markdown+definition_lists -t html build/html.md --columns=345 \
 	    --css style/base.css --css style/skin.css --standalone -o build/pandoc.html && \
 	  nide inject && \
 	  cp -p build/injected.html $(out_html) && \

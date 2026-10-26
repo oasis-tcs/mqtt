@@ -22,10 +22,8 @@ For each connected MQTT-SN Client a Transparent Gateway will set up and maintain
 
 Although the implementation of the Transparent Gateway may be somewhat simpler than an Aggregating Gateway, it requires the MQTT Server to support a separate connection for each active Client. Some MQTT Server implementations might impose a limitation on the number of concurrent connections that they support.
 
-*Figure C-1 -- Transparent Gateway*
-
 <mark title="Ephemeral region marking">\[figure below is part of informative example\]</mark>
-![Transparent Gateway](images/image40.png "Transparent Gateway")<!-- .width="3.994792213473316in", .height="2.6661472003499562in" -->
+![Transparent Gateway](images/image40.png "Transparent Gateway"){#fig-transparent-gateway}
 
 Because PUBWOS packets could be sent at any time by Clients with no Virtual Connection, a Transparent Gateway would need to maintain a dedicated MQTT connection with the MQTT Server to support those packets.
 
@@ -33,9 +31,7 @@ Because PUBWOS packets could be sent at any time by Clients with no Virtual Conn
 
 Instead of having one MQTT connection for each connected MQTT-SN Client, an aggregating Gateway has one MQTT connection to the MQTT Server. All packet exchanges between an MQTT-SN client and an aggregating Gateway end at the Gateway. The Gateway then decides which information will be given further to the MQTT Server. Although its implementation may be more complex than a transparent Gateway, an aggregating Gateway reduces the number of MQTT connections between the Gateway and MQTT Server.
 
-*Figure C-2 -- Aggregating Gateway*
-
-![Aggregating Gateway](images/image10.png "Aggregating Gateway")<!-- .width="4.578125546806649in", .height="3.0552755905511813in" -->
+![Aggregating Gateway](images/image10.png "Aggregating Gateway"){#fig-aggregating-gateway}
 
 To support PUBWOS packets from MQTT-SN clients without a Virtual Connection, an Aggregating may use any aggregating MQTT connection to forward those packets to an MQTT Server.
 
@@ -47,13 +43,9 @@ An MQTT-SN Forwarder connects two networks which cannot transmit messages direct
 
 The following diagrams illustrate how a Forwarder may interact with an Aggregating or Transparent Gateway.
 
-*Figure C-3 -- Forwarder with Transparent Gateway*
+![Forwarder with Transparent Gateway](images/image22.png "Forwarder with Transparent Gateway"){#fig-forwarder-with-transparent-gateway}
 
-![Forwarder with Transparent Gateway](images/image22.png "Forwarder with Transparent Gateway")<!-- .width="4.704773622047244in", .height="2.7964599737532807in" -->
-
-*Figure C-4 -- Forwarder with Aggregating Gateway*
-
-![Forwarder with Aggregating Gateway](images/image29.png "Forwarder with Aggregating Gateway")<!-- .width="4.9003171478565175in", .height="2.8304625984251968in" -->
+![Forwarder with Aggregating Gateway](images/image29.png "Forwarder with Aggregating Gateway"){#fig-forwarder-with-aggregating-gateway}
 
 ### C.1.4 MQTT-SN Broker{#c.1.4-mqtt-sn-broker}
 
@@ -61,8 +53,6 @@ An MQTT-SN Server may have no interaction with an MQTT Server, in which case, mu
 
 It will allow MQTT-SN Clients to set up subscriptions, and publish messages to other clients which have subscribed to the relevant topics. It may support the receipt and sending of PUBWOS packets - it is an implementation decision on how to handle them.
 
-*Figure C-5 -- MQTT-SN Broker*
-
-![MQTT-SN Broker](images/image37.png "MQTT-SN Broker")<!-- .width="2.8596172353455818in", .height="2.983947944006999in" -->
+![MQTT-SN Broker](images/image37.png "MQTT-SN Broker"){#fig-mqtt-sn-broker}
 
 An MQTT-SN Server may choose to incorporate elements of a Broker, Aggregating and Transparent Gateway together. Typically, an Aggregating Gateway will also act as an MQTT-SN Broker.
