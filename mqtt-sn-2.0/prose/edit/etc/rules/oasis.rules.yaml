@@ -249,4 +249,3 @@ rules:
           target: headings
           pattern: '^(Normative|Informative|Non-Normative)\s+References'
           flags: IGNORECASE
-

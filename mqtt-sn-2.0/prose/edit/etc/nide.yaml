@@ -7,8 +7,6 @@ assembly:
   binder-ignores:
     gfm-plus: []
     html: []
-    pdf:
-    - frontmatter.md
   delete-when:
   - contains: '<mark title="Ephemeral region marking">'
     delete:
@@ -47,6 +45,26 @@ references:
   glossary:
     sources:
     - intro-04-terminology-def-list.md
+
+metadata:
+  title: MQTT for Sensor Networks Version 2.0
+  creator: OASIS Message Queuing Telemetry Transport (MQTT) TC
+  publisher: OASIS Open
+  description: >-
+    This specification defines the MQTT for Sensor Networks protocol (MQTT-SN). It is closely related to the MQTT v3.1.1
+    and MQTT v5.0 standards. MQTT-SN is optimized for implementation on low-cost, battery-operated devices with limited
+    processing and storage resources. It is designed so that it will work over a variety of networking technologies and
+    bridge to an MQTT network.
+  subject: MQTT, MQTT-SN, sensor networks, publish/subscribe, IoT, constrained devices
+  date: '2026-10-29'
+  type: Specification
+  identifier: 'https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/csd01/mqtt-sn-v2.0-csd01.md'
+  language: en
+  rights: >-
+    Copyright © OASIS Open 2026. All Rights Reserved. Provided under the Non-Assertion Mode of the OASIS IPR Policy
+    (https://www.oasis-open.org/policies-guidelines/ipr/).
+  version: Committee Specification Draft 01
+  status: DRAFT
 
 quality:
   rules:
