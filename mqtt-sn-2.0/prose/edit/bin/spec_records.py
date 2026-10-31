@@ -3,6 +3,7 @@
 
   spec_records.py derive    write every view (statement marks and Appendix B, packet diagrams, dictionary, ...)
   spec_records.py check     derive in memory and report every view that differs from the tree (exit 1 if any)
+  spec_records.py kaitai-test DIR   parse every packet vector with the parsers compiled from ../share/kaitai/ into DIR
   spec_records.py migrate   one-off seeding of records from today's prose (refuses to overwrite records)
 
 Records live in records/ (see records/README.md); views are files in src/ (whole files or marked parts of them),
@@ -860,17 +861,11 @@ def vectors(packet: dict[str, Any], type_value: int) -> tuple[list[dict[str, Any
                 if 'group' in item:
                     walk(item['items'], here)
                 elif here:
-                    size = (
-                        1
-                        if 'bits' in item
-                        else item.get('bytes', 1) if 'variable' not in item or 'bytes' in item else 0
-                    )
+                    variable = 'variable' in item and 'bytes' not in item
+                    size = 1 if 'bits' in item else SAMPLE_LENGTH if variable else item.get('bytes', 1)
+                    name = item.get('field') or item.get('variable') or item.get('bits')
                     fields.append(
-                        {
-                            'name': item.get('field') or item.get('variable') or item.get('bits'),
-                            'offset': pos,
-                            'size': size,
-                        }
+                        {'name': name, 'offset': pos, 'size': size} | ({'variable': True} if variable else {})
                     )
                     labels = item.get('at_') or []
                     stored = [_addr(item['at'], i) for i in range(len(labels) or 1)] if 'at' in item else labels
@@ -881,7 +876,7 @@ def vectors(packet: dict[str, Any], type_value: int) -> tuple[list[dict[str, Any
                     pos += size
                 if 'symbol' in item:
                     if 'variable' in item:
-                        values[item['symbol']] = 0
+                        values[item['symbol']] = pos - begin
                     else:
                         prev = values.get(_prev_symbol(item), 0)
                         values[item['symbol']] = prev + (pos - begin)
@@ -891,12 +886,25 @@ def vectors(packet: dict[str, Any], type_value: int) -> tuple[list[dict[str, Any
         data = bytearray(pos)
         if pos > 1:
             data[0], data[1] = pos, type_value
-        for f in fields:
+        for i, f in enumerate(fields):
             item = next((i for i in packet['layout'] if i.get('bits') == f['name']), None)
             if item is not None:
                 data[f['offset']] = flags_byte(item, [json.loads(k) for k, v in choice.items() if v])
+            if f.get('variable'):  # sample content, and its length in the nearest length field before it
+                data[f['offset'] : f['offset'] + f['size']] = SAMPLE_CONTENT
+                length = next(
+                    (g for g in reversed(fields[:i]) if g['name'].endswith('Length') and g['offset'] > 0), None
+                )
+                if length is not None:
+                    data[length['offset'] : length['offset'] + length['size']] = f['size'].to_bytes(
+                        length['size'], 'big'
+                    )
         out.append({'present': {k: v for k, v in choice.items()}, 'length': pos, 'hex': data.hex(), 'fields': fields})
     return out, sorted(set(problems))
+
+
+SAMPLE_LENGTH = 2  # every variable-length field of a vector carries this many bytes
+SAMPLE_CONTENT = b'ab'
 
 
 def flags_byte(item: dict[str, Any], conditions: list[Any]) -> int:
@@ -1331,6 +1339,241 @@ def figure_findings() -> list[str]:
     return out
 
 
+# -- Kaitai Struct: one .ksy per packet layout, and a dispatcher on the packet type -------------------
+
+KAITAI = EDIT.parent / 'share' / 'kaitai'
+KSY_HEADER = '# Derived from records/packets/{record} by bin/spec_records.py -- edit the record, not this file.\n'
+PACKET_LENGTH = {
+    'doc': 'The Length field: 1 byte, or 0x01 followed by a 2 byte length (section 2.1.2).',
+    'seq': [{'id': 'first', 'type': 'u1'}, {'id': 'extended', 'type': 'u2', 'if': 'first == 1'}],
+    'instances': {'value': {'value': 'first == 1 ? extended : first'}},
+}
+
+
+def ksy_id(name: str, taken: set[str]) -> str:
+    base = re.sub(r'[^a-z0-9]+', '_', name.lower()).strip('_') or 'field'
+    base = base if base[0].isalpha() else f'f_{base}'
+    out, n = base, 2
+    while out in taken:
+        out, n = f'{base}_{n}', n + 1
+    taken.add(out)
+    return out
+
+
+class Ksy:
+    """Builds the .ksy of one packet; `problems` lists what the records cannot express in Kaitai."""
+
+    def __init__(self, packet: dict[str, Any], type_value: int | None) -> None:
+        self.packet, self.type_value = packet, type_value
+        self.taken: set[str] = set()
+        self.types: dict[str, Any] = {'packet_length': PACKET_LENGTH}
+        self.flags: dict[str, str] = {}  # flag name -> kaitai expression
+        self.problems: list[str] = []
+        self.topic = {
+            e.get('name', ''): int(e['value'], 2)
+            for e in table('topic-types')['entries']
+            if e['value'].startswith('0b')
+        }
+        self.stopped = False
+
+    def condition(self, cond: Any) -> str | None:
+        if cond is None:
+            return None
+        if cond == 'optional':
+            return 'not _io.eof'
+        key = cond.get('flag') or cond.get('field')
+        ref = self.flags.get(key)
+        if ref is None:
+            self.problems.append(f'condition on {key!r}, which is no flag of the packet')
+            return 'false'
+        if 'flag' in cond:
+            return ref
+        if 'greater' in cond:
+            return f'{ref} > {cond["greater"]}'
+        values: list[int] = []
+        for v in cond['is']:
+            found = [int(v)] if v.isdigit() else [n for name, n in self.topic.items() if v in name]
+            if not found:
+                self.problems.append(f'{key} value {v!r} is not defined (tab-topic-types)')
+            values += found
+        return ' or '.join(f'{ref} == {v}' for v in values) or 'false'
+
+    def bits_type(self, item: dict[str, Any], field_id: str) -> str:
+        tid = ksy_id(item['bits'], set(self.types))
+        seq: list[dict[str, Any]] = []
+        ids: set[str] = set()
+        values = ''.join(v.ljust(w, v[-1])[:w] for v, w in bit_values(item))
+        pos = 0
+        for flag in item['flags']:
+            fid = ksy_id(flag['name'], ids)
+            entry: dict[str, Any] = {'id': fid, 'type': f'b{flag["width"]}'}
+            fixed = values[pos : pos + flag['width']]
+            if fixed and all(c in '01' for c in fixed):
+                entry['valid'] = int(fixed, 2) if flag['width'] > 1 else fixed == '1'
+            seq.append(entry)
+            self.flags.setdefault(flag['name'], f'{field_id}.{fid}')
+            pos += flag['width']
+        self.types[tid] = {'seq': seq}
+        return tid
+
+    def walk(self, items: list[dict[str, Any]], outer: str | None) -> list[dict[str, Any]]:
+        seq: list[dict[str, Any]] = []
+        for i, item in enumerate(items):
+            if self.stopped:
+                break
+            own = self.condition(item.get('present-if'))
+            cond = ' and '.join(f'({c})' for c in (outer, own) if c) if outer and own else outer or own
+            if 'group' in item:
+                seq += self.walk(item['items'], cond)
+                continue
+            name: str = item.get('field') or item.get('variable') or item['bits']
+            entry: dict[str, Any] = {'id': ksy_id(name, self.taken)}
+            if 'bits' in item:
+                entry['type'] = self.bits_type(item, entry['id'])
+            elif 'variable' in item:
+                if 'bytes' in item:
+                    entry['size'] = item['bytes']
+                else:
+                    length = next(
+                        (s for s in reversed(seq) if s['id'].endswith('length') and s['id'] != 'length'), None
+                    )
+                    last = self.is_last(item)
+                    if length is not None and not last:
+                        entry['size'] = length['id']
+                    elif last:
+                        entry['size-eos'] = True
+                    elif length is not None:
+                        entry['size'] = length['id']
+                    else:
+                        self.problems.append(
+                            f'"{name}" ({item.get("symbol", "?")}) has no length field before it and is not last'
+                        )
+                        seq.append(
+                            {
+                                'id': 'rest',
+                                'size-eos': True,
+                                'doc': f'Not parsed further: the size of "{name}" is not derivable from the records.',
+                            }
+                        )
+                        self.stopped = True
+                        break
+            elif name == 'Length' and not seq:
+                entry['type'] = 'packet_length'
+            elif name == 'Packet Type':
+                entry['type'] = 'u1'
+                if self.type_value is not None:
+                    entry['valid'] = self.type_value
+            else:
+                size = item.get('bytes', 1)
+                entry |= {'type': f'u{size}'} if size in (1, 2, 4, 8) else {'size': size}
+            if cond:
+                entry['if'] = cond
+            seq.append(entry)
+        return seq
+
+    def is_last(self, item: dict[str, Any]) -> bool:
+        def flat(items: list[dict[str, Any]]) -> list[dict[str, Any]]:
+            return [x for it in items for x in (flat(it['items']) if 'group' in it else [it])]
+
+        return flat(self.packet['layout'])[-1] is item
+
+    def document(self) -> dict[str, Any]:
+        annotate(self.packet['layout'])
+        seq = self.walk(self.packet['layout'], None)
+        pid = 'mqtt_sn_' + ksy_id(self.packet['id'], set())
+        meta = {'id': pid, 'title': f'MQTT-SN v2.0 {self.packet["title"]} packet', 'endian': 'be', 'bit-endian': 'be'}
+        return {'meta': meta, 'seq': seq, 'types': self.types}
+
+
+def table(tid: str) -> dict[str, Any]:
+    return next(t for t in load_tables() if t['id'] == tid)
+
+
+def kaitai_views() -> tuple[Views, list[str]]:
+    types = {e['name'].upper(): e['value'] for e in table('packet-types')['entries']}
+    out: Views = {}
+    problems: list[str] = []
+    cases: dict[int, str] = {}
+    for packet in load_packets():
+        value = types.get(packet.get('variant-of', packet['id']).replace('-', ' ').upper())
+        number = int(value, 16) if value and re.fullmatch(r'0x[0-9A-Fa-f]+', value) else None
+        ksy = Ksy(packet, number)
+        doc = ksy.document()
+        problems += [f'kaitai {packet["id"]}: {p}' for p in ksy.problems]
+        text = KSY_HEADER.format(record=f'{packet["id"]}.yaml') + yaml.safe_dump(doc, sort_keys=False, width=1000)
+        out[KAITAI / f'{doc["meta"]["id"]}.ksy'] = text
+        if number is not None and 'variant-of' not in packet:
+            cases[number] = doc['meta']['id']
+    dispatcher = {
+        'meta': {
+            'id': 'mqtt_sn_packet',
+            'title': 'MQTT-SN v2.0 packet, by packet type',
+            'endian': 'be',
+            'imports': sorted(cases.values()),
+        },
+        'instances': {
+            'length_first': {'pos': 0, 'type': 'u1'},
+            'packet_type': {'pos': 'length_first == 1 ? 3 : 1', 'type': 'u1'},
+            'packet': {
+                'pos': 0,
+                'type': {'switch-on': 'packet_type', 'cases': {f'0x{k:02x}': v for k, v in sorted(cases.items())}},
+            },
+        },
+    }
+    header = '# Derived from records/packets/ and records/tables/packet-types.yaml by bin/spec_records.py.\n'
+    out[KAITAI / 'mqtt_sn_packet.ksy'] = header + yaml.safe_dump(dispatcher, sort_keys=False, width=1000)
+    return out, problems
+
+
+def kaitai_test(compiled: pathlib.Path) -> int:
+    """Parse every vector of views/packet-vectors.json with the Python parsers compiled from ../share/kaitai/."""
+    import importlib  # pylint: disable=import-outside-toplevel
+    import io  # pylint: disable=import-outside-toplevel
+
+    from kaitaistruct import KaitaiStream  # type: ignore[import-not-found,import-untyped,unused-ignore]  # pylint: disable=import-outside-toplevel
+
+    sys.path.insert(0, str(compiled))
+
+    def cls(module: str) -> Any:
+        return getattr(importlib.import_module(module), ''.join(p.capitalize() for p in module.split('_')))
+
+    documented = {p.split(':')[0].removeprefix('kaitai ') for p in kaitai_views()[1]}  # packets the findings explain
+    vectors = json.loads((VIEWS / 'packet-vectors.json').read_text(encoding=ENCODING))
+    dispatcher = cls('mqtt_sn_packet')
+    ok, failed = 0, []
+    for pid, items in vectors.items():
+        module = 'mqtt_sn_' + ksy_id(pid, set())
+        parser = cls(module)
+        for vector in items:
+            data = bytes.fromhex(vector['hex'])
+            obj = parser(KaitaiStream(io.BytesIO(data)))
+            taken: set[str] = set()
+            expected = {ksy_id(f['name'], taken): f for f in vector['fields']}
+            missing = [k for k in expected if getattr(obj, k, None) is None]
+            wrong = [
+                k
+                for k, f in expected.items()
+                if f.get('variable') and getattr(obj, k, None) not in (None, SAMPLE_CONTENT)
+            ]
+            complete = obj._io.pos() == len(data) and not missing and not wrong
+            if complete or (pid in documented and (getattr(obj, 'rest', None) is not None or missing)):
+                ok += 1
+            else:
+                failed.append(
+                    f'{pid} ({vector["length"]} bytes): missing {missing}, wrong {wrong}, read {obj._io.pos()}'
+                )
+            if 'variant-of' not in load(PACKETS / f'{pid}.yaml'):
+                routed = type(dispatcher(KaitaiStream(io.BytesIO(data))).packet)
+                if routed is not parser:
+                    failed.append(f'{pid}: mqtt_sn_packet dispatches to {routed.__name__}')
+    for line in failed:
+        print(line)
+    print(
+        f'{ok} of {sum(len(v) for v in vectors.values())} vectors parsed as expected ({len(documented)} packets with documented gaps)'
+    )
+    return 1 if failed else 0
+
+
 # -- Findings: what derive notices without refusing to derive -----------------------------------------
 
 BCP14 = re.compile(r'\b(MUST|SHALL|SHOULD|REQUIRED|RECOMMENDED)\b(?: (not|Not))?|\b(Must|Shall|Should) (?=not\b|be\b)')
@@ -1439,10 +1682,10 @@ def views() -> Views:
             confirmed.setdefault(key, problem)
     state_files, state_problems = state_views(statements)
     role_files, role_problems = role_views(statements)
-    out |= state_files | role_files
-    everything = (
-        findings(statements) + static + list(confirmed.values()) + state_problems + figure_findings() + role_problems
-    )
+    kaitai_files, kaitai_problems = kaitai_views()
+    out |= state_files | role_files | kaitai_files
+    everything = findings(statements) + static + list(confirmed.values()) + state_problems + figure_findings()
+    everything += kaitai_problems + role_problems
     out[VIEWS / 'findings.md'] = render_findings(everything)
     return out
 
@@ -1477,7 +1720,12 @@ def main() -> int:
     sub.add_parser('check')
     sub.add_parser('migrate').add_argument('step', choices=['statements', 'packets', 'codes', 'roles'])
     sub.add_parser('rows').add_argument('--out-dir', default=str(EDIT / 'build' / 'packet-rows'))
+    sub.add_parser('kaitai-test').add_argument(
+        'compiled', help='directory with the Python parsers compiled from ../share/kaitai/'
+    )
     args = parser.parse_args()
+    if args.command == 'kaitai-test':
+        return kaitai_test(pathlib.Path(args.compiled))
     if args.command == 'rows':
         return write_rows(pathlib.Path(args.out_dir))
     if args.command == 'migrate':

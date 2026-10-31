@@ -30,4 +30,7 @@ What `make derive` noticed in the records and the prose without refusing to deri
 - server-view: the figure lets an Asleep Client send SLEEPREQ (Asleep, to change the Sleep Duration), MQTT-SN-4.14-2 allows only PINGREQ, CONNECT, DISCONNECT
 - server-view: the figure has Keep Alive timing out from Awake to Disconnected; tab-session-timers has it in Active -> Disconnected
 - figures fig-server-view-of-client-states-informative and fig-server-view-of-client-states-informative-2 share the caption "Server View of Client States - informative"
+- kaitai protection-encapsulation: condition on 'Crypto Length', which is no flag of the packet
+- kaitai protection-encapsulation: "Crypto Material" (C) has no length field before it and is not last
+- kaitai publish-qos-minus-1: Topic Type value 'Topic Short Name' is not defined (tab-topic-types)
 - 155 of 312 statements bind no role yet (no `binds`), e.g. MQTT-SN-3.1.2.2-2, MQTT-SN-3.1.2.2-3, MQTT-SN-3.1.2.2-4

@@ -31,6 +31,10 @@ Four additional supportive artifacts will be generated in the `share/`folder aft
 | `mqtt-sn-v2.0-draft-packet-dictionary.json`  | Every packet's layout: fields, bit fields, presence conditions, length symbols |
 | `schema/packet-dictionary.schema.json`       | JSON schema of the packet dictionary                           |
 
+`make derive` also writes `kaitai/`: one [Kaitai Struct](https://kaitai.io) description (`.ksy`) per packet and
+`mqtt_sn_packet.ksy`, which selects the packet by its type; the Kaitai compiler turns them into parsers for many
+programming languages. `make kaitai-test` (in `edit/`) checks them against the packet vectors.
+
 ## Building
 
 All targets are defined in `edit/makefile`.

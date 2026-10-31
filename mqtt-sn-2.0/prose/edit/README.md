@@ -56,7 +56,7 @@ the next `make derive` overwrites it, and until then `make check` fails.
 |:--------------------------------------------|:---------------------------------------|:-----------------------------------------------------------------|
 | a numbered normative statement               | `records/statements/<src-file>.yaml`   | its mark `«...»` in `src/<src-file>.md`; all rows of Appendix B (`src/mand-norm-stmts-00.md`) |
 | a new numbered statement                     | a record there, and `«MQTT-SN-x.y-n»` at its place in the prose | the mark and its Appendix B row                      |
-| a packet layout (fields, flags, presence, lengths) | `records/packets/<packet>.yaml`  | `src/images/packet/<packet>-packet-diagram.edn`; the rows of the packet dictionary; `views/packet-vectors.json` |
+| a packet layout (fields, flags, presence, lengths) | `records/packets/<packet>.yaml`  | `src/images/packet/<packet>-packet-diagram.edn`; the rows of the packet dictionary; `views/packet-vectors.json`; `../share/kaitai/mqtt_sn_<packet>.ksy` and the dispatcher `mqtt_sn_packet.ksy` |
 | packet types, packet identifiers, reason codes, topic types | `records/tables/<table>.yaml` | the table in `src/ctrl-pack-format-0[1-4]-*.md`            |
 | client states, session timers                | `records/tables/client-states.yaml`, `session-timers.yaml` | the tables in `src/ops-behavior-14-client-states.md` |
 | state transitions, state-dependent sending rules | `records/states/server-view.yaml`  | `views/states/server-view.md`                                    |
@@ -105,6 +105,7 @@ The PNG and SVG files of all figures are rendered from the `.edn` files as befor
 | `make derive`            | Write every generated file and view from `records/`                                  |
 | `make check`             | Fail when a generated file differs from its records (run by every build)             |
 | `make packet-dictionary` | Render, then publish `../share/mqtt-sn-v2.0-draft-packet-dictionary.json` and its schema |
+| `make kaitai-test`       | Compile `../share/kaitai/*.ksy` to Python and parse every packet vector with it (`KSC=` the compiler if not on PATH) |
 
 ### Quality and diff targets
 
@@ -173,3 +174,4 @@ nide diff --mode full ../share/mqtt-sn-v2.0-draft.html
 | `b3sum`  | `cargo install b3sum`                    | BLAKE3 checksums                        |
 | `PyYAML` | `pip install pyyaml`                     | Reading the records (`bin/spec_records.py`) |
 | `bytefield-svg`, `svgexport` | `npm install -g bytefield-svg svgexport` | Rendering packet figures from `.edn` |
+| Kaitai Struct compiler, `kaitaistruct` | [kaitai.io](https://kaitai.io) release zip (needs Java), `pip install kaitaistruct` | `make kaitai-test` only |

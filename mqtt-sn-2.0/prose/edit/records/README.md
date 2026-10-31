@@ -51,6 +51,11 @@ the figure follow the convention.
 - `views/roles/<role>.md`, `views/states/server-view.md`
 - `../share/mqtt-sn-v2.0-draft-packet-dictionary.json` (`make packet-dictionary`): the rows now come from the
   layout records, with `present_if` and `length_symbol`
+- `../share/kaitai/`: one Kaitai Struct `.ksy` per packet layout (presence as `if:` on the flags, sizes from the
+  preceding length field or the end of the packet) and `mqtt_sn_packet.ksy`, which dispatches on the packet type.
+  Where the records cannot give a size or a condition, the parse ends in an explicit `rest` field and
+  `views/findings.md` says why. `make kaitai-test` compiles them and parses every vector of `views/packet-vectors.json`
+  (each variable-length field there carries 2 bytes, with its length field set accordingly).
 
 ## Migration
 

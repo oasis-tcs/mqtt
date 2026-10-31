@@ -31,8 +31,8 @@
  "auth": [
   {
    "present": {},
-   "length": 6,
-   "hex": "060f00000000",
+   "length": 10,
+   "hex": "0a0f0000000261626162",
    "fields": [
     {
      "name": "Length",
@@ -62,12 +62,14 @@
     {
      "name": "Authentication Method",
      "offset": 6,
-     "size": 0
+     "size": 2,
+     "variable": true
     },
     {
      "name": "Authentication Data",
-     "offset": 6,
-     "size": 0
+     "offset": 8,
+     "size": 2,
+     "variable": true
     }
    ]
   }
@@ -248,8 +250,8 @@
     "{\"flag\": \"Auth\"}": true,
     "\"optional\"": false
    },
-   "length": 9,
-   "hex": "090208000000000000",
+   "length": 13,
+   "hex": "0d020800000002616200026162",
    "fields": [
     {
      "name": "Length",
@@ -284,17 +286,19 @@
     {
      "name": "Authentication Method",
      "offset": 7,
-     "size": 0
+     "size": 2,
+     "variable": true
     },
     {
      "name": "Authentication Data Length",
-     "offset": 7,
+     "offset": 9,
      "size": 2
     },
     {
      "name": "Authentication Data",
-     "offset": 9,
-     "size": 0
+     "offset": 11,
+     "size": 2,
+     "variable": true
     }
    ]
   },
@@ -305,8 +309,8 @@
     "{\"flag\": \"Auth\"}": true,
     "\"optional\"": false
    },
-   "length": 13,
-   "hex": "0d020a00000000000000000000",
+   "length": 17,
+   "hex": "11020a0000000000000002616200026162",
    "fields": [
     {
      "name": "Length",
@@ -346,17 +350,19 @@
     {
      "name": "Authentication Method",
      "offset": 11,
-     "size": 0
+     "size": 2,
+     "variable": true
     },
     {
      "name": "Authentication Data Length",
-     "offset": 11,
+     "offset": 13,
      "size": 2
     },
     {
      "name": "Authentication Data",
-     "offset": 13,
-     "size": 0
+     "offset": 15,
+     "size": 2,
+     "variable": true
     }
    ]
   },
@@ -367,8 +373,8 @@
     "{\"flag\": \"Auth\"}": true,
     "\"optional\"": false
    },
-   "length": 11,
-   "hex": "0b020c0000000000000000",
+   "length": 15,
+   "hex": "0f020c000000000002616200026162",
    "fields": [
     {
      "name": "Length",
@@ -408,17 +414,19 @@
     {
      "name": "Authentication Method",
      "offset": 9,
-     "size": 0
+     "size": 2,
+     "variable": true
     },
     {
      "name": "Authentication Data Length",
-     "offset": 9,
+     "offset": 11,
      "size": 2
     },
     {
      "name": "Authentication Data",
-     "offset": 11,
-     "size": 0
+     "offset": 13,
+     "size": 2,
+     "variable": true
     }
    ]
   },
@@ -429,8 +437,8 @@
     "{\"flag\": \"Auth\"}": true,
     "\"optional\"": false
    },
-   "length": 15,
-   "hex": "0f020e000000000000000000000000",
+   "length": 19,
+   "hex": "13020e00000000000000000002616200026162",
    "fields": [
     {
      "name": "Length",
@@ -475,17 +483,19 @@
     {
      "name": "Authentication Method",
      "offset": 13,
-     "size": 0
+     "size": 2,
+     "variable": true
     },
     {
      "name": "Authentication Data Length",
-     "offset": 13,
+     "offset": 15,
      "size": 2
     },
     {
      "name": "Authentication Data",
-     "offset": 15,
-     "size": 0
+     "offset": 17,
+     "size": 2,
+     "variable": true
     }
    ]
   },
@@ -493,100 +503,102 @@
    "present": {
     "{\"flag\": \"Sess Exp\"}": false,
     "{\"flag\": \"Server KA\"}": false,
-    "{\"flag\": \"Auth\"}": false,
-    "\"optional\"": true
-   },
-   "length": 6,
-   "hex": "060200000000",
-   "fields": [
-    {
-     "name": "Length",
-     "offset": 0,
-     "size": 1
-    },
-    {
-     "name": "Packet Type",
-     "offset": 1,
-     "size": 1
-    },
-    {
-     "name": "Connack Flags",
-     "offset": 2,
-     "size": 1
-    },
-    {
-     "name": "Packet Identifier",
-     "offset": 3,
-     "size": 2
-    },
-    {
-     "name": "Reason Code",
-     "offset": 5,
-     "size": 1
-    },
-    {
-     "name": "Assigned Client Identifier",
-     "offset": 6,
-     "size": 0
-    }
-   ]
-  },
-  {
-   "present": {
-    "{\"flag\": \"Sess Exp\"}": true,
-    "{\"flag\": \"Server KA\"}": false,
-    "{\"flag\": \"Auth\"}": false,
-    "\"optional\"": true
-   },
-   "length": 10,
-   "hex": "0a020200000000000000",
-   "fields": [
-    {
-     "name": "Length",
-     "offset": 0,
-     "size": 1
-    },
-    {
-     "name": "Packet Type",
-     "offset": 1,
-     "size": 1
-    },
-    {
-     "name": "Connack Flags",
-     "offset": 2,
-     "size": 1
-    },
-    {
-     "name": "Packet Identifier",
-     "offset": 3,
-     "size": 2
-    },
-    {
-     "name": "Reason Code",
-     "offset": 5,
-     "size": 1
-    },
-    {
-     "name": "Session Expiry Interval",
-     "offset": 6,
-     "size": 4
-    },
-    {
-     "name": "Assigned Client Identifier",
-     "offset": 10,
-     "size": 0
-    }
-   ]
-  },
-  {
-   "present": {
-    "{\"flag\": \"Sess Exp\"}": false,
-    "{\"flag\": \"Server KA\"}": true,
     "{\"flag\": \"Auth\"}": false,
     "\"optional\"": true
    },
    "length": 8,
-   "hex": "0802040000000000",
+   "hex": "0802000000006162",
+   "fields": [
+    {
+     "name": "Length",
+     "offset": 0,
+     "size": 1
+    },
+    {
+     "name": "Packet Type",
+     "offset": 1,
+     "size": 1
+    },
+    {
+     "name": "Connack Flags",
+     "offset": 2,
+     "size": 1
+    },
+    {
+     "name": "Packet Identifier",
+     "offset": 3,
+     "size": 2
+    },
+    {
+     "name": "Reason Code",
+     "offset": 5,
+     "size": 1
+    },
+    {
+     "name": "Assigned Client Identifier",
+     "offset": 6,
+     "size": 2,
+     "variable": true
+    }
+   ]
+  },
+  {
+   "present": {
+    "{\"flag\": \"Sess Exp\"}": true,
+    "{\"flag\": \"Server KA\"}": false,
+    "{\"flag\": \"Auth\"}": false,
+    "\"optional\"": true
+   },
+   "length": 12,
+   "hex": "0c0202000000000000006162",
+   "fields": [
+    {
+     "name": "Length",
+     "offset": 0,
+     "size": 1
+    },
+    {
+     "name": "Packet Type",
+     "offset": 1,
+     "size": 1
+    },
+    {
+     "name": "Connack Flags",
+     "offset": 2,
+     "size": 1
+    },
+    {
+     "name": "Packet Identifier",
+     "offset": 3,
+     "size": 2
+    },
+    {
+     "name": "Reason Code",
+     "offset": 5,
+     "size": 1
+    },
+    {
+     "name": "Session Expiry Interval",
+     "offset": 6,
+     "size": 4
+    },
+    {
+     "name": "Assigned Client Identifier",
+     "offset": 10,
+     "size": 2,
+     "variable": true
+    }
+   ]
+  },
+  {
+   "present": {
+    "{\"flag\": \"Sess Exp\"}": false,
+    "{\"flag\": \"Server KA\"}": true,
+    "{\"flag\": \"Auth\"}": false,
+    "\"optional\"": true
+   },
+   "length": 10,
+   "hex": "0a020400000000006162",
    "fields": [
     {
      "name": "Length",
@@ -621,7 +633,8 @@
     {
      "name": "Assigned Client Identifier",
      "offset": 8,
-     "size": 0
+     "size": 2,
+     "variable": true
     }
    ]
   },
@@ -632,8 +645,8 @@
     "{\"flag\": \"Auth\"}": false,
     "\"optional\"": true
    },
-   "length": 12,
-   "hex": "0c0206000000000000000000",
+   "length": 14,
+   "hex": "0e02060000000000000000006162",
    "fields": [
     {
      "name": "Length",
@@ -673,7 +686,8 @@
     {
      "name": "Assigned Client Identifier",
      "offset": 12,
-     "size": 0
+     "size": 2,
+     "variable": true
     }
    ]
   },
@@ -684,8 +698,8 @@
     "{\"flag\": \"Auth\"}": true,
     "\"optional\"": true
    },
-   "length": 9,
-   "hex": "090208000000000000",
+   "length": 15,
+   "hex": "0f0208000000026162000261626162",
    "fields": [
     {
      "name": "Length",
@@ -720,22 +734,25 @@
     {
      "name": "Authentication Method",
      "offset": 7,
-     "size": 0
+     "size": 2,
+     "variable": true
     },
     {
      "name": "Authentication Data Length",
-     "offset": 7,
+     "offset": 9,
      "size": 2
     },
     {
      "name": "Authentication Data",
-     "offset": 9,
-     "size": 0
+     "offset": 11,
+     "size": 2,
+     "variable": true
     },
     {
      "name": "Assigned Client Identifier",
-     "offset": 9,
-     "size": 0
+     "offset": 13,
+     "size": 2,
+     "variable": true
     }
    ]
   },
@@ -746,8 +763,8 @@
     "{\"flag\": \"Auth\"}": true,
     "\"optional\"": true
    },
-   "length": 13,
-   "hex": "0d020a00000000000000000000",
+   "length": 19,
+   "hex": "13020a00000000000000026162000261626162",
    "fields": [
     {
      "name": "Length",
@@ -787,22 +804,25 @@
     {
      "name": "Authentication Method",
      "offset": 11,
-     "size": 0
+     "size": 2,
+     "variable": true
     },
     {
      "name": "Authentication Data Length",
-     "offset": 11,
+     "offset": 13,
      "size": 2
     },
     {
      "name": "Authentication Data",
-     "offset": 13,
-     "size": 0
+     "offset": 15,
+     "size": 2,
+     "variable": true
     },
     {
      "name": "Assigned Client Identifier",
-     "offset": 13,
-     "size": 0
+     "offset": 17,
+     "size": 2,
+     "variable": true
     }
    ]
   },
@@ -813,8 +833,8 @@
     "{\"flag\": \"Auth\"}": true,
     "\"optional\"": true
    },
-   "length": 11,
-   "hex": "0b020c0000000000000000",
+   "length": 17,
+   "hex": "11020c0000000000026162000261626162",
    "fields": [
     {
      "name": "Length",
@@ -854,22 +874,25 @@
     {
      "name": "Authentication Method",
      "offset": 9,
-     "size": 0
+     "size": 2,
+     "variable": true
     },
     {
      "name": "Authentication Data Length",
-     "offset": 9,
+     "offset": 11,
      "size": 2
     },
     {
      "name": "Authentication Data",
-     "offset": 11,
-     "size": 0
+     "offset": 13,
+     "size": 2,
+     "variable": true
     },
     {
      "name": "Assigned Client Identifier",
-     "offset": 11,
-     "size": 0
+     "offset": 15,
+     "size": 2,
+     "variable": true
     }
    ]
   },
@@ -880,8 +903,8 @@
     "{\"flag\": \"Auth\"}": true,
     "\"optional\"": true
    },
-   "length": 15,
-   "hex": "0f020e000000000000000000000000",
+   "length": 21,
+   "hex": "15020e000000000000000000026162000261626162",
    "fields": [
     {
      "name": "Length",
@@ -926,22 +949,25 @@
     {
      "name": "Authentication Method",
      "offset": 13,
-     "size": 0
+     "size": 2,
+     "variable": true
     },
     {
      "name": "Authentication Data Length",
-     "offset": 13,
+     "offset": 15,
      "size": 2
     },
     {
      "name": "Authentication Data",
-     "offset": 15,
-     "size": 0
+     "offset": 17,
+     "size": 2,
+     "variable": true
     },
     {
      "name": "Assigned Client Identifier",
-     "offset": 15,
-     "size": 0
+     "offset": 19,
+     "size": 2,
+     "variable": true
     }
    ]
   }
@@ -955,8 +981,8 @@
     "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": false,
     "{\"flag\": \"Auth\"}": false
    },
-   "length": 10,
-   "hex": "0a010000000000000000",
+   "length": 12,
+   "hex": "0c0100000000000000006162",
    "fields": [
     {
      "name": "Length",
@@ -996,7 +1022,8 @@
     {
      "name": "Client Identifier",
      "offset": 10,
-     "size": 0
+     "size": 2,
+     "variable": true
     }
    ]
   },
@@ -1005,555 +1032,11 @@
     "{\"flag\": \"Will\"}": true,
     "{\"flag\": \"MAM\"}": false,
     "{\"flag\": \"Sess Exp\"}": false,
-    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": false,
-    "{\"flag\": \"Auth\"}": false
-   },
-   "length": 15,
-   "hex": "0f0102000000000000000000000000",
-   "fields": [
-    {
-     "name": "Length",
-     "offset": 0,
-     "size": 1
-    },
-    {
-     "name": "Packet Type",
-     "offset": 1,
-     "size": 1
-    },
-    {
-     "name": "Connect Flags",
-     "offset": 2,
-     "size": 1
-    },
-    {
-     "name": "Will Flags",
-     "offset": 3,
-     "size": 1
-    },
-    {
-     "name": "Packet Identifier",
-     "offset": 4,
-     "size": 2
-    },
-    {
-     "name": "Protocol Version",
-     "offset": 6,
-     "size": 1
-    },
-    {
-     "name": "Keep Alive",
-     "offset": 7,
-     "size": 2
-    },
-    {
-     "name": "Maximum Packet Size",
-     "offset": 9,
-     "size": 2
-    },
-    {
-     "name": "Will Topic Alias or Will Topic Name Length",
-     "offset": 11,
-     "size": 2
-    },
-    {
-     "name": "Will Payload Length",
-     "offset": 13,
-     "size": 2
-    },
-    {
-     "name": "Will Payload",
-     "offset": 15,
-     "size": 0
-    },
-    {
-     "name": "Client Identifier",
-     "offset": 15,
-     "size": 0
-    }
-   ]
-  },
-  {
-   "present": {
-    "{\"flag\": \"Will\"}": false,
-    "{\"flag\": \"MAM\"}": true,
-    "{\"flag\": \"Sess Exp\"}": false,
-    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": false,
-    "{\"flag\": \"Auth\"}": false
-   },
-   "length": 11,
-   "hex": "0b01100000000000000000",
-   "fields": [
-    {
-     "name": "Length",
-     "offset": 0,
-     "size": 1
-    },
-    {
-     "name": "Packet Type",
-     "offset": 1,
-     "size": 1
-    },
-    {
-     "name": "Connect Flags",
-     "offset": 2,
-     "size": 1
-    },
-    {
-     "name": "Packet Identifier",
-     "offset": 3,
-     "size": 2
-    },
-    {
-     "name": "Protocol Version",
-     "offset": 5,
-     "size": 1
-    },
-    {
-     "name": "Keep Alive",
-     "offset": 6,
-     "size": 2
-    },
-    {
-     "name": "Maximum Packet Size",
-     "offset": 8,
-     "size": 2
-    },
-    {
-     "name": "Maximum Number of Awake Messages",
-     "offset": 10,
-     "size": 1
-    },
-    {
-     "name": "Client Identifier",
-     "offset": 11,
-     "size": 0
-    }
-   ]
-  },
-  {
-   "present": {
-    "{\"flag\": \"Will\"}": true,
-    "{\"flag\": \"MAM\"}": true,
-    "{\"flag\": \"Sess Exp\"}": false,
-    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": false,
-    "{\"flag\": \"Auth\"}": false
-   },
-   "length": 16,
-   "hex": "10011200000000000000000000000000",
-   "fields": [
-    {
-     "name": "Length",
-     "offset": 0,
-     "size": 1
-    },
-    {
-     "name": "Packet Type",
-     "offset": 1,
-     "size": 1
-    },
-    {
-     "name": "Connect Flags",
-     "offset": 2,
-     "size": 1
-    },
-    {
-     "name": "Will Flags",
-     "offset": 3,
-     "size": 1
-    },
-    {
-     "name": "Packet Identifier",
-     "offset": 4,
-     "size": 2
-    },
-    {
-     "name": "Protocol Version",
-     "offset": 6,
-     "size": 1
-    },
-    {
-     "name": "Keep Alive",
-     "offset": 7,
-     "size": 2
-    },
-    {
-     "name": "Maximum Packet Size",
-     "offset": 9,
-     "size": 2
-    },
-    {
-     "name": "Maximum Number of Awake Messages",
-     "offset": 11,
-     "size": 1
-    },
-    {
-     "name": "Will Topic Alias or Will Topic Name Length",
-     "offset": 12,
-     "size": 2
-    },
-    {
-     "name": "Will Payload Length",
-     "offset": 14,
-     "size": 2
-    },
-    {
-     "name": "Will Payload",
-     "offset": 16,
-     "size": 0
-    },
-    {
-     "name": "Client Identifier",
-     "offset": 16,
-     "size": 0
-    }
-   ]
-  },
-  {
-   "present": {
-    "{\"flag\": \"Will\"}": false,
-    "{\"flag\": \"MAM\"}": false,
-    "{\"flag\": \"Sess Exp\"}": true,
-    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": false,
-    "{\"flag\": \"Auth\"}": false
-   },
-   "length": 14,
-   "hex": "0e01080000000000000000000000",
-   "fields": [
-    {
-     "name": "Length",
-     "offset": 0,
-     "size": 1
-    },
-    {
-     "name": "Packet Type",
-     "offset": 1,
-     "size": 1
-    },
-    {
-     "name": "Connect Flags",
-     "offset": 2,
-     "size": 1
-    },
-    {
-     "name": "Packet Identifier",
-     "offset": 3,
-     "size": 2
-    },
-    {
-     "name": "Protocol Version",
-     "offset": 5,
-     "size": 1
-    },
-    {
-     "name": "Keep Alive",
-     "offset": 6,
-     "size": 2
-    },
-    {
-     "name": "Maximum Packet Size",
-     "offset": 8,
-     "size": 2
-    },
-    {
-     "name": "Session Expiry Interval",
-     "offset": 10,
-     "size": 4
-    },
-    {
-     "name": "Client Identifier",
-     "offset": 14,
-     "size": 0
-    }
-   ]
-  },
-  {
-   "present": {
-    "{\"flag\": \"Will\"}": true,
-    "{\"flag\": \"MAM\"}": false,
-    "{\"flag\": \"Sess Exp\"}": true,
     "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": false,
     "{\"flag\": \"Auth\"}": false
    },
    "length": 19,
-   "hex": "13010a00000000000000000000000000000000",
-   "fields": [
-    {
-     "name": "Length",
-     "offset": 0,
-     "size": 1
-    },
-    {
-     "name": "Packet Type",
-     "offset": 1,
-     "size": 1
-    },
-    {
-     "name": "Connect Flags",
-     "offset": 2,
-     "size": 1
-    },
-    {
-     "name": "Will Flags",
-     "offset": 3,
-     "size": 1
-    },
-    {
-     "name": "Packet Identifier",
-     "offset": 4,
-     "size": 2
-    },
-    {
-     "name": "Protocol Version",
-     "offset": 6,
-     "size": 1
-    },
-    {
-     "name": "Keep Alive",
-     "offset": 7,
-     "size": 2
-    },
-    {
-     "name": "Maximum Packet Size",
-     "offset": 9,
-     "size": 2
-    },
-    {
-     "name": "Session Expiry Interval",
-     "offset": 11,
-     "size": 4
-    },
-    {
-     "name": "Will Topic Alias or Will Topic Name Length",
-     "offset": 15,
-     "size": 2
-    },
-    {
-     "name": "Will Payload Length",
-     "offset": 17,
-     "size": 2
-    },
-    {
-     "name": "Will Payload",
-     "offset": 19,
-     "size": 0
-    },
-    {
-     "name": "Client Identifier",
-     "offset": 19,
-     "size": 0
-    }
-   ]
-  },
-  {
-   "present": {
-    "{\"flag\": \"Will\"}": false,
-    "{\"flag\": \"MAM\"}": true,
-    "{\"flag\": \"Sess Exp\"}": true,
-    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": false,
-    "{\"flag\": \"Auth\"}": false
-   },
-   "length": 15,
-   "hex": "0f0118000000000000000000000000",
-   "fields": [
-    {
-     "name": "Length",
-     "offset": 0,
-     "size": 1
-    },
-    {
-     "name": "Packet Type",
-     "offset": 1,
-     "size": 1
-    },
-    {
-     "name": "Connect Flags",
-     "offset": 2,
-     "size": 1
-    },
-    {
-     "name": "Packet Identifier",
-     "offset": 3,
-     "size": 2
-    },
-    {
-     "name": "Protocol Version",
-     "offset": 5,
-     "size": 1
-    },
-    {
-     "name": "Keep Alive",
-     "offset": 6,
-     "size": 2
-    },
-    {
-     "name": "Maximum Packet Size",
-     "offset": 8,
-     "size": 2
-    },
-    {
-     "name": "Maximum Number of Awake Messages",
-     "offset": 10,
-     "size": 1
-    },
-    {
-     "name": "Session Expiry Interval",
-     "offset": 11,
-     "size": 4
-    },
-    {
-     "name": "Client Identifier",
-     "offset": 15,
-     "size": 0
-    }
-   ]
-  },
-  {
-   "present": {
-    "{\"flag\": \"Will\"}": true,
-    "{\"flag\": \"MAM\"}": true,
-    "{\"flag\": \"Sess Exp\"}": true,
-    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": false,
-    "{\"flag\": \"Auth\"}": false
-   },
-   "length": 20,
-   "hex": "14011a0000000000000000000000000000000000",
-   "fields": [
-    {
-     "name": "Length",
-     "offset": 0,
-     "size": 1
-    },
-    {
-     "name": "Packet Type",
-     "offset": 1,
-     "size": 1
-    },
-    {
-     "name": "Connect Flags",
-     "offset": 2,
-     "size": 1
-    },
-    {
-     "name": "Will Flags",
-     "offset": 3,
-     "size": 1
-    },
-    {
-     "name": "Packet Identifier",
-     "offset": 4,
-     "size": 2
-    },
-    {
-     "name": "Protocol Version",
-     "offset": 6,
-     "size": 1
-    },
-    {
-     "name": "Keep Alive",
-     "offset": 7,
-     "size": 2
-    },
-    {
-     "name": "Maximum Packet Size",
-     "offset": 9,
-     "size": 2
-    },
-    {
-     "name": "Maximum Number of Awake Messages",
-     "offset": 11,
-     "size": 1
-    },
-    {
-     "name": "Session Expiry Interval",
-     "offset": 12,
-     "size": 4
-    },
-    {
-     "name": "Will Topic Alias or Will Topic Name Length",
-     "offset": 16,
-     "size": 2
-    },
-    {
-     "name": "Will Payload Length",
-     "offset": 18,
-     "size": 2
-    },
-    {
-     "name": "Will Payload",
-     "offset": 20,
-     "size": 0
-    },
-    {
-     "name": "Client Identifier",
-     "offset": 20,
-     "size": 0
-    }
-   ]
-  },
-  {
-   "present": {
-    "{\"flag\": \"Will\"}": false,
-    "{\"flag\": \"MAM\"}": false,
-    "{\"flag\": \"Sess Exp\"}": false,
-    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": true,
-    "{\"flag\": \"Auth\"}": false
-   },
-   "length": 10,
-   "hex": "0a010000000000000000",
-   "fields": [
-    {
-     "name": "Length",
-     "offset": 0,
-     "size": 1
-    },
-    {
-     "name": "Packet Type",
-     "offset": 1,
-     "size": 1
-    },
-    {
-     "name": "Connect Flags",
-     "offset": 2,
-     "size": 1
-    },
-    {
-     "name": "Packet Identifier",
-     "offset": 3,
-     "size": 2
-    },
-    {
-     "name": "Protocol Version",
-     "offset": 5,
-     "size": 1
-    },
-    {
-     "name": "Keep Alive",
-     "offset": 6,
-     "size": 2
-    },
-    {
-     "name": "Maximum Packet Size",
-     "offset": 8,
-     "size": 2
-    },
-    {
-     "name": "Client Identifier",
-     "offset": 10,
-     "size": 0
-    }
-   ]
-  },
-  {
-   "present": {
-    "{\"flag\": \"Will\"}": true,
-    "{\"flag\": \"MAM\"}": false,
-    "{\"flag\": \"Sess Exp\"}": false,
-    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": true,
-    "{\"flag\": \"Auth\"}": false
-   },
-   "length": 15,
-   "hex": "0f0102030000000000000000000000",
+   "hex": "13010200000000000000000000000261626162",
    "fields": [
     {
      "name": "Length",
@@ -1599,11 +1082,6 @@
      "name": "Will Topic Alias or Will Topic Name Length",
      "offset": 11,
      "size": 2
-    },
-    {
-     "name": "Will Topic Name",
-     "offset": 13,
-     "size": 0
     },
     {
      "name": "Will Payload Length",
@@ -1613,294 +1091,14 @@
     {
      "name": "Will Payload",
      "offset": 15,
-     "size": 0
+     "size": 2,
+     "variable": true
     },
     {
      "name": "Client Identifier",
-     "offset": 15,
-     "size": 0
-    }
-   ]
-  },
-  {
-   "present": {
-    "{\"flag\": \"Will\"}": false,
-    "{\"flag\": \"MAM\"}": true,
-    "{\"flag\": \"Sess Exp\"}": false,
-    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": true,
-    "{\"flag\": \"Auth\"}": false
-   },
-   "length": 11,
-   "hex": "0b01100000000000000000",
-   "fields": [
-    {
-     "name": "Length",
-     "offset": 0,
-     "size": 1
-    },
-    {
-     "name": "Packet Type",
-     "offset": 1,
-     "size": 1
-    },
-    {
-     "name": "Connect Flags",
-     "offset": 2,
-     "size": 1
-    },
-    {
-     "name": "Packet Identifier",
-     "offset": 3,
-     "size": 2
-    },
-    {
-     "name": "Protocol Version",
-     "offset": 5,
-     "size": 1
-    },
-    {
-     "name": "Keep Alive",
-     "offset": 6,
-     "size": 2
-    },
-    {
-     "name": "Maximum Packet Size",
-     "offset": 8,
-     "size": 2
-    },
-    {
-     "name": "Maximum Number of Awake Messages",
-     "offset": 10,
-     "size": 1
-    },
-    {
-     "name": "Client Identifier",
-     "offset": 11,
-     "size": 0
-    }
-   ]
-  },
-  {
-   "present": {
-    "{\"flag\": \"Will\"}": true,
-    "{\"flag\": \"MAM\"}": true,
-    "{\"flag\": \"Sess Exp\"}": false,
-    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": true,
-    "{\"flag\": \"Auth\"}": false
-   },
-   "length": 16,
-   "hex": "10011203000000000000000000000000",
-   "fields": [
-    {
-     "name": "Length",
-     "offset": 0,
-     "size": 1
-    },
-    {
-     "name": "Packet Type",
-     "offset": 1,
-     "size": 1
-    },
-    {
-     "name": "Connect Flags",
-     "offset": 2,
-     "size": 1
-    },
-    {
-     "name": "Will Flags",
-     "offset": 3,
-     "size": 1
-    },
-    {
-     "name": "Packet Identifier",
-     "offset": 4,
-     "size": 2
-    },
-    {
-     "name": "Protocol Version",
-     "offset": 6,
-     "size": 1
-    },
-    {
-     "name": "Keep Alive",
-     "offset": 7,
-     "size": 2
-    },
-    {
-     "name": "Maximum Packet Size",
-     "offset": 9,
-     "size": 2
-    },
-    {
-     "name": "Maximum Number of Awake Messages",
-     "offset": 11,
-     "size": 1
-    },
-    {
-     "name": "Will Topic Alias or Will Topic Name Length",
-     "offset": 12,
-     "size": 2
-    },
-    {
-     "name": "Will Topic Name",
-     "offset": 14,
-     "size": 0
-    },
-    {
-     "name": "Will Payload Length",
-     "offset": 14,
-     "size": 2
-    },
-    {
-     "name": "Will Payload",
-     "offset": 16,
-     "size": 0
-    },
-    {
-     "name": "Client Identifier",
-     "offset": 16,
-     "size": 0
-    }
-   ]
-  },
-  {
-   "present": {
-    "{\"flag\": \"Will\"}": false,
-    "{\"flag\": \"MAM\"}": false,
-    "{\"flag\": \"Sess Exp\"}": true,
-    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": true,
-    "{\"flag\": \"Auth\"}": false
-   },
-   "length": 14,
-   "hex": "0e01080000000000000000000000",
-   "fields": [
-    {
-     "name": "Length",
-     "offset": 0,
-     "size": 1
-    },
-    {
-     "name": "Packet Type",
-     "offset": 1,
-     "size": 1
-    },
-    {
-     "name": "Connect Flags",
-     "offset": 2,
-     "size": 1
-    },
-    {
-     "name": "Packet Identifier",
-     "offset": 3,
-     "size": 2
-    },
-    {
-     "name": "Protocol Version",
-     "offset": 5,
-     "size": 1
-    },
-    {
-     "name": "Keep Alive",
-     "offset": 6,
-     "size": 2
-    },
-    {
-     "name": "Maximum Packet Size",
-     "offset": 8,
-     "size": 2
-    },
-    {
-     "name": "Session Expiry Interval",
-     "offset": 10,
-     "size": 4
-    },
-    {
-     "name": "Client Identifier",
-     "offset": 14,
-     "size": 0
-    }
-   ]
-  },
-  {
-   "present": {
-    "{\"flag\": \"Will\"}": true,
-    "{\"flag\": \"MAM\"}": false,
-    "{\"flag\": \"Sess Exp\"}": true,
-    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": true,
-    "{\"flag\": \"Auth\"}": false
-   },
-   "length": 19,
-   "hex": "13010a03000000000000000000000000000000",
-   "fields": [
-    {
-     "name": "Length",
-     "offset": 0,
-     "size": 1
-    },
-    {
-     "name": "Packet Type",
-     "offset": 1,
-     "size": 1
-    },
-    {
-     "name": "Connect Flags",
-     "offset": 2,
-     "size": 1
-    },
-    {
-     "name": "Will Flags",
-     "offset": 3,
-     "size": 1
-    },
-    {
-     "name": "Packet Identifier",
-     "offset": 4,
-     "size": 2
-    },
-    {
-     "name": "Protocol Version",
-     "offset": 6,
-     "size": 1
-    },
-    {
-     "name": "Keep Alive",
-     "offset": 7,
-     "size": 2
-    },
-    {
-     "name": "Maximum Packet Size",
-     "offset": 9,
-     "size": 2
-    },
-    {
-     "name": "Session Expiry Interval",
-     "offset": 11,
-     "size": 4
-    },
-    {
-     "name": "Will Topic Alias or Will Topic Name Length",
-     "offset": 15,
-     "size": 2
-    },
-    {
-     "name": "Will Topic Name",
      "offset": 17,
-     "size": 0
-    },
-    {
-     "name": "Will Payload Length",
-     "offset": 17,
-     "size": 2
-    },
-    {
-     "name": "Will Payload",
-     "offset": 19,
-     "size": 0
-    },
-    {
-     "name": "Client Identifier",
-     "offset": 19,
-     "size": 0
+     "size": 2,
+     "variable": true
     }
    ]
   },
@@ -1908,163 +1106,12 @@
    "present": {
     "{\"flag\": \"Will\"}": false,
     "{\"flag\": \"MAM\"}": true,
-    "{\"flag\": \"Sess Exp\"}": true,
-    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": true,
-    "{\"flag\": \"Auth\"}": false
-   },
-   "length": 15,
-   "hex": "0f0118000000000000000000000000",
-   "fields": [
-    {
-     "name": "Length",
-     "offset": 0,
-     "size": 1
-    },
-    {
-     "name": "Packet Type",
-     "offset": 1,
-     "size": 1
-    },
-    {
-     "name": "Connect Flags",
-     "offset": 2,
-     "size": 1
-    },
-    {
-     "name": "Packet Identifier",
-     "offset": 3,
-     "size": 2
-    },
-    {
-     "name": "Protocol Version",
-     "offset": 5,
-     "size": 1
-    },
-    {
-     "name": "Keep Alive",
-     "offset": 6,
-     "size": 2
-    },
-    {
-     "name": "Maximum Packet Size",
-     "offset": 8,
-     "size": 2
-    },
-    {
-     "name": "Maximum Number of Awake Messages",
-     "offset": 10,
-     "size": 1
-    },
-    {
-     "name": "Session Expiry Interval",
-     "offset": 11,
-     "size": 4
-    },
-    {
-     "name": "Client Identifier",
-     "offset": 15,
-     "size": 0
-    }
-   ]
-  },
-  {
-   "present": {
-    "{\"flag\": \"Will\"}": true,
-    "{\"flag\": \"MAM\"}": true,
-    "{\"flag\": \"Sess Exp\"}": true,
-    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": true,
-    "{\"flag\": \"Auth\"}": false
-   },
-   "length": 20,
-   "hex": "14011a0300000000000000000000000000000000",
-   "fields": [
-    {
-     "name": "Length",
-     "offset": 0,
-     "size": 1
-    },
-    {
-     "name": "Packet Type",
-     "offset": 1,
-     "size": 1
-    },
-    {
-     "name": "Connect Flags",
-     "offset": 2,
-     "size": 1
-    },
-    {
-     "name": "Will Flags",
-     "offset": 3,
-     "size": 1
-    },
-    {
-     "name": "Packet Identifier",
-     "offset": 4,
-     "size": 2
-    },
-    {
-     "name": "Protocol Version",
-     "offset": 6,
-     "size": 1
-    },
-    {
-     "name": "Keep Alive",
-     "offset": 7,
-     "size": 2
-    },
-    {
-     "name": "Maximum Packet Size",
-     "offset": 9,
-     "size": 2
-    },
-    {
-     "name": "Maximum Number of Awake Messages",
-     "offset": 11,
-     "size": 1
-    },
-    {
-     "name": "Session Expiry Interval",
-     "offset": 12,
-     "size": 4
-    },
-    {
-     "name": "Will Topic Alias or Will Topic Name Length",
-     "offset": 16,
-     "size": 2
-    },
-    {
-     "name": "Will Topic Name",
-     "offset": 18,
-     "size": 0
-    },
-    {
-     "name": "Will Payload Length",
-     "offset": 18,
-     "size": 2
-    },
-    {
-     "name": "Will Payload",
-     "offset": 20,
-     "size": 0
-    },
-    {
-     "name": "Client Identifier",
-     "offset": 20,
-     "size": 0
-    }
-   ]
-  },
-  {
-   "present": {
-    "{\"flag\": \"Will\"}": false,
-    "{\"flag\": \"MAM\"}": false,
     "{\"flag\": \"Sess Exp\"}": false,
     "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": false,
-    "{\"flag\": \"Auth\"}": true
+    "{\"flag\": \"Auth\"}": false
    },
    "length": 13,
-   "hex": "0d010400000000000000000000",
+   "hex": "0d011000000000000000006162",
    "fields": [
     {
      "name": "Length",
@@ -2102,29 +1149,437 @@
      "size": 2
     },
     {
-     "name": "Authentication Method Length",
+     "name": "Maximum Number of Awake Messages",
      "offset": 10,
      "size": 1
     },
     {
-     "name": "Authentication Method",
+     "name": "Client Identifier",
      "offset": 11,
-     "size": 0
+     "size": 2,
+     "variable": true
+    }
+   ]
+  },
+  {
+   "present": {
+    "{\"flag\": \"Will\"}": true,
+    "{\"flag\": \"MAM\"}": true,
+    "{\"flag\": \"Sess Exp\"}": false,
+    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": false,
+    "{\"flag\": \"Auth\"}": false
+   },
+   "length": 20,
+   "hex": "1401120000000000000000000000000261626162",
+   "fields": [
+    {
+     "name": "Length",
+     "offset": 0,
+     "size": 1
     },
     {
-     "name": "Authentication Data Length",
-     "offset": 11,
+     "name": "Packet Type",
+     "offset": 1,
+     "size": 1
+    },
+    {
+     "name": "Connect Flags",
+     "offset": 2,
+     "size": 1
+    },
+    {
+     "name": "Will Flags",
+     "offset": 3,
+     "size": 1
+    },
+    {
+     "name": "Packet Identifier",
+     "offset": 4,
      "size": 2
     },
     {
-     "name": "Authentication Data",
-     "offset": 13,
-     "size": 0
+     "name": "Protocol Version",
+     "offset": 6,
+     "size": 1
+    },
+    {
+     "name": "Keep Alive",
+     "offset": 7,
+     "size": 2
+    },
+    {
+     "name": "Maximum Packet Size",
+     "offset": 9,
+     "size": 2
+    },
+    {
+     "name": "Maximum Number of Awake Messages",
+     "offset": 11,
+     "size": 1
+    },
+    {
+     "name": "Will Topic Alias or Will Topic Name Length",
+     "offset": 12,
+     "size": 2
+    },
+    {
+     "name": "Will Payload Length",
+     "offset": 14,
+     "size": 2
+    },
+    {
+     "name": "Will Payload",
+     "offset": 16,
+     "size": 2,
+     "variable": true
     },
     {
      "name": "Client Identifier",
-     "offset": 13,
-     "size": 0
+     "offset": 18,
+     "size": 2,
+     "variable": true
+    }
+   ]
+  },
+  {
+   "present": {
+    "{\"flag\": \"Will\"}": false,
+    "{\"flag\": \"MAM\"}": false,
+    "{\"flag\": \"Sess Exp\"}": true,
+    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": false,
+    "{\"flag\": \"Auth\"}": false
+   },
+   "length": 16,
+   "hex": "10010800000000000000000000006162",
+   "fields": [
+    {
+     "name": "Length",
+     "offset": 0,
+     "size": 1
+    },
+    {
+     "name": "Packet Type",
+     "offset": 1,
+     "size": 1
+    },
+    {
+     "name": "Connect Flags",
+     "offset": 2,
+     "size": 1
+    },
+    {
+     "name": "Packet Identifier",
+     "offset": 3,
+     "size": 2
+    },
+    {
+     "name": "Protocol Version",
+     "offset": 5,
+     "size": 1
+    },
+    {
+     "name": "Keep Alive",
+     "offset": 6,
+     "size": 2
+    },
+    {
+     "name": "Maximum Packet Size",
+     "offset": 8,
+     "size": 2
+    },
+    {
+     "name": "Session Expiry Interval",
+     "offset": 10,
+     "size": 4
+    },
+    {
+     "name": "Client Identifier",
+     "offset": 14,
+     "size": 2,
+     "variable": true
+    }
+   ]
+  },
+  {
+   "present": {
+    "{\"flag\": \"Will\"}": true,
+    "{\"flag\": \"MAM\"}": false,
+    "{\"flag\": \"Sess Exp\"}": true,
+    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": false,
+    "{\"flag\": \"Auth\"}": false
+   },
+   "length": 23,
+   "hex": "17010a0000000000000000000000000000000261626162",
+   "fields": [
+    {
+     "name": "Length",
+     "offset": 0,
+     "size": 1
+    },
+    {
+     "name": "Packet Type",
+     "offset": 1,
+     "size": 1
+    },
+    {
+     "name": "Connect Flags",
+     "offset": 2,
+     "size": 1
+    },
+    {
+     "name": "Will Flags",
+     "offset": 3,
+     "size": 1
+    },
+    {
+     "name": "Packet Identifier",
+     "offset": 4,
+     "size": 2
+    },
+    {
+     "name": "Protocol Version",
+     "offset": 6,
+     "size": 1
+    },
+    {
+     "name": "Keep Alive",
+     "offset": 7,
+     "size": 2
+    },
+    {
+     "name": "Maximum Packet Size",
+     "offset": 9,
+     "size": 2
+    },
+    {
+     "name": "Session Expiry Interval",
+     "offset": 11,
+     "size": 4
+    },
+    {
+     "name": "Will Topic Alias or Will Topic Name Length",
+     "offset": 15,
+     "size": 2
+    },
+    {
+     "name": "Will Payload Length",
+     "offset": 17,
+     "size": 2
+    },
+    {
+     "name": "Will Payload",
+     "offset": 19,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Client Identifier",
+     "offset": 21,
+     "size": 2,
+     "variable": true
+    }
+   ]
+  },
+  {
+   "present": {
+    "{\"flag\": \"Will\"}": false,
+    "{\"flag\": \"MAM\"}": true,
+    "{\"flag\": \"Sess Exp\"}": true,
+    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": false,
+    "{\"flag\": \"Auth\"}": false
+   },
+   "length": 17,
+   "hex": "1101180000000000000000000000006162",
+   "fields": [
+    {
+     "name": "Length",
+     "offset": 0,
+     "size": 1
+    },
+    {
+     "name": "Packet Type",
+     "offset": 1,
+     "size": 1
+    },
+    {
+     "name": "Connect Flags",
+     "offset": 2,
+     "size": 1
+    },
+    {
+     "name": "Packet Identifier",
+     "offset": 3,
+     "size": 2
+    },
+    {
+     "name": "Protocol Version",
+     "offset": 5,
+     "size": 1
+    },
+    {
+     "name": "Keep Alive",
+     "offset": 6,
+     "size": 2
+    },
+    {
+     "name": "Maximum Packet Size",
+     "offset": 8,
+     "size": 2
+    },
+    {
+     "name": "Maximum Number of Awake Messages",
+     "offset": 10,
+     "size": 1
+    },
+    {
+     "name": "Session Expiry Interval",
+     "offset": 11,
+     "size": 4
+    },
+    {
+     "name": "Client Identifier",
+     "offset": 15,
+     "size": 2,
+     "variable": true
+    }
+   ]
+  },
+  {
+   "present": {
+    "{\"flag\": \"Will\"}": true,
+    "{\"flag\": \"MAM\"}": true,
+    "{\"flag\": \"Sess Exp\"}": true,
+    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": false,
+    "{\"flag\": \"Auth\"}": false
+   },
+   "length": 24,
+   "hex": "18011a000000000000000000000000000000000261626162",
+   "fields": [
+    {
+     "name": "Length",
+     "offset": 0,
+     "size": 1
+    },
+    {
+     "name": "Packet Type",
+     "offset": 1,
+     "size": 1
+    },
+    {
+     "name": "Connect Flags",
+     "offset": 2,
+     "size": 1
+    },
+    {
+     "name": "Will Flags",
+     "offset": 3,
+     "size": 1
+    },
+    {
+     "name": "Packet Identifier",
+     "offset": 4,
+     "size": 2
+    },
+    {
+     "name": "Protocol Version",
+     "offset": 6,
+     "size": 1
+    },
+    {
+     "name": "Keep Alive",
+     "offset": 7,
+     "size": 2
+    },
+    {
+     "name": "Maximum Packet Size",
+     "offset": 9,
+     "size": 2
+    },
+    {
+     "name": "Maximum Number of Awake Messages",
+     "offset": 11,
+     "size": 1
+    },
+    {
+     "name": "Session Expiry Interval",
+     "offset": 12,
+     "size": 4
+    },
+    {
+     "name": "Will Topic Alias or Will Topic Name Length",
+     "offset": 16,
+     "size": 2
+    },
+    {
+     "name": "Will Payload Length",
+     "offset": 18,
+     "size": 2
+    },
+    {
+     "name": "Will Payload",
+     "offset": 20,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Client Identifier",
+     "offset": 22,
+     "size": 2,
+     "variable": true
+    }
+   ]
+  },
+  {
+   "present": {
+    "{\"flag\": \"Will\"}": false,
+    "{\"flag\": \"MAM\"}": false,
+    "{\"flag\": \"Sess Exp\"}": false,
+    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": true,
+    "{\"flag\": \"Auth\"}": false
+   },
+   "length": 12,
+   "hex": "0c0100000000000000006162",
+   "fields": [
+    {
+     "name": "Length",
+     "offset": 0,
+     "size": 1
+    },
+    {
+     "name": "Packet Type",
+     "offset": 1,
+     "size": 1
+    },
+    {
+     "name": "Connect Flags",
+     "offset": 2,
+     "size": 1
+    },
+    {
+     "name": "Packet Identifier",
+     "offset": 3,
+     "size": 2
+    },
+    {
+     "name": "Protocol Version",
+     "offset": 5,
+     "size": 1
+    },
+    {
+     "name": "Keep Alive",
+     "offset": 6,
+     "size": 2
+    },
+    {
+     "name": "Maximum Packet Size",
+     "offset": 8,
+     "size": 2
+    },
+    {
+     "name": "Client Identifier",
+     "offset": 10,
+     "size": 2,
+     "variable": true
     }
    ]
   },
@@ -2133,11 +1588,11 @@
     "{\"flag\": \"Will\"}": true,
     "{\"flag\": \"MAM\"}": false,
     "{\"flag\": \"Sess Exp\"}": false,
-    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": false,
-    "{\"flag\": \"Auth\"}": true
+    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": true,
+    "{\"flag\": \"Auth\"}": false
    },
-   "length": 18,
-   "hex": "120106000000000000000000000000000000",
+   "length": 21,
+   "hex": "150102030000000000000000026162000261626162",
    "fields": [
     {
      "name": "Length",
@@ -2185,39 +1640,27 @@
      "size": 2
     },
     {
-     "name": "Will Payload Length",
+     "name": "Will Topic Name",
      "offset": 13,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Will Payload Length",
+     "offset": 15,
      "size": 2
     },
     {
      "name": "Will Payload",
-     "offset": 15,
-     "size": 0
-    },
-    {
-     "name": "Authentication Method Length",
-     "offset": 15,
-     "size": 1
-    },
-    {
-     "name": "Authentication Method",
-     "offset": 16,
-     "size": 0
-    },
-    {
-     "name": "Authentication Data Length",
-     "offset": 16,
-     "size": 2
-    },
-    {
-     "name": "Authentication Data",
-     "offset": 18,
-     "size": 0
+     "offset": 17,
+     "size": 2,
+     "variable": true
     },
     {
      "name": "Client Identifier",
-     "offset": 18,
-     "size": 0
+     "offset": 19,
+     "size": 2,
+     "variable": true
     }
    ]
   },
@@ -2226,11 +1669,11 @@
     "{\"flag\": \"Will\"}": false,
     "{\"flag\": \"MAM\"}": true,
     "{\"flag\": \"Sess Exp\"}": false,
-    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": false,
-    "{\"flag\": \"Auth\"}": true
+    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": true,
+    "{\"flag\": \"Auth\"}": false
    },
-   "length": 14,
-   "hex": "0e01140000000000000000000000",
+   "length": 13,
+   "hex": "0d011000000000000000006162",
    "fields": [
     {
      "name": "Length",
@@ -2273,29 +1716,10 @@
      "size": 1
     },
     {
-     "name": "Authentication Method Length",
-     "offset": 11,
-     "size": 1
-    },
-    {
-     "name": "Authentication Method",
-     "offset": 12,
-     "size": 0
-    },
-    {
-     "name": "Authentication Data Length",
-     "offset": 12,
-     "size": 2
-    },
-    {
-     "name": "Authentication Data",
-     "offset": 14,
-     "size": 0
-    },
-    {
      "name": "Client Identifier",
-     "offset": 14,
-     "size": 0
+     "offset": 11,
+     "size": 2,
+     "variable": true
     }
    ]
   },
@@ -2303,12 +1727,652 @@
    "present": {
     "{\"flag\": \"Will\"}": true,
     "{\"flag\": \"MAM\"}": true,
+    "{\"flag\": \"Sess Exp\"}": false,
+    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": true,
+    "{\"flag\": \"Auth\"}": false
+   },
+   "length": 22,
+   "hex": "16011203000000000000000000026162000261626162",
+   "fields": [
+    {
+     "name": "Length",
+     "offset": 0,
+     "size": 1
+    },
+    {
+     "name": "Packet Type",
+     "offset": 1,
+     "size": 1
+    },
+    {
+     "name": "Connect Flags",
+     "offset": 2,
+     "size": 1
+    },
+    {
+     "name": "Will Flags",
+     "offset": 3,
+     "size": 1
+    },
+    {
+     "name": "Packet Identifier",
+     "offset": 4,
+     "size": 2
+    },
+    {
+     "name": "Protocol Version",
+     "offset": 6,
+     "size": 1
+    },
+    {
+     "name": "Keep Alive",
+     "offset": 7,
+     "size": 2
+    },
+    {
+     "name": "Maximum Packet Size",
+     "offset": 9,
+     "size": 2
+    },
+    {
+     "name": "Maximum Number of Awake Messages",
+     "offset": 11,
+     "size": 1
+    },
+    {
+     "name": "Will Topic Alias or Will Topic Name Length",
+     "offset": 12,
+     "size": 2
+    },
+    {
+     "name": "Will Topic Name",
+     "offset": 14,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Will Payload Length",
+     "offset": 16,
+     "size": 2
+    },
+    {
+     "name": "Will Payload",
+     "offset": 18,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Client Identifier",
+     "offset": 20,
+     "size": 2,
+     "variable": true
+    }
+   ]
+  },
+  {
+   "present": {
+    "{\"flag\": \"Will\"}": false,
+    "{\"flag\": \"MAM\"}": false,
+    "{\"flag\": \"Sess Exp\"}": true,
+    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": true,
+    "{\"flag\": \"Auth\"}": false
+   },
+   "length": 16,
+   "hex": "10010800000000000000000000006162",
+   "fields": [
+    {
+     "name": "Length",
+     "offset": 0,
+     "size": 1
+    },
+    {
+     "name": "Packet Type",
+     "offset": 1,
+     "size": 1
+    },
+    {
+     "name": "Connect Flags",
+     "offset": 2,
+     "size": 1
+    },
+    {
+     "name": "Packet Identifier",
+     "offset": 3,
+     "size": 2
+    },
+    {
+     "name": "Protocol Version",
+     "offset": 5,
+     "size": 1
+    },
+    {
+     "name": "Keep Alive",
+     "offset": 6,
+     "size": 2
+    },
+    {
+     "name": "Maximum Packet Size",
+     "offset": 8,
+     "size": 2
+    },
+    {
+     "name": "Session Expiry Interval",
+     "offset": 10,
+     "size": 4
+    },
+    {
+     "name": "Client Identifier",
+     "offset": 14,
+     "size": 2,
+     "variable": true
+    }
+   ]
+  },
+  {
+   "present": {
+    "{\"flag\": \"Will\"}": true,
+    "{\"flag\": \"MAM\"}": false,
+    "{\"flag\": \"Sess Exp\"}": true,
+    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": true,
+    "{\"flag\": \"Auth\"}": false
+   },
+   "length": 25,
+   "hex": "19010a03000000000000000000000000026162000261626162",
+   "fields": [
+    {
+     "name": "Length",
+     "offset": 0,
+     "size": 1
+    },
+    {
+     "name": "Packet Type",
+     "offset": 1,
+     "size": 1
+    },
+    {
+     "name": "Connect Flags",
+     "offset": 2,
+     "size": 1
+    },
+    {
+     "name": "Will Flags",
+     "offset": 3,
+     "size": 1
+    },
+    {
+     "name": "Packet Identifier",
+     "offset": 4,
+     "size": 2
+    },
+    {
+     "name": "Protocol Version",
+     "offset": 6,
+     "size": 1
+    },
+    {
+     "name": "Keep Alive",
+     "offset": 7,
+     "size": 2
+    },
+    {
+     "name": "Maximum Packet Size",
+     "offset": 9,
+     "size": 2
+    },
+    {
+     "name": "Session Expiry Interval",
+     "offset": 11,
+     "size": 4
+    },
+    {
+     "name": "Will Topic Alias or Will Topic Name Length",
+     "offset": 15,
+     "size": 2
+    },
+    {
+     "name": "Will Topic Name",
+     "offset": 17,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Will Payload Length",
+     "offset": 19,
+     "size": 2
+    },
+    {
+     "name": "Will Payload",
+     "offset": 21,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Client Identifier",
+     "offset": 23,
+     "size": 2,
+     "variable": true
+    }
+   ]
+  },
+  {
+   "present": {
+    "{\"flag\": \"Will\"}": false,
+    "{\"flag\": \"MAM\"}": true,
+    "{\"flag\": \"Sess Exp\"}": true,
+    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": true,
+    "{\"flag\": \"Auth\"}": false
+   },
+   "length": 17,
+   "hex": "1101180000000000000000000000006162",
+   "fields": [
+    {
+     "name": "Length",
+     "offset": 0,
+     "size": 1
+    },
+    {
+     "name": "Packet Type",
+     "offset": 1,
+     "size": 1
+    },
+    {
+     "name": "Connect Flags",
+     "offset": 2,
+     "size": 1
+    },
+    {
+     "name": "Packet Identifier",
+     "offset": 3,
+     "size": 2
+    },
+    {
+     "name": "Protocol Version",
+     "offset": 5,
+     "size": 1
+    },
+    {
+     "name": "Keep Alive",
+     "offset": 6,
+     "size": 2
+    },
+    {
+     "name": "Maximum Packet Size",
+     "offset": 8,
+     "size": 2
+    },
+    {
+     "name": "Maximum Number of Awake Messages",
+     "offset": 10,
+     "size": 1
+    },
+    {
+     "name": "Session Expiry Interval",
+     "offset": 11,
+     "size": 4
+    },
+    {
+     "name": "Client Identifier",
+     "offset": 15,
+     "size": 2,
+     "variable": true
+    }
+   ]
+  },
+  {
+   "present": {
+    "{\"flag\": \"Will\"}": true,
+    "{\"flag\": \"MAM\"}": true,
+    "{\"flag\": \"Sess Exp\"}": true,
+    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": true,
+    "{\"flag\": \"Auth\"}": false
+   },
+   "length": 26,
+   "hex": "1a011a0300000000000000000000000000026162000261626162",
+   "fields": [
+    {
+     "name": "Length",
+     "offset": 0,
+     "size": 1
+    },
+    {
+     "name": "Packet Type",
+     "offset": 1,
+     "size": 1
+    },
+    {
+     "name": "Connect Flags",
+     "offset": 2,
+     "size": 1
+    },
+    {
+     "name": "Will Flags",
+     "offset": 3,
+     "size": 1
+    },
+    {
+     "name": "Packet Identifier",
+     "offset": 4,
+     "size": 2
+    },
+    {
+     "name": "Protocol Version",
+     "offset": 6,
+     "size": 1
+    },
+    {
+     "name": "Keep Alive",
+     "offset": 7,
+     "size": 2
+    },
+    {
+     "name": "Maximum Packet Size",
+     "offset": 9,
+     "size": 2
+    },
+    {
+     "name": "Maximum Number of Awake Messages",
+     "offset": 11,
+     "size": 1
+    },
+    {
+     "name": "Session Expiry Interval",
+     "offset": 12,
+     "size": 4
+    },
+    {
+     "name": "Will Topic Alias or Will Topic Name Length",
+     "offset": 16,
+     "size": 2
+    },
+    {
+     "name": "Will Topic Name",
+     "offset": 18,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Will Payload Length",
+     "offset": 20,
+     "size": 2
+    },
+    {
+     "name": "Will Payload",
+     "offset": 22,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Client Identifier",
+     "offset": 24,
+     "size": 2,
+     "variable": true
+    }
+   ]
+  },
+  {
+   "present": {
+    "{\"flag\": \"Will\"}": false,
+    "{\"flag\": \"MAM\"}": false,
     "{\"flag\": \"Sess Exp\"}": false,
     "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": false,
     "{\"flag\": \"Auth\"}": true
    },
    "length": 19,
-   "hex": "13011600000000000000000000000000000000",
+   "hex": "13010400000000000000026162000261626162",
+   "fields": [
+    {
+     "name": "Length",
+     "offset": 0,
+     "size": 1
+    },
+    {
+     "name": "Packet Type",
+     "offset": 1,
+     "size": 1
+    },
+    {
+     "name": "Connect Flags",
+     "offset": 2,
+     "size": 1
+    },
+    {
+     "name": "Packet Identifier",
+     "offset": 3,
+     "size": 2
+    },
+    {
+     "name": "Protocol Version",
+     "offset": 5,
+     "size": 1
+    },
+    {
+     "name": "Keep Alive",
+     "offset": 6,
+     "size": 2
+    },
+    {
+     "name": "Maximum Packet Size",
+     "offset": 8,
+     "size": 2
+    },
+    {
+     "name": "Authentication Method Length",
+     "offset": 10,
+     "size": 1
+    },
+    {
+     "name": "Authentication Method",
+     "offset": 11,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Authentication Data Length",
+     "offset": 13,
+     "size": 2
+    },
+    {
+     "name": "Authentication Data",
+     "offset": 15,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Client Identifier",
+     "offset": 17,
+     "size": 2,
+     "variable": true
+    }
+   ]
+  },
+  {
+   "present": {
+    "{\"flag\": \"Will\"}": true,
+    "{\"flag\": \"MAM\"}": false,
+    "{\"flag\": \"Sess Exp\"}": false,
+    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": false,
+    "{\"flag\": \"Auth\"}": true
+   },
+   "length": 26,
+   "hex": "1a01060000000000000000000000026162026162000261626162",
+   "fields": [
+    {
+     "name": "Length",
+     "offset": 0,
+     "size": 1
+    },
+    {
+     "name": "Packet Type",
+     "offset": 1,
+     "size": 1
+    },
+    {
+     "name": "Connect Flags",
+     "offset": 2,
+     "size": 1
+    },
+    {
+     "name": "Will Flags",
+     "offset": 3,
+     "size": 1
+    },
+    {
+     "name": "Packet Identifier",
+     "offset": 4,
+     "size": 2
+    },
+    {
+     "name": "Protocol Version",
+     "offset": 6,
+     "size": 1
+    },
+    {
+     "name": "Keep Alive",
+     "offset": 7,
+     "size": 2
+    },
+    {
+     "name": "Maximum Packet Size",
+     "offset": 9,
+     "size": 2
+    },
+    {
+     "name": "Will Topic Alias or Will Topic Name Length",
+     "offset": 11,
+     "size": 2
+    },
+    {
+     "name": "Will Payload Length",
+     "offset": 13,
+     "size": 2
+    },
+    {
+     "name": "Will Payload",
+     "offset": 15,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Authentication Method Length",
+     "offset": 17,
+     "size": 1
+    },
+    {
+     "name": "Authentication Method",
+     "offset": 18,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Authentication Data Length",
+     "offset": 20,
+     "size": 2
+    },
+    {
+     "name": "Authentication Data",
+     "offset": 22,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Client Identifier",
+     "offset": 24,
+     "size": 2,
+     "variable": true
+    }
+   ]
+  },
+  {
+   "present": {
+    "{\"flag\": \"Will\"}": false,
+    "{\"flag\": \"MAM\"}": true,
+    "{\"flag\": \"Sess Exp\"}": false,
+    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": false,
+    "{\"flag\": \"Auth\"}": true
+   },
+   "length": 20,
+   "hex": "1401140000000000000000026162000261626162",
+   "fields": [
+    {
+     "name": "Length",
+     "offset": 0,
+     "size": 1
+    },
+    {
+     "name": "Packet Type",
+     "offset": 1,
+     "size": 1
+    },
+    {
+     "name": "Connect Flags",
+     "offset": 2,
+     "size": 1
+    },
+    {
+     "name": "Packet Identifier",
+     "offset": 3,
+     "size": 2
+    },
+    {
+     "name": "Protocol Version",
+     "offset": 5,
+     "size": 1
+    },
+    {
+     "name": "Keep Alive",
+     "offset": 6,
+     "size": 2
+    },
+    {
+     "name": "Maximum Packet Size",
+     "offset": 8,
+     "size": 2
+    },
+    {
+     "name": "Maximum Number of Awake Messages",
+     "offset": 10,
+     "size": 1
+    },
+    {
+     "name": "Authentication Method Length",
+     "offset": 11,
+     "size": 1
+    },
+    {
+     "name": "Authentication Method",
+     "offset": 12,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Authentication Data Length",
+     "offset": 14,
+     "size": 2
+    },
+    {
+     "name": "Authentication Data",
+     "offset": 16,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Client Identifier",
+     "offset": 18,
+     "size": 2,
+     "variable": true
+    }
+   ]
+  },
+  {
+   "present": {
+    "{\"flag\": \"Will\"}": true,
+    "{\"flag\": \"MAM\"}": true,
+    "{\"flag\": \"Sess Exp\"}": false,
+    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": false,
+    "{\"flag\": \"Auth\"}": true
+   },
+   "length": 27,
+   "hex": "1b0116000000000000000000000000026162026162000261626162",
    "fields": [
     {
      "name": "Length",
@@ -2368,32 +2432,36 @@
     {
      "name": "Will Payload",
      "offset": 16,
-     "size": 0
+     "size": 2,
+     "variable": true
     },
     {
      "name": "Authentication Method Length",
-     "offset": 16,
+     "offset": 18,
      "size": 1
     },
     {
      "name": "Authentication Method",
-     "offset": 17,
-     "size": 0
+     "offset": 19,
+     "size": 2,
+     "variable": true
     },
     {
      "name": "Authentication Data Length",
-     "offset": 17,
+     "offset": 21,
      "size": 2
     },
     {
      "name": "Authentication Data",
-     "offset": 19,
-     "size": 0
+     "offset": 23,
+     "size": 2,
+     "variable": true
     },
     {
      "name": "Client Identifier",
-     "offset": 19,
-     "size": 0
+     "offset": 25,
+     "size": 2,
+     "variable": true
     }
    ]
   },
@@ -2401,271 +2469,281 @@
    "present": {
     "{\"flag\": \"Will\"}": false,
     "{\"flag\": \"MAM\"}": false,
-    "{\"flag\": \"Sess Exp\"}": true,
-    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": false,
-    "{\"flag\": \"Auth\"}": true
-   },
-   "length": 17,
-   "hex": "11010c0000000000000000000000000000",
-   "fields": [
-    {
-     "name": "Length",
-     "offset": 0,
-     "size": 1
-    },
-    {
-     "name": "Packet Type",
-     "offset": 1,
-     "size": 1
-    },
-    {
-     "name": "Connect Flags",
-     "offset": 2,
-     "size": 1
-    },
-    {
-     "name": "Packet Identifier",
-     "offset": 3,
-     "size": 2
-    },
-    {
-     "name": "Protocol Version",
-     "offset": 5,
-     "size": 1
-    },
-    {
-     "name": "Keep Alive",
-     "offset": 6,
-     "size": 2
-    },
-    {
-     "name": "Maximum Packet Size",
-     "offset": 8,
-     "size": 2
-    },
-    {
-     "name": "Session Expiry Interval",
-     "offset": 10,
-     "size": 4
-    },
-    {
-     "name": "Authentication Method Length",
-     "offset": 14,
-     "size": 1
-    },
-    {
-     "name": "Authentication Method",
-     "offset": 15,
-     "size": 0
-    },
-    {
-     "name": "Authentication Data Length",
-     "offset": 15,
-     "size": 2
-    },
-    {
-     "name": "Authentication Data",
-     "offset": 17,
-     "size": 0
-    },
-    {
-     "name": "Client Identifier",
-     "offset": 17,
-     "size": 0
-    }
-   ]
-  },
-  {
-   "present": {
-    "{\"flag\": \"Will\"}": true,
-    "{\"flag\": \"MAM\"}": false,
-    "{\"flag\": \"Sess Exp\"}": true,
-    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": false,
-    "{\"flag\": \"Auth\"}": true
-   },
-   "length": 22,
-   "hex": "16010e00000000000000000000000000000000000000",
-   "fields": [
-    {
-     "name": "Length",
-     "offset": 0,
-     "size": 1
-    },
-    {
-     "name": "Packet Type",
-     "offset": 1,
-     "size": 1
-    },
-    {
-     "name": "Connect Flags",
-     "offset": 2,
-     "size": 1
-    },
-    {
-     "name": "Will Flags",
-     "offset": 3,
-     "size": 1
-    },
-    {
-     "name": "Packet Identifier",
-     "offset": 4,
-     "size": 2
-    },
-    {
-     "name": "Protocol Version",
-     "offset": 6,
-     "size": 1
-    },
-    {
-     "name": "Keep Alive",
-     "offset": 7,
-     "size": 2
-    },
-    {
-     "name": "Maximum Packet Size",
-     "offset": 9,
-     "size": 2
-    },
-    {
-     "name": "Session Expiry Interval",
-     "offset": 11,
-     "size": 4
-    },
-    {
-     "name": "Will Topic Alias or Will Topic Name Length",
-     "offset": 15,
-     "size": 2
-    },
-    {
-     "name": "Will Payload Length",
-     "offset": 17,
-     "size": 2
-    },
-    {
-     "name": "Will Payload",
-     "offset": 19,
-     "size": 0
-    },
-    {
-     "name": "Authentication Method Length",
-     "offset": 19,
-     "size": 1
-    },
-    {
-     "name": "Authentication Method",
-     "offset": 20,
-     "size": 0
-    },
-    {
-     "name": "Authentication Data Length",
-     "offset": 20,
-     "size": 2
-    },
-    {
-     "name": "Authentication Data",
-     "offset": 22,
-     "size": 0
-    },
-    {
-     "name": "Client Identifier",
-     "offset": 22,
-     "size": 0
-    }
-   ]
-  },
-  {
-   "present": {
-    "{\"flag\": \"Will\"}": false,
-    "{\"flag\": \"MAM\"}": true,
-    "{\"flag\": \"Sess Exp\"}": true,
-    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": false,
-    "{\"flag\": \"Auth\"}": true
-   },
-   "length": 18,
-   "hex": "12011c000000000000000000000000000000",
-   "fields": [
-    {
-     "name": "Length",
-     "offset": 0,
-     "size": 1
-    },
-    {
-     "name": "Packet Type",
-     "offset": 1,
-     "size": 1
-    },
-    {
-     "name": "Connect Flags",
-     "offset": 2,
-     "size": 1
-    },
-    {
-     "name": "Packet Identifier",
-     "offset": 3,
-     "size": 2
-    },
-    {
-     "name": "Protocol Version",
-     "offset": 5,
-     "size": 1
-    },
-    {
-     "name": "Keep Alive",
-     "offset": 6,
-     "size": 2
-    },
-    {
-     "name": "Maximum Packet Size",
-     "offset": 8,
-     "size": 2
-    },
-    {
-     "name": "Maximum Number of Awake Messages",
-     "offset": 10,
-     "size": 1
-    },
-    {
-     "name": "Session Expiry Interval",
-     "offset": 11,
-     "size": 4
-    },
-    {
-     "name": "Authentication Method Length",
-     "offset": 15,
-     "size": 1
-    },
-    {
-     "name": "Authentication Method",
-     "offset": 16,
-     "size": 0
-    },
-    {
-     "name": "Authentication Data Length",
-     "offset": 16,
-     "size": 2
-    },
-    {
-     "name": "Authentication Data",
-     "offset": 18,
-     "size": 0
-    },
-    {
-     "name": "Client Identifier",
-     "offset": 18,
-     "size": 0
-    }
-   ]
-  },
-  {
-   "present": {
-    "{\"flag\": \"Will\"}": true,
-    "{\"flag\": \"MAM\"}": true,
     "{\"flag\": \"Sess Exp\"}": true,
     "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": false,
     "{\"flag\": \"Auth\"}": true
    },
    "length": 23,
-   "hex": "17011e0000000000000000000000000000000000000000",
+   "hex": "17010c0000000000000000000000026162000261626162",
+   "fields": [
+    {
+     "name": "Length",
+     "offset": 0,
+     "size": 1
+    },
+    {
+     "name": "Packet Type",
+     "offset": 1,
+     "size": 1
+    },
+    {
+     "name": "Connect Flags",
+     "offset": 2,
+     "size": 1
+    },
+    {
+     "name": "Packet Identifier",
+     "offset": 3,
+     "size": 2
+    },
+    {
+     "name": "Protocol Version",
+     "offset": 5,
+     "size": 1
+    },
+    {
+     "name": "Keep Alive",
+     "offset": 6,
+     "size": 2
+    },
+    {
+     "name": "Maximum Packet Size",
+     "offset": 8,
+     "size": 2
+    },
+    {
+     "name": "Session Expiry Interval",
+     "offset": 10,
+     "size": 4
+    },
+    {
+     "name": "Authentication Method Length",
+     "offset": 14,
+     "size": 1
+    },
+    {
+     "name": "Authentication Method",
+     "offset": 15,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Authentication Data Length",
+     "offset": 17,
+     "size": 2
+    },
+    {
+     "name": "Authentication Data",
+     "offset": 19,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Client Identifier",
+     "offset": 21,
+     "size": 2,
+     "variable": true
+    }
+   ]
+  },
+  {
+   "present": {
+    "{\"flag\": \"Will\"}": true,
+    "{\"flag\": \"MAM\"}": false,
+    "{\"flag\": \"Sess Exp\"}": true,
+    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": false,
+    "{\"flag\": \"Auth\"}": true
+   },
+   "length": 30,
+   "hex": "1e010e000000000000000000000000000000026162026162000261626162",
+   "fields": [
+    {
+     "name": "Length",
+     "offset": 0,
+     "size": 1
+    },
+    {
+     "name": "Packet Type",
+     "offset": 1,
+     "size": 1
+    },
+    {
+     "name": "Connect Flags",
+     "offset": 2,
+     "size": 1
+    },
+    {
+     "name": "Will Flags",
+     "offset": 3,
+     "size": 1
+    },
+    {
+     "name": "Packet Identifier",
+     "offset": 4,
+     "size": 2
+    },
+    {
+     "name": "Protocol Version",
+     "offset": 6,
+     "size": 1
+    },
+    {
+     "name": "Keep Alive",
+     "offset": 7,
+     "size": 2
+    },
+    {
+     "name": "Maximum Packet Size",
+     "offset": 9,
+     "size": 2
+    },
+    {
+     "name": "Session Expiry Interval",
+     "offset": 11,
+     "size": 4
+    },
+    {
+     "name": "Will Topic Alias or Will Topic Name Length",
+     "offset": 15,
+     "size": 2
+    },
+    {
+     "name": "Will Payload Length",
+     "offset": 17,
+     "size": 2
+    },
+    {
+     "name": "Will Payload",
+     "offset": 19,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Authentication Method Length",
+     "offset": 21,
+     "size": 1
+    },
+    {
+     "name": "Authentication Method",
+     "offset": 22,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Authentication Data Length",
+     "offset": 24,
+     "size": 2
+    },
+    {
+     "name": "Authentication Data",
+     "offset": 26,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Client Identifier",
+     "offset": 28,
+     "size": 2,
+     "variable": true
+    }
+   ]
+  },
+  {
+   "present": {
+    "{\"flag\": \"Will\"}": false,
+    "{\"flag\": \"MAM\"}": true,
+    "{\"flag\": \"Sess Exp\"}": true,
+    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": false,
+    "{\"flag\": \"Auth\"}": true
+   },
+   "length": 24,
+   "hex": "18011c000000000000000000000000026162000261626162",
+   "fields": [
+    {
+     "name": "Length",
+     "offset": 0,
+     "size": 1
+    },
+    {
+     "name": "Packet Type",
+     "offset": 1,
+     "size": 1
+    },
+    {
+     "name": "Connect Flags",
+     "offset": 2,
+     "size": 1
+    },
+    {
+     "name": "Packet Identifier",
+     "offset": 3,
+     "size": 2
+    },
+    {
+     "name": "Protocol Version",
+     "offset": 5,
+     "size": 1
+    },
+    {
+     "name": "Keep Alive",
+     "offset": 6,
+     "size": 2
+    },
+    {
+     "name": "Maximum Packet Size",
+     "offset": 8,
+     "size": 2
+    },
+    {
+     "name": "Maximum Number of Awake Messages",
+     "offset": 10,
+     "size": 1
+    },
+    {
+     "name": "Session Expiry Interval",
+     "offset": 11,
+     "size": 4
+    },
+    {
+     "name": "Authentication Method Length",
+     "offset": 15,
+     "size": 1
+    },
+    {
+     "name": "Authentication Method",
+     "offset": 16,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Authentication Data Length",
+     "offset": 18,
+     "size": 2
+    },
+    {
+     "name": "Authentication Data",
+     "offset": 20,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Client Identifier",
+     "offset": 22,
+     "size": 2,
+     "variable": true
+    }
+   ]
+  },
+  {
+   "present": {
+    "{\"flag\": \"Will\"}": true,
+    "{\"flag\": \"MAM\"}": true,
+    "{\"flag\": \"Sess Exp\"}": true,
+    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": false,
+    "{\"flag\": \"Auth\"}": true
+   },
+   "length": 31,
+   "hex": "1f011e00000000000000000000000000000000026162026162000261626162",
    "fields": [
     {
      "name": "Length",
@@ -2730,32 +2808,36 @@
     {
      "name": "Will Payload",
      "offset": 20,
-     "size": 0
+     "size": 2,
+     "variable": true
     },
     {
      "name": "Authentication Method Length",
-     "offset": 20,
+     "offset": 22,
      "size": 1
     },
     {
      "name": "Authentication Method",
-     "offset": 21,
-     "size": 0
+     "offset": 23,
+     "size": 2,
+     "variable": true
     },
     {
      "name": "Authentication Data Length",
-     "offset": 21,
+     "offset": 25,
      "size": 2
     },
     {
      "name": "Authentication Data",
-     "offset": 23,
-     "size": 0
+     "offset": 27,
+     "size": 2,
+     "variable": true
     },
     {
      "name": "Client Identifier",
-     "offset": 23,
-     "size": 0
+     "offset": 29,
+     "size": 2,
+     "variable": true
     }
    ]
   },
@@ -2763,261 +2845,272 @@
    "present": {
     "{\"flag\": \"Will\"}": false,
     "{\"flag\": \"MAM\"}": false,
-    "{\"flag\": \"Sess Exp\"}": false,
-    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": true,
-    "{\"flag\": \"Auth\"}": true
-   },
-   "length": 13,
-   "hex": "0d010400000000000000000000",
-   "fields": [
-    {
-     "name": "Length",
-     "offset": 0,
-     "size": 1
-    },
-    {
-     "name": "Packet Type",
-     "offset": 1,
-     "size": 1
-    },
-    {
-     "name": "Connect Flags",
-     "offset": 2,
-     "size": 1
-    },
-    {
-     "name": "Packet Identifier",
-     "offset": 3,
-     "size": 2
-    },
-    {
-     "name": "Protocol Version",
-     "offset": 5,
-     "size": 1
-    },
-    {
-     "name": "Keep Alive",
-     "offset": 6,
-     "size": 2
-    },
-    {
-     "name": "Maximum Packet Size",
-     "offset": 8,
-     "size": 2
-    },
-    {
-     "name": "Authentication Method Length",
-     "offset": 10,
-     "size": 1
-    },
-    {
-     "name": "Authentication Method",
-     "offset": 11,
-     "size": 0
-    },
-    {
-     "name": "Authentication Data Length",
-     "offset": 11,
-     "size": 2
-    },
-    {
-     "name": "Authentication Data",
-     "offset": 13,
-     "size": 0
-    },
-    {
-     "name": "Client Identifier",
-     "offset": 13,
-     "size": 0
-    }
-   ]
-  },
-  {
-   "present": {
-    "{\"flag\": \"Will\"}": true,
-    "{\"flag\": \"MAM\"}": false,
-    "{\"flag\": \"Sess Exp\"}": false,
-    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": true,
-    "{\"flag\": \"Auth\"}": true
-   },
-   "length": 18,
-   "hex": "120106030000000000000000000000000000",
-   "fields": [
-    {
-     "name": "Length",
-     "offset": 0,
-     "size": 1
-    },
-    {
-     "name": "Packet Type",
-     "offset": 1,
-     "size": 1
-    },
-    {
-     "name": "Connect Flags",
-     "offset": 2,
-     "size": 1
-    },
-    {
-     "name": "Will Flags",
-     "offset": 3,
-     "size": 1
-    },
-    {
-     "name": "Packet Identifier",
-     "offset": 4,
-     "size": 2
-    },
-    {
-     "name": "Protocol Version",
-     "offset": 6,
-     "size": 1
-    },
-    {
-     "name": "Keep Alive",
-     "offset": 7,
-     "size": 2
-    },
-    {
-     "name": "Maximum Packet Size",
-     "offset": 9,
-     "size": 2
-    },
-    {
-     "name": "Will Topic Alias or Will Topic Name Length",
-     "offset": 11,
-     "size": 2
-    },
-    {
-     "name": "Will Topic Name",
-     "offset": 13,
-     "size": 0
-    },
-    {
-     "name": "Will Payload Length",
-     "offset": 13,
-     "size": 2
-    },
-    {
-     "name": "Will Payload",
-     "offset": 15,
-     "size": 0
-    },
-    {
-     "name": "Authentication Method Length",
-     "offset": 15,
-     "size": 1
-    },
-    {
-     "name": "Authentication Method",
-     "offset": 16,
-     "size": 0
-    },
-    {
-     "name": "Authentication Data Length",
-     "offset": 16,
-     "size": 2
-    },
-    {
-     "name": "Authentication Data",
-     "offset": 18,
-     "size": 0
-    },
-    {
-     "name": "Client Identifier",
-     "offset": 18,
-     "size": 0
-    }
-   ]
-  },
-  {
-   "present": {
-    "{\"flag\": \"Will\"}": false,
-    "{\"flag\": \"MAM\"}": true,
-    "{\"flag\": \"Sess Exp\"}": false,
-    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": true,
-    "{\"flag\": \"Auth\"}": true
-   },
-   "length": 14,
-   "hex": "0e01140000000000000000000000",
-   "fields": [
-    {
-     "name": "Length",
-     "offset": 0,
-     "size": 1
-    },
-    {
-     "name": "Packet Type",
-     "offset": 1,
-     "size": 1
-    },
-    {
-     "name": "Connect Flags",
-     "offset": 2,
-     "size": 1
-    },
-    {
-     "name": "Packet Identifier",
-     "offset": 3,
-     "size": 2
-    },
-    {
-     "name": "Protocol Version",
-     "offset": 5,
-     "size": 1
-    },
-    {
-     "name": "Keep Alive",
-     "offset": 6,
-     "size": 2
-    },
-    {
-     "name": "Maximum Packet Size",
-     "offset": 8,
-     "size": 2
-    },
-    {
-     "name": "Maximum Number of Awake Messages",
-     "offset": 10,
-     "size": 1
-    },
-    {
-     "name": "Authentication Method Length",
-     "offset": 11,
-     "size": 1
-    },
-    {
-     "name": "Authentication Method",
-     "offset": 12,
-     "size": 0
-    },
-    {
-     "name": "Authentication Data Length",
-     "offset": 12,
-     "size": 2
-    },
-    {
-     "name": "Authentication Data",
-     "offset": 14,
-     "size": 0
-    },
-    {
-     "name": "Client Identifier",
-     "offset": 14,
-     "size": 0
-    }
-   ]
-  },
-  {
-   "present": {
-    "{\"flag\": \"Will\"}": true,
-    "{\"flag\": \"MAM\"}": true,
     "{\"flag\": \"Sess Exp\"}": false,
     "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": true,
     "{\"flag\": \"Auth\"}": true
    },
    "length": 19,
-   "hex": "13011603000000000000000000000000000000",
+   "hex": "13010400000000000000026162000261626162",
+   "fields": [
+    {
+     "name": "Length",
+     "offset": 0,
+     "size": 1
+    },
+    {
+     "name": "Packet Type",
+     "offset": 1,
+     "size": 1
+    },
+    {
+     "name": "Connect Flags",
+     "offset": 2,
+     "size": 1
+    },
+    {
+     "name": "Packet Identifier",
+     "offset": 3,
+     "size": 2
+    },
+    {
+     "name": "Protocol Version",
+     "offset": 5,
+     "size": 1
+    },
+    {
+     "name": "Keep Alive",
+     "offset": 6,
+     "size": 2
+    },
+    {
+     "name": "Maximum Packet Size",
+     "offset": 8,
+     "size": 2
+    },
+    {
+     "name": "Authentication Method Length",
+     "offset": 10,
+     "size": 1
+    },
+    {
+     "name": "Authentication Method",
+     "offset": 11,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Authentication Data Length",
+     "offset": 13,
+     "size": 2
+    },
+    {
+     "name": "Authentication Data",
+     "offset": 15,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Client Identifier",
+     "offset": 17,
+     "size": 2,
+     "variable": true
+    }
+   ]
+  },
+  {
+   "present": {
+    "{\"flag\": \"Will\"}": true,
+    "{\"flag\": \"MAM\"}": false,
+    "{\"flag\": \"Sess Exp\"}": false,
+    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": true,
+    "{\"flag\": \"Auth\"}": true
+   },
+   "length": 28,
+   "hex": "1c010603000000000000000002616200026162026162000261626162",
+   "fields": [
+    {
+     "name": "Length",
+     "offset": 0,
+     "size": 1
+    },
+    {
+     "name": "Packet Type",
+     "offset": 1,
+     "size": 1
+    },
+    {
+     "name": "Connect Flags",
+     "offset": 2,
+     "size": 1
+    },
+    {
+     "name": "Will Flags",
+     "offset": 3,
+     "size": 1
+    },
+    {
+     "name": "Packet Identifier",
+     "offset": 4,
+     "size": 2
+    },
+    {
+     "name": "Protocol Version",
+     "offset": 6,
+     "size": 1
+    },
+    {
+     "name": "Keep Alive",
+     "offset": 7,
+     "size": 2
+    },
+    {
+     "name": "Maximum Packet Size",
+     "offset": 9,
+     "size": 2
+    },
+    {
+     "name": "Will Topic Alias or Will Topic Name Length",
+     "offset": 11,
+     "size": 2
+    },
+    {
+     "name": "Will Topic Name",
+     "offset": 13,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Will Payload Length",
+     "offset": 15,
+     "size": 2
+    },
+    {
+     "name": "Will Payload",
+     "offset": 17,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Authentication Method Length",
+     "offset": 19,
+     "size": 1
+    },
+    {
+     "name": "Authentication Method",
+     "offset": 20,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Authentication Data Length",
+     "offset": 22,
+     "size": 2
+    },
+    {
+     "name": "Authentication Data",
+     "offset": 24,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Client Identifier",
+     "offset": 26,
+     "size": 2,
+     "variable": true
+    }
+   ]
+  },
+  {
+   "present": {
+    "{\"flag\": \"Will\"}": false,
+    "{\"flag\": \"MAM\"}": true,
+    "{\"flag\": \"Sess Exp\"}": false,
+    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": true,
+    "{\"flag\": \"Auth\"}": true
+   },
+   "length": 20,
+   "hex": "1401140000000000000000026162000261626162",
+   "fields": [
+    {
+     "name": "Length",
+     "offset": 0,
+     "size": 1
+    },
+    {
+     "name": "Packet Type",
+     "offset": 1,
+     "size": 1
+    },
+    {
+     "name": "Connect Flags",
+     "offset": 2,
+     "size": 1
+    },
+    {
+     "name": "Packet Identifier",
+     "offset": 3,
+     "size": 2
+    },
+    {
+     "name": "Protocol Version",
+     "offset": 5,
+     "size": 1
+    },
+    {
+     "name": "Keep Alive",
+     "offset": 6,
+     "size": 2
+    },
+    {
+     "name": "Maximum Packet Size",
+     "offset": 8,
+     "size": 2
+    },
+    {
+     "name": "Maximum Number of Awake Messages",
+     "offset": 10,
+     "size": 1
+    },
+    {
+     "name": "Authentication Method Length",
+     "offset": 11,
+     "size": 1
+    },
+    {
+     "name": "Authentication Method",
+     "offset": 12,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Authentication Data Length",
+     "offset": 14,
+     "size": 2
+    },
+    {
+     "name": "Authentication Data",
+     "offset": 16,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Client Identifier",
+     "offset": 18,
+     "size": 2,
+     "variable": true
+    }
+   ]
+  },
+  {
+   "present": {
+    "{\"flag\": \"Will\"}": true,
+    "{\"flag\": \"MAM\"}": true,
+    "{\"flag\": \"Sess Exp\"}": false,
+    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": true,
+    "{\"flag\": \"Auth\"}": true
+   },
+   "length": 29,
+   "hex": "1d01160300000000000000000002616200026162026162000261626162",
    "fields": [
     {
      "name": "Length",
@@ -3072,42 +3165,47 @@
     {
      "name": "Will Topic Name",
      "offset": 14,
-     "size": 0
+     "size": 2,
+     "variable": true
     },
     {
      "name": "Will Payload Length",
-     "offset": 14,
+     "offset": 16,
      "size": 2
     },
     {
      "name": "Will Payload",
-     "offset": 16,
-     "size": 0
+     "offset": 18,
+     "size": 2,
+     "variable": true
     },
     {
      "name": "Authentication Method Length",
-     "offset": 16,
+     "offset": 20,
      "size": 1
     },
     {
      "name": "Authentication Method",
-     "offset": 17,
-     "size": 0
+     "offset": 21,
+     "size": 2,
+     "variable": true
     },
     {
      "name": "Authentication Data Length",
-     "offset": 17,
+     "offset": 23,
      "size": 2
     },
     {
      "name": "Authentication Data",
-     "offset": 19,
-     "size": 0
+     "offset": 25,
+     "size": 2,
+     "variable": true
     },
     {
      "name": "Client Identifier",
-     "offset": 19,
-     "size": 0
+     "offset": 27,
+     "size": 2,
+     "variable": true
     }
    ]
   },
@@ -3115,276 +3213,287 @@
    "present": {
     "{\"flag\": \"Will\"}": false,
     "{\"flag\": \"MAM\"}": false,
-    "{\"flag\": \"Sess Exp\"}": true,
-    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": true,
-    "{\"flag\": \"Auth\"}": true
-   },
-   "length": 17,
-   "hex": "11010c0000000000000000000000000000",
-   "fields": [
-    {
-     "name": "Length",
-     "offset": 0,
-     "size": 1
-    },
-    {
-     "name": "Packet Type",
-     "offset": 1,
-     "size": 1
-    },
-    {
-     "name": "Connect Flags",
-     "offset": 2,
-     "size": 1
-    },
-    {
-     "name": "Packet Identifier",
-     "offset": 3,
-     "size": 2
-    },
-    {
-     "name": "Protocol Version",
-     "offset": 5,
-     "size": 1
-    },
-    {
-     "name": "Keep Alive",
-     "offset": 6,
-     "size": 2
-    },
-    {
-     "name": "Maximum Packet Size",
-     "offset": 8,
-     "size": 2
-    },
-    {
-     "name": "Session Expiry Interval",
-     "offset": 10,
-     "size": 4
-    },
-    {
-     "name": "Authentication Method Length",
-     "offset": 14,
-     "size": 1
-    },
-    {
-     "name": "Authentication Method",
-     "offset": 15,
-     "size": 0
-    },
-    {
-     "name": "Authentication Data Length",
-     "offset": 15,
-     "size": 2
-    },
-    {
-     "name": "Authentication Data",
-     "offset": 17,
-     "size": 0
-    },
-    {
-     "name": "Client Identifier",
-     "offset": 17,
-     "size": 0
-    }
-   ]
-  },
-  {
-   "present": {
-    "{\"flag\": \"Will\"}": true,
-    "{\"flag\": \"MAM\"}": false,
-    "{\"flag\": \"Sess Exp\"}": true,
-    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": true,
-    "{\"flag\": \"Auth\"}": true
-   },
-   "length": 22,
-   "hex": "16010e03000000000000000000000000000000000000",
-   "fields": [
-    {
-     "name": "Length",
-     "offset": 0,
-     "size": 1
-    },
-    {
-     "name": "Packet Type",
-     "offset": 1,
-     "size": 1
-    },
-    {
-     "name": "Connect Flags",
-     "offset": 2,
-     "size": 1
-    },
-    {
-     "name": "Will Flags",
-     "offset": 3,
-     "size": 1
-    },
-    {
-     "name": "Packet Identifier",
-     "offset": 4,
-     "size": 2
-    },
-    {
-     "name": "Protocol Version",
-     "offset": 6,
-     "size": 1
-    },
-    {
-     "name": "Keep Alive",
-     "offset": 7,
-     "size": 2
-    },
-    {
-     "name": "Maximum Packet Size",
-     "offset": 9,
-     "size": 2
-    },
-    {
-     "name": "Session Expiry Interval",
-     "offset": 11,
-     "size": 4
-    },
-    {
-     "name": "Will Topic Alias or Will Topic Name Length",
-     "offset": 15,
-     "size": 2
-    },
-    {
-     "name": "Will Topic Name",
-     "offset": 17,
-     "size": 0
-    },
-    {
-     "name": "Will Payload Length",
-     "offset": 17,
-     "size": 2
-    },
-    {
-     "name": "Will Payload",
-     "offset": 19,
-     "size": 0
-    },
-    {
-     "name": "Authentication Method Length",
-     "offset": 19,
-     "size": 1
-    },
-    {
-     "name": "Authentication Method",
-     "offset": 20,
-     "size": 0
-    },
-    {
-     "name": "Authentication Data Length",
-     "offset": 20,
-     "size": 2
-    },
-    {
-     "name": "Authentication Data",
-     "offset": 22,
-     "size": 0
-    },
-    {
-     "name": "Client Identifier",
-     "offset": 22,
-     "size": 0
-    }
-   ]
-  },
-  {
-   "present": {
-    "{\"flag\": \"Will\"}": false,
-    "{\"flag\": \"MAM\"}": true,
-    "{\"flag\": \"Sess Exp\"}": true,
-    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": true,
-    "{\"flag\": \"Auth\"}": true
-   },
-   "length": 18,
-   "hex": "12011c000000000000000000000000000000",
-   "fields": [
-    {
-     "name": "Length",
-     "offset": 0,
-     "size": 1
-    },
-    {
-     "name": "Packet Type",
-     "offset": 1,
-     "size": 1
-    },
-    {
-     "name": "Connect Flags",
-     "offset": 2,
-     "size": 1
-    },
-    {
-     "name": "Packet Identifier",
-     "offset": 3,
-     "size": 2
-    },
-    {
-     "name": "Protocol Version",
-     "offset": 5,
-     "size": 1
-    },
-    {
-     "name": "Keep Alive",
-     "offset": 6,
-     "size": 2
-    },
-    {
-     "name": "Maximum Packet Size",
-     "offset": 8,
-     "size": 2
-    },
-    {
-     "name": "Maximum Number of Awake Messages",
-     "offset": 10,
-     "size": 1
-    },
-    {
-     "name": "Session Expiry Interval",
-     "offset": 11,
-     "size": 4
-    },
-    {
-     "name": "Authentication Method Length",
-     "offset": 15,
-     "size": 1
-    },
-    {
-     "name": "Authentication Method",
-     "offset": 16,
-     "size": 0
-    },
-    {
-     "name": "Authentication Data Length",
-     "offset": 16,
-     "size": 2
-    },
-    {
-     "name": "Authentication Data",
-     "offset": 18,
-     "size": 0
-    },
-    {
-     "name": "Client Identifier",
-     "offset": 18,
-     "size": 0
-    }
-   ]
-  },
-  {
-   "present": {
-    "{\"flag\": \"Will\"}": true,
-    "{\"flag\": \"MAM\"}": true,
     "{\"flag\": \"Sess Exp\"}": true,
     "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": true,
     "{\"flag\": \"Auth\"}": true
    },
    "length": 23,
-   "hex": "17011e0300000000000000000000000000000000000000",
+   "hex": "17010c0000000000000000000000026162000261626162",
+   "fields": [
+    {
+     "name": "Length",
+     "offset": 0,
+     "size": 1
+    },
+    {
+     "name": "Packet Type",
+     "offset": 1,
+     "size": 1
+    },
+    {
+     "name": "Connect Flags",
+     "offset": 2,
+     "size": 1
+    },
+    {
+     "name": "Packet Identifier",
+     "offset": 3,
+     "size": 2
+    },
+    {
+     "name": "Protocol Version",
+     "offset": 5,
+     "size": 1
+    },
+    {
+     "name": "Keep Alive",
+     "offset": 6,
+     "size": 2
+    },
+    {
+     "name": "Maximum Packet Size",
+     "offset": 8,
+     "size": 2
+    },
+    {
+     "name": "Session Expiry Interval",
+     "offset": 10,
+     "size": 4
+    },
+    {
+     "name": "Authentication Method Length",
+     "offset": 14,
+     "size": 1
+    },
+    {
+     "name": "Authentication Method",
+     "offset": 15,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Authentication Data Length",
+     "offset": 17,
+     "size": 2
+    },
+    {
+     "name": "Authentication Data",
+     "offset": 19,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Client Identifier",
+     "offset": 21,
+     "size": 2,
+     "variable": true
+    }
+   ]
+  },
+  {
+   "present": {
+    "{\"flag\": \"Will\"}": true,
+    "{\"flag\": \"MAM\"}": false,
+    "{\"flag\": \"Sess Exp\"}": true,
+    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": true,
+    "{\"flag\": \"Auth\"}": true
+   },
+   "length": 32,
+   "hex": "20010e0300000000000000000000000002616200026162026162000261626162",
+   "fields": [
+    {
+     "name": "Length",
+     "offset": 0,
+     "size": 1
+    },
+    {
+     "name": "Packet Type",
+     "offset": 1,
+     "size": 1
+    },
+    {
+     "name": "Connect Flags",
+     "offset": 2,
+     "size": 1
+    },
+    {
+     "name": "Will Flags",
+     "offset": 3,
+     "size": 1
+    },
+    {
+     "name": "Packet Identifier",
+     "offset": 4,
+     "size": 2
+    },
+    {
+     "name": "Protocol Version",
+     "offset": 6,
+     "size": 1
+    },
+    {
+     "name": "Keep Alive",
+     "offset": 7,
+     "size": 2
+    },
+    {
+     "name": "Maximum Packet Size",
+     "offset": 9,
+     "size": 2
+    },
+    {
+     "name": "Session Expiry Interval",
+     "offset": 11,
+     "size": 4
+    },
+    {
+     "name": "Will Topic Alias or Will Topic Name Length",
+     "offset": 15,
+     "size": 2
+    },
+    {
+     "name": "Will Topic Name",
+     "offset": 17,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Will Payload Length",
+     "offset": 19,
+     "size": 2
+    },
+    {
+     "name": "Will Payload",
+     "offset": 21,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Authentication Method Length",
+     "offset": 23,
+     "size": 1
+    },
+    {
+     "name": "Authentication Method",
+     "offset": 24,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Authentication Data Length",
+     "offset": 26,
+     "size": 2
+    },
+    {
+     "name": "Authentication Data",
+     "offset": 28,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Client Identifier",
+     "offset": 30,
+     "size": 2,
+     "variable": true
+    }
+   ]
+  },
+  {
+   "present": {
+    "{\"flag\": \"Will\"}": false,
+    "{\"flag\": \"MAM\"}": true,
+    "{\"flag\": \"Sess Exp\"}": true,
+    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": true,
+    "{\"flag\": \"Auth\"}": true
+   },
+   "length": 24,
+   "hex": "18011c000000000000000000000000026162000261626162",
+   "fields": [
+    {
+     "name": "Length",
+     "offset": 0,
+     "size": 1
+    },
+    {
+     "name": "Packet Type",
+     "offset": 1,
+     "size": 1
+    },
+    {
+     "name": "Connect Flags",
+     "offset": 2,
+     "size": 1
+    },
+    {
+     "name": "Packet Identifier",
+     "offset": 3,
+     "size": 2
+    },
+    {
+     "name": "Protocol Version",
+     "offset": 5,
+     "size": 1
+    },
+    {
+     "name": "Keep Alive",
+     "offset": 6,
+     "size": 2
+    },
+    {
+     "name": "Maximum Packet Size",
+     "offset": 8,
+     "size": 2
+    },
+    {
+     "name": "Maximum Number of Awake Messages",
+     "offset": 10,
+     "size": 1
+    },
+    {
+     "name": "Session Expiry Interval",
+     "offset": 11,
+     "size": 4
+    },
+    {
+     "name": "Authentication Method Length",
+     "offset": 15,
+     "size": 1
+    },
+    {
+     "name": "Authentication Method",
+     "offset": 16,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Authentication Data Length",
+     "offset": 18,
+     "size": 2
+    },
+    {
+     "name": "Authentication Data",
+     "offset": 20,
+     "size": 2,
+     "variable": true
+    },
+    {
+     "name": "Client Identifier",
+     "offset": 22,
+     "size": 2,
+     "variable": true
+    }
+   ]
+  },
+  {
+   "present": {
+    "{\"flag\": \"Will\"}": true,
+    "{\"flag\": \"MAM\"}": true,
+    "{\"flag\": \"Sess Exp\"}": true,
+    "{\"field\": \"Will Topic Type\", \"is\": [\"Topic Name\"]}": true,
+    "{\"flag\": \"Auth\"}": true
+   },
+   "length": 33,
+   "hex": "21011e030000000000000000000000000002616200026162026162000261626162",
    "fields": [
     {
      "name": "Length",
@@ -3444,42 +3553,47 @@
     {
      "name": "Will Topic Name",
      "offset": 18,
-     "size": 0
+     "size": 2,
+     "variable": true
     },
     {
      "name": "Will Payload Length",
-     "offset": 18,
+     "offset": 20,
      "size": 2
     },
     {
      "name": "Will Payload",
-     "offset": 20,
-     "size": 0
+     "offset": 22,
+     "size": 2,
+     "variable": true
     },
     {
      "name": "Authentication Method Length",
-     "offset": 20,
+     "offset": 24,
      "size": 1
     },
     {
      "name": "Authentication Method",
-     "offset": 21,
-     "size": 0
+     "offset": 25,
+     "size": 2,
+     "variable": true
     },
     {
      "name": "Authentication Data Length",
-     "offset": 21,
+     "offset": 27,
      "size": 2
     },
     {
      "name": "Authentication Data",
-     "offset": 23,
-     "size": 0
+     "offset": 29,
+     "size": 2,
+     "variable": true
     },
     {
      "name": "Client Identifier",
-     "offset": 23,
-     "size": 0
+     "offset": 31,
+     "size": 2,
+     "variable": true
     }
    ]
   }
@@ -3487,8 +3601,8 @@
  "connection-encapsulation": [
   {
    "present": {},
-   "length": 4,
-   "hex": "04fe0000",
+   "length": 8,
+   "hex": "08fe000261626162",
    "fields": [
     {
      "name": "Length",
@@ -3508,12 +3622,14 @@
     {
      "name": "Client Identifier",
      "offset": 4,
-     "size": 0
+     "size": 2,
+     "variable": true
     },
     {
      "name": "MQTT-SN packet",
-     "offset": 4,
-     "size": 0
+     "offset": 6,
+     "size": 2,
+     "variable": true
     }
    ]
   }
@@ -3525,8 +3641,8 @@
     "{\"flag\": \"Sess Exp\"}": false,
     "{\"flag\": \"Reason C\"}": false
    },
-   "length": 3,
-   "hex": "030e00",
+   "length": 5,
+   "hex": "050e006162",
    "fields": [
     {
      "name": "Length",
@@ -3546,7 +3662,8 @@
     {
      "name": "Reason String - optional",
      "offset": 3,
-     "size": 0
+     "size": 2,
+     "variable": true
     }
    ]
   },
@@ -3556,8 +3673,8 @@
     "{\"flag\": \"Sess Exp\"}": false,
     "{\"flag\": \"Reason C\"}": false
    },
-   "length": 5,
-   "hex": "050e010000",
+   "length": 7,
+   "hex": "070e0100006162",
    "fields": [
     {
      "name": "Length",
@@ -3582,7 +3699,8 @@
     {
      "name": "Reason String - optional",
      "offset": 5,
-     "size": 0
+     "size": 2,
+     "variable": true
     }
    ]
   },
@@ -3592,8 +3710,8 @@
     "{\"flag\": \"Sess Exp\"}": true,
     "{\"flag\": \"Reason C\"}": false
    },
-   "length": 7,
-   "hex": "070e0200000000",
+   "length": 9,
+   "hex": "090e02000000006162",
    "fields": [
     {
      "name": "Length",
@@ -3618,7 +3736,8 @@
     {
      "name": "Reason String - optional",
      "offset": 7,
-     "size": 0
+     "size": 2,
+     "variable": true
     }
    ]
   },
@@ -3628,8 +3747,8 @@
     "{\"flag\": \"Sess Exp\"}": true,
     "{\"flag\": \"Reason C\"}": false
    },
-   "length": 9,
-   "hex": "090e03000000000000",
+   "length": 11,
+   "hex": "0b0e030000000000006162",
    "fields": [
     {
      "name": "Length",
@@ -3659,7 +3778,8 @@
     {
      "name": "Reason String - optional",
      "offset": 9,
-     "size": 0
+     "size": 2,
+     "variable": true
     }
    ]
   },
@@ -3669,8 +3789,8 @@
     "{\"flag\": \"Sess Exp\"}": false,
     "{\"flag\": \"Reason C\"}": true
    },
-   "length": 4,
-   "hex": "040e0400",
+   "length": 6,
+   "hex": "060e04006162",
    "fields": [
     {
      "name": "Length",
@@ -3695,7 +3815,8 @@
     {
      "name": "Reason String - optional",
      "offset": 4,
-     "size": 0
+     "size": 2,
+     "variable": true
     }
    ]
   },
@@ -3705,8 +3826,8 @@
     "{\"flag\": \"Sess Exp\"}": false,
     "{\"flag\": \"Reason C\"}": true
    },
-   "length": 6,
-   "hex": "060e05000000",
+   "length": 8,
+   "hex": "080e050000006162",
    "fields": [
     {
      "name": "Length",
@@ -3736,7 +3857,8 @@
     {
      "name": "Reason String - optional",
      "offset": 6,
-     "size": 0
+     "size": 2,
+     "variable": true
     }
    ]
   },
@@ -3746,8 +3868,8 @@
     "{\"flag\": \"Sess Exp\"}": true,
     "{\"flag\": \"Reason C\"}": true
    },
-   "length": 8,
-   "hex": "080e060000000000",
+   "length": 10,
+   "hex": "0a0e0600000000006162",
    "fields": [
     {
      "name": "Length",
@@ -3777,7 +3899,8 @@
     {
      "name": "Reason String - optional",
      "offset": 8,
-     "size": 0
+     "size": 2,
+     "variable": true
     }
    ]
   },
@@ -3787,8 +3910,8 @@
     "{\"flag\": \"Sess Exp\"}": true,
     "{\"flag\": \"Reason C\"}": true
    },
-   "length": 10,
-   "hex": "0a0e0700000000000000",
+   "length": 12,
+   "hex": "0c0e07000000000000006162",
    "fields": [
     {
      "name": "Length",
@@ -3823,7 +3946,8 @@
     {
      "name": "Reason String - optional",
      "offset": 10,
-     "size": 0
+     "size": 2,
+     "variable": true
     }
    ]
   }
@@ -3831,8 +3955,8 @@
  "forwarder-encapsulation": [
   {
    "present": {},
-   "length": 3,
-   "hex": "03fc00",
+   "length": 7,
+   "hex": "07fc0261626162",
    "fields": [
     {
      "name": "Length",
@@ -3852,12 +3976,14 @@
     {
      "name": "Client Addressing Information",
      "offset": 3,
-     "size": 0
+     "size": 2,
+     "variable": true
     },
     {
      "name": "MQTT-SN packet",
-     "offset": 3,
-     "size": 0
+     "offset": 5,
+     "size": 2,
+     "variable": true
     }
    ]
   }
@@ -3891,8 +4017,8 @@
    "present": {
     "\"optional\"": true
    },
-   "length": 3,
-   "hex": "031800",
+   "length": 5,
+   "hex": "0518006162",
    "fields": [
     {
      "name": "Length",
@@ -3912,7 +4038,8 @@
     {
      "name": "Gateway Address",
      "offset": 3,
-     "size": 0
+     "size": 2,
+     "variable": true
     }
    ]
   }
@@ -3999,8 +4126,8 @@
  "protection-encapsulation": [
   {
    "present": {},
-   "length": 16,
-   "hex": "10ff0000000000000000000000000000",
+   "length": 20,
+   "hex": "14ff000000000000000000000000000061626162",
    "fields": [
     {
      "name": "Length",
@@ -4035,12 +4162,14 @@
     {
      "name": "Protected MQTT-SN Packet",
      "offset": 16,
-     "size": 0
+     "size": 2,
+     "variable": true
     },
     {
      "name": "Authentication Tag",
-     "offset": 16,
-     "size": 0
+     "offset": 18,
+     "size": 2,
+     "variable": true
     }
    ]
   }
@@ -4162,8 +4291,8 @@
     "{\"field\": \"Topic Type\", \"is\": [\"Topic Short Name\"]}": false,
     "{\"field\": \"Topic Type\", \"is\": [\"Topic Name\"]}": false
    },
-   "length": 7,
-   "hex": "07036100000000",
+   "length": 9,
+   "hex": "090361000000006162",
    "fields": [
     {
      "name": "Length",
@@ -4198,7 +4327,8 @@
     {
      "name": "Payload",
      "offset": 7,
-     "size": 0
+     "size": 2,
+     "variable": true
     }
    ]
   },
@@ -4208,8 +4338,8 @@
     "{\"field\": \"Topic Type\", \"is\": [\"Topic Short Name\"]}": true,
     "{\"field\": \"Topic Type\", \"is\": [\"Topic Name\"]}": false
    },
-   "length": 7,
-   "hex": "07036000000000",
+   "length": 9,
+   "hex": "090360000000006162",
    "fields": [
     {
      "name": "Length",
@@ -4249,7 +4379,8 @@
     {
      "name": "Payload",
      "offset": 7,
-     "size": 0
+     "size": 2,
+     "variable": true
     }
    ]
   },
@@ -4259,8 +4390,8 @@
     "{\"field\": \"Topic Type\", \"is\": [\"Topic Short Name\"]}": false,
     "{\"field\": \"Topic Type\", \"is\": [\"Topic Name\"]}": true
    },
-   "length": 7,
-   "hex": "07036300000000",
+   "length": 11,
+   "hex": "0b03630002000061626162",
    "fields": [
     {
      "name": "Length",
@@ -4295,12 +4426,14 @@
     {
      "name": "Topic Name",
      "offset": 7,
-     "size": 0
+     "size": 2,
+     "variable": true
     },
     {
      "name": "Payload",
-     "offset": 7,
-     "size": 0
+     "offset": 9,
+     "size": 2,
+     "variable": true
     }
    ]
   }
@@ -4311,8 +4444,8 @@
     "{\"field\": \"QoS\", \"is\": [\"1\", \"2\"]}": false,
     "{\"field\": \"Topic Type\", \"is\": [\"Topic Name\"]}": false
    },
-   "length": 5,
-   "hex": "0503000000",
+   "length": 7,
+   "hex": "07030000026162",
    "fields": [
     {
      "name": "Length",
@@ -4337,7 +4470,8 @@
     {
      "name": "Payload",
      "offset": 5,
-     "size": 0
+     "size": 2,
+     "variable": true
     }
    ]
   },
@@ -4346,8 +4480,8 @@
     "{\"field\": \"QoS\", \"is\": [\"1\", \"2\"]}": true,
     "{\"field\": \"Topic Type\", \"is\": [\"Topic Name\"]}": false
    },
-   "length": 7,
-   "hex": "07032000000000",
+   "length": 9,
+   "hex": "090320000000026162",
    "fields": [
     {
      "name": "Length",
@@ -4377,7 +4511,8 @@
     {
      "name": "Payload",
      "offset": 7,
-     "size": 0
+     "size": 2,
+     "variable": true
     }
    ]
   },
@@ -4386,8 +4521,8 @@
     "{\"field\": \"QoS\", \"is\": [\"1\", \"2\"]}": false,
     "{\"field\": \"Topic Type\", \"is\": [\"Topic Name\"]}": true
    },
-   "length": 5,
-   "hex": "0503030000",
+   "length": 9,
+   "hex": "090303000261626162",
    "fields": [
     {
      "name": "Length",
@@ -4412,12 +4547,14 @@
     {
      "name": "Topic Name",
      "offset": 5,
-     "size": 0
+     "size": 2,
+     "variable": true
     },
     {
      "name": "Payload",
-     "offset": 5,
-     "size": 0
+     "offset": 7,
+     "size": 2,
+     "variable": true
     }
    ]
   },
@@ -4426,8 +4563,8 @@
     "{\"field\": \"QoS\", \"is\": [\"1\", \"2\"]}": true,
     "{\"field\": \"Topic Type\", \"is\": [\"Topic Name\"]}": true
    },
-   "length": 7,
-   "hex": "07032300000000",
+   "length": 11,
+   "hex": "0b03230000000261626162",
    "fields": [
     {
      "name": "Length",
@@ -4457,12 +4594,14 @@
     {
      "name": "Topic Name",
      "offset": 7,
-     "size": 0
+     "size": 2,
+     "variable": true
     },
     {
      "name": "Payload",
-     "offset": 7,
-     "size": 0
+     "offset": 9,
+     "size": 2,
+     "variable": true
     }
    ]
   }
@@ -4582,8 +4721,8 @@
    "present": {
     "{\"field\": \"Topic Type\", \"is\": [\"Topic Name\"]}": false
    },
-   "length": 5,
-   "hex": "0512000000",
+   "length": 7,
+   "hex": "07120000026162",
    "fields": [
     {
      "name": "Length",
@@ -4608,7 +4747,8 @@
     {
      "name": "Payload",
      "offset": 5,
-     "size": 0
+     "size": 2,
+     "variable": true
     }
    ]
   },
@@ -4616,8 +4756,8 @@
    "present": {
     "{\"field\": \"Topic Type\", \"is\": [\"Topic Name\"]}": true
    },
-   "length": 5,
-   "hex": "0512030000",
+   "length": 9,
+   "hex": "091203000261626162",
    "fields": [
     {
      "name": "Length",
@@ -4642,12 +4782,14 @@
     {
      "name": "Topic Name",
      "offset": 5,
-     "size": 0
+     "size": 2,
+     "variable": true
     },
     {
      "name": "Payload",
-     "offset": 5,
-     "size": 0
+     "offset": 7,
+     "size": 2,
+     "variable": true
     }
    ]
   }
@@ -4799,8 +4941,8 @@
    "present": {
     "{\"flag\": \"Topic Alias\"}": false
    },
-   "length": 5,
-   "hex": "0510000000",
+   "length": 7,
+   "hex": "07100000006162",
    "fields": [
     {
      "name": "Length",
@@ -4825,7 +4967,8 @@
     {
      "name": "Topic Name",
      "offset": 5,
-     "size": 0
+     "size": 2,
+     "variable": true
     }
    ]
   },
@@ -4833,8 +4976,8 @@
    "present": {
     "{\"flag\": \"Topic Alias\"}": true
    },
-   "length": 7,
-   "hex": "07100100000000",
+   "length": 9,
+   "hex": "091001000000006162",
    "fields": [
     {
      "name": "Length",
@@ -4864,7 +5007,8 @@
     {
      "name": "Topic Name",
      "offset": 7,
-     "size": 0
+     "size": 2,
+     "variable": true
     }
    ]
   }
@@ -4893,8 +5037,8 @@
    "present": {
     "\"optional\"": true
    },
-   "length": 2,
-   "hex": "0217",
+   "length": 4,
+   "hex": "04176162",
    "fields": [
     {
      "name": "Length",
@@ -4909,7 +5053,8 @@
     {
      "name": "Additional Network Information",
      "offset": 2,
-     "size": 0
+     "size": 2,
+     "variable": true
     }
    ]
   }
@@ -5269,8 +5414,8 @@
  "subscribe-with-topic-filter": [
   {
    "present": {},
-   "length": 5,
-   "hex": "0508000000",
+   "length": 7,
+   "hex": "07080000006162",
    "fields": [
     {
      "name": "Length",
@@ -5295,7 +5440,8 @@
     {
      "name": "Topic Filter",
      "offset": 5,
-     "size": 0
+     "size": 2,
+     "variable": true
     }
    ]
   }
@@ -5341,8 +5487,8 @@
     "{\"field\": \"Topic Type\", \"is\": [\"Topic Alias\"]}": false,
     "{\"field\": \"Topic Type\", \"is\": [\"Topic Name\"]}": true
    },
-   "length": 5,
-   "hex": "0508030000",
+   "length": 7,
+   "hex": "07080300006162",
    "fields": [
     {
      "name": "Length",
@@ -5367,7 +5513,8 @@
     {
      "name": "Topic Filter",
      "offset": 5,
-     "size": 0
+     "size": 2,
+     "variable": true
     }
    ]
   }
@@ -5464,8 +5611,8 @@
  "unsubscribe-with-topic-filter": [
   {
    "present": {},
-   "length": 5,
-   "hex": "050a000000",
+   "length": 7,
+   "hex": "070a0000006162",
    "fields": [
     {
      "name": "Length",
@@ -5490,7 +5637,8 @@
     {
      "name": "Topic Filter",
      "offset": 5,
-     "size": 0
+     "size": 2,
+     "variable": true
     }
    ]
   }
@@ -5536,8 +5684,8 @@
     "{\"field\": \"Topic Type\", \"is\": [\"Topic Alias\"]}": false,
     "{\"field\": \"Topic Type\", \"is\": [\"Topic Name\"]}": true
    },
-   "length": 5,
-   "hex": "050a030000",
+   "length": 7,
+   "hex": "070a0300006162",
    "fields": [
     {
      "name": "Length",
@@ -5562,7 +5710,8 @@
     {
      "name": "Topic Filter",
      "offset": 5,
-     "size": 0
+     "size": 2,
+     "variable": true
     }
    ]
   }

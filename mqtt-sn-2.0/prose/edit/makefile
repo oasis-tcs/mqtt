@@ -130,6 +130,16 @@ derive:
 check:
 	python3 bin/spec_records.py check
 
+# Compile ../share/kaitai/*.ksy to Python and parse every packet vector with it (needs the Kaitai Struct compiler,
+# KSC=/path/to/kaitai-struct-compiler if it is not on PATH, and `pip install kaitaistruct`).
+KSC ?= kaitai-struct-compiler
+
+.PHONY: kaitai-test
+kaitai-test: check
+	rm -rf build/kaitai && mkdir -p build/kaitai
+	$(KSC) -t python --outdir build/kaitai --import-path $(shared)kaitai $(shared)kaitai/*.ksy 2>build/kaitai/compiler.log
+	python3 bin/spec_records.py kaitai-test build/kaitai
+
 .PHONY: quality
 quality:
 	nide quality
