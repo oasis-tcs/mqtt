@@ -1,0 +1,12 @@
+# Normative statements of ops-behavior-05-application-message-receipt.md, in prose order. derive renders each mark «...» in the prose from
+# `text`, and Appendix B from `standalone` (a full sentence, where the mark is a fragment) or `text`.
+# `binds`: the roles (records/roles.yaml) the statement binds; `binds-by`: why (seeded, to review).
+
+statements:
+- id: MQTT-SN-4.5-1
+  text: When a Server takes ownership of an incoming Application Message it MUST add it to the Session State for those Clients that have matching Subscriptions
+- id: MQTT-SN-4.5-2
+  text: The Client MUST acknowledge any PUBLISH packet it receives according to the applicable QoS rules regardless of whether it elects to process the Application Message that it contains
+  binds:
+  - client
+  binds-by: subject

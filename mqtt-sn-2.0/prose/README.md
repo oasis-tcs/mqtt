@@ -24,6 +24,13 @@ Four additional supportive artifacts will be generated in the `share/`folder aft
 | `mqtt-sn-v2.0-draft.pdf.blake3`    | BLAKE3 checksum of the PDF                                 |
 | `mqtt-sn-v2.0-draft.typ`           | Generated typst source (input used to produce the PDF)     |
 
+`make packet-dictionary` adds the machine-readable packet dictionary:
+
+| File                                         | Description                                                    |
+|:---------------------------------------------|:---------------------------------------------------------------|
+| `mqtt-sn-v2.0-draft-packet-dictionary.json`  | Every packet's layout: fields, bit fields, presence conditions, length symbols |
+| `schema/packet-dictionary.schema.json`       | JSON schema of the packet dictionary                           |
+
 ## Building
 
 All targets are defined in `edit/makefile`.
@@ -40,4 +47,8 @@ make quality  # run spec and OASIS baseline quality checks
 
 The source lives in `edit/src/` assembled per `edit/etc/bind.txt`.
 Images are in `edit/src/images/` and are embedded as data-URLs in the HTML output.
-See `edit/README.md` for the full authoring reference.
+Normative statements, packet layouts, code tables, client states and roles are authored as records in
+`edit/records/`; the corresponding parts of `edit/src/` (marked statements, Appendix B, those tables, the packet
+figure sources) are generated from them by `make derive`.
+See `edit/README.md` for the full authoring reference, including which files are generated, and
+`edit/records/README.md` for the record fields.

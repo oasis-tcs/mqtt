@@ -1,0 +1,61 @@
+# Layout of REGISTER: derive writes src/images/packet/register-packet-diagram.edn (the figure source) from it.
+
+id: register
+title: REGISTER
+diagram:
+  file: register-packet-diagram
+  boxes-per-row: 9
+  box-width: 90
+  left-margin: 20
+  text-styles:
+    plain:
+      font-family: Arial
+      font-size: 18
+    cursive:
+      font-family: Arial
+      font-size: 18
+      font-style: italic
+layout:
+- field: Length
+- field: Packet Type
+- bits: REGISTER Flags
+  flags:
+  - name: Reserved
+    width: 7
+  - name: Topic Alias
+    width: 1
+  values: 0000000X
+  boxes:
+    '0':
+      attrs:
+        fill: '#dddddd'
+        span: 9
+        text-anchor: start
+- field: Packet Identifier
+  at: '3'
+  bytes: 2
+- group: Topic Alias
+  items:
+  - field: Topic Alias
+    at: '5'
+    bytes: 2
+  symbol: T
+  symbol-style: label
+  present-if:
+    flag: Topic Alias
+  boxes:
+    '0':
+      label_annotations:
+      - style: cursive
+        text: ' - only present when Topic Alias flag is 1'
+      attrs:
+        fill: '#dddddd'
+        span: 9
+        text-anchor: start
+- variable: Topic Name
+  at: 5+T
+  boxes:
+    '1':
+      attrs:
+        text-anchor: start
+        span: 8

@@ -1,0 +1,175 @@
+# Layout of CONNECT: derive writes src/images/packet/connect-packet-diagram.edn (the figure source) from it.
+
+id: connect
+title: CONNECT
+diagram:
+  file: connect-packet-diagram
+  boxes-per-row: 9
+  box-width: 100
+  left-margin: 20
+  text-styles:
+    plain:
+      font-family: Arial
+      font-size: 18
+    cursive:
+      font-family: Arial
+      font-size: 18
+      font-style: italic
+layout:
+- field: Length
+- field: Packet Type
+- bits: Connect Flags
+  flags:
+  - name: Reserved
+    width: 1
+  - name: Srv Sugg
+    width: 1
+  - name: Net Addr
+    width: 1
+  - name: MAM
+    width: 1
+  - name: Sess Exp
+    width: 1
+  - name: Auth
+    width: 1
+  - name: Will
+    width: 1
+  - name: Clean Start
+    width: 1
+  values: 0XXXXXXX
+- bits: Will Flags
+  flags:
+  - name: Reserved
+    width: 3
+  - name: Wil Retain
+    width: 1
+  - name: Will QoS
+    width: 2
+  - name: Will Topic Type
+    width: 2
+  values: 000XXXXX
+  symbol: F
+  present-if:
+    flag: Will
+  boxes:
+    '6':
+      attrs:
+        fill: '#eeeeee'
+    '7':
+      attrs:
+        fill: '#eeeeee'
+        span: 1
+    '8':
+      attrs:
+        fill: '#eeeeee'
+        span: 1
+    '9':
+      attrs:
+        fill: '#eeeeee'
+        span: 1
+    '10':
+      attrs:
+        fill: '#eeeeee'
+        span: 1
+    '11':
+      attrs:
+        fill: '#eeeeee'
+        span: 1
+    '12':
+      attrs:
+        fill: '#eeeeee'
+        span: 1
+    '13':
+      attrs:
+        fill: '#eeeeee'
+        span: 1
+    '14':
+      attrs:
+        fill: '#eeeeee'
+        span: 1
+- field: Packet Identifier
+  bytes: 2
+- field: Protocol Version
+- field: Keep Alive
+  bytes: 2
+- field: Maximum Packet Size
+  bytes: 2
+- field: Maximum Number of Awake Messages
+  symbol: AM
+  present-if:
+    flag: MAM
+  boxes:
+    '1':
+      label_annotations:
+      - style: cursive
+        text: ' (AM=F+1 or F) - only present when MAM flag is set'
+      attrs:
+        fill: '#eeeeee'
+        span: 8
+        text-anchor: start
+- group: Session Expiry Interval
+  items:
+  - field: Session Expiry Interval
+    bytes: 4
+  symbol: S
+  present-if:
+    flag: Sess Exp
+  boxes:
+    '0':
+      label_annotations:
+      - style: cursive
+        text: ' (S=AM+4 or AM) - only present when Sess Exp flag is set'
+- group: Will Fields
+  items:
+  - field: Will Topic Alias or Will Topic Name Length
+    bytes: 2
+  - variable: Will Topic Name
+    symbol: N
+    present-if:
+      field: Will Topic Type
+      is:
+      - Topic Name
+    boxes:
+      '1':
+        attrs:
+          fill: '#eeeeee'
+  - field: Will Payload Length
+    bytes: 2
+  - variable: Will Payload
+    symbol: P
+    boxes:
+      '1':
+        attrs:
+          fill: '#eeeeee'
+  symbol: W
+  present-if:
+    flag: Will
+- group: Authentication Fields
+  items:
+  - field: Authentication Method Length
+  - variable: Authentication Method
+    symbol-style: label
+    symbol: M
+    boxes:
+      '1':
+        attrs:
+          fill: '#eeeeee'
+          span: 8
+          text-anchor: start
+  - field: Authentication Data Length
+    bytes: 2
+  - variable: Authentication Data
+    symbol-style: label
+    symbol: D
+    boxes:
+      '1':
+        attrs:
+          fill: '#eeeeee'
+          span: 8
+          text-anchor: start
+  symbol: A
+  present-if:
+    flag: Auth
+- variable: Client Identifier
+  symbol-style: label
+  symbol: I

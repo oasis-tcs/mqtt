@@ -89,49 +89,49 @@
               "name": "Reserved",
               "span": 1,
               "value": "0",
-              "optional": true
+              "optional": false
             },
             {
               "name": "Srv Sugg",
               "span": 1,
               "value": "X",
-              "optional": true
+              "optional": false
             },
             {
               "name": "Net Addr",
               "span": 1,
               "value": "X",
-              "optional": true
+              "optional": false
             },
             {
               "name": "MAM",
               "span": 1,
               "value": "X",
-              "optional": true
+              "optional": false
             },
             {
               "name": "Sess Exp",
               "span": 1,
               "value": "X",
-              "optional": true
+              "optional": false
             },
             {
               "name": "Auth",
               "span": 1,
               "value": "X",
-              "optional": true
+              "optional": false
             },
             {
               "name": "Will",
               "span": 1,
               "value": "X",
-              "optional": true
+              "optional": false
             },
             {
               "name": "Clean Start",
               "span": 1,
               "value": "X",
-              "optional": true
+              "optional": false
             }
           ]
         },
@@ -150,27 +150,30 @@
               "name": "Reserved",
               "span": 3,
               "value": "000",
-              "optional": true
+              "optional": false
             },
             {
               "name": "Wil Retain",
               "span": 1,
               "value": "X",
-              "optional": true
+              "optional": false
             },
             {
               "name": "Will QoS",
               "span": 2,
               "value": "XX",
-              "optional": true
+              "optional": false
             },
             {
               "name": "Will Topic Type",
               "span": 2,
               "value": "XX",
-              "optional": true
+              "optional": false
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Will"
+          }
         },
         {
           "type": "field",
@@ -255,7 +258,10 @@
           ],
           "optional": true,
           "group": null,
-          "group_annotations": []
+          "group_annotations": [],
+          "present_if": {
+            "flag": "MAM"
+          }
         },
         {
           "type": "field",
@@ -263,14 +269,17 @@
           "name": "Session Expiry Interval MSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Session Expiry Interval",
           "group_annotations": [
             {
               "style": "cursive",
-              "text": " (S=AM+4 or AM) - only present when Sess Exp flag is set"
+              "text": " (S=4+AM or AM) - only present when Sess Exp flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Sess Exp"
+          }
         },
         {
           "type": "field",
@@ -278,14 +287,17 @@
           "name": "Session Expiry Interval",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Session Expiry Interval",
           "group_annotations": [
             {
               "style": "cursive",
-              "text": " (S=AM+4 or AM) - only present when Sess Exp flag is set"
+              "text": " (S=4+AM or AM) - only present when Sess Exp flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Sess Exp"
+          }
         },
         {
           "type": "field",
@@ -293,14 +305,17 @@
           "name": "Session Expiry Interval",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Session Expiry Interval",
           "group_annotations": [
             {
               "style": "cursive",
-              "text": " (S=AM+4 or AM) - only present when Sess Exp flag is set"
+              "text": " (S=4+AM or AM) - only present when Sess Exp flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Sess Exp"
+          }
         },
         {
           "type": "field",
@@ -308,14 +323,17 @@
           "name": "Session Expiry Interval LSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Session Expiry Interval",
           "group_annotations": [
             {
               "style": "cursive",
-              "text": " (S=AM+4 or AM) - only present when Sess Exp flag is set"
+              "text": " (S=4+AM or AM) - only present when Sess Exp flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Sess Exp"
+          }
         },
         {
           "type": "field",
@@ -323,14 +341,17 @@
           "name": "Will Topic Alias or Will Topic Name Length MSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Will Fields",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " (W=4+N+P+S or S) - only present when Will flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Will"
+          }
         },
         {
           "type": "field",
@@ -338,14 +359,17 @@
           "name": "Will Topic Alias or Will Topic Name Length LSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Will Fields",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " (W=4+N+P+S or S) - only present when Will flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Will"
+          }
         },
         {
           "type": "field",
@@ -365,7 +389,14 @@
               "style": "cursive",
               "text": " (W=4+N+P+S or S) - only present when Will flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "field": "Will Topic Type",
+            "is": [
+              "Topic Name"
+            ]
+          },
+          "length_symbol": "N"
         },
         {
           "type": "field",
@@ -373,14 +404,17 @@
           "name": "Will Payload Length MSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Will Fields",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " (W=4+N+P+S or S) - only present when Will flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Will"
+          }
         },
         {
           "type": "field",
@@ -388,14 +422,17 @@
           "name": "Will Payload Length LSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Will Fields",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " (W=4+N+P+S or S) - only present when Will flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Will"
+          }
         },
         {
           "type": "field",
@@ -408,14 +445,18 @@
               "text": " (P)"
             }
           ],
-          "optional": true,
+          "optional": false,
           "group": "Will Fields",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " (W=4+N+P+S or S) - only present when Will flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Will"
+          },
+          "length_symbol": "P"
         },
         {
           "type": "field",
@@ -423,14 +464,17 @@
           "name": "Authentication Method Length",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Authentication Fields",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " (A=3+M+D+W or W) - only present when Auth flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Auth"
+          }
         },
         {
           "type": "field",
@@ -438,14 +482,18 @@
           "name": "Authentication Method (M)",
           "kind": "gap",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Authentication Fields",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " (A=3+M+D+W or W) - only present when Auth flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Auth"
+          },
+          "length_symbol": "M"
         },
         {
           "type": "field",
@@ -453,14 +501,17 @@
           "name": "Authentication Data Length MSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Authentication Fields",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " (A=3+M+D+W or W) - only present when Auth flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Auth"
+          }
         },
         {
           "type": "field",
@@ -468,14 +519,17 @@
           "name": "Authentication Data Length LSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Authentication Fields",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " (A=3+M+D+W or W) - only present when Auth flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Auth"
+          }
         },
         {
           "type": "field",
@@ -483,14 +537,18 @@
           "name": "Authentication Data (D)",
           "kind": "gap",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Authentication Fields",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " (A=3+M+D+W or W) - only present when Auth flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Auth"
+          },
+          "length_symbol": "D"
         },
         {
           "type": "field",
@@ -500,7 +558,8 @@
           "annotations": [],
           "optional": false,
           "group": null,
-          "group_annotations": []
+          "group_annotations": [],
+          "length_symbol": "I"
         }
       ]
     },
@@ -561,31 +620,31 @@
               "name": "Reserved",
               "span": 4,
               "value": "0000",
-              "optional": true
+              "optional": false
             },
             {
               "name": "Auth",
               "span": 1,
               "value": "X",
-              "optional": true
+              "optional": false
             },
             {
               "name": "Server KA",
               "span": 1,
               "value": "X",
-              "optional": true
+              "optional": false
             },
             {
               "name": "Sess Exp",
               "span": 1,
               "value": "X",
-              "optional": true
+              "optional": false
             },
             {
               "name": "Sess Pres",
               "span": 1,
               "value": "X",
-              "optional": true
+              "optional": false
             }
           ]
         },
@@ -625,14 +684,17 @@
           "name": "Session Expiry Interval MSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Session Expiry Interval",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " (S=4 or 0) - only present when Sess Exp flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Sess Exp"
+          }
         },
         {
           "type": "field",
@@ -640,14 +702,17 @@
           "name": "Session Expiry Interval",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Session Expiry Interval",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " (S=4 or 0) - only present when Sess Exp flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Sess Exp"
+          }
         },
         {
           "type": "field",
@@ -655,14 +720,17 @@
           "name": "Session Expiry Interval",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Session Expiry Interval",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " (S=4 or 0) - only present when Sess Exp flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Sess Exp"
+          }
         },
         {
           "type": "field",
@@ -670,14 +738,17 @@
           "name": "Session Expiry Interval LSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Session Expiry Interval",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " (S=4 or 0) - only present when Sess Exp flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Sess Exp"
+          }
         },
         {
           "type": "field",
@@ -685,14 +756,17 @@
           "name": "Server Keep Alive MSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Server Keep Alive",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " (K=2+S or S) - only present when Server KA flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Server KA"
+          }
         },
         {
           "type": "field",
@@ -700,14 +774,17 @@
           "name": "Server Keep Alive LSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Server Keep Alive",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " (K=2+S or S) - only present when Server KA flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Server KA"
+          }
         },
         {
           "type": "field",
@@ -715,14 +792,17 @@
           "name": "Authentication Method Length",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Authentication Data",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " (A=3+M+D+K or K) - only present when Auth flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Auth"
+          }
         },
         {
           "type": "field",
@@ -730,14 +810,18 @@
           "name": "Authentication Method (M)",
           "kind": "gap",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Authentication Data",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " (A=3+M+D+K or K) - only present when Auth flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Auth"
+          },
+          "length_symbol": "M"
         },
         {
           "type": "field",
@@ -745,14 +829,17 @@
           "name": "Authentication Data Length MSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Authentication Data",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " (A=3+M+D+K or K) - only present when Auth flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Auth"
+          }
         },
         {
           "type": "field",
@@ -760,14 +847,17 @@
           "name": "Authentication Data Length LSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Authentication Data",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " (A=3+M+D+K or K) - only present when Auth flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Auth"
+          }
         },
         {
           "type": "field",
@@ -775,14 +865,18 @@
           "name": "Authentication Data (D)",
           "kind": "gap",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Authentication Data",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " (A=3+M+D+K or K) - only present when Auth flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Auth"
+          },
+          "length_symbol": "D"
         },
         {
           "type": "field",
@@ -790,14 +884,11 @@
           "name": "Assigned Client Identifier (I) - optional",
           "kind": "gap",
           "annotations": [],
-          "optional": true,
-          "group": "Authentication Data",
-          "group_annotations": [
-            {
-              "style": "cursive",
-              "text": " (A=3+M+D+K or K) - only present when Auth flag is set"
-            }
-          ]
+          "optional": false,
+          "group": null,
+          "group_annotations": [],
+          "present_if": "optional",
+          "length_symbol": "I"
         }
       ]
     },
@@ -896,7 +987,8 @@
           "annotations": [],
           "optional": false,
           "group": null,
-          "group_annotations": []
+          "group_annotations": [],
+          "length_symbol": "M"
         },
         {
           "type": "field",
@@ -967,13 +1059,13 @@
               "name": "Reserved",
               "span": 7,
               "value": "0000000",
-              "optional": true
+              "optional": false
             },
             {
               "name": "Topic Alias",
               "span": 1,
               "value": "X",
-              "optional": true
+              "optional": false
             }
           ]
         },
@@ -1003,14 +1095,17 @@
           "name": "Topic Alias MSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
-          "group": "Topic Alias (T=2 or 0)",
+          "optional": false,
+          "group": "Topic Alias",
           "group_annotations": [
             {
               "style": "cursive",
-              "text": " - only present when Topic Alias flag is 1"
+              "text": " - only present when Topic Alias flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Topic Alias"
+          }
         },
         {
           "type": "field",
@@ -1018,14 +1113,17 @@
           "name": "Topic Alias LSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
-          "group": "Topic Alias (T=2 or 0)",
+          "optional": false,
+          "group": "Topic Alias",
           "group_annotations": [
             {
               "style": "cursive",
-              "text": " - only present when Topic Alias flag is 1"
+              "text": " - only present when Topic Alias flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Topic Alias"
+          }
         },
         {
           "type": "field",
@@ -1096,19 +1194,19 @@
               "name": "Reserved",
               "span": 5,
               "value": "00000",
-              "optional": true
+              "optional": false
             },
             {
               "name": "Topic Alias",
               "span": 1,
               "value": "X",
-              "optional": true
+              "optional": false
             },
             {
               "name": "Topic Type",
               "span": 2,
               "value": "XX",
-              "optional": true
+              "optional": false
             }
           ]
         },
@@ -1138,14 +1236,17 @@
           "name": "Topic Alias MSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
-          "group": "Topic Alias (T=2 or 0)",
+          "optional": false,
+          "group": "Topic Alias",
           "group_annotations": [
             {
               "style": "cursive",
-              "text": " - only present when Topic Alias flag is 1"
+              "text": " - only present when Topic Alias flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Topic Alias"
+          }
         },
         {
           "type": "field",
@@ -1153,14 +1254,17 @@
           "name": "Topic Alias LSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
-          "group": "Topic Alias (T=2 or 0)",
+          "optional": false,
+          "group": "Topic Alias",
           "group_annotations": [
             {
               "style": "cursive",
-              "text": " - only present when Topic Alias flag is 1"
+              "text": " - only present when Topic Alias flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Topic Alias"
+          }
         },
         {
           "type": "field",
@@ -1174,13 +1278,9 @@
             }
           ],
           "optional": true,
-          "group": "Topic Alias (T=2 or 0)",
-          "group_annotations": [
-            {
-              "style": "cursive",
-              "text": " - only present when Topic Alias flag is 1"
-            }
-          ]
+          "group": null,
+          "group_annotations": [],
+          "present_if": "optional"
         }
       ]
     },
@@ -1245,25 +1345,25 @@
               "name": "Reserved",
               "span": 3,
               "value": "000",
-              "optional": true
+              "optional": false
             },
             {
               "name": "Retain",
               "span": 1,
               "value": "X",
-              "optional": true
+              "optional": false
             },
             {
               "name": "Reserved",
               "span": 2,
               "value": "00",
-              "optional": true
+              "optional": false
             },
             {
               "name": "Topic Type",
               "span": 2,
               "value": "XX",
-              "optional": true
+              "optional": false
             }
           ]
         },
@@ -1300,7 +1400,14 @@
           ],
           "optional": true,
           "group": null,
-          "group_annotations": []
+          "group_annotations": [],
+          "present_if": {
+            "field": "Topic Type",
+            "is": [
+              "Topic Name"
+            ]
+          },
+          "length_symbol": "N"
         },
         {
           "type": "field",
@@ -1375,31 +1482,31 @@
               "name": "DUP",
               "span": 1,
               "value": "X",
-              "optional": true
+              "optional": false
             },
             {
               "name": "QoS",
               "span": 2,
               "value": "XX",
-              "optional": true
+              "optional": false
             },
             {
               "name": "Retain",
               "span": 1,
               "value": "X",
-              "optional": true
+              "optional": false
             },
             {
               "name": "Reserved",
               "span": 2,
               "value": "00",
-              "optional": true
+              "optional": false
             },
             {
               "name": "Topic Type",
               "span": 2,
               "value": "XX",
-              "optional": true
+              "optional": false
             }
           ]
         },
@@ -1410,8 +1517,20 @@
           "kind": "box",
           "annotations": [],
           "optional": false,
-          "group": null,
-          "group_annotations": []
+          "group": "Packet Identifier",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (P=2 or 0) - only present when QoS is 1 or 2"
+            }
+          ],
+          "present_if": {
+            "field": "QoS",
+            "is": [
+              "1",
+              "2"
+            ]
+          }
         },
         {
           "type": "field",
@@ -1420,8 +1539,20 @@
           "kind": "box",
           "annotations": [],
           "optional": false,
-          "group": null,
-          "group_annotations": []
+          "group": "Packet Identifier",
+          "group_annotations": [
+            {
+              "style": "cursive",
+              "text": " (P=2 or 0) - only present when QoS is 1 or 2"
+            }
+          ],
+          "present_if": {
+            "field": "QoS",
+            "is": [
+              "1",
+              "2"
+            ]
+          }
         },
         {
           "type": "field",
@@ -1456,7 +1587,14 @@
           ],
           "optional": true,
           "group": null,
-          "group_annotations": []
+          "group_annotations": [],
+          "present_if": {
+            "field": "Topic Type",
+            "is": [
+              "Topic Name"
+            ]
+          },
+          "length_symbol": "N"
         },
         {
           "type": "field",
@@ -1554,7 +1692,8 @@
           ],
           "optional": true,
           "group": null,
-          "group_annotations": []
+          "group_annotations": [],
+          "present_if": "optional"
         }
       ]
     },
@@ -1642,7 +1781,8 @@
           ],
           "optional": true,
           "group": null,
-          "group_annotations": []
+          "group_annotations": [],
+          "present_if": "optional"
         }
       ]
     },
@@ -1730,7 +1870,8 @@
           ],
           "optional": true,
           "group": null,
-          "group_annotations": []
+          "group_annotations": [],
+          "present_if": "optional"
         }
       ]
     },
@@ -1818,7 +1959,8 @@
           ],
           "optional": true,
           "group": null,
-          "group_annotations": []
+          "group_annotations": [],
+          "present_if": "optional"
         }
       ]
     },
@@ -1879,31 +2021,31 @@
               "name": "No Local",
               "span": 1,
               "value": "X",
-              "optional": true
+              "optional": false
             },
             {
               "name": "QoS",
               "span": 2,
               "value": "XX",
-              "optional": true
+              "optional": false
             },
             {
               "name": "RaP",
               "span": 1,
               "value": "X",
-              "optional": true
+              "optional": false
             },
             {
               "name": "Retain Handling",
               "span": 2,
               "value": "XX",
-              "optional": true
+              "optional": false
             },
             {
               "name": "Topic Type",
               "span": 2,
               "value": "XX",
-              "optional": true
+              "optional": false
             }
           ]
         },
@@ -1933,14 +2075,20 @@
           "name": "Topic Alias MSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Topic Alias",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " - only present when Topic Type is Topic Alias"
             }
-          ]
+          ],
+          "present_if": {
+            "field": "Topic Type",
+            "is": [
+              "Topic Alias"
+            ]
+          }
         },
         {
           "type": "field",
@@ -1948,14 +2096,20 @@
           "name": "Topic Alias LSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Topic Alias",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " - only present when Topic Type is Topic Alias"
             }
-          ]
+          ],
+          "present_if": {
+            "field": "Topic Type",
+            "is": [
+              "Topic Alias"
+            ]
+          }
         },
         {
           "type": "field",
@@ -1969,13 +2123,14 @@
             }
           ],
           "optional": true,
-          "group": "Topic Alias",
-          "group_annotations": [
-            {
-              "style": "cursive",
-              "text": " - only present when Topic Type is Topic Alias"
-            }
-          ]
+          "group": null,
+          "group_annotations": [],
+          "present_if": {
+            "field": "Topic Type",
+            "is": [
+              "Topic Name"
+            ]
+          }
         }
       ]
     },
@@ -2036,19 +2191,19 @@
               "name": "Reserved",
               "span": 5,
               "value": "00000",
-              "optional": true
+              "optional": false
             },
             {
               "name": "Topic Alias",
               "span": 1,
               "value": "X",
-              "optional": true
+              "optional": false
             },
             {
               "name": "Topic Type",
               "span": 2,
               "value": "XX",
-              "optional": true
+              "optional": false
             }
           ]
         },
@@ -2078,14 +2233,17 @@
           "name": "Topic Alias MSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Topic Alias",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " (A=2 or 0) - only present when Topic Alias flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Topic Alias"
+          }
         },
         {
           "type": "field",
@@ -2093,14 +2251,17 @@
           "name": "Topic Alias LSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Topic Alias",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " (A=2 or 0) - only present when Topic Alias flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Topic Alias"
+          }
         },
         {
           "type": "field",
@@ -2114,13 +2275,9 @@
             }
           ],
           "optional": true,
-          "group": "Topic Alias",
-          "group_annotations": [
-            {
-              "style": "cursive",
-              "text": " (A=2 or 0) - only present when Topic Alias flag is set"
-            }
-          ]
+          "group": null,
+          "group_annotations": [],
+          "present_if": "optional"
         }
       ]
     },
@@ -2181,13 +2338,13 @@
               "name": "Reserved",
               "span": 6,
               "value": "000000",
-              "optional": true
+              "optional": false
             },
             {
               "name": "Topic Type",
               "span": 2,
               "value": "XX",
-              "optional": true
+              "optional": false
             }
           ]
         },
@@ -2217,14 +2374,20 @@
           "name": "Topic Alias MSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Topic Alias",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " - only present when Topic Type is Topic Alias"
             }
-          ]
+          ],
+          "present_if": {
+            "field": "Topic Type",
+            "is": [
+              "Topic Alias"
+            ]
+          }
         },
         {
           "type": "field",
@@ -2232,14 +2395,20 @@
           "name": "Topic Alias LSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Topic Alias",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " - only present when Topic Type is Topic Alias"
             }
-          ]
+          ],
+          "present_if": {
+            "field": "Topic Type",
+            "is": [
+              "Topic Alias"
+            ]
+          }
         },
         {
           "type": "field",
@@ -2253,13 +2422,14 @@
             }
           ],
           "optional": true,
-          "group": "Topic Alias",
-          "group_annotations": [
-            {
-              "style": "cursive",
-              "text": " - only present when Topic Type is Topic Alias"
-            }
-          ]
+          "group": null,
+          "group_annotations": [],
+          "present_if": {
+            "field": "Topic Type",
+            "is": [
+              "Topic Name"
+            ]
+          }
         }
       ]
     },
@@ -2343,7 +2513,8 @@
           ],
           "optional": true,
           "group": null,
-          "group_annotations": []
+          "group_annotations": [],
+          "present_if": "optional"
         }
       ]
     },
@@ -2496,7 +2667,8 @@
           ],
           "optional": true,
           "group": null,
-          "group_annotations": []
+          "group_annotations": [],
+          "present_if": "optional"
         }
       ]
     },
@@ -2557,25 +2729,25 @@
               "name": "Reserved",
               "span": 5,
               "value": "00000",
-              "optional": true
+              "optional": false
             },
             {
               "name": "Reason C",
               "span": 1,
               "value": "X",
-              "optional": true
+              "optional": false
             },
             {
               "name": "Sess Exp",
               "span": 1,
               "value": "X",
-              "optional": true
+              "optional": false
             },
             {
               "name": "PacketId",
               "span": 1,
               "value": "X",
-              "optional": true
+              "optional": false
             }
           ]
         },
@@ -2585,14 +2757,17 @@
           "name": "Packet Identifier MSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Packet Identifier",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " (I=2 or 0) - only present when PacketId flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "PacketId"
+          }
         },
         {
           "type": "field",
@@ -2600,14 +2775,17 @@
           "name": "Packet Identifier LSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Packet Identifier",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " (I=2 or 0) - only present when PacketId flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "PacketId"
+          }
         },
         {
           "type": "field",
@@ -2615,14 +2793,17 @@
           "name": "Session Expiry Interval MSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Session Expiry Interval",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " (S=4+I or I) - only present when Sess Exp flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Sess Exp"
+          }
         },
         {
           "type": "field",
@@ -2630,14 +2811,17 @@
           "name": "Session Expiry Interval",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Session Expiry Interval",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " (S=4+I or I) - only present when Sess Exp flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Sess Exp"
+          }
         },
         {
           "type": "field",
@@ -2645,14 +2829,17 @@
           "name": "Session Expiry Interval",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Session Expiry Interval",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " (S=4+I or I) - only present when Sess Exp flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Sess Exp"
+          }
         },
         {
           "type": "field",
@@ -2660,14 +2847,17 @@
           "name": "Session Expiry Interval LSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Session Expiry Interval",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " (S=4+I or I) - only present when Sess Exp flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Sess Exp"
+          }
         },
         {
           "type": "field",
@@ -2675,14 +2865,17 @@
           "name": "Reason Code",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Reason Code",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " (R=1+S or S) - only present when Reason C flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Reason C"
+          }
         },
         {
           "type": "field",
@@ -2690,14 +2883,9 @@
           "name": "Reason String - optional",
           "kind": "gap",
           "annotations": [],
-          "optional": true,
-          "group": "Reason Code",
-          "group_annotations": [
-            {
-              "style": "cursive",
-              "text": " (R=1+S or S) - only present when Reason C flag is set"
-            }
-          ]
+          "optional": false,
+          "group": null,
+          "group_annotations": []
         }
       ]
     },
@@ -2783,7 +2971,7 @@
           "name": "Length",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": null,
           "group_annotations": []
         },
@@ -2793,7 +2981,7 @@
           "name": "Packet Type",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": null,
           "group_annotations": []
         },
@@ -2807,13 +2995,13 @@
               "name": "Reserved",
               "span": 7,
               "value": "0000000",
-              "optional": true
+              "optional": false
             },
             {
               "name": "Retain T",
               "span": 1,
               "value": "X",
-              "optional": true
+              "optional": false
             }
           ]
         },
@@ -2823,7 +3011,7 @@
           "name": "Packet Identifier MSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": null,
           "group_annotations": []
         },
@@ -2833,7 +3021,7 @@
           "name": "Packet Identifier LSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": null,
           "group_annotations": []
         },
@@ -2843,7 +3031,7 @@
           "name": "Sleep Duration MSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": null,
           "group_annotations": []
         },
@@ -2853,7 +3041,7 @@
           "name": "Sleep Duration",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": null,
           "group_annotations": []
         },
@@ -2863,7 +3051,7 @@
           "name": "Sleep Duration",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": null,
           "group_annotations": []
         },
@@ -2873,7 +3061,7 @@
           "name": "Sleep Duration LSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": null,
           "group_annotations": []
         }
@@ -2912,7 +3100,7 @@
           "name": "Length",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": null,
           "group_annotations": []
         },
@@ -2922,7 +3110,7 @@
           "name": "Packet Type",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": null,
           "group_annotations": []
         },
@@ -2936,13 +3124,13 @@
               "name": "Reserved",
               "span": 7,
               "value": "0000000",
-              "optional": true
+              "optional": false
             },
             {
               "name": "Sleep Dur",
               "span": 1,
               "value": "X",
-              "optional": true
+              "optional": false
             }
           ]
         },
@@ -2952,7 +3140,7 @@
           "name": "Packet Identifier MSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": null,
           "group_annotations": []
         },
@@ -2962,7 +3150,7 @@
           "name": "Packet Identifier LSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": null,
           "group_annotations": []
         },
@@ -2972,14 +3160,17 @@
           "name": "Sleep Duration MSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Sleep Duration",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " (S=4 or 0) - only present when Sleep Dur flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Sleep Dur"
+          }
         },
         {
           "type": "field",
@@ -2987,14 +3178,17 @@
           "name": "Sleep Duration",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Sleep Duration",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " (S=4 or 0) - only present when Sleep Dur flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Sleep Dur"
+          }
         },
         {
           "type": "field",
@@ -3002,14 +3196,17 @@
           "name": "Sleep Duration",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Sleep Duration",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " (S=4 or 0) - only present when Sleep Dur flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Sleep Dur"
+          }
         },
         {
           "type": "field",
@@ -3017,14 +3214,17 @@
           "name": "Sleep Duration LSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Sleep Duration",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " (S=4 or 0) - only present when Sleep Dur flag is set"
             }
-          ]
+          ],
+          "present_if": {
+            "flag": "Sleep Dur"
+          }
         },
         {
           "type": "field",
@@ -3038,13 +3238,9 @@
             }
           ],
           "optional": true,
-          "group": "Sleep Duration",
-          "group_annotations": [
-            {
-              "style": "cursive",
-              "text": " (S=4 or 0) - only present when Sleep Dur flag is set"
-            }
-          ]
+          "group": null,
+          "group_annotations": [],
+          "present_if": "optional"
         }
       ]
     },
@@ -3105,19 +3301,19 @@
               "name": "Authentication Tag Length",
               "span": 4,
               "value": "XXXX",
-              "optional": true
+              "optional": false
             },
             {
               "name": "Crypto Length (C)",
               "span": 2,
               "value": "XX",
-              "optional": true
+              "optional": false
             },
             {
               "name": "Counter Length (M)",
               "span": 2,
               "value": "XX",
-              "optional": true
+              "optional": false
             }
           ]
         },
@@ -3164,7 +3360,12 @@
           ],
           "optional": true,
           "group": null,
-          "group_annotations": []
+          "group_annotations": [],
+          "present_if": {
+            "field": "Crypto Length",
+            "greater": 0
+          },
+          "length_symbol": "C"
         },
         {
           "type": "field",
@@ -3179,7 +3380,12 @@
           ],
           "optional": true,
           "group": null,
-          "group_annotations": []
+          "group_annotations": [],
+          "present_if": {
+            "field": "Counter Length",
+            "greater": 0
+          },
+          "length_symbol": "M"
         },
         {
           "type": "field",
@@ -3189,7 +3395,8 @@
           "annotations": [],
           "optional": false,
           "group": null,
-          "group_annotations": []
+          "group_annotations": [],
+          "length_symbol": "P"
         },
         {
           "type": "field",
@@ -3278,7 +3485,8 @@
           "annotations": [],
           "optional": false,
           "group": null,
-          "group_annotations": []
+          "group_annotations": [],
+          "length_symbol": "I"
         },
         {
           "type": "field",
@@ -3357,7 +3565,8 @@
           "annotations": [],
           "optional": false,
           "group": null,
-          "group_annotations": []
+          "group_annotations": [],
+          "length_symbol": "I"
         },
         {
           "type": "field",
@@ -3518,7 +3727,8 @@
           ],
           "optional": true,
           "group": null,
-          "group_annotations": []
+          "group_annotations": [],
+          "present_if": "optional"
         }
       ]
     },
@@ -3596,7 +3806,8 @@
           ],
           "optional": true,
           "group": null,
-          "group_annotations": []
+          "group_annotations": [],
+          "present_if": "optional"
         }
       ]
     },
@@ -3657,31 +3868,31 @@
               "name": "DUP",
               "span": 1,
               "value": "0",
-              "optional": true
+              "optional": false
             },
             {
               "name": "QoS",
               "span": 2,
               "value": "11",
-              "optional": true
+              "optional": false
             },
             {
               "name": "Retain",
               "span": 1,
               "value": "X",
-              "optional": true
+              "optional": false
             },
             {
               "name": "Reserved",
               "span": 2,
               "value": "00",
-              "optional": true
+              "optional": false
             },
             {
               "name": "Topic Type",
               "span": 2,
               "value": "XX",
-              "optional": true
+              "optional": false
             }
           ]
         },
@@ -3691,14 +3902,20 @@
           "name": "Topic Alias MSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Topic Alias",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " - only present when Topic Type is Predefined Topic Alias"
             }
-          ]
+          ],
+          "present_if": {
+            "field": "Topic Type",
+            "is": [
+              "Predefined Topic Alias"
+            ]
+          }
         },
         {
           "type": "field",
@@ -3706,14 +3923,20 @@
           "name": "Topic Alias LSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Topic Alias",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " - only present when Topic Type is Predefined Topic Alias"
             }
-          ]
+          ],
+          "present_if": {
+            "field": "Topic Type",
+            "is": [
+              "Predefined Topic Alias"
+            ]
+          }
         },
         {
           "type": "field",
@@ -3721,14 +3944,20 @@
           "name": "Topic Short Name 1",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Topic Short Name",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " - only present when Topic Type is Topic Short Name"
             }
-          ]
+          ],
+          "present_if": {
+            "field": "Topic Type",
+            "is": [
+              "Topic Short Name"
+            ]
+          }
         },
         {
           "type": "field",
@@ -3736,14 +3965,20 @@
           "name": "Topic Short Name 2",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Topic Short Name",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " - only present when Topic Type is Topic Short Name"
             }
-          ]
+          ],
+          "present_if": {
+            "field": "Topic Type",
+            "is": [
+              "Topic Short Name"
+            ]
+          }
         },
         {
           "type": "field",
@@ -3751,14 +3986,20 @@
           "name": "Topic Name Length MSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Topic Name Length",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " - only present when Topic Type is Topic Name"
             }
-          ]
+          ],
+          "present_if": {
+            "field": "Topic Type",
+            "is": [
+              "Topic Name"
+            ]
+          }
         },
         {
           "type": "field",
@@ -3766,14 +4007,20 @@
           "name": "Topic Name Length LSB",
           "kind": "box",
           "annotations": [],
-          "optional": true,
+          "optional": false,
           "group": "Topic Name Length",
           "group_annotations": [
             {
               "style": "cursive",
               "text": " - only present when Topic Type is Topic Name"
             }
-          ]
+          ],
+          "present_if": {
+            "field": "Topic Type",
+            "is": [
+              "Topic Name"
+            ]
+          }
         },
         {
           "type": "field",
@@ -3808,7 +4055,14 @@
           ],
           "optional": true,
           "group": null,
-          "group_annotations": []
+          "group_annotations": [],
+          "present_if": {
+            "field": "Topic Type",
+            "is": [
+              "Topic Name"
+            ]
+          },
+          "length_symbol": "N"
         },
         {
           "type": "field",

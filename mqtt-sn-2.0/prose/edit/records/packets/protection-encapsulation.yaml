@@ -1,0 +1,107 @@
+# Layout of PROTECTION ENCAPSULATION: derive writes src/images/packet/protection-encapsulation-packet-diagram.edn (the figure source) from it.
+
+id: protection-encapsulation
+title: PROTECTION ENCAPSULATION
+diagram:
+  file: protection-encapsulation-packet-diagram
+  boxes-per-row: 9
+  box-width: 90
+  left-margin: 20
+  text-styles:
+    cursive:
+      font-family: Arial
+      font-size: 18
+      font-style: italic
+    normal:
+      font-family: Arial
+      font-size: 18
+      font-style: normal
+    medium:
+      font-family: Arial
+      font-size: 14
+    plain:
+      font-family: Arial
+      font-size: 18
+layout:
+- field: Length
+- field: Packet Type
+- bits: Protection Flags
+  flags:
+  - name: Authentication Tag Length
+    width: 4
+  - name: Crypto Length (C)
+    width: 2
+  - name: Counter Length (M)
+    width: 2
+  values: XXXXXXXX
+  boxes:
+    '0':
+      attrs:
+        fill: '#dddddd'
+        span: 9
+        text-anchor: start
+    '1':
+      label: null
+- field: Protection Scheme
+- variable: Sender Identifier
+  symbol-style: label
+  bytes: 8
+  boxes:
+    '1':
+      attrs:
+        span: 8
+        text-anchor: start
+- variable: Random
+  symbol-style: label
+  bytes: 4
+  boxes:
+    '1':
+      attrs:
+        span: 8
+        text-anchor: start
+- variable: Crypto Material
+  symbol-style: label
+  symbol: C
+  present-if:
+    field: Crypto Length
+    greater: 0
+  boxes:
+    '0':
+      attrs:
+        fill: '#eeeeee'
+    '1':
+      attrs:
+        fill: '#eeeeee'
+        span: 8
+        text-anchor: start
+- variable: Monotonic Counter
+  symbol-style: label
+  symbol: M
+  present-if:
+    field: Counter Length
+    greater: 0
+  boxes:
+    '0':
+      attrs:
+        fill: '#eeeeee'
+    '1':
+      attrs:
+        fill: '#eeeeee'
+        span: 8
+        text-anchor: start
+- variable: Protected MQTT-SN Packet
+  symbol-style: label
+  symbol: P
+  boxes:
+    '1':
+      attrs:
+        span: 8
+        text-anchor: start
+- variable: Authentication Tag
+  boxes:
+    '1':
+      attrs:
+        span: 8
+        text-anchor: start
+    '0':
+      label_style: medium

@@ -1,0 +1,144 @@
+# Table tab-mqtt-sn-control-packet-types in ctrl-pack-format-01-structure.md: derive writes the table from `entries`.
+
+id: packet-types
+file: ctrl-pack-format-01-structure.md
+label: tab-mqtt-sn-control-packet-types
+columns:
+- key: name
+  title: Name
+  bold: true
+  align: center
+  width: 30
+- key: value
+  title: Value
+  align: center
+  width: 11
+- key: direction
+  title: Direction of flow
+  align: center
+  width: 44
+- key: description
+  title: Description
+  align: none
+  width: 123
+entries:
+- name: Reserved
+  value: '0x00'
+  direction: Forbidden
+  description: Reserved
+- name: CONNECT
+  value: '0x01'
+  direction: Client to Server
+  description: Virtual Connection request
+- name: CONNACK
+  value: '0x02'
+  direction: Server to Client
+  description: Virtual Connection acknowledgement
+- name: PUBLISH
+  value: '0x03'
+  direction: Client to Server or Server to Client
+  description: Publish message
+- name: PUBACK
+  value: '0x04'
+  direction: Client to Server or Server to Client
+  description: Publish acknowledgment (QoS 1\) or Publish error (Any QoS).
+- name: PUBREC
+  value: '0x05'
+  direction: Client to Server or Server to Client
+  description: Publish received (QoS 2 delivery part 1\)
+- name: PUBREL
+  value: '0x06'
+  direction: Client to Server or Server to Client
+  description: Publish release (QoS 2 delivery part 2\)
+- name: PUBCOMP
+  value: '0x07'
+  direction: Client to Server or Server to Client
+  description: Publish complete (QoS 2 delivery part 3\)
+- name: SUBSCRIBE
+  value: '0x08'
+  direction: Client to Server
+  description: Subscribe request
+- name: SUBACK
+  value: '0x09'
+  direction: Server to Client
+  description: Subscribe acknowledgment
+- name: UNSUBSCRIBE
+  value: '0x0A'
+  direction: Client to Server
+  description: Unsubscribe request
+- name: UNSUBACK
+  value: '0x0B'
+  direction: Server to Client
+  description: Unsubscribe acknowledgment
+- name: PINGREQ
+  value: '0x0C'
+  direction: Client to Server
+  description: PING request
+- name: PINGRESP
+  value: '0x0D'
+  direction: Server to Client
+  description: PING response
+- name: DISCONNECT
+  value: '0x0E'
+  direction: Client to Server or Server to Client
+  description: Disconnect notification
+- name: AUTH
+  value: '0x0F'
+  direction: Client to Server or Server to Client
+  description: Authentication handshake
+- name: REGISTER
+  value: '0x10'
+  direction: Client to Server
+  description: Request topic alias
+- name: REGACK
+  value: '0x11'
+  direction: Server to Client
+  description: Supply topic alias
+- name: PUBWOS
+  value: '0x12'
+  direction: Client to Server or Server to Client
+  description: Publish packet for out of session messages which have no session on the receiver
+- name: SLEEPREQ
+  value: '0x13'
+  direction: Client to Server
+  description: Sleep request
+- name: SLEEPRESP
+  value: '0x14'
+  direction: Server to Client
+  description: Sleep response
+- name: WAKEUP
+  value: '0x15'
+  direction: Server to Client
+  description: Wake up request
+- name: ADVERTISE
+  value: '0x16'
+  direction: Server to Clients
+  description: Advertise the Server presence
+- name: SEARCHGW
+  value: '0x17'
+  direction: Client to Servers
+  description: Client GWINFO request
+- name: GWINFO
+  value: '0x18'
+  direction: Server to Client
+  description: Response to a SEARCHGW
+- name: Reserved
+  value: 0x19 -0xFB
+  direction: Forbidden
+  description: Reserved
+- name: Forwarder Encapsulation
+  value: '0xFC'
+  direction: Forwarder to Client or Forwarder to Server
+  description: MQTT-SN packet envelope to add addressing information for Forwarders
+- name: Reserved
+  value: '0xFD'
+  direction: Forbidden
+  description: Reserved to avoid clash with MQTT-SN 1.2 Encapsulation
+- name: Connection Encapsulation
+  value: '0xFE'
+  direction: Client to Server
+  description: MQTT-SN packet envelope to add Connection identification
+- name: Protection Encapsulation
+  value: '0xFF'
+  direction: Client to Server or Server to Client
+  description: A protection envelope that can encapsulate any MQTT-SN packet other than the Forwarder Encapsulation (0xFC)

@@ -51,7 +51,7 @@ types:
 render: html
 
 .PHONY: sections
-sections:
+sections: check
 	command -v nide >/dev/null 2>&1 || { echo >&2 "make sections requires nide but it's not installed - you can install with: 'pip install nide'.  Aborting."; exit 1; }
 	nide harvest
 
@@ -113,12 +113,22 @@ packet-dictionary: gfm-plus
 	printf "Step 4/6 -- deriving byte/row structure:\n"
 	mkdir -p build/packet-rows
 	python3 bin/derive_byte_rows.py --dir build/packet-specs --out-dir build/packet-rows
+	printf "Step 4b -- rows of every packet with a layout record, from the record (not from the drawing):\n"
+	python3 bin/spec_records.py rows --out-dir build/packet-rows
 	printf "Step 5/6 -- assembling the combined dictionary:\n"
 	python3 bin/assemble_packet_dictionary.py
 	printf "Step 6/6 -- publishing dictionary + schema:\n"
 	cp -p build/mqtt-sn-v2.0-draft-packet-dictionary.json $(out_packet_dict)
 	mkdir -p $(shared)schema/ && cp -p bin/packet-dictionary.schema.json $(out_packet_dict_schema)
 	ls -l $(out_packet_dict) $(out_packet_dict_schema)
+
+.PHONY: derive
+derive:
+	python3 bin/spec_records.py derive
+
+.PHONY: check
+check:
+	python3 bin/spec_records.py check
 
 .PHONY: quality
 quality:

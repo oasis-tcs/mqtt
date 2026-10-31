@@ -1,0 +1,65 @@
+# Layout of SLEEPREQ: derive writes src/images/packet/sleepreq-packet-diagram.edn (the figure source) from it.
+
+id: sleepreq
+title: SLEEPREQ
+diagram:
+  file: sleepreq-packet-diagram
+  boxes-per-row: 9
+  box-width: 90
+  left-margin: 20
+  text-styles:
+    plain:
+      font-family: Arial
+      font-size: 18
+    cursive:
+      font-family: Arial
+      font-size: 18
+      font-style: italic
+layout:
+- field: Length
+  boxes:
+    '0':
+      attrs:
+        fill: '#eeeeee'
+- field: Packet Type
+  boxes:
+    '0':
+      attrs:
+        fill: '#eeeeee'
+- bits: SLEEPREQ Flags
+  flags:
+  - name: Reserved
+    width: 7
+  - name: Retain T
+    width: 1
+  values: 0000000X
+  boxes:
+    '0':
+      attrs:
+        fill: '#dddddd'
+        span: 9
+        text-anchor: start
+- field: Packet Identifier
+  bytes: 2
+  boxes:
+    '0':
+      attrs:
+        fill: '#eeeeee'
+    '2':
+      attrs:
+        fill: '#eeeeee'
+- field: Sleep Duration
+  bytes: 4
+  boxes:
+    '0':
+      attrs:
+        fill: '#eeeeee'
+    '2':
+      attrs:
+        fill: '#eeeeee'
+    '4':
+      attrs:
+        fill: '#eeeeee'
+    '6':
+      attrs:
+        fill: '#eeeeee'

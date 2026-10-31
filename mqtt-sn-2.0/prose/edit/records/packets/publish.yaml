@@ -1,0 +1,82 @@
+# Layout of PUBLISH: derive writes src/images/packet/publish-packet-diagram.edn (the figure source) from it.
+
+id: publish
+title: PUBLISH
+diagram:
+  file: publish-packet-diagram
+  boxes-per-row: 9
+  box-width: 100
+  left-margin: 20
+  text-styles:
+    plain:
+      font-family: Arial
+      font-size: 18
+    cursive:
+      font-family: Arial
+      font-size: 18
+      font-style: italic
+layout:
+- field: Length
+  boxes:
+    '1':
+      attrs:
+        span: 8
+- field: Packet Type
+  boxes:
+    '1':
+      attrs:
+        span: 8
+- bits: Publish Flags
+  flags:
+  - name: DUP
+    width: 1
+  - name: QoS
+    width: 2
+  - name: Retain
+    width: 1
+  - name: Reserved
+    width: 2
+  - name: Topic Type
+    width: 2
+  values: XXXX00XX
+- group: Packet Identifier
+  items:
+  - field: Packet Identifier
+    bytes: 2
+    boxes:
+      '0':
+        attrs: {}
+      '1':
+        attrs:
+          span: 8
+      '2':
+        attrs: {}
+      '3':
+        attrs:
+          span: 8
+  symbol: P
+  present-if:
+    field: QoS
+    is:
+    - '1'
+    - '2'
+- field: Topic Alias or Topic Name Length
+  bytes: 2
+  boxes:
+    '1':
+      attrs:
+        span: 8
+    '3':
+      attrs:
+        span: 8
+- variable: Topic Name
+  symbol: N
+  present-if:
+    field: Topic Type
+    is:
+    - Topic Name
+  boxes:
+    '1':
+      attrs:
+        fill: '#eeeeee'
+- variable: Payload

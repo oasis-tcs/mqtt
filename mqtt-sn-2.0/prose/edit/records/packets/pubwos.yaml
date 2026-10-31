@@ -1,0 +1,57 @@
+# Layout of PUBWOS: derive writes src/images/packet/pubwos-packet-diagram.edn (the figure source) from it.
+
+id: pubwos
+title: PUBWOS
+diagram:
+  file: pubwos-packet-diagram
+  boxes-per-row: 9
+  box-width: 90
+  left-margin: 20
+  text-styles:
+    plain:
+      font-family: Arial
+      font-size: 18
+    cursive:
+      font-family: Arial
+      font-size: 18
+      font-style: italic
+layout:
+- field: Length
+- field: Packet Type
+- bits: PUBWOS Flags
+  flags:
+  - name: Reserved
+    width: 3
+  - name: Retain
+    width: 1
+  - name: Reserved
+    width: 2
+  - name: Topic Type
+    width: 2
+  values: 000X00XX
+  boxes:
+    '0':
+      attrs:
+        fill: '#dddddd'
+        span: 9
+        text-anchor: start
+    '1':
+      label: null
+- field: Topic Alias or Topic Name Length
+  bytes: 2
+- variable: Topic Name
+  symbol: N
+  present-if:
+    field: Topic Type
+    is:
+    - Topic Name
+  boxes:
+    '1':
+      attrs:
+        fill: '#eeeeee'
+- variable: Payload
+  boxes:
+    '1':
+      attrs:
+        span: 8
+        text-anchor: start

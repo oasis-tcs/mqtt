@@ -1,0 +1,49 @@
+# Normative statements of ctrl-pack-catalog-07-subscribe.md, in prose order. derive renders each mark «...» in the prose from
+# `text`, and Appendix B from `standalone` (a full sentence, where the mark is a fragment) or `text`.
+# `binds`: the roles (records/roles.yaml) the statement binds; `binds-by`: why (seeded, to review).
+
+statements:
+- id: MQTT-SN-3.7.2.1-1
+  text: The Topic Type MUST be Topic Filter, Predefined Topic Alias or Session Topic Alias
+- id: MQTT-SN-3.7.2.5-1
+  text: if the value is 1, Application Messages MUST NOT be forwarded to a Virtual Connection with a Client Identifier equal to the Client Identifier of the publishing Virtual Connection
+- id: MQTT-SN-3.7.4-1
+  text: If the Topic Type is Predefined Topic Alias or Session Topic Alias, then the Topic Alias field MUST be present in the SUBSCRIBE packet
+  binds:
+  - client
+  binds-by: sender of SUBSCRIBE (packet format)
+- id: MQTT-SN-3.7.4-2
+  text: If the Topic Type is Topic Filter the Topic Alias field MUST NOT be present in the SUBSCRIBE packet
+  binds:
+  - client
+  binds-by: sender of SUBSCRIBE (packet format)
+- id: MQTT-SN-3.7.5-1
+  text: If the Topic Type is Topic Filter the Topic Filter field MUST be present in the SUBSCRIBE packet
+  binds:
+  - client
+  binds-by: sender of SUBSCRIBE (packet format)
+- id: MQTT-SN-3.7.5-2
+  text: If the Topic Type is Predefined Topic Alias or Session Topic Alias, then the Topic Filter field MUST NOT be present in the SUBSCRIBE packet
+  binds:
+  - client
+  binds-by: sender of SUBSCRIBE (packet format)
+- id: MQTT-SN-3.7.6-1
+  text: When the Server receives a SUBSCRIBE packet from a Client, the Server MUST respond with a SUBACK packet
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-3.7.6-2
+  text: The SUBACK packet MUST have the same Packet Identifier as the SUBSCRIBE packet that it is acknowledging
+- id: MQTT-SN-3.7.6-3
+  text: If a Server receives a SUBSCRIBE packet containing a Topic Filter that is identical to a Subscription's Topic Filter for the current Session, then it MUST replace that existing Subscription with a new Subscription
+- id: MQTT-SN-3.7.6-4
+  text: If the Retain Handling option is 0, any existing retained messages matching the Topic Filter MUST be re-sent, but Application Messages MUST NOT be lost due to replacing the Subscription
+- id: MQTT-SN-3.7.6-5
+  text: The SUBACK packet sent by the Server to the Client MUST contain a Reason Code
+  binds:
+  - client
+  binds-by: subject
+- id: MQTT-SN-3.7.6-6
+  text: This Reason Code MUST either show the maximum QoS that was granted for that Subscription or indicate that the subscription failed
+- id: MQTT-SN-3.7.6-7
+  text: The QoS of Application Messages sent in response to a Subscription MUST be the minimum of the QoS of the originally published Application message and the Maximum QoS granted by the Server

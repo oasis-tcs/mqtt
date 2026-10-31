@@ -100,7 +100,7 @@ The following rules apply to Topic Names and Topic Filters:
 
 - A Topic Name or Topic Filter consisting only of the '/' character is valid
 
-- «<mark title="Requirement MQTT-SN-4.7.1.3-2"><a name="MQTT-SN-4.7.1.3-2"></a>Topic Names and Topic Filters MUST NOT include the null character (Unicode U+0000) [\[Unicode\]](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#Unicode)</mark>»[MQTT-SN-4.7.1.3-2](#tab-MQTT-SN-4.7.1.3-2)
+- «<mark title="Requirement MQTT-SN-4.7.1.3-2"><a name="MQTT-SN-4.7.1.3-2"></a>Topic Names and Topic Filters MUST NOT include the null character (Unicode U+0000) [\[Unicode\]](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#Unicode)</mark>»[MQTT‑SN‑4.7.1.3‑2](#tab-MQTT-SN-4.7.1.3-2)
 
 - «<mark title="Requirement MQTT-SN-4.7.1.3-3"><a name="MQTT-SN-4.7.1.3-3"></a>Topic Names and Topic Filters are UTF-8 Encoded Strings; they MUST NOT encode to more than 65,535 bytes</mark>»[MQTT‑SN‑4.7.1.3‑3](#tab-MQTT-SN-4.7.1.3-3). Refer to [sec](#utf-8-encoded-string).
 

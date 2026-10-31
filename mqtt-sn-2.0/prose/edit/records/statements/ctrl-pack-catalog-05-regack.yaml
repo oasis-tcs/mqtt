@@ -1,0 +1,31 @@
+# Normative statements of ctrl-pack-catalog-05-regack.md, in prose order. derive renders each mark «...» in the prose from
+# `text`, and Appendix B from `standalone` (a full sentence, where the mark is a fragment) or `text`.
+# `binds`: the roles (records/roles.yaml) the statement binds; `binds-by`: why (seeded, to review).
+
+statements:
+- id: MQTT-SN-3.5.2-1
+  text: Bits 7-3 of the REGACK Flags are reserved and MUST be set to 0
+  binds:
+  - server
+  binds-by: sender of REGACK (packet format)
+- id: MQTT-SN-3.5.2-2
+  text: The receiver MUST validate that the reserved flags in the REGACK packet are set to 0. If any of the reserved flags is not 0 it is a Malformed Packet
+  binds:
+  - client
+  binds-by: receiver of REGACK
+- id: MQTT-SN-3.5.2.1-1
+  text: The Topic Type in the REGACK packet MUST be Predefined Topic Alias or Session Topic Alias
+- id: MQTT-SN-3.5.2.2-1
+  text: If the Topic Alias Flag is set to 0, a Topic Alias MUST NOT be present in the Packet
+  binds:
+  - server
+  binds-by: sender of REGACK (packet format)
+- id: MQTT-SN-3.5.2.2-2
+  text: If the Topic Alias Flag is set to 1, a Topic Alias MUST be present in the Packet
+  binds:
+  - server
+  binds-by: sender of REGACK (packet format)
+- id: MQTT-SN-3.5.4-1
+  text: When sent by a Client the REGACK MUST NOT contain a Topic Alias
+- id: MQTT-SN-3.5.5-1
+  text: The sender of the REGACK Packet MUST use one of the Reason Codes applicable to REGACK

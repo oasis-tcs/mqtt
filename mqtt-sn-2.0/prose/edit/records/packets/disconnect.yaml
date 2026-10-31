@@ -1,0 +1,64 @@
+# Layout of DISCONNECT: derive writes src/images/packet/disconnect-packet-diagram.edn (the figure source) from it.
+
+id: disconnect
+title: DISCONNECT
+diagram:
+  file: disconnect-packet-diagram
+  boxes-per-row: 9
+  box-width: 90
+  left-margin: 20
+  text-styles:
+    plain:
+      font-family: Arial
+      font-size: 18
+    cursive:
+      font-family: Arial
+      font-size: 18
+      font-style: italic
+    tiny:
+      white-space: collapse balance
+      font-family: Arial
+      font-size: 10
+layout:
+- field: Length
+- field: Packet Type
+- bits: Disconnect Flags
+  flags:
+  - name: Reserved
+    width: 5
+  - name: Reason C
+    width: 1
+  - name: Sess Exp
+    width: 1
+  - name: PacketId
+    width: 1
+  values: 00000XXX
+- group: Packet Identifier
+  items:
+  - field: Packet Identifier
+    bytes: 2
+  symbol: I
+  present-if:
+    flag: PacketId
+- group: Session Expiry Interval
+  items:
+  - field: Session Expiry Interval
+    bytes: 4
+  symbol: S
+  present-if:
+    flag: Sess Exp
+- group: Reason Code
+  items:
+  - field: Reason Code
+  symbol: R
+  present-if:
+    flag: Reason C
+- variable: Reason String - optional
+  boxes:
+    '0':
+      attrs:
+        fill: '#eeeeee'
+    '1':
+      attrs:
+        fill: '#eeeeee'
+        span: 8
