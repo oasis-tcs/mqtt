@@ -79,12 +79,12 @@ The PNG and SVG files of all figures are rendered from the `.edn` files as befor
 
 1. Edit the records in `records/` for statements, packet layouts, tables, states and roles; edit `src/` for
    everything else (see "Authored records and generated files" above).
-2. Run `make derive`, review `views/findings.md` and the diff, then run `make` to render GFM+ and HTML;
-   check `../share/mqtt-sn-v2.0-draft.html` in a browser.
-3. Run `make quality` to check spec and OASIS baseline rules.
-4. Run `make pdf` to render the PDF; it opens automatically.
-5. Run `make diff` to compare HTML prose against the last committed version.
-6. Run `make release` when ready to publish all channels with manifest and validation.
+2. Run `make derive`, review `views/findings.md` and the diff, then run `make` to render all channels
+   (the PDF opens automatically); check `../share/mqtt-sn-v2.0-draft.html` in a browser.
+3. Run `make quality` to check spec and OASIS baseline rules (after step 2: it reads the rendered output).
+4. Run `make diff` to compare HTML prose against the last committed version.
+5. Before a PR or a release, run `make release`: it builds everything from scratch with every gate and lists the
+   deliverables that changed.
 
 ## Build targets
 
@@ -92,11 +92,12 @@ The PNG and SVG files of all figures are rendered from the `.edn` files as befor
 
 | Target          | What it does                                               |
 |:----------------|:-----------------------------------------------------------|
-| `make`          | GFM+ and HTML (default: `make build`)                      |
+| `make`          | `make render`, then `make status` (default: `make build`)  |
+| `make render`   | The quick loop: HTML and PDF, no cleaning, no gates        |
 | `make gfm-plus` | Assemble IR and render GFM+ Markdown                       |
 | `make html`     | Render HTML with embedded images (depends on `gfm-plus`)   |
 | `make pdf`      | Render PDF via typst (includes `src/images/` in the build) |
-| `make release`  | All channels + `nide manifest` + `nide validate`           |
+| `make release`  | What you hand over (PR, release), from scratch: `distclean`, `check`, `html`, `nide quality`, `packet-dictionary`, `pdf` (no viewer), `nide manifest`, `nide validate`; then lists the deliverables in `../share/` that changed. Never commits, pushes, or uploads |
 
 ### Records targets
 
@@ -119,23 +120,10 @@ The PNG and SVG files of all figures are rendered from the `.edn` files as befor
 
 | Target           | What it does                                           |
 |:-----------------|:-------------------------------------------------------|
-| `make status`    | Show fossil VCS status                                 |
-| `make tree`      | Show file tree, VCS changes, and verify fossil DB hash |
-| `make hash`      | Update BLAKE3 hash of the fossil database              |
-| `make dist-scm`  | Hash and distribute the fossil repository              |
-| `make context`   | Print environment and tool version info                |
+| `make status`    | Show git status                                        |
+| `make context`   | Print clone, branch, revision, and location details    |
 | `make clean`     | Remove `build/` and caches                             |
 | `make distclean` | Full clean including `build/`                          |
-
-### Deprecated aliases
-
-| Alias                  | Canonical         |
-|:-----------------------|:------------------|
-| `make typst`           | `make pdf`        |
-| `make diff-pdf`        | `make diff-repro` |
-| `make render-html`     | `make html`       |
-| `make render-markdown` | `make gfm-plus`   |
-| `make render-pdf`      | `make pdf`        |
 
 ## Using nide quality directly
 

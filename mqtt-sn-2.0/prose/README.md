@@ -41,10 +41,10 @@ All targets are defined in `edit/makefile`.
 Run commands from the `edit/` directory.
 
 ```
-make          # GFM+ and HTML (default)
+make          # all channels, quick: no cleaning, no gates (default)
 make pdf      # PDF via typst
-make release  # all channels + manifest + validation
 make quality  # run spec and OASIS baseline quality checks
+make release  # before a PR or release: everything from scratch, every gate, manifest, validation
 ```
 
 ## Source layout

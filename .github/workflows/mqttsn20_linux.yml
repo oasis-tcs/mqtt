@@ -8,7 +8,7 @@ jobs:
   build:
     runs-on: ubuntu-24.04   # pinned, not ubuntu-latest
     env:
-      NIDE_VERSION: "2026.10.10"
+      NIDE_VERSION: "2026.11.3"
       PYYAML_VERSION: "6.0.3"  # bin/spec_records.py (make check / make derive) reads the records
       TYPST_VERSION: "0.15.1"
       PANDOC_VERSION: "3.10.1"
