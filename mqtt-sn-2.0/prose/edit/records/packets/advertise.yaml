@@ -1,0 +1,23 @@
+# Layout of ADVERTISE: derive writes src/images/packet/advertise-packet-diagram.edn (the figure source) from it.
+
+id: advertise
+title: ADVERTISE
+diagram:
+  file: advertise-packet-diagram
+  boxes-per-row: 9
+  box-width: 90
+  left-margin: 20
+  text-styles:
+    plain:
+      font-family: Arial
+      font-size: 18
+    cursive:
+      font-family: Arial
+      font-size: 18
+      font-style: italic
+layout:
+- field: Length
+- field: Packet Type
+- field: Gateway Identifier
+- field: Duration
+  bytes: 2

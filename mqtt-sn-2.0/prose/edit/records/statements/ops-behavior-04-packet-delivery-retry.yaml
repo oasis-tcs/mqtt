@@ -1,0 +1,34 @@
+# Normative statements of ops-behavior-04-packet-delivery-retry.md, in prose order. derive renders each mark «...» in the prose from
+# `text`, and Appendix B from `standalone` (a full sentence, where the mark is a fragment) or `text`.
+# `binds`: the roles (records/roles.yaml) the statement binds; `binds-by`: why (seeded, to review).
+
+statements:
+- id: MQTT-SN-4.4.1-1
+  text: When a Client reconnects with Clean Start set to 0 and a Session is present, both the Client and Server MUST resend any unacknowledged PUBLISH with QoS 1 and 2 packets (not QoS 0) and PUBREL packets using their original Packet Identifiers
+  binds:
+  - client
+  - server
+  binds-by: subject
+- id: MQTT-SN-4.4.1-2
+  text: If PUBACK or PUBREC is received containing a Reason Code of 0x80 or greater, the corresponding PUBLISH packet is treated as acknowledged, and MUST NOT be retransmitted
+- id: MQTT-SN-4.4.1-3
+  text: The DUP flag MUST be set to 1 by the Client or Server when it attempts to resend a PUBLISH QoS 2 packet
+- id: MQTT-SN-4.4.2-1
+  text: CONNECT and AUTH Packets expect a response but MUST NOT be retried
+- id: MQTT-SN-4.4.2-2
+  text: The connection sequence CONNECT, zero or more AUTH Packets then CONNACK MUST be completed without retries
+- id: MQTT-SN-4.4.2-3
+  text: |-
+    A Server MUST respond promptly to a valid
+    request Packet
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-4.4.2-4
+  text: A Client in the Awake and Active states MUST respond promptly to a valid request Packet
+- id: MQTT-SN-4.4.2-5
+  text: In the absence of a response to a Packet which expects one, the Sender MUST delete the Virtual Connection if one exists
+- id: MQTT-SN-4.4.2-6
+  text: If a Packet is retransmitted, it MUST have Protection Encapsulation if the previously transmitted Packet had Protection Encapsulation
+- id: MQTT-SN-4.4.2-7
+  text: If a Packet is retransmitted it MUST be identical to the previously transmitted Packet, the DUP flag excepted. The Protection Encapsulation need not be identical

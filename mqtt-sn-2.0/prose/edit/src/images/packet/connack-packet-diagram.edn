@@ -1,18 +1,10 @@
-;; This is the source for 3.1.5 CONNACK packet diagram of MQTT-SN v2.0.
+;; Derived from records/packets/connack.yaml by bin/spec_records.py -- edit the record, not this file.
 (def boxes-per-row 9)
 (def box-width 90)
 (def left-margin 20)
 (defattrs :plain {:font-family "Arial" :font-size 18})
 (defattrs :cursive {:font-family "Arial" :font-size 18 :font-style "italic"})
 (defattrs :bg-lightblue {:fill "#cfe2f3"})
-(defattrs :bg-mediumgray {:fill "#dddddd"})
-(defattrs :bg-lightgray {:fill "#eeeeee"})
-;;(defattrs :left {:text-anchor "start"})
-(defattrs :byte {:span 8})
-(defattrs :optional-byte [:bg-lightgray :byte])
-(defattrs :field-name [:bold {:span 9 :text-anchor "start"}])
-(defattrs :byte-left {:span 8 :text-anchor "start"})
-(defattrs :optional-byte-left [:bg-lightgray :byte-left])
 
 (defn row-header-fn
   [{:keys [address gap?]}]
@@ -23,22 +15,18 @@
 (doseq [val (str/split "7,6,5,4,3,2,1,0" #",")]
   (draw-box (text val) :bg-lightblue))
 
-(draw-box (text "1"))
-(draw-box "Length" :byte-left)
-
-(draw-box (text "2"))
-(draw-box "Packet Type" :byte-left)
-
-(draw-box (text "Connack Flags") [:bg-mediumgray :field-name])
-
-(draw-box (text ""))
-(draw-box "Reserved" [:bg-lightgray {:span 4}])
-(draw-box "Auth" [:bg-lightgray {:span 1}])
-(draw-box "Server KA" [:bg-lightgray {:span 1}])
-(draw-box "Sess Exp" [:bg-lightgray {:span 1}])
-(draw-box "Sess Pres" [:bg-lightgray {:span 1}])
-
-(draw-box (text "3"))
+(draw-box "1" {})
+(draw-box "Length" {:span 8 :text-anchor "start"})
+(draw-box "2" {})
+(draw-box "Packet Type" {:span 8 :text-anchor "start"})
+(draw-box "Connack Flags" [:bold {:fill "#dddddd" :span 9 :text-anchor "start"}])
+(draw-box "" {})
+(draw-box "Reserved" {:fill "#eeeeee" :span 4})
+(draw-box "Auth" {:fill "#eeeeee" :span 1})
+(draw-box "Server KA" {:fill "#eeeeee" :span 1})
+(draw-box "Sess Exp" {:fill "#eeeeee" :span 1})
+(draw-box "Sess Pres" {:fill "#eeeeee" :span 1})
+(draw-box "3" {})
 (draw-box "0" {:span 1})
 (draw-box "0" {:span 1})
 (draw-box "0" {:span 1})
@@ -47,55 +35,38 @@
 (draw-box "X" {:span 1})
 (draw-box "X" {:span 1})
 (draw-box "X" {:span 1})
-
-(draw-box (text "4"))
-(draw-box "Packet Identifier MSB" :byte-left)
-
-(draw-box (text "5"))
-(draw-box "Packet Identifier LSB" :byte-left)
-
-(draw-box (text "6"))
-(draw-box "Reason Code" :byte-left)
-
-(draw-box (text "Session Expiry Interval" :plain [:cursive " (S=4 or 0) - only present when Sess Exp flag is set"]) [:bg-mediumgray :field-name])
-
-(draw-box (text "7") :bg-lightgray)
-(draw-box "Session Expiry Interval MSB" :optional-byte-left)
-
-(draw-box (text "8") :bg-lightgray)
-(draw-box "Session Expiry Interval" :optional-byte-left)
-
-(draw-box (text "9") :bg-lightgray)
-(draw-box "Session Expiry Interval" :optional-byte-left)
-
-(draw-box (text "10") :bg-lightgray)
-(draw-box "Session Expiry Interval LSB" :optional-byte-left)
-
-(draw-box (text "Server Keep Alive" :plain [:cursive " (K=2+S or S) - only present when Server KA flag is set"]) [:bg-mediumgray :field-name])
-(draw-box (text "7+S") :bg-lightgray)
-(draw-box "Server Keep Alive MSB" :optional-byte-left)
-
-(draw-box (text "8+S") :bg-lightgray)
-(draw-box "Server Keep Alive LSB" :optional-byte-left)
-
-(draw-box (text "Authentication Data" :plain [:cursive " (A=3+M+D+K or K) - only present when Auth flag is set"]) [:bg-mediumgray :field-name])
-
-(draw-box (text "7+K") :bg-lightgray)
-(draw-box "Authentication Method Length" :optional-byte-left)
-
-(draw-box (text "8+K") :bg-lightgray)
-(draw-gap "Authentication Method (M)" :optional-byte-left)
-
-(draw-box (text "8+K+M") :bg-lightgray)
-(draw-box "Authentication Data Length MSB" :optional-byte-left)
-
-(draw-box (text "9+K+M") :bg-lightgray)
-(draw-box "Authentication Data Length LSB" :optional-byte-left)
-
-(draw-box (text "10+K+M") :bg-lightgray)
-(draw-gap "Authentication Data (D)" :optional-byte-left)
-
-(draw-box (text "7+A") :bg-lightgray)
-(draw-gap (text "Assigned Client Identifier (I) - optional") :optional-byte-left)
+(draw-box "4" {})
+(draw-box "Packet Identifier MSB" {:span 8 :text-anchor "start"})
+(draw-box "5" {})
+(draw-box "Packet Identifier LSB" {:span 8 :text-anchor "start"})
+(draw-box "6" {})
+(draw-box "Reason Code" {:span 8 :text-anchor "start"})
+(draw-box (text "Session Expiry Interval" :plain [:cursive " (S=4 or 0) - only present when Sess Exp flag is set"]) [:bold {:fill "#dddddd" :span 9 :text-anchor "start"}])
+(draw-box "7" {:fill "#eeeeee"})
+(draw-box "Session Expiry Interval MSB" {:fill "#eeeeee" :span 8 :text-anchor "start"})
+(draw-box "8" {:fill "#eeeeee"})
+(draw-box "Session Expiry Interval" {:fill "#eeeeee" :span 8 :text-anchor "start"})
+(draw-box "9" {:fill "#eeeeee"})
+(draw-box "Session Expiry Interval" {:fill "#eeeeee" :span 8 :text-anchor "start"})
+(draw-box "10" {:fill "#eeeeee"})
+(draw-box "Session Expiry Interval LSB" {:fill "#eeeeee" :span 8 :text-anchor "start"})
+(draw-box (text "Server Keep Alive" :plain [:cursive " (K=2+S or S) - only present when Server KA flag is set"]) [:bold {:fill "#dddddd" :span 9 :text-anchor "start"}])
+(draw-box "7+S" {:fill "#eeeeee"})
+(draw-box "Server Keep Alive MSB" {:fill "#eeeeee" :span 8 :text-anchor "start"})
+(draw-box "8+S" {:fill "#eeeeee"})
+(draw-box "Server Keep Alive LSB" {:fill "#eeeeee" :span 8 :text-anchor "start"})
+(draw-box (text "Authentication Data" :plain [:cursive " (A=3+M+D+K or K) - only present when Auth flag is set"]) [:bold {:fill "#dddddd" :span 9 :text-anchor "start"}])
+(draw-box "7+K" {:fill "#eeeeee"})
+(draw-box "Authentication Method Length" {:fill "#eeeeee" :span 8 :text-anchor "start"})
+(draw-box "8+K" {:fill "#eeeeee"})
+(draw-gap "Authentication Method (M)" {:fill "#eeeeee" :span 8 :text-anchor "start"})
+(draw-box "8+K+M" {:fill "#eeeeee"})
+(draw-box "Authentication Data Length MSB" {:fill "#eeeeee" :span 8 :text-anchor "start"})
+(draw-box "9+K+M" {:fill "#eeeeee"})
+(draw-box "Authentication Data Length LSB" {:fill "#eeeeee" :span 8 :text-anchor "start"})
+(draw-box "10+K+M" {:fill "#eeeeee"})
+(draw-gap "Authentication Data (D)" {:fill "#eeeeee" :span 8 :text-anchor "start"})
+(draw-box "7+A" {:fill "#eeeeee"})
+(draw-gap "Assigned Client Identifier (I) - optional" {:fill "#eeeeee" :span 8 :text-anchor "start"})
 
 (draw-bottom)

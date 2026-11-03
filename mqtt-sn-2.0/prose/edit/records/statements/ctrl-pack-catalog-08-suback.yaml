@@ -1,0 +1,43 @@
+# Normative statements of ctrl-pack-catalog-08-suback.md, in prose order. derive renders each mark «...» in the prose from
+# `text`, and Appendix B from `standalone` (a full sentence, where the mark is a fragment) or `text`.
+# `binds`: the roles (records/roles.yaml) the statement binds; `binds-by`: why (seeded, to review).
+
+statements:
+- id: MQTT-SN-3.8.2-1
+  text: Bits 7-3 of the SUBACK Flags are reserved and MUST be set to 0
+  binds:
+  - server
+  binds-by: sender of SUBACK (packet format)
+- id: MQTT-SN-3.8.2-2
+  text: The Client MUST validate that the reserved flags in the SUBACK packet are set to 0. If any of the reserved flags is not 0 it is a Malformed Packet
+  binds:
+  - client
+  binds-by: subject
+- id: MQTT-SN-3.8.2.1-1
+  text: The Topic Type in the SUBACK packet MUST be either Predefined Topic Alias or Session Topic Alias
+- id: MQTT-SN-3.8.2.1-2
+  text: If there is no Topic Alias returned the Topic Type MUST be Predefined Topic Alias
+- id: MQTT-SN-3.8.2.2-1
+  text: If the Topic Alias Flag is set to 0, a Topic Alias MUST NOT be present in the Packet
+  binds:
+  - server
+  binds-by: sender of SUBACK (packet format)
+- id: MQTT-SN-3.8.2.2-2
+  text: If the Topic Alias Flag is set to 1, a Topic Alias MUST be present in the Packet
+  binds:
+  - server
+  binds-by: sender of SUBACK (packet format)
+- id: MQTT-SN-3.8.4-1
+  text: If a Topic Alias is returned, it MUST be used instead of the Topic Name by the Server when sending PUBLISH packets to the client
+- id: MQTT-SN-3.8.4-2
+  text: If no Topic Alias is returned, the Topic Alias Flag MUST be 0
+  binds:
+  - server
+  binds-by: sender of SUBACK (packet format)
+- id: MQTT-SN-3.8.4-3
+  text: If a Predefined Topic Alias was subscribed to, a Topic Alias MUST NOT be present in the SUBACK
+  binds:
+  - server
+  binds-by: sender of SUBACK (packet format)
+- id: MQTT-SN-3.8.5-1
+  text: The sender of the SUBACK Packet MUST use one of the Reason Codes applicable to SUBACK

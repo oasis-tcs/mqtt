@@ -1,0 +1,38 @@
+# The Server's view of a Client's state: the states and timers are the rows of records/tables/client-states.yaml
+# and session-timers.yaml; this record adds what only the figure states today: the transitions and what triggers
+# them, and the state-dependent sending rules as data. Transcribed from fig-server-view-of-client-states-informative-2
+# (images/ServerState.png); review against the figure before relying on it.
+#
+#   trigger  {packet: <type>, from: client|server} | {timer: <session timer>}
+#   may-send per state: the packets a Client may send there, and the statement saying so
+
+id: server-view
+title: Server view of Client states
+states: client-states
+timers: session-timers
+figure: fig-server-view-of-client-states-informative-2
+
+transitions:
+  - {from: None, to: Active, trigger: {packet: CONNECT, from: client}}
+  - {from: Disconnected, to: Active, trigger: {packet: CONNECT, from: client}}
+  - {from: Disconnected, to: None, trigger: {timer: Session Expiry}}
+  - {from: Active, to: Disconnected, trigger: {packet: DISCONNECT, from: client}}
+  - {from: Active, to: Disconnected, trigger: {packet: DISCONNECT, from: server}, note: figure note 3}
+  - {from: Active, to: Disconnected, trigger: {timer: Keep Alive}}
+  - {from: Active, to: Asleep, trigger: {packet: SLEEPREQ, from: client}}
+  - {from: Asleep, to: Asleep, trigger: {packet: SLEEPREQ, from: client}, note: to change the Sleep Duration}
+  - {from: Asleep, to: Active, trigger: {packet: CONNECT, from: client}}
+  - {from: Asleep, to: Awake, trigger: {packet: PINGREQ, from: client}}
+  - {from: Asleep, to: Disconnected, trigger: {packet: DISCONNECT, from: client}}
+  - {from: Asleep, to: Disconnected, trigger: {packet: DISCONNECT, from: server}, note: figure note 3}
+  - {from: Asleep, to: Disconnected, trigger: {timer: Sleep Duration}}
+  - {from: Awake, to: Asleep, trigger: {packet: PINGRESP, from: server}}
+  - {from: Awake, to: Active, trigger: {packet: CONNECT, from: client}}
+  - {from: Awake, to: Disconnected, trigger: {packet: DISCONNECT, from: client}}
+  - {from: Awake, to: Disconnected, trigger: {packet: DISCONNECT, from: server}, note: figure note 3}
+  - {from: Awake, to: Disconnected, trigger: {timer: Keep Alive}}
+  - {from: Awake, to: Disconnected, trigger: {timer: Retry}}
+
+may-send:
+  - {state: Asleep, packets: [PINGREQ, CONNECT, DISCONNECT], statement: MQTT-SN-4.14-2}
+  - {state: Awake, packets: [PUBACK, PUBREC, PUBCOMP, REGACK, CONNECT, DISCONNECT], statement: MQTT-SN-4.14-3}

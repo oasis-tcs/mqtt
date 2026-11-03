@@ -1,0 +1,29 @@
+# Normative statements of ctrl-pack-catalog-04-register.md, in prose order. derive renders each mark «...» in the prose from
+# `text`, and Appendix B from `standalone` (a full sentence, where the mark is a fragment) or `text`.
+# `binds`: the roles (records/roles.yaml) the statement binds; `binds-by`: why (seeded, to review).
+
+statements:
+- id: MQTT-SN-3.4-1
+  text: If the REGISTER packet is sent by a Client, it MUST NOT contain a Topic Alias
+- id: MQTT-SN-3.4-2
+  text: If the REGISTER packet is sent by a Server, it MUST contain a Topic Alias
+- id: MQTT-SN-3.4.2-1
+  text: Bits 7-1 of the REGISTER Flags are reserved and MUST be set to 0
+  binds:
+  - client
+  binds-by: sender of REGISTER (packet format)
+- id: MQTT-SN-3.4.2-2
+  text: The receiver MUST validate that the reserved flags in the REGISTER packet are set to 0. If any of the reserved flags is not 0 it is a Malformed Packet
+  binds:
+  - server
+  binds-by: receiver of REGISTER
+- id: MQTT-SN-3.4.2.1-1
+  text: If the Topic Alias Flag is set to 0, a Topic Alias MUST NOT be present in the Packet
+  binds:
+  - client
+  binds-by: sender of REGISTER (packet format)
+- id: MQTT-SN-3.4.2.1-2
+  text: If the Topic Alias Flag is set to 1, a Topic Alias MUST be present in the Packet
+  binds:
+  - client
+  binds-by: sender of REGISTER (packet format)

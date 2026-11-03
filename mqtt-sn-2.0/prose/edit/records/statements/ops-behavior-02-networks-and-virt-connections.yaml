@@ -1,0 +1,9 @@
+# Normative statements of ops-behavior-02-networks-and-virt-connections.md, in prose order. derive renders each mark «...» in the prose from
+# `text`, and Appendix B from `standalone` (a full sentence, where the mark is a fragment) or `text`.
+# `binds`: the roles (records/roles.yaml) the statement binds; `binds-by`: why (seeded, to review).
+
+statements:
+- id: MQTT-SN-4.2-1
+  text: If the Underlying Network might deliver a Packet more than once, for connection-oriented communications (CONNECT, DISCONNECT and other packets in between) the PROTECTION ENCAPSULATION Monotonic Counter MUST be used to eliminate duplicates
+- id: MQTT-SN-4.2.1-1
+  text: All incoming Packets except CONNECT, PUBWOS and Gateway search (ADVERTISE, SEARCHGW and GWINFO) MUST be associated with an existing Virtual Connection

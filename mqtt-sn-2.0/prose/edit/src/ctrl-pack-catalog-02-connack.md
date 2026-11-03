@@ -60,7 +60,7 @@ Specifies whether the packet contains authentication material to be considered.
 
 «<mark title="Requirement MQTT-SN-3.2.2.4-1"><a name="MQTT-SN-3.2.2.4-1"></a>If the Authentication Flag is set to 0, Authentication Method and Data MUST NOT be present in the Packet</mark>»[MQTT‑SN‑3.2.2.4‑1](#tab-MQTT-SN-3.2.2.4-1).
 
-«<mark title="Requirement MQTT-SN-3.2.2.4-2"><a name="MQTT-SN-3.2.2.4-2"></a>If the Authentication Flag is set to 1, Authentication Method and Data MUST be present in the Packet</mark>»[MQTT-SN-3.2.2.4-2](#tab-MQTT-SN-3.2.2.4-2).
+«<mark title="Requirement MQTT-SN-3.2.2.4-2"><a name="MQTT-SN-3.2.2.4-2"></a>If the Authentication Flag is set to 1, Authentication Method and Data MUST be present in the Packet</mark>»[MQTT‑SN‑3.2.2.4‑2](#tab-MQTT-SN-3.2.2.4-2).
 
 ### Packet Identifier{#cca---packet-identifier}
 

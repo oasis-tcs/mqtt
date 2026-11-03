@@ -139,9 +139,9 @@ This flag signifies whether the message is published as a retained message or no
 
 Used to identify the corresponding PUBACK packet in the case of QoS 1. Used to identify the corresponding PUBREC, PUBREL and PUBCOMP packets in the case of QoS 2. It should ideally be populated with a random Two Byte Integer value.
 
-«<mark title="Requirement MQTT-SN-3.6.2.3-1"><a name="MQTT-SN-3.6.2.3-1"></a>If the QoS field is set to 0, the Packet Identifier field MUST not be present in the PUBLISH packet.</mark>»[MQTT‑SN‑3.6.2.3‑1](#tab-MQTT-SN-3.6.2.2.3-1).
+«<mark title="Requirement MQTT-SN-3.6.2.3-1"><a name="MQTT-SN-3.6.2.3-1"></a>If the QoS field is set to 0, the Packet Identifier field MUST not be present in the PUBLISH packet.</mark>»[MQTT‑SN‑3.6.2.3‑1](#tab-MQTT-SN-3.6.2.3-1).
 
-«<mark title="Requirement MQTT-SN-3.6.2.3-2"><a name="MQTT-SN-3.6.2.3-2"></a>If the QoS field is set to 1 or 2, the Packet Identifier field MUST be present in the PUBLISH packet.</mark>»[MQTT‑SN‑3.6.2.3‑2](#tab-MQTT-SN-3.6.2.2.3-1).
+«<mark title="Requirement MQTT-SN-3.6.2.3-2"><a name="MQTT-SN-3.6.2.3-2"></a>If the QoS field is set to 1 or 2, the Packet Identifier field MUST be present in the PUBLISH packet.</mark>»[MQTT‑SN‑3.6.2.3‑2](#tab-MQTT-SN-3.6.2.3-2).
 
 #### Topic Alias or Topic Name Length{#pub---topic-alias-or-topic-name-length}
 

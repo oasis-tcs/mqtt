@@ -1,0 +1,53 @@
+# Table tab-session-timers in ops-behavior-14-client-states.md: derive writes the table from `entries`.
+
+id: session-timers
+file: ops-behavior-14-client-states.md
+label: tab-session-timers
+columns:
+- key: timer
+  title: Timer Name
+  align: left
+  width: 16
+- key: states
+  title: State(s)
+  align: left
+  width: 23
+- key: timeout-state
+  title: Timeout State
+  align: left
+  width: 15
+- key: defined-in
+  title: Defined in
+  align: left
+  width: 22
+- key: information
+  title: Information
+  align: left
+  width: 58
+entries:
+- timer: Keep Alive
+  states:
+  - Active
+  timeout-state: Disconnected
+  defined-in: CONNECT
+  information: '[sec](#keep-alive)'
+- timer: Sleep Duration
+  states:
+  - Asleep
+  timeout-state: Disconnected
+  defined-in: SLEEPREQ
+  information: '[sec](#sleeping-clients)'
+- timer: Session Expiry
+  states:
+  - Disconnected
+  timeout-state: None
+  defined-in: CONNECT, DISCONNECT
+  information: '[sec](#storing-session-state)'
+- timer: Retry
+  states:
+  - Active
+  - Awake
+  - Asleep
+  timeout-state: Disconnected
+  defined-in: Sender configuration
+  information: '[sec](#packet-delivery-retry)'

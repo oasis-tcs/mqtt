@@ -1,0 +1,13 @@
+# Normative statements of ctrl-pack-catalog-18-connection-encapsulation.md, in prose order. derive renders each mark «...» in the prose from
+# `text`, and Appendix B from `standalone` (a full sentence, where the mark is a fragment) or `text`.
+# `binds`: the roles (records/roles.yaml) the statement binds; `binds-by`: why (seeded, to review).
+
+statements:
+- id: MQTT-SN-3.18-1
+  text: If the Allow Network Address Changes flag in the CONNECT for the Virtual Connection is 0, it is a protocol error to use the Connection Encapsulation
+- id: MQTT-SN-3.18-2
+  text: It is a protocol error to use the Connection Encapsulation on Packets sent by a Server
+- id: MQTT-SN-3.18-3
+  text: It is a protocol error to use the Connection Encapsulation on Packets other than PUBLISH, SUBSCRIBE, UNSUBSCRIBE, REGISTER, DISCONNECT, SLEEPREQ and PINGREQ sent by a Client
+- id: MQTT-SN-3.18-4
+  text: The encapsulated MQTT-SN packet MUST be treated by the receiver in exactly the same fashion as the same Packet unencapsulated, once the associated Virtual Connection is identified

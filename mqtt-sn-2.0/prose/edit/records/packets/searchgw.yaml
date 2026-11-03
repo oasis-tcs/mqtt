@@ -1,0 +1,26 @@
+# Layout of SEARCHGW: derive writes src/images/packet/searchgw-packet-diagram.edn (the figure source) from it.
+
+id: searchgw
+title: SEARCHGW
+diagram:
+  file: searchgw-packet-diagram
+  boxes-per-row: 9
+  box-width: 90
+  left-margin: 20
+  text-styles:
+    plain:
+      font-family: Arial
+      font-size: 18
+    cursive:
+      font-family: Arial
+      font-size: 18
+      font-style: italic
+layout:
+- field: Length
+- field: Packet Type
+- variable: Additional Network Information
+  present-if: optional
+  boxes:
+    '1':
+      attrs:
+        fill: '#eeeeee'

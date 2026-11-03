@@ -1,0 +1,48 @@
+# Normative statements of ctrl-pack-catalog-15-sleepreq.md, in prose order. derive renders each mark «...» in the prose from
+# `text`, and Appendix B from `standalone` (a full sentence, where the mark is a fragment) or `text`.
+# `binds`: the roles (records/roles.yaml) the statement binds; `binds-by`: why (seeded, to review).
+
+statements:
+- id: MQTT-SN-3.15.2-1
+  text: Bits 7-1 of the SLEEPREQ Flags are reserved and MUST be set to 0
+  binds:
+  - client
+  binds-by: sender of SLEEPREQ (packet format)
+- id: MQTT-SN-3.15.2-2
+  text: The Server MUST validate that the reserved flags in the SLEEPREQ packet are set to 0. If any of the reserved flags is not 0 it is a Malformed Packet
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-3.15.2.1-1
+  text: Predefined Topic aliases MUST NOT be removed by the setting of the Retain Topic Aliases flag to 0
+- id: MQTT-SN-3.15.4-1
+  text: The Sleep Duration MUST be greater than 0
+- id: MQTT-SN-3.15.5-1
+  text: A SLEEPREQ packet sent by a Server is a Protocol Error
+- id: MQTT-SN-3.15.5-2
+  text: If there is a Virtual Connection for the Client, the Server MUST send a SLEEPRESP packet in response to a SLEEPREQ packet
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-3.15.5-3
+  text: If there is no Virtual Connection associated with the SLEEPREQ, the Server MAY send a DISCONNECT with Reason Code 0xF4 (No Virtual Connection Exists) in response
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-3.15.5-4
+  text: If the SLEEPREQ request is granted, the Server MUST suspend Keep Alive processing for the Virtual Connection
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-3.15.5-5
+  text: If the SLEEPREQ request is granted, the Server MUST start Sleep Duration processing for the Virtual Connection
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-3.15.5-6
+  text: If the SLEEPREQ request is successful, the Virtual Connection MUST NOT be deleted
+- id: MQTT-SN-3.15.5-7
+  text: If the Client is already in the Asleep state when a SLEEPREQ is received by the Server, the Server MUST stop the Sleep Duration Timer, and start a new sleep cycle using the updated Sleep Duration
+  binds:
+  - server
+  binds-by: subject

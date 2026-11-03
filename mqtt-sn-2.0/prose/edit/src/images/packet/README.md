@@ -1,5 +1,10 @@
 # Package Diagrams (Table)
 
+> **The `.edn` sources here are generated** from the packet layout records in `../../../records/packets/` by
+> `make derive` (see `../../../records/README.md`); edit the record, not the `.edn` file. Exceptions, still
+> hand-written: `structure-packet-diagram.edn` and `mqtt-basic-bit-diagram.edn`. Rendering the SVG and PNG files from
+> the `.edn` files works as described below. The Clojure examples below show the format the generator writes.
+
 The diagrams representing the bytefields of MQTT-SN packets in a manner very similar
 to the incoming draft as well as to the existing MQTT v5.0 specification.
 

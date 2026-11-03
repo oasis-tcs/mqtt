@@ -1,0 +1,9 @@
+# Normative statements of ctrl-pack-catalog-03-auth.md, in prose order. derive renders each mark «...» in the prose from
+# `text`, and Appendix B from `standalone` (a full sentence, where the mark is a fragment) or `text`.
+# `binds`: the roles (records/roles.yaml) the statement binds; `binds-by`: why (seeded, to review).
+
+statements:
+- id: MQTT-SN-3.3.2-1
+  text: When sent from Server to Client, it MUST contain the packet identifier of the CONNECT or AUTH packet being responded to
+- id: MQTT-SN-3.3.3-1
+  text: The sender of the AUTH Packet MUST use one of the Reason Codes shown as applicable to the AUTH packet

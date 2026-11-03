@@ -94,7 +94,7 @@ This is the highest Quality of Service level, for use when neither loss nor dupl
 
 - «<mark title="Requirement MQTT-SN-4.3.4-7"><a name="MQTT-SN-4.3.4-7"></a>MUST treat the PUBREL packet as "unacknowledged" until it has received the corresponding PUBCOMP packet from the receiver</mark>»[MQTT‑SN‑4.3.4‑7](#tab-MQTT-SN-4.3.4-7)
 
-- «<mark title="Requirement MQTT-SN-4.3.4-8"><a name="MQTT-SN-4.3.4-8"></a>MUST NOT resend the PUBLISH once it has sent the corresponding PUBREL packet</mark>»[MQTT-SN-4.3.4-8](#tab-MQTT-SN-4.3.4-8)
+- «<mark title="Requirement MQTT-SN-4.3.4-8"><a name="MQTT-SN-4.3.4-8"></a>MUST NOT resend the PUBLISH once it has sent the corresponding PUBREL packet</mark>»[MQTT‑SN‑4.3.4‑8](#tab-MQTT-SN-4.3.4-8)
 
 The Packet Identifier becomes available for reuse once the sender has received the PUBCOMP packet or a PUBREC with a Reason Code of 0x80 or greater.
 

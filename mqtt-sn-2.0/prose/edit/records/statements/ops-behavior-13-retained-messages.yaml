@@ -1,0 +1,44 @@
+# Normative statements of ops-behavior-13-retained-messages.md, in prose order. derive renders each mark «...» in the prose from
+# `text`, and Appendix B from `standalone` (a full sentence, where the mark is a fragment) or `text`.
+# `binds`: the roles (records/roles.yaml) the statement binds; `binds-by`: why (seeded, to review).
+
+statements:
+- id: MQTT-SN-4.13-1
+  text: If the RETAIN flag is set to 1 in a PUBLISH or PUBWOS packet received by a Server, the Server MUST replace any existing Retained Message for this topic and store the Application Message
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-4.13-2
+  text: If the Publish Data contains zero bytes it is processed normally by the Server but any retained message with the same topic name MUST be removed and any future subscribers for the topic will not receive a retained message
+- id: MQTT-SN-4.13-3
+  text: A Retained Message with a Publish Data containing zero bytes MUST NOT be stored as a Retained Message on the Server
+- id: MQTT-SN-4.13-4
+  text: If the RETAIN flag is 0 in a PUBLISH packet sent by a Client to a Server, the Server MUST NOT store the message as a Retained Message and MUST NOT remove or replace any existing Retained Message
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-4.13-5
+  text: If Retain Handling is set to 0 the Server MUST send the retained messages matching the Topic Filter of the subscription to the Client
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-4.13-6
+  text: If Retain Handling is set to 1 then if the subscription did not already exist, the Server MUST send all retained messages matching the Topic Filter of the subscription to the Client, and if the subscription did exist the Server MUST NOT send the retained messages.
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-4.13-7
+  text: If Retain Handling is set to 2, the Server MUST NOT send the retained messages
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-4.13-8
+  text: If the value of Retain As Published subscription option is set to 0, the Server MUST set the RETAIN flag to 0 when forwarding an Application Message regardless of how the RETAIN flag was set in the received PUBLISH packet
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-4.13-9
+  text: If the value of Retain As Published subscription option is set to 1, the Server MUST set the RETAIN flag equal to the RETAIN flag in the received PUBLISH packet
+  binds:
+  - server
+  binds-by: subject

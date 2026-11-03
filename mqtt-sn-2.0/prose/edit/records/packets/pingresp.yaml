@@ -1,0 +1,33 @@
+# Layout of PINGRESP: derive writes src/images/packet/pingresp-packet-diagram.edn (the figure source) from it.
+
+id: pingresp
+title: PINGRESP
+diagram:
+  file: pingresp-packet-diagram
+  boxes-per-row: 9
+  box-width: 90
+  left-margin: 20
+  text-styles:
+    plain:
+      font-family: Arial
+      font-size: 18
+    cursive:
+      font-family: Arial
+      font-size: 18
+      font-style: italic
+layout:
+- field: Length
+- field: Packet Type
+- field: Packet Identifier
+  bytes: 2
+- field: Application Messages Remaining
+  present-if: optional
+  boxes:
+    '0':
+      attrs:
+        fill: '#eeeeee'
+    '1':
+      attrs:
+        fill: '#eeeeee'
+        span: 8
+        text-anchor: start
