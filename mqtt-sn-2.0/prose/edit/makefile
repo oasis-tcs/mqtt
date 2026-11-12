@@ -21,6 +21,7 @@ out_manifest           = $(shared)$(artifact_stem).manifest.json
 out_pdf                = $(shared)$(artifact_stem).pdf
 out_pdf_sha256         = $(shared)$(artifact_stem).pdf.sha256
 out_pdf_blake3         = $(shared)$(artifact_stem).pdf.blake3
+out_pdf_injected       = $(shared)$(artifact_stem)-injected.pdf
 out_typst              = $(shared)$(artifact_stem).typ
 out_packet_dict        = $(shared)$(artifact_stem)-packet-dictionary.json
 out_packet_dict_schema = $(shared)schema/packet-dictionary.schema.json
@@ -97,7 +98,9 @@ pdf:
 
 .PHONY: release
 release: html pdf
-	nide manifest && nide validate
+	nide manifest --inject-pdf $(out_pdf) && nide validate && \
+	  printf "Rendered pdf with XMP metadata:\n" && \
+	  ls -l $(out_pdf_injected)
 	cp -p build/manifest.json $(out_manifest)
 	ls -l $(shared)$(artifact_stem).*
 

@@ -1,12 +1,10 @@
 ![](https://docs.oasis-open.org/templates/OASISLogo-v3.0.png)
 
--------
-
 # MQTT for Sensor Networks Version 2.0<a id='mqtt-for-sensor-networks-version-2-0'></a>
 
 ## Committee Specification Draft 01<a id='committee-specification-draft-01'></a>
 
-## 14 August 2026<a id='14-august-2026'></a>
+## 29 October 2026<a id='29-october-2026'></a>
 
 #### This stage<a id='this-stage'></a>
 <https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/csd01/mqtt-sn-v2.0-csd01.md> (Authoritative) \
@@ -54,7 +52,7 @@ This specification defines the MQTT for Sensor Networks protocol (MQTT-SN). It i
 
 #### Status<a id='status'></a>
 
-This document was last revised or approved by the OASIS Message Queuing Telemetry Transport (MQTT) TC on the above date. The level of approval is also listed above. Check the \"Latest stage\" location noted above for possible later revisions of this document. Any other numbered Versions and other technical work produced by the Technical Committee (TC) are listed at [[https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=mqtt#technical]](https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=mqtt#technical) .
+This document was last revised or approved by the OASIS Message Queuing Telemetry Transport (MQTT) TC on the above date. The level of approval is also listed above. Check the \"Latest stage\" location noted above for possible later revisions of this document. Any other numbered Versions and other technical work produced by the Technical Committee (TC) are listed at <https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=mqtt#technical>.
 
 TC members should send comments on this document to the TC\'s email list. Others should send comments to the TC\'s public comment list, after subscribing to it by following the instructions at the \"[[Send A Comment]](https://www.oasis-open.org/committees/comments/index.php?wg_abbrev=mqtt)\" button on the TC\'s web page at [[https://www.oasis-open.org/committees/mqtt/]](https://www.oasis-open.org/committees/mqtt/).
 
@@ -68,13 +66,13 @@ When referencing this document, the following citation format should be used:
 
 **\[MQTT-SN-v2.0\]**
 
-*MQTT for Sensor Networks Version 2.0*. Edited by Andrew Banks, Davide Lenzarini, Ian Craggs, Rahul Gupta, Simon Johnson, Stefan Hagen, and Tara E. Walker. 01 May 2025. OASIS Committee Specification Draft 01. [[https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/csd01/mqtt-sn-v2.0-csd01.docx]](https://docs.oasis-open.org/mqtt/mqtt-sn/v12.30/csd01/mqtt-sn-v12.30-csd01.docx). Latest stage: [[https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/mqtt-sn-v2.0.docx]](https://docs.oasis-open.org/mqtt/mqtt-sn/v12.30/mqtt-sn-v12.30.docx)
+*MQTT for Sensor Networks Version 2.0*. Edited by Andrew Banks, Andy Stanford-Clark, Davide Lenzarini, Ian Craggs, Rahul Gupta, Simon Johnson, Stefan Hagen, and Tara E. Walker. 29 October 2026. OASIS Committee Specification Draft 01. <https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/csd01/mqtt-sn-v2.0-csd01.md>. Latest stage: <https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/mqtt-sn-v2.0.md>
 
 ## Notices<a id='notices'></a>
 
-Copyright © OASIS Open 2025. All Rights Reserved.
+Copyright © OASIS Open 2026. All Rights Reserved.
 
-All capitalized terms in the following text have the meanings assigned to them in the OASIS Intellectual Property Rights Policy (the \"OASIS IPR Policy\"). The full [[Policy]](https://www.oasis-open.org/policies-guidelines/ipr/) may be found at the OASIS website: \[[[https://www.oasis-open.org/policies-guidelines/ipr/]](https://www.oasis-open.org/policies-guidelines/ipr/)\].
+All capitalized terms in the following text have the meanings assigned to them in the OASIS Intellectual Property Rights Policy (the \"OASIS IPR Policy\"). The full \[[Policy](https://www.oasis-open.org/policies-guidelines/ipr/)\] may be found at the OASIS website: \[<https://www.oasis-open.org/policies-guidelines/ipr/>\].
 
 This document and translations of it may be copied and furnished to others, and derivative works that comment on or otherwise explain it or assist in its implementation may be prepared, copied, published, and distributed, in whole or in part, without restriction of any kind, provided that the above copyright notice and this section are included on all such copies and derivative works. However, this document itself may not be modified in any way, including by removing the copyright notice or references to OASIS, except as needed for the purpose of developing any document or deliverable produced by an OASIS Technical Committee (in which case the rules applicable to copyrights, as set forth in the OASIS IPR Policy, must be followed) or as required to translate it into languages other than English.
 
@@ -90,7 +88,7 @@ As stated in the OASIS IPR Policy, the following three paragraphs in brackets ap
 
 \[OASIS takes no position regarding the validity or scope of any intellectual property or other rights that might be claimed to pertain to the implementation or use of the technology described in this OASIS Standards Final Deliverable or the extent to which any license under such rights might or might not be available; neither does it represent that it has made any effort to identify any such rights. Information on OASIS\' procedures with respect to rights in any document or deliverable produced by an OASIS Technical Committee can be found on the OASIS website. Copies of claims of rights made available for publication and any assurances of licenses to be made available, or the result of an attempt made to obtain a general license or permission for the use of such proprietary rights by implementers or users of this OASIS Standards Final Deliverable, can be obtained from the OASIS TC Administrator. OASIS makes no representation that any information or list of intellectual property rights will at any time be complete, or that any claims in such list are, in fact, Essential Claims.\]
 
-The name \"OASIS\" is a trademark of [[OASIS]](https://www.oasis-open.org/), the owner and developer of this document, and should be used only to refer to the organization and its official outputs. OASIS welcomes reference to, and implementation and use of, documents, while reserving the right to enforce its marks against misleading uses. See [[https://www.oasis-open.org/policies-guidelines/trademark/]](https://www.oasis-open.org/policies-guidelines/trademark/) for above guidance.
+The name \"OASIS\" is a trademark of [[OASIS]](https://www.oasis-open.org/), the owner and developer of this document, and should be used only to refer to the organization and its official outputs. OASIS welcomes reference to, and implementation and use of, documents, while reserving the right to enforce its marks against misleading uses. See <https://www.oasis-open.org/policies-guidelines/trademark/> for above guidance.
 
 -------
 
@@ -720,7 +718,10 @@ UTF-8 Encoded Strings SHOULD NOT include the Unicode \[Unicode\] code points lis
 >
 > For example, the string A𪛔 which is LATIN CAPITAL Letter A followed by the code point U+2A6D4 (which represents a CJK IDEOGRAPH EXTENSION B character) is encoded as follows:
 >
-> ![Fixed Length UTF-8 Encoded String informative example](images/image31.png "Fixed Length UTF-8 Encoded String informative example"){#fig-fixed-length-utf-8-encoded-string-informative-example}
+<a id="fig-fixed-length-utf-8-encoded-string-informative-example"></a>
+![Fixed Length UTF-8 Encoded String informative example](images/image31.png "Fixed Length UTF-8 Encoded String informative example")
+
+Figure 2: Fixed Length UTF-8 Encoded String informative example
 
 ## 1.9 Typographical Conventions<a id='typographical-conventions'></a>
 
@@ -760,7 +761,7 @@ An MQTT-SN Control Packet consists of up to two parts, always in the following o
 <a id="fig-packet-structure"></a>
 ![Packet Structure](images/structure-packet-diagram.png "Packet Structure")
 
-Figure 2: Packet Structure
+Figure 3: Packet Structure
 
 ### 2.1.1 Packet Header<a id='packet-header'></a>
 
@@ -769,12 +770,12 @@ Each MQTT-SN Control Packet contains a Header of format 1 or format 2 as shown b
 <a id="fig-packet-header-format-1"></a>
 ![Packet Header Format 1](images/image12.png "Packet Header Format 1")
 
-Figure 3: Packet Header Format 1
+Figure 4: Packet Header Format 1
 
 <a id="fig-packet-header-format-2"></a>
 ![Packet Header Format 2](images/image16.png "Packet Header Format 2")
 
-Figure 4: Packet Header Format 2
+Figure 5: Packet Header Format 2
 
 ### 2.1.2 Length<a id='length'></a>
 
@@ -882,7 +883,7 @@ The Client and Server assign Packet Identifiers independently of each other. As 
 <a id="fig-publishes-with-the-same-packet-identifier"></a>
 ![Publishes with the same Packet Identifier](images/image13.png "Publishes with the same Packet Identifier")
 
-Figure 5: Publishes with the same Packet Identifier
+Figure 6: Publishes with the same Packet Identifier
 
 ## 2.3 Reason Code<a id='reason-code'></a>
 
@@ -988,7 +989,7 @@ Refer to [4.7 "Topics"](#topics) for detailed descriptions of Topic Names and To
 <a id="fig-connect-packet"></a>
 ![CONNECT Packet](images/connect-packet-diagram.png "CONNECT Packet")
 
-Figure 6: CONNECT Packet
+Figure 7: CONNECT Packet
 
 The CONNECT packet is sent from the Client to the Server to request the creation of or continuation of a Session.
 
@@ -1040,7 +1041,7 @@ The Server SHOULD publish Will Messages promptly after the Virtual Connection is
 
 #### 3.1.2.3 Authentication Flag<a id='authentication-flag'></a>
 
-**Position:** bit 2 of the Connect Flags byte. Labelled *Auth* in [Figure 6](#fig-connect-packet).
+**Position:** bit 2 of the Connect Flags byte. Labelled *Auth* in [Figure 7](#fig-connect-packet).
 
 «<mark title="Requirement MQTT-SN-3.1.2.3-1"><a name="MQTT-SN-3.1.2.3-1"></a>If the Authentication Flag is set to 1, the Authentication Method and Authentication Data fields MUST be present in the Packet</mark>»[MQTT‑SN‑3.1.2.3‑1](#tab-MQTT-SN-3.1.2.3-1).
 
@@ -1048,7 +1049,7 @@ The Server SHOULD publish Will Messages promptly after the Virtual Connection is
 
 #### 3.1.2.4 Session Expiry Flag<a id='session-expiry-flag'></a>
 
-**Position:** bit 3 of the Connect Flags byte. Labelled *Sess Exp* in [Figure 6](#fig-connect-packet).
+**Position:** bit 3 of the Connect Flags byte. Labelled *Sess Exp* in [Figure 7](#fig-connect-packet).
 
 «<mark title="Requirement MQTT-SN-3.1.2.4-1"><a name="MQTT-SN-3.1.2.4-1"></a>If the Session Expiry Flag is set to 1, the Session Expiry Interval field MUST be present in the Packet</mark>»[MQTT‑SN‑3.1.2.4‑1](#tab-MQTT-SN-3.1.2.4-1).
 
@@ -1056,7 +1057,7 @@ The Server SHOULD publish Will Messages promptly after the Virtual Connection is
 
 #### 3.1.2.5 Maximum Number of Awake Messages Flag<a id='max-awake-messages-flag'></a>
 
-**Position:** bit 4 of the Connect Flags byte. Labelled *MAM* in [Figure 6](#fig-connect-packet).
+**Position:** bit 4 of the Connect Flags byte. Labelled *MAM* in [Figure 7](#fig-connect-packet).
 
 «<mark title="Requirement MQTT-SN-3.1.2.5-1"><a name="MQTT-SN-3.1.2.5-1"></a>If the Maximum Number of Awake Messages Flag is set to 1, the Maximum Number of Awake Messages field MUST be present in the Packet</mark>»[MQTT‑SN‑3.1.2.5‑1](#tab-MQTT-SN-3.1.2.5-1).
 
@@ -1064,7 +1065,7 @@ The Server SHOULD publish Will Messages promptly after the Virtual Connection is
 
 #### 3.1.2.6 Allow Network Address Changes Flag<a id='allow-network-address-changes-flag'></a>
 
-**Position:** bit 5 of the Connect Flags byte. Labelled *Net Addr* in [Figure 6](#fig-connect-packet).
+**Position:** bit 5 of the Connect Flags byte. Labelled *Net Addr* in [Figure 7](#fig-connect-packet).
 
 This flag only has an effect In implementations which use a Network Address to associate incoming packets with a Virtual Connection, otherwise it should be 0.
 
@@ -1076,7 +1077,7 @@ This flag affects the use of the Connection Encapsulation only, it does not affe
 
 #### 3.1.2.7 Allow Server Suggested Values Flag<a id='allow-server-suggested-values-flag'></a>
 
-**Position:** bit 6 of the Connect Flags byte. Labelled *Srv Sugg* in [Figure 6](#fig-connect-packet).
+**Position:** bit 6 of the Connect Flags byte. Labelled *Srv Sugg* in [Figure 7](#fig-connect-packet).
 
 If this flag is set to 1, the Client allows the Server to return modified values for all of:
 
@@ -1318,7 +1319,7 @@ The Packets that required a Virtual Connection are listed in [4.2.1 "Virtual Con
 <a id="fig-connack-packet"></a>
 ![CONNACK Packet](images/connack-packet-diagram.png "CONNACK Packet")
 
-Figure 7: CONNACK Packet
+Figure 8: CONNACK Packet
 
 The CONNACK packet is sent by the Server in response to a CONNECT request from a client.
 
@@ -1336,7 +1337,7 @@ The CONNACK Flags is a 1 byte field which contains flags specifying the behavior
 
 #### 3.2.2.1 Session Present<a id='session-present'></a>
 
-**Position**: bit 0 of the CONNACK Flags. Labelled *Sess Pres* in [Figure 7](#fig-connack-packet).
+**Position**: bit 0 of the CONNACK Flags. Labelled *Sess Pres* in [Figure 8](#fig-connack-packet).
 
 Specifies whether an existing session was present on the Server for the given client identifier. A value of 1 indicates a session was present, a value 0 indicates no session was present.
 
@@ -1354,7 +1355,7 @@ If the value of Session Present received by the Client from the Server is not as
 
 #### 3.2.2.2 Session Expiry Interval Flag<a id='session-expiry-interval-flag'></a>
 
-**Position**: bit 1 of the CONNACK Flags. Labelled *Sess Exp* in [Figure 7](#fig-connack-packet).
+**Position**: bit 1 of the CONNACK Flags. Labelled *Sess Exp* in [Figure 8](#fig-connack-packet).
 
 ​​«<mark title="Requirement MQTT-SN-3.2.2.2-1"><a name="MQTT-SN-3.2.2.2-1"></a>If the Session Expiry Interval Flag is set to 0, a Session Expiry Interval MUST NOT be present in the Packet</mark>»[MQTT‑SN‑3.2.2.2‑1](#tab-MQTT-SN-3.2.2.2-1).
 
@@ -1362,7 +1363,7 @@ If the value of Session Present received by the Client from the Server is not as
 
 #### 3.2.2.3 Server Keep Alive Flag<a id='server-keep-alive-flag'></a>
 
-**Position**: bit 2 of the CONNACK Flags. Labelled *Server KA* in [Figure 7](#fig-connack-packet).
+**Position**: bit 2 of the CONNACK Flags. Labelled *Server KA* in [Figure 8](#fig-connack-packet).
 
 Indicates whether the packet includes a Server Keep Alive or not.
 
@@ -1372,7 +1373,7 @@ Indicates whether the packet includes a Server Keep Alive or not.
 
 #### 3.2.2.4 Authentication Flag<a id='cca---authentication-flag'></a>
 
-**Position**: bit 3 of the CONNACK Flags. Labelled *Auth* in [Figure 7](#fig-connack-packet).
+**Position**: bit 3 of the CONNACK Flags. Labelled *Auth* in [Figure 8](#fig-connack-packet).
 
 Specifies whether the packet contains authentication material to be considered.
 
@@ -1456,7 +1457,7 @@ It is suggested that the 36 character Universally Unique IDentifier (UUID) forma
 <a id="fig-auth-packet"></a>
 ![AUTH Packet](images/auth-packet-diagram.png "AUTH Packet")
 
-Figure 8: AUTH Packet
+Figure 9: AUTH Packet
 
 <mark title="Ephemeral region marking">The authentication method and data is first sent by the Client as part of a CONNECT exchange. If the Server requires additional information to complete the authentication, it responds with an AUTH packet to signal that the Client generates and sends another AUTH packet with the required information and so on until the authentication is complete. The server then responds with a CONNACK message.</mark>
 
@@ -1493,7 +1494,7 @@ Refer to [4.11 "Authentication"](#authentication) for more information about aut
 <a id="fig-register-packet"></a>
 ![REGISTER Packet](images/register-packet-diagram.png "REGISTER Packet")
 
-Figure 9: REGISTER Packet
+Figure 10: REGISTER Packet
 
 A REGISTER packet is sent by a Client or Server to create a Session Topic Alias, before sending a PUBLISH with that Session Topic Alias.
 
@@ -1550,7 +1551,7 @@ As described in [4.7.2 "Topic Aliases"](#topic-aliases).
 <a id="fig-regack-packet"></a>
 ![REGACK Packet](images/regack-packet-diagram.png "REGACK Packet")
 
-Figure 10: REGACK Packet
+Figure 11: REGACK Packet
 
 The REGACK packet is sent by a Client or by a Server as an acknowledgment to the receipt and processing of a REGISTER packet.
 
@@ -1632,7 +1633,7 @@ Table 6: Publish Packet Types
 <a id="fig-pubwos-packet"></a>
 ![PUBWOS Packet](images/pubwos-packet-diagram.png "PUBWOS Packet")
 
-Figure 11: PUBWOS Packet
+Figure 12: PUBWOS Packet
 
 This packet is used by both Clients and Servers to publish data for a certain topic.
 
@@ -1696,7 +1697,7 @@ The Client or Server uses a PUBWOS packet to send an Application Message to a Ne
 <a id="fig-publish-packet"></a>
 ![PUBLISH Packet](images/publish-packet-diagram.png "PUBLISH Packet")
 
-Figure 12: PUBLISH Packet
+Figure 13: PUBLISH Packet
 
 A PUBLISH packet is sent from a Client to a Server or from a Server to a Client to transport an Application Message.
 
@@ -1814,7 +1815,7 @@ No more than one QoS 1 or 2 PUBLISH requests MUST be outstanding for a Sender at
 <a id="fig-puback-packet"></a>
 ![PUBACK Packet](images/puback-packet-diagram.png "PUBACK Packet")
 
-Figure 13: PUBACK Packet
+Figure 14: PUBACK Packet
 
 A PUBACK packet is the response to a PUBLISH packet with QoS 1.
 
@@ -1842,7 +1843,7 @@ As described in [4.3.3 "QoS 1: At least once delivery"](#qos-1-at-least-once-del
 <a id="fig-pubrec-packet"></a>
 ![PUBREC Packet](images/pubrec-packet-diagram.png "PUBREC Packet")
 
-Figure 14: PUBREC Packet
+Figure 15: PUBREC Packet
 
 A PUBREC packet is the response to a PUBLISH packet with QoS 2. It is the second packet of the QoS 2 protocol exchange.
 
@@ -1870,7 +1871,7 @@ As described in [4.3.4 "QoS 2: Exactly once delivery"](#qos-2-exactly-once-deliv
 <a id="fig-pubrel-packet"></a>
 ![PUBREL Packet](images/pubrel-packet-diagram.png "PUBREL Packet")
 
-Figure 15: PUBREL Packet
+Figure 16: PUBREL Packet
 
 A PUBREL packet is the response to a PUBREC packet. It is the third packet of the QoS 2 protocol exchange.
 
@@ -1898,7 +1899,7 @@ As described in [4.3.4 "QoS 2: Exactly once delivery"](#qos-2-exactly-once-deliv
 <a id="fig-pubcomp-packet"></a>
 ![PUBCOMP Packet](images/pubcomp-packet-diagram.png "PUBCOMP Packet")
 
-Figure 16: PUBCOMP Packet
+Figure 17: PUBCOMP Packet
 
 The PUBCOMP packet is the response to a PUBREL packet. It is the fourth and final packet of the QoS 2 protocol exchange.
 
@@ -1926,7 +1927,7 @@ As described in [4.3.4 "QoS 2: Exactly once delivery"](#qos-2-exactly-once-deliv
 <a id="fig-subscribe-packet"></a>
 ![SUBSCRIBE Packet](images/subscribe-packet-diagram.png "SUBSCRIBE Packet")
 
-Figure 17: SUBSCRIBE Packet
+Figure 18: SUBSCRIBE Packet
 
 The SUBSCRIBE packet is sent from the Client to the Server to create one or more Subscriptions. A Subscription registers a Client's interest in one or more Topics. The Server sends PUBLISH packets to the Client to forward Application Messages that were published to Topics that match the Subscription. The SUBSCRIBE packet also specifies the maximum QoS with which the Server can send Application Messages to the Client.
 
@@ -1962,7 +1963,7 @@ It is a Protocol Error to send a Retain Handling value of 3. See [4.13 "Retained
 
 #### 3.7.2.3 Retain as Published<a id='retain-as-published'></a>
 
-**Position**: bit 4 of the SUBSCRIBE Flags. Labelled *RaP* in [Figure 17](#fig-subscribe-packet).
+**Position**: bit 4 of the SUBSCRIBE Flags. Labelled *RaP* in [Figure 18](#fig-subscribe-packet).
 
 If 1, Application Messages forwarded using this subscription keep the RETAIN flag they were published with.
 
@@ -2043,7 +2044,7 @@ If a Server receives a Topic Filter that is not identical to any Topic Filter fo
 <a id="fig-suback-packet"></a>
 ![SUBACK Packet](images/suback-packet-diagram.png "SUBACK Packet")
 
-Figure 18: SUBACK Packet
+Figure 19: SUBACK Packet
 
 The SUBACK packet is sent by a Server to a client as an acknowledgment to the receipt and processing of a SUBSCRIBE packet.
 
@@ -2099,7 +2100,7 @@ The values of Reason Codes are shown in [2.3 "Reason Code"](#reason-code).
 <a id="fig-unsubscribe-packet"></a>
 ![UNSUBSCRIBE Packet](images/unsubscribe-packet-diagram.png "UNSUBSCRIBE Packet")
 
-Figure 19: UNSUBSCRIBE Packet
+Figure 20: UNSUBSCRIBE Packet
 
 An UNSUBSCRIBE packet is sent by the Client to the Server to remove subscriptions to topics.
 
@@ -2162,7 +2163,7 @@ The Topic Filter is an UTF-8 Encoded String. The existence or absence of this fi
 <a id="fig-unsuback-packet"></a>
 ![UNSUBACK Packet](images/unsuback-packet-diagram.png "UNSUBACK Packet")
 
-Figure 20: UNSUBACK Packet
+Figure 21: UNSUBACK Packet
 
 An UNSUBACK packet is sent by a Server to acknowledge the receipt and processing of an UNSUBSCRIBE packet.
 
@@ -2185,7 +2186,7 @@ The UNSUBACK Reason Codes are shown in [2.3 "Reason Code"](#reason-code). «<mar
 <a id="fig-pingreq-packet"></a>
 ![PINGREQ Packet](images/pingreq-packet-diagram.png "PINGREQ Packet")
 
-Figure 21: PINGREQ Packet
+Figure 22: PINGREQ Packet
 
 The PINGREQ packet is sent from a Client to the Server. It can be used to:
 
@@ -2220,7 +2221,7 @@ Used to identify the corresponding PINGRESP packet. It should ideally be set to 
 <a id="fig-pingresp-packet"></a>
 ![PINGRESP Packet](images/pingresp-packet-diagram.png "PINGRESP Packet")
 
-Figure 22: PINGRESP Packet
+Figure 23: PINGRESP Packet
 
 A PINGRESP Packet is sent by the Server to the Client in response to a PINGREQ packet. It indicates that the Server is alive.
 
@@ -2259,7 +2260,7 @@ Table 9: PINGRESP continuation values
 <a id="fig-disconnect-packet"></a>
 ![DISCONNECT Packet](images/disconnect-packet-diagram.png "DISCONNECT Packet")
 
-Figure 23: DISCONNECT Packet
+Figure 24: DISCONNECT Packet
 
 The DISCONNECT packet is sent by a Client to indicate that it is going to delete the Virtual connection and go to the Disconnected state.
 
@@ -2281,7 +2282,7 @@ The DISCONNECT Flags is a 1 byte field which contains flags specifying the conte
 
 #### 3.13.2.1 Packet Identifier Flag<a id='packet-identifier-flag'></a>
 
-**Position:** bit 0 of the DISCONNECT Flags. Labelled *PacketId* in [Figure 23](#fig-disconnect-packet).
+**Position:** bit 0 of the DISCONNECT Flags. Labelled *PacketId* in [Figure 24](#fig-disconnect-packet).
 
 ​​«<mark title="Requirement MQTT-SN-3.13.2.1-1"><a name="MQTT-SN-3.13.2.1-1"></a>If the Packet Identifier Flag is set to 0, a Packet Identifier MUST NOT be present in the Packet</mark>»[MQTT‑SN‑3.13.2.1‑1](#tab-MQTT-SN-3.13.2.1-1).
 
@@ -2289,7 +2290,7 @@ The DISCONNECT Flags is a 1 byte field which contains flags specifying the conte
 
 #### 3.13.2.2 Session Expiry Interval Flag<a id='ddn---session-expiry-interval-flag'></a>
 
-**Position:** bit 1 of the DISCONNECT Flags. Labelled *Sess Exp* in [Figure 23](#fig-disconnect-packet).
+**Position:** bit 1 of the DISCONNECT Flags. Labelled *Sess Exp* in [Figure 24](#fig-disconnect-packet).
 
 ​​«<mark title="Requirement MQTT-SN-3.13.2.2-1"><a name="MQTT-SN-3.13.2.2-1"></a>If the Session Expiry Interval Flag is set to 0, a Session Expiry Interval MUST NOT be present in the Packet</mark>»[MQTT‑SN‑3.13.2.2‑1](#tab-MQTT-SN-3.13.2.2-1).
 
@@ -2297,7 +2298,7 @@ The DISCONNECT Flags is a 1 byte field which contains flags specifying the conte
 
 #### 3.13.2.3 Reason Code Flag<a id='reason-code-flag'></a>
 
-**Position:** bit 2 of the DISCONNECT Flags. Labelled *Reason C* in [Figure 23](#fig-disconnect-packet).
+**Position:** bit 2 of the DISCONNECT Flags. Labelled *Reason C* in [Figure 24](#fig-disconnect-packet).
 
 ​​«<mark title="Requirement MQTT-SN-3.13.2.3-1"><a name="MQTT-SN-3.13.2.3-1"></a>If the Reason Code Flag is set to 0, a Reason Code MUST NOT be present in the Packet</mark>»[MQTT‑SN‑3.13.2.3‑1](#tab-MQTT-SN-3.13.2.3-1).
 
@@ -2352,7 +2353,7 @@ After receiving a DISCONNECT, a Client can make a new Virtual Connection by send
 <a id="fig-wakeup-packet"></a>
 ![WAKEUP Packet](images/wakeup-packet-diagram.png "WAKEUP Packet")
 
-Figure 24: WAKEUP Packet
+Figure 25: WAKEUP Packet
 
 The WAKEUP Packet is sent from the Server to the Client to request that it transition to the Awake state. The client is not obliged to honor this request - it might not even receive the packet. It can choose to ignore the request, or undertake one of the sequences outlined in [4.14.2 "Sleeping Clients"](#sleeping-clients). The client need not respond to this packet.
 
@@ -2369,7 +2370,7 @@ The first 2 or 4 bytes of the packet are encoded according to the variable lengt
 <a id="fig-sleepreq-packet"></a>
 ![SLEEPREQ Packet](images/sleepreq-packet-diagram.png "SLEEPREQ Packet")
 
-Figure 25: SLEEPREQ Packet
+Figure 26: SLEEPREQ Packet
 
 The SLEEPREQ packet is sent from the Client to the Server to indicate that it is going to sleep (moving to the Asleep state).
 
@@ -2385,7 +2386,7 @@ The SLEEPREQ Flags is a 1 byte field which contains flags specifying the content
 
 #### 3.15.2.1 Retain Topic Aliases<a id='retain-topic-aliases'></a>
 
-**Position:** bit 0 of the SLEEPREQ Flags. Labelled *Retain T* in [Figure 25](#fig-sleepreq-packet).
+**Position:** bit 0 of the SLEEPREQ Flags. Labelled *Retain T* in [Figure 26](#fig-sleepreq-packet).
 
 Specifies whether Session Topic Aliases should be retained by the Server during the Asleep state. "0" indicates Topic Aliases should be removed during the sleeping period and renegotiated when Awake or Active. "1" indicates Topic Aliases should be retained during the Asleep period, and therefore not negotiated when Awake or Active.
 
@@ -2434,7 +2435,7 @@ After sending a SLEEPREQ packet the Client can wait for a SLEEPRESP packet in re
 <a id="fig-sleepresp-packet"></a>
 ![SLEEPRESP Packet](images/sleepresp-packet-diagram.png "SLEEPRESP Packet")
 
-Figure 26: SLEEPRESP Packet
+Figure 27: SLEEPRESP Packet
 
 The SLEEPRESP Packet is sent from the Server to the Client in response to a SLEEPREQ from the Client.
 
@@ -2450,7 +2451,7 @@ The SLEEPRESP Flags is a 1 byte field which contains flags specifying the conten
 
 #### 3.16.2.1 Sleep Duration Flag<a id='sleep-duration-flag'></a>
 
-**Position:** bit 0 of the SLEEPRESP Flags. Labelled *Sleep Dur* in [Figure 26](#fig-sleepresp-packet).
+**Position:** bit 0 of the SLEEPRESP Flags. Labelled *Sleep Dur* in [Figure 27](#fig-sleepresp-packet).
 
 ​​«<mark title="Requirement MQTT-SN-3.16.2.1-1"><a name="MQTT-SN-3.16.2.1-1"></a>If the Sleep Duration Flag is set to 0, Sleep Duration MUST NOT be present in the Packet</mark>»[MQTT‑SN‑3.16.2.1‑1](#tab-MQTT-SN-3.16.2.1-1).
 
@@ -2484,7 +2485,7 @@ The values for Reason Codes are shown in [2.3 "Reason Code"](#reason-code).
 <a id="fig-format-of-an-protection-encapsulated-mqtt-sn-packet"></a>
 ![Format of an Protection Encapsulated MQTT-SN Packet](images/protection-encapsulation-packet-diagram.png "Format of an Protection Encapsulated MQTT-SN Packet")
 
-Figure 27: Format of an Protection Encapsulated MQTT-SN Packet
+Figure 28: Format of an Protection Encapsulated MQTT-SN Packet
 
 Protection encapsulation provides a secure envelope for any MQTT-SN packet (with the exception of the Forward Encapsulation packet). The fields provided by the Protection Encapsulation provide a means by which the sender is identified and the packet is protected, using a number of prescribed protection schemes. Where the phrase "protected Packet" is used in this document, it means an MQTT-SN Packet surrounded by the Protection Encapsulation.
 
@@ -2526,7 +2527,7 @@ The Protection Flags is a one byte field specifying the properties of the Protec
 
 #### 3.17.2.1 Monotonic Counter Length<a id='monotonic-counter-length'></a>
 
-**Position:** bits 0 and 1 of the Protection Flags. Labelled *Counter Length* in [Figure 27](#fig-format-of-an-protection-encapsulated-mqtt-sn-packet).
+**Position:** bits 0 and 1 of the Protection Flags. Labelled *Counter Length* in [Figure 28](#fig-format-of-an-protection-encapsulated-mqtt-sn-packet).
 
 Specifies the number of bytes forming the monotonic counter in big-endian order. Only three of the four possible values are allowed.
 
@@ -2540,7 +2541,7 @@ Specifies the number of bytes forming the monotonic counter in big-endian order.
 
 #### 3.17.2.2 Cryptographic Material Length<a id='cryptographic-material-length'></a>
 
-**Position:** bits 2 and 3 of the Protection Flags. Labelled *Crypto Length* in [Figure 27](#fig-format-of-an-protection-encapsulated-mqtt-sn-packet).
+**Position:** bits 2 and 3 of the Protection Flags. Labelled *Crypto Length* in [Figure 28](#fig-format-of-an-protection-encapsulated-mqtt-sn-packet).
 
 Specifies the number of sixteen bit groups forming the cryptographic material in big-endian order. The meaning of each possible value is defined as follows.
 
@@ -2683,7 +2684,7 @@ The Authentication Tag field has a length that depends on the Authentication Tag
 <a id="fig-format-of-a-connection-encapsulated-mqtt-sn-packet"></a>
 ![Format of a Connection Encapsulated MQTT-SN Packet](images/connection-encapsulation-packet-diagram.png "Format of a Connection Encapsulated MQTT-SN Packet")
 
-Figure 28: Format of a Connection Encapsulated MQTT-SN Packet
+Figure 29: Format of a Connection Encapsulated MQTT-SN Packet
 
 This envelope wraps an MQTT-SN Packet to allow it to be associated with an existing Virtual Connection where other methods are not sufficient. Only Clients can use the Connection Encapsulation because it is assumed that the Network Address for the Server is static for the duration of the Virtual Connection. If the Server Network Address is not static, then another method of identifying the Packet sender must be used, such as the Protection Encapsulation or DTLS.
 
@@ -2726,7 +2727,7 @@ The MQTT-SN packet, encoded according to the packet type, follows immediately af
 <a id="fig-format-of-an-forwarder-encapsulated-mqtt-sn-packet"></a>
 ![Format of an Forwarder Encapsulated MQTT-SN Packet](images/forwarder-encapsulation-packet-diagram.png "Format of an Forwarder Encapsulated MQTT-SN Packet")
 
-Figure 29: Format of an Forwarder Encapsulated MQTT-SN Packet
+Figure 30: Format of an Forwarder Encapsulated MQTT-SN Packet
 
 An MQTT-SN Client can access a Server through a Forwarder in case the Server is not directly attached to the same Underlying Network as the Client. The Forwarder encapsulates the MQTT-SN Packets it receives from the Client and sends them unchanged to the Server. In the opposite direction, it decapsulates the Packets it receives from the Server and sends them unchanged to the Clients.
 
@@ -2765,7 +2766,7 @@ The Packets in this section are optional. A description of how this functionalit
 <a id="fig-advertise-packet"></a>
 ![ADVERTISE Packet](images/advertise-packet-diagram.png "ADVERTISE Packet")
 
-Figure 30: ADVERTISE Packet
+Figure 31: ADVERTISE Packet
 
 The ADVERTISE packet is sent periodically by a Gateway to advertise its presence. The time interval until the next transmission is indicated by the *Duration* field.
 
@@ -2794,7 +2795,7 @@ The maximum value that can be encoded is approximately 18 hours.
 <a id="fig-searchgw-packet"></a>
 ![SEARCHGW Packet](images/searchgw-packet-diagram.png "SEARCHGW Packet")
 
-Figure 31: SEARCHGW Packet
+Figure 32: SEARCHGW Packet
 
 The SEARCHGW packet is sent by a Client to find a Gateway to send Application Messages to, and receive Application Messages from.
 
@@ -2823,7 +2824,7 @@ This field is optional - its existence or absence is inferred from the Packet le
 <a id="fig-gwinfo-packet"></a>
 ![GWINFO Packet](images/gwinfo-packet-diagram.png "GWINFO Packet")
 
-Figure 32: GWINFO Packet
+Figure 33: GWINFO Packet
 
 The GWINFO packet is sent as response to a SEARCHGW packet. If sent by a Gateway, it contains only the identifier of the sending Gateway; otherwise, if sent by a client, it also includes the Network Address of the Gateway.
 
@@ -2904,12 +2905,12 @@ The CONNECT packet contains flags to communicate to the Server that authenticati
 <a id="fig-connect-procedure-without-auth-flag-set-or-no-further-authentication-data-required"></a>
 ![Connect Procedure (without Auth flag set, or no further authentication data required)](images/image15.png "Connect Procedure (without Auth flag set, or no further authentication data required)")
 
-Figure 33: Connect Procedure (without Auth flag set, or no further authentication data required)
+Figure 34: Connect Procedure (without Auth flag set, or no further authentication data required)
 
 <a id="fig-connect-procedure-with-auth-flag-set-and-further-authentication-data-required"></a>
 ![Connect Procedure (with Auth flag set and further authentication data required)](images/image33.png "Connect Procedure (with Auth flag set and further authentication data required)")
 
-Figure 34: Connect Procedure (with Auth flag set and further authentication data required)
+Figure 35: Connect Procedure (with Auth flag set and further authentication data required)
 
 If the Server can not accept the CONNECT request the Server returns a CONNACK packet with the rejection Reason Code.
 
@@ -3562,7 +3563,7 @@ This is a one-way transfer of information - the response MUST be a CONNACK, not 
 <a id="fig-connect-with-mqtt-user-name-and-password-informative-example"></a>
 ![CONNECT with MQTT User Name and Password, informative example](images/image20.png "CONNECT with MQTT User Name and Password, informative example")
 
-Figure 35: CONNECT with MQTT User Name and Password, informative example
+Figure 36: CONNECT with MQTT User Name and Password, informative example
 
 To support the equivalent of the MQTT User Name and Password together with MQTT Enhanced Authentication, in the CONNECT packet do the following:
 
@@ -3761,7 +3762,7 @@ Session Topic Aliases last for the duration of a Session which exists throughout
 <a id="fig-awake-pingresp-packet-flush"></a>
 ![Awake PINGRESP Packet flush](images/image2.png "Awake PINGRESP Packet flush")
 
-Figure 36: Awake PINGRESP Packet flush
+Figure 37: Awake PINGRESP Packet flush
 
 ## 4.15 Optional Features<a id='optional-features'></a>
 
@@ -4462,7 +4463,7 @@ Although the implementation of the Transparent Gateway may be somewhat simpler t
 <a id="fig-transparent-gateway"></a>
 ![Transparent Gateway](images/image40.png "Transparent Gateway")
 
-Figure 37: Transparent Gateway
+Figure 38: Transparent Gateway
 
 Because PUBWOS packets could be sent at any time by Clients with no Virtual Connection, a Transparent Gateway would need to maintain a dedicated MQTT connection with the MQTT Server to support those packets.
 
@@ -4473,7 +4474,7 @@ Instead of having one MQTT connection for each connected MQTT-SN Client, an aggr
 <a id="fig-aggregating-gateway"></a>
 ![Aggregating Gateway](images/image10.png "Aggregating Gateway")
 
-Figure 38: Aggregating Gateway
+Figure 39: Aggregating Gateway
 
 To support PUBWOS packets from MQTT-SN clients without a Virtual Connection, an Aggregating may use any aggregating MQTT connection to forward those packets to an MQTT Server.
 
@@ -4488,12 +4489,12 @@ The following diagrams illustrate how a Forwarder may interact with an Aggregati
 <a id="fig-forwarder-with-transparent-gateway"></a>
 ![Forwarder with Transparent Gateway](images/image22.png "Forwarder with Transparent Gateway")
 
-Figure 39: Forwarder with Transparent Gateway
+Figure 40: Forwarder with Transparent Gateway
 
 <a id="fig-forwarder-with-aggregating-gateway"></a>
 ![Forwarder with Aggregating Gateway](images/image29.png "Forwarder with Aggregating Gateway")
 
-Figure 40: Forwarder with Aggregating Gateway
+Figure 41: Forwarder with Aggregating Gateway
 
 ### C.1.4 MQTT-SN Broker<a id='c.1.4-mqtt-sn-broker'></a>
 
@@ -4504,7 +4505,7 @@ It will allow MQTT-SN Clients to set up subscriptions, and publish messages to o
 <a id="fig-mqtt-sn-broker"></a>
 ![MQTT-SN Broker](images/image37.png "MQTT-SN Broker")
 
-Figure 41: MQTT-SN Broker
+Figure 42: MQTT-SN Broker
 
 An MQTT-SN Server may choose to incorporate elements of a Broker, Aggregating and Transparent Gateway together. Typically, an Aggregating Gateway will also act as an MQTT-SN Broker.
 
@@ -4568,12 +4569,12 @@ The following diagrams are illustrative, graphical views of the states and trans
 <a id="fig-server-view-of-client-states-informative"></a>
 ![Server View of Client States - informative](images/ClientState.png "Server View of Client States - informative")
 
-Figure 42: Server View of Client States - informative
+Figure 43: Server View of Client States - informative
 
 <a id="fig-server-view-of-client-states-informative-2"></a>
 ![Server View of Client States - informative](images/ServerState.png "Server View of Client States - informative")
 
-Figure 43: Server View of Client States - informative
+Figure 44: Server View of Client States - informative
 
 <!-- These two figures both contained image27.jpg which was identical with ServerState.jpg -->
 <!-- TODO: Is this a doubled figure and we did not want to show the ClientState.jpg or ...? -->
@@ -4583,7 +4584,7 @@ Figure 43: Server View of Client States - informative
 <a id="fig-publish-packet-for-qos-1"></a>
 ![PUBLISH Packet for QoS -1](images/publish-qos-minus-1-packet-diagram.png "PUBLISH Packet for QoS -1")
 
-Figure 44: PUBLISH Packet for QoS -1
+Figure 45: PUBLISH Packet for QoS -1
 
 This packet is the MQTT-SN 1.2 equivalent of PUBWOS. It could be supported by a Server if there are existing MQTT-SN 1.2 transmitters that the Server wants to listen to, or receivers it wants to send to. Implementation of this packet is optional.
 

@@ -53,8 +53,8 @@ Networks Version 2.0]
 #heading(level: 2, outlined: false, numbering: none)[Committee
 Specification Draft 01]
 <committee-specification-draft-01>
-#heading(level: 2, outlined: false, numbering: none)[14 August 2026]
-<14-august-2026>
+#heading(level: 2, outlined: false, numbering: none)[29 October 2026]
+<29-october-2026>
 #heading(level: 4, outlined: false, numbering: none)[This stage]
 <this-stage>
 #link("https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/csd01/mqtt-sn-v2.0-csd01.md")
@@ -136,8 +136,7 @@ is also listed above. Check the \"Latest stage\" location noted above
 for possible later revisions of this document. Any other numbered
 Versions and other technical work produced by the Technical Committee
 (TC) are listed at
-#link("https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=mqtt#technical")[\[https:/\/www.oasis-open.org/committees/tc\_home.php?wg\_abbrev=mqtt\#technical\]]
-.
+#link("https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=mqtt#technical").
 
 TC members should send comments on this document to the TC\'s email
 list. Others should send comments to the TC\'s public comment list,
@@ -172,22 +171,23 @@ used:
 #strong[\[MQTT-SN-v2.0\]]
 
 #emph[MQTT for Sensor Networks Version 2.0]. Edited by Andrew Banks,
-Davide Lenzarini, Ian Craggs, Rahul Gupta, Simon Johnson, Stefan Hagen,
-and Tara E. Walker. 01 May 2025. OASIS Committee Specification Draft 01.
-#link("https://docs.oasis-open.org/mqtt/mqtt-sn/v12.30/csd01/mqtt-sn-v12.30-csd01.docx")[\[https:/\/docs.oasis-open.org/mqtt/mqtt-sn/v2.0/csd01/mqtt-sn-v2.0-csd01.docx\]].
+Andy Stanford-Clark, Davide Lenzarini, Ian Craggs, Rahul Gupta, Simon
+Johnson, Stefan Hagen, and Tara E. Walker. 29 October 2026. OASIS
+Committee Specification Draft 01.
+#link("https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/csd01/mqtt-sn-v2.0-csd01.md").
 Latest stage:
-#link("https://docs.oasis-open.org/mqtt/mqtt-sn/v12.30/mqtt-sn-v12.30.docx")[\[https:/\/docs.oasis-open.org/mqtt/mqtt-sn/v2.0/mqtt-sn-v2.0.docx\]]
+#link("https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/mqtt-sn-v2.0.md")
 
 #heading(level: 2, outlined: false, numbering: none)[Notices]
 <notices>
-Copyright © OASIS Open 2025. All Rights Reserved.
+Copyright © OASIS Open 2026. All Rights Reserved.
 
 All capitalized terms in the following text have the meanings assigned
 to them in the OASIS Intellectual Property Rights Policy (the \"OASIS
 IPR Policy\"). The full
-#link("https://www.oasis-open.org/policies-guidelines/ipr/")[\[Policy\]]
+\[#link("https://www.oasis-open.org/policies-guidelines/ipr/")[Policy]\]
 may be found at the OASIS website:
-\[#link("https://www.oasis-open.org/policies-guidelines/ipr/")[\[https:/\/www.oasis-open.org/policies-guidelines/ipr/\]]\].
+\[#link("https://www.oasis-open.org/policies-guidelines/ipr/")\].
 
 This document and translations of it may be copied and furnished to
 others, and derivative works that comment on or otherwise explain it or
@@ -258,8 +258,8 @@ of this document, and should be used only to refer to the organization
 and its official outputs. OASIS welcomes reference to, and
 implementation and use of, documents, while reserving the right to
 enforce its marks against misleading uses. See
-#link("https://www.oasis-open.org/policies-guidelines/trademark/")[\[https:/\/www.oasis-open.org/policies-guidelines/trademark/\]]
-for above guidance.
+#link("https://www.oasis-open.org/policies-guidelines/trademark/") for
+above guidance.
 
 #pagebreak(weak: true)
 // set channels.typst.toc-dots: true in nide.yaml to add dot leaders
@@ -1311,7 +1311,7 @@ failure and when the Will Message is published.
 ==== Authentication Flag
 <authentication-flag>
 #strong[Position:] bit 2 of the Connect Flags byte. Labelled #emph[Auth]
-in #link(<fig-connect-packet>)[Figure 6].
+in #link(<fig-connect-packet>)[Figure 7].
 
 «#box()<MQTT-SN-3.1.2.3-1>If the Authentication Flag is set to 1, the
 Authentication Method and Authentication Data fields MUST be present in
@@ -1324,7 +1324,7 @@ in the Packet»#link(<tab-MQTT-SN-3.1.2.3-2>)[MQTT‑SN‑3.1.2.3‑2].
 ==== Session Expiry Flag
 <session-expiry-flag>
 #strong[Position:] bit 3 of the Connect Flags byte. Labelled #emph[Sess
-Exp] in #link(<fig-connect-packet>)[Figure 6].
+Exp] in #link(<fig-connect-packet>)[Figure 7].
 
 «#box()<MQTT-SN-3.1.2.4-1>If the Session Expiry Flag is set to 1, the
 Session Expiry Interval field MUST be present in the
@@ -1337,7 +1337,7 @@ Packet»#link(<tab-MQTT-SN-3.1.2.4-2>)[MQTT‑SN‑3.1.2.4‑2].
 ==== Maximum Number of Awake Messages Flag
 <max-awake-messages-flag>
 #strong[Position:] bit 4 of the Connect Flags byte. Labelled #emph[MAM]
-in #link(<fig-connect-packet>)[Figure 6].
+in #link(<fig-connect-packet>)[Figure 7].
 
 «#box()<MQTT-SN-3.1.2.5-1>If the Maximum Number of Awake Messages Flag
 is set to 1, the Maximum Number of Awake Messages field MUST be present
@@ -1350,7 +1350,7 @@ present in the Packet»#link(<tab-MQTT-SN-3.1.2.5-2>)[MQTT‑SN‑3.1.2.5‑2].
 ==== Allow Network Address Changes Flag
 <allow-network-address-changes-flag>
 #strong[Position:] bit 5 of the Connect Flags byte. Labelled #emph[Net
-Addr] in #link(<fig-connect-packet>)[Figure 6].
+Addr] in #link(<fig-connect-packet>)[Figure 7].
 
 This flag only has an effect In implementations which use a Network
 Address to associate incoming packets with a Virtual Connection,
@@ -1374,7 +1374,7 @@ Protection Encapsulation.
 ==== Allow Server Suggested Values Flag
 <allow-server-suggested-values-flag>
 #strong[Position:] bit 6 of the Connect Flags byte. Labelled #emph[Srv
-Sugg] in #link(<fig-connect-packet>)[Figure 6].
+Sugg] in #link(<fig-connect-packet>)[Figure 7].
 
 If this flag is set to 1, the Client allows the Server to return
 modified values for all of:
@@ -1868,7 +1868,7 @@ Packet»#link(<tab-MQTT-SN-3.2.2-2>)[MQTT‑SN‑3.2.2‑2].
 ==== Session Present
 <session-present>
 #strong[Position]: bit 0 of the CONNACK Flags. Labelled #emph[Sess Pres]
-in #link(<fig-connack-packet>)[Figure 7].
+in #link(<fig-connack-packet>)[Figure 8].
 
 Specifies whether an existing session was present on the Server for the
 given client identifier. A value of 1 indicates a session was present, a
@@ -1907,7 +1907,7 @@ a non-zero Reason Code it MUST set Session Present to
 ==== Session Expiry Interval Flag
 <session-expiry-interval-flag>
 #strong[Position]: bit 1 of the CONNACK Flags. Labelled #emph[Sess Exp]
-in #link(<fig-connack-packet>)[Figure 7].
+in #link(<fig-connack-packet>)[Figure 8].
 
 ​​«#box()<MQTT-SN-3.2.2.2-1>If the Session Expiry Interval Flag is set to
 0, a Session Expiry Interval MUST NOT be present in the
@@ -1920,7 +1920,7 @@ Packet»#link(<tab-MQTT-SN-3.2.2.2-2>)[MQTT‑SN‑3.2.2.2‑2].
 ==== Server Keep Alive Flag
 <server-keep-alive-flag>
 #strong[Position]: bit 2 of the CONNACK Flags. Labelled #emph[Server KA]
-in #link(<fig-connack-packet>)[Figure 7].
+in #link(<fig-connack-packet>)[Figure 8].
 
 Indicates whether the packet includes a Server Keep Alive or not.
 
@@ -1935,7 +1935,7 @@ Packet»#link(<tab-MQTT-SN-3.2.2.3-2>)[MQTT‑SN‑3.2.2.3‑2].
 ==== Authentication Flag
 <cca---authentication-flag>
 #strong[Position]: bit 3 of the CONNACK Flags. Labelled #emph[Auth] in
-#link(<fig-connack-packet>)[Figure 7].
+#link(<fig-connack-packet>)[Figure 8].
 
 Specifies whether the packet contains authentication material to be
 considered.
@@ -2879,7 +2879,7 @@ information about the operation of the Retain Handling field.
 ==== Retain as Published
 <retain-as-published>
 #strong[Position]: bit 4 of the SUBSCRIBE Flags. Labelled #emph[RaP] in
-#link(<fig-subscribe-packet>)[Figure 17].
+#link(<fig-subscribe-packet>)[Figure 18].
 
 If 1, Application Messages forwarded using this subscription keep the
 RETAIN flag they were published with.
@@ -3433,7 +3433,7 @@ Packet»#link(<tab-MQTT-SN-3.13.2-2>)[MQTT‑SN‑3.13.2‑2].
 ==== Packet Identifier Flag
 <packet-identifier-flag>
 #strong[Position:] bit 0 of the DISCONNECT Flags. Labelled
-#emph[PacketId] in #link(<fig-disconnect-packet>)[Figure 23].
+#emph[PacketId] in #link(<fig-disconnect-packet>)[Figure 24].
 
 ​​«#box()<MQTT-SN-3.13.2.1-1>If the Packet Identifier Flag is set to 0, a
 Packet Identifier MUST NOT be present in the
@@ -3446,7 +3446,7 @@ Packet»#link(<tab-MQTT-SN-3.13.2.1-2>)[MQTT‑SN‑3.13.2.1‑2].
 ==== Session Expiry Interval Flag
 <ddn---session-expiry-interval-flag>
 #strong[Position:] bit 1 of the DISCONNECT Flags. Labelled #emph[Sess
-Exp] in #link(<fig-disconnect-packet>)[Figure 23].
+Exp] in #link(<fig-disconnect-packet>)[Figure 24].
 
 ​​«#box()<MQTT-SN-3.13.2.2-1>If the Session Expiry Interval Flag is set to
 0, a Session Expiry Interval MUST NOT be present in the
@@ -3459,7 +3459,7 @@ Packet»#link(<tab-MQTT-SN-3.13.2.2-2>)[MQTT‑SN‑3.13.2.2‑2].
 ==== Reason Code Flag
 <reason-code-flag>
 #strong[Position:] bit 2 of the DISCONNECT Flags. Labelled #emph[Reason
-C] in #link(<fig-disconnect-packet>)[Figure 23].
+C] in #link(<fig-disconnect-packet>)[Figure 24].
 
 ​​«#box()<MQTT-SN-3.13.2.3-1>If the Reason Code Flag is set to 0, a Reason
 Code MUST NOT be present in the
@@ -3608,7 +3608,7 @@ Packet»#link(<tab-MQTT-SN-3.15.2-2>)[MQTT‑SN‑3.15.2‑2].
 ==== Retain Topic Aliases
 <retain-topic-aliases>
 #strong[Position:] bit 0 of the SLEEPREQ Flags. Labelled #emph[Retain T]
-in #link(<fig-sleepreq-packet>)[Figure 25].
+in #link(<fig-sleepreq-packet>)[Figure 26].
 
 Specifies whether Session Topic Aliases should be retained by the Server
 during the Asleep state. "0" indicates Topic Aliases should be removed
@@ -3729,7 +3729,7 @@ Packet»#link(<tab-MQTT-SN-3.16.2-2>)[MQTT‑SN‑3.16.2‑2].
 ==== Sleep Duration Flag
 <sleep-duration-flag>
 #strong[Position:] bit 0 of the SLEEPRESP Flags. Labelled #emph[Sleep
-Dur] in #link(<fig-sleepresp-packet>)[Figure 26].
+Dur] in #link(<fig-sleepresp-packet>)[Figure 27].
 
 ​​«#box()<MQTT-SN-3.16.2.1-1>If the Sleep Duration Flag is set to 0, Sleep
 Duration MUST NOT be present in the
@@ -3871,7 +3871,7 @@ the Protection Encapsulation.
 <monotonic-counter-length>
 #strong[Position:] bits 0 and 1 of the Protection Flags. Labelled
 #emph[Counter Length] in
-#link(<fig-format-of-an-protection-encapsulated-mqtt-sn-packet>)[Figure 27].
+#link(<fig-format-of-an-protection-encapsulated-mqtt-sn-packet>)[Figure 28].
 
 Specifies the number of bytes forming the monotonic counter in
 big-endian order. Only three of the four possible values are allowed.
@@ -3898,7 +3898,7 @@ big-endian order. Only three of the four possible values are allowed.
 <cryptographic-material-length>
 #strong[Position:] bits 2 and 3 of the Protection Flags. Labelled
 #emph[Crypto Length] in
-#link(<fig-format-of-an-protection-encapsulated-mqtt-sn-packet>)[Figure 27].
+#link(<fig-format-of-an-protection-encapsulated-mqtt-sn-packet>)[Figure 28].
 
 Specifies the number of sixteen bit groups forming the cryptographic
 material in big-endian order. The meaning of each possible value is

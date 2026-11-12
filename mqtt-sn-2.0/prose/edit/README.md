@@ -54,13 +54,13 @@ Version 2.0 specification.
 
 ### Primary targets
 
-| Target          | What it does                                               |
-|:----------------|:-----------------------------------------------------------|
-| `make`          | GFM+ and HTML (default: `make build`)                      |
-| `make gfm-plus` | Assemble IR and render GFM+ Markdown                       |
-| `make html`     | Render HTML with embedded images (depends on `gfm-plus`)   |
-| `make pdf`      | Render PDF via typst (includes `src/images/` in the build) |
-| `make release`  | All channels + `nide manifest` + `nide validate`           |
+| Target          | What it does                                                                  |
+|:----------------|:------------------------------------------------------------------------------|
+| `make`          | GFM+ and HTML (default: `make build`)                                         |
+| `make gfm-plus` | Assemble IR and render GFM+ Markdown                                          |
+| `make html`     | Render HTML with embedded images (depends on `gfm-plus`)                      |
+| `make pdf`      | Render PDF via typst (includes `src/images/` in the build)                    |
+| `make release`  | All channels + `nide manifest` + `nide validate` + XMP `*-draft-injected.pdf` |
 
 ### Quality and diff targets
 
