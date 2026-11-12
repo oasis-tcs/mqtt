@@ -96,11 +96,11 @@ The Authentication Tag Length defines the size of the Authentication Tag. Only f
 
 «<mark title="Requirement MQTT-SN-3.17.2.3-7"><a name="MQTT-SN-3.17.2.3-7"></a>If truncation of the output of the authentication algorithm is required, it MUST be taken in most significant bits first order (leftmost bits)</mark>»[MQTT‑SN‑3.17.2.3‑7](#tab-MQTT-SN-3.17.2.3-7).
 
-«<mark title="Requirement MQTT-SN-3.17.2.3-8"><a name="MQTT-SN-3.17.2.3-8"></a>Authentication Tag Length values for some Authentication Only protection schemes MUST NOT be used if they define a tag size bigger than the nominal tag size</mark>»[MQTT-SN-3.17.2.3-8](#tab-MQTT-SN-3.17.2.3-8). For example, values from 0x09 (144 bits) to 0x0F (240 bits) are not allowed for "Authentication Only" protection schemes with a nominal tag size less than 144 bits, such as CMAC-128, CMAC-192, CMAC-256.
+«<mark title="Requirement MQTT-SN-3.17.2.3-8"><a name="MQTT-SN-3.17.2.3-8"></a>Authentication Tag Length values for some Authentication Only protection schemes MUST NOT be used if they define a tag size bigger than the nominal tag size</mark>»[MQTT‑SN‑3.17.2.3‑8](#tab-MQTT-SN-3.17.2.3-8). For example, values from 0x09 (144 bits) to 0x0F (240 bits) are not allowed for "Authentication Only" protection schemes with a nominal tag size less than 144 bits, such as CMAC-128, CMAC-192, CMAC-256.
 
 ### Protection Scheme{#protection-scheme}
 
-«<mark title="Requirement MQTT-SN-3.17.3-1"><a name="MQTT-SN-3.17.3-1"></a>The Protection Scheme is a one byte field which MUST contain one of the indexes in table 10 which is not reserved</mark>»[MQTT‑SN‑3.17.3‑1](#tab-MQTT-SN-3.17.3-1).
+«<mark title="Requirement MQTT-SN-3.17.3-1"><a name="MQTT-SN-3.17.3-1"></a>The Protection Scheme is a one byte field which MUST contain one of the indexes in [tab](#tab-protection-schemes) which is not reserved</mark>»[MQTT‑SN‑3.17.3‑1](#tab-MQTT-SN-3.17.3-1).
 
 In general two types of protection scheme are considered: **Authentication only** (such as HMAC or CMAC) and **AEAD** (Authenticated Encryption with Associated Data, such as GCM, CCM or ChaCha20/Poly1305).
 
@@ -186,7 +186,7 @@ The optional Monotonic Counter field contains a two or four byte number that whe
 
 The field Protected MQTT-SN Packet contains the MQTT-SN packet that is being secured, encoded according to its packet type.
 
-«<mark title="Requirement MQTT-SN-3.17.8-1"><a name="MQTT-SN-3.17.8-1"></a>The Protected MQTT-SN Packet MUST NOT be a Forwarder Encapsulated Packet</mark>»[MQTT-SN-3.17.8-1](#tab-MQTT-SN-3.17.8-1) as the shared key used directly or after derivation for the protection must belong to the originator of the content and not to a Forwarder that, in general, is not able to securely identify the originator.
+«<mark title="Requirement MQTT-SN-3.17.8-1"><a name="MQTT-SN-3.17.8-1"></a>The Protected MQTT-SN Packet MUST NOT be a Forwarder Encapsulated Packet</mark>»[MQTT‑SN‑3.17.8‑1](#tab-MQTT-SN-3.17.8-1) as the shared key used directly or after derivation for the protection must belong to the originator of the content and not to a Forwarder that, in general, is not able to securely identify the originator.
 
 ### Authentication Tag{#authentication-tag}
 

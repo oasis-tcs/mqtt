@@ -1,0 +1,60 @@
+# Layout of UNSUBSCRIBE WITH TOPIC DATA: derive writes src/images/packet/unsubscribe-with-topic-data-packet-diagram.edn (the figure source) from it.
+
+id: unsubscribe-with-topic-data
+variant-of: unsubscribe
+title: UNSUBSCRIBE WITH TOPIC DATA
+diagram:
+  file: unsubscribe-with-topic-data-packet-diagram
+  boxes-per-row: 9
+  box-width: 90
+  left-margin: 20
+  text-styles:
+    plain:
+      font-family: Arial
+      font-size: 18
+    cursive:
+      font-family: Arial
+      font-size: 18
+      font-style: italic
+layout:
+- field: Length
+  boxes:
+    '1':
+      attrs:
+        span: 8
+- field: Packet Type
+  boxes:
+    '1':
+      attrs:
+        span: 8
+- bits: UNSUBSCRIBE FLAGS
+  heading: row
+  flags:
+  - name: Reserved
+    width: 6
+  - name: Topic Type
+    width: 2
+  values: 000000XX
+  boxes:
+    '1':
+      attrs:
+        fill: '#dddddd'
+        span: 8
+- field: Packet Identifier
+  bytes: 2
+  boxes:
+    '1':
+      attrs:
+        span: 8
+    '3':
+      attrs:
+        span: 8
+- field: Topic Data
+  bytes: 2
+  boxes:
+    '1':
+      attrs:
+        span: 8
+    '3':
+      attrs:
+        span: 8

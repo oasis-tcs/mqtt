@@ -1,0 +1,11 @@
+# Normative statements of intro-08-data-repr.md, in prose order. derive renders each mark «...» in the prose from
+# `text`, and Appendix B from `standalone` (a full sentence, where the mark is a fragment) or `text`.
+# `binds`: the roles (records/roles.yaml) the statement binds; `binds-by`: why (seeded, to review).
+
+statements:
+- id: MQTT-SN-1.8.4-1
+  text: The character data in a UTF-8 Encoded String MUST be well-formed UTF-8 as defined by the Unicode specification [cite](#Unicode) and restated in RFC 3629 [cite](#RFC3629). In particular, the character data MUST NOT include encodings of code points between U+D800 and U+DFFF
+- id: MQTT-SN-1.8.4-2
+  text: A UTF-8 Encoded String MUST NOT include an encoding of the null character U+0000
+- id: MQTT-SN-1.8.4-3
+  text: A UTF-8 encoded sequence 0xEF 0xBB 0xBF is always interpreted as U+FEFF (\"ZERO WIDTH NO-BREAK SPACE\") wherever it appears in a string and MUST NOT be skipped over or stripped off by a packet receiver

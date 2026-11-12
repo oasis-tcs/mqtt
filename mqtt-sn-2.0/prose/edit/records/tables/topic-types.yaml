@@ -1,0 +1,39 @@
+# Table tab-topic-types in ctrl-pack-format-04-topic-types.md: derive writes the table from `entries`.
+
+id: topic-types
+file: ctrl-pack-format-04-topic-types.md
+label: tab-topic-types
+columns-hint: \columns=iii,hhhhhh,nnnnnnnnnn,ddddddddddddddddddddddddddddddddddddddddddd
+columns:
+- key: index
+  title: ''
+  align: left
+  width: 3
+- key: value
+  title: Topic Type Value
+  align: left
+  width: 18
+- key: name
+  title: Name
+  align: left
+  width: 24
+- key: description
+  title: Description
+  align: left
+  width: 202
+entries:
+- index: '0'
+  value: '0b00'
+  name: Session Topic Alias
+  description: A session Topic Alias is negotiated between the Server and Client within the scope of a session.
+- index: '1'
+  value: '0b01'
+  name: Predefined Topic Alias
+  description: A predefined Topic Alias is known statically by both the Server and the Client outside the scope of a session. No negotiation is required since both entities have knowledge of the topic alias mapping.
+- index: '2'
+  value: '0b10'
+  description: Reserved
+- index: '3'
+  value: '0b11'
+  name: Topic Name or Filter
+  description: A Topic Name or Topic Filter, which requires no session negotiation.

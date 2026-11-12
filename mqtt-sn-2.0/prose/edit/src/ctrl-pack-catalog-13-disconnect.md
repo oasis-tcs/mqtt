@@ -58,7 +58,7 @@ The values for Reason Codes are shown in [sec](#reason-code). «<mark title="Req
 
 The Session Expiry Interval is a four-byte integer time interval measured in seconds. If the Session Expiry Interval is absent, the Session Expiry Interval in the CONNECT packet is used.
 
-«<mark title="Requirement MQTT-SN-3.13.5-1"><a name="MQTT-SN-3.13.5-1"></a>The Session Expiry Interval MUST NOT be sent on a DISCONNECT by the Server</mark>»[MQTT-SN-3.13.5-1](#tab-MQTT-SN-3.13.5-1).
+«<mark title="Requirement MQTT-SN-3.13.5-1"><a name="MQTT-SN-3.13.5-1"></a>The Session Expiry Interval MUST NOT be sent on a DISCONNECT by the Server</mark>»[MQTT‑SN‑3.13.5‑1](#tab-MQTT-SN-3.13.5-1).
 
 If the Session Expiry Interval in the CONNECT packet was zero, then it is a Protocol Error to set a non-zero Session Expiry Interval in the DISCONNECT packet sent by the Client. If such a non-zero Session Expiry Interval is received by the Server, it does not treat it as a valid DISCONNECT packet. The Server uses DISCONNECT with Reason Code 0x82 (Protocol Error) as described in [sec](#handling-errors).
 

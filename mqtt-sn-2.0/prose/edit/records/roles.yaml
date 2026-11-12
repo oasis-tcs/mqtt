@@ -1,0 +1,14 @@
+# Roles a statement binds (`binds:` in records/statements/*.yaml). The definitions stay in the terminology
+# section (`legacy`); derive writes views/roles/<role>.md: the statements binding the role, and the packets the
+# role sends and receives according to records/tables/packet-types.yaml.
+
+legacy: {file: intro-04-terminology-def-list.md}
+
+roles:
+  - {id: client, title: Client, term: MQTT-SN Client, direction-name: Client}
+  - {id: server, title: Server, term: MQTT-SN Server, direction-name: Server}
+  - {id: forwarder, title: Forwarder, term: Forwarder, direction-name: Forwarder}
+
+# Targets that take a role through another: a Gateway is a Server that also speaks MQTT upstream.
+builds-on:
+  - {id: gateway, title: Gateway, term: Gateway, roles: [server]}

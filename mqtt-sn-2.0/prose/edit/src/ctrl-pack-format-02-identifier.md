@@ -2,27 +2,27 @@
 
 The Variable Header component of many of the MQTT-SN Control Packet types includes a Two Byte Integer Packet Identifier field. MQTT-SN Control Packets that require a Packet Identifier, along with the corresponding response Packet which all also require a Packet Identifier, are shown in [tab](#tab-packets-with-packet-identifier).
 
-| MQTT-SN Control Packet   | Packet Identifier?      | Response Packet |
+| MQTT-SN Control Packet | Packet Identifier? | Response Packet |
 |:-------------------------|:------------------------|:----------------|
-| ADVERTISE                | NO                      |                 |
-| AUTH                     | YES                     | AUTH, CONNACK   |
-| CONNECT                  | YES                     | AUTH, CONNACK   |
-| DISCONNECT               | OPTIONAL                |                 |
-| FORWARDER ENCAPSULATION  | NO                      |                 |
-| GWINFO                   | NO                      |                 |
-| PINGREQ                  | YES                     | PINGRESP        |
-| PROTECTION ENCAPSULATION | NO                      |                 |
-| PUBLISH - QoS 0          | NO                      |                 |
-| PUBLISH - QoS 1          | YES                     | PUBACK          |
-| PUBLISH - QoS 2          | YES                     | PUBREC          |
-| PUBREL                   | YES                     | PUBCOMP         |
-| PUBWOS                   | NO                      |                 |
-| REGISTER                 | YES                     | REGACK          |
-| SEARCHGW                 | NO                      |                 |
-| SLEEPREQ                 | YES                     | SLEEPRESP       |
-| SUBSCRIBE                | YES                     | SUBACK          |
-| UNSUBSCRIBE              | YES                     | UNSUBACK        |
-| WAKEUP                   | NO                      |                 |
+| ADVERTISE | NO |  |
+| AUTH | YES | AUTH, CONNACK |
+| CONNECT | YES | AUTH, CONNACK |
+| DISCONNECT | OPTIONAL |  |
+| FORWARDER ENCAPSULATION | NO |  |
+| GWINFO | NO |  |
+| PINGREQ | YES | PINGRESP |
+| PROTECTION ENCAPSULATION | NO |  |
+| PUBLISH - QoS 0 | NO |  |
+| PUBLISH - QoS 1 | YES | PUBACK |
+| PUBLISH - QoS 2 | YES | PUBREC |
+| PUBREL | YES | PUBCOMP |
+| PUBWOS | NO |  |
+| REGISTER | YES | REGACK |
+| SEARCHGW | NO |  |
+| SLEEPREQ | YES | SLEEPRESP |
+| SUBSCRIBE | YES | SUBACK |
+| UNSUBSCRIBE | YES | UNSUBACK |
+| WAKEUP | NO |  |
 
 Table: Packets with Packet Identifier{#tab-packets-with-packet-identifier}
 

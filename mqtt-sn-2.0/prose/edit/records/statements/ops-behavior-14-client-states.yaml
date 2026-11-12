@@ -1,0 +1,42 @@
+# Normative statements of ops-behavior-14-client-states.md, in prose order. derive renders each mark «...» in the prose from
+# `text`, and Appendix B from `standalone` (a full sentence, where the mark is a fragment) or `text`.
+# `binds`: the roles (records/roles.yaml) the statement binds; `binds-by`: why (seeded, to review).
+
+statements:
+- id: MQTT-SN-4.14-1
+  text: A Server MUST treat any Packet other than PUBWOS or CONNECT that it receives from a Client in None or Disconnected states as a protocol error
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-4.14-2
+  text: In the Asleep state, a Client MUST only send PINGREQ, CONNECT or DISCONNECT packets to the Server
+  binds:
+  - client
+  binds-by: subject
+- id: MQTT-SN-4.14-3
+  text: In the Awake state, a Client MUST not send ANY packets other than those involved in the receipt of PUBLISH packets (PUBACK, PUBREC, PUBCOMP, REGACK) or CONNECT or DISCONNECT
+  binds:
+  - client
+  binds-by: subject
+- id: MQTT-SN-4.14-4
+  text: Whenever a CONNECT is received by a Server, any existing Virtual Connection for that Client MUST be deleted and a new one created with all CONNECT Packet processing, regardless of the state of the Client
+  binds:
+  - client
+  binds-by: subject
+- id: MQTT-SN-4.14.2-1
+  text: If the Server does not receive an MQTT-SN Control Packet from an Asleep Client within the Sleep Duration plus a suitable grace period, it MUST delete the Virtual Connection to the Client
+- id: MQTT-SN-4.14.2-2
+  text: During the Asleep state, packets that need to be sent to the client are buffered at the Server. The Server MUST buffer Application Messages of QoS 1 and 2
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-4.14.2-3
+  text: If the Maximum Number of Awake Messages (N) set by the client is greater than 0, the server MUST NOT send more than N application messages in any one awake period for that client.
+- id: MQTT-SN-4.14.2-4
+  text: After sending the Maximum Number of Awake Messages Application Messages, the Server cuts short the AWAKE cycle, and MUST respond with a PINGRESP with a messages-left value of either the number of Application Messages remaining in the Server buffer or 0xFF (meaning undetermined number of Application Messages greater than 0 remaining)
+- id: MQTT-SN-4.14.2-5
+  text: During the Awake state, for each Application Message the Server sends to the Client, the application messages' quality of service MUST be honored - a full packet interaction MUST take place including all normative phases of acknowledgement, including any associated retransmission logic
+- id: MQTT-SN-4.14.2-6
+  text: If, during the delivery of Application Messages from the Server to the Client, and applying the <mark title="Ephemeral region marking">retry logic of [sec](#unacknowledged-packets), the Server gets no response, it MUST consider the Client disconnected and delete the Virtual Connection</mark>
+- id: MQTT-SN-4.14.2-7
+  text: If the Server does not have any packets buffered for the client, it MUST respond immediately with a PINGRESP packet

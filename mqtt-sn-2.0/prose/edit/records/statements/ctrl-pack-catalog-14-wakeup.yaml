@@ -1,0 +1,10 @@
+# Normative statements of ctrl-pack-catalog-14-wakeup.md, in prose order. derive renders each mark «...» in the prose from
+# `text`, and Appendix B from `standalone` (a full sentence, where the mark is a fragment) or `text`.
+# `binds`: the roles (records/roles.yaml) the statement binds; `binds-by`: why (seeded, to review).
+
+statements:
+- id: MQTT-SN-3.14.2-1
+  text: The Client MUST transition to the Awake state or remain in the Asleep state
+  binds:
+  - client
+  binds-by: subject

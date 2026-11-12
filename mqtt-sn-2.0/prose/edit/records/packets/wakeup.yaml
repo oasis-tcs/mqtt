@@ -1,0 +1,20 @@
+# Layout of WAKEUP: derive writes src/images/packet/wakeup-packet-diagram.edn (the figure source) from it.
+
+id: wakeup
+title: WAKEUP
+diagram:
+  file: wakeup-packet-diagram
+  boxes-per-row: 9
+  box-width: 90
+  left-margin: 20
+  text-styles:
+    plain:
+      font-family: Arial
+      font-size: 18
+    cursive:
+      font-family: Arial
+      font-size: 18
+      font-style: italic
+layout:
+- field: Length
+- field: Packet Type

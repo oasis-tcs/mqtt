@@ -1,0 +1,105 @@
+# Normative statements of ctrl-pack-catalog-17-protection-encapsulation.md, in prose order. derive renders each mark «...» in the prose from
+# `text`, and Appendix B from `standalone` (a full sentence, where the mark is a fragment) or `text`.
+# `binds`: the roles (records/roles.yaml) the statement binds; `binds-by`: why (seeded, to review).
+
+statements:
+- id: MQTT-SN-3.17-1
+  text: The sender identified by Sender Identifier is the originator of the protected MQTT-SN Packet and responsible for its protection. This responsibility MUST NOT be delegated to a third party like a Forwarder
+- id: MQTT-SN-3.17-2
+  text: All Packets in all Virtual Connections associated with a protected Session MUST use the Protection Encapsulation
+- id: MQTT-SN-3.17-3
+  text: A protected Packet that has the same Client Identifier but a different Sender Identifier as an existing protected Session MUST refer to a different Session
+- id: MQTT-SN-3.17-4
+  text: A protected Packet that has the same Sender Identifier but a different Client Identifier as an existing protected Session MUST refer to a different Session
+- id: MQTT-SN-3.17-5
+  text: An unprotected Packet that has the same Client Identifier as an existing protected Session MUST refer to a different Session
+- id: MQTT-SN-3.17.2.1-1
+  text: The Monotonic Counter Length MUST NOT be set to 0x3 - the value is reserved
+  binds:
+  - client
+  - server
+  binds-by: sender of PROTECTION ENCAPSULATION (packet format)
+- id: MQTT-SN-3.17.2.1-2
+  text: If the Monotonic Counter Length is set to 0x2, a Monotonic Counter of 32 bits (4 bytes) in length MUST be present in the Protection Encapsulation
+  binds:
+  - client
+  - server
+  binds-by: sender of PROTECTION ENCAPSULATION (packet format)
+- id: MQTT-SN-3.17.2.1-3
+  text: If the Monotonic Counter Length is set to 0x1, a Monotonic Counter of 16 bits (2 bytes) in length MUST be present in the Protection Encapsulation
+  binds:
+  - client
+  - server
+  binds-by: sender of PROTECTION ENCAPSULATION (packet format)
+- id: MQTT-SN-3.17.2.1-4
+  text: If the Monotonic Counter Length is set to 0x0, a Monotonic Counter MUST NOT be present in the Protection Encapsulation
+  binds:
+  - client
+  - server
+  binds-by: sender of PROTECTION ENCAPSULATION (packet format)
+- id: MQTT-SN-3.17.2.2-1
+  text: If the Cryptographic Material Length is set to 0x3, a Cryptographic Material field of 96 bits (12 bytes) in length MUST be present in the Protection Encapsulation
+  binds:
+  - client
+  - server
+  binds-by: sender of PROTECTION ENCAPSULATION (packet format)
+- id: MQTT-SN-3.17.2.2-2
+  text: If the Cryptographic Material Length is set to 0x2, a Cryptographic Material field of 32 bits (4 bytes) in length MUST be present in the Protection Encapsulation
+  binds:
+  - client
+  - server
+  binds-by: sender of PROTECTION ENCAPSULATION (packet format)
+- id: MQTT-SN-3.17.2.2-3
+  text: If the Cryptographic Material Length is set to 0x1, a Cryptographic Material field of 16 bits (2 bytes) in length MUST be present in the Protection Encapsulation
+  binds:
+  - client
+  - server
+  binds-by: sender of PROTECTION ENCAPSULATION (packet format)
+- id: MQTT-SN-3.17.2.2-4
+  text: If the Cryptographic Material Length is set to 0x0, a Cryptographic Material field MUST NOT be present in the Protection Encapsulation
+  binds:
+  - client
+  - server
+  binds-by: sender of PROTECTION ENCAPSULATION (packet format)
+- id: MQTT-SN-3.17.2.3-1
+  text: If the Protection Scheme is not "Authentication Only" the Authentication Tag Length MUST be set to 0x1
+  binds:
+  - client
+  - server
+  binds-by: sender of PROTECTION ENCAPSULATION (packet format)
+- id: MQTT-SN-3.17.2.3-2
+  text: If the Authentication Tag Length is set to 0x1, the length of the Authentication Tag MUST be equal to the Protection Scheme nominal tag size
+- id: MQTT-SN-3.17.2.3-3
+  text: The Authentication Tag Length MUST NOT be set to 0x2 or 0x3 - these values are reserved
+  binds:
+  - client
+  - server
+  binds-by: sender of PROTECTION ENCAPSULATION (packet format)
+- id: MQTT-SN-3.17.2.3-4
+  text: If the Authentication Tag Length is set to any value between 0x4 and 0xF inclusive, the Protection Scheme MUST be "Authentication Only"
+- id: MQTT-SN-3.17.2.3-5
+  text: Authentication Tag Length values between 0x4 and 0xF inclusive MUST only be used for the truncation of "Authentication Only" protection schemes
+- id: MQTT-SN-3.17.2.3-6
+  text: In these cases the length of the Authentication Tag MUST be sixteen times the Authentication Tag Length
+- id: MQTT-SN-3.17.2.3-7
+  text: If truncation of the output of the authentication algorithm is required, it MUST be taken in most significant bits first order (leftmost bits)
+- id: MQTT-SN-3.17.2.3-8
+  text: Authentication Tag Length values for some Authentication Only protection schemes MUST NOT be used if they define a tag size bigger than the nominal tag size
+- id: MQTT-SN-3.17.3-1
+  text: The Protection Scheme is a one byte field which MUST contain one of the indexes in [tab](#tab-protection-schemes) which is not reserved
+  binds:
+  - client
+  - server
+  binds-by: sender of PROTECTION ENCAPSULATION (packet format)
+- id: MQTT-SN-3.17.3-2
+  text: The thirteen byte nonce recommended for AES CCM must be obtained by performing SHA256, truncated to the leftmost 104 bits, of the sequence Byte 1 to Byte 17+C+M (all packet fields up to the Protected MQTT-SN Packet)
+- id: MQTT-SN-3.17.3-3
+  text: The twelve byte initialization vector (IV) recommended for AES GCM must be obtained by performing SHA256, truncated to the leftmost 96 bits, of the sequence Byte 1 to Byte 17+C+M (all packet fields up to the Protected MQTT-SN Packet)
+- id: MQTT-SN-3.17.3-4
+  text: The twelve byte nonce recommended for ChaCha20/Poly1305 must be obtained by performing SHA256 truncated to 96 bit of the sequence Byte 1 to Byte 17+C+M (all packet fields up to the Protected MQTT-SN Packet)
+- id: MQTT-SN-3.17.4-1
+  text: The eight byte Sender Identifier field MUST contain a unique value per sender over 8 bytes (such as a MAC address, or other identifying characteristics)
+- id: MQTT-SN-3.17.7-1
+  text: The counters must be considered independent of session or destination
+- id: MQTT-SN-3.17.8-1
+  text: The Protected MQTT-SN Packet MUST NOT be a Forwarder Encapsulated Packet

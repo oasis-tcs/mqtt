@@ -1,0 +1,12 @@
+# Normative statements of ops-behavior-06-application-message-ordering.md, in prose order. derive renders each mark «...» in the prose from
+# `text`, and Appendix B from `standalone` (a full sentence, where the mark is a fragment) or `text`.
+# `binds`: the roles (records/roles.yaml) the statement binds; `binds-by`: why (seeded, to review).
+
+statements:
+- id: MQTT-SN-4.6-1
+  text: When a Server processes an Application Message that has been published to an Ordered Topic, it MUST send PUBLISH packets to consumers (for the same Topic and QoS) in the order that they were received from any given Client
+- id: MQTT-SN-4.6-2
+  text: By default, a Server MUST treat every Topic as an Ordered Topic when it is forwarding Application Messages
+  binds:
+  - server
+  binds-by: subject

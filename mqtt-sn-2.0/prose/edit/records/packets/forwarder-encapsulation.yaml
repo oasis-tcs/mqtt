@@ -1,0 +1,35 @@
+# Layout of FORWARDER ENCAPSULATION: derive writes src/images/packet/forwarder-encapsulation-packet-diagram.edn (the figure source) from it.
+
+id: forwarder-encapsulation
+title: FORWARDER ENCAPSULATION
+diagram:
+  file: forwarder-encapsulation-packet-diagram
+  boxes-per-row: 9
+  box-width: 90
+  left-margin: 20
+  text-styles:
+    plain:
+      font-family: Arial
+      font-size: 18
+    cursive:
+      font-family: Arial
+      font-size: 18
+      font-style: italic
+layout:
+- field: Length
+- field: Packet Type
+- field: Client Addressing Information Length
+- variable: Client Addressing Information
+  symbol-style: label
+  symbol: I
+  boxes:
+    '1':
+      attrs:
+        span: 8
+        text-anchor: start
+- variable: MQTT-SN packet
+  boxes:
+    '1':
+      attrs:
+        span: 8
+        text-anchor: start

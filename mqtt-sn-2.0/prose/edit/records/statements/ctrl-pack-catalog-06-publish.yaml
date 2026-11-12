@@ -1,0 +1,100 @@
+# Normative statements of ctrl-pack-catalog-06-publish.md, in prose order. derive renders each mark «...» in the prose from
+# `text`, and Appendix B from `standalone` (a full sentence, where the mark is a fragment) or `text`.
+# `binds`: the roles (records/roles.yaml) the statement binds; `binds-by`: why (seeded, to review).
+
+statements:
+- id: MQTT-SN-3.6-1
+  text: If forwarded to an MQTT connection, PUBWOS packets MUST have their MQTT Quality of Service level set to 0
+  standalone: If forwarded to an MQTT connection, PUBWOS packets MUST have their MQTT Quality of Service level set to 0\].
+- id: MQTT-SN-3.6.1.2-1
+  text: Bits 7-5 and 3-2 of the PUBWOS FLAGS are reserved and MUST be set to 0
+  binds:
+  - client
+  - server
+  binds-by: sender of PUBLISH (packet format)
+- id: MQTT-SN-3.6.1.2-2
+  text: The receiver MUST validate that the reserved flags in the PUBWOS packet are set to 0. If any of the reserved flags is not 0 it is a Malformed Packet
+  binds:
+  - client
+  - server
+  binds-by: receiver of PUBLISH
+- id: MQTT-SN-3.6.1.2.1-1
+  text: The Topic Type in the PUBWOS packet MUST be Predefined Topic Alias or Topic Name
+- id: MQTT-SN-3.6.1.4-1
+  text: If the Topic Type is Topic Name, the Topic Name field MUST be present in the PUBWOS packet
+  binds:
+  - client
+  - server
+  binds-by: sender of PUBLISH (packet format)
+- id: MQTT-SN-3.6.1.4-2
+  text: If the Topic Type is Predefined Topic Alias, the Topic Name field MUST NOT be present in the PUBWOS packet
+  binds:
+  - client
+  - server
+  binds-by: sender of PUBLISH (packet format)
+- id: MQTT-SN-3.6.1.6-1
+  text: If received by a Client or Server, the PUBWOS packet MUST be treated as if its QoS were 0
+- id: MQTT-SN-3.6.2-1
+  text: PUBLISH packets received by a Client or Server MUST be associated with a Session
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-3.6.2.2-1
+  text: Bits 3-2 of the PUBLISH Flags are reserved and MUST be set to 0
+  binds:
+  - client
+  - server
+  binds-by: sender of PUBLISH (packet format)
+- id: MQTT-SN-3.6.2.2-2
+  text: The receiver MUST validate that the reserved flags in the PUBLISH packet are set to 0. If any of the reserved flags is not 0 it is a Malformed Packet
+  binds:
+  - client
+  - server
+  binds-by: receiver of PUBLISH
+- id: MQTT-SN-3.6.2.2.1-1
+  text: The Topic Type MUST be Topic Name, Predefined Topic Alias or Session Topic Alias
+- id: MQTT-SN-3.6.2.2.3-1
+  text: If the QoS field is set to 0 or 1, the DUP flag MUST be set to 0.
+  binds:
+  - client
+  - server
+  binds-by: sender of PUBLISH (packet format)
+- id: MQTT-SN-3.6.2.3-1
+  text: If the QoS field is set to 0, the Packet Identifier field MUST not be present in the PUBLISH packet.
+  binds:
+  - client
+  - server
+  binds-by: sender of PUBLISH (packet format)
+- id: MQTT-SN-3.6.2.3-2
+  text: If the QoS field is set to 1 or 2, the Packet Identifier field MUST be present in the PUBLISH packet.
+  binds:
+  - client
+  - server
+  binds-by: sender of PUBLISH (packet format)
+- id: MQTT-SN-3.6.2.5-1
+  text: If the Topic Type is Topic Name (0b11), the Topic Name field MUST be present in the PUBLISH packet
+  binds:
+  - client
+  - server
+  binds-by: sender of PUBLISH (packet format)
+- id: MQTT-SN-3.6.2.5-2
+  text: If the Topic Type is Predefined Topic Alias or Session Topic Alias, then the Topic Name field MUST NOT be present in the PUBLISH packet
+  binds:
+  - client
+  - server
+  binds-by: sender of PUBLISH (packet format)
+- id: MQTT-SN-3.6.2.7-1
+  text: The receiver of a PUBLISH packet MUST respond with the packet as determined by the QoS in the PUBLISH Packet.
+- id: MQTT-SN-3.6.2.7-2
+  text: When Clients make subscriptions with Topic Filters that include wildcards, it is possible for a Client's subscriptions to overlap so that a published Application Message might match multiple filters. In this case the Server MUST deliver the Application Message to the Client respecting the maximum QoS of all the matching subscriptions
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-3.6.3.3-1
+  text: The sender of the PUBACK Packet MUST use one of the Reason Codes applicable to PUBACK
+- id: MQTT-SN-3.6.4.3-1
+  text: The sender of the PUBREC Packet MUST use one of the Reason Codes applicable to PUBREC
+- id: MQTT-SN-3.6.5.3-1
+  text: The sender of the PUBREL Packet MUST use one of the Reason Codes applicable to PUBREL
+- id: MQTT-SN-3.6.6.3-1
+  text: The sender of the PUBCOMP Packet MUST use one of the Reason Codes applicable to PUBCOMP

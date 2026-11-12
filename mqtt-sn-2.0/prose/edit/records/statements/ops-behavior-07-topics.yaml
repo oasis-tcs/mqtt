@@ -1,0 +1,50 @@
+# Normative statements of ops-behavior-07-topics.md, in prose order. derive renders each mark «...» in the prose from
+# `text`, and Appendix B from `standalone` (a full sentence, where the mark is a fragment) or `text`.
+# `binds`: the roles (records/roles.yaml) the statement binds; `binds-by`: why (seeded, to review).
+
+statements:
+- id: MQTT-SN-4.7.1.1-1
+  text: A Topic Name, the target of PUBWOS and PUBLISH packets, MUST NOT contain special wildcard characters.
+- id: MQTT-SN-4.7.1.1.2-1
+  text: The multi-level wildcard character MUST be specified either on its own or following a topic level separator. In either case it MUST be the last character specified in the Topic Filter
+- id: MQTT-SN-4.7.1.1.3-1
+  text: The single-level wildcard can be used at any level in the Topic Filter, including first and last levels. Where it is used, it MUST occupy an entire level of the filter
+- id: MQTT-SN-4.7.1.2-1
+  text: The Server MUST NOT match Topic Filters starting with a wildcard character (# or +) with Topic Names beginning with a \$ character
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-4.7.1.3-1
+  text: All Topic Names and Topic Filters MUST be at least one character long
+- id: MQTT-SN-4.7.1.3-2
+  text: Topic Names and Topic Filters MUST NOT include the null character (Unicode U+0000) [\[Unicode\]](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#Unicode)
+- id: MQTT-SN-4.7.1.3-3
+  text: Topic Names and Topic Filters are UTF-8 Encoded Strings; they MUST NOT encode to more than 65,535 bytes
+- id: MQTT-SN-4.7.1.3-4
+  text: When it performs subscription matching the Server MUST NOT perform any normalization of Topic Names or Topic Filters, or any modification or substitution of unrecognized characters
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-4.7.2-1
+  text: If a Topic Alias exists for a Topic Name, a Sender (Client or Server) MUST use that Topic Alias and not the Topic Name in any PUBLISH packet
+- id: MQTT-SN-4.7.2-2
+  text: A sender MUST NOT send any Control Packet containing a Predefined or Session Topic Alias which has the value 0
+- id: MQTT-SN-4.7.2.1-1
+  text: Predefined Topic Aliases MUST NOT change for the duration of any MQTT-SN Session
+- id: MQTT-SN-4.7.2.1-2
+  text: If a PUBLISH is sent to a Predefined Topic Alias which is not defined on the receiver it is a Protocol Error
+- id: MQTT-SN-4.7.2.2-1
+  text: Session Topic Aliases MUST be allocated on a per Session basis - they are not shared between Sessions either with the same Client or different Clients
+- id: MQTT-SN-4.7.2.2-2
+  text: If a Client subscribes to a Topic Filter which does not include wildcard characters, a Predefined or Session Topic Alias MUST be returned in the SUBACK packet
+- id: MQTT-SN-4.7.2.2-3
+  text: If a Client subscribes to a Topic Filter which includes wildcard characters, a Topic Alias (Predefined or Session) MUST NOT be returned in the SUBACK packet
+- id: MQTT-SN-4.7.2.2-4
+  text: A Session Topic Alias MUST NOT be allowed to map to the same Topic Name as a Predefined Topic Alias
+- id: MQTT-SN-4.7.2.2-5
+  text: If a Client requests a Session Topic Alias for a Topic Name which already has a Predefined Topic Alias, the Server MUST return a REGACK with the Topic Type "Predefined Topic Alias", the Predefined Topic Alias, and the Reason Code "Topic Alias Exists"
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-4.7.2.2-6
+  text: A Session Topic alias and a Predefined Topic Alias with the same numerical value MUST map to different Topic Names

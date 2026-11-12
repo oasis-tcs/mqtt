@@ -1,0 +1,7 @@
+# Normative statements of ctrl-pack-format-01-structure.md, in prose order. derive renders each mark «...» in the prose from
+# `text`, and Appendix B from `standalone` (a full sentence, where the mark is a fragment) or `text`.
+# `binds`: the roles (records/roles.yaml) the statement binds; `binds-by`: why (seeded, to review).
+
+statements:
+- id: MQTT-SN-2.1.2-1
+  text: A Client or Server receiving MQTT-SN Control Packets MUST be able to process both 1-byte and 3-byte length formats

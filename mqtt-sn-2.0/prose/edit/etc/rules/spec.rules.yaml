@@ -180,3 +180,18 @@ rules:
       type: section-present
       pattern: 'conformance statements|normative statements'
       flags: IGNORECASE
+
+  # The two HTML checks read build/injected.html: run them after rendering (make html quality).
+  - id: MQTTSN-HTML-WELLFORMED
+    severity: BLOCKER
+    description: >-
+      The rendered HTML is well-formed: balanced tags, every element closed,
+      no markup escaped into text
+    check:
+      type: html-wellformed
+
+  - id: MQTTSN-HTML-ANCHORS
+    severity: BLOCKER
+    description: The rendered HTML has unique ids, and every in-page link resolves to one
+    check:
+      type: html-anchors

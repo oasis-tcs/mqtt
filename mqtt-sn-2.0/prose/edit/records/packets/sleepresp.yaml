@@ -1,0 +1,65 @@
+# Layout of SLEEPRESP: derive writes src/images/packet/sleepresp-packet-diagram.edn (the figure source) from it.
+
+id: sleepresp
+title: SLEEPRESP
+diagram:
+  file: sleepresp-packet-diagram
+  boxes-per-row: 9
+  box-width: 100
+  left-margin: 20
+  text-styles:
+    plain:
+      font-family: Arial
+      font-size: 18
+    cursive:
+      font-family: Arial
+      font-size: 18
+      font-style: italic
+layout:
+- field: Length
+  boxes:
+    '0':
+      attrs:
+        fill: '#eeeeee'
+- field: Packet Type
+  boxes:
+    '0':
+      attrs:
+        fill: '#eeeeee'
+- bits: SLEEPRESP Flags
+  flags:
+  - name: Reserved
+    width: 7
+  - name: Sleep Dur
+    width: 1
+  values: 0000000X
+- field: Packet Identifier
+  at: '3'
+  bytes: 2
+  boxes:
+    '0':
+      attrs:
+        fill: '#eeeeee'
+    '2':
+      attrs:
+        fill: '#eeeeee'
+- group: Sleep Duration
+  items:
+  - field: Sleep Duration
+    at: '5'
+    bytes: 4
+  symbol: S
+  present-if:
+    flag: Sleep Dur
+- field: Reason Code
+  at: 5+S
+  present-if: optional
+  boxes:
+    '0':
+      attrs:
+        fill: '#eeeeee'
+    '1':
+      attrs:
+        fill: '#eeeeee'
+        span: 8
+        text-anchor: start
