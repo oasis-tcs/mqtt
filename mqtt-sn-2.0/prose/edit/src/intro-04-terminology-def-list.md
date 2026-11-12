@@ -54,6 +54,12 @@ MQTT-SN Server
 Gateway
 :    An MQTT-SN Server that also uses the MQTT protocol to communicate with an MQTT Server.
 
+Aggregating Gateway
+:    A Gateway that communicates with an MQTT Server through one or more MQTT Connections each of which handles the data from and for multiple MQTT-SN Clients. It is up to the implementation which data should be forwarded, and if any transformations are applied before forwarding.
+
+Transparent Gateway
+:    A Gateway that communicates with an MQTT Server by opening and maintaining a separate MQTT Connection for each connected MQTT-SN Client. In this configuration the MQTT Server has some awareness of the Clients connected to the Gateway.
+
 Forwarder
 :    A program or device that is an intermediary between MQTT-SN Clients and Servers which reside on different Underlying Networks that cannot communicate directly with each other.
 
