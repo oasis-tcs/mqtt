@@ -53,8 +53,8 @@ Networks Version 2.0]
 #heading(level: 2, outlined: false, numbering: none)[Committee
 Specification Draft 01]
 <committee-specification-draft-01>
-#heading(level: 2, outlined: false, numbering: none)[14 August 2026]
-<14-august-2026>
+#heading(level: 2, outlined: false, numbering: none)[29 October 2026]
+<29-october-2026>
 #heading(level: 4, outlined: false, numbering: none)[This stage]
 <this-stage>
 #link("https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/csd01/mqtt-sn-v2.0-csd01.md")
@@ -136,8 +136,7 @@ is also listed above. Check the \"Latest stage\" location noted above
 for possible later revisions of this document. Any other numbered
 Versions and other technical work produced by the Technical Committee
 (TC) are listed at
-#link("https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=mqtt#technical")[\[https:/\/www.oasis-open.org/committees/tc\_home.php?wg\_abbrev=mqtt\#technical\]]
-.
+#link("https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=mqtt#technical").
 
 TC members should send comments on this document to the TC\'s email
 list. Others should send comments to the TC\'s public comment list,
@@ -172,22 +171,23 @@ used:
 #strong[\[MQTT-SN-v2.0\]]
 
 #emph[MQTT for Sensor Networks Version 2.0]. Edited by Andrew Banks,
-Davide Lenzarini, Ian Craggs, Rahul Gupta, Simon Johnson, Stefan Hagen,
-and Tara E. Walker. 01 May 2025. OASIS Committee Specification Draft 01.
-#link("https://docs.oasis-open.org/mqtt/mqtt-sn/v12.30/csd01/mqtt-sn-v12.30-csd01.docx")[\[https:/\/docs.oasis-open.org/mqtt/mqtt-sn/v2.0/csd01/mqtt-sn-v2.0-csd01.docx\]].
+Andy Stanford-Clark, Davide Lenzarini, Ian Craggs, Rahul Gupta, Simon
+Johnson, Stefan Hagen, and Tara E. Walker. 29 October 2026. OASIS
+Committee Specification Draft 01.
+#link("https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/csd01/mqtt-sn-v2.0-csd01.md").
 Latest stage:
-#link("https://docs.oasis-open.org/mqtt/mqtt-sn/v12.30/mqtt-sn-v12.30.docx")[\[https:/\/docs.oasis-open.org/mqtt/mqtt-sn/v2.0/mqtt-sn-v2.0.docx\]]
+#link("https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/mqtt-sn-v2.0.md")
 
 #heading(level: 2, outlined: false, numbering: none)[Notices]
 <notices>
-Copyright © OASIS Open 2025. All Rights Reserved.
+Copyright © OASIS Open 2026. All Rights Reserved.
 
 All capitalized terms in the following text have the meanings assigned
 to them in the OASIS Intellectual Property Rights Policy (the \"OASIS
 IPR Policy\"). The full
-#link("https://www.oasis-open.org/policies-guidelines/ipr/")[\[Policy\]]
+\[#link("https://www.oasis-open.org/policies-guidelines/ipr/")[Policy]\]
 may be found at the OASIS website:
-\[#link("https://www.oasis-open.org/policies-guidelines/ipr/")[\[https:/\/www.oasis-open.org/policies-guidelines/ipr/\]]\].
+\[#link("https://www.oasis-open.org/policies-guidelines/ipr/")\].
 
 This document and translations of it may be copied and furnished to
 others, and derivative works that comment on or otherwise explain it or
@@ -258,8 +258,8 @@ of this document, and should be used only to refer to the organization
 and its official outputs. OASIS welcomes reference to, and
 implementation and use of, documents, while reserving the right to
 enforce its marks against misleading uses. See
-#link("https://www.oasis-open.org/policies-guidelines/trademark/")[\[https:/\/www.oasis-open.org/policies-guidelines/trademark/\]]
-for above guidance.
+#link("https://www.oasis-open.org/policies-guidelines/trademark/") for
+above guidance.
 
 #pagebreak(weak: true)
 // set channels.typst.toc-dots: true in nide.yaml to add dot leaders
