@@ -1,8 +1,6 @@
 ## SUBACK - Subscribe Acknowledgement{#suback---subscribe-acknowledgement}
 
-*Figure 3-17 -- SUBACK Packet*
-
-![SUBACK Packet](images/suback-packet-diagram.png "SUBACK Packet")<!-- .width="6.5in", .height="2.5555555555555554in" -->
+![SUBACK Packet](images/suback-packet-diagram.png "SUBACK Packet"){#fig-suback-packet}
 
 The SUBACK packet is sent by a Server to a client as an acknowledgment to the receipt and processing of a SUBSCRIBE packet.
 

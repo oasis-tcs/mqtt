@@ -1,0 +1,22 @@
+# Normative statements of ctrl-pack-catalog-11-pingreq.md, in prose order. derive renders each mark «...» in the prose from
+# `text`, and Appendix B from `standalone` (a full sentence, where the mark is a fragment) or `text`.
+# `binds`: the roles (records/roles.yaml) the statement binds; `binds-by`: why (seeded, to review).
+
+statements:
+- id: MQTT-SN-3.11.3-1
+  text: The Server MUST send a PINGRESP packet in response to a PINGREQ packet after sending any buffered Application Messages, if it has a Virtual Connection for the sending Client
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-3.11.3-2
+  text: The Server MAY send a DISCONNECT packet in response to a PINGREQ packet if it does not have a Virtual Connection for the sending Client
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-3.11.3-3
+  text: If the Server sends a DISCONNECT packet in response to a PINGREQ packet because it does not have a Virtual Connection for the sending Client, it MUST use Reason Code 244 - No Virtual Connection Exists
+- id: MQTT-SN-3.11.3-4
+  text: If the state of the Client associated with the Virtual Connection is Asleep on receipt of the PINGREQ, the Server MUST move the Client to the Awake state, stop the Sleep Duration processing, and start the Retry Timer processing
+  binds:
+  - server
+  binds-by: subject

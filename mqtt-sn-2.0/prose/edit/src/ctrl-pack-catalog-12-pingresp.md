@@ -1,8 +1,6 @@
 ## PINGRESP - Ping Response{#pingresp---ping-response}
 
-*Figure 3-21 -- PINGRESP Packet*
-
-![PINGRESP Packet](images/pingresp-packet-diagram.png "PINGRESP Packet")<!-- .width="6.5in", .height="1.4166666666666667in" -->
+![PINGRESP Packet](images/pingresp-packet-diagram.png "PINGRESP Packet"){#fig-pingresp-packet}
 
 A PINGRESP Packet is sent by the Server to the Client in response to a PINGREQ packet. It indicates that the Server is alive.
 
@@ -26,12 +24,10 @@ It is optional, intended as useful information for the Client - its existence is
 
 Values can be:
 
-*Figure 3-22 -- PINGRESP continuation values*
-
 | Allowed Values  | Description                                                                                     |
 |:---------------:|-------------------------------------------------------------------------------------------------|
 |        0        | No Application Messages are waiting to be delivered                                             |
 | 1 – 254 (incl.) | The number of Application Messages waiting to be delivered                                      |
 |   255 (0xFF)    | An unspecified positive number of Application Messages waiting to be delivered greater than 0\. |
 
-Table: PINGRESP continuation values
+Table: PINGRESP continuation values{#tab-pingresp-continuation-values}

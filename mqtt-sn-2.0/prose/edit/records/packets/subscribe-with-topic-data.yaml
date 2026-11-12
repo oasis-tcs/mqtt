@@ -1,0 +1,66 @@
+# Layout of SUBSCRIBE WITH TOPIC DATA: derive writes src/images/packet/subscribe-with-topic-data-packet-diagram.edn (the figure source) from it.
+
+id: subscribe-with-topic-data
+variant-of: subscribe
+title: SUBSCRIBE WITH TOPIC DATA
+diagram:
+  file: subscribe-with-topic-data-packet-diagram
+  boxes-per-row: 9
+  box-width: 90
+  left-margin: 20
+  text-styles:
+    plain:
+      font-family: Arial
+      font-size: 18
+    cursive:
+      font-family: Arial
+      font-size: 18
+      font-style: italic
+layout:
+- field: Length
+  boxes:
+    '1':
+      attrs:
+        span: 8
+- field: Packet Type
+  boxes:
+    '1':
+      attrs:
+        span: 8
+- bits: SUBSCRIBE FLAGS
+  heading: row
+  flags:
+  - name: No Local
+    width: 1
+  - name: QoS
+    width: 2
+  - name: RaP
+    width: 1
+  - name: Retain Handling
+    width: 2
+  - name: Topic Type
+    width: 2
+  values: XXXXXXXX
+  boxes:
+    '1':
+      attrs:
+        fill: '#dddddd'
+        span: 8
+- field: Packet Identifier
+  bytes: 2
+  boxes:
+    '1':
+      attrs:
+        span: 8
+    '3':
+      attrs:
+        span: 8
+- field: Topic Data
+  bytes: 2
+  boxes:
+    '1':
+      attrs:
+        span: 8
+    '3':
+      attrs:
+        span: 8

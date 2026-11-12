@@ -1,8 +1,6 @@
 ## SUBSCRIBE - Subscribe Request{#subscribe---subscribe-request}
 
-*Figure 3-16 -- SUBSCRIBE Packet*
-
-![SUBSCRIBE Packet](images/subscribe-packet-diagram.png "SUBSCRIBE Packet")<!-- .width="6.5in", .height="3.375in" -->
+![SUBSCRIBE Packet](images/subscribe-packet-diagram.png "SUBSCRIBE Packet"){#fig-subscribe-packet}
 
 The SUBSCRIBE packet is sent from the Client to the Server to create one or more Subscriptions. A Subscription registers a Client's interest in one or more Topics. The Server sends PUBLISH packets to the Client to forward Application Messages that were published to Topics that match the Subscription. The SUBSCRIBE packet also specifies the maximum QoS with which the Server can send Application Messages to the Client.
 
@@ -38,7 +36,7 @@ It is a Protocol Error to send a Retain Handling value of 3. See [sec](#retained
 
 #### Retain as Published{#retain-as-published}
 
-**Position**: bit 4 of the SUBSCRIBE Flags. Labelled *RaP* in Figure 3-16.
+**Position**: bit 4 of the SUBSCRIBE Flags. Labelled *RaP* in [fig](#fig-subscribe-packet).
 
 If 1, Application Messages forwarded using this subscription keep the RETAIN flag they were published with.
 

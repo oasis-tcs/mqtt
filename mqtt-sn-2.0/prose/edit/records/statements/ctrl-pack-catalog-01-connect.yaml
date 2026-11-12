@@ -1,0 +1,207 @@
+# Normative statements of ctrl-pack-catalog-01-connect.md, in prose order. derive renders each mark «...» in the prose from
+# `text`, and Appendix B from `standalone` (a full sentence, where the mark is a fragment) or `text`.
+# `binds`: the roles (records/roles.yaml) the statement binds; `binds-by`: why (seeded, to review).
+
+statements:
+- id: MQTT-SN-3.1.2-1
+  text: Bit 7 of the CONNECT Flags is reserved and MUST be set to 0
+  binds:
+  - client
+  binds-by: sender of CONNECT (packet format)
+- id: MQTT-SN-3.1.2-2
+  text: The Server MUST validate that the reserved flags in the CONNECT packet are set to 0
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-3.1.2.1-1
+  text: If a CONNECT packet is received with Clean Start is set to 1, the Client and Server MUST discard any existing Session and start a new Session
+  binds:
+  - client
+  - server
+  binds-by: subject
+- id: MQTT-SN-3.1.2.1-2
+  text: If a CONNECT packet is received with Clean Start set to 0 and there is a Session associated with the Client Identifier, the Server MUST resume communications with the Client based on state from the existing Session
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-3.1.2.1-3
+  text: If a CONNECT packet is received with Clean Start set to 0 and there is no Session associated with the Client Identifier, the Server MUST create a new Session
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-3.1.2.2-1
+  text: If the Will Flag is set to 1, the Will Flags, Will Topic, and Will Payload fields MUST be present in the Packet
+  binds:
+  - client
+  binds-by: sender of CONNECT (packet format)
+- id: MQTT-SN-3.1.2.2-2
+  text: If the Will Flag is set to 1 this indicates that a Will Message MUST be stored on the Server and associated with the Session
+- id: MQTT-SN-3.1.2.2-3
+  text: The Will Message MUST be published after the Virtual Connection is deleted or the Session ends, unless the Will Message has been deleted by the Server on receipt of a DISCONNECT packet with Reason Code 0x00 (Normal disconnection)
+- id: MQTT-SN-3.1.2.2-4
+  text: The Will Message MUST be removed from the stored Session State in the Server once it has been published or the Server has received a DISCONNECT packet with a Reason Code of 0x00 (Normal disconnection) from the Client
+- id: MQTT-SN-3.1.2.3-1
+  text: If the Authentication Flag is set to 1, the Authentication Method and Authentication Data fields MUST be present in the Packet
+  binds:
+  - client
+  binds-by: sender of CONNECT (packet format)
+- id: MQTT-SN-3.1.2.3-2
+  text: If the Authentication Flag is set to 0, the Authentication Method and Authentication Data fields MUST NOT be present in the Packet
+  binds:
+  - client
+  binds-by: sender of CONNECT (packet format)
+- id: MQTT-SN-3.1.2.4-1
+  text: If the Session Expiry Flag is set to 1, the Session Expiry Interval field MUST be present in the Packet
+  binds:
+  - client
+  binds-by: sender of CONNECT (packet format)
+- id: MQTT-SN-3.1.2.4-2
+  text: If the Session Expiry Flag is set to 0, the Session Expiry Interval field MUST NOT be present in the Packet
+  binds:
+  - client
+  binds-by: sender of CONNECT (packet format)
+- id: MQTT-SN-3.1.2.5-1
+  text: If the Maximum Number of Awake Messages Flag is set to 1, the Maximum Number of Awake Messages field MUST be present in the Packet
+  binds:
+  - client
+  binds-by: sender of CONNECT (packet format)
+- id: MQTT-SN-3.1.2.5-2
+  text: If the Maximum Number of Awake Messages Flag is set to 0, the Maximum Number of Awake Messages field MUST NOT be present in the Packet
+  binds:
+  - client
+  binds-by: sender of CONNECT (packet format)
+- id: MQTT-SN-3.1.2.6-1
+  text: If this flag is set to 0 and a Packet is wrapped by the Connection Encapsulation, it is a protocol error. The Server must send a DISCONNECT and delete the Virtual Connection
+- id: MQTT-SN-3.1.2.7-1
+  text: If this flag is set to 0, the Server MUST NOT include a Server Keep Alive field in the CONNACK Packet response
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-3.1.2.7-2
+  text: If this flag is set to 0, the Server MUST NOT include a Session Expiry field in the CONNACK Packet response
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-3.1.2.7-3
+  text: If this flag is set to 0 for the current Virtual Connection, the Server MUST NOT include a Sleep Duration in the SLEEPRESP Packet
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-3.1.3-1
+  text: If the Will Flag is set to 0, the Will Flags MUST NOT be present in the Packet
+  binds:
+  - client
+  binds-by: sender of CONNECT (packet format)
+- id: MQTT-SN-3.1.3-2
+  text: If the Will Flag is set to 1, the Will Flags MUST be present in the Packet
+  binds:
+  - client
+  binds-by: sender of CONNECT (packet format)
+- id: MQTT-SN-3.1.3-3
+  text: Bits 7-5 of the Will Flags are reserved and MUST be set to 0
+  binds:
+  - client
+  binds-by: sender of CONNECT (packet format)
+- id: MQTT-SN-3.1.3.3-1
+  text: If the Will Flag is set to 1 and Will Retain is set to 0, the Server MUST publish the Will Message as a non-retained message
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-3.1.3.3-2
+  text: If the Will Flag is set to 1 and Will Retain is set to 1, the Server MUST publish the Will Message as a retained message
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-3.1.5-1
+  text: The value of the Protocol Version field for MQTT-SN version 2.0 MUST be 2 (0x02)
+- id: MQTT-SN-3.1.5-2
+  text: If the Protocol Version is not 2 and the Server does not want to accept the CONNECT packet, the Server MAY send a CONNACK packet with Reason Code 0x84 (Unsupported Protocol Version)
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-3.1.6-1
+  text: In the absence of sending any other MQTT-SN Control Packets, the Client MUST send a PINGREQ packet
+  binds:
+  - client
+  binds-by: subject
+- id: MQTT-SN-3.1.6-2
+  text: If the Server does not receive an MQTT-SN Control Packet from the Client within one and a half times the Keep Alive time period, it MUST delete the Virtual Connection and move the Client to the Disconnected state (see [sec](#client-states))
+- id: MQTT-SN-3.1.6-3
+  text: If a Client does not receive a PINGRESP packet within a *[Retry Interval]* amount of time after it has sent a PINGREQ, it SHOULD retry the transmission according to [sec](#unacknowledged-packets) up to the maximum number of attempts. If a PINGRESP is still not received it MUST delete the Virtual Connection to the Server by way of a DISCONNECT, with the understanding that the Server may no longer be reachable
+- id: MQTT-SN-3.1.6-4
+  text: The Keep Alive must have a value greater than 0. It is a protocol error if a Keep Alive value of 0 or below is set
+- id: MQTT-SN-3.1.7-1
+  text: The Maximum Packet Size value MUST be 0 (unbounded), or 10 or greater
+  binds:
+  - client
+  binds-by: sender of CONNECT (packet format)
+- id: MQTT-SN-3.1.7-2
+  text: The Server MUST NOT send packets exceeding Maximum Packet Size to the Client. If a Client receives a packet whose size exceeds this limit, this is a Protocol Error, the Client uses DISCONNECT with Reason Code 0x95 (Packet too large)
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-3.1.7-3
+  text: Where a Packet is too large to send, the Server MUST discard it without sending it and then behave as if it had completed sending that Application Message
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-3.1.9-1
+  text: The Client and Server MUST store the Session State after the Virtual Connection is deleted if the Session Expiry Interval is greater than 0
+  binds:
+  - client
+  - server
+  binds-by: subject
+- id: MQTT-SN-3.1.11-1
+  text: The Will Topic Name MUST be a UTF-8 Encoded String as defined in [sec](#utf-8-encoded-string)
+  binds:
+  - client
+  binds-by: sender of CONNECT (packet format)
+- id: MQTT-SN-3.1.18-1
+  text: The Client Identifier MUST be a UTF-8 Encoded String
+  binds:
+  - client
+  binds-by: sender of CONNECT (packet format)
+- id: MQTT-SN-3.1.18-2
+  text: The Client Identifier MUST be used by Clients and by Server to identify the state that they hold relating to this MQTT-SN Session between the Client and the Server
+- id: MQTT-SN-3.1.18-3
+  text: When the Client Identifier is present (greater than 0 bytes), the Server MUST allow values which are between 1 and 23 UTF-8 encoded bytes in length, and that contain only the characters \"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-3.1.18-4
+  text: The Server MAY choose to allow more than 23 bytes
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-3.1.19-1
+  text: The Server MUST validate that the CONNECT packet matches the format described in [sec](#connect---connection-request) and MUST NOT create a Virtual Connection for this CONNECT if it does not match
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-3.1.19-2
+  text: The Server MAY check that the contents of the CONNECT packet meet any further restrictions and SHOULD perform authentication and authorization checks. If any of these checks fail, it MUST NOT create a Virtual Connection for this CONNECT
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-3.1.19-3
+  text: If the Client Identifier represents a Client already connected to the Server, the Server sends a DISCONNECT packet to the existing Client with Reason Code of 0x8E (Session taken over) as described in [sec](#handling-errors) and MUST delete the Virtual Connection of the existing Client
+- id: MQTT-SN-3.1.19-4
+  text: The Server MUST perform the processing of Clean Start that is described in [sec](#clean-start-flag)
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-3.1.19-5
+  text: The Server MUST acknowledge the CONNECT packet with a CONNACK packet containing a 0x00 (Success) Reason Code
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-3.1.19-6
+  text: A Client MUST wait for a CONNACK packet with a 0x00 (Success) Reason Code before sending any packet that needs a Virtual Connection, AUTH excepted
+  binds:
+  - client
+  binds-by: subject
+- id: MQTT-SN-3.1.19-7
+  text: The Server MUST interpret any Packet received from the Client (other than AUTH) that requires a Virtual Connection, after the CONNECT packet is received and before the CONNACK response is sent, as a Protocol Error
+  binds:
+  - server
+  binds-by: subject

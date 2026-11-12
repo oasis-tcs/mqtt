@@ -1,0 +1,421 @@
+# Table tab-reason-codes in ctrl-pack-format-03-reason-code.md: derive writes the table from `entries`.
+
+id: reason-codes
+file: ctrl-pack-format-03-reason-code.md
+label: tab-reason-codes
+columns-hint: \columns=iiiiiiii,hhhhhhhh,nnnnnnnnnn,pppppppppppppppppppppp,ddddddddddddddddddddddddddddddddddddddddddd
+columns:
+- key: decimal
+  title: ID(Dec)
+  align: left
+  width: 12
+- key: value
+  title: ID(Hex)
+  align: left
+  width: 14
+- key: name
+  title: Name
+  align: left
+  width: 44
+- key: packets
+  title: Packets
+  align: left
+  width: 99
+- key: description
+  title: Description
+  align: left
+  width: 193
+entries:
+- decimal: '0'
+  value: '0x00'
+  name: Success
+  packets:
+  - CONNACK
+  - SUBACK
+  - UNSUBACK
+  - REGACK
+  - PUBACK
+  - PUBREC
+  - PUBREL
+  - PUBCOMP
+  - SLEEPRESP
+  - AUTH (server only)
+  description: The operation was successful.
+- decimal: '0'
+  value: '0x00'
+  name: Normal disconnection
+  packets:
+  - DISCONNECT
+  description: Delete the (Virtual) Connection normally. Do not send the Will Message.
+- decimal: '0'
+  value: '0x00'
+  name: Granted QoS 0
+  packets:
+  - SUBACK
+  description: The subscription is accepted and the maximum QoS sent will be QoS 0\. This might be a lower QoS than was requested.
+- decimal: '1'
+  value: '0x01'
+  name: Granted QoS 1
+  packets:
+  - SUBACK
+  description: The subscription is accepted and the maximum QoS sent will be QoS 1\. This might be a lower QoS than was requested.
+- decimal: '2'
+  value: '0x02'
+  name: Granted QoS 2
+  packets:
+  - SUBACK
+  description: The subscription is accepted and any received QoS will be sent to this subscription.
+- decimal: '4'
+  value: '0x04'
+  name: Disconnect with will message
+  packets:
+  - DISCONNECT (client only)
+  description: The Client wishes to disconnect but requires that the Server also publishes its Will Message.
+- decimal: '16'
+  value: '0x10'
+  name: No matching subscribers
+  packets:
+  - PUBACK
+  - PUBREC
+  description: The Application Message is accepted but there are no subscribers. If the Server knows that there are no matching subscribers, it MAY use this Reason Code instead of 0x00 (Success).
+- decimal: '17'
+  value: '0x11'
+  name: No subscription existed
+  packets:
+  - UNSUBACK
+  description: No matching Topic Filter is being used by the Client.
+- decimal: '24'
+  value: '0x18'
+  name: Continue authentication
+  packets:
+  - AUTH
+  description: Continue the authentication with another step.
+- decimal: '25'
+  value: '0x19'
+  name: Re-authenticate
+  packets:
+  - AUTH (client only)
+  description: Initiate a re-authentication.
+- decimal: '26'
+  value: '0x1A'
+  name: Topic Alias Exists
+  packets:
+  - REGACK
+  description: A Session Topic Alias was requested, but a Session or Predefined Topic Alias already exists. (MQTT-SN only)
+- decimal: '128'
+  value: '0x80'
+  name: Unspecified error
+  packets:
+  - CONNACK
+  - PUBACK
+  - PUBREC
+  - SUBACK
+  - UNSUBACK
+  - DISCONNECT
+  description: The receiver does not accept the request but either does not want to reveal the reason, or it does not match one of the other values.
+- decimal: '129'
+  value: '0x81'
+  name: Malformed packet
+  packets:
+  - CONNACK
+  - DISCONNECT
+  description: The received packet does not conform to this specification.
+- decimal: '130'
+  value: '0x82'
+  name: Protocol error
+  packets:
+  - CONNACK
+  - DISCONNECT
+  description: An unexpected or out of order packet was received.
+- decimal: '131'
+  value: '0x83'
+  name: Implementation specific error
+  packets:
+  - CONNACK
+  - PUBACK
+  - PUBREC
+  - REGACK
+  - SUBACK
+  - UNSUBACK
+  - DISCONNECT
+  description: The packet received is valid but cannot be processed by this implementation.
+- decimal: '132'
+  value: '0x84'
+  name: Unsupported Protocol Version
+  packets:
+  - CONNACK
+  description: The Server does not support the version of the MQTT or MQTT-SN protocol requested by the Client.
+- decimal: '133'
+  value: '0x85'
+  name: Client identifier not valid
+  packets:
+  - CONNACK
+  description: The Client Identifier is a valid string but is not allowed by the Server.
+- decimal: '134'
+  value: '0x86'
+  name: Bad user name or password
+  packets:
+  - CONNACK
+  description: The Server does not accept the User Name or Password specified by the Client
+- decimal: '135'
+  value: '0x87'
+  name: Not authorized
+  packets:
+  - CONNACK
+  - PUBACK
+  - PUBREC
+  - REGACK
+  - SUBACK
+  - UNSUBACK
+  - DISCONNECT (server only)
+  description: The request is not authorized.
+- decimal: '136'
+  value: '0x88'
+  name: Server unavailable
+  packets:
+  - CONNACK
+  description: The MQTT-SN Server is not available or, in the case of a Transparent gateway, the MQTT server is not available.
+- decimal: '137'
+  value: '0x89'
+  name: Server busy
+  packets:
+  - CONNACK
+  - DISCONNECT (server only)
+  description: The Server is busy and cannot continue processing requests from this Client.
+- decimal: '138'
+  value: '0x8A'
+  name: Banned
+  packets:
+  - CONNACK
+  description: This Client has been banned by administrative action. Contact the server administrator.
+- decimal: '139'
+  value: '0x8B'
+  name: Server shutting down
+  packets:
+  - DISCONNECT (server only)
+  description: The Server is shutting down.
+- decimal: '140'
+  value: '0x8C'
+  name: Bad authentication method
+  packets:
+  - CONNACK
+  - DISCONNECT
+  description: The authentication method is not supported or does not match the authentication method currently in use.
+- decimal: '141'
+  value: '0x8D'
+  name: Keep Alive timeout
+  packets:
+  - DISCONNECT (server only)
+  description: The (Virtual) Connection is closed because no packet has been received for 1.5 times the Keep Alive time.
+- decimal: '142'
+  value: '0x8E'
+  name: Session taken over
+  packets:
+  - DISCONNECT (server only)
+  description: Another (Virtual) Connection using the same Client Identifier has connected causing this (Virtual) Connection to be closed.
+- decimal: '143'
+  value: '0x8F'
+  name: Topic filter invalid
+  packets:
+  - SUBACK
+  - UNSUBACK
+  - DISCONNECT (server only)
+  description: The Topic Filter is correctly formed, but is not accepted by this Server.
+- decimal: '144'
+  value: '0x90'
+  name: Topic name invalid
+  packets:
+  - CONNACK
+  - PUBACK
+  - PUBREC
+  - DISCONNECT (server only)
+  description: The Topic Name is correctly formed, but is not accepted by this Client or Server.
+- decimal: '145'
+  value: '0x91'
+  name: Packet identifier in use
+  packets:
+  - PUBACK
+  - PUBREC
+  - SUBACK
+  - UNSUBACK
+  - REGACK
+  - PINGRESP
+  - SLEEPRESP
+  description: The specified Packet Identifier is already in use.
+- decimal: '146'
+  value: '0x92'
+  name: Packet identifier not found
+  packets:
+  - PUBREL
+  - PUBCOMP
+  description: The Packet Identifier is not known. This is not an error during recovery, but at other times indicates a mismatch between the Session State on the Client and Server.
+- decimal: '147'
+  value: '0x93'
+  name: Receive maximum exceeded
+  packets:
+  - DISCONNECT
+  description: The Client or Server has received more than Receive Maximum publication for which it has not sent PUBACK or PUBCOMP.
+- decimal: '148'
+  value: '0x94'
+  name: Topic alias invalid
+  packets:
+  - DISCONNECT (server only)
+  description: The Client or Server has received a PUBLISH packet containing a Topic Alias which is greater than the Maximum Topic Alias it sent in the CONNECT or CONNACK packet.  (Transparent gateway only)
+- decimal: '149'
+  value: '0x95'
+  name: Packet too large
+  packets:
+  - CONNACK
+  - DISCONNECT
+  description: The packet size is greater than Maximum Packet Size for this Client or Server.
+- decimal: '150'
+  value: '0x96'
+  name: Packet rate too high
+  packets:
+  - DISCONNECT
+  description: The received data rate is too high.
+- decimal: '151'
+  value: '0x97'
+  name: Quota exceeded
+  packets:
+  - REGACK
+  - SUBACK
+  - DISCONNECT
+  description: An implementation or administrative imposed limit has been exceeded.
+- decimal: '152'
+  value: '0x98'
+  name: Administrative action
+  packets:
+  - DISCONNECT
+  description: The Virtual Connection is deleted due to an administrative action.
+- decimal: '153'
+  value: '0x99'
+  name: Payload format invalid
+  packets:
+  - PUBACK
+  - PUBREC
+  - DISCONNECT (server only)
+  description: The MQTT payload format does not match the one specified by the Payload Format Indicator. (Transparent gateway only)
+- decimal: '154'
+  value: '0x9A'
+  name: Retain not supported
+  packets:
+  - CONNACK
+  - DISCONNECT (server only)
+  description: The MQTT Server does not support retained messages. (Transparent gateway only)
+- decimal: '155'
+  value: '0x9B'
+  name: QoS not supported
+  packets:
+  - CONNACK
+  - DISCONNECT (server only)
+  description: The Client specified a QoS greater than the QoS specified in a Maximum QoS in the MQTT CONNACK. (Transparent gateway only)
+- decimal: '156'
+  value: '0x9C'
+  name: Use another server
+  packets:
+  - CONNACK
+  - DISCONNECT (server only)
+  description: The Client should temporarily change its Server.
+- decimal: '157'
+  value: '0x9D'
+  name: Server moved
+  packets:
+  - CONNACK
+  - DISCONNECT (server only)
+  description: The Server is moved and the Client should permanently change its server location.
+- decimal: '158'
+  value: '0x9E'
+  name: Shared subscription not supported
+  packets:
+  - SUBACK
+  - DISCONNECT (server only)
+  description: The MQTT Server does not support Shared Subscriptions. (Transparent gateway only)
+- decimal: '159'
+  value: '0x9F'
+  name: Connection rate exceeded
+  packets:
+  - CONNACK
+  - DISCONNECT (server only)
+  description: This (Virtual) Connection is deleted because the connection rate is too high.
+- decimal: '160'
+  value: '0xA0'
+  name: Maximum connect time
+  packets:
+  - DISCONNECT (server only)
+  description: The maximum connection time authorized for this (Virtual) Connection has been exceeded.
+- decimal: '161'
+  value: '0xA1'
+  name: Subscription identifiers not supported
+  packets:
+  - SUBACK
+  - DISCONNECT (server only)
+  description: The MQTT Server does not support Subscription Identifiers; the subscription is not accepted. (Transparent gateway only)
+- decimal: '162'
+  value: '0xA2'
+  name: Wildcard subscription not supported
+  packets:
+  - SUBACK
+  - DISCONNECT (server only)
+  description: The MQTT Server does not support Wildcard Subscriptions; the subscription is not accepted. (Transparent Gateway only)
+- decimal: '230'
+  value: '0xE6'
+  name: Only Protection Encapsulation packet supported (Note 1\)
+  packets:
+  - Any packet except Protection Encapsulation and Forwarder Encapsulation
+  description: The Receiver was expecting a packet to be Protection Encapsulated.  (MQTT-SN only)
+- decimal: '231'
+  value: '0xE7'
+  name: Protection scheme invalid
+  packets:
+  - DISCONNECT
+  description: Specific to MQTT-SN
+- decimal: '232'
+  value: '0xE8'
+  name: Unknown Sender Id
+  packets:
+  - DISCONNECT
+  description: Specific to MQTT-SN
+- decimal: '240'
+  value: '0xF0'
+  name: Unknown Topic Alias
+  packets:
+  - PUBACK
+  - PUBREC
+  - SUBACK
+  - UNSUBACK
+  - REGACK
+  description: Specific to MQTT-SN
+- decimal: '241'
+  value: '0xF1'
+  name: Congestion
+  packets:
+  - SUBACK
+  - REGACK
+  - CONNACK
+  - PUBACK
+  - PUBREC
+  description: Try again later. See [C.3 Server Congestion](#c.2-server-congestion) (MQTT-SN only)
+- decimal: '242'
+  value: '0xF2'
+  name: Protection packet not supported
+  packets:
+  - DISCONNECT
+  description: Specific to MQTT-SN
+- decimal: '243'
+  value: '0xF3'
+  name: Forwarder Encapsulation not supported
+  packets:
+  - DISCONNECT
+  description: Specific to MQTT-SN
+- decimal: '244'
+  value: '0xF4'
+  name: No Virtual Connection exists
+  packets:
+  - DISCONNECT
+  description: Specific to MQTT-SN
+- decimal: 245 \- 255
+  value: 0xF5 \- 0xFF
+  name: Reserved for MQTT-SN
+  packets: []
+  description: Specific to MQTT-SN

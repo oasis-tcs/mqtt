@@ -1,0 +1,27 @@
+# Normative statements of ops-behavior-01-session-state.md, in prose order. derive renders each mark «...» in the prose from
+# `text`, and Appendix B from `standalone` (a full sentence, where the mark is a fragment) or `text`.
+# `binds`: the roles (records/roles.yaml) the statement binds; `binds-by`: why (seeded, to review).
+
+statements:
+- id: MQTT-SN-4.1.1-1
+  text: The Server MUST NOT discard the Session State while the Virtual Connection exists
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-4.1.1-2
+  text: The Client MUST NOT discard the Session State while the Virtual Connection exists
+  binds:
+  - client
+  binds-by: subject
+- id: MQTT-SN-4.1.1-3
+  text: The Server MUST discard the Session State when the Virtual Connection is deleted and the Session Expiry Interval has passed
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-4.1.2-1
+  text: If the Client provides no client identifier, the Server MUST respond with a CONNACK containing an Assigned Client Identifier
+  binds:
+  - server
+  binds-by: subject
+- id: MQTT-SN-4.1.2-2
+  text: An Assigned Client Identifier MUST be a new Client Identifier not used by any other Session currently in the Server

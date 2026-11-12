@@ -14,14 +14,17 @@ artifact_stem = mqtt-sn-v2.0-draft
 
 target_gfm_plus = gfm-plus
 
-out_html          = $(shared)$(artifact_stem).html
-out_gfm_plus      = $(shared)$(artifact_stem).md
-out_ir            = $(shared)$(artifact_stem).ir.json
-out_manifest      = $(shared)$(artifact_stem).manifest.json
-out_pdf           = $(shared)$(artifact_stem).pdf
-out_pdf_sha256    = $(shared)$(artifact_stem).pdf.sha256
-out_pdf_blake3    = $(shared)$(artifact_stem).pdf.blake3
-out_typst         = $(shared)$(artifact_stem).typ
+out_html               = $(shared)$(artifact_stem).html
+out_gfm_plus           = $(shared)$(artifact_stem).md
+out_ir                 = $(shared)$(artifact_stem).ir.json
+out_manifest           = $(shared)$(artifact_stem).manifest.json
+out_pdf                = $(shared)$(artifact_stem).pdf
+out_pdf_sha256         = $(shared)$(artifact_stem).pdf.sha256
+out_pdf_blake3         = $(shared)$(artifact_stem).pdf.blake3
+out_pdf_injected       = $(shared)$(artifact_stem)-injected.pdf
+out_typst              = $(shared)$(artifact_stem).typ
+out_packet_dict        = $(shared)$(artifact_stem)-packet-dictionary.json
+out_packet_dict_schema = $(shared)schema/packet-dictionary.schema.json
 
 .PHONY: all
 all: lint types build
@@ -45,11 +48,12 @@ types:
 	command -v mypy >/dev/null 2>&1 || { echo >&2 "make types requires mypy but it's not installed - you can install with: 'pip install mypy'.  Aborting."; exit 1; }
 	$(types)
 
+# The quick loop: every channel, no cleaning, no gates.
 .PHONY: render
-render: html
+render: html pdf
 
 .PHONY: sections
-sections:
+sections: check
 	command -v nide >/dev/null 2>&1 || { echo >&2 "make sections requires nide but it's not installed - you can install with: 'pip install nide'.  Aborting."; exit 1; }
 	nide harvest
 
@@ -69,7 +73,7 @@ html: gfm-plus
 	  [ -f "$${source}" ] && printf "%s" "data:image/png;base64,$$(cat "$${source}" | base64 | tr -d '\r\n')" \
 	    > "../../build/data-url/$${source}.txt"; done && cd -
 	nide render -t html && \
-	  pandoc -f gfm+definition_lists -t html build/html.md --columns=345 \
+	  pandoc -f markdown+definition_lists -t html build/html.md --columns=345 \
 	    --css style/base.css --css style/skin.css --standalone -o build/pandoc.html && \
 	  nide inject && \
 	  cp -p build/injected.html $(out_html) && \
@@ -93,11 +97,62 @@ pdf:
 	  printf "b3sum not found — skipping blake3 checksum\n"
 	$(OPEN) $(out_pdf)
 
+# What you hand over (PR, release): from scratch, the records check first, quality on the rendered HTML, the packet
+# dictionary, then the PDF (no viewer), manifest and validation. Never commits, pushes, or uploads.
 .PHONY: release
-release: html pdf
-	nide manifest && nide validate
+release:
+	$(MAKE) distclean
+	$(MAKE) check
+	$(MAKE) html
+	nide quality
+	$(MAKE) packet-dictionary
+	$(MAKE) OPEN=true pdf
+	nide manifest
+	nide validate
 	cp -p build/manifest.json $(out_manifest)
+	printf "Release complete: built from scratch, all gates passed, manifest verified.\n"
 	ls -l $(shared)$(artifact_stem).*
+	printf "Deliverables changed against version control:\n"
+	git status --short $(shared)
+
+.PHONY: packet-dictionary
+packet-dictionary: gfm-plus
+	printf "Step 1/6 -- collecting bytefield specs in prose order:\n"
+	python3 bin/collect_packet_specs.py --no-rebuild
+	printf "Step 2/6 -- parsing .edn bytefield sources:\n"
+	mkdir -p build/packet-specs
+	python3 bin/parse_bytefield_edn.py --manifest build/packet-spec-manifest.json --out-dir build/packet-specs
+	printf "Step 3/6 -- validating parsed instances against their schema:\n"
+	python3 bin/validate_bytefield_instances.py
+	printf "Step 4/6 -- deriving byte/row structure:\n"
+	mkdir -p build/packet-rows
+	python3 bin/derive_byte_rows.py --dir build/packet-specs --out-dir build/packet-rows
+	printf "Step 4b -- rows of every packet with a layout record, from the record (not from the drawing):\n"
+	python3 bin/spec_records.py rows --out-dir build/packet-rows
+	printf "Step 5/6 -- assembling the combined dictionary:\n"
+	python3 bin/assemble_packet_dictionary.py
+	printf "Step 6/6 -- publishing dictionary + schema:\n"
+	cp -p build/mqtt-sn-v2.0-draft-packet-dictionary.json $(out_packet_dict)
+	mkdir -p $(shared)schema/ && cp -p bin/packet-dictionary.schema.json $(out_packet_dict_schema)
+	ls -l $(out_packet_dict) $(out_packet_dict_schema)
+
+.PHONY: derive
+derive:
+	python3 bin/spec_records.py derive
+
+.PHONY: check
+check:
+	python3 bin/spec_records.py check
+
+# Compile ../share/kaitai/*.ksy to Python and parse every packet vector with it (needs the Kaitai Struct compiler,
+# KSC=/path/to/kaitai-struct-compiler if it is not on PATH, and `pip install kaitaistruct`).
+KSC ?= kaitai-struct-compiler
+
+.PHONY: kaitai-test
+kaitai-test: check
+	rm -rf build/kaitai && mkdir -p build/kaitai
+	$(KSC) -t python --outdir build/kaitai --import-path $(shared)kaitai $(shared)kaitai/*.ksy 2>build/kaitai/compiler.log
+	python3 bin/spec_records.py kaitai-test build/kaitai
 
 .PHONY: quality
 quality:
@@ -118,12 +173,6 @@ build: render status
 status:
 	printf "Current version control status:\n"; \
 	git status || true
-
-.PHONY: diff-pdf
-diff-pdf:
-	printf "Current PDF version control diff:\n"; \
-	command -v iconv >/dev/null 2>&1 || { echo >&2 "make diff-pdf requires iconv but it's not installed - you can search the internets on how to install iconf.  Aborting."; exit 1; }
-	git diff -a $(out_pdf) | iconv --from-code=UTF-8 -c
 
 .PHONY: clean
 clean:
@@ -148,24 +197,3 @@ context:
 	printf "%s revision.is(): sha1:%s\n" "-" "$$(git rev-parse HEAD)"
 	printf "%s location.is(): %s\n" "-" "$$(python -c "(lambda _Y: (lambda _mod: (lambda Path: (lambda g: [(lambda x: [(lambda c, p: (lambda _loop1: _loop1(c, p))(_Y(lambda _loop1: (lambda c, p: ([_loop1(c, p) for (p, c) in [x(p, c, g)]][0]) if (c != p) and (str(c) != '/') else print((f\"(orga/repo='{c.parent.name}/{c.name}', rel-path='{o.relative_to(c)}')\" if (c == p) else \"(orga/repo='?/?', rel-path='?')\"))))))(c if 'c' in dir() else None, p if 'p' in dir() else None) for (_, c) in [x(p, c, g)]][0])(lambda p, c, g: (c, c.parent if not (c / g).is_dir() else c)) for o, p, c in [[Path().resolve()] * 3]][0])('.git'))(_mod.Path))(__import__('pathlib', {}, {}, ['Path'])))((lambda f: (lambda x: x(x))(lambda y: f(lambda *args: y(y)(*args)))))")"
 	printf "%s node.id(): '%s'\n" "-" "$$(python -c 'import platform; import uuid; print(str(uuid.uuid3(uuid.NAMESPACE_DNS, platform.node())))')"
-
-.PHONY: name  # Deprecated - backwards compatibility target
-name: context
-
-.PHONY: whoami # Deprecated - backwards compatibility target
-whoami: context
-
-.PHONY: typst  # Deprecated - use pdf
-typst: pdf
-
-.PHONY: diff-pdf  # Deprecated - use diff-repro
-diff-pdf: diff-repro
-
-.PHONY: render-html  # Deprecated - backwards compatibility target
-render-html: html
-
-.PHONY: render-markdown  # Deprecated - backwards compatibility target
-render-markdown: gfm-plus
-
-.PHONY: render-pdf  # Deprecated - backwards compatibility target
-render-pdf: pdf

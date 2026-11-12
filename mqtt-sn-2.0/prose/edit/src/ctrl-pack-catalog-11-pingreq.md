@@ -1,8 +1,6 @@
 ## PINGREQ - Ping Request{#pingreq---ping-request}
 
-*Figure 3-20 -- PINGREQ Packet*
-
-![PINGREQ Packet](images/pingreq-packet-diagram.png "PINGREQ Packet")<!-- .width="6.5in", .height="1.1944444444444444in" -->
+![PINGREQ Packet](images/pingreq-packet-diagram.png "PINGREQ Packet"){#fig-pingreq-packet}
 
 The PINGREQ packet is sent from a Client to the Server. It can be used to:
 

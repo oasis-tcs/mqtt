@@ -1,0 +1,69 @@
+# Normative statements of ctrl-pack-catalog-13-disconnect.md, in prose order. derive renders each mark «...» in the prose from
+# `text`, and Appendix B from `standalone` (a full sentence, where the mark is a fragment) or `text`.
+# `binds`: the roles (records/roles.yaml) the statement binds; `binds-by`: why (seeded, to review).
+
+statements:
+- id: MQTT-SN-3.13.2-1
+  text: Bits 7-3 of the DISCONNECT Flags are reserved and MUST be set to 0
+  binds:
+  - client
+  - server
+  binds-by: sender of DISCONNECT (packet format)
+- id: MQTT-SN-3.13.2-2
+  text: The receiver MUST validate that the reserved flags in the DISCONNECT packet are set to 0. If any of the reserved flags is not 0 it is a Malformed Packet
+  binds:
+  - client
+  - server
+  binds-by: receiver of DISCONNECT
+- id: MQTT-SN-3.13.2.1-1
+  text: If the Packet Identifier Flag is set to 0, a Packet Identifier MUST NOT be present in the Packet
+  binds:
+  - client
+  - server
+  binds-by: sender of DISCONNECT (packet format)
+- id: MQTT-SN-3.13.2.1-2
+  text: If the Packet Identifier Flag is set to 1, a Packet Identifier MUST be present in the Packet
+  binds:
+  - client
+  - server
+  binds-by: sender of DISCONNECT (packet format)
+- id: MQTT-SN-3.13.2.2-1
+  text: If the Session Expiry Interval Flag is set to 0, a Session Expiry Interval MUST NOT be present in the Packet
+  binds:
+  - client
+  - server
+  binds-by: sender of DISCONNECT (packet format)
+- id: MQTT-SN-3.13.2.2-2
+  text: If the Session Expiry Interval Flag is set to 1, a Session Expiry Interval MUST be present in the Packet
+  binds:
+  - client
+  - server
+  binds-by: sender of DISCONNECT (packet format)
+- id: MQTT-SN-3.13.2.3-1
+  text: If the Reason Code Flag is set to 0, a Reason Code MUST NOT be present in the Packet
+  binds:
+  - client
+  - server
+  binds-by: sender of DISCONNECT (packet format)
+- id: MQTT-SN-3.13.2.3-2
+  text: If the Reason Code Flag is set to 1, a Reason Code MUST be present in the Packet
+  binds:
+  - client
+  - server
+  binds-by: sender of DISCONNECT (packet format)
+- id: MQTT-SN-3.13.4-1
+  text: The sender of the DISCONNECT packet MUST use one of the Reason Code values applicable to DISCONNECT
+- id: MQTT-SN-3.13.5-1
+  text: The Session Expiry Interval MUST NOT be sent on a DISCONNECT by the Server
+- id: MQTT-SN-3.13.7-1
+  text: MUST NOT send any more MQTT-SN Control Packets on that Virtual Connection
+  standalone: After sending a DISCONNECT packet the sender MUST NOT send any more MQTT-SN Control Packets on that Virtual Connection.
+- id: MQTT-SN-3.13.7-2
+  text: MUST delete the Virtual Connection
+  standalone: After sending a DISCONNECT packet the sender MUST delete the Virtual Connection.
+- id: MQTT-SN-3.13.7-3
+  text: MUST discard any Will Message associated with the current Connection without publishing it
+  standalone: On receipt of DISCONNECT with a Reason Code of 0x00 (Success) the Server MUST discard any Will Message associated with the current Connection without publishing it.
+- id: MQTT-SN-3.13.7-4
+  text: MUST NOT send any more MQTT-SN Control Packets on the Virtual Connection, if one exists
+  standalone: On receipt of DISCONNECT, the receiver MUST NOT send any more MQTT-SN Control Packets on the Virtual Connection, if one exists.

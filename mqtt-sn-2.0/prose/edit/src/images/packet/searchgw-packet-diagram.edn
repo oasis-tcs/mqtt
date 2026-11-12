@@ -1,16 +1,10 @@
-;; This is the source for 3.1.2 SEARCHGW packet diagram of MQTT-SN v2.0.
+;; Derived from records/packets/searchgw.yaml by bin/spec_records.py -- edit the record, not this file.
 (def boxes-per-row 9)
 (def box-width 90)
 (def left-margin 20)
 (defattrs :plain {:font-family "Arial" :font-size 18})
 (defattrs :cursive {:font-family "Arial" :font-size 18 :font-style "italic"})
 (defattrs :bg-lightblue {:fill "#cfe2f3"})
-(defattrs :bg-lightblue {:fill "#cfe2f3"})
-(defattrs :bg-mediumgray {:fill "#dddddd"})
-(defattrs :bg-lightgray {:fill "#eeeeee"})
-(defattrs :left {:text-anchor "start"})
-(defattrs :byte [:left {:span 8}])
-(defattrs :field-name [{:span 9} :left])
 
 (defn row-header-fn
   [{:keys [address gap?]}]
@@ -21,13 +15,11 @@
 (doseq [val (str/split "7,6,5,4,3,2,1,0" #",")]
   (draw-box (text val) :bg-lightblue))
 
-(draw-box (text "1"))
-(draw-box "Length" :byte)
-
-(draw-box (text "2"))
-(draw-box "Packet Type" :byte)
-
-(draw-box (text "3"))
-(draw-gap (text "Additional Network Information" :plain [:cursive " - optional"]) [:bg-lightgray])
+(draw-box "1" {})
+(draw-box "Length" {:span 8 :text-anchor "start"})
+(draw-box "2" {})
+(draw-box "Packet Type" {:span 8 :text-anchor "start"})
+(draw-box "3" {})
+(draw-gap (text "Additional Network Information" :plain [:cursive " - optional"]) {:fill "#eeeeee"})
 
 (draw-bottom)

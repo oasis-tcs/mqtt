@@ -1,8 +1,6 @@
 ## REGISTER - Register Topic Alias Request{#register---register-topic-alias-request}
 
-*Figure 3-5 -- REGISTER Packet*
-
-![REGISTER Packet](images/register-packet-diagram.png "REGISTER Packet")<!-- .width="6.5in", .height="3.375in" -->
+![REGISTER Packet](images/register-packet-diagram.png "REGISTER Packet"){#fig-register-packet}
 
 A REGISTER packet is sent by a Client or Server to create a Session Topic Alias, before sending a PUBLISH with that Session Topic Alias.
 

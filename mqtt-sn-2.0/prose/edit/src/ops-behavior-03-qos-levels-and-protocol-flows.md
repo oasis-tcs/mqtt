@@ -32,15 +32,13 @@ In the QoS 0 delivery protocol, the receiver:
 
 - Accepts ownership of the message when it receives the PUBLISH packet.
 
-*Figure 4-3 -- QoS 0 protocol flow, informative example*
-
 | Sender Action |    Control Packet    | Receiver action                                                |
 |:--------------|:--------------------:|:---------------------------------------------------------------|
 | PUBLISH QoS 0 |                      |                                                                |
 |               | \-\-\-\-\-\-\-\-\--> |                                                                |
 |               |                      | Deliver Application Message to appropriate onward recipient(s) |
 
-Table: QoS 0 protocol flow, informative example
+Table: QoS 0 protocol flow, informative example{#tab-qos-0-protocol-flow-informative-example}
 
 ### QoS 1: At least once delivery{#qos-1-at-least-once-delivery}
 
@@ -64,8 +62,6 @@ The sender is NOT permitted to send further packets with different Packet Identi
 
 - «<mark title="Requirement MQTT-SN-4.3.3-6"><a name="MQTT-SN-4.3.3-6"></a>after it has sent a PUBACK packet, MUST treat any incoming PUBLISH packet that contains the same Packet Identifier as being a new Application Message</mark>»[MQTT‑SN‑4.3.3‑6](#tab-MQTT-SN-4.3.3-6).
 
-*Figure 4-4 -- QoS 1 protocol flow, informative example*
-
 | Sender Action                                     | MQTT-SN Control Packet  | Receiver action                                         |
 |:--------------------------------------------------|:-----------------------:|:--------------------------------------------------------|
 | Store message                                     |                         |                                                         |
@@ -74,7 +70,7 @@ The sender is NOT permitted to send further packets with different Packet Identi
 |                                                   | &lt;\-\-\-\-\-\-\-\-\-- | Send PUBACK &lt;Packet Identifier>                      |
 | Discard message                                   |                         |                                                         |
 
-Table: QoS 1 protocol flow, informative example
+Table: QoS 1 protocol flow, informative example{#tab-qos-1-protocol-flow-informative-example}
 
 > ^1^The receiver does not need to complete delivery of the Application Message before sending the PUBACK. When its original sender receives the PUBACK packet, ownership of the Application Message is transferred to the receiver.
 
@@ -98,7 +94,7 @@ This is the highest Quality of Service level, for use when neither loss nor dupl
 
 - «<mark title="Requirement MQTT-SN-4.3.4-7"><a name="MQTT-SN-4.3.4-7"></a>MUST treat the PUBREL packet as "unacknowledged" until it has received the corresponding PUBCOMP packet from the receiver</mark>»[MQTT‑SN‑4.3.4‑7](#tab-MQTT-SN-4.3.4-7)
 
-- «<mark title="Requirement MQTT-SN-4.3.4-8"><a name="MQTT-SN-4.3.4-8"></a>MUST NOT resend the PUBLISH once it has sent the corresponding PUBREL packet</mark>»[MQTT-SN-4.3.4-8](#tab-MQTT-SN-4.3.4-8)
+- «<mark title="Requirement MQTT-SN-4.3.4-8"><a name="MQTT-SN-4.3.4-8"></a>MUST NOT resend the PUBLISH once it has sent the corresponding PUBREL packet</mark>»[MQTT‑SN‑4.3.4‑8](#tab-MQTT-SN-4.3.4-8)
 
 The Packet Identifier becomes available for reuse once the sender has received the PUBCOMP packet or a PUBREC with a Reason Code of 0x80 or greater.
 
@@ -113,8 +109,6 @@ The Packet Identifier becomes available for reuse once the sender has received t
 - «<mark title="Requirement MQTT-SN-4.3.4-12"><a name="MQTT-SN-4.3.4-12"></a>MUST respond to a PUBREL packet by sending a PUBCOMP packet containing the same Packet Identifier as the PUBREL</mark>»[MQTT‑SN‑4.3.4‑12](#tab-MQTT-SN-4.3.4-12)
 
 - «<mark title="Requirement MQTT-SN-4.3.4-13"><a name="MQTT-SN-4.3.4-13"></a>After it has sent a PUBCOMP, the receiver MUST treat any subsequent PUBLISH packet that contains that Packet Identifier as being a new Application Message, irrespective of the setting of its DUP flag</mark>»[MQTT‑SN‑4.3.4‑13](#tab-MQTT-SN-4.3.4-13)
-
-*Figure 4-5 -- QoS 2 protocol flow, informative example*
 
 | **Sender Action**                                             | **MQTT-SN Control Packet** | **Receiver Action**                                                                                                  |
 |:--------------------------------------------------------------|:--------------------------:|:---------------------------------------------------------------------------------------------------------------------|
@@ -132,6 +126,6 @@ The Packet Identifier becomes available for reuse once the sender has received t
 |                                                               |  &lt;\-\-\-\-\-\-\-\-\--   |                                                                                                                      |
 | Discard stored state                                          |                            |                                                                                                                      |
 
-Table: QoS 2 protocol flow, informative example
+Table: QoS 2 protocol flow, informative example{#tab-qos-2-protocol-flow-informative-example}
 
 > ^1^ The receiver does not need to complete delivery of the Application Message before sending the PUBREC or PUBCOMP. When its original sender receives the PUBREC packet, ownership of the Application Message is transferred to the receiver. However, the receiver needs to perform all checks for conditions which might result in a forwarding failure (for example, quota exceeded or authorization) before accepting ownership. The receiver indicates success or failure using the appropriate Reason Code in the PUBREC.

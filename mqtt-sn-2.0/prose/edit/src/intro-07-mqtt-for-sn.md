@@ -26,7 +26,7 @@ MQTT-SN can work isolated from other networks or in conjunction with MQTT. The m
 
 4.  MQTT-SN has fewer requirements on the underlying transport and it can use connectionless network transports such as User Datagram Protocol (UDP).
 
-5.  MQTT-SN introduces the PROTECTION packet for packet-based security based on symmetric-key cryptography.
+5.  MQTT-SN introduces the Protection Encapsulation packet for packet-based security based on symmetric-key cryptography.
 
 6.  If the network supports sending messages to more than one recipient at once, Gateway Advertisement and Discovery can be implemented.
 

@@ -1,0 +1,70 @@
+# Normative statements of ops-behavior-03-qos-levels-and-protocol-flows.md, in prose order. derive renders each mark «...» in the prose from
+# `text`, and Appendix B from `standalone` (a full sentence, where the mark is a fragment) or `text`.
+# `binds`: the roles (records/roles.yaml) the statement binds; `binds-by`: why (seeded, to review).
+
+statements:
+- id: MQTT-SN-4.3.1-1
+  text: MUST send a PUBWOS packet
+  standalone: In the PUBWOS delivery protocol the sender MUST send a PUBWOS packet.
+- id: MQTT-SN-4.3.1-2
+  text: MUST treat any accepted messages as QoS 0
+  standalone: In the PUBWOS delivery protocol the receiver MUST treat any accepted messages as QoS 0.
+- id: MQTT-SN-4.3.2-1
+  text: MUST send a PUBLISH packet with QoS 0
+  standalone: In the QoS 0 delivery protocol the sender MUST send a PUBLISH packet with QoS 0.
+- id: MQTT-SN-4.3.3-1
+  text: MUST assign an unused Packet Identifier each time it has a new Application Message to publish
+  standalone: In the QoS 1 delivery protocol, the sender MUST assign an unused Packet Identifier each time it has a new Application Message to publish.
+- id: MQTT-SN-4.3.3-2
+  text: MUST send a PUBLISH packet containing this Packet Identifier with QoS 1 and DUP flag set to 0
+  standalone: In the QoS 1 delivery protocol, the sender MUST send a PUBLISH packet containing this Packet Identifier with QoS 1 and DUP flag set to 0.
+- id: MQTT-SN-4.3.3-3
+  text: MUST treat the PUBLISH packet as "unacknowledged" until it has received the corresponding PUBACK packet from the receiver
+  standalone: In the QoS 1 delivery protocol, the sender MUST treat the PUBLISH packet as "unacknowledged" until it has received the corresponding PUBACK packet from the receiver.
+- id: MQTT-SN-4.3.3-4
+  text: At all times a Sender MUST have a maximum of one unacknowledged packet
+- id: MQTT-SN-4.3.3-5
+  text: MUST respond with a PUBACK packet containing the Packet Identifier from the incoming PUBLISH packet, having accepted ownership of the Application Message
+  standalone: In the QoS 1 delivery protocol, the receiver MUST respond with a PUBACK packet containing the Packet Identifier from the incoming PUBLISH packet, having accepted ownership of the Application Message.
+- id: MQTT-SN-4.3.3-6
+  text: after it has sent a PUBACK packet, MUST treat any incoming PUBLISH packet that contains the same Packet Identifier as being a new Application Message
+  standalone: In the QoS 1 delivery protocol, the receiver, after it has sent a PUBACK packet, MUST treat any incoming PUBLISH packet that contains the same Packet Identifier as being a new Application Message.
+- id: MQTT-SN-4.3.4-1
+  text: MUST assign an unused Packet Identifier when it has a new Application Message to publish
+  standalone: In the QoS 2 delivery protocol, the sender MUST assign an unused Packet Identifier when it has a new Application Message to publish.
+- id: MQTT-SN-4.3.4-2
+  text: MUST send a PUBLISH packet containing this Packet Identifier with QoS equal to 2
+  standalone: In the QoS 2 delivery protocol, the sender MUST send a PUBLISH packet containing this Packet Identifier with QoS equal to 2.
+- id: MQTT-SN-4.3.4-3
+  text: MUST set the DUP flag to 0 when it attempts to send a PUBLISH packet for the first time
+  standalone: In the QoS 2 delivery protocol, the sender MUST set the DUP flag to 0 when it attempts to send a PUBLISH packet for the first time.
+- id: MQTT-SN-4.3.4-4
+  text: MUST set the DUP flag to 1 when it attempts to resend a PUBLISH packet
+  standalone: In the QoS 2 delivery protocol, the sender MUST set the DUP flag to 1 when it attempts to resend a PUBLISH packet.
+- id: MQTT-SN-4.3.4-5
+  text: MUST treat the PUBLISH packet as "unacknowledged" until it has received the corresponding PUBREC packet from the receiver
+  standalone: In the QoS 2 delivery protocol, the sender MUST treat the PUBLISH packet as "unacknowledged" until it has received the corresponding PUBREC packet from the receiver.
+- id: MQTT-SN-4.3.4-6
+  text: MUST send a PUBREL packet when it receives a PUBREC packet from the receiver with a Reason Code value less than 0x80. This PUBREL packet MUST contain the same Packet Identifier as the original PUBLISH packet
+  standalone: In the QoS 2 delivery protocol, the sender MUST send a PUBREL packet when it receives a PUBREC packet from the receiver with a Reason Code value less than 0x80. This PUBREL packet MUST contain the same Packet Identifier as the original PUBLISH packet.
+- id: MQTT-SN-4.3.4-7
+  text: MUST treat the PUBREL packet as "unacknowledged" until it has received the corresponding PUBCOMP packet from the receiver
+  standalone: In the QoS 2 delivery protocol, the sender MUST treat the PUBREL packet as "unacknowledged" until it has received the corresponding PUBCOMP packet from the receiver.
+- id: MQTT-SN-4.3.4-8
+  text: MUST NOT resend the PUBLISH once it has sent the corresponding PUBREL packet
+  standalone: In the QoS 2 delivery protocol, the sender MUST NOT resend the PUBLISH once it has sent the corresponding PUBREL packet.
+- id: MQTT-SN-4.3.4-9
+  text: MUST respond with a PUBREC containing the Packet Identifier from the incoming PUBLISH packet, having accepted ownership of the Application Message
+  standalone: In the QoS 2 delivery protocol, the receiver MUST respond with a PUBREC containing the Packet Identifier from the incoming PUBLISH packet, having accepted ownership of the Application Message.
+- id: MQTT-SN-4.3.4-10
+  text: If it has sent a PUBREC with a Reason Code of 0x80 or greater, the receiver MUST treat any subsequent PUBLISH packet that contains that Packet Identifier as being a new Application Message
+  standalone: In the QoS 2 delivery protocol, the receiver, if it has sent a PUBREC with a Reason Code of 0x80 or greater, MUST treat any subsequent PUBLISH packet that contains that Packet Identifier as being a new Application Message.
+- id: MQTT-SN-4.3.4-11
+  text: Until it has received the corresponding PUBREL packet, the receiver MUST acknowledge any subsequent PUBLISH packet with the same Packet Identifier by sending a PUBREC. It MUST NOT cause duplicate messages to be delivered to any onward recipients in this case
+  standalone: In the QoS 2 delivery protocol, the receiver, until it has received the corresponding PUBREL packet, MUST acknowledge any subsequent PUBLISH packet with the same Packet Identifier by sending a PUBREC. It MUST NOT cause duplicate messages to be delivered to any onward recipients in this case.
+- id: MQTT-SN-4.3.4-12
+  text: MUST respond to a PUBREL packet by sending a PUBCOMP packet containing the same Packet Identifier as the PUBREL
+  standalone: In the QoS 2 delivery protocol, the receiver MUST respond to a PUBREL packet by sending a PUBCOMP packet containing the same Packet Identifier as the PUBREL.
+- id: MQTT-SN-4.3.4-13
+  text: After it has sent a PUBCOMP, the receiver MUST treat any subsequent PUBLISH packet that contains that Packet Identifier as being a new Application Message, irrespective of the setting of its DUP flag
+  standalone: In the QoS 2 delivery protocol, the receiver, after it has sent a PUBCOMP, MUST treat any subsequent PUBLISH packet that contains that Packet Identifier as being a new Application Message, irrespective of the setting of its DUP flag.

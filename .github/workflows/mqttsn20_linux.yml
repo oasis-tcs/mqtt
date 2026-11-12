@@ -8,7 +8,8 @@ jobs:
   build:
     runs-on: ubuntu-24.04   # pinned, not ubuntu-latest
     env:
-      NIDE_VERSION: "2026.8.16"
+      NIDE_VERSION: "2026.11.3"
+      PYYAML_VERSION: "6.0.3"  # bin/spec_records.py (make check / make derive) reads the records
       TYPST_VERSION: "0.15.1"
       PANDOC_VERSION: "3.10.1"
       B3SUM_VERSION: "1.8.6"
@@ -28,11 +29,11 @@ jobs:
         with:
           python-version: "3.14"
 
-      - name: Install nide (pinned, isolated venv to avoid PEP 668)
+      - name: Install nide and PyYAML (pinned, isolated venv to avoid PEP 668)
         run: |
           python -m venv .venv
           . .venv/bin/activate
-          pip install "nide[manifest]==${NIDE_VERSION}"
+          pip install "nide[manifest]==${NIDE_VERSION}" "pyyaml==${PYYAML_VERSION}"
           echo "$PWD/.venv/bin" >> "$GITHUB_PATH"
 
       - name: Install pandoc (pinned .deb, checksum-verified)

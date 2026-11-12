@@ -1,34 +1,32 @@
 ![](https://docs.oasis-open.org/templates/OASISLogo-v3.0.png)
 
--------
-
 # MQTT for Sensor Networks Version 2.0
 
 ## Committee Specification Draft 01
 
-## 14 August 2026
+## 29 October 2026
 
-#### This stage:
-https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/csd01/mqtt-sn-v2.0-csd01.md (Authoritative) \
-https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/csd01/mqtt-sn-v2.0-csd01.html \
-https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/csd01/mqtt-sn-v2.0-csd01.pdf
+#### This stage
+<https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/csd01/mqtt-sn-v2.0-csd01.md> (Authoritative) \
+<https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/csd01/mqtt-sn-v2.0-csd01.html> \
+<https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/csd01/mqtt-sn-v2.0-csd01.pdf>
 
-#### Previous stage:
+#### Previous stage
 N/A
 
-#### Latest stage:
-https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/mqtt-sn-v2.0.md (Authoritative) \
-https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/mqtt-sn-v2.0.html \
-https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/mqtt-sn-v2.0.pdf
+#### Latest stage
+<https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/mqtt-sn-v2.0.md> (Authoritative) \
+<https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/mqtt-sn-v2.0.html> \
+<https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/mqtt-sn-v2.0.pdf>
 
-#### Technical Committee:
+#### Technical Committee
 [OASIS Message Queuing Telemetry Transport (MQTT) TC](https://www.oasis-open.org/committees/mqtt/)
 
-#### Chairs:
+#### Chairs
 Richard Coppen (coppen@uk.ibm.com), [IBM](https://www.ibm.com) \
 Simon Johnson (simon.johnson@hivemq.com), [HiveMQ GmbH](https://www.hivemq.com)
 
-#### Editors:
+#### Editors
 Andrew Banks (andrewdjbanks@gmail.com), Individual \
 Andy Stanford-Clark (andysc@uk.ibm.com), [IBM](https://www.ibm.com) \
 Davide Lenzarini (<davide.lenzarini@u-blox.com>), [u-blox AG](https://www.u-blox.com/) \
@@ -38,7 +36,7 @@ Simon Johnson (simon.johnson@hivemq.com), [HiveMQ GmbH](https://www.hivemq.com) 
 Stefan Hagen (stefan@hagen.link), [Individual](https://stefan-hagen.website/) \
 Tara E. Walker (tara.walker@microsoft.com), [Microsoft Corporation](https://www.microsoft.com/)
 
-#### Related work:
+#### Related work
 
 This specification is related to:
 
@@ -48,13 +46,13 @@ This specification is related to:
 
 - *MQTT For Sensor Networks (MQTT-SN) - Protocol Specification Version 1.2* by Andy Stanford-Clark and Hong Linh Truong. 14 November 2013. International Business Machines Corporation (IBM). Link: <https://groups.oasis-open.org/higherlogic/ws/public/download/66091/MQTT-SN_spec_v1.2.pdf>.
 
-#### Abstract:
+#### Abstract
 
 This specification defines the MQTT for Sensor Networks protocol (MQTT-SN). It is closely related to the MQTT v3.1.1 and MQTT v5.0 standards. MQTT-SN is optimized for implementation on low-cost, battery-operated devices with limited processing and storage resources. It is designed so that it will work over a variety of networking technologies and bridge to an MQTT network.
 
-#### Status:
+#### Status
 
-This document was last revised or approved by the OASIS Message Queuing Telemetry Transport (MQTT) TC on the above date. The level of approval is also listed above. Check the \"Latest stage\" location noted above for possible later revisions of this document. Any other numbered Versions and other technical work produced by the Technical Committee (TC) are listed at [[https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=mqtt#technical]](https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=mqtt#technical) .
+This document was last revised or approved by the OASIS Message Queuing Telemetry Transport (MQTT) TC on the above date. The level of approval is also listed above. Check the \"Latest stage\" location noted above for possible later revisions of this document. Any other numbered Versions and other technical work produced by the Technical Committee (TC) are listed at <https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=mqtt#technical>.
 
 TC members should send comments on this document to the TC\'s email list. Others should send comments to the TC\'s public comment list, after subscribing to it by following the instructions at the \"[[Send A Comment]](https://www.oasis-open.org/committees/comments/index.php?wg_abbrev=mqtt)\" button on the TC\'s web page at [[https://www.oasis-open.org/committees/mqtt/]](https://www.oasis-open.org/committees/mqtt/).
 
@@ -68,13 +66,13 @@ When referencing this document, the following citation format should be used:
 
 **\[MQTT-SN-v2.0\]**
 
-*MQTT for Sensor Networks Version 2.0*. Edited by Andrew Banks, Davide Lenzarini, Ian Craggs, Rahul Gupta, Simon Johnson, Stefan Hagen, and Tara E. Walker. 01 May 2025. OASIS Committee Specification Draft 01. [[https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/csd01/mqtt-sn-v2.0-csd01.docx]](https://docs.oasis-open.org/mqtt/mqtt-sn/v12.30/csd01/mqtt-sn-v12.30-csd01.docx). Latest stage: [[https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/mqtt-sn-v2.0.docx]](https://docs.oasis-open.org/mqtt/mqtt-sn/v12.30/mqtt-sn-v12.30.docx)
+*MQTT for Sensor Networks Version 2.0*. Edited by Andrew Banks, Andy Stanford-Clark, Davide Lenzarini, Ian Craggs, Rahul Gupta, Simon Johnson, Stefan Hagen, and Tara E. Walker. 29 October 2026. OASIS Committee Specification Draft 01. <https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/csd01/mqtt-sn-v2.0-csd01.md>. Latest stage: <https://docs.oasis-open.org/mqtt/mqtt-sn/v2.0/mqtt-sn-v2.0.md>
 
 ## Notices
 
-Copyright © OASIS Open 2025. All Rights Reserved.
+Copyright © OASIS Open 2026. All Rights Reserved.
 
-All capitalized terms in the following text have the meanings assigned to them in the OASIS Intellectual Property Rights Policy (the \"OASIS IPR Policy\"). The full [[Policy]](https://www.oasis-open.org/policies-guidelines/ipr/) may be found at the OASIS website: \[[[https://www.oasis-open.org/policies-guidelines/ipr/]](https://www.oasis-open.org/policies-guidelines/ipr/)\].
+All capitalized terms in the following text have the meanings assigned to them in the OASIS Intellectual Property Rights Policy (the \"OASIS IPR Policy\"). The full \[[Policy](https://www.oasis-open.org/policies-guidelines/ipr/)\] may be found at the OASIS website: \[<https://www.oasis-open.org/policies-guidelines/ipr/>\].
 
 This document and translations of it may be copied and furnished to others, and derivative works that comment on or otherwise explain it or assist in its implementation may be prepared, copied, published, and distributed, in whole or in part, without restriction of any kind, provided that the above copyright notice and this section are included on all such copies and derivative works. However, this document itself may not be modified in any way, including by removing the copyright notice or references to OASIS, except as needed for the purpose of developing any document or deliverable produced by an OASIS Technical Committee (in which case the rules applicable to copyrights, as set forth in the OASIS IPR Policy, must be followed) or as required to translate it into languages other than English.
 
@@ -90,4 +88,4 @@ As stated in the OASIS IPR Policy, the following three paragraphs in brackets ap
 
 \[OASIS takes no position regarding the validity or scope of any intellectual property or other rights that might be claimed to pertain to the implementation or use of the technology described in this OASIS Standards Final Deliverable or the extent to which any license under such rights might or might not be available; neither does it represent that it has made any effort to identify any such rights. Information on OASIS\' procedures with respect to rights in any document or deliverable produced by an OASIS Technical Committee can be found on the OASIS website. Copies of claims of rights made available for publication and any assurances of licenses to be made available, or the result of an attempt made to obtain a general license or permission for the use of such proprietary rights by implementers or users of this OASIS Standards Final Deliverable, can be obtained from the OASIS TC Administrator. OASIS makes no representation that any information or list of intellectual property rights will at any time be complete, or that any claims in such list are, in fact, Essential Claims.\]
 
-The name \"OASIS\" is a trademark of [[OASIS]](https://www.oasis-open.org/), the owner and developer of this document, and should be used only to refer to the organization and its official outputs. OASIS welcomes reference to, and implementation and use of, documents, while reserving the right to enforce its marks against misleading uses. See [[https://www.oasis-open.org/policies-guidelines/trademark/]](https://www.oasis-open.org/policies-guidelines/trademark/) for above guidance.
+The name \"OASIS\" is a trademark of [[OASIS]](https://www.oasis-open.org/), the owner and developer of this document, and should be used only to refer to the organization and its official outputs. OASIS welcomes reference to, and implementation and use of, documents, while reserving the right to enforce its marks against misleading uses. See <https://www.oasis-open.org/policies-guidelines/trademark/> for above guidance.

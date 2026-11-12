@@ -1,8 +1,6 @@
 ## UNSUBSCRIBE - Unsubscribe Request{#unsubscribe---unsubscribe-request}
 
-*Figure 3-18 -- UNSUBSCRIBE Packet*
-
-![UNSUBSCRIBE Packet](images/unsubscribe-packet-diagram.png "UNSUBSCRIBE Packet")<!-- .width="6.5in", .height="3.375in" -->
+![UNSUBSCRIBE Packet](images/unsubscribe-packet-diagram.png "UNSUBSCRIBE Packet"){#fig-unsubscribe-packet}
 
 An UNSUBSCRIBE packet is sent by the Client to the Server to remove subscriptions to topics.
 

@@ -1,0 +1,88 @@
+# Table tab-packets-with-packet-identifier in ctrl-pack-format-02-identifier.md: derive writes the table from `entries`.
+
+id: packet-identifiers
+file: ctrl-pack-format-02-identifier.md
+label: tab-packets-with-packet-identifier
+columns:
+- key: packet
+  title: MQTT-SN Control Packet
+  align: left
+  width: 26
+- key: identifier
+  title: Packet Identifier?
+  align: left
+  width: 25
+- key: responses
+  title: Response Packet
+  align: left
+  width: 17
+entries:
+- packet: ADVERTISE
+  identifier: 'NO'
+  responses: []
+- packet: AUTH
+  identifier: 'YES'
+  responses:
+  - AUTH
+  - CONNACK
+- packet: CONNECT
+  identifier: 'YES'
+  responses:
+  - AUTH
+  - CONNACK
+- packet: DISCONNECT
+  identifier: OPTIONAL
+  responses: []
+- packet: FORWARDER ENCAPSULATION
+  identifier: 'NO'
+  responses: []
+- packet: GWINFO
+  identifier: 'NO'
+  responses: []
+- packet: PINGREQ
+  identifier: 'YES'
+  responses:
+  - PINGRESP
+- packet: PROTECTION ENCAPSULATION
+  identifier: 'NO'
+  responses: []
+- packet: PUBLISH - QoS 0
+  identifier: 'NO'
+  responses: []
+- packet: PUBLISH - QoS 1
+  identifier: 'YES'
+  responses:
+  - PUBACK
+- packet: PUBLISH - QoS 2
+  identifier: 'YES'
+  responses:
+  - PUBREC
+- packet: PUBREL
+  identifier: 'YES'
+  responses:
+  - PUBCOMP
+- packet: PUBWOS
+  identifier: 'NO'
+  responses: []
+- packet: REGISTER
+  identifier: 'YES'
+  responses:
+  - REGACK
+- packet: SEARCHGW
+  identifier: 'NO'
+  responses: []
+- packet: SLEEPREQ
+  identifier: 'YES'
+  responses:
+  - SLEEPRESP
+- packet: SUBSCRIBE
+  identifier: 'YES'
+  responses:
+  - SUBACK
+- packet: UNSUBSCRIBE
+  identifier: 'YES'
+  responses:
+  - UNSUBACK
+- packet: WAKEUP
+  identifier: 'NO'
+  responses: []
